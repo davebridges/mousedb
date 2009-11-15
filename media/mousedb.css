@@ -1,28 +1,20 @@
-div#user {
-	position:absolute;
-	top:0;
-	left:0;
-	height: 25px;	
+html {
 	font-family: sans-serif;
+}
+
+div#user {
+	height: 25px;	
 }
 
 div#header {
-	position: absolute;
-	top: 25px;
-	left: 0px;
 	height: 100px;
 	text-align: center;
-	font-family: sans-serif;
 }
 
 div#main {
-	position:absolute;
-	top: 100px;
-	font-family: sans-serif;
 	}
 
 div#footer {
-	position: relative;
 }
 
 table { 
@@ -65,7 +57,6 @@ a {
 
 
 ul#menu {
-	width: 100%;
 	font-size: large;
 }
 
@@ -76,7 +67,7 @@ ul#menu li {
 ul#menu li a {
 	text-decoration: none;
 	float: left;
-	padding: 10px;
+	padding: 10px 10px 10px 10px;
 	color: #ffffff;
 	border: 1px solid #ffffff;
 	background-color: #888888;

@@ -4,9 +4,10 @@
 {% block header %}{{ group }} MouseDB{% endblock header %}
 
 {% block content %}
-
+<div class="grid_6 alpha">
 <p>Welcome to the {{group}} Mouse Database.  For information about the {{ group }} please go to our <a href="{{ group.group_url }}", title="{{ group }} homepage"> homepage</a>.  If you have any questions or suggestions about this site, please email <a href="mailto:{{group.contact_email}}">{{group.contact_title}} {{group.contact_first}} {{group.contact_last}}</a>.  For more information on the proper use of this database go to the <a href="http://code.google.com/p/mousedb/wiki/">MouseDB wiki</a>.  To report bugs please go to the <a href="http://code.google.com/p/mousedb/issues">MouseDB Issues Reporting Page</a>.</p>  
-
+</div>
+<div class="grid_6 omega">
 <table>
 <tr><th></th><th width=75>Current</th><th width=75>All</th></tr>
 <tr><td>Strains</td>
@@ -21,6 +22,8 @@
 <td>{{ cage_list_current }}</td>
 <td>{{ cage_list }}</td>
 </tr>
+</table>
+</div>
 {% endblock content %}
 
 {% block footer %}
