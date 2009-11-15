@@ -3,7 +3,6 @@ html {
 }
 
 div#user {
-	height: 25px;	
 }
 
 div#header {
@@ -22,17 +21,11 @@ table {
 }
 
 th { 
-	padding-left: 10px;	
-	padding-right: 10px;
 }
 
 th#left { text-align: left;}
 
 td { 
-	padding-left: 10px;	
-	padding-right: 10px;
-	text-align: center;
-	border-bottom: thin dotted;
 }
 
 td#age { text-align: left;}
@@ -88,16 +81,13 @@ p {
 	line-height: 19px;
 }
 
-input
-{
-	color: #eeeeee;
-	background: #888888;
+input  {
+}
+
+select{
+}
+
+form {
 	border: 1px solid #404040;
-}
-
-select
-{
-	color: #eeeeee;
 	background: #888888;
 }
-
