@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block header %}All Plug Events{% endblock %}
+{% block title %}All Plug Events{% endblock %}
+{% block scripts %}
+	<script type="text/javascript" src="/javascript/jquery-1.3.2.js"></script> 
+	<script type="text/javascript" src="/javascript/dataTables-1.4/media/js/jquery.dataTables.js"</script>
+	<script type="text/javascript">
+        $(document).ready(function() {
+                $("#sortable").dataTable( {
+                        "bPaginate": false,
+                        });
+                });
+    	</script>
+    	</script>
+{% endblock scripts %}
+
+{% block content %}
+<h2>Plug Events ({{plug_list.count}})</h2>
+{% include "plug_table.html" %}
+<p>To add a new plug event click <a href="/mousedb/plug/new">here</a>, or enter it from the <a href="/mousedb/breeding/">breeding cage</a>.</p>
+<p>To see all timed mating breeding cages click <a href="/mousedb/breeding/timed_mating">here</a>.</p>
+{% endblock %}

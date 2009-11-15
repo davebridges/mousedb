@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
+          "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
+<html 
+	xmlns:dc="http://purl.org/dc/elements/1.1/">
+
+
+<head>
+ 	<title property="dc:title">{% block title %}{{ group}} MouseDB{% endblock title %}</title>
+	<link rel="stylesheet" type="text/css" href="/mousedb-media/mousedb.css"/> 
+        <link rel="meta" title="DOAP" href="/mousedb-media/doap.rdf" type="application/rdf+xml"/>
+	{% block scripts%}{% endblock scripts %}
+</head>
+
+<body>
+
+	<nav>
+	<div id = "header">
+		<ul id="menu">
+			<li><a href="/mousedb/index" title="Home">Home</a></li>
+			<li><a href="/mousedb/admin" title="Admin">Admin Site</a></li>
+			<li><a href="/mousedb/todo" title="ToDo List">To Do List</a></li>
+			<li><a href="/mousedb/breeding" title="Breeding Cages">Breeding Cages</a></li>
+			<li><a href="/mousedb/strain" title="Strain List">Strain List</a></li>
+			<li><a href="/mousedb/mouse" title="Animal List">Animal List</a></li>
+			<li><a href="/mousedb/study" title="Study List">Study List</a></li>
+			<li><a href="/mousedb/experiment" title="Experiment List">Experiment List</a></li>
+		</ul>
+	</div>
+	</nav>
+
+	<aside>
+	<div id = "user">
+	{% if user.is_authenticated %}
+		<p>Welcome, {{ user.first_name }} {{ user.last_name }}.  <a href="/mousedb/accounts/login/">Change</a></p>
+	{% else %}
+		<p>Welcome, please <a href="/mousedb/accounts/login/">log in.</a></p>
+	{% endif %}
+	</div>
+	</aside>
+	
+	<section>
+	<div id = "main">
+		<h1>{% block header %}Header{% endblock header %}</h1>
+		{% block content %}Content{% endblock content %}
+	</div>
+	</section>
+	
+	<footer>
+	<div id  = "footer">
+		{% block footer %}{% endblock footer %}
+	</div>
+	</footer>
+<span rel="dc:rights" hreflang="en" href="http://www.opensource.org/licenses/bsd-license.php"/>
+</body>
+</html>

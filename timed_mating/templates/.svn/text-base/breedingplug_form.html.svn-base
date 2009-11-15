@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block header %}New Plug Event for {{breeding}}{% endblock %}
+{% block title %}New Plug Event for {{breeding}}{% endblock %}
+{% block content %}
+<form method="POST" action="/mousedb/plug/breeding/{{breeding.id}}/new/">
+<table>{{ form }}</table>
+<input type="submit" value="Submit" />
+</form>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block header %}Breeding Cage Update - {{object}}{% endblock %}
+{% block title %}Breeding Cage Update - {{object}}{% endblock %}
+{% block content %}
+<form method="POST" action="/mousedb/breeding/{{object.id}}/update/">
+<table>{{ form }}</table>
+<input type="submit" value="Submit" />
+</form>
+{% endblock %}

@@ -1,0 +1,52 @@
+8
+
+dir
+179
+https://mousedb.googlecode.com/svn/trunk/animal/templatetags
+https://mousedb.googlecode.com/svn
+
+
+
+2009-10-18T14:21:15.931578Z
+151
+dave.bridges
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+26ba32f0-1250-11de-aee9-dd9a99c69830
+
+__init__.py
+file
+
+
+
+
+2009-10-18T14:33:45.000000Z
+d41d8cd98f00b204e9800998ecf8427e
+2009-10-18T14:21:15.931578Z
+151
+dave.bridges
+
+custom_filters.py
+file
+
+
+
+
+2009-10-18T14:33:45.000000Z
+f08ac0f66274282f72e41d2330bcf7b6
+2009-10-18T14:21:15.931578Z
+151
+dave.bridges
+

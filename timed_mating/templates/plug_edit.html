@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block header %}Edit Plug Event{% endblock %}
+{% block title %}Edit Plug Event{% endblock %}
+{% block content %}
+<form method="POST" action="/mousedb/plug/{{object.id}}/edit/">
+<table>{{ form }}</table>
+<input type="submit" value="Submit" />
+</form>
+{% endblock %}

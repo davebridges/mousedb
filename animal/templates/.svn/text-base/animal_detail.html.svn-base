@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Mouse Detail{% endblock title %}
+{% block scripts %}{% include "sortable_table_script.html" %}{% endblock scripts %}
+{% block header %}Mouse Detail - {{ animal }}{% endblock header %}
+
+{% block content %}
+{% if animal.Death %}
+This mouse died on {{ animal.Death }}.  Cause of death was {{ animal.Cause_of_Death }}
+{% else %}
+This mouse is {{ animal.Born|timesince }} old.
+{% endif %}
+<table>
+<tr>
+{% if animal.MouseID %}<th>MouseID</th>{% endif %}
+{% if animal.Strain %}<th>Strain</th>{% endif %}
+{% if animal.Background %}<th>Background</th>{% endif %}
+{% if animal.Genotype %}<th>Genotype</th>{% endif %}
+{% if animal.Born %}<th>Born</th>{% endif %}
+{% if animal.Death %}<th>Death</th>{% endif %}
+{% if animal.Weaned %}<th>Weaned</th>{% endif %}
+{% if animal.Cage %}<th>Cage</th>{% endif %}
+{% if animal.Generation %}<th>Generation</th>{% endif %}
+{% if animal.Markings %}<th>Markings</th>{% endif %}
+{% if animal.Breeding %}<th>Breeding</th>{% endif %}
+{% if animal.Notes %}<th>Notes</th>{% endif %}
+</tr>
+<tr>
+{% if animal.MouseID %}<td>{{ animal.MouseID}}</td>{% endif %}
+{% if animal.Strain %}<td><a href="/mousedb{{ animal.Strain.get_absolute_url }}">{{ animal.Strain }}</a></td>{% endif %}
+{% if animal.Background %}<td>{{ animal.Background }}</td>{% endif %}
+{% if animal.Genotype %}<td>{{ animal.Genotype }}</td>{% endif %}
+{% if animal.Born %}<td>{{ animal.Born }}</td>{% endif %}
+{% if animal.Death %}<td>{{ animal.Death }}</td>{% endif %}
+{% if animal.Weaned %}<td>{{ animal.Weaned }}</td>{% endif %}
+{% if animal.Cage %}<td>{{ animal.Cage }}</td>{% endif %}
+{% if animal.Generation %}<td>{{ animal.Generation }}</td>{% endif %}
+{% if animal.Markings %}<td>{{ animal.Markings }}</td>{% endif %}
+{% if animal.Breeding %}<td><a href="/mousedb/breeding/{{ animal.Breeding.id }}">{{ animal.Breeding.Cage }}</a></td>{% endif %}
+{% if animal.Notes %}<td>{{ animal.Notes }}</td>{% endif %}
+</tr>
+</table>
+<a href="/mousedb/mouse/{{ animal.id }}/change">Edit Mouse Data</a>
+{% if animal_measurements %}
+	<h2>Measurement Summary</h2>
+	{% with animal_measurements as data_list %}
+	{% include "data_table.html" %}
+	{% endwith %}
+{% else %}
+	<p>No measurements for this animal.</p>
+{% endif %}
+<p>To change this animal click <a href="/mousedb/mouse/{{animal.id}}/update">here</a>.  To delete (not kill but to completely erase all data) this mouse click <a href="/mousedb/mouse/{{animal.id}}/delete">here</a></p>
+{% endblock content%}

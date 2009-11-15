@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}To Do List{% endblock title %}
+
+{% block header %}To Do List...{% endblock header %}
+
+{% block content %}
+<table>
+<tr><td><a href="/mousedb/todo/eartag">Ear Tagging</a></td><td>{{ eartag_list.count }}</td></tr>
+<tr><td><a href="/mousedb/todo/genotype">Genotype</a></td><td>{{ genotype_list.count }}</td></tr>
+<tr><td><a href="/mousedb/todo/wean">Wean</a></td><td>{{ wean_list.count }}</td></tr>
+</table>
+<h2>Data Entry Errors</h2>
+<ul>
+<li><a href="/mousedb/todo/no_cage">No Cage Entered</a></li>
+<li><a href="/mousedb/todo/no_rack">No Rack Entered</a></li>
+</ul>
+{% endblock content %}

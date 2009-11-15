@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Diet Detail - {{ diet }}{% endblock title%}
+
+{% block header %}Diet Detail - {{ diet }}{% endblock header%}
+
+{% block content %}
+<table>
+	<thead>
+	</thead>
+	<tbody>
+		<tr><th>Vendor</th><td>{{ diet.vendor }}</td></tr>
+		<tr><th>Description</th><td>{{ diet.description }}</td></tr>
+		<tr><th>Product Code</th><td>{{ diet.product_id }}</td></tr>
+		<tr><th>Fat</th><td>{{ diet.fat_content }}</td></tr>
+		<tr><th>Protein</th><td>{{ diet.protein_content }}</td></tr>
+		<tr><th>Carbohydrates</th><td>{{ diet.carb_content }}</td></tr>
+		<tr><th>Irradiated</th><td>{{ diet.irradiated}}</td></tr>
+	</tbody>
+</table>
+{% endblock content %}

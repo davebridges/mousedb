@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block header %}Experiment Setup{% endblock %}
+{% block title %}Experiment Setup{% endblock %}
+{% block content %}
+<form method="POST" action="/mousedb/experiment/new/">
+<table>{{ form }}</table>
+<input type="submit" value="Submit" />
+</form>
+{% endblock %}

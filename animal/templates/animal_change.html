@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Update Animal{% endblock title %}
+
+{% block header %}Update: {{ animal }}{% endblock header %}
+
+{% block content %}
+<p>Change fields as necessary.</p>
+<form method="POST" action="/mousedb/mouse/{{ animal.id }}/change/">
+	<table>{{ form }}</table>
+<input type="submit" value="Submit" />
+</form>
+
+{% endblock content %}

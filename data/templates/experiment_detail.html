@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Experiment Details{% endblock title%}
+
+{% block scripts %}
+	<script type="text/javascript" src="/javascript/jquery-1.3.2.js"></script> 
+	<script type="text/javascript" src="/javascript/dataTables-1.4/media/js/jquery.dataTables.js"</script>
+	<script type="text/javascript">
+        $(document).ready(function() {
+                $(".sortable").dataTable( {
+                        "bPaginate": false,
+                        });
+                });
+    	</script>
+    	</script>
+
+{% endblock scripts %}
+
+{% block header %}Experiment Details - {{ experiment }}{% endblock header %}
+
+{% block content %}
+<p>Date: {{ experiment.date }}</p>
+<p>Feeding State: {{ experiment.feeding_state }}</p>
+<p>Fasting Time: {{ experiment.fasting_time }}</p>
+<p>Notes:  {{ experiment.notes }}</p>
+{% with experiment.measurement_set.all as data_list %}
+{% include "data_table.html" %}
+{% endwith %}
+<p>Enter or edit data <a href="/mousedb/experiment/{{experiment.id}}/data_entry" title="Data Entry Form">here</a></p>
+<p>Add new experiment <a href="/mousedb/experiment/new/">here</a></p>
+{% endblock content %}

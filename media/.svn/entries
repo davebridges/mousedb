@@ -1,0 +1,58 @@
+8
+
+dir
+179
+https://mousedb.googlecode.com/svn/trunk/media
+https://mousedb.googlecode.com/svn
+
+
+
+2009-10-24T23:40:21.014866Z
+168
+dave.bridges
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+26ba32f0-1250-11de-aee9-dd9a99c69830
+
+admin-media
+dir
+
+mousedb.css
+file
+
+
+
+
+2009-10-18T14:33:38.000000Z
+700053e7707f8a3f0170df721dedfc5a
+2009-10-18T14:21:15.931578Z
+151
+dave.bridges
+
+javascript
+dir
+
+doap.rdf
+file
+
+
+
+
+2009-11-05T03:41:05.000000Z
+8d30a1691b2224fd6e826fd0d3cf452f
+2009-10-24T23:40:21.014866Z
+168
+dave.bridges
+

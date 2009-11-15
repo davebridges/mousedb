@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Data Entry ({{ experiment }}){% endblock %}
+{% block header %}Data Entry ({{ experiment }}){% endblock %}
+{% block content %}
+<form action="/mousedb/experiment/{{ experiment.id }}/data_entry/" method="POST">
+    {{ formset.management_form }}
+    {% include "formsets_table.html" %}
+<input type="submit" value="Submit" />
+</form>
+{% endblock %}
+

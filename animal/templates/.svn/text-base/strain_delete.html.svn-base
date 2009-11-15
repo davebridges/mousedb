@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block header%}Confirm Delete - {{object}}{% endblock %}
+{% block title %}Confirm Delete - {{object}}{% endblock %}
+{% block content %}
+Are you sure?
+<form action="/mousedb/strain/{{object.id}}/delete/" method="POST">
+<input type="submit" value="Submit" />
+<form>
+{% endblock %}

@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 33
+/svn/!svn/ver/167/trunk/templates
+END
+specs.html
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/151/trunk/templates/specs.html
+END
+maintenance.html
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/151/trunk/templates/maintenance.html
+END
+todo.html
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/151/trunk/templates/todo.html
+END
+sortable_table_script.html
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/151/trunk/templates/sortable_table_script.html
+END
+home.html
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/151/trunk/templates/home.html
+END
+formsets_table.html
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/151/trunk/templates/formsets_table.html
+END
+base.html
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/167/trunk/templates/base.html
+END

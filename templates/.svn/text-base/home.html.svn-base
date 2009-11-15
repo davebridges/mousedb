@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}{{ group }} MouseDB Home{% endblock title %}
+
+{% block header %}{{ group }} MouseDB{% endblock header %}
+
+{% block content %}
+
+<p>Welcome to the {{group}} Mouse Database.  For information about the {{ group }} please go to our <a href="{{ group.group_url }}", title="{{ group }} homepage"> homepage</a>.  If you have any questions or suggestions about this site, please email <a href="mailto:{{group.contact_email}}">{{group.contact_title}} {{group.contact_first}} {{group.contact_last}}</a>.  For more information on the proper use of this database go to the <a href="http://code.google.com/p/mousedb/wiki/">MouseDB wiki</a>.  To report bugs please go to the <a href="http://code.google.com/p/mousedb/issues">MouseDB Issues Reporting Page</a>.</p>  
+
+<table>
+<tr><th></th><th width=75>Current</th><th width=75>All</th></tr>
+<tr><td>Strains</td>
+<td><a href="/mousedb/strain/">{{ strain_list.count }}</a></td>
+<td><a href="/mousedb/strain/">{{ strain_list.count }}</a></td>
+</tr>
+<tr><td>Mice</td>
+<td><a href="/mousedb/mouse/">{{ animal_list_current.count }}</a></td>
+<td><a href="/mousedb/mouse/">{{ animal_list.count }}</a></td>
+</tr><tr>
+<td>Cages</td>
+<td>{{ cage_list_current }}</td>
+<td>{{ cage_list }}</td>
+</tr>
+{% endblock content %}
+
+{% block footer %}
+<hr>
+<p>For technical details on this database click <a href="/mousedb/specs">here</a>.  The data contained in this database is restricted for use by authorized users only.</p>
+{% endblock footer %}

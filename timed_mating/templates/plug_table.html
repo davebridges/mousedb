@@ -1,0 +1,37 @@
+<table class="sortable">
+	<thead>	
+	<tr>
+	<th>Breeding Cage</th>
+	<th>Strain</th>
+	<th>Parents(M/F)</th>
+	<th>Plug Date</th>
+	<th>Sacrifice Date</th>
+	<th>Duration</th>
+	<th>WT</th>
+	<th>HET</th>
+	<th>KO</th>
+	</tr>
+	</thead>
+	<tbody>
+	{% for plug in plug_list %}
+	<tr>
+	<td><a href="/mousedb/breeding/{{plug.Breeding.id}}">{{plug.Breeding.Cage}}</a></td>
+	<td><a href="/mousedb/strain/{{plug.Breeding.Strain.Strain_slug}}">{{plug.Breeding.Strain}}</a></td>
+	<td>{{plug.PlugMale}}/{{plug.PlugFemale}}</td>
+	<td>{{plug.PlugDate}}</td>
+	<td>{{plug.SacrificeDate}}</td>
+	<td>	{% if plug.SacrificeDate %}
+		{{plug.SacrificeDate|timeuntil:plug.PlugDate}}
+		{% else %}
+		{{datetime.date.today|timeuntil:plug.PlugDate}}
+		{% endif %}
+	</td>
+	<td>{{plug.WT_Alive}}/{{plug.WT_Dead}}</td>
+	<td>{{plug.HET_Alive}}/{{plug.HET_Dead}}</td>
+	<td>{{plug.KO_Alive}}/{{plug.KO_Dead}}</td>
+	<td><a href="/mousedb/plug/{{plug.id}}/edit">edit</a></td>
+	<td><a href="/mousedb/plug/{{plug.id}}/delete">delete</a></td>
+	</tr>
+	{% endfor %}
+	</tbody>
+</table>

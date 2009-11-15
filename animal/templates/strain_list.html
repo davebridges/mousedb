@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Strain List{% endblock title%}
+
+{% block scripts %}{% include "sortable_table_script.html" %}{% endblock scripts %}
+
+{% block header %}Strain List{% endblock header %}
+
+{% block content %}
+<h2>{{ strain_list.count }} Strains of Mice:</h2>
+<table>
+ <thead>
+ <tr>
+  <th>Strain</th> {% for strain in strain_list %}<th>{{strain}}</th>{% endfor %}
+ </tr>
+ </thead>
+ <tdata>
+ <tr><th>Current</th>{% for strain in strain_list_alive %}<td><a href="/mousedb/strain/{{strain.Strain_slug}}">{{ strain.alive }}</a></td>{% endfor %}</tr>
+ <tr><th>All</th>{% for strain in strain_list %}<td><a href="/mousedb/strain/{{strain.Strain_slug}}/all">{{ strain.animal_set.count }}</td></a>{% endfor %}</tr>
+ </tdata>
+ </table>
+<div id="chart">
+<img src="http://chart.apis.google.com/chart?
+chs=600x250
+&amp;chd=t:{% for strain in strain_list_alive %}{{ strain.alive}}{% if not forloop.last %},{% endif %}{%endfor %}
+&amp;chds=0,500
+&amp;cht=p3
+&amp;chco=996666
+&amp;chtt=Current Mouse Distribution
+&amp;chl={% for strain in strain_list_alive %}{{ strain }}{% if not forloop.last %}|{% endif %}{%endfor %}
+&amp;alt = "Chart of Mouse Distribution"
+border = 1 px/>
+</div>
+<p>To add a new mouse click <a href="/mousedb/mouse/new">here</a>.
+<p>To add a new mouse strain click <a href="/mousedb/strain/new">here</a>.
+{% endblock content %}

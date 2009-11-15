@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/151/trunk/media/javascript/dataTables-1.5/examples/basic_init
+END
+table_sorting.html
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/151/trunk/media/javascript/dataTables-1.5/examples/basic_init/table_sorting.html
+END
+multi_col_sort.html
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/151/trunk/media/javascript/dataTables-1.5/examples/basic_init/multi_col_sort.html
+END
+state_save.html
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/151/trunk/media/javascript/dataTables-1.5/examples/basic_init/state_save.html
+END
+dom.html
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/151/trunk/media/javascript/dataTables-1.5/examples/basic_init/dom.html
+END
+language.html
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/151/trunk/media/javascript/dataTables-1.5/examples/basic_init/language.html
+END
+zero_config.html
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/151/trunk/media/javascript/dataTables-1.5/examples/basic_init/zero_config.html
+END
+themes.html
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/151/trunk/media/javascript/dataTables-1.5/examples/basic_init/themes.html
+END
+multiple_tables.html
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/151/trunk/media/javascript/dataTables-1.5/examples/basic_init/multiple_tables.html
+END
+filter_only.html
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/151/trunk/media/javascript/dataTables-1.5/examples/basic_init/filter_only.html
+END
+alt_pagination.html
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/151/trunk/media/javascript/dataTables-1.5/examples/basic_init/alt_pagination.html
+END
+hidden_columns.html
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/151/trunk/media/javascript/dataTables-1.5/examples/basic_init/hidden_columns.html
+END
