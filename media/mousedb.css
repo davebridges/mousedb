@@ -30,7 +30,6 @@ table {
 }
 
 th { 
-	border-bottom: thick solid;
 	padding-left: 10px;	
 	padding-right: 10px;
 }
@@ -78,14 +77,16 @@ ul#menu li a {
 	text-decoration: none;
 	float: left;
 	padding: 10px;
-	color: black;
+	color: #ffffff;
+	border: 1px solid #ffffff;
+	background-color: #888888;
 	width: 10%;
 	height: 50px;
 }
 
 ul#menu li a:hover {
-	background-color: black;
-	color: silver;
+	background-color: #dddddd;
+	color: 	#000000;
 }
 
 p {
@@ -96,4 +97,16 @@ p {
 	line-height: 19px;
 }
 
+input
+{
+	color: #eeeeee;
+	background: #888888;
+	border: 1px solid #404040;
+}
+
+select
+{
+	color: #eeeeee;
+	background: #888888;
+}
 
