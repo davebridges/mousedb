@@ -1,14 +1,14 @@
 8
 
 dir
-179
+188
 https://mousedb.googlecode.com/svn/trunk/timed_mating
 https://mousedb.googlecode.com/svn
 
 
 
-2009-11-05T03:31:01.463523Z
-179
+2009-11-15T16:46:15.753316Z
+188
 dave.bridges
 has-props
 
@@ -40,7 +40,7 @@ dave.bridges
 
 views.py
 file
-183
+
 
 
 
@@ -76,7 +76,7 @@ dave.bridges
 
 urls.py
 file
-181
+
 
 
 
@@ -88,7 +88,7 @@ dave.bridges
 
 forms.py
 file
-182
+
 
 
 

@@ -2,6 +2,7 @@
 
 {% block header %}Experiment Setup{% endblock %}
 {% block title %}Experiment Setup{% endblock %}
+{% block scripts %}{{form.media}}{% endblock %}
 {% block content %}
 <form method="POST" action="/mousedb/experiment/new/">
 <table>{{ form }}</table>

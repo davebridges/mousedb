@@ -1,14 +1,14 @@
 8
 
 dir
-179
+188
 https://mousedb.googlecode.com/svn/trunk
 https://mousedb.googlecode.com/svn
 
 
 
-2009-11-05T03:31:01.463523Z
-179
+2009-11-15T16:46:15.753316Z
+188
 dave.bridges
 has-props
 
@@ -26,6 +26,12 @@ svn:special svn:externals svn:needs-lock
 
 26ba32f0-1250-11de-aee9-dd9a99c69830
 
+groups
+dir
+
+media
+dir
+
 manage.py
 file
 
@@ -37,12 +43,6 @@ file
 2009-10-18T14:21:15.931578Z
 151
 dave.bridges
-
-media
-dir
-
-groups
-dir
 
 localsettings_empty.py
 file
@@ -119,16 +119,16 @@ file
 151
 dave.bridges
 
-templates
-dir
-
 tags
 dir
 
-animal
+templates
 dir
 
 timed_mating
+dir
+
+animal
 dir
 
 svn

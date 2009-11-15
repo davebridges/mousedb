@@ -1,10 +1,12 @@
-from mousedb.data.models import Experiment, Measurement
+from mousedb.data.models import Experiment, Measurement, Study
 from mousedb.animal.models import Animal
 from django.forms import ModelForm
 from django import forms
+from django.contrib.admin import widgets
 
 
 class ExperimentForm(ModelForm):
+	animals = forms.ModelMultipleChoiceField(queryset=Animal.objects.all(), widget=widgets.FilteredSelectMultiple("animals",True))
 	class Meta:
 		model = Experiment
 
@@ -13,4 +15,7 @@ class MeasurementForm(ModelForm):
 	class Meta:
 		model = Measurement
 
+class StudyForm
+	class Meta:
+		model = Study
 

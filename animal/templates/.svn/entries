@@ -1,14 +1,14 @@
 8
 
 dir
-179
+188
 https://mousedb.googlecode.com/svn/trunk/animal/templates
 https://mousedb.googlecode.com/svn
 
 
 
-2009-10-25T17:11:59.787677Z
-177
+2009-11-15T16:25:58.557100Z
+186
 dave.bridges
 
 
@@ -28,7 +28,7 @@ svn:special svn:externals svn:needs-lock
 
 breeding.html
 file
-186
+
 
 
 
@@ -50,18 +50,6 @@ file
 151
 dave.bridges
 
-strain_delete.html
-file
-
-
-
-
-2009-11-05T03:41:06.000000Z
-7bcd671c5d9068e95fd0f3e46144b58d
-2009-10-25T15:09:17.246978Z
-176
-dave.bridges
-
 strain_detail.html
 file
 
@@ -74,16 +62,16 @@ file
 151
 dave.bridges
 
-animal_detail.html
+strain_delete.html
 file
 
 
 
 
-2009-10-18T14:33:45.000000Z
-eef5c8070002d7d5c5bdcc9e300ffcc5
-2009-10-18T14:21:15.931578Z
-151
+2009-11-05T03:41:06.000000Z
+7bcd671c5d9068e95fd0f3e46144b58d
+2009-10-25T15:09:17.246978Z
+176
 dave.bridges
 
 animal_delete.html
@@ -94,6 +82,18 @@ file
 
 2009-10-18T14:33:45.000000Z
 ade807981f6bada0fa8a390039731f79
+2009-10-18T14:21:15.931578Z
+151
+dave.bridges
+
+animal_detail.html
+file
+
+
+
+
+2009-10-18T14:33:45.000000Z
+eef5c8070002d7d5c5bdcc9e300ffcc5
 2009-10-18T14:21:15.931578Z
 151
 dave.bridges
@@ -158,18 +158,6 @@ file
 151
 dave.bridges
 
-breeding_detail.html
-file
-181
-
-
-
-2009-11-06T02:19:28.000000Z
-294fc9fc5176bc28c19dd5505aef7823
-2009-11-06T02:21:23.069603Z
-181
-dave.bridges
-
 breeding_delete.html
 file
 
@@ -180,6 +168,18 @@ file
 6cf40275dc80c902a3f0b7e338923961
 2009-10-18T14:21:15.931578Z
 151
+dave.bridges
+
+breeding_detail.html
+file
+
+
+
+
+2009-11-06T02:19:28.000000Z
+294fc9fc5176bc28c19dd5505aef7823
+2009-11-06T02:21:23.069603Z
+181
 dave.bridges
 
 strain_update.html

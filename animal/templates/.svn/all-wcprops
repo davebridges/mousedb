@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 40
-/svn/!svn/ver/177/trunk/animal/templates
+/svn/!svn/ver/186/trunk/animal/templates
 END
 breeding.html
 K 25
@@ -15,29 +15,29 @@ svn:wc:ra_dav:version-url
 V 61
 /svn/!svn/ver/151/trunk/animal/templates/breeding_update.html
 END
-strain_delete.html
-K 25
-svn:wc:ra_dav:version-url
-V 59
-/svn/!svn/ver/176/trunk/animal/templates/strain_delete.html
-END
 strain_detail.html
 K 25
 svn:wc:ra_dav:version-url
 V 59
 /svn/!svn/ver/151/trunk/animal/templates/strain_detail.html
 END
-animal_detail.html
+strain_delete.html
 K 25
 svn:wc:ra_dav:version-url
 V 59
-/svn/!svn/ver/151/trunk/animal/templates/animal_detail.html
+/svn/!svn/ver/176/trunk/animal/templates/strain_delete.html
 END
 animal_delete.html
 K 25
 svn:wc:ra_dav:version-url
 V 59
 /svn/!svn/ver/151/trunk/animal/templates/animal_delete.html
+END
+animal_detail.html
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/151/trunk/animal/templates/animal_detail.html
 END
 breeding_change.html
 K 25
@@ -69,17 +69,17 @@ svn:wc:ra_dav:version-url
 V 57
 /svn/!svn/ver/151/trunk/animal/templates/animal_list.html
 END
-breeding_detail.html
-K 25
-svn:wc:ra_dav:version-url
-V 61
-/svn/!svn/ver/181/trunk/animal/templates/breeding_detail.html
-END
 breeding_delete.html
 K 25
 svn:wc:ra_dav:version-url
 V 61
 /svn/!svn/ver/151/trunk/animal/templates/breeding_delete.html
+END
+breeding_detail.html
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/181/trunk/animal/templates/breeding_detail.html
 END
 strain_update.html
 K 25
