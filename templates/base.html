@@ -19,7 +19,7 @@
 	<aside>
 	<div id = "user" class="grid_12">
 	{% if user.is_authenticated %}
-		<p>Welcome, {{ user.first_name }} {{ user.last_name }}.  <a href="/mousedb/accounts/login/">Change User</a>
+		<p>Welcome, {{ user.first_name }} {{ user.last_name }}.  <a href="/mousedb/accounts/login/"><img src="/mousedb-media/admin-media/img/admin/icon_searchbox.png" border="none" alt="change" title="Change User"></a>
 	{% else %}
 		<p>Welcome, please <a href="/mousedb/accounts/login/">log in.</a>
 	{% endif %}
