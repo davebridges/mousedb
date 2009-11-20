@@ -1,5 +1,5 @@
 from mousedb.animal.models import Animal
-from mousedb.data.models import Experiment, Measurement
+from mousedb.data.models import Experiment, Measurement, Study, Treatment
 from mousedb.data.forms import MeasurementForm, StudyExperimentForm
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
@@ -45,19 +45,19 @@ def add_measurement(request, experiment_id):
 
 @login_required
 def study_experiment(request, study_id):
-	study = Study.objects.get(id=study_id)
+	study = Study.objects.get(pk=study_id)
 	treatments = Treatment.objects.filter(study=study)
 	if request.method == 'POST':
-		form = StudyExperimentForm(request.POST)
+		form = StudyExperimentForm(request.POST, request.FILES)
 		if form.is_valid():
 			experiment = form.save(commit=False)
-			experiment.Study_id = study.id
+			experiment.study_id = study.id
 			experiment.save()
 			form.save()
-			return HttpResponseRedirect('/study/')
+			return HttpResponseRedirect('/mousedb/study/')
 	else:
 		form = StudyExperimentForm()
-		form.fields["animals"].queryset = Animal.objects.filter(treatment__animals)
+		form.fields["animals"].queryset = Animal.objects.filter(treatment=treatments)
 	return render_to_response("study_experiment_new.html", {'form':form, 'study':study, 'treatments': treatments},context_instance=RequestContext(request))
 	
 

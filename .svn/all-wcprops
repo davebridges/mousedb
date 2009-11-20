@@ -15,6 +15,12 @@ svn:wc:ra_dav:version-url
 V 46
 /svn/!svn/ver/151/trunk/localsettings_empty.py
 END
+LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 31
+/svn/!svn/ver/189/trunk/LICENSE
+END
 views.py
 K 25
 svn:wc:ra_dav:version-url
@@ -31,7 +37,7 @@ settings.py
 K 25
 svn:wc:ra_dav:version-url
 V 35
-/svn/!svn/ver/151/trunk/settings.py
+/svn/!svn/ver/189/trunk/settings.py
 END
 .svnignore
 K 25
@@ -50,4 +56,10 @@ K 25
 svn:wc:ra_dav:version-url
 V 45
 /svn/!svn/ver/151/trunk/context_processors.py
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 30
+/svn/!svn/ver/189/trunk/README
 END

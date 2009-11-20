@@ -31,7 +31,7 @@ home.html
 K 25
 svn:wc:ra_dav:version-url
 V 43
-/svn/!svn/ver/151/trunk/templates/home.html
+/svn/!svn/ver/189/trunk/templates/home.html
 END
 formsets_table.html
 K 25
@@ -43,5 +43,5 @@ base.html
 K 25
 svn:wc:ra_dav:version-url
 V 43
-/svn/!svn/ver/167/trunk/templates/base.html
+/svn/!svn/ver/189/trunk/templates/base.html
 END

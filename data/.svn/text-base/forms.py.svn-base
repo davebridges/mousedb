@@ -15,7 +15,7 @@ class MeasurementForm(ModelForm):
 	class Meta:
 		model = Measurement
 
-class StudyForm
+class StudyForm(ModelForm):
 	class Meta:
 		model = Study
 

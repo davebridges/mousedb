@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
-{% block header %}{{study}} New Experiment{% endblock %}
-{% block title %}{{study}} New Experiment{% endblock %}
+{% block header %}New Experiment | {{study}}{% endblock %}
+{% block title %}New Experiment | {{study}}{% endblock %}
 {% block scripts %}
 {{form.media}}
 	<link type="text/css" href="/mousedb-media/javascript/jquery-ui/css/custom-theme/jquery-ui-1.7.2.custom.css" rel="Stylesheet" />
@@ -14,7 +14,7 @@
 	</script>
 {% endblock %}
 {% block content %}
-<form method="POST" action="/mousedb/study/{study.id}}/experiment/new/">
+<form method="POST" action="/mousedb/study/{{study.id}}/experiment/new/">
 <table>{{ form }}</table>
 <input type="submit" value="Submit" />
 </form>

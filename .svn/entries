@@ -26,12 +26,6 @@ svn:special svn:externals svn:needs-lock
 
 26ba32f0-1250-11de-aee9-dd9a99c69830
 
-groups
-dir
-
-media
-dir
-
 manage.py
 file
 
@@ -44,6 +38,12 @@ file
 151
 dave.bridges
 
+media
+dir
+
+groups
+dir
+
 localsettings_empty.py
 file
 
@@ -54,6 +54,18 @@ file
 464e057c60692229205631bfa9a1e0e2
 2009-10-18T14:21:15.931578Z
 151
+dave.bridges
+
+LICENSE
+file
+189
+
+
+
+2009-11-15T22:51:37.000000Z
+548f3e9cbd6b698082baecc4a17a622b
+2009-11-17T22:31:01.671746Z
+189
 dave.bridges
 
 views.py
@@ -85,14 +97,14 @@ dave.bridges
 
 settings.py
 file
+189
 
 
 
-
-2009-10-18T14:33:52.000000Z
-fe8a6cd0c79bb59baa3405d9b9a97edb
-2009-10-18T14:21:15.931578Z
-151
+2009-11-15T17:46:54.000000Z
+651d3f7285bd65f00457d16df7dd0ffa
+2009-11-17T22:31:01.671746Z
+189
 dave.bridges
 
 .svnignore
@@ -107,6 +119,18 @@ eafadb190d1329defb96648ed6f00d4b
 151
 dave.bridges
 
+README
+file
+189
+
+
+
+2009-11-15T17:56:30.000000Z
+d41d8cd98f00b204e9800998ecf8427e
+2009-11-17T22:31:01.671746Z
+189
+dave.bridges
+
 context_processors.py
 file
 
@@ -119,10 +143,10 @@ file
 151
 dave.bridges
 
-tags
+templates
 dir
 
-templates
+tags
 dir
 
 timed_mating
