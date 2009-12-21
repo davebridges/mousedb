@@ -43,7 +43,7 @@ experiment_new.html
 K 25
 svn:wc:ra_dav:version-url
 V 58
-/svn/!svn/ver/184/trunk/data/templates/experiment_new.html
+/svn/!svn/ver/189/trunk/data/templates/experiment_new.html
 END
 data.html
 K 25
@@ -61,13 +61,13 @@ data_entry.html
 K 25
 svn:wc:ra_dav:version-url
 V 54
-/svn/!svn/ver/159/trunk/data/templates/data_entry.html
+/svn/!svn/ver/189/trunk/data/templates/data_entry.html
 END
 study_detail.html
 K 25
 svn:wc:ra_dav:version-url
 V 56
-/svn/!svn/ver/159/trunk/data/templates/study_detail.html
+/svn/!svn/ver/190/trunk/data/templates/study_detail.html
 END
 experiment_list.html
 K 25

@@ -23,4 +23,5 @@ urlpatterns = patterns('',
 		'template_name': 'study_detail.html',
 		'template_object_name': 'study',
 		}),
+	(r'^(?P<study_id>\d*)/experiment/new/$', 'mousedb.data.views.study_experiment'),
 )
