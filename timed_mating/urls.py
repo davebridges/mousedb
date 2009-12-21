@@ -25,19 +25,18 @@ urlpatterns = patterns('',
 		}),
 	(r'^new/$', 'django.views.generic.create_update.create_object', {
 		'model': PlugEvents, 
-		'template_name': 'plug_new.html', 
+		'template_name': 'plug_form.html', 
 		'login_required':True,
 		'post_save_redirect':'/mousedb/plug_events/'
 		}),
 	(r'^(?P<object_id>\d*)/edit/$', 'django.views.generic.create_update.update_object', {
 		'model': PlugEvents, 
-		'template_name': 'plug_edit.html', 
+		'template_name': 'plug_form.html', 
 		'login_required':True,
 		'post_save_redirect':'/mousedb/plug_events/'
 		}),
 	(r'^(?P<object_id>\d*)/delete/$', 'django.views.generic.create_update.delete_object', {
 		'model': PlugEvents, 
-		'template_name': 'plug_delete.html', 
 		'login_required':True,
 		'post_delete_redirect':'/mousedb/plug_events/'
 		}),
