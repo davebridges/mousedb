@@ -18,7 +18,7 @@
 {% block content %}
 <p>Fill out one row per new pup.  If pups are not weaned enter breeding cage number.  If pups are weaned, enter new cage number and weaning date.</p>
 <p>To enter information about timed matings click <a href="/mousedb/admin/timed_mating/timedmating/" title="timed matings entry page">here</a>.  For instructions please go <a href="http://code.google.com/p/mousedb/wiki/TimedMatings" title = "Timed matings Wiki page">here</a></p>
-<form method="POST" action="/mousedb/breeding/{{ breeding.id }}/pups/">
+<form method="POST" action=".">
     {{ formset.management_form }}
     {% include "formsets_table.html" %}
 <input type="submit" value="Submit" />

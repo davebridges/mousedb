@@ -16,19 +16,18 @@ urlpatterns = patterns('',
 	(r'^(?P<breeding_id>\d*)/change/$', 'mousedb.animal.views.breeding_change'),
 	(r'^new/$', 'django.views.generic.create_update.create_object', {
 		'model': Breeding, 
-		'template_name': 'breeding_new.html', 
+		'template_name': 'breeding_form.html', 
 		'login_required':True,
 		'post_save_redirect':'/mousedb/breeding/'
 		}),
 	(r'^(?P<object_id>\d*)/update/$', 'django.views.generic.create_update.update_object', {
 		'model': Breeding, 
-		'template_name': 'breeding_update.html', 
+		'template_name': 'breeding_form.html', 
 		'login_required':True,
 		'post_save_redirect':'/mousedb/breeding/',
 		}),
 	(r'^(?P<object_id>\d*)/delete/$', 'django.views.generic.create_update.delete_object', {
 		'model': Breeding, 
-		'template_name': 'breeding_delete.html', 
 		'login_required':True,
 		'post_delete_redirect':'/mousedb/breeding/',
 		}),
