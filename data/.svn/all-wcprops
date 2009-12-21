@@ -13,7 +13,7 @@ views.py
 K 25
 svn:wc:ra_dav:version-url
 V 37
-/svn/!svn/ver/159/trunk/data/views.py
+/svn/!svn/ver/190/trunk/data/views.py
 END
 __init__.py
 K 25
@@ -31,5 +31,5 @@ forms.py
 K 25
 svn:wc:ra_dav:version-url
 V 37
-/svn/!svn/ver/189/trunk/data/forms.py
+/svn/!svn/ver/190/trunk/data/forms.py
 END

@@ -41,7 +41,9 @@ admin.site.register(Strain, StrainAdmin)
 class BreedingAdmin(admin.ModelAdmin):
 	list_display = ('Cage', 'CageID', 'Start', 'Rack', 'Rack_Position', 'Strain', 'Crosstype', 'BreedingName', 'Notes', 'Active')
 	list_filter = ('Timed_Mating', 'Strain', 'Active', 'Crosstype')
-	fields = ('Male', 'Females', 'Timed_Mating', 'CageID', 'Rack', 'Rack_Position', 'BreedingName', 'Strain', 'Start', 'End', 'Active', 'Crosstype', 'Notes')
+	fields = ('Male', 'Females', 'Timed_Mating', 'Cage', 'CageID', 
+'Rack', 
+'Rack_Position', 'BreedingName', 'Strain', 'Start', 'End', 'Active', 'Crosstype', 'Notes')
 	ordering = ('Active', 'Start')
 	search_fields = ['Cage',]
 	raw_id_fields = ("Male", "Females")

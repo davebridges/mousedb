@@ -10,6 +10,12 @@ class ExperimentForm(ModelForm):
 	class Meta:
 		model = Experiment
 
+class StudyExperimentForm(ModelForm):
+	class Meta:
+		model = Experiment
+		exclude = ['study',]
+
+
 class MeasurementForm(ModelForm):
 	animal = forms.ModelChoiceField(queryset=Animal.objects.all())
 	class Meta:
