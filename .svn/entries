@@ -1,175 +1,0 @@
-8
-
-dir
-188
-https://mousedb.googlecode.com/svn/trunk
-https://mousedb.googlecode.com/svn
-
-
-
-2009-11-15T16:46:15.753316Z
-188
-dave.bridges
-has-props
-
-svn:special svn:externals svn:needs-lock
-
-
-
-
-
-
-
-
-
-
-
-26ba32f0-1250-11de-aee9-dd9a99c69830
-
-groups
-dir
-
-media
-dir
-
-manage.py
-file
-
-
-
-
-2009-10-18T14:33:52.000000Z
-436d756648d7f458aaa9c72570634e59
-2009-10-18T14:21:15.931578Z
-151
-dave.bridges
-
-localsettings_empty.py
-file
-
-
-
-
-2009-10-18T14:33:52.000000Z
-464e057c60692229205631bfa9a1e0e2
-2009-10-18T14:21:15.931578Z
-151
-dave.bridges
-
-LICENSE
-file
-189
-
-
-
-2009-11-15T22:51:37.000000Z
-548f3e9cbd6b698082baecc4a17a622b
-2009-11-17T22:31:01.671746Z
-189
-dave.bridges
-
-views.py
-file
-
-
-
-
-2009-10-18T14:33:52.000000Z
-59f2660a5fc4b6fe8affcaa39fe665fb
-2009-10-18T14:21:15.931578Z
-151
-dave.bridges
-
-datasheets
-dir
-
-__init__.py
-file
-
-
-
-
-2009-10-18T14:33:52.000000Z
-d41d8cd98f00b204e9800998ecf8427e
-2009-10-18T14:21:15.931578Z
-151
-dave.bridges
-
-settings.py
-file
-190
-
-
-
-2009-11-20T02:21:04.000000Z
-969ff6b3adae4123e0f926432d79f058
-2009-11-20T02:45:25.455507Z
-190
-dave.bridges
-
-.svnignore
-file
-
-
-
-
-2009-10-18T14:33:52.000000Z
-eafadb190d1329defb96648ed6f00d4b
-2009-10-18T14:21:15.931578Z
-151
-dave.bridges
-
-context_processors.py
-file
-
-
-
-
-2009-10-18T14:33:52.000000Z
-713ddf417eb33624904b681417be9a0a
-2009-10-18T14:21:15.931578Z
-151
-dave.bridges
-
-README
-file
-189
-
-
-
-2009-11-15T17:56:30.000000Z
-d41d8cd98f00b204e9800998ecf8427e
-2009-11-17T22:31:01.671746Z
-189
-dave.bridges
-
-tags
-dir
-
-templates
-dir
-
-timed_mating
-dir
-
-animal
-dir
-
-svn
-dir
-
-data
-dir
-
-urls.py
-file
-
-
-
-
-2009-11-05T03:41:33.000000Z
-0881064952fb8522913fc9fb147f5f05
-2009-11-05T03:31:01.463523Z
-179
-dave.bridges
-
