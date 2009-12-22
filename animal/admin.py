@@ -10,7 +10,7 @@ class AnimalInline(admin.TabularInline):
 class AnimalAdmin(admin.ModelAdmin):
 	fieldsets = (
 		(None, {
-			'fields': ('Strain', 'Background', 'MouseID','Cage', 'CageID', 'Genotype', 'Gender', 'Born', 'Weaned', 'Backcross', 'Generation', 'Markings', 'Notes', 'Breeding', 'Rack', 'Rack_Position')
+			'fields': ('Strain', 'Background', 'MouseID','Cage', 'Genotype', 'Gender', 'Born', 'Weaned', 'Backcross', 'Generation', 'Markings', 'Notes', 'Breeding', 'Rack', 'Rack_Position')
 		}),
 	('Animal Death Information', {
 		'classes' : ('collapse',),
