@@ -1,5 +1,5 @@
 MouseDB Installation
-=========================
+====================
 
 Configuration
 -------------
