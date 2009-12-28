@@ -2,20 +2,20 @@
 \def\bigletter#1{{\Large\sffamily#1}\nopagebreak\vspace{1mm}}
 
   \bigletter A
-  \item {\texttt  {animal}}, \hyperpage{54}
-  \item {\texttt  {animal.admin}}, \hyperpage{57}
-  \item {\texttt  {animal.forms}}, \hyperpage{54}
-  \item {\texttt  {animal.models}}, \hyperpage{54}
-  \item {\texttt  {animal.urls}}, \hyperpage{56}
-  \item {\texttt  {animal.views}}, \hyperpage{56}
+  \item {\texttt  {animal}}, \hyperpage{14}
+  \item {\texttt  {animal.admin}}, \hyperpage{14}
+  \item {\texttt  {animal.forms}}, \hyperpage{14}
+  \item {\texttt  {animal.models}}, \hyperpage{14}
+  \item {\texttt  {animal.urls}}, \hyperpage{14}
+  \item {\texttt  {animal.views}}, \hyperpage{14}
 
   \indexspace
   \bigletter D
   \item {\texttt  {data}}, \hyperpage{13}
-  \item {\texttt  {data.admin}}, \hyperpage{27}
-  \item {\texttt  {data.forms}}, \hyperpage{22}
+  \item {\texttt  {data.admin}}, \hyperpage{14}
+  \item {\texttt  {data.forms}}, \hyperpage{14}
   \item {\texttt  {data.models}}, \hyperpage{13}
-  \item {\texttt  {data.urls}}, \hyperpage{26}
-  \item {\texttt  {data.views}}, \hyperpage{26}
+  \item {\texttt  {data.urls}}, \hyperpage{14}
+  \item {\texttt  {data.views}}, \hyperpage{14}
 
 \end{theindex}
