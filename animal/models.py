@@ -1,3 +1,7 @@
+"""This module describes the Strain, Animal, Breeding and Cage data models.
+
+This module stores all data regarding a particular laboratory animal.  Information about experimental data and timed matings are stored in the data and timed_matings packages.  This module describes the database structure for each data model."""
+
 from django.db import models
 import datetime
 
@@ -35,83 +39,101 @@ CAUSE_OF_DEATH = (
 )
 
 class Strain(models.Model):
-	Strain = models.CharField(max_length = 100)
-	Strain_slug = models.SlugField(max_length = 20)
-	Source = models.TextField(max_length = 500, blank = True)
-	Comments = models.TextField (max_length = 500, blank = True)
-	def __unicode__(self):
-		return u'%s' % self.Strain
-	def get_absolute_url(self):
-		return "/strain/%s" % self.Strain_slug
+    """A data model describing a mouse strain.  
+
+    This is separate from the background of a mouse.  For example a ob/ob mouse on a mixed or a black-6 background still have the same strain.  The background is defined in the animal and breeding cages.
+    """
+    Strain = models.CharField(max_length = 100)
+    Strain_slug = models.SlugField(max_length = 20, help_text="Strain name with no spaces, for use in URI's")
+    Source = models.TextField(max_length = 500, blank = True)
+    Comments = models.TextField (max_length = 500, blank = True)
+    def __unicode__(self):
+        return u'%s' % self.Strain
+    def get_absolute_url(self):
+        return "/strain/%s" % self.Strain_slug
 
 class Animal(models.Model):
-	MouseID	= models.IntegerField(max_length = 10, blank = True, null=True)
-	Cage = models.IntegerField(max_length = 15, blank = True, null=True)
-	CageID = models.ForeignKey('Cage', blank=True, null=True)
-	Rack = models.CharField(max_length = 15, blank = True)
-	Rack_Position = models.CharField(max_length = 15, blank = True)
-	Strain = models.ForeignKey(Strain)
-	Background = models.CharField(max_length = 25, choices = BACKGROUND_CHOICES)
-	Genotype = models.CharField(max_length = 10, choices = GENOTYPE_CHOICES, default = 'N.D.')
-	Gender = models.CharField(max_length = 5, choices = GENDER_CHOICES, default = 'N.D.')
-	Born = models.DateField(blank = True, null=True)
-	Weaned = models.DateField(blank = True, null=True)
-	Death = models.DateField(blank = True, null=True)
-	Cause_of_Death = models.CharField(max_length = 50, choices = CAUSE_OF_DEATH, blank=True)
-	Backcross = models.IntegerField(max_length = 5, null=True, blank=True)
-	Generation = models.IntegerField(max_length=5, null=True, blank=True)
-	Breeding = models.ForeignKey('Breeding', blank=True, null=True)
-	Father = models.ForeignKey('Animal', null=True, blank=True, related_name='father')
-	Mother = models.ForeignKey('Animal', null=True, blank=True, related_name='mother')
-	Markings = models.CharField(max_length = 100, blank=True)					
-	Notes = models.TextField(max_length = 500, blank=True)
-	Alive = models.BooleanField(default=True)
-	def __unicode__(self):
-		if self.MouseID:		
-			return u'%s-EarTag #%i' % (self.Strain, self.MouseID)
-		else:
-			return u'%s (%i)' % (self.Strain, self.id)
-	def get_absolute_url(self):
-		return '%i' % (self.id)
-	def save(self):
-		if self.Death:
-			self.Alive = False
-		super(Animal, self).save()
-	class Meta:
-		ordering = ['MouseID']
+    """A data model describing an animal.
+
+    This data model describes a wide variety of parameters of an experimental animal.  This model is linked to the Strain and Cage models via 1:1 relationships.  If the parentage of a mouse is known, this can be identified (the breeding set may not be clear on this matter). Mice are automatically marked as not alive when a Death date is provided and the object is saved.
+    """
+    MouseID	= models.IntegerField(max_length = 10, blank = True, null=True)
+    Cage = models.IntegerField(max_length = 15, blank = True, null=True)
+    CageID = models.ForeignKey('Cage', blank=True, null=True)
+    Rack = models.CharField(max_length = 15, blank = True)
+    Rack_Position = models.CharField(max_length = 15, blank = True)
+    Strain = models.ForeignKey(Strain)
+    Background = models.CharField(max_length = 25, choices = BACKGROUND_CHOICES)
+    Genotype = models.CharField(max_length = 10, choices = GENOTYPE_CHOICES, default = 'N.D.')
+    Gender = models.CharField(max_length = 5, choices = GENDER_CHOICES, default = 'N.D.')
+    Born = models.DateField(blank = True, null=True)
+    Weaned = models.DateField(blank = True, null=True)
+    Death = models.DateField(blank = True, null=True)
+    Cause_of_Death = models.CharField(max_length = 50, choices = CAUSE_OF_DEATH, blank=True)
+    Backcross = models.IntegerField(max_length = 5, null=True, blank=True)
+    Generation = models.IntegerField(max_length=5, null=True, blank=True)
+    Breeding = models.ForeignKey('Breeding', blank=True, null=True)
+    Father = models.ForeignKey('Animal', null=True, blank=True, related_name='father')
+    Mother = models.ForeignKey('Animal', null=True, blank=True, related_name='mother')
+    Markings = models.CharField(max_length = 100, blank=True)					
+    Notes = models.TextField(max_length = 500, blank=True)
+    Alive = models.BooleanField(default=True)
+    def __unicode__(self):
+        """This defines the unicode string of a mouse.
+        If a eartag is present then the string reads some_strain-Eartag #some_number.  If an eartag is not present then the mouse is labelled as use some_number, where this number is the internal database identification number and not an eartag.
+        """
+        if self.MouseID:		
+            return u'%s-EarTag #%i' % (self.Strain, self.MouseID)
+        else:
+            return u'%s (%i)' % (self.Strain, self.id)
+    def get_absolute_url(self):
+        return '%i' % (self.id)
+    def save(self):
+        if self.Death:
+            self.Alive = False
+            super(Animal, self).save()
+    class Meta:
+        ordering = ['MouseID']
 
 class Breeding(models.Model):
-	Females = models.ManyToManyField(Animal, related_name='females', blank=True)
-	Male = models.ManyToManyField(Animal, related_name='male', blank=True)
-	Strain = models.ForeignKey(Strain)
-	Cage = models.CommaSeparatedIntegerField(max_length=100, blank=True, null=True)
-	CageID = models.ForeignKey('Cage', blank=True, null=True)
-	BreedingName = models.CharField(max_length=50, blank=True)
-	Start = models.DateField(blank=True, null=True)
-	End = models.DateField(blank=True, null=True)
-	Crosstype = models.CharField(max_length=10, choices = CROSS_TYPE, blank=True)
-	Notes = models.TextField(max_length=500, blank=True)
-	Rack = models.CharField(max_length = 15, blank = True)
-	Rack_Position = models.CharField(max_length = 15, blank = True) 
-	Active = models.BooleanField(default=True)
-	Timed_Mating = models.BooleanField(default=False, help_text="Is this cage a timed mating cage?")
-	def __unicode__(self):
-		return u'%s Breeding Cage: %s starting on %s'  %(self.Strain, self.Cage, self.Start)
-	def get_absolute_url(self):
-		return "/breeding/%i" % (self.id)
-	def save(self):
-		if self.End:
-			self.Active = False
-		super(Breeding, self).save()
-	class Meta:
-		ordering = ['Cage']
+    """This data model stores information about a particular breeding set
+
+    A breeding set may contain one ore more males and females and must be defined via the progeny strain.  For example, in the case of generating a new strain, the strain indicates the new strain not the parental strains.  If the breeding set is part of a timed mating experiment, then Timed_Mating must be selected.  Breeding cages are automatically inactivated upon saving when a End date is provided.
+    """
+    Females = models.ManyToManyField(Animal, related_name='females', blank=True)
+    Male = models.ManyToManyField(Animal, related_name='male', blank=True)
+    Strain = models.ForeignKey(Strain, help_text="The strain of the progeny")
+    Cage = models.CommaSeparatedIntegerField(max_length=100, blank=True, null=True)
+    CageID = models.ForeignKey('Cage', blank=True, null=True)
+    BreedingName = models.CharField(max_length=50, blank=True)
+    Start = models.DateField(blank=True, null=True)
+    End = models.DateField(blank=True, null=True)
+    Crosstype = models.CharField(max_length=10, choices = CROSS_TYPE, blank=True)
+    Notes = models.TextField(max_length=500, blank=True)
+    Rack = models.CharField(max_length = 15, blank = True)
+    Rack_Position = models.CharField(max_length = 15, blank = True) 
+    Active = models.BooleanField(default=True)
+    Timed_Mating = models.BooleanField(default=False, help_text="Is this cage a timed mating cage?")
+    def __unicode__(self):
+        return u'%s Breeding Cage: %s starting on %s'  %(self.Strain, self.Cage, self.Start)
+    def get_absolute_url(self):
+        return "/breeding/%i" % (self.id)
+    def save(self):
+        if self.End:
+            self.Active = False
+            super(Breeding, self).save()
+    class Meta:
+        ordering = ['Cage']
 		
 class Cage(models.Model):
-	Barcode = models.IntegerField(primary_key=True)
-	Rack = models.CharField(max_length = 15, blank = True)
-	Rack_Position = models.CharField(max_length = 15, blank = True)
-	
-	
+    """This data model stores information about a particular cage.  
+
+    This model, which is not yet implemented will be used by both breeding and non-breeding cages and will facilitate easier tracking and storage of cages.  To implement this, it will be necessary to automatically generate a new cage (if a novel barcode is entered), or to use a current cage if the barcode is already present in the database
+    """
+    Barcode = models.IntegerField(primary_key=True)
+    Rack = models.CharField(max_length = 15, blank = True)
+    Rack_Position = models.CharField(max_length = 15, blank = True)
+
 
 
 
