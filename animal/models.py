@@ -1,3 +1,7 @@
+"""This module describes the Strain, Animal, Breeding and Cage data models.
+
+This module stores all data regarding a particular laboratory animal.  Information about experimental data and timed matings are stored in the data and timed_matings packages.  This module describes the database structure for each data model."""
+
 from django.db import models
 import datetime
 
@@ -35,7 +39,7 @@ CAUSE_OF_DEATH = (
 )
 
 class Strain(models.Model):
-    """"A data model describing a mouse strain.  
+    """A data model describing a mouse strain.  
 
     This is separate from the background of a mouse.  For example a ob/ob mouse on a mixed or a black-6 background still have the same strain.  The background is defined in the animal and breeding cages.
     """
@@ -75,6 +79,9 @@ class Animal(models.Model):
     Notes = models.TextField(max_length = 500, blank=True)
     Alive = models.BooleanField(default=True)
     def __unicode__(self):
+        """This defines the unicode string of a mouse.
+        If a eartag is present then the string reads some_strain-Eartag #some_number.  If an eartag is not present then the mouse is labelled as use some_number, where this number is the internal database identification number and not an eartag.
+        """
         if self.MouseID:		
             return u'%s-EarTag #%i' % (self.Strain, self.MouseID)
         else:
