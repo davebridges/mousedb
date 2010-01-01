@@ -13,6 +13,17 @@ def limited_object_list(*args, **kwargs):
 def limited_object_detail(*args, **kwargs):
 	return object_detail(*args, **kwargs)
 
+@permission_required('data.add_experiment')
+def create_experiment(*args, **kwargs):
+	return django.views.generic.create_update.create_object(*args, **kwargs)
+
+@permission_required('data.change_experiment')
+def change_experiment(*args, **kwargs):
+	return django.views.generic.create_update.update_object(*args, **kwargs)
+
+@permission_required('data.delete_experiment')
+def delete_experiment(*args, **kwargs):
+	return django.views.generic.create_update.update_object(*args, **kwargs)
 
 urlpatterns = patterns('',
 	(r'^$', 'mousedb.data.views.experiment_list'),
@@ -22,7 +33,7 @@ urlpatterns = patterns('',
 		'template_object_name': 'experiment',
 		}),
 	(r'^(?P<experiment_id>\d*)/data_entry/$', 'mousedb.data.views.add_measurement'),
-	(r'^new/$', 'django.views.generic.create_update.create_object', {
+	(r'^new/$', create_experiment, {
 		'form_class': ExperimentForm, 
 		'template_name': 'experiment_new.html', 
 		'login_required':True,

@@ -12,6 +12,18 @@ def limited_object_list(*args, **kwargs):
 def limited_object_detail(*args, **kwargs):
 	return object_detail(*args, **kwargs)
 
+@permission_required('data.add_study')
+def create_study(*args, **kwargs):
+	return django.views.generic.create_update.create_object(*args, **kwargs)
+
+@permission_required('data.change_study')
+def change_study(*args, **kwargs):
+	return django.views.generic.create_update.update_object(*args, **kwargs)
+
+@permission_required('data.delete_study')
+def delete_study(*args, **kwargs):
+	return django.views.generic.create_update.update_object(*args, **kwargs)
+
 urlpatterns = patterns('',
 	(r'^$', limited_object_list, {
 		'queryset': Study.objects.all(),
