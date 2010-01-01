@@ -1,0 +1,905 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Automated Documentation &mdash; MouseDB v0.1 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="MouseDB v0.1 documentation" href="index.html" />
+    <link rel="prev" title="Animal Data Entry" href="usage.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="usage.html" title="Animal Data Entry"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">MouseDB v0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="automated-documentation">
+<h1>Automated Documentation<a class="headerlink" href="#automated-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-data">
+<h2>Data Package<a class="headerlink" href="#module-data" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-data.models">
+<h3>Models<a class="headerlink" href="#module-data.models" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="data.models.Assay">
+<em class="property">class </em><tt class="descclassname">data.models.</tt><tt class="descname">Assay</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#data.models.Assay" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.db.models.base.Model</span></tt></p>
+<p>Assay(id, assay, assay_slug, notes, measurement_units)</p>
+<dl class="exception">
+<dt id="data.models.Assay.DoesNotExist">
+<em class="property">exception </em><tt class="descname">DoesNotExist</tt><a class="headerlink" href="#data.models.Assay.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd>Bases: <tt class="xref docutils literal"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></tt></dd></dl>
+
+<dl class="exception">
+<dt id="data.models.Assay.MultipleObjectsReturned">
+<em class="property">exception </em><tt class="descclassname">Assay.</tt><tt class="descname">MultipleObjectsReturned</tt><a class="headerlink" href="#data.models.Assay.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd>Bases: <tt class="xref docutils literal"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></tt></dd></dl>
+
+<dl class="attribute">
+<dt id="data.models.Assay.measurement_set">
+<tt class="descclassname">Assay.</tt><tt class="descname">measurement_set</tt><a class="headerlink" href="#data.models.Assay.measurement_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="data.models.Diet">
+<em class="property">class </em><tt class="descclassname">data.models.</tt><tt class="descname">Diet</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#data.models.Diet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.db.models.base.Model</span></tt></p>
+<p>Diet(id, vendor_id, description, product_id, fat_content, protein_content, carb_content, irradiated, notes)</p>
+<dl class="exception">
+<dt id="data.models.Diet.DoesNotExist">
+<em class="property">exception </em><tt class="descname">DoesNotExist</tt><a class="headerlink" href="#data.models.Diet.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd>Bases: <tt class="xref docutils literal"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></tt></dd></dl>
+
+<dl class="exception">
+<dt id="data.models.Diet.MultipleObjectsReturned">
+<em class="property">exception </em><tt class="descclassname">Diet.</tt><tt class="descname">MultipleObjectsReturned</tt><a class="headerlink" href="#data.models.Diet.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd>Bases: <tt class="xref docutils literal"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></tt></dd></dl>
+
+<dl class="attribute">
+<dt id="data.models.Diet.treatment_set">
+<tt class="descclassname">Diet.</tt><tt class="descname">treatment_set</tt><a class="headerlink" href="#data.models.Diet.treatment_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="data.models.Diet.vendor">
+<tt class="descclassname">Diet.</tt><tt class="descname">vendor</tt><a class="headerlink" href="#data.models.Diet.vendor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="data.models.Environment">
+<em class="property">class </em><tt class="descclassname">data.models.</tt><tt class="descname">Environment</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#data.models.Environment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.db.models.base.Model</span></tt></p>
+<p>Environment(id, building, room, temperature, humidity, notes)</p>
+<dl class="exception">
+<dt id="data.models.Environment.DoesNotExist">
+<em class="property">exception </em><tt class="descname">DoesNotExist</tt><a class="headerlink" href="#data.models.Environment.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd>Bases: <tt class="xref docutils literal"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></tt></dd></dl>
+
+<dl class="exception">
+<dt id="data.models.Environment.MultipleObjectsReturned">
+<em class="property">exception </em><tt class="descclassname">Environment.</tt><tt class="descname">MultipleObjectsReturned</tt><a class="headerlink" href="#data.models.Environment.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd>Bases: <tt class="xref docutils literal"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></tt></dd></dl>
+
+<dl class="attribute">
+<dt id="data.models.Environment.contact">
+<tt class="descclassname">Environment.</tt><tt class="descname">contact</tt><a class="headerlink" href="#data.models.Environment.contact" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="data.models.Environment.treatment_set">
+<tt class="descclassname">Environment.</tt><tt class="descname">treatment_set</tt><a class="headerlink" href="#data.models.Environment.treatment_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="data.models.Experiment">
+<em class="property">class </em><tt class="descclassname">data.models.</tt><tt class="descname">Experiment</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#data.models.Experiment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.db.models.base.Model</span></tt></p>
+<p>Experiment(id, date, notes, experimentID, feeding_state, fasting_time, injection, concentration, study_id)</p>
+<dl class="exception">
+<dt id="data.models.Experiment.DoesNotExist">
+<em class="property">exception </em><tt class="descname">DoesNotExist</tt><a class="headerlink" href="#data.models.Experiment.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd>Bases: <tt class="xref docutils literal"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></tt></dd></dl>
+
+<dl class="exception">
+<dt id="data.models.Experiment.MultipleObjectsReturned">
+<em class="property">exception </em><tt class="descclassname">Experiment.</tt><tt class="descname">MultipleObjectsReturned</tt><a class="headerlink" href="#data.models.Experiment.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd>Bases: <tt class="xref docutils literal"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></tt></dd></dl>
+
+<dl class="attribute">
+<dt id="data.models.Experiment.animals">
+<tt class="descclassname">Experiment.</tt><tt class="descname">animals</tt><a class="headerlink" href="#data.models.Experiment.animals" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="data.models.Experiment.get_feeding_state_display">
+<tt class="descclassname">Experiment.</tt><tt class="descname">get_feeding_state_display</tt><big>(</big><em>*moreargs</em>, <em>**morekwargs</em><big>)</big><a class="headerlink" href="#data.models.Experiment.get_feeding_state_display" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="data.models.Experiment.get_injection_display">
+<tt class="descclassname">Experiment.</tt><tt class="descname">get_injection_display</tt><big>(</big><em>*moreargs</em>, <em>**morekwargs</em><big>)</big><a class="headerlink" href="#data.models.Experiment.get_injection_display" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="data.models.Experiment.get_next_by_date">
+<tt class="descclassname">Experiment.</tt><tt class="descname">get_next_by_date</tt><big>(</big><em>*moreargs</em>, <em>**morekwargs</em><big>)</big><a class="headerlink" href="#data.models.Experiment.get_next_by_date" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="data.models.Experiment.get_previous_by_date">
+<tt class="descclassname">Experiment.</tt><tt class="descname">get_previous_by_date</tt><big>(</big><em>*moreargs</em>, <em>**morekwargs</em><big>)</big><a class="headerlink" href="#data.models.Experiment.get_previous_by_date" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="data.models.Experiment.measurement_set">
+<tt class="descclassname">Experiment.</tt><tt class="descname">measurement_set</tt><a class="headerlink" href="#data.models.Experiment.measurement_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="data.models.Experiment.researchers">
+<tt class="descclassname">Experiment.</tt><tt class="descname">researchers</tt><a class="headerlink" href="#data.models.Experiment.researchers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="data.models.Experiment.study">
+<tt class="descclassname">Experiment.</tt><tt class="descname">study</tt><a class="headerlink" href="#data.models.Experiment.study" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="data.models.Implantation">
+<em class="property">class </em><tt class="descclassname">data.models.</tt><tt class="descname">Implantation</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#data.models.Implantation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.db.models.base.Model</span></tt></p>
+<p>Implantation(id, implant, vendor_id, product_id, notes)</p>
+<dl class="exception">
+<dt id="data.models.Implantation.DoesNotExist">
+<em class="property">exception </em><tt class="descname">DoesNotExist</tt><a class="headerlink" href="#data.models.Implantation.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd>Bases: <tt class="xref docutils literal"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></tt></dd></dl>
+
+<dl class="exception">
+<dt id="data.models.Implantation.MultipleObjectsReturned">
+<em class="property">exception </em><tt class="descclassname">Implantation.</tt><tt class="descname">MultipleObjectsReturned</tt><a class="headerlink" href="#data.models.Implantation.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd>Bases: <tt class="xref docutils literal"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></tt></dd></dl>
+
+<dl class="attribute">
+<dt id="data.models.Implantation.surgeon">
+<tt class="descclassname">Implantation.</tt><tt class="descname">surgeon</tt><a class="headerlink" href="#data.models.Implantation.surgeon" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="data.models.Implantation.treatment_set">
+<tt class="descclassname">Implantation.</tt><tt class="descname">treatment_set</tt><a class="headerlink" href="#data.models.Implantation.treatment_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="data.models.Implantation.vendor">
+<tt class="descclassname">Implantation.</tt><tt class="descname">vendor</tt><a class="headerlink" href="#data.models.Implantation.vendor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="data.models.Measurement">
+<em class="property">class </em><tt class="descclassname">data.models.</tt><tt class="descname">Measurement</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#data.models.Measurement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.db.models.base.Model</span></tt></p>
+<p>Measurement(id, animal_id, experiment_id, assay_id, values)</p>
+<dl class="exception">
+<dt id="data.models.Measurement.DoesNotExist">
+<em class="property">exception </em><tt class="descname">DoesNotExist</tt><a class="headerlink" href="#data.models.Measurement.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd>Bases: <tt class="xref docutils literal"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></tt></dd></dl>
+
+<dl class="exception">
+<dt id="data.models.Measurement.MultipleObjectsReturned">
+<em class="property">exception </em><tt class="descclassname">Measurement.</tt><tt class="descname">MultipleObjectsReturned</tt><a class="headerlink" href="#data.models.Measurement.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd>Bases: <tt class="xref docutils literal"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></tt></dd></dl>
+
+<dl class="attribute">
+<dt id="data.models.Measurement.animal">
+<tt class="descclassname">Measurement.</tt><tt class="descname">animal</tt><a class="headerlink" href="#data.models.Measurement.animal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="data.models.Measurement.assay">
+<tt class="descclassname">Measurement.</tt><tt class="descname">assay</tt><a class="headerlink" href="#data.models.Measurement.assay" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="data.models.Measurement.experiment">
+<tt class="descclassname">Measurement.</tt><tt class="descname">experiment</tt><a class="headerlink" href="#data.models.Measurement.experiment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="data.models.Pharmaceutical">
+<em class="property">class </em><tt class="descclassname">data.models.</tt><tt class="descname">Pharmaceutical</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#data.models.Pharmaceutical" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.db.models.base.Model</span></tt></p>
+<p>Pharmaceutical(id, drug, dose, recurrance, mode, vendor_id, notes)</p>
+<dl class="exception">
+<dt id="data.models.Pharmaceutical.DoesNotExist">
+<em class="property">exception </em><tt class="descname">DoesNotExist</tt><a class="headerlink" href="#data.models.Pharmaceutical.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd>Bases: <tt class="xref docutils literal"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></tt></dd></dl>
+
+<dl class="exception">
+<dt id="data.models.Pharmaceutical.MultipleObjectsReturned">
+<em class="property">exception </em><tt class="descclassname">Pharmaceutical.</tt><tt class="descname">MultipleObjectsReturned</tt><a class="headerlink" href="#data.models.Pharmaceutical.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd>Bases: <tt class="xref docutils literal"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></tt></dd></dl>
+
+<dl class="method">
+<dt id="data.models.Pharmaceutical.get_mode_display">
+<tt class="descclassname">Pharmaceutical.</tt><tt class="descname">get_mode_display</tt><big>(</big><em>*moreargs</em>, <em>**morekwargs</em><big>)</big><a class="headerlink" href="#data.models.Pharmaceutical.get_mode_display" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="data.models.Pharmaceutical.treatment_set">
+<tt class="descclassname">Pharmaceutical.</tt><tt class="descname">treatment_set</tt><a class="headerlink" href="#data.models.Pharmaceutical.treatment_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="data.models.Pharmaceutical.vendor">
+<tt class="descclassname">Pharmaceutical.</tt><tt class="descname">vendor</tt><a class="headerlink" href="#data.models.Pharmaceutical.vendor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="data.models.Researcher">
+<em class="property">class </em><tt class="descclassname">data.models.</tt><tt class="descname">Researcher</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#data.models.Researcher" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.db.models.base.Model</span></tt></p>
+<p>Researcher(id, first_name, last_name, name_slug, email, active)</p>
+<dl class="exception">
+<dt id="data.models.Researcher.DoesNotExist">
+<em class="property">exception </em><tt class="descname">DoesNotExist</tt><a class="headerlink" href="#data.models.Researcher.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd>Bases: <tt class="xref docutils literal"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></tt></dd></dl>
+
+<dl class="exception">
+<dt id="data.models.Researcher.MultipleObjectsReturned">
+<em class="property">exception </em><tt class="descclassname">Researcher.</tt><tt class="descname">MultipleObjectsReturned</tt><a class="headerlink" href="#data.models.Researcher.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd>Bases: <tt class="xref docutils literal"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></tt></dd></dl>
+
+<dl class="attribute">
+<dt id="data.models.Researcher.environment_set">
+<tt class="descclassname">Researcher.</tt><tt class="descname">environment_set</tt><a class="headerlink" href="#data.models.Researcher.environment_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="data.models.Researcher.experiment_set">
+<tt class="descclassname">Researcher.</tt><tt class="descname">experiment_set</tt><a class="headerlink" href="#data.models.Researcher.experiment_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="data.models.Researcher.get_absolute_url">
+<tt class="descclassname">Researcher.</tt><tt class="descname">get_absolute_url</tt><big>(</big><em>*moreargs</em>, <em>**morekwargs</em><big>)</big><a class="headerlink" href="#data.models.Researcher.get_absolute_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="data.models.Researcher.implantation_set">
+<tt class="descclassname">Researcher.</tt><tt class="descname">implantation_set</tt><a class="headerlink" href="#data.models.Researcher.implantation_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="data.models.Researcher.transplantation_set">
+<tt class="descclassname">Researcher.</tt><tt class="descname">transplantation_set</tt><a class="headerlink" href="#data.models.Researcher.transplantation_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="data.models.Researcher.treatment_set">
+<tt class="descclassname">Researcher.</tt><tt class="descname">treatment_set</tt><a class="headerlink" href="#data.models.Researcher.treatment_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="data.models.Study">
+<em class="property">class </em><tt class="descclassname">data.models.</tt><tt class="descname">Study</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#data.models.Study" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.db.models.base.Model</span></tt></p>
+<p>Study(id, description, start_date, stop_date, notes)</p>
+<dl class="exception">
+<dt id="data.models.Study.DoesNotExist">
+<em class="property">exception </em><tt class="descname">DoesNotExist</tt><a class="headerlink" href="#data.models.Study.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd>Bases: <tt class="xref docutils literal"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></tt></dd></dl>
+
+<dl class="exception">
+<dt id="data.models.Study.MultipleObjectsReturned">
+<em class="property">exception </em><tt class="descclassname">Study.</tt><tt class="descname">MultipleObjectsReturned</tt><a class="headerlink" href="#data.models.Study.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd>Bases: <tt class="xref docutils literal"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></tt></dd></dl>
+
+<dl class="attribute">
+<dt id="data.models.Study.experiment_set">
+<tt class="descclassname">Study.</tt><tt class="descname">experiment_set</tt><a class="headerlink" href="#data.models.Study.experiment_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="data.models.Study.strain">
+<tt class="descclassname">Study.</tt><tt class="descname">strain</tt><a class="headerlink" href="#data.models.Study.strain" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="data.models.Study.treatment_set">
+<tt class="descclassname">Study.</tt><tt class="descname">treatment_set</tt><a class="headerlink" href="#data.models.Study.treatment_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="data.models.Transplantation">
+<em class="property">class </em><tt class="descclassname">data.models.</tt><tt class="descname">Transplantation</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#data.models.Transplantation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.db.models.base.Model</span></tt></p>
+<p>Transplantation(id, tissue, transplant_date, notes)</p>
+<dl class="exception">
+<dt id="data.models.Transplantation.DoesNotExist">
+<em class="property">exception </em><tt class="descname">DoesNotExist</tt><a class="headerlink" href="#data.models.Transplantation.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd>Bases: <tt class="xref docutils literal"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></tt></dd></dl>
+
+<dl class="exception">
+<dt id="data.models.Transplantation.MultipleObjectsReturned">
+<em class="property">exception </em><tt class="descclassname">Transplantation.</tt><tt class="descname">MultipleObjectsReturned</tt><a class="headerlink" href="#data.models.Transplantation.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd>Bases: <tt class="xref docutils literal"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></tt></dd></dl>
+
+<dl class="attribute">
+<dt id="data.models.Transplantation.donor">
+<tt class="descclassname">Transplantation.</tt><tt class="descname">donor</tt><a class="headerlink" href="#data.models.Transplantation.donor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="data.models.Transplantation.get_next_by_transplant_date">
+<tt class="descclassname">Transplantation.</tt><tt class="descname">get_next_by_transplant_date</tt><big>(</big><em>*moreargs</em>, <em>**morekwargs</em><big>)</big><a class="headerlink" href="#data.models.Transplantation.get_next_by_transplant_date" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="data.models.Transplantation.get_previous_by_transplant_date">
+<tt class="descclassname">Transplantation.</tt><tt class="descname">get_previous_by_transplant_date</tt><big>(</big><em>*moreargs</em>, <em>**morekwargs</em><big>)</big><a class="headerlink" href="#data.models.Transplantation.get_previous_by_transplant_date" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="data.models.Transplantation.surgeon">
+<tt class="descclassname">Transplantation.</tt><tt class="descname">surgeon</tt><a class="headerlink" href="#data.models.Transplantation.surgeon" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="data.models.Transplantation.treatment_set">
+<tt class="descclassname">Transplantation.</tt><tt class="descname">treatment_set</tt><a class="headerlink" href="#data.models.Transplantation.treatment_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="data.models.Treatment">
+<em class="property">class </em><tt class="descclassname">data.models.</tt><tt class="descname">Treatment</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#data.models.Treatment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.db.models.base.Model</span></tt></p>
+<p>Treatment(id, treatment, study_id, diet_id, environment_id, transplantation_id, notes)</p>
+<dl class="exception">
+<dt id="data.models.Treatment.DoesNotExist">
+<em class="property">exception </em><tt class="descname">DoesNotExist</tt><a class="headerlink" href="#data.models.Treatment.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd>Bases: <tt class="xref docutils literal"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></tt></dd></dl>
+
+<dl class="exception">
+<dt id="data.models.Treatment.MultipleObjectsReturned">
+<em class="property">exception </em><tt class="descclassname">Treatment.</tt><tt class="descname">MultipleObjectsReturned</tt><a class="headerlink" href="#data.models.Treatment.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd>Bases: <tt class="xref docutils literal"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></tt></dd></dl>
+
+<dl class="attribute">
+<dt id="data.models.Treatment.animals">
+<tt class="descclassname">Treatment.</tt><tt class="descname">animals</tt><a class="headerlink" href="#data.models.Treatment.animals" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="data.models.Treatment.diet">
+<tt class="descclassname">Treatment.</tt><tt class="descname">diet</tt><a class="headerlink" href="#data.models.Treatment.diet" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="data.models.Treatment.environment">
+<tt class="descclassname">Treatment.</tt><tt class="descname">environment</tt><a class="headerlink" href="#data.models.Treatment.environment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="data.models.Treatment.implantation">
+<tt class="descclassname">Treatment.</tt><tt class="descname">implantation</tt><a class="headerlink" href="#data.models.Treatment.implantation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="data.models.Treatment.pharmaceutical">
+<tt class="descclassname">Treatment.</tt><tt class="descname">pharmaceutical</tt><a class="headerlink" href="#data.models.Treatment.pharmaceutical" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="data.models.Treatment.researchers">
+<tt class="descclassname">Treatment.</tt><tt class="descname">researchers</tt><a class="headerlink" href="#data.models.Treatment.researchers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="data.models.Treatment.study">
+<tt class="descclassname">Treatment.</tt><tt class="descname">study</tt><a class="headerlink" href="#data.models.Treatment.study" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="data.models.Treatment.transplantation">
+<tt class="descclassname">Treatment.</tt><tt class="descname">transplantation</tt><a class="headerlink" href="#data.models.Treatment.transplantation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="data.models.Vendor">
+<em class="property">class </em><tt class="descclassname">data.models.</tt><tt class="descname">Vendor</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#data.models.Vendor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.db.models.base.Model</span></tt></p>
+<p>Vendor(id, vendor, website, email, ordering, notes)</p>
+<dl class="exception">
+<dt id="data.models.Vendor.DoesNotExist">
+<em class="property">exception </em><tt class="descname">DoesNotExist</tt><a class="headerlink" href="#data.models.Vendor.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd>Bases: <tt class="xref docutils literal"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></tt></dd></dl>
+
+<dl class="exception">
+<dt id="data.models.Vendor.MultipleObjectsReturned">
+<em class="property">exception </em><tt class="descclassname">Vendor.</tt><tt class="descname">MultipleObjectsReturned</tt><a class="headerlink" href="#data.models.Vendor.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd>Bases: <tt class="xref docutils literal"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></tt></dd></dl>
+
+<dl class="attribute">
+<dt id="data.models.Vendor.diet_set">
+<tt class="descclassname">Vendor.</tt><tt class="descname">diet_set</tt><a class="headerlink" href="#data.models.Vendor.diet_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="data.models.Vendor.get_ordering_display">
+<tt class="descclassname">Vendor.</tt><tt class="descname">get_ordering_display</tt><big>(</big><em>*moreargs</em>, <em>**morekwargs</em><big>)</big><a class="headerlink" href="#data.models.Vendor.get_ordering_display" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="data.models.Vendor.implantation_set">
+<tt class="descclassname">Vendor.</tt><tt class="descname">implantation_set</tt><a class="headerlink" href="#data.models.Vendor.implantation_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="data.models.Vendor.pharmaceutical_set">
+<tt class="descclassname">Vendor.</tt><tt class="descname">pharmaceutical_set</tt><a class="headerlink" href="#data.models.Vendor.pharmaceutical_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-data.forms">
+<h3>Forms<a class="headerlink" href="#module-data.forms" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="data.forms.ExperimentForm">
+<em class="property">class </em><tt class="descclassname">data.forms.</tt><tt class="descname">ExperimentForm</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=':'</em>, <em>empty_permitted=False</em>, <em>instance=None</em><big>)</big><a class="headerlink" href="#data.forms.ExperimentForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.forms.models.ModelForm</span></tt></p>
+<dl class="class">
+<dt id="data.forms.ExperimentForm.Meta">
+<em class="property">class </em><tt class="descname">Meta</tt><a class="headerlink" href="#data.forms.ExperimentForm.Meta" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="data.forms.ExperimentForm.Meta.model">
+<tt class="descname">model</tt><a class="headerlink" href="#data.forms.ExperimentForm.Meta.model" title="Permalink to this definition">¶</a></dt>
+<dd>alias of <tt class="xref docutils literal"><span class="pre">Experiment</span></tt></dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="data.forms.ExperimentForm.media">
+<tt class="descclassname">ExperimentForm.</tt><tt class="descname">media</tt><a class="headerlink" href="#data.forms.ExperimentForm.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="data.forms.MeasurementForm">
+<em class="property">class </em><tt class="descclassname">data.forms.</tt><tt class="descname">MeasurementForm</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=':'</em>, <em>empty_permitted=False</em>, <em>instance=None</em><big>)</big><a class="headerlink" href="#data.forms.MeasurementForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.forms.models.ModelForm</span></tt></p>
+<dl class="class">
+<dt id="data.forms.MeasurementForm.Meta">
+<em class="property">class </em><tt class="descname">Meta</tt><a class="headerlink" href="#data.forms.MeasurementForm.Meta" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="data.forms.MeasurementForm.Meta.model">
+<tt class="descname">model</tt><a class="headerlink" href="#data.forms.MeasurementForm.Meta.model" title="Permalink to this definition">¶</a></dt>
+<dd>alias of <tt class="xref docutils literal"><span class="pre">Measurement</span></tt></dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="data.forms.MeasurementForm.media">
+<tt class="descclassname">MeasurementForm.</tt><tt class="descname">media</tt><a class="headerlink" href="#data.forms.MeasurementForm.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="data.forms.StudyExperimentForm">
+<em class="property">class </em><tt class="descclassname">data.forms.</tt><tt class="descname">StudyExperimentForm</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=':'</em>, <em>empty_permitted=False</em>, <em>instance=None</em><big>)</big><a class="headerlink" href="#data.forms.StudyExperimentForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.forms.models.ModelForm</span></tt></p>
+<dl class="class">
+<dt id="data.forms.StudyExperimentForm.Meta">
+<em class="property">class </em><tt class="descname">Meta</tt><a class="headerlink" href="#data.forms.StudyExperimentForm.Meta" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="data.forms.StudyExperimentForm.Meta.model">
+<tt class="descname">model</tt><a class="headerlink" href="#data.forms.StudyExperimentForm.Meta.model" title="Permalink to this definition">¶</a></dt>
+<dd>alias of <tt class="xref docutils literal"><span class="pre">Experiment</span></tt></dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="data.forms.StudyExperimentForm.media">
+<tt class="descclassname">StudyExperimentForm.</tt><tt class="descname">media</tt><a class="headerlink" href="#data.forms.StudyExperimentForm.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="data.forms.StudyForm">
+<em class="property">class </em><tt class="descclassname">data.forms.</tt><tt class="descname">StudyForm</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=':'</em>, <em>empty_permitted=False</em>, <em>instance=None</em><big>)</big><a class="headerlink" href="#data.forms.StudyForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.forms.models.ModelForm</span></tt></p>
+<dl class="class">
+<dt id="data.forms.StudyForm.Meta">
+<em class="property">class </em><tt class="descname">Meta</tt><a class="headerlink" href="#data.forms.StudyForm.Meta" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="data.forms.StudyForm.Meta.model">
+<tt class="descname">model</tt><a class="headerlink" href="#data.forms.StudyForm.Meta.model" title="Permalink to this definition">¶</a></dt>
+<dd>alias of <tt class="xref docutils literal"><span class="pre">Study</span></tt></dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="data.forms.StudyForm.media">
+<tt class="descclassname">StudyForm.</tt><tt class="descname">media</tt><a class="headerlink" href="#data.forms.StudyForm.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-data.urls">
+<h3>Views and URLs<a class="headerlink" href="#module-data.urls" title="Permalink to this headline">¶</a></h3>
+<dl class="attribute">
+<dt id="data.views.add_measurement">
+<tt class="descclassname">data.views.</tt><tt class="descname">add_measurement</tt><a class="headerlink" href="#data.views.add_measurement" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="data.views.experiment_detail">
+<tt class="descclassname">data.views.</tt><tt class="descname">experiment_detail</tt><a class="headerlink" href="#data.views.experiment_detail" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="data.views.experiment_detail_all">
+<tt class="descclassname">data.views.</tt><tt class="descname">experiment_detail_all</tt><a class="headerlink" href="#data.views.experiment_detail_all" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="data.views.experiment_list">
+<tt class="descclassname">data.views.</tt><tt class="descname">experiment_list</tt><a class="headerlink" href="#data.views.experiment_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="data.views.study_experiment">
+<tt class="descclassname">data.views.</tt><tt class="descname">study_experiment</tt><a class="headerlink" href="#data.views.study_experiment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-data.admin">
+<h3>Administrative Site Configuration<a class="headerlink" href="#module-data.admin" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="module-animal">
+<h2>Animals Package<a class="headerlink" href="#module-animal" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-animal.models">
+<h3>Models<a class="headerlink" href="#module-animal.models" title="Permalink to this headline">¶</a></h3>
+<p>This module describes the Strain, Animal, Breeding and Cage data models.</p>
+<p>This module stores all data regarding a particular laboratory animal.  Information about experimental data and timed matings are stored in the data and timed_matings packages.  This module describes the database structure for each data model.</p>
+<dl class="class">
+<dt id="animal.models.Strain">
+<em class="property">class </em><tt class="descclassname">animal.models.</tt><tt class="descname">Strain</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#animal.models.Strain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.db.models.base.Model</span></tt></p>
+<p>A data model describing a mouse strain.</p>
+<p>This is separate from the background of a mouse.  For example a ob/ob mouse on a mixed or a black-6 background still have the same strain.  The background is defined in the animal and breeding cages.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="animal.models.Animal">
+<em class="property">class </em><tt class="descclassname">animal.models.</tt><tt class="descname">Animal</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#animal.models.Animal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.db.models.base.Model</span></tt></p>
+<p>A data model describing an animal.</p>
+<p>This data model describes a wide variety of parameters of an experimental animal.  This model is linked to the Strain and Cage models via 1:1 relationships.  If the parentage of a mouse is known, this can be identified (the breeding set may not be clear on this matter). Mice are automatically marked as not alive when a Death date is provided and the object is saved.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="animal.models.Breeding">
+<em class="property">class </em><tt class="descclassname">animal.models.</tt><tt class="descname">Breeding</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#animal.models.Breeding" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.db.models.base.Model</span></tt></p>
+<p>This data model stores information about a particular breeding set</p>
+<p>A breeding set may contain one ore more males and females and must be defined via the progeny strain.  For example, in the case of generating a new strain, the strain indicates the new strain not the parental strains.  If the breeding set is part of a timed mating experiment, then Timed_Mating must be selected.  Breeding cages are automatically inactivated upon saving when a End date is provided.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="animal.models.Cage">
+<em class="property">class </em><tt class="descclassname">animal.models.</tt><tt class="descname">Cage</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#animal.models.Cage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.db.models.base.Model</span></tt></p>
+<p>This data model stores information about a particular cage.</p>
+<p>This model, which is not yet implemented will be used by both breeding and non-breeding cages and will facilitate easier tracking and storage of cages.  To implement this, it will be necessary to automatically generate a new cage (if a novel barcode is entered), or to use a current cage if the barcode is already present in the database</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-animal.forms">
+<h3>Forms<a class="headerlink" href="#module-animal.forms" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="animal.forms.AnimalChangeForm">
+<em class="property">class </em><tt class="descclassname">animal.forms.</tt><tt class="descname">AnimalChangeForm</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=':'</em>, <em>empty_permitted=False</em>, <em>instance=None</em><big>)</big><a class="headerlink" href="#animal.forms.AnimalChangeForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.forms.models.ModelForm</span></tt></p>
+<dl class="class">
+<dt id="animal.forms.AnimalChangeForm.Meta">
+<em class="property">class </em><tt class="descname">Meta</tt><a class="headerlink" href="#animal.forms.AnimalChangeForm.Meta" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="animal.forms.AnimalChangeForm.Meta.model">
+<tt class="descname">model</tt><a class="headerlink" href="#animal.forms.AnimalChangeForm.Meta.model" title="Permalink to this definition">¶</a></dt>
+<dd>alias of <tt class="xref docutils literal"><span class="pre">Animal</span></tt></dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="animal.forms.AnimalChangeForm.media">
+<tt class="descclassname">AnimalChangeForm.</tt><tt class="descname">media</tt><a class="headerlink" href="#animal.forms.AnimalChangeForm.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="animal.forms.AnimalForm">
+<em class="property">class </em><tt class="descclassname">animal.forms.</tt><tt class="descname">AnimalForm</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=':'</em>, <em>empty_permitted=False</em>, <em>instance=None</em><big>)</big><a class="headerlink" href="#animal.forms.AnimalForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.forms.models.ModelForm</span></tt></p>
+<dl class="class">
+<dt id="animal.forms.AnimalForm.Meta">
+<em class="property">class </em><tt class="descname">Meta</tt><a class="headerlink" href="#animal.forms.AnimalForm.Meta" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="animal.forms.AnimalForm.Meta.model">
+<tt class="descname">model</tt><a class="headerlink" href="#animal.forms.AnimalForm.Meta.model" title="Permalink to this definition">¶</a></dt>
+<dd>alias of <tt class="xref docutils literal"><span class="pre">Animal</span></tt></dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="animal.forms.AnimalForm.media">
+<tt class="descclassname">AnimalForm.</tt><tt class="descname">media</tt><a class="headerlink" href="#animal.forms.AnimalForm.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-animal.urls">
+<h3>Views and URLs<a class="headerlink" href="#module-animal.urls" title="Permalink to this headline">¶</a></h3>
+<dl class="attribute">
+<dt id="animal.views.animal_change">
+<tt class="descclassname">animal.views.</tt><tt class="descname">animal_change</tt><a class="headerlink" href="#animal.views.animal_change" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="animal.views.animal_detail">
+<tt class="descclassname">animal.views.</tt><tt class="descname">animal_detail</tt><a class="headerlink" href="#animal.views.animal_detail" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="animal.views.animal_new">
+<tt class="descclassname">animal.views.</tt><tt class="descname">animal_new</tt><a class="headerlink" href="#animal.views.animal_new" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="animal.views.breeding">
+<tt class="descclassname">animal.views.</tt><tt class="descname">breeding</tt><a class="headerlink" href="#animal.views.breeding" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="animal.views.breeding_all">
+<tt class="descclassname">animal.views.</tt><tt class="descname">breeding_all</tt><a class="headerlink" href="#animal.views.breeding_all" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="animal.views.breeding_change">
+<tt class="descclassname">animal.views.</tt><tt class="descname">breeding_change</tt><a class="headerlink" href="#animal.views.breeding_change" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="animal.views.breeding_detail">
+<tt class="descclassname">animal.views.</tt><tt class="descname">breeding_detail</tt><a class="headerlink" href="#animal.views.breeding_detail" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="animal.views.breeding_pups">
+<tt class="descclassname">animal.views.</tt><tt class="descname">breeding_pups</tt><a class="headerlink" href="#animal.views.breeding_pups" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="animal.views.strain_detail">
+<tt class="descclassname">animal.views.</tt><tt class="descname">strain_detail</tt><a class="headerlink" href="#animal.views.strain_detail" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="animal.views.strain_detail_all">
+<tt class="descclassname">animal.views.</tt><tt class="descname">strain_detail_all</tt><a class="headerlink" href="#animal.views.strain_detail_all" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="animal.views.strain_list">
+<tt class="descclassname">animal.views.</tt><tt class="descname">strain_list</tt><a class="headerlink" href="#animal.views.strain_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-animal.admin">
+<h3>Administrative Site Configuration<a class="headerlink" href="#module-animal.admin" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="animal.admin.AnimalAdmin">
+<em class="property">class </em><tt class="descclassname">animal.admin.</tt><tt class="descname">AnimalAdmin</tt><big>(</big><em>model</em>, <em>admin_site</em><big>)</big><a class="headerlink" href="#animal.admin.AnimalAdmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.contrib.admin.options.ModelAdmin</span></tt></p>
+<dl class="method">
+<dt id="animal.admin.AnimalAdmin.mark_sacrificed">
+<tt class="descname">mark_sacrificed</tt><big>(</big><em>request</em>, <em>queryset</em><big>)</big><a class="headerlink" href="#animal.admin.AnimalAdmin.mark_sacrificed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="animal.admin.AnimalAdmin.media">
+<tt class="descname">media</tt><a class="headerlink" href="#animal.admin.AnimalAdmin.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="animal.admin.AnimalInline">
+<em class="property">class </em><tt class="descclassname">animal.admin.</tt><tt class="descname">AnimalInline</tt><big>(</big><em>parent_model</em>, <em>admin_site</em><big>)</big><a class="headerlink" href="#animal.admin.AnimalInline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.contrib.admin.options.TabularInline</span></tt></p>
+<dl class="attribute">
+<dt id="animal.admin.AnimalInline.model">
+<tt class="descname">model</tt><a class="headerlink" href="#animal.admin.AnimalInline.model" title="Permalink to this definition">¶</a></dt>
+<dd>alias of <tt class="xref docutils literal"><span class="pre">Animal</span></tt></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="animal.admin.BreedingAdmin">
+<em class="property">class </em><tt class="descclassname">animal.admin.</tt><tt class="descname">BreedingAdmin</tt><big>(</big><em>model</em>, <em>admin_site</em><big>)</big><a class="headerlink" href="#animal.admin.BreedingAdmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.contrib.admin.options.ModelAdmin</span></tt></p>
+<dl class="attribute">
+<dt id="animal.admin.BreedingAdmin.media">
+<tt class="descname">media</tt><a class="headerlink" href="#animal.admin.BreedingAdmin.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="animal.admin.CageAdmin">
+<em class="property">class </em><tt class="descclassname">animal.admin.</tt><tt class="descname">CageAdmin</tt><big>(</big><em>model</em>, <em>admin_site</em><big>)</big><a class="headerlink" href="#animal.admin.CageAdmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.contrib.admin.options.ModelAdmin</span></tt></p>
+<dl class="attribute">
+<dt id="animal.admin.CageAdmin.media">
+<tt class="descname">media</tt><a class="headerlink" href="#animal.admin.CageAdmin.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="animal.admin.StrainAdmin">
+<em class="property">class </em><tt class="descclassname">animal.admin.</tt><tt class="descname">StrainAdmin</tt><big>(</big><em>model</em>, <em>admin_site</em><big>)</big><a class="headerlink" href="#animal.admin.StrainAdmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.contrib.admin.options.ModelAdmin</span></tt></p>
+<dl class="attribute">
+<dt id="animal.admin.StrainAdmin.media">
+<tt class="descname">media</tt><a class="headerlink" href="#animal.admin.StrainAdmin.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-timed_mating">
+<h2>Timed Mating Package<a class="headerlink" href="#module-timed_mating" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-groups">
+<h2>Groups Package<a class="headerlink" href="#module-groups" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">Automated Documentation</a><ul>
+<li><a class="reference external" href="#module-data">Data Package</a><ul>
+<li><a class="reference external" href="#module-data.models">Models</a></li>
+<li><a class="reference external" href="#module-data.forms">Forms</a></li>
+<li><a class="reference external" href="#module-data.urls">Views and URLs</a></li>
+<li><a class="reference external" href="#module-data.admin">Administrative Site Configuration</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#module-animal">Animals Package</a><ul>
+<li><a class="reference external" href="#module-animal.models">Models</a></li>
+<li><a class="reference external" href="#module-animal.forms">Forms</a></li>
+<li><a class="reference external" href="#module-animal.urls">Views and URLs</a></li>
+<li><a class="reference external" href="#module-animal.admin">Administrative Site Configuration</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#module-timed_mating">Timed Mating Package</a></li>
+<li><a class="reference external" href="#module-groups">Groups Package</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="usage.html"
+                                  title="previous chapter">Animal Data Entry</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/api.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="usage.html" title="Animal Data Entry"
+             >previous</a> |</li>
+        <li><a href="index.html">MouseDB v0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2009, Dave Bridges, Ph.D..
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.
+    </div>
+  </body>
+</html>

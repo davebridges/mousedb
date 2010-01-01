@@ -1,0 +1,29 @@
+\begin{theindex}
+\def\bigletter#1{{\Large\sffamily#1}\nopagebreak\vspace{1mm}}
+
+  \bigletter A
+  \item {\texttt  {animal}}, \hyperpage{17}
+  \item {\texttt  {animal.admin}}, \hyperpage{19}
+  \item {\texttt  {animal.forms}}, \hyperpage{18}
+  \item {\texttt  {animal.models}}, \hyperpage{17}
+  \item {\texttt  {animal.urls}}, \hyperpage{19}
+  \item {\texttt  {animal.views}}, \hyperpage{19}
+
+  \indexspace
+  \bigletter D
+  \item {\texttt  {data}}, \hyperpage{13}
+  \item {\texttt  {data.admin}}, \hyperpage{17}
+  \item {\texttt  {data.forms}}, \hyperpage{16}
+  \item {\texttt  {data.models}}, \hyperpage{13}
+  \item {\texttt  {data.urls}}, \hyperpage{17}
+  \item {\texttt  {data.views}}, \hyperpage{17}
+
+  \indexspace
+  \bigletter G
+  \item {\texttt  {groups}}, \hyperpage{20}
+
+  \indexspace
+  \bigletter T
+  \item {\texttt  {timed\_mating}}, \hyperpage{20}
+
+\end{theindex}
