@@ -17,7 +17,7 @@ def delete_strain(*args, **kwargs):
 
 urlpatterns = patterns('',
         (r'^$', 'mousedb.animal.views.strain_list'),
-		(r'^new/$', create_strain, {
+	(r'^new/$', create_strain, {
 		'model': Strain, 
 		'template_name': 'strain_new.html', 
 		'login_required':True,
