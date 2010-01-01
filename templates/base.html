@@ -30,7 +30,7 @@
 	<div id = "header" class="grid_12">
 		<ul id="menu">
 			<li><a href="/mousedb/index" title="Home">Home</a></li>
-			<li><a href="/mousedb/admin" title="Admin">Admin Site</a></li>
+			{% if user.is_staff %}<li><a href="/mousedb/admin" title="Admin">Admin Site</a></li>{% endif %}
 			<li><a href="/mousedb/todo" title="ToDo List">To Do List</a></li>
 			<li><a href="/mousedb/breeding" title="Breeding Cages">Breeding Cages</a></li>
 			<li><a href="/mousedb/strain" title="Strain List">Strain List</a></li>
