@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 from django.views.generic.list_detail import object_list, object_detail
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 
 from mousedb.data.forms import ExperimentForm
 from mousedb.data.models import Measurement, Experiment
