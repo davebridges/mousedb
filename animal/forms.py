@@ -15,6 +15,10 @@ class AnimalChangeForm(ModelForm):
         fields = ['Strain','Background','MouseID', 'Markings', 'Cage', 'Rack', 'Rack_Position', 'Genotype', 'Death', 'Cause_of_Death']
 		
 class AnimalForm(ModelForm):
+    """This form provides all fields for altering animal data.
+	
+	This is expected to be used as part of the migration to CageID rather than Cage.  Therefore, in this form, Cage is excluded and CageID is set as an integer field.
+	The CageID will be set based on that integer, and a pre-save step will generate that foreignkey field if necesssary."""
     CageID = forms.IntegerField()
     class Meta:
         model = Animal
