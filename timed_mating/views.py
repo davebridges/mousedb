@@ -1,12 +1,12 @@
 from django.shortcuts import render_to_response
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import permission_required
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 
 from mousedb.animal.models import Breeding, Animal
 from mousedb.timed_mating.forms import BreedingPlugForm
 
-@login_required
+@permission_required('timed_mating.add_plugevents')
 def breeding_plugevent(request, breeding_id):
 	breeding = Breeding.objects.select_related().get(id=breeding_id)
         if request.method == "POST":

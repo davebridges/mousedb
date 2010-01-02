@@ -2,7 +2,7 @@ from mousedb.animal.models import Animal
 from mousedb.data.models import Experiment, Measurement, Study, Treatment
 from mousedb.data.forms import MeasurementForm, StudyExperimentForm
 from django.shortcuts import render_to_response
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.forms.models import modelformset_factory
@@ -31,7 +31,7 @@ def experiment_detail_all(request):
 	measurement_bodyweight = Measurement.objects.filter(assay__pk=3).select_related()
 	return render_to_response('experiment_detail_all.html', {'measurement_plasmaglucose' : measurement_plasmaglucose, 'measurement_seruminsulin': measurement_seruminsulin, 'measurement_bodyweight' : measurement_bodyweight},context_instance=RequestContext(request))
 
-@login_required
+@permission_required('data.add_measurement')
 def add_measurement(request, experiment_id):
 	experiment = Experiment.objects.get(id=experiment_id)
 	MeasurementFormSet = modelformset_factory(Measurement, form=MeasurementForm, extra=10, can_delete=True)
@@ -43,7 +43,7 @@ def add_measurement(request, experiment_id):
 		formset = MeasurementFormSet()
 	return render_to_response("data_entry_form.html", {"formset": formset, "experiment": experiment }, context_instance=RequestContext(request))
 
-@login_required
+@permission_required('data.add_experiment')
 def study_experiment(request, study_id):
 	study = Study.objects.get(pk=study_id)
 	treatments = Treatment.objects.filter(study=study)

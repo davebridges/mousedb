@@ -10,7 +10,7 @@ class AnimalInline(admin.TabularInline):
 class AnimalAdmin(admin.ModelAdmin):
 	fieldsets = (
 		(None, {
-			'fields': ('Strain', 'Background', 'MouseID','Cage', 'CageID', 'Genotype', 'Gender', 'Born', 'Weaned', 'Backcross', 'Generation', 'Markings', 'Notes', 'Breeding', 'Rack', 'Rack_Position')
+			'fields': ('Strain', 'Background', 'MouseID','Cage', 'Genotype', 'Gender', 'Born', 'Weaned', 'Backcross', 'Generation', 'Markings', 'Notes', 'Breeding', 'Rack', 'Rack_Position')
 		}),
 	('Animal Death Information', {
 		'classes' : ('collapse',),
@@ -18,7 +18,7 @@ class AnimalAdmin(admin.ModelAdmin):
 		}),
 	)
 	raw_id_fields = ("Breeding",)
-	list_display = ('MouseID', 'Rack', 'Rack_Position', 'Cage', 'CageID', 'Markings','Gender', 'Genotype', 'Strain', 'Background', 'Generation', 'Backcross', 'Born', 'Alive', 'Death')
+	list_display = ('MouseID', 'Rack', 'Rack_Position', 'Cage', 'Markings','Gender', 'Genotype', 'Strain', 'Background', 'Generation', 'Backcross', 'Born', 'Alive', 'Death')
 	list_filter = ('Alive','Strain', 'Background','Gender','Genotype','Backcross')
 	search_fields = ['MouseID', 'Cage']
 	radio_fields = {"Gender": admin.HORIZONTAL, "Strain":admin.HORIZONTAL, "Background": admin.HORIZONTAL, "Genotype": admin.HORIZONTAL, "Cause_of_Death": admin.HORIZONTAL}

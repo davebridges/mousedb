@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 from django.views.generic.list_detail import object_list, object_detail
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 
 from mousedb.timed_mating.models import PlugEvents
 
@@ -11,6 +11,18 @@ def limited_object_list(*args, **kwargs):
 @login_required
 def limited_object_detail(*args, **kwargs):
 	return object_detail(*args, **kwargs)
+
+@permission_required('timed_mating.add_plugevents')
+def create_plugevents(*args, **kwargs):
+	return django.views.generic.create_update.create_object(*args, **kwargs)
+
+@permission_required('timed_mating.change_plugevents')
+def change_plugevents(*args, **kwargs):
+	return django.views.generic.create_update.update_object(*args, **kwargs)
+
+@permission_required('timed_mating.delete_plugevents')
+def delete_plugevents(*args, **kwargs):
+	return django.views.generic.create_update.update_object(*args, **kwargs)
 
 urlpatterns = patterns('',
 	(r'^$', limited_object_list, {
@@ -23,19 +35,19 @@ urlpatterns = patterns('',
 		'template_name': 'plug_detail.html',
 		'template_object_name': 'plug',
 		}),
-	(r'^new/$', 'django.views.generic.create_update.create_object', {
+	(r'^new/$', create_plugevents, {
 		'model': PlugEvents, 
 		'template_name': 'plug_form.html', 
 		'login_required':True,
 		'post_save_redirect':'/mousedb/plug_events/'
 		}),
-	(r'^(?P<object_id>\d*)/edit/$', 'django.views.generic.create_update.update_object', {
+	(r'^(?P<object_id>\d*)/edit/$', change_plugevents, {
 		'model': PlugEvents, 
 		'template_name': 'plug_form.html', 
 		'login_required':True,
 		'post_save_redirect':'/mousedb/plug_events/'
 		}),
-	(r'^(?P<object_id>\d*)/delete/$', 'django.views.generic.create_update.delete_object', {
+	(r'^(?P<object_id>\d*)/delete/$', delete_plugevents, {
 		'model': PlugEvents, 
 		'login_required':True,
 		'post_delete_redirect':'/mousedb/plug_events/'

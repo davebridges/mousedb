@@ -2,7 +2,7 @@ from mousedb.animal.models import Animal, Strain, Breeding, Cage
 from mousedb.data.models import Measurement
 from mousedb.animal.forms import AnimalChangeForm, AnimalForm
 from django.shortcuts import render_to_response
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.forms.models import inlineformset_factory
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
@@ -49,7 +49,7 @@ def breeding_detail(request, breeding_id):
 	pups = Animal.objects.filter(Breeding=breeding)
 	return render_to_response('breeding_detail.html', {'breeding': breeding, 'pups' : pups},context_instance=RequestContext(request))
 
-@login_required
+@permission_required('animal.add_animal')
 def breeding_pups(request, breeding_id):
 	breeding = Breeding.objects.select_related().get(id=breeding_id)
 	strain = breeding.Strain
@@ -63,7 +63,7 @@ def breeding_pups(request, breeding_id):
 		formset = PupsFormSet(instance=breeding,)
 	return render_to_response("breeding_pups.html", {"formset":formset, 'breeding':breeding},context_instance=RequestContext(request))
 
-@login_required
+@permission_required('animal.change_breeding')
 def breeding_change(request, breeding_id):
 	breeding = Breeding.objects.select_related().get(id=breeding_id)
 	strain = breeding.Strain
@@ -77,7 +77,7 @@ def breeding_change(request, breeding_id):
 		formset = PupsFormSet(instance=breeding,)
 	return render_to_response("breeding_change.html", {"formset":formset, 'breeding':breeding},context_instance=RequestContext(request))
 
-@login_required
+@permission_required('animal.change_animal')
 def animal_change(request, animal_id):
 	animal = Animal.objects.get(id=animal_id)
 	if request.method == "POST":
@@ -89,7 +89,7 @@ def animal_change(request, animal_id):
 		form = AnimalChangeForm(instance=animal)
 	return render_to_response("animal_form.html", {"form":form, 'animal':animal},context_instance=RequestContext(request))
 
-@login_required
+@permission_required('animal.add_animal')
 def animal_new(request):
 	if request.method =="POST":
 		form=AnimalForm(request.POST)
