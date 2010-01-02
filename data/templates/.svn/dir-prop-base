@@ -1,9 +1,0 @@
-K 10
-svn:ignore
-V 34
-*.pyc
-*~
-settings.py
-settings.pyc
-
-END

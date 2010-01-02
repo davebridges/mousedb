@@ -18,7 +18,7 @@
 
 {% block content %}
 <p>Change fields as necessary.</p>
-<form method="POST" action="/mousedb/breeding/{{ breeding.id }}/change/">
+<form method="POST" action=".">
     {{ formset.management_form }}
     {% include "formsets_table.html" %}
 <input type="submit" value="Submit" />

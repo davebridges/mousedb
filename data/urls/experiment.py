@@ -35,7 +35,7 @@ urlpatterns = patterns('',
 	(r'^(?P<experiment_id>\d*)/data_entry/$', 'mousedb.data.views.add_measurement'),
 	(r'^new/$', create_experiment, {
 		'form_class': ExperimentForm, 
-		'template_name': 'experiment_new.html', 
+		'template_name': 'experiment_form.html', 
 		'login_required':True,
 		'post_save_redirect':'/mousedb/experiment/'
 		}),

@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Data Entry ({{ experiment }}){% endblock %}
+{% block title %}Update Animal{% endblock title %}
 {% block scripts %}
 	<link type="text/css" href="/mousedb-media/javascript/jquery-ui/css/custom-theme/jquery-ui-1.7.2.custom.css" rel="Stylesheet" />
 	<script type="text/javascript" src="/mousedb-media/javascript/jquery-1.3.2.js"></script> 
@@ -13,12 +13,13 @@
 	});
 	</script>
 {% endblock %}
-{% block header %}Data Entry ({{ experiment }}){% endblock %}
+{% block header %}Update: {{ animal }}{% endblock header %}
+
 {% block content %}
-<form action="/mousedb/experiment/{{ experiment.id }}/data_entry/" method="POST">
-    {{ formset.management_form }}
-    {% include "formsets_table.html" %}
+<p>Change fields as necessary.</p>
+<form method="POST" action=".">
+	<table>{{ form }}</table>
 <input type="submit" value="Submit" />
 </form>
-{% endblock %}
 
+{% endblock content %}

@@ -32,19 +32,18 @@ urlpatterns = patterns('',
 	(r'^new/$', 'mousedb.animal.views.animal_new'),
 	(r'^new/$', create_animal, {
 		'model': Animal, 
-		'template_name': 'animal_new.html', 
+		'template_name': 'animal_form.html', 
 		'login_required':True,
 		'post_save_redirect':'/mousedb/mouse/'
 		}),
 	(r'^(?P<object_id>\d*)/update/$', change_animal, {
 		'model': Animal, 
-		'template_name': 'animal_update.html', 
+		'template_name': 'animal_form.html', 
 		'login_required':True,
 		'post_save_redirect':'/mousedb/mouse/',
 		}),
 	(r'^(?P<object_id>\d*)/delete/$', delete_animal, {
 		'model': Animal, 
-		'template_name': 'animal_delete.html', 
 		'login_required':True,
 		'post_delete_redirect':'/mousedb/mouse/',
 		}),

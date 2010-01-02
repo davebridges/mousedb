@@ -37,19 +37,18 @@ urlpatterns = patterns('',
 		}),
 	(r'^new/$', create_plugevents, {
 		'model': PlugEvents, 
-		'template_name': 'plug_new.html', 
+		'template_name': 'plug_form.html', 
 		'login_required':True,
 		'post_save_redirect':'/mousedb/plug_events/'
 		}),
 	(r'^(?P<object_id>\d*)/edit/$', change_plugevents, {
 		'model': PlugEvents, 
-		'template_name': 'plug_edit.html', 
+		'template_name': 'plug_form.html', 
 		'login_required':True,
 		'post_save_redirect':'/mousedb/plug_events/'
 		}),
 	(r'^(?P<object_id>\d*)/delete/$', delete_plugevents, {
 		'model': PlugEvents, 
-		'template_name': 'plug_delete.html', 
 		'login_required':True,
 		'post_delete_redirect':'/mousedb/plug_events/'
 		}),

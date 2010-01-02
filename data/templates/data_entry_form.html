@@ -1,21 +1,24 @@
 {% extends "base.html" %}
 
-{% block header %}Breeding Cage Update - {{object}}{% endblock %}
-{% block title %}Breeding Cage Update - {{object}}{% endblock %}
+{% block title %}Data Entry ({{ experiment }}){% endblock %}
 {% block scripts %}
 	<link type="text/css" href="/mousedb-media/javascript/jquery-ui/css/custom-theme/jquery-ui-1.7.2.custom.css" rel="Stylesheet" />
 	<script type="text/javascript" src="/mousedb-media/javascript/jquery-1.3.2.js"></script> 
 	<script type="text/javascript" src="/mousedb-media/javascript/jquery-ui/js/jquery-ui-1.7.2.custom.min.js"></script> 
 	<script type="text/javascript">
 	 $(document).ready(function() {	
-		$('#id_Start').datepicker({dateFormat: 'yy-mm-dd'});
-		$('#id_End').datepicker({dateFormat: 'yy-mm-dd'});
+		$('#id_Born').datepicker({dateFormat: 'yy-mm-dd'});
+		$('#id_Weaned').datepicker({dateFormat: 'yy-mm-dd'});
+		$('#id_Death').datepicker({dateFormat: 'yy-mm-dd'});
 	});
 	</script>
 {% endblock %}
+{% block header %}Data Entry ({{ experiment }}){% endblock %}
 {% block content %}
-<form method="POST" action="/mousedb/breeding/{{object.id}}/update/">
-<table>{{ form }}</table>
+<form action="." method="POST">
+    {{ formset.management_form }}
+    {% include "formsets_table.html" %}
 <input type="submit" value="Submit" />
 </form>
 {% endblock %}
+

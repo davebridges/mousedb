@@ -41,7 +41,7 @@ def add_measurement(request, experiment_id):
 			formset.save()
 	else:
 		formset = MeasurementFormSet()
-	return render_to_response("data_entry.html", {"formset": formset, "experiment": experiment }, context_instance=RequestContext(request))
+	return render_to_response("data_entry_form.html", {"formset": formset, "experiment": experiment }, context_instance=RequestContext(request))
 
 @permission_required('data.add_experiment')
 def study_experiment(request, study_id):
@@ -58,7 +58,7 @@ def study_experiment(request, study_id):
 	else:
 		form = StudyExperimentForm()
 		form.fields["animals"].queryset = Animal.objects.filter(treatment=treatments)
-	return render_to_response("study_experiment_new.html", {'form':form, 'study':study, 'treatments': treatments},context_instance=RequestContext(request))
+	return render_to_response("study_experiment_form.html", {'form':form, 'study':study, 'treatments': treatments},context_instance=RequestContext(request))
 	
 
 

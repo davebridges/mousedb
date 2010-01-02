@@ -87,7 +87,7 @@ def animal_change(request, animal_id):
 			return HttpResponseRedirect("/mousedb/mouse")
 	else:
 		form = AnimalChangeForm(instance=animal)
-	return render_to_response("animal_change.html", {"form":form, 'animal':animal},context_instance=RequestContext(request))
+	return render_to_response("animal_form.html", {"form":form, 'animal':animal},context_instance=RequestContext(request))
 
 @permission_required('animal.add_animal')
 def animal_new(request):
@@ -102,4 +102,4 @@ def animal_new(request):
 			return HttpResponseRedirect("/mousedb/mouse")
 	else:
 		form = AnimalForm()
-	return render_to_response("animal_new.html",{"form":form,},context_instance=RequestContext(request))
+	return render_to_response("animal_form.html",{"form":form,},context_instance=RequestContext(request))

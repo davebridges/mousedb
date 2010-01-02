@@ -19,19 +19,18 @@ urlpatterns = patterns('',
         (r'^$', 'mousedb.animal.views.strain_list'),
 	(r'^new/$', create_strain, {
 		'model': Strain, 
-		'template_name': 'strain_new.html', 
+		'template_name': 'strain_form.html', 
 		'login_required':True,
 		'post_save_redirect':'/mousedb/strain/'
 		}),
 	(r'^(?P<object_id>\d*)/update/$', change_strain, {
 		'model': Strain, 
-		'template_name': 'strain_update.html', 
+		'template_name': 'strain_form.html', 
 		'login_required':True,
 		'post_save_redirect':'/mousedb/strain/',
 		}),
 	(r'^(?P<object_id>\d*)/delete/$', delete_strain, {
 		'model': Strain, 
-		'template_name': 'strain_delete.html', 
 		'login_required':True,
 		'post_delete_redirect':'/mousedb/strain/',
 		}),
