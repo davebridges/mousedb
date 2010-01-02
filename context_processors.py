@@ -1,5 +1,6 @@
-from mousedb.groups.models import Group, License
+from mousedb.groups.models import Group
 
 def group_info(request):
-	group = Group.objects.get(pk=1)
-	return {'group': group}
+    """This context processor provides group information to all templates."""
+    group = Group.objects.get(pk=1)
+    return {'group': group}

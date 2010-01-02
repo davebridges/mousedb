@@ -1,19 +1,28 @@
+"""Forms for use in manipulating objects in the animal app."""
+
 from django.forms import ModelForm
 from django import forms
-from django.contrib.admin import widgets   
 
 from mousedb.animal.models import Animal
 
 class AnimalChangeForm(ModelForm):
-	class Meta:
-		model = Animal
-		fields = ['Strain','Background','MouseID', 'Markings', 'Cage', 'Rack', 'Rack_Position', 'Genotype', 'Death', 'Cause_of_Death']
-
+    """This form provides fields for altering animal fields.
+	
+    This form us used with the mouse/(MouseID)/change url.
+	This modelform excludes the fields CageID (not yet implemented), Gender, Born, Weaned, Backcross, Generation, Mother, Father, Notes and Alive (automatically set upon death)."""
+    class Meta:
+        model = Animal
+        fields = ['Strain','Background','MouseID', 'Markings', 'Cage', 'Rack', 'Rack_Position', 'Genotype', 'Death', 'Cause_of_Death']
+		
 class AnimalForm(ModelForm):
-	CageID = forms.IntegerField()
-	class Meta:
-		model = Animal
-		exclude = ['Cage',]
+    """This form provides all fields for altering animal data.
+	
+	This is expected to be used as part of the migration to CageID rather than Cage.  Therefore, in this form, Cage is excluded and CageID is set as an integer field.
+	The CageID will be set based on that integer, and a pre-save step will generate that foreignkey field if necesssary."""
+    CageID = forms.IntegerField()
+    class Meta:
+        model = Animal
+        exclude = ['Cage',]
 
 
 

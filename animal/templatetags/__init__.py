@@ -1,0 +1,1 @@
+"""Custon template tags for use in the animal app."""
