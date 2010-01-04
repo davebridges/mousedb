@@ -105,7 +105,7 @@ def breeding_pups(request, breeding_id):
     PupsFormSet = inlineformset_factory(Breeding, Animal, extra=10, fields=['Born','Background','Gender','Strain','Cage','Backcross','Generation', 'Weaned', 'Rack', 'Rack_Position', 'MouseID', 'Genotype'])
     if request.method =="POST":
         formset = PupsFormSet(request.POST, instance=breeding)
-    if formset.is_valid():
+        if formset.is_valid():
             formset.save()
             return HttpResponseRedirect("/mousedb/breeding/")
     else:
