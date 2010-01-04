@@ -7,6 +7,6 @@ register = template.Library()
 @stringfilter
 def all_caps(value):
     """This template filter converts a string into all caps."""
-	return value.upper()
+    return value.upper()
 
 
