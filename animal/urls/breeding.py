@@ -1,5 +1,6 @@
 from django.conf.urls.defaults import *
 from django.views.generic.list_detail import object_list
+from django.views.generic.create_update import create_object, update_object, delete_object
 from django.contrib.auth.decorators import login_required, permission_required
 
 from mousedb.animal.models import Breeding
@@ -10,15 +11,15 @@ def limited_object_list(*args, **kwargs):
 
 @permission_required('animal.add_breeding')
 def create_breeding(*args, **kwargs):
-	return django.views.generic.create_update.create_object(*args, **kwargs)
+	return create_object(*args, **kwargs)
 
 @permission_required('animal.change_breeding')
 def change_breeding(*args, **kwargs):
-	return django.views.generic.create_update.update_object(*args, **kwargs)
+	return update_object(*args, **kwargs)
 
 @permission_required('animal.delete_breeding')
 def delete_breeding(*args, **kwargs):
-	return django.views.generic.create_update.update_object(*args, **kwargs)
+	return delete_object(*args, **kwargs)
 
 urlpatterns = patterns('',
 	(r'^$', 'mousedb.animal.views.breeding'),
