@@ -101,18 +101,16 @@ def breeding_pups(request, breeding_id):
     This view is restricted to those with the permission animal.add_animal.
     """
     breeding = get_object_or_404(Breeding, pk=breeding_id)
-    PupsFormSet = inlineformset_factory(Breeding, Animal)
+    PupsFormSet = inlineformset_factory(Breeding, Animal, fields=('MouseID', 'Cage', 'Strain', 'Genotype', 
+'Background', 'Gender', 'Born'))
     if request.method == "POST":
         formset = PupsFormSet(request.POST, instance=breeding)
         if formset.is_valid():
-            formset.save
+            formset.save()
             return HttpResponseRedirect( breeding.get_absolute_url() )            
     else:
         formset = PupsFormSet(instance=breeding)
     return render_to_response("breeding_pups.html", {"formset":formset, 'breeding':breeding},context_instance=RequestContext(request))
-
-
-
 
 @permission_required('animal.change_animal')
 def breeding_change(request, breeding_id):

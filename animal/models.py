@@ -6,36 +6,36 @@ from django.db import models
 import datetime
 
 GENOTYPE_CHOICES = (
-	('+/+', 'Wild-Type'),
-	('-/+', 'Heterozygous'),
-	('-/-', 'Knockout'),
-	('N.D.', 'Not Determined')
+('+/+', 'Wild-Type'),
+('-/+', 'Heterozygous'),
+('-/-', 'Knockout'),
+('N.D.', 'Not Determined')
 )
 
 GENDER_CHOICES = (
-	('M', 'Male'),
-	('F', 'Female'),
-	('N.D.', 'Not Determined')
+('M', 'Male'),
+('F', 'Female'),
+('N.D.', 'Not Determined')
 )
 
 CROSS_TYPE = (
-	('WT vs HET', 'Wild-Type vs Heterozygote'),
-	('HET vs HET', 'Heterozygote vs Heterozygote'),
-	('KO vs HET', 'Knockout vs Heterozygote'),
-	('KO vs WT', 'Knockout vs Wild-Type'),
-	('WT vs WT', 'Wild-Type vs Wild-Type')
+('WT vs HET', 'Wild-Type vs Heterozygote'),
+('HET vs HET', 'Heterozygote vs Heterozygote'),
+('KO vs HET', 'Knockout vs Heterozygote'),
+('KO vs WT', 'Knockout vs Wild-Type'),
+('WT vs WT', 'Wild-Type vs Wild-Type')
 )
 
 BACKGROUND_CHOICES = (
-	('C57BL/6-BA', 'C57BL/6-BA'),
-	('C57BL/6-LY5.2', 'C57BL/S-LY5.2'),
-	('Mixed', 'Mixed')
+('C57BL/6-BA', 'C57BL/6-BA'),
+('C57BL/6-LY5.2', 'C57BL/S-LY5.2'),
+('Mixed', 'Mixed')
 )
 
 CAUSE_OF_DEATH = (
-	('Unknown', 'Unknown'),
-	('Sacrificed', 'Sacrificed'),
-	('Accidental', 'Accidental')
+('Unknown', 'Unknown'),
+('Sacrificed', 'Sacrificed'),
+('Accidental', 'Accidental')
 )
 
 class Strain(models.Model):
@@ -50,14 +50,14 @@ class Strain(models.Model):
     def __unicode__(self):
         return u'%s' % self.Strain
     def get_absolute_url(self):
-        return "/strain/%s" % self.Strain_slug
+        return "/mousedb/strain/%s" % self.Strain_slug
 
 class Animal(models.Model):
     """A data model describing an animal.
 
     This data model describes a wide variety of parameters of an experimental animal.  This model is linked to the Strain and Cage models via 1:1 relationships.  If the parentage of a mouse is known, this can be identified (the breeding set may not be clear on this matter). Mice are automatically marked as not alive when a Death date is provided and the object is saved.
     """
-    MouseID	= models.IntegerField(max_length = 10, blank = True, null=True)
+    MouseID = models.IntegerField(max_length = 10, blank = True, null=True)
     Cage = models.IntegerField(max_length = 15, blank = True, null=True)
     CageID = models.ForeignKey('Cage', blank=True, null=True)
     Rack = models.CharField(max_length = 15, blank = True)
@@ -80,9 +80,9 @@ class Animal(models.Model):
     Alive = models.BooleanField(default=True)
     def __unicode__(self):
         """This defines the unicode string of a mouse.
-        If a eartag is present then the string reads some_strain-Eartag #some_number.  If an eartag is not present then the mouse is labelled as use some_number, where this number is the internal database identification number and not an eartag.
-        """
-        if self.MouseID:		
+If a eartag is present then the string reads some_strain-Eartag #some_number. If an eartag is not present then the mouse is labelled as use some_number, where this number is the internal database identification number and not an eartag.
+"""
+        if self.MouseID:
             return u'%s-EarTag #%i' % (self.Strain, self.MouseID)
         elif self.id:
              return u'%s (%i)' % (self.Strain, self.id)
@@ -93,7 +93,7 @@ class Animal(models.Model):
     def save(self):
         if self.Death:
             self.Alive = False
-            super(Animal, self).save()
+        super(Animal, self).save()
     class Meta:
         ordering = ['MouseID']
 
@@ -119,7 +119,7 @@ class Breeding(models.Model):
     def __unicode__(self):
         return u'%s Breeding Cage: %s starting on %s'  %(self.Strain, self.Cage, self.Start)
     def get_absolute_url(self):
-        return "/breeding/%i" % (self.id)
+        return "/mousedb/breeding/%i" % (self.id)
     def save(self):
         if self.End:
             self.Active = False
