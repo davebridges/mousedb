@@ -5,7 +5,7 @@ This module contains only non-generic views.  Several generic views are also use
 from mousedb.animal.models import Animal, Strain, Breeding, Cage
 from mousedb.data.models import Measurement
 from mousedb.animal.forms import AnimalChangeForm, AnimalForm
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404
 from django.contrib.auth.decorators import login_required, permission_required
 from django.forms.models import inlineformset_factory
 from django.http import HttpResponseRedirect
@@ -100,17 +100,19 @@ def breeding_pups(request, breeding_id):
     It takes a request in the form /breeding/(breeding_id)/pups/ and returns a form specific to the breeding set defined in breeding_id.  breeding_id is the background identification number of the breeding set and does not refer to the barcode of any breeding cage.
     This view is restricted to those with the permission animal.add_animal.
     """
-    breeding = Breeding.objects.select_related().get(id=breeding_id)
-    strain = breeding.Strain
-    PupsFormSet = inlineformset_factory(Breeding, Animal, extra=10, fields=['Born','Background','Gender','Strain','Cage','Backcross','Generation', 'Weaned', 'Rack', 'Rack_Position', 'MouseID', 'Genotype'])
-    if request.method =="POST":
+    breeding = get_object_or_404(Breeding, pk=breeding_id)
+    PupsFormSet = inlineformset_factory(Breeding, Animal)
+    if request.method == "POST":
         formset = PupsFormSet(request.POST, instance=breeding)
         if formset.is_valid():
-            formset.save()
-            return HttpResponseRedirect("/mousedb/breeding/")
+            formset.save
+            return HttpResponseRedirect( breeding.get_absolute_url() )            
     else:
-        formset = PupsFormSet(instance=breeding,)
+        formset = PupsFormSet(instance=breeding)
     return render_to_response("breeding_pups.html", {"formset":formset, 'breeding':breeding},context_instance=RequestContext(request))
+
+
+
 
 @permission_required('animal.change_animal')
 def breeding_change(request, breeding_id):

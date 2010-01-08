@@ -84,8 +84,10 @@ class Animal(models.Model):
         """
         if self.MouseID:		
             return u'%s-EarTag #%i' % (self.Strain, self.MouseID)
+        elif self.id:
+             return u'%s (%i)' % (self.Strain, self.id)
         else:
-            return u'%s (%i)' % (self.Strain, self.id)
+             return u'MOUSE'
     def get_absolute_url(self):
         return '%i' % (self.id)
     def save(self):
