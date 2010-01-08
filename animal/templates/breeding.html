@@ -30,15 +30,15 @@
  <tdata>
   {% for breeding in breeding_list %}
   <tr>
-   <td><a href="/mousedb{{ breeding.Strain.get_absolute_url }}">{{ breeding.Strain }}</td>
-   <td><a href="/mousedb{{ breeding.get_absolute_url }}">{{ breeding.Cage }}</a></td>
+   <td><a href="{{ breeding.Strain.get_absolute_url }}">{{ breeding.Strain }}</td>
+   <td><a href="{{ breeding.get_absolute_url }}">{{ breeding.Cage }}</a></td>
    <td id="left">{{ breeding.BreedingName }}</td>
    <td>{{ breeding.Start }}</td>
    <td>{{ breeding.Rack }}</td>
    <td>{{ breeding.Rack_Position|all_caps }}</td>
    <td id="left">{{ breeding.Start|timesince }}
    <td id="left">{{ breeding.Crosstype }}
-   <td><a href="/mousedb{{ breeding.get_absolute_url }}">{{ breeding.animal_set.count }}</a></td>
+   <td><a href="{{ breeding.get_absolute_url }}">{{ breeding.animal_set.count }}</a></td>
    <td id="left">{{ breeding.Notes }}</td>
   </tr>
 {% endfor%}
