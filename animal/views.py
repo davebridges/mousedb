@@ -97,13 +97,13 @@ def breeding_detail(request, breeding_id):
 def breeding_pups(request, breeding_id):
     """This view is used to generate a form by which to add pups which belong to a particular breeding set.
 	
+    This view is intended to be used to add initial information about pups, including eartag, genotype, gender and birth or weaning information.
     It takes a request in the form /breeding/(breeding_id)/pups/ and returns a form specific to the breeding set defined in breeding_id.  breeding_id is the background identification number of the breeding set and does not refer to the barcode of any breeding cage.
     This view is restricted to those with the permission animal.add_animal.
     """
     breeding = get_object_or_404(Breeding, pk=breeding_id)
     PupsFormSet = inlineformset_factory(Breeding, Animal, 
-fields=('MouseID', 'Cage', 'Strain', 'Genotype', 'Background', 'Gender', 
-'Born', 'Weaned'))
+        fields=('MouseID', 'Cage', ' Born', 'Weaned', 'Strain', 'Genotype', 'Background', 'Gender', 'Backcross', 'Generation'))
     if request.method == "POST":
         formset = PupsFormSet(request.POST, instance=breeding)
         if formset.is_valid():
@@ -117,6 +117,7 @@ fields=('MouseID', 'Cage', 'Strain', 'Genotype', 'Background', 'Gender',
 def breeding_change(request, breeding_id):
     """This view is used to generate a form by which to change pups which belong to a particular breeding set.
 	
+    This view typically is used to modify existing pups.  This might include marking animals as sacrificed, entering genotype or marking information or entering movement of mice to another cage.  It is used to show and modify several animals at once.
     It takes a request in the form /breeding/(breeding_id)/change/ and returns a form specific to the breeding set defined in breeding_id.  breeding_id is the background identification number of the breeding set and does not refer to the barcode of any breeding cage.
     This view returns a formset in which one row represents one animal.  To add extra animals to a breeding set use /breeding/(breeding_id)/pups/.
     This view is restricted to those with the permission animal.change_animal.
@@ -137,6 +138,7 @@ def breeding_change(request, breeding_id):
 def animal_change(request, animal_id):
     """This view is used to render a form to modify one animal.
 	
+    To modify several animals go to the /breeding/(breeding_id)/change or /breeding/(breeding_id)/pups instead.
     The request takes the form /mouse/(id)/change/ or insetad of mouse mice, animal or animals.  This returns a form specific to the animal defined in id.  id represents the background identification number of a mouse and not the eartag or other identification number for an animal.
     This view is restricted to users with the permission animal.change_animal."""
     animal = Animal.objects.get(id=animal_id)
