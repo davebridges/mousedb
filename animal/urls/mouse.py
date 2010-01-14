@@ -1,5 +1,6 @@
 from django.conf.urls.defaults import *
 
+from django.views.generic.list_detail import object_list
 from django.views.generic.create_update import create_object, update_object, delete_object
 from django.contrib.auth.decorators import login_required, permission_required
 
