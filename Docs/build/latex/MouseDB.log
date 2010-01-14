@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=latex 2009.10.31)  3 JAN 2010 10:54
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.10.31)  13 JAN 2010 19:17
 entering extended mode
  %&-line parsing enabled.
 **MouseDB.tex
@@ -572,13 +572,11 @@ Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
 (/etc/texmf/tex/latex/config/color.cfg
 File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
-Package color Info: Driver file: dvips.def on input line 130.
+Package color Info: Driver file: pdftex.def on input line 130.
 
-(/usr/share/texmf-texlive/tex/latex/graphics/dvips.def
-File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
-)
-(/usr/share/texmf-texlive/tex/latex/graphics/dvipsnam.def
-File: dvipsnam.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2007/01/08 v0.04d Graphics/color for pdfTeX
+\Gread@gobject=\count109
 ))
 (/usr/share/texmf-texlive/tex/latex/fancyvrb/fancyvrb.sty
 Package: fancyvrb 1998/07/17
@@ -588,11 +586,11 @@ Style option: `fancyvrb' v2.6, with DG/SPQR fixes <1998/07/17> (tvz)
 Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
 \KV@toks@=\toks27
 )
-\FV@CodeLineNo=\count109
+\FV@CodeLineNo=\count110
 \FV@InFile=\read2
 \FV@TabBox=\box35
-\c@FancyVerbLine=\count110
-\FV@StepNumber=\count111
+\c@FancyVerbLine=\count111
+\FV@StepNumber=\count112
 \FV@OutFile=\write4
 
 No file fancyvrb.cfg.
@@ -608,7 +606,7 @@ Package: footnote 1997/01/28 1.13 Save footnotes around boxes
 (/usr/share/texmf-texlive/tex/latex/wrapfig/wrapfig.sty
 \wrapoverhang=\dimen129
 \WF@size=\dimen130
-\c@WF@wrappedlines=\count112
+\c@WF@wrappedlines=\count113
 \WF@box=\box38
 \WF@everypar=\toks28
 Package: wrapfig 2003/01/31  v 3.6
@@ -629,11 +627,7 @@ Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
 )
 Package graphics Info: Driver file: pdftex.def on input line 90.
-
-(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def
-File: pdftex.def 2007/01/08 v0.04d Graphics/color for pdfTeX
-\Gread@gobject=\count113
-))
+)
 \Gin@req@height=\dimen131
 \Gin@req@width=\dimen132
 )
@@ -819,19 +813,19 @@ LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
 [3] [4]
 Chapter 2.
 
-Underfull \hbox (badness 7168) in paragraph at lines 186--187
+Underfull \hbox (badness 7168) in paragraph at lines 191--192
 []\T1/ptm/b/n/10 Python\T1/ptm/m/n/10 . Re-quires Ver-sion 2.6, is not yet com-
 pat-i-ble with Python 3.0. Down-load from
  []
 
-LaTeX Font Info:    Try loading font information for TS1+ptm on input line 207.
+LaTeX Font Info:    Try loading font information for TS1+ptm on input line 212.
 
 (/usr/share/texmf-texlive/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 ) [5
 
 ]
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 234.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 239.
 
 (/usr/share/texmf-texlive/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
@@ -852,51 +846,51 @@ Chapter 5.
 ]
 Chapter 6.
 LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <10> not available
-(Font)              Font shape `T1/pcr/b/n' tried instead on input line 456.
-[13] [14] [15]
-Underfull \hbox (badness 10000) in paragraph at lines 810--810
+(Font)              Font shape `T1/pcr/b/n' tried instead on input line 480.
+[13] [14] [15] [16]
+Underfull \hbox (badness 10000) in paragraph at lines 834--834
 []\T1/ptm/m/it/10 data=None, files=None, auto_id='id_%s', pre-fix=None, ini-tia
 l=None,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 810--810
+Underfull \hbox (badness 10000) in paragraph at lines 834--834
 \T1/ptm/m/it/10 er-ror_class=<class 'django.forms.util.ErrorList'>, la-bel_suff
 ix=':',
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 826--826
+Underfull \hbox (badness 10000) in paragraph at lines 850--850
 []\T1/ptm/m/it/10 data=None, files=None, auto_id='id_%s', pre-fix=None, ini-tia
 l=None,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 826--826
+Underfull \hbox (badness 10000) in paragraph at lines 850--850
 \T1/ptm/m/it/10 er-ror_class=<class 'django.forms.util.ErrorList'>, la-bel_suff
 ix=':',
  []
 
-[16]
-Underfull \hbox (badness 10000) in paragraph at lines 842--842
+
+Underfull \hbox (badness 10000) in paragraph at lines 866--866
 []\T1/ptm/m/it/10 data=None, files=None, auto_id='id_%s', pre-fix=None, ini-tia
 l=None,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 842--842
+Underfull \hbox (badness 10000) in paragraph at lines 866--866
 \T1/ptm/m/it/10 er-ror_class=<class 'django.forms.util.ErrorList'>, la-bel_suff
 ix=':',
  []
 
 [17] [18]
-Underfull \hbox (badness 10000) in paragraph at lines 984--984
+Underfull \hbox (badness 10000) in paragraph at lines 1013--1013
 []\T1/ptm/m/it/10 data=None, files=None, auto_id='id_%s', pre-fix=None, ini-tia
 l=None,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 984--984
+Underfull \hbox (badness 10000) in paragraph at lines 1013--1013
 \T1/ptm/m/it/10 er-ror_class=<class 'django.forms.util.ErrorList'>, la-bel_suff
 ix=':',
  []
@@ -957,13 +951,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 127--128
 
 [28]) (./MouseDB.aux) ) 
 Here is how much of TeX's memory you used:
- 7002 strings out of 94075
- 93506 string characters out of 1165175
- 154970 words of memory out of 1500000
- 9865 multiletter control sequences out of 10000+50000
+ 6838 strings out of 94074
+ 90828 string characters out of 1165152
+ 154457 words of memory out of 1500000
+ 9702 multiletter control sequences out of 10000+50000
  54556 words of font info for 56 fonts, out of 1200000 for 2000
  646 hyphenation exceptions out of 8191
- 34i,12n,49p,747b,474s stack positions out of 5000i,500n,6000p,200000b,5000s
+ 34i,12n,45p,758b,548s stack positions out of 5000i,500n,6000p,200000b,5000s
 {/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</
 usr/share/texmf-texlive/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texmf-te
 xlive/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1/
@@ -972,9 +966,9 @@ o8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/sha
 re/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fon
 ts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/u
 tmri8a.pfb>
-Output written on MouseDB.pdf (32 pages, 223620 bytes).
+Output written on MouseDB.pdf (32 pages, 226808 bytes).
 PDF statistics:
- 766 PDF objects out of 1000 (max. 8388607)
- 276 named destinations out of 1000 (max. 131072)
+ 772 PDF objects out of 1000 (max. 8388607)
+ 281 named destinations out of 1000 (max. 131072)
  249 words of extra memory for PDF output out of 10000 (max. 10000000)
 

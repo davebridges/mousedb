@@ -2,9 +2,10 @@
 \contentsline {chapter}{\numberline {1}MouseDB Concepts}{3}{chapter.1}
 \contentsline {section}{\numberline {1.1}Animal Module}{3}{section.1.1}
 \contentsline {subsection}{\numberline {1.1.1}Animal}{3}{subsection.1.1.1}
+\contentsline {subsubsection}{Backcrosses and Generations}{3}{subsubsection*.2}
 \contentsline {subsection}{\numberline {1.1.2}Breeding Cages}{3}{subsection.1.1.2}
 \contentsline {subsection}{\numberline {1.1.3}Strains}{3}{subsection.1.1.3}
-\contentsline {section}{\numberline {1.2}Data Module}{3}{section.1.2}
+\contentsline {section}{\numberline {1.2}Data Module}{4}{section.1.2}
 \contentsline {subsection}{\numberline {1.2.1}Studies}{4}{subsection.1.2.1}
 \contentsline {subsection}{\numberline {1.2.2}Experiments}{4}{subsection.1.2.2}
 \contentsline {subsection}{\numberline {1.2.3}Measurements}{4}{subsection.1.2.3}
@@ -30,20 +31,24 @@
 \contentsline {section}{\numberline {5.3}Measurements}{11}{section.5.3}
 \contentsline {chapter}{\numberline {6}Automated Documentation}{13}{chapter.6}
 \contentsline {section}{\numberline {6.1}Data Package}{13}{section.6.1}
-\contentsline {subsection}{\numberline {6.1.1}Models}{13}{subsection.6.1.1}
-\contentsline {subsection}{\numberline {6.1.2}Forms}{16}{subsection.6.1.2}
-\contentsline {subsection}{\numberline {6.1.3}Views and URLs}{17}{subsection.6.1.3}
-\contentsline {subsection}{\numberline {6.1.4}Administrative Site Configuration}{17}{subsection.6.1.4}
-\contentsline {section}{\numberline {6.2}Animals Package}{17}{section.6.2}
+\contentsline {subsection}{\numberline {6.1.1}Studies}{13}{subsection.6.1.1}
+\contentsline {subsection}{\numberline {6.1.2}Experiments}{13}{subsection.6.1.2}
+\contentsline {subsection}{\numberline {6.1.3}Measurements}{13}{subsection.6.1.3}
+\contentsline {subsection}{\numberline {6.1.4}Models}{13}{subsection.6.1.4}
+\contentsline {subsection}{\numberline {6.1.5}Forms}{17}{subsection.6.1.5}
+\contentsline {subsection}{\numberline {6.1.6}Views and URLs}{18}{subsection.6.1.6}
+\contentsline {subsection}{\numberline {6.1.7}Administrative Site Configuration}{18}{subsection.6.1.7}
+\contentsline {section}{\numberline {6.2}Animals Package}{18}{section.6.2}
 \contentsline {subsection}{\numberline {6.2.1}Animal}{18}{subsection.6.2.1}
+\contentsline {subsubsection}{Backcrosses and Generations}{18}{subsubsection*.3}
 \contentsline {subsection}{\numberline {6.2.2}Breeding Cages}{18}{subsection.6.2.2}
-\contentsline {subsection}{\numberline {6.2.3}Strains}{18}{subsection.6.2.3}
-\contentsline {subsection}{\numberline {6.2.4}Models}{18}{subsection.6.2.4}
+\contentsline {subsection}{\numberline {6.2.3}Strains}{19}{subsection.6.2.3}
+\contentsline {subsection}{\numberline {6.2.4}Models}{19}{subsection.6.2.4}
 \contentsline {subsection}{\numberline {6.2.5}Forms}{19}{subsection.6.2.5}
-\contentsline {subsection}{\numberline {6.2.6}Views and URLs}{19}{subsection.6.2.6}
-\contentsline {subsection}{\numberline {6.2.7}Administrative Site Configuration}{21}{subsection.6.2.7}
+\contentsline {subsection}{\numberline {6.2.6}Views and URLs}{20}{subsection.6.2.6}
+\contentsline {subsection}{\numberline {6.2.7}Administrative Site Configuration}{22}{subsection.6.2.7}
 \contentsline {section}{\numberline {6.3}Timed Mating Package}{22}{section.6.3}
 \contentsline {section}{\numberline {6.4}Groups Package}{22}{section.6.4}
 \contentsline {chapter}{\numberline {7}Indices and tables}{23}{chapter.7}
-\contentsline {chapter}{Module Index}{25}{section*.2}
-\contentsline {chapter}{Index}{27}{section*.3}
+\contentsline {chapter}{Module Index}{25}{section*.4}
+\contentsline {chapter}{Index}{27}{section*.5}

@@ -3,18 +3,18 @@
 \indexentry{Assay (class in data.models)|hyperpage}{13}
 \indexentry{Assay.DoesNotExist|hyperpage}{13}
 \indexentry{Assay.MultipleObjectsReturned|hyperpage}{13}
-\indexentry{measurement\_set (data.models.Assay attribute)|hyperpage}{13}
-\indexentry{Diet (class in data.models)|hyperpage}{13}
-\indexentry{Diet.DoesNotExist|hyperpage}{13}
-\indexentry{Diet.MultipleObjectsReturned|hyperpage}{13}
-\indexentry{treatment\_set (data.models.Diet attribute)|hyperpage}{13}
-\indexentry{vendor (data.models.Diet attribute)|hyperpage}{13}
-\indexentry{Environment (class in data.models)|hyperpage}{13}
-\indexentry{Environment.DoesNotExist|hyperpage}{13}
-\indexentry{Environment.MultipleObjectsReturned|hyperpage}{13}
-\indexentry{contact (data.models.Environment attribute)|hyperpage}{13}
-\indexentry{treatment\_set (data.models.Environment attribute)|hyperpage}{13}
-\indexentry{Experiment (class in data.models)|hyperpage}{13}
+\indexentry{measurement\_set (data.models.Assay attribute)|hyperpage}{14}
+\indexentry{Diet (class in data.models)|hyperpage}{14}
+\indexentry{Diet.DoesNotExist|hyperpage}{14}
+\indexentry{Diet.MultipleObjectsReturned|hyperpage}{14}
+\indexentry{treatment\_set (data.models.Diet attribute)|hyperpage}{14}
+\indexentry{vendor (data.models.Diet attribute)|hyperpage}{14}
+\indexentry{Environment (class in data.models)|hyperpage}{14}
+\indexentry{Environment.DoesNotExist|hyperpage}{14}
+\indexentry{Environment.MultipleObjectsReturned|hyperpage}{14}
+\indexentry{contact (data.models.Environment attribute)|hyperpage}{14}
+\indexentry{treatment\_set (data.models.Environment attribute)|hyperpage}{14}
+\indexentry{Experiment (class in data.models)|hyperpage}{14}
 \indexentry{Experiment.DoesNotExist|hyperpage}{14}
 \indexentry{Experiment.MultipleObjectsReturned|hyperpage}{14}
 \indexentry{animals (data.models.Experiment attribute)|hyperpage}{14}
@@ -28,18 +28,18 @@
 \indexentry{Implantation (class in data.models)|hyperpage}{14}
 \indexentry{Implantation.DoesNotExist|hyperpage}{14}
 \indexentry{Implantation.MultipleObjectsReturned|hyperpage}{14}
-\indexentry{surgeon (data.models.Implantation attribute)|hyperpage}{14}
-\indexentry{treatment\_set (data.models.Implantation attribute)|hyperpage}{14}
-\indexentry{vendor (data.models.Implantation attribute)|hyperpage}{14}
-\indexentry{Measurement (class in data.models)|hyperpage}{14}
-\indexentry{Measurement.DoesNotExist|hyperpage}{14}
-\indexentry{Measurement.MultipleObjectsReturned|hyperpage}{14}
-\indexentry{animal (data.models.Measurement attribute)|hyperpage}{14}
-\indexentry{assay (data.models.Measurement attribute)|hyperpage}{14}
-\indexentry{experiment (data.models.Measurement attribute)|hyperpage}{14}
-\indexentry{Pharmaceutical (class in data.models)|hyperpage}{14}
-\indexentry{Pharmaceutical.DoesNotExist|hyperpage}{14}
-\indexentry{Pharmaceutical.MultipleObjectsReturned|hyperpage}{14}
+\indexentry{surgeon (data.models.Implantation attribute)|hyperpage}{15}
+\indexentry{treatment\_set (data.models.Implantation attribute)|hyperpage}{15}
+\indexentry{vendor (data.models.Implantation attribute)|hyperpage}{15}
+\indexentry{Measurement (class in data.models)|hyperpage}{15}
+\indexentry{Measurement.DoesNotExist|hyperpage}{15}
+\indexentry{Measurement.MultipleObjectsReturned|hyperpage}{15}
+\indexentry{animal (data.models.Measurement attribute)|hyperpage}{15}
+\indexentry{assay (data.models.Measurement attribute)|hyperpage}{15}
+\indexentry{experiment (data.models.Measurement attribute)|hyperpage}{15}
+\indexentry{Pharmaceutical (class in data.models)|hyperpage}{15}
+\indexentry{Pharmaceutical.DoesNotExist|hyperpage}{15}
+\indexentry{Pharmaceutical.MultipleObjectsReturned|hyperpage}{15}
 \indexentry{get\_mode\_display() (data.models.Pharmaceutical method)|hyperpage}{15}
 \indexentry{treatment\_set (data.models.Pharmaceutical attribute)|hyperpage}{15}
 \indexentry{vendor (data.models.Pharmaceutical attribute)|hyperpage}{15}
@@ -53,19 +53,19 @@
 \indexentry{transplantation\_set (data.models.Researcher attribute)|hyperpage}{15}
 \indexentry{treatment\_set (data.models.Researcher attribute)|hyperpage}{15}
 \indexentry{Study (class in data.models)|hyperpage}{15}
-\indexentry{Study.DoesNotExist|hyperpage}{15}
-\indexentry{Study.MultipleObjectsReturned|hyperpage}{15}
-\indexentry{experiment\_set (data.models.Study attribute)|hyperpage}{15}
-\indexentry{strain (data.models.Study attribute)|hyperpage}{15}
-\indexentry{treatment\_set (data.models.Study attribute)|hyperpage}{15}
-\indexentry{Transplantation (class in data.models)|hyperpage}{15}
-\indexentry{Transplantation.DoesNotExist|hyperpage}{15}
-\indexentry{Transplantation.MultipleObjectsReturned|hyperpage}{15}
-\indexentry{donor (data.models.Transplantation attribute)|hyperpage}{15}
-\indexentry{get\_next\_by\_transplant\_date() (data.models.Transplantation method)|hyperpage}{15}
-\indexentry{get\_previous\_by\_transplant\_date() (data.models.Transplantation method)|hyperpage}{15}
-\indexentry{surgeon (data.models.Transplantation attribute)|hyperpage}{15}
-\indexentry{treatment\_set (data.models.Transplantation attribute)|hyperpage}{15}
+\indexentry{Study.DoesNotExist|hyperpage}{16}
+\indexentry{Study.MultipleObjectsReturned|hyperpage}{16}
+\indexentry{experiment\_set (data.models.Study attribute)|hyperpage}{16}
+\indexentry{strain (data.models.Study attribute)|hyperpage}{16}
+\indexentry{treatment\_set (data.models.Study attribute)|hyperpage}{16}
+\indexentry{Transplantation (class in data.models)|hyperpage}{16}
+\indexentry{Transplantation.DoesNotExist|hyperpage}{16}
+\indexentry{Transplantation.MultipleObjectsReturned|hyperpage}{16}
+\indexentry{donor (data.models.Transplantation attribute)|hyperpage}{16}
+\indexentry{get\_next\_by\_transplant\_date() (data.models.Transplantation method)|hyperpage}{16}
+\indexentry{get\_previous\_by\_transplant\_date() (data.models.Transplantation method)|hyperpage}{16}
+\indexentry{surgeon (data.models.Transplantation attribute)|hyperpage}{16}
+\indexentry{treatment\_set (data.models.Transplantation attribute)|hyperpage}{16}
 \indexentry{Treatment (class in data.models)|hyperpage}{16}
 \indexentry{Treatment.DoesNotExist|hyperpage}{16}
 \indexentry{Treatment.MultipleObjectsReturned|hyperpage}{16}
@@ -78,18 +78,18 @@
 \indexentry{study (data.models.Treatment attribute)|hyperpage}{16}
 \indexentry{transplantation (data.models.Treatment attribute)|hyperpage}{16}
 \indexentry{Vendor (class in data.models)|hyperpage}{16}
-\indexentry{Vendor.DoesNotExist|hyperpage}{16}
-\indexentry{Vendor.MultipleObjectsReturned|hyperpage}{16}
-\indexentry{diet\_set (data.models.Vendor attribute)|hyperpage}{16}
-\indexentry{get\_ordering\_display() (data.models.Vendor method)|hyperpage}{16}
-\indexentry{implantation\_set (data.models.Vendor attribute)|hyperpage}{16}
-\indexentry{pharmaceutical\_set (data.models.Vendor attribute)|hyperpage}{16}
-\indexentry{data.forms (module)|hyperpage}{16}
-\indexentry{ExperimentForm (class in data.forms)|hyperpage}{16}
-\indexentry{ExperimentForm.Meta (class in data.forms)|hyperpage}{16}
-\indexentry{model (data.forms.ExperimentForm.Meta attribute)|hyperpage}{16}
-\indexentry{media (data.forms.ExperimentForm attribute)|hyperpage}{16}
-\indexentry{MeasurementForm (class in data.forms)|hyperpage}{16}
+\indexentry{Vendor.DoesNotExist|hyperpage}{17}
+\indexentry{Vendor.MultipleObjectsReturned|hyperpage}{17}
+\indexentry{diet\_set (data.models.Vendor attribute)|hyperpage}{17}
+\indexentry{get\_ordering\_display() (data.models.Vendor method)|hyperpage}{17}
+\indexentry{implantation\_set (data.models.Vendor attribute)|hyperpage}{17}
+\indexentry{pharmaceutical\_set (data.models.Vendor attribute)|hyperpage}{17}
+\indexentry{data.forms (module)|hyperpage}{17}
+\indexentry{ExperimentForm (class in data.forms)|hyperpage}{17}
+\indexentry{ExperimentForm.Meta (class in data.forms)|hyperpage}{17}
+\indexentry{model (data.forms.ExperimentForm.Meta attribute)|hyperpage}{17}
+\indexentry{media (data.forms.ExperimentForm attribute)|hyperpage}{17}
+\indexentry{MeasurementForm (class in data.forms)|hyperpage}{17}
 \indexentry{MeasurementForm.Meta (class in data.forms)|hyperpage}{17}
 \indexentry{model (data.forms.MeasurementForm.Meta attribute)|hyperpage}{17}
 \indexentry{media (data.forms.MeasurementForm attribute)|hyperpage}{17}
@@ -100,54 +100,54 @@
 \indexentry{StudyForm (class in data.forms)|hyperpage}{17}
 \indexentry{StudyForm.Meta (class in data.forms)|hyperpage}{17}
 \indexentry{model (data.forms.StudyForm.Meta attribute)|hyperpage}{17}
-\indexentry{media (data.forms.StudyForm attribute)|hyperpage}{17}
-\indexentry{data.views (module)|hyperpage}{17}
-\indexentry{add\_measurement (in module data.views)|hyperpage}{17}
-\indexentry{experiment\_detail (in module data.views)|hyperpage}{17}
-\indexentry{experiment\_detail\_all (in module data.views)|hyperpage}{17}
-\indexentry{experiment\_list (in module data.views)|hyperpage}{17}
-\indexentry{study\_experiment (in module data.views)|hyperpage}{17}
-\indexentry{data.urls (module)|hyperpage}{17}
-\indexentry{data.admin (module)|hyperpage}{17}
-\indexentry{animal (module)|hyperpage}{17}
-\indexentry{animal.models (module)|hyperpage}{18}
-\indexentry{Strain (class in animal.models)|hyperpage}{18}
-\indexentry{Animal (class in animal.models)|hyperpage}{18}
-\indexentry{Breeding (class in animal.models)|hyperpage}{18}
-\indexentry{Cage (class in animal.models)|hyperpage}{18}
+\indexentry{media (data.forms.StudyForm attribute)|hyperpage}{18}
+\indexentry{data.views (module)|hyperpage}{18}
+\indexentry{add\_measurement (in module data.views)|hyperpage}{18}
+\indexentry{experiment\_detail (in module data.views)|hyperpage}{18}
+\indexentry{experiment\_detail\_all (in module data.views)|hyperpage}{18}
+\indexentry{experiment\_list (in module data.views)|hyperpage}{18}
+\indexentry{study\_experiment (in module data.views)|hyperpage}{18}
+\indexentry{data.urls (module)|hyperpage}{18}
+\indexentry{data.admin (module)|hyperpage}{18}
+\indexentry{animal (module)|hyperpage}{18}
+\indexentry{animal.models (module)|hyperpage}{19}
+\indexentry{Strain (class in animal.models)|hyperpage}{19}
+\indexentry{Animal (class in animal.models)|hyperpage}{19}
+\indexentry{Breeding (class in animal.models)|hyperpage}{19}
+\indexentry{Cage (class in animal.models)|hyperpage}{19}
 \indexentry{animal.forms (module)|hyperpage}{19}
 \indexentry{AnimalChangeForm (class in animal.forms)|hyperpage}{19}
-\indexentry{AnimalChangeForm.Meta (class in animal.forms)|hyperpage}{19}
-\indexentry{model (animal.forms.AnimalChangeForm.Meta attribute)|hyperpage}{19}
-\indexentry{media (animal.forms.AnimalChangeForm attribute)|hyperpage}{19}
-\indexentry{AnimalForm (class in animal.forms)|hyperpage}{19}
-\indexentry{AnimalForm.Meta (class in animal.forms)|hyperpage}{19}
-\indexentry{model (animal.forms.AnimalForm.Meta attribute)|hyperpage}{19}
-\indexentry{media (animal.forms.AnimalForm attribute)|hyperpage}{19}
-\indexentry{animal.views (module)|hyperpage}{19}
-\indexentry{animal\_change (in module animal.views)|hyperpage}{19}
+\indexentry{AnimalChangeForm.Meta (class in animal.forms)|hyperpage}{20}
+\indexentry{model (animal.forms.AnimalChangeForm.Meta attribute)|hyperpage}{20}
+\indexentry{media (animal.forms.AnimalChangeForm attribute)|hyperpage}{20}
+\indexentry{AnimalForm (class in animal.forms)|hyperpage}{20}
+\indexentry{AnimalForm.Meta (class in animal.forms)|hyperpage}{20}
+\indexentry{model (animal.forms.AnimalForm.Meta attribute)|hyperpage}{20}
+\indexentry{media (animal.forms.AnimalForm attribute)|hyperpage}{20}
+\indexentry{animal.views (module)|hyperpage}{20}
+\indexentry{animal\_change (in module animal.views)|hyperpage}{20}
 \indexentry{animal\_detail (in module animal.views)|hyperpage}{20}
 \indexentry{animal\_new (in module animal.views)|hyperpage}{20}
-\indexentry{breeding (in module animal.views)|hyperpage}{20}
-\indexentry{breeding\_all (in module animal.views)|hyperpage}{20}
-\indexentry{breeding\_change (in module animal.views)|hyperpage}{20}
-\indexentry{breeding\_detail (in module animal.views)|hyperpage}{20}
-\indexentry{breeding\_pups (in module animal.views)|hyperpage}{20}
-\indexentry{strain\_detail (in module animal.views)|hyperpage}{20}
-\indexentry{strain\_detail\_all (in module animal.views)|hyperpage}{20}
+\indexentry{breeding (in module animal.views)|hyperpage}{21}
+\indexentry{breeding\_all (in module animal.views)|hyperpage}{21}
+\indexentry{breeding\_change (in module animal.views)|hyperpage}{21}
+\indexentry{breeding\_detail (in module animal.views)|hyperpage}{21}
+\indexentry{breeding\_pups (in module animal.views)|hyperpage}{21}
+\indexentry{strain\_detail (in module animal.views)|hyperpage}{21}
+\indexentry{strain\_detail\_all (in module animal.views)|hyperpage}{21}
 \indexentry{strain\_list (in module animal.views)|hyperpage}{21}
 \indexentry{animal.urls (module)|hyperpage}{21}
-\indexentry{animal.admin (module)|hyperpage}{21}
-\indexentry{AnimalAdmin (class in animal.admin)|hyperpage}{21}
-\indexentry{mark\_sacrificed() (animal.admin.AnimalAdmin method)|hyperpage}{21}
-\indexentry{media (animal.admin.AnimalAdmin attribute)|hyperpage}{21}
-\indexentry{AnimalInline (class in animal.admin)|hyperpage}{21}
-\indexentry{model (animal.admin.AnimalInline attribute)|hyperpage}{21}
-\indexentry{BreedingAdmin (class in animal.admin)|hyperpage}{21}
-\indexentry{media (animal.admin.BreedingAdmin attribute)|hyperpage}{21}
-\indexentry{CageAdmin (class in animal.admin)|hyperpage}{21}
-\indexentry{media (animal.admin.CageAdmin attribute)|hyperpage}{21}
-\indexentry{StrainAdmin (class in animal.admin)|hyperpage}{21}
-\indexentry{media (animal.admin.StrainAdmin attribute)|hyperpage}{21}
+\indexentry{animal.admin (module)|hyperpage}{22}
+\indexentry{AnimalAdmin (class in animal.admin)|hyperpage}{22}
+\indexentry{mark\_sacrificed() (animal.admin.AnimalAdmin method)|hyperpage}{22}
+\indexentry{media (animal.admin.AnimalAdmin attribute)|hyperpage}{22}
+\indexentry{AnimalInline (class in animal.admin)|hyperpage}{22}
+\indexentry{model (animal.admin.AnimalInline attribute)|hyperpage}{22}
+\indexentry{BreedingAdmin (class in animal.admin)|hyperpage}{22}
+\indexentry{media (animal.admin.BreedingAdmin attribute)|hyperpage}{22}
+\indexentry{CageAdmin (class in animal.admin)|hyperpage}{22}
+\indexentry{media (animal.admin.CageAdmin attribute)|hyperpage}{22}
+\indexentry{StrainAdmin (class in animal.admin)|hyperpage}{22}
+\indexentry{media (animal.admin.StrainAdmin attribute)|hyperpage}{22}
 \indexentry{timed\_mating (module)|hyperpage}{22}
 \indexentry{groups (module)|hyperpage}{22}

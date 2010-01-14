@@ -12,7 +12,7 @@
 
 
 \title{MouseDB Documentation}
-\date{January 03, 2010}
+\date{January 13, 2010}
 \release{0.1}
 \author{Dave Bridges, Ph.D.}
 \newcommand{\sphinxlogo}{}
@@ -122,6 +122,11 @@ Animals are tracked as individual entities, and given associations to breeding c
 \subsection{Animal}
 
 Most parameters about an animal are set within the animal object.  Here is where the animals strain, breeding, parentage and many other parameters are included.  Animals have foreignkey relationships with both Strain and Breeding, so an animal may only belong to one of each of those.  As an example, a mouse cannot come from more than one Breeding set, and cannot belong to more than one strain.
+
+
+\subsubsection{Backcrosses and Generations}
+
+For this software, optional tracking of backcrosses and generations is available and is stored as an attribute of an animal.  When an inbred cross is made against a pure background, the backcross increases by 1.  When a heterozygote cross is made, the generation increases by one.  As an example, for every time a mouse in a C57/BL6 background is crossed against a wildtype C57/B6 mouse, the backcross (but not the generation) increases by one.  For every time a mutant strain is crosses against itself (either vs a heterozygote or homozygote of that strain), the generation will increase by one.  Backcrosses should typically be performed against a separate colony of purebred mouse, rather than against wild-type alleles of the mutant strain.
 
 
 \subsection{Breeding Cages}
@@ -446,6 +451,25 @@ For values, the standard units (defined by each assay) are mg for weights, mg/dL
 \hypertarget{module-data}{}
 \declaremodule[data]{}{data}
 \modulesynopsis{}
+The data module describes the conditions and collection of data regarding experimental animals.
+
+Data (or measurements) can be stored for any type of measurement.  Conceptually, several pieces of data belong to an experiment (for example several mice are measured at some time) and several experiments belong to a study.  Measurements can be stored independent of experiments and experiments can be performed outside of the context of a study.  It is however, perfered that measurements are stored within an experiment and experiments are stored within studies as this will greatly facilitate the organization of the data.
+
+
+\subsection{Studies}
+
+In general studies are a collection of experiments.  These can be grouped together on the basis of animals and/or treatment groups.  A study must have at least one treatment group, which defines the animals and their conditions.
+
+
+\subsection{Experiments}
+
+An experiment is a collection of measurements for a given set of animals.  In general, an experiment is defined as a number of measurements take in a given day.
+
+
+\subsection{Measurements}
+
+A measurement is an animal, an assay and a measurement value.  It can be associated with an experiment, or can stand alone as an individual value.  Measurements can be viewed in the context of a study, an experiment, a treatment group or an animal by going to the appropriate page.
+
 
 \subsection{Models}
 \index{data.models (module)}
@@ -916,6 +940,11 @@ Animals are tracked as individual entities, and given associations to breeding c
 Most parameters about an animal are set within the animal object.  Here is where the animals strain, breeding, parentage and many other parameters are included.  Animals have foreignkey relationships with both Strain and Breeding, so an animal may only belong to one of each of those.  As an example, a mouse cannot come from more than one Breeding set, and cannot belong to more than one strain.
 
 
+\subsubsection{Backcrosses and Generations}
+
+For this software, optional tracking of backcrosses and generations is available and is stored as an attribute of an animal.  When an inbred cross is made against a pure background, the backcross increases by 1.  When a heterozygote cross is made, the generation increases by one.  As an example, for every time a mouse in a C57/BL6 background is crossed against a wildtype C57/B6 mouse, the backcross (but not the generation) increases by one.  For every time a mutant strain is crosses against itself (either vs a heterozygote or homozygote of that strain), the generation will increase by one.  Backcrosses should typically be performed against a separate colony of purebred mouse, rather than against wild-type alleles of the mutant strain.
+
+
 \subsection{Breeding Cages}
 
 A breeding cage is defined as a set of one or more male and one or more female mice.  Because of this, it is not always clear who the precise parentage of an animal is.  If the parentage is known, then the Mother and Father fields can be set for a particular animal.
@@ -1038,6 +1067,7 @@ This module contains only non-generic views.  Several generic views are also use
 \hypertarget{animal.views.animal_change}{}\begin{memberdesc}[animal.views]{animal\_change}
 This view is used to render a form to modify one animal.
 
+To modify several animals go to the /breeding/(breeding\_id)/change or /breeding/(breeding\_id)/pups instead.
 The request takes the form /mouse/(id)/change/ or insetad of mouse mice, animal or animals.  This returns a form specific to the animal defined in id.  id represents the background identification number of a mouse and not the eartag or other identification number for an animal.
 This view is restricted to users with the permission animal.change\_animal.
 \end{memberdesc}
@@ -1079,6 +1109,7 @@ This page is restricted to logged-in users.
 \hypertarget{animal.views.breeding_change}{}\begin{memberdesc}[animal.views]{breeding\_change}
 This view is used to generate a form by which to change pups which belong to a particular breeding set.
 
+This view typically is used to modify existing pups.  This might include marking animals as sacrificed, entering genotype or marking information or entering movement of mice to another cage.  It is used to show and modify several animals at once.
 It takes a request in the form /breeding/(breeding\_id)/change/ and returns a form specific to the breeding set defined in breeding\_id.  breeding\_id is the background identification number of the breeding set and does not refer to the barcode of any breeding cage.
 This view returns a formset in which one row represents one animal.  To add extra animals to a breeding set use /breeding/(breeding\_id)/pups/.
 This view is restricted to those with the permission animal.change\_animal.
@@ -1098,6 +1129,7 @@ This page is restricted to logged-in users.
 \hypertarget{animal.views.breeding_pups}{}\begin{memberdesc}[animal.views]{breeding\_pups}
 This view is used to generate a form by which to add pups which belong to a particular breeding set.
 
+This view is intended to be used to add initial information about pups, including eartag, genotype, gender and birth or weaning information.
 It takes a request in the form /breeding/(breeding\_id)/pups/ and returns a form specific to the breeding set defined in breeding\_id.  breeding\_id is the background identification number of the breeding set and does not refer to the barcode of any breeding cage.
 This view is restricted to those with the permission animal.add\_animal.
 \end{memberdesc}
