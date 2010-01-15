@@ -10,10 +10,10 @@
 		{% endfor %}
 		</tr>
        </thead>
-       <tdata> 
+       <tbody> 
         {% for form in formset.forms %}
        <tr>{% for field in form %}<td>{{ field }}</td>{% endfor %}</tr>
         {% endfor %}
-    </tdata>
+    </tbody>
     </table>
 	
