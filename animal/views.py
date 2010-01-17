@@ -102,8 +102,7 @@ def breeding_pups(request, breeding_id):
     This view is restricted to those with the permission animal.add_animal.
     """
     breeding = get_object_or_404(Breeding, pk=breeding_id)
-    PupsFormSet = inlineformset_factory(Breeding, Animal, 
-        fields=('MouseID', 'Cage', ' Born', 'Weaned', 'Strain', 'Genotype', 'Background', 'Gender', 'Backcross', 'Generation'))
+    PupsFormSet = inlineformset_factory(Breeding, Animal, exclude=('Notes','Alive', 'Death', 'Cause_of_Death', 'Father', 'Mother', 'CageID', 'Breeding'))
     if request.method == "POST":
         formset = PupsFormSet(request.POST, instance=breeding)
         if formset.is_valid():
