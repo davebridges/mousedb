@@ -86,7 +86,6 @@ INSTALLED_APPS = (
 	'mousedb.timed_mating',
 	'mousedb.groups',
 	'django.contrib.admin',
-	'south',
 )
 
 try:
