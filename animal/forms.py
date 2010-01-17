@@ -3,7 +3,7 @@
 from django.forms import ModelForm
 from django import forms
 
-from mousedb.animal.models import Animal
+from mousedb.animal.models import Animal, Breeding
 
 class AnimalChangeForm(ModelForm):
     """This form provides fields for altering animal fields.
@@ -25,7 +25,10 @@ class AnimalForm(ModelForm):
         exclude = ['Cage',]
 
 
+class BreedingForm(ModelForm):
+    """This form provides for creating and modifying breeding cage information.
 
-
-
-
+    This form is called by using /mousedb/breeding/new and is a generic create view.  It excludes CageID until this feature is fully implemented.  It also excludes Active as this value is automatically set upon setting and End date."""
+    class Meta:
+        model = Breeding
+        exclude = ['CageID', 'Active']
