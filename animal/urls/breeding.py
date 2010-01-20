@@ -4,6 +4,7 @@ from django.views.generic.create_update import create_object, update_object, del
 from django.contrib.auth.decorators import login_required, permission_required
 
 from mousedb.animal.models import Breeding
+from mousedb.animal.forms import BreedingForm
 
 @login_required
 def limited_object_list(*args, **kwargs):
@@ -28,7 +29,7 @@ urlpatterns = patterns('',
 	(r'^(?P<breeding_id>\d*)/pups/$', 'mousedb.animal.views.breeding_pups'),
 	(r'^(?P<breeding_id>\d*)/change/$', 'mousedb.animal.views.breeding_change'),
 	(r'^new/$', create_breeding, {
-		'model': Breeding, 
+		'form_class': BreedingForm, 
 		'template_name': 'breeding_form.html', 
 		'login_required':True,
 		'post_save_redirect':'/mousedb/breeding/'

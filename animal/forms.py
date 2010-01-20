@@ -1,9 +1,11 @@
+
+
 """Forms for use in manipulating objects in the animal app."""
 
 from django.forms import ModelForm
 from django import forms
 
-from mousedb.animal.models import Animal
+from mousedb.animal.models import Animal, Breeding
 
 class AnimalChangeForm(ModelForm):
     """This form provides fields for altering animal fields.
@@ -24,7 +26,14 @@ class AnimalForm(ModelForm):
         model = Animal
         exclude = ['Cage',]
 
-
+class BreedingForm(ModelForm):
+    """This form provides most fields for creating and entring breeding cage data.
+	
+    This form is used from the url /mousedb/breeding/new and is a generic create view.  The only excluded field is CageID, as this feature is not implemented yet.
+    """
+    class Meta:
+        model = Breeding
+        exclude = ['CageID',]
 
 
 

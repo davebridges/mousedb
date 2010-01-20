@@ -123,7 +123,7 @@ class Breeding(models.Model):
     def save(self):
         if self.End:
             self.Active = False
-            super(Breeding, self).save()
+        super(Breeding, self).save()
     class Meta:
         ordering = ['Cage']
 		
