@@ -1,19 +1,20 @@
 from django.conf.urls.defaults import *
 from django.contrib.auth.decorators import permission_required
+from django.views.generic.create_update import create_object, update_object, delete_object
 
 from mousedb.animal.models import Strain
 
 @permission_required('animal.add_strain')
 def create_strain(*args, **kwargs):
-	return django.views.generic.create_update.create_object(*args, **kwargs)
+	return create_object(*args, **kwargs)
 
 @permission_required('animal.change_strain')
 def change_strain(*args, **kwargs):
-	return django.views.generic.create_update.update_object(*args, **kwargs)
+	return update_object(*args, **kwargs)
 
 @permission_required('animal.delete_strain')
 def delete_strain(*args, **kwargs):
-	return django.views.generic.create_update.update_object(*args, **kwargs)
+	return delete_object(*args, **kwargs)
 
 urlpatterns = patterns('',
         (r'^$', 'mousedb.animal.views.strain_list'),

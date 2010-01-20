@@ -107,7 +107,7 @@ class Breeding(models.Model):
     Strain = models.ForeignKey(Strain, help_text="The strain of the progeny")
     Cage = models.CommaSeparatedIntegerField(max_length=100, blank=True, null=True)
     CageID = models.ForeignKey('Cage', blank=True, null=True)
-    BreedingName = models.CharField(max_length=50, blank=True)
+    BreedingName = models.CharField(max_length=50, blank=True, verbose_name="Breeding Set Name")
     Start = models.DateField(blank=True, null=True)
     End = models.DateField(blank=True, null=True)
     Crosstype = models.CharField(max_length=10, choices = CROSS_TYPE, blank=True)

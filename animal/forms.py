@@ -1,5 +1,3 @@
-
-
 """Forms for use in manipulating objects in the animal app."""
 
 from django.forms import ModelForm

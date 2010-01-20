@@ -87,7 +87,13 @@ input  {
 select{
 }
 
-form {
+table.form {
 	border: 1px solid #404040;
 	background: #888888;
+}
+
+.errorlist {
+	background: #fef1ec;
+	color: #cd0a0a;
+	border: 2px solid #cd0a0a;
 }

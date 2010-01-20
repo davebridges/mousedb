@@ -1,5 +1,6 @@
 from django.conf.urls.defaults import *
 from django.views.generic.list_detail import object_list, object_detail
+from django.views.generic.create_update import create_object, update_object, delete_object
 from django.contrib.auth.decorators import login_required, permission_required
 
 from mousedb.data.forms import ExperimentForm
@@ -15,15 +16,15 @@ def limited_object_detail(*args, **kwargs):
 
 @permission_required('data.add_experiment')
 def create_experiment(*args, **kwargs):
-	return django.views.generic.create_update.create_object(*args, **kwargs)
+	return create_object(*args, **kwargs)
 
 @permission_required('data.change_experiment')
 def change_experiment(*args, **kwargs):
-	return django.views.generic.create_update.update_object(*args, **kwargs)
+	return update_object(*args, **kwargs)
 
 @permission_required('data.delete_experiment')
 def delete_experiment(*args, **kwargs):
-	return django.views.generic.create_update.update_object(*args, **kwargs)
+	return delete_object(*args, **kwargs)
 
 urlpatterns = patterns('',
 	(r'^$', 'mousedb.data.views.experiment_list'),
