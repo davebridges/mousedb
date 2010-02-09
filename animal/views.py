@@ -155,16 +155,15 @@ def animal_new(request):
     """This view is used to generate a form to add one animal.
 
     It takes a request of /mouse/new/ or insetad of mouse mice, animal or animals and returns a blank form.
-    If you are adding an animal as part of a breeding set it is best to use /breeding/(breeding_id)/pups."""
+    If you are adding an animal as part of a breeding set it is best to use /breeding/(breeding_id)/pups.  This is part of the uncompleted migration to Cage objects."""
     if request.method =="POST":
         form=AnimalForm(request.POST)
         if form.is_valid():
             animal = form.save(commit=False)
-            cage = Cage(Barcode=animal.CageID, Rack=animal.Rack, Rack_Position=animal.Rack_Position)
-            cage.save()
+            animal.cage,created = Cage.objects.get_or_create(Barcode='9999999')#barcode is hardcoded in, and works ok
             animal.save()
             form.save()
-        return HttpResponseRedirect("/mousedb/mouse")
+        return HttpResponseRedirect( animal.get_absolute_url() )
     else:
         form = AnimalForm()
     return render_to_response("animal_form.html",{"form":form,},context_instance=RequestContext(request))
