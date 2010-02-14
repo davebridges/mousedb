@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.10.31)  13 JAN 2010 19:17
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=latex 2009.10.31)  14 FEB 2010 17:19
 entering extended mode
  %&-line parsing enabled.
 **MouseDB.tex
@@ -572,11 +572,13 @@ Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
 (/etc/texmf/tex/latex/config/color.cfg
 File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
-Package color Info: Driver file: pdftex.def on input line 130.
+Package color Info: Driver file: dvips.def on input line 130.
 
-(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def
-File: pdftex.def 2007/01/08 v0.04d Graphics/color for pdfTeX
-\Gread@gobject=\count109
+(/usr/share/texmf-texlive/tex/latex/graphics/dvips.def
+File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+)
+(/usr/share/texmf-texlive/tex/latex/graphics/dvipsnam.def
+File: dvipsnam.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
 ))
 (/usr/share/texmf-texlive/tex/latex/fancyvrb/fancyvrb.sty
 Package: fancyvrb 1998/07/17
@@ -586,11 +588,11 @@ Style option: `fancyvrb' v2.6, with DG/SPQR fixes <1998/07/17> (tvz)
 Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
 \KV@toks@=\toks27
 )
-\FV@CodeLineNo=\count110
+\FV@CodeLineNo=\count109
 \FV@InFile=\read2
 \FV@TabBox=\box35
-\c@FancyVerbLine=\count111
-\FV@StepNumber=\count112
+\c@FancyVerbLine=\count110
+\FV@StepNumber=\count111
 \FV@OutFile=\write4
 
 No file fancyvrb.cfg.
@@ -606,7 +608,7 @@ Package: footnote 1997/01/28 1.13 Save footnotes around boxes
 (/usr/share/texmf-texlive/tex/latex/wrapfig/wrapfig.sty
 \wrapoverhang=\dimen129
 \WF@size=\dimen130
-\c@WF@wrappedlines=\count113
+\c@WF@wrappedlines=\count112
 \WF@box=\box38
 \WF@everypar=\toks28
 Package: wrapfig 2003/01/31  v 3.6
@@ -627,7 +629,11 @@ Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
 )
 Package graphics Info: Driver file: pdftex.def on input line 90.
-)
+
+(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2007/01/08 v0.04d Graphics/color for pdfTeX
+\Gread@gobject=\count113
+))
 \Gin@req@height=\dimen131
 \Gin@req@width=\dimen132
 )
@@ -848,127 +854,129 @@ Chapter 6.
 LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <10> not available
 (Font)              Font shape `T1/pcr/b/n' tried instead on input line 480.
 [13] [14] [15] [16]
-Underfull \hbox (badness 10000) in paragraph at lines 834--834
+Underfull \hbox (badness 10000) in paragraph at lines 837--837
 []\T1/ptm/m/it/10 data=None, files=None, auto_id='id_%s', pre-fix=None, ini-tia
 l=None,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 834--834
+Underfull \hbox (badness 10000) in paragraph at lines 837--837
 \T1/ptm/m/it/10 er-ror_class=<class 'django.forms.util.ErrorList'>, la-bel_suff
 ix=':',
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 850--850
+Underfull \hbox (badness 10000) in paragraph at lines 853--853
 []\T1/ptm/m/it/10 data=None, files=None, auto_id='id_%s', pre-fix=None, ini-tia
 l=None,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 850--850
+Underfull \hbox (badness 10000) in paragraph at lines 853--853
 \T1/ptm/m/it/10 er-ror_class=<class 'django.forms.util.ErrorList'>, la-bel_suff
 ix=':',
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 866--866
+Underfull \hbox (badness 10000) in paragraph at lines 869--869
 []\T1/ptm/m/it/10 data=None, files=None, auto_id='id_%s', pre-fix=None, ini-tia
 l=None,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 866--866
+Underfull \hbox (badness 10000) in paragraph at lines 869--869
 \T1/ptm/m/it/10 er-ror_class=<class 'django.forms.util.ErrorList'>, la-bel_suff
 ix=':',
  []
 
-[17] [18]
-Underfull \hbox (badness 10000) in paragraph at lines 1013--1013
+[17] [18] [19]
+Underfull \hbox (badness 10000) in paragraph at lines 1036--1036
 []\T1/ptm/m/it/10 data=None, files=None, auto_id='id_%s', pre-fix=None, ini-tia
 l=None,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1013--1013
+Underfull \hbox (badness 10000) in paragraph at lines 1036--1036
 \T1/ptm/m/it/10 er-ror_class=<class 'django.forms.util.ErrorList'>, la-bel_suff
 ix=':',
  []
 
-[19] [20] [21] [22]
+[20] [21] [22] [23] [24
+
+]
 Chapter 7.
-(./modMouseDB.ind [23
+(./modMouseDB.ind [25] [26
 
-] [24
-
-] [25
+] [27
 
 
-]) (./MouseDB.ind [26
+]) (./MouseDB.ind [28
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 83--84
+Underfull \hbox (badness 10000) in paragraph at lines 86--87
 []\T1/ptm/m/n/10 get_feeding_state_display() (data.models.Experiment
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 84--85
+Underfull \hbox (badness 10000) in paragraph at lines 87--88
 []\T1/ptm/m/n/10 get_injection_display() (data.models.Experiment
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 85--86
+Underfull \hbox (badness 10000) in paragraph at lines 88--89
 []\T1/ptm/m/n/10 get_mode_display() (data.models.Pharmaceutical
  []
 
+[29
 
-Underfull \hbox (badness 10000) in paragraph at lines 87--88
+]
+Underfull \hbox (badness 10000) in paragraph at lines 90--91
 []\T1/ptm/m/n/10 get_next_by_transplant_date()
  []
 
-[27
 
-]
-Underfull \hbox (badness 10000) in paragraph at lines 89--90
+Underfull \hbox (badness 10000) in paragraph at lines 92--93
 []\T1/ptm/m/n/10 get_previous_by_date() (data.models.Experiment
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 90--91
+Underfull \hbox (badness 10000) in paragraph at lines 93--94
 []\T1/ptm/m/n/10 get_previous_by_transplant_date()
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 123--124
+Underfull \hbox (badness 10000) in paragraph at lines 128--129
 []\T1/ptm/m/n/10 model (an-i-mal.forms.AnimalChangeForm.Meta at-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 127--128
+Underfull \hbox (badness 10000) in paragraph at lines 133--134
 []\T1/ptm/m/n/10 model (data.forms.StudyExperimentForm.Meta at-
  []
 
-[28]) (./MouseDB.aux) ) 
+[30] [31
+
+]) (./MouseDB.aux) ) 
 Here is how much of TeX's memory you used:
- 6838 strings out of 94074
- 90828 string characters out of 1165152
- 154457 words of memory out of 1500000
- 9702 multiletter control sequences out of 10000+50000
+ 7023 strings out of 94075
+ 96231 string characters out of 1165175
+ 154971 words of memory out of 1500000
+ 9869 multiletter control sequences out of 10000+50000
  54556 words of font info for 56 fonts, out of 1200000 for 2000
  646 hyphenation exceptions out of 8191
  34i,12n,45p,758b,548s stack positions out of 5000i,500n,6000p,200000b,5000s
-{/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</
-usr/share/texmf-texlive/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texmf-te
-xlive/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1/
-urw/helvetic/uhvb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb
-o8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/sha
-re/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fon
-ts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/u
-tmri8a.pfb>
-Output written on MouseDB.pdf (32 pages, 226808 bytes).
+{/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr
+/share/texmf-texlive/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texmf-texli
+ve/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw
+/helvetic/uhvb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a
+.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/
+texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/
+type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr
+i8a.pfb>
+Output written on MouseDB.pdf (35 pages, 236654 bytes).
 PDF statistics:
- 772 PDF objects out of 1000 (max. 8388607)
- 281 named destinations out of 1000 (max. 131072)
+ 805 PDF objects out of 1000 (max. 8388607)
+ 293 named destinations out of 1000 (max. 131072)
  249 words of extra memory for PDF output out of 10000 (max. 10000000)
 

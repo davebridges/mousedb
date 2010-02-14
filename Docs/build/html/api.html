@@ -1,3 +1,4 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -18,6 +19,7 @@
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="MouseDB v0.1 documentation" href="index.html" />
     <link rel="prev" title="Animal Data Entry" href="usage.html" /> 
@@ -444,6 +446,11 @@
 <tt class="descclassname">Treatment.</tt><tt class="descname">environment</tt><a class="headerlink" href="#data.models.Treatment.environment" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="method">
+<dt id="data.models.Treatment.get_absolute_url">
+<tt class="descclassname">Treatment.</tt><tt class="descname">get_absolute_url</tt><big>(</big><em>*moreargs</em>, <em>**morekwargs</em><big>)</big><a class="headerlink" href="#data.models.Treatment.get_absolute_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="attribute">
 <dt id="data.models.Treatment.implantation">
 <tt class="descclassname">Treatment.</tt><tt class="descname">implantation</tt><a class="headerlink" href="#data.models.Treatment.implantation" title="Permalink to this definition">¶</a></dt>
@@ -595,6 +602,29 @@
 
 </dd></dl>
 
+<dl class="class">
+<dt id="data.forms.TreatmentForm">
+<em class="property">class </em><tt class="descclassname">data.forms.</tt><tt class="descname">TreatmentForm</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=':'</em>, <em>empty_permitted=False</em>, <em>instance=None</em><big>)</big><a class="headerlink" href="#data.forms.TreatmentForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.forms.models.ModelForm</span></tt></p>
+<p>Form class for study treatment groups.</p>
+<p>In the case of studies, animals are defined in the treatment group rather than in the study group.  A treatment consists of a study, a set of animals and the conditions which define that treatment.  This includes related fields for environment, diet, implants and transplants.</p>
+<dl class="class">
+<dt id="data.forms.TreatmentForm.Meta">
+<em class="property">class </em><tt class="descname">Meta</tt><a class="headerlink" href="#data.forms.TreatmentForm.Meta" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="data.forms.TreatmentForm.Meta.model">
+<tt class="descname">model</tt><a class="headerlink" href="#data.forms.TreatmentForm.Meta.model" title="Permalink to this definition">¶</a></dt>
+<dd>alias of <tt class="xref docutils literal"><span class="pre">Treatment</span></tt></dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="data.forms.TreatmentForm.media">
+<tt class="descclassname">TreatmentForm.</tt><tt class="descname">media</tt><a class="headerlink" href="#data.forms.TreatmentForm.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="module-data.urls">
 <h3>Views and URLs<a class="headerlink" href="#module-data.urls" title="Permalink to this headline">¶</a></h3>
@@ -739,6 +769,29 @@ The CageID will be set based on that integer, and a pre-save step will generate 
 
 </dd></dl>
 
+<dl class="class">
+<dt id="animal.forms.BreedingForm">
+<em class="property">class </em><tt class="descclassname">animal.forms.</tt><tt class="descname">BreedingForm</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=':'</em>, <em>empty_permitted=False</em>, <em>instance=None</em><big>)</big><a class="headerlink" href="#animal.forms.BreedingForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.forms.models.ModelForm</span></tt></p>
+<p>This form provides for creating and modifying breeding cage information.</p>
+<p>This form is called by using /mousedb/breeding/new and is a generic create view.  It excludes CageID until this feature is fully implemented.  It also excludes Active as this value is automatically set upon setting and End date.</p>
+<dl class="class">
+<dt id="animal.forms.BreedingForm.Meta">
+<em class="property">class </em><tt class="descname">Meta</tt><a class="headerlink" href="#animal.forms.BreedingForm.Meta" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="animal.forms.BreedingForm.Meta.model">
+<tt class="descname">model</tt><a class="headerlink" href="#animal.forms.BreedingForm.Meta.model" title="Permalink to this definition">¶</a></dt>
+<dd>alias of <tt class="xref docutils literal"><span class="pre">Breeding</span></tt></dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="animal.forms.BreedingForm.media">
+<tt class="descclassname">BreedingForm.</tt><tt class="descname">media</tt><a class="headerlink" href="#animal.forms.BreedingForm.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="module-animal.urls">
 <h3>Views and URLs<a class="headerlink" href="#module-animal.urls" title="Permalink to this headline">¶</a></h3>
@@ -767,7 +820,7 @@ This page is restricted to logged-in users.</p>
 <tt class="descclassname">animal.views.</tt><tt class="descname">animal_new</tt><a class="headerlink" href="#animal.views.animal_new" title="Permalink to this definition">¶</a></dt>
 <dd><p>This view is used to generate a form to add one animal.</p>
 <p>It takes a request of /mouse/new/ or insetad of mouse mice, animal or animals and returns a blank form.
-If you are adding an animal as part of a breeding set it is best to use /breeding/(breeding_id)/pups.</p>
+If you are adding an animal as part of a breeding set it is best to use /breeding/(breeding_id)/pups.  This is part of the uncompleted migration to Cage objects.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -931,8 +984,8 @@ This admin action also shows as the output the number of mice sacrificed.</p>
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-            <h3><a href="index.html">Table Of Contents</a></h3>
-            <ul>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
 <li><a class="reference external" href="#">Automated Documentation</a><ul>
 <li><a class="reference external" href="#module-data">Data Package</a><ul>
 <li><a class="reference external" href="#studies">Studies</a></li>
@@ -963,27 +1016,27 @@ This admin action also shows as the output the number of mice sacrificed.</p>
 </li>
 </ul>
 
-            <h4>Previous topic</h4>
-            <p class="topless"><a href="usage.html"
-                                  title="previous chapter">Animal Data Entry</a></p>
-            <h3>This Page</h3>
-            <ul class="this-page-menu">
-              <li><a href="_sources/api.txt"
-                     rel="nofollow">Show Source</a></li>
-            </ul>
-          <div id="searchbox" style="display: none">
-            <h3>Quick search</h3>
-              <form class="search" action="search.html" method="get">
-                <input type="text" name="q" size="18" />
-                <input type="submit" value="Go" />
-                <input type="hidden" name="check_keywords" value="yes" />
-                <input type="hidden" name="area" value="default" />
-              </form>
-              <p class="searchtip" style="font-size: 90%">
-              Enter search terms or a module, class or function name.
-              </p>
-          </div>
-          <script type="text/javascript">$('#searchbox').show(0);</script>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="usage.html"
+                        title="previous chapter">Animal Data Entry</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/api.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>

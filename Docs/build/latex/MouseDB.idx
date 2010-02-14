@@ -72,6 +72,7 @@
 \indexentry{animals (data.models.Treatment attribute)|hyperpage}{16}
 \indexentry{diet (data.models.Treatment attribute)|hyperpage}{16}
 \indexentry{environment (data.models.Treatment attribute)|hyperpage}{16}
+\indexentry{get\_absolute\_url() (data.models.Treatment method)|hyperpage}{16}
 \indexentry{implantation (data.models.Treatment attribute)|hyperpage}{16}
 \indexentry{pharmaceutical (data.models.Treatment attribute)|hyperpage}{16}
 \indexentry{researchers (data.models.Treatment attribute)|hyperpage}{16}
@@ -99,8 +100,12 @@
 \indexentry{media (data.forms.StudyExperimentForm attribute)|hyperpage}{17}
 \indexentry{StudyForm (class in data.forms)|hyperpage}{17}
 \indexentry{StudyForm.Meta (class in data.forms)|hyperpage}{17}
-\indexentry{model (data.forms.StudyForm.Meta attribute)|hyperpage}{17}
+\indexentry{model (data.forms.StudyForm.Meta attribute)|hyperpage}{18}
 \indexentry{media (data.forms.StudyForm attribute)|hyperpage}{18}
+\indexentry{TreatmentForm (class in data.forms)|hyperpage}{18}
+\indexentry{TreatmentForm.Meta (class in data.forms)|hyperpage}{18}
+\indexentry{model (data.forms.TreatmentForm.Meta attribute)|hyperpage}{18}
+\indexentry{media (data.forms.TreatmentForm attribute)|hyperpage}{18}
 \indexentry{data.views (module)|hyperpage}{18}
 \indexentry{add\_measurement (in module data.views)|hyperpage}{18}
 \indexentry{experiment\_detail (in module data.views)|hyperpage}{18}
@@ -114,9 +119,9 @@
 \indexentry{Strain (class in animal.models)|hyperpage}{19}
 \indexentry{Animal (class in animal.models)|hyperpage}{19}
 \indexentry{Breeding (class in animal.models)|hyperpage}{19}
-\indexentry{Cage (class in animal.models)|hyperpage}{19}
-\indexentry{animal.forms (module)|hyperpage}{19}
-\indexentry{AnimalChangeForm (class in animal.forms)|hyperpage}{19}
+\indexentry{Cage (class in animal.models)|hyperpage}{20}
+\indexentry{animal.forms (module)|hyperpage}{20}
+\indexentry{AnimalChangeForm (class in animal.forms)|hyperpage}{20}
 \indexentry{AnimalChangeForm.Meta (class in animal.forms)|hyperpage}{20}
 \indexentry{model (animal.forms.AnimalChangeForm.Meta attribute)|hyperpage}{20}
 \indexentry{media (animal.forms.AnimalChangeForm attribute)|hyperpage}{20}
@@ -124,19 +129,23 @@
 \indexentry{AnimalForm.Meta (class in animal.forms)|hyperpage}{20}
 \indexentry{model (animal.forms.AnimalForm.Meta attribute)|hyperpage}{20}
 \indexentry{media (animal.forms.AnimalForm attribute)|hyperpage}{20}
-\indexentry{animal.views (module)|hyperpage}{20}
-\indexentry{animal\_change (in module animal.views)|hyperpage}{20}
-\indexentry{animal\_detail (in module animal.views)|hyperpage}{20}
-\indexentry{animal\_new (in module animal.views)|hyperpage}{20}
+\indexentry{BreedingForm (class in animal.forms)|hyperpage}{20}
+\indexentry{BreedingForm.Meta (class in animal.forms)|hyperpage}{20}
+\indexentry{model (animal.forms.BreedingForm.Meta attribute)|hyperpage}{21}
+\indexentry{media (animal.forms.BreedingForm attribute)|hyperpage}{21}
+\indexentry{animal.views (module)|hyperpage}{21}
+\indexentry{animal\_change (in module animal.views)|hyperpage}{21}
+\indexentry{animal\_detail (in module animal.views)|hyperpage}{21}
+\indexentry{animal\_new (in module animal.views)|hyperpage}{21}
 \indexentry{breeding (in module animal.views)|hyperpage}{21}
 \indexentry{breeding\_all (in module animal.views)|hyperpage}{21}
 \indexentry{breeding\_change (in module animal.views)|hyperpage}{21}
 \indexentry{breeding\_detail (in module animal.views)|hyperpage}{21}
-\indexentry{breeding\_pups (in module animal.views)|hyperpage}{21}
-\indexentry{strain\_detail (in module animal.views)|hyperpage}{21}
-\indexentry{strain\_detail\_all (in module animal.views)|hyperpage}{21}
-\indexentry{strain\_list (in module animal.views)|hyperpage}{21}
-\indexentry{animal.urls (module)|hyperpage}{21}
+\indexentry{breeding\_pups (in module animal.views)|hyperpage}{22}
+\indexentry{strain\_detail (in module animal.views)|hyperpage}{22}
+\indexentry{strain\_detail\_all (in module animal.views)|hyperpage}{22}
+\indexentry{strain\_list (in module animal.views)|hyperpage}{22}
+\indexentry{animal.urls (module)|hyperpage}{22}
 \indexentry{animal.admin (module)|hyperpage}{22}
 \indexentry{AnimalAdmin (class in animal.admin)|hyperpage}{22}
 \indexentry{mark\_sacrificed() (animal.admin.AnimalAdmin method)|hyperpage}{22}
@@ -144,10 +153,10 @@
 \indexentry{AnimalInline (class in animal.admin)|hyperpage}{22}
 \indexentry{model (animal.admin.AnimalInline attribute)|hyperpage}{22}
 \indexentry{BreedingAdmin (class in animal.admin)|hyperpage}{22}
-\indexentry{media (animal.admin.BreedingAdmin attribute)|hyperpage}{22}
-\indexentry{CageAdmin (class in animal.admin)|hyperpage}{22}
-\indexentry{media (animal.admin.CageAdmin attribute)|hyperpage}{22}
-\indexentry{StrainAdmin (class in animal.admin)|hyperpage}{22}
-\indexentry{media (animal.admin.StrainAdmin attribute)|hyperpage}{22}
-\indexentry{timed\_mating (module)|hyperpage}{22}
-\indexentry{groups (module)|hyperpage}{22}
+\indexentry{media (animal.admin.BreedingAdmin attribute)|hyperpage}{23}
+\indexentry{CageAdmin (class in animal.admin)|hyperpage}{23}
+\indexentry{media (animal.admin.CageAdmin attribute)|hyperpage}{23}
+\indexentry{StrainAdmin (class in animal.admin)|hyperpage}{23}
+\indexentry{media (animal.admin.StrainAdmin attribute)|hyperpage}{23}
+\indexentry{timed\_mating (module)|hyperpage}{23}
+\indexentry{groups (module)|hyperpage}{23}
