@@ -9,6 +9,7 @@ from django.views.generic.create_update import create_object, update_object, del
 from django.contrib.auth.decorators import login_required, permission_required
 
 from mousedb.data.models import Treatment
+from mousedb.data.forms import TreatmentForm
 
 @login_required
 def limited_object_list(*args, **kwargs):
@@ -37,7 +38,7 @@ urlpatterns = patterns('',
 		'template_object_name': 'treatment',
 		}, name="treatment-list"),
 	url(r'^new/$', create_treatment, {
-		'model': Treatment,
+		'form_class': TreatmentForm,
 		'template_name': 'treatment_form.html',
 		}, name="treatment-new"),
 	url(r'^(?P<object_id>\d*)/$', limited_object_detail, {

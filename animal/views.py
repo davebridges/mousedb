@@ -2,16 +2,17 @@
 
 This module contains only non-generic views.  Several generic views are also used and are defined in animal/urls/."""
 
-from mousedb.animal.models import Animal, Strain, Breeding, Cage
-from mousedb.data.models import Measurement
-from mousedb.animal.forms import AnimalChangeForm, AnimalForm
 from django.shortcuts import render_to_response, get_object_or_404
 from django.contrib.auth.decorators import login_required, permission_required
 from django.forms.models import inlineformset_factory
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
 from django.db.models import Count
+from django.core import serializers
 
+from mousedb.animal.models import Animal, Strain, Breeding, Cage
+from mousedb.data.models import Measurement
+from mousedb.animal.forms import AnimalChangeForm, AnimalForm
 
 @login_required
 def animal_detail(request, id):
@@ -167,3 +168,4 @@ def animal_new(request):
     else:
         form = AnimalForm()
     return render_to_response("animal_form.html",{"form":form,},context_instance=RequestContext(request))
+

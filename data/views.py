@@ -59,6 +59,4 @@ def study_experiment(request, study_id):
 		form = StudyExperimentForm()
 		form.fields["animals"].queryset = Animal.objects.filter(treatment=treatments)
 	return render_to_response("study_experiment_form.html", {'form':form, 'study':study, 'treatments': treatments},context_instance=RequestContext(request))
-	
-
 
