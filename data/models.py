@@ -91,6 +91,8 @@ class Treatment(models.Model):
 	notes = models.TextField(max_length=500, blank=True)
 	def __unicode__(self):
 		return u'%s' %(self.treatment)
+	def get_absolute_url(self):
+		return "/experimentdb/treatment/%i" % self.id
 
 class Vendor(models.Model):
 	vendor = models.CharField(max_length=100)

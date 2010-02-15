@@ -2,16 +2,17 @@
 
 This module contains only non-generic views.  Several generic views are also used and are defined in animal/urls/."""
 
-from mousedb.animal.models import Animal, Strain, Breeding, Cage
-from mousedb.data.models import Measurement
-from mousedb.animal.forms import AnimalChangeForm, AnimalForm
 from django.shortcuts import render_to_response, get_object_or_404
 from django.contrib.auth.decorators import login_required, permission_required
 from django.forms.models import inlineformset_factory
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
 from django.db.models import Count
+from django.core import serializers
 
+from mousedb.animal.models import Animal, Strain, Breeding, Cage
+from mousedb.data.models import Measurement
+from mousedb.animal.forms import AnimalChangeForm, AnimalForm
 
 @login_required
 def animal_detail(request, id):
@@ -155,16 +156,16 @@ def animal_new(request):
     """This view is used to generate a form to add one animal.
 
     It takes a request of /mouse/new/ or insetad of mouse mice, animal or animals and returns a blank form.
-    If you are adding an animal as part of a breeding set it is best to use /breeding/(breeding_id)/pups."""
+    If you are adding an animal as part of a breeding set it is best to use /breeding/(breeding_id)/pups.  This is part of the uncompleted migration to Cage objects."""
     if request.method =="POST":
         form=AnimalForm(request.POST)
         if form.is_valid():
             animal = form.save(commit=False)
-            cage = Cage(Barcode=animal.CageID, Rack=animal.Rack, Rack_Position=animal.Rack_Position)
-            cage.save()
+            animal.cage,created = Cage.objects.get_or_create(Barcode='9999999')#barcode is hardcoded in, and works ok
             animal.save()
             form.save()
-        return HttpResponseRedirect("/mousedb/mouse")
+        return HttpResponseRedirect( animal.get_absolute_url() )
     else:
         form = AnimalForm()
     return render_to_response("animal_form.html",{"form":form,},context_instance=RequestContext(request))
+

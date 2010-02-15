@@ -89,7 +89,7 @@ If a eartag is present then the string reads some_strain-Eartag #some_number. If
         else:
              return u'MOUSE'
     def get_absolute_url(self):
-        return '%i' % (self.id)
+        return '/mousedb/animal/%i' % (self.id)
     def save(self):
         if self.Death:
             self.Alive = False
@@ -135,7 +135,5 @@ class Cage(models.Model):
     Barcode = models.IntegerField(primary_key=True)
     Rack = models.CharField(max_length = 15, blank = True)
     Rack_Position = models.CharField(max_length = 15, blank = True)
-
-
-
-
+    def __unicode__(self):
+        return u'%i'  % self.Barcode

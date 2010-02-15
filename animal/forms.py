@@ -19,10 +19,9 @@ class AnimalForm(ModelForm):
 	
 	This is expected to be used as part of the migration to CageID rather than Cage.  Therefore, in this form, Cage is excluded and CageID is set as an integer field.
 	The CageID will be set based on that integer, and a pre-save step will generate that foreignkey field if necesssary."""
-    CageID = forms.IntegerField()
     class Meta:
         model = Animal
-        exclude = ['Cage',]
+        exclude = ['Cage', 'Alive', 'Cause_of_Death', 'Death']
 
 class BreedingForm(ModelForm):
     """This form provides most fields for creating and entring breeding cage data.
