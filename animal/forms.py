@@ -17,10 +17,17 @@ class AnimalFormCageID(ModelForm):
 class AnimalForm(ModelForm):
 	"""This modelform provides fields for modifying animal data.
 	
-	It includes all fields except CageID (not yet implemented) and Alive (which is automattically set upon saving the animal)."""
+	It includes all fields except CageID (not yet implemented) and Alive (which is automattically set upon saving the animal).
+	This form also automatically loads javascript and css for the datepicker jquery-ui widget."""
 	class Meta:
 		model = Animal
 		exclude = ['CageID', 'Alive']
+	class Media:
+		css = {
+			'all': ('javascript/jquery-ui/css/custom-theme/jquery-ui-1.7.2.custom.css',)
+				}
+		js = ('javascript/jquery-1.3.2.js','javascript/jquery-ui/js/jquery-ui-1.7.2.custom.min.js')
+
 
 class BreedingForm(ModelForm):
     """This form provides most fields for creating and entring breeding cage data.

@@ -2,9 +2,7 @@
 
 {% block title %}{% if object %}Update Animal - {{ object }}{% else %}New Animal{% endif %}{% endblock title %}
 {% block scripts %}
-	<link type="text/css" href="/mousedb-media/javascript/jquery-ui/css/custom-theme/jquery-ui-1.7.2.custom.css" rel="Stylesheet" />
-	<script type="text/javascript" src="/mousedb-media/javascript/jquery-1.3.2.js"></script> 
-	<script type="text/javascript" src="/mousedb-media/javascript/jquery-ui/js/jquery-ui-1.7.2.custom.min.js"></script> 
+{{ form.media }}
 	<script type="text/javascript">
 	 $(document).ready(function() {	
 		$('#id_Born').datepicker({dateFormat: 'yy-mm-dd'});
