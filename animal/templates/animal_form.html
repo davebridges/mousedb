@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Update Animal{% endblock title %}
+{% block title %}{% if object %}Update Animal - {{ object }}{% else %}New Animal{% endif %}{% endblock title %}
 {% block scripts %}
 	<link type="text/css" href="/mousedb-media/javascript/jquery-ui/css/custom-theme/jquery-ui-1.7.2.custom.css" rel="Stylesheet" />
 	<script type="text/javascript" src="/mousedb-media/javascript/jquery-1.3.2.js"></script> 
@@ -13,10 +13,9 @@
 	});
 	</script>
 {% endblock %}
-{% block header %}Update: {{ animal }}{% endblock header %}
+{% block header %}{% if object %}Update Animal - {{ object }}{% else %}New Animal{% endif %}{% endblock header %}
 
 {% block content %}
-<p>Change fields as necessary.</p>
 <form method="POST" {% if object %} action="{% url animal-update object.id %}" {% else %}action="{% url animal-new %}"{% endif %}>
 	<table>{{ form }}</table>
 <input type="submit" value="Submit" />
