@@ -31,7 +31,6 @@ urlpatterns = patterns('',
 		'template_object_name': 'animal',
 		}, name="animal-list"),
 	url(r'^(?P<id>\d*)/$', 'mousedb.animal.views.animal_detail', name="animal-detail"),
-	url(r'^(?P<animal_id>\d*)/change/$', 'mousedb.animal.views.animal_change', name="animal-change"),
 	url(r'^new/$', create_animal, {
 		'form_class': AnimalForm, 
 		'template_name': 'animal_form.html', 

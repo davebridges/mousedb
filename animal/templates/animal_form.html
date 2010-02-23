@@ -17,7 +17,7 @@
 
 {% block content %}
 <p>Change fields as necessary.</p>
-<form method="POST" {% if object %} action="{% url animal-edit object.id %}" {% else %}action="{% url animal-new %}"{% endif %}>
+<form method="POST" {% if object %} action="{% url animal-update object.id %}" {% else %}action="{% url animal-new %}"{% endif %}>
 	<table>{{ form }}</table>
 <input type="submit" value="Submit" />
 </form>

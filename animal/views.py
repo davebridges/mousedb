@@ -12,7 +12,7 @@ from django.core import serializers
 
 from mousedb.animal.models import Animal, Strain, Breeding, Cage
 from mousedb.data.models import Measurement
-from mousedb.animal.forms import AnimalChangeForm, AnimalFormCageID
+from mousedb.animal.forms import AnimalFormCageID
 
 @login_required
 def animal_detail(request, id):
@@ -133,23 +133,6 @@ def breeding_change(request, breeding_id):
     else:
         formset = PupsFormSet(instance=breeding,)
     return render_to_response("breeding_change.html", {"formset":formset, 'breeding':breeding},context_instance=RequestContext(request))
-
-@permission_required('animal.change_animal')
-def animal_change(request, animal_id):
-    """This view is used to render a form to modify one animal.
-	
-    To modify several animals go to the /breeding/(breeding_id)/change or /breeding/(breeding_id)/pups instead.
-    The request takes the form /mouse/(id)/change/ or insetad of mouse mice, animal or animals.  This returns a form specific to the animal defined in id.  id represents the background identification number of a mouse and not the eartag or other identification number for an animal.
-    This view is restricted to users with the permission animal.change_animal."""
-    animal = Animal.objects.get(id=animal_id)
-    if request.method == "POST":
-        form = AnimalChangeForm(request.POST, instance=animal)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect("/mousedb/mouse")
-    else:
-        form = AnimalChangeForm(instance=animal)
-    return render_to_response("animal_form.html", {"form":form, 'animal':animal},context_instance=RequestContext(request))
 
 @permission_required('animal.add_animal')
 def animal_new(request):
