@@ -1,6 +1,7 @@
 import datetime
 
 from django.conf.urls.defaults import *
+from django.contrib.auth.decorators import login_required
 from django.views.generic.list_detail import object_list, object_detail
 from django.contrib.auth.decorators import login_required
 

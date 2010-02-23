@@ -12,7 +12,7 @@ from django.core import serializers
 
 from mousedb.animal.models import Animal, Strain, Breeding, Cage
 from mousedb.data.models import Measurement
-from mousedb.animal.forms import AnimalChangeForm, AnimalForm
+from mousedb.animal.forms import AnimalFormCageID
 
 @login_required
 def animal_detail(request, id):
@@ -103,7 +103,7 @@ def breeding_pups(request, breeding_id):
     This view is restricted to those with the permission animal.add_animal.
     """
     breeding = get_object_or_404(Breeding, pk=breeding_id)
-    PupsFormSet = inlineformset_factory(Breeding, Animal, exclude=('Notes','Alive', 'Death', 'Cause_of_Death', 'Father', 'Mother', 'CageID', 'Breeding'))
+    PupsFormSet = inlineformset_factory(Breeding, Animal, extra=10, exclude=('Notes','Alive', 'Death', 'Cause_of_Death', 'Father', 'Mother', 'CageID', 'Breeding'))
     if request.method == "POST":
         formset = PupsFormSet(request.POST, instance=breeding)
         if formset.is_valid():
@@ -134,23 +134,6 @@ def breeding_change(request, breeding_id):
         formset = PupsFormSet(instance=breeding,)
     return render_to_response("breeding_change.html", {"formset":formset, 'breeding':breeding},context_instance=RequestContext(request))
 
-@permission_required('animal.change_animal')
-def animal_change(request, animal_id):
-    """This view is used to render a form to modify one animal.
-	
-    To modify several animals go to the /breeding/(breeding_id)/change or /breeding/(breeding_id)/pups instead.
-    The request takes the form /mouse/(id)/change/ or insetad of mouse mice, animal or animals.  This returns a form specific to the animal defined in id.  id represents the background identification number of a mouse and not the eartag or other identification number for an animal.
-    This view is restricted to users with the permission animal.change_animal."""
-    animal = Animal.objects.get(id=animal_id)
-    if request.method == "POST":
-        form = AnimalChangeForm(request.POST, instance=animal)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect("/mousedb/mouse")
-    else:
-        form = AnimalChangeForm(instance=animal)
-    return render_to_response("animal_form.html", {"form":form, 'animal':animal},context_instance=RequestContext(request))
-
 @permission_required('animal.add_animal')
 def animal_new(request):
     """This view is used to generate a form to add one animal.
@@ -158,7 +141,7 @@ def animal_new(request):
     It takes a request of /mouse/new/ or insetad of mouse mice, animal or animals and returns a blank form.
     If you are adding an animal as part of a breeding set it is best to use /breeding/(breeding_id)/pups.  This is part of the uncompleted migration to Cage objects."""
     if request.method =="POST":
-        form=AnimalForm(request.POST)
+        form=AnimalFormCageID(request.POST)
         if form.is_valid():
             animal = form.save(commit=False)
             animal.cage,created = Cage.objects.get_or_create(Barcode='9999999')#barcode is hardcoded in, and works ok
@@ -166,6 +149,6 @@ def animal_new(request):
             form.save()
         return HttpResponseRedirect( animal.get_absolute_url() )
     else:
-        form = AnimalForm()
+        form = AnimalFormCageID()
     return render_to_response("animal_form.html",{"form":form,},context_instance=RequestContext(request))
 
