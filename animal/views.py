@@ -12,7 +12,7 @@ from django.core import serializers
 
 from mousedb.animal.models import Animal, Strain, Breeding, Cage
 from mousedb.data.models import Measurement
-from mousedb.animal.forms import AnimalChangeForm, AnimalForm
+from mousedb.animal.forms import AnimalChangeForm, AnimalFormCageID
 
 @login_required
 def animal_detail(request, id):
@@ -158,7 +158,7 @@ def animal_new(request):
     It takes a request of /mouse/new/ or insetad of mouse mice, animal or animals and returns a blank form.
     If you are adding an animal as part of a breeding set it is best to use /breeding/(breeding_id)/pups.  This is part of the uncompleted migration to Cage objects."""
     if request.method =="POST":
-        form=AnimalForm(request.POST)
+        form=AnimalFormCageID(request.POST)
         if form.is_valid():
             animal = form.save(commit=False)
             animal.cage,created = Cage.objects.get_or_create(Barcode='9999999')#barcode is hardcoded in, and works ok
@@ -166,6 +166,6 @@ def animal_new(request):
             form.save()
         return HttpResponseRedirect( animal.get_absolute_url() )
     else:
-        form = AnimalForm()
+        form = AnimalFormCageID()
     return render_to_response("animal_form.html",{"form":form,},context_instance=RequestContext(request))
 

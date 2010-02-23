@@ -14,7 +14,7 @@ class AnimalChangeForm(ModelForm):
         model = Animal
         fields = ['Strain','Background','MouseID', 'Markings', 'Cage', 'Rack', 'Rack_Position', 'Genotype', 'Death', 'Cause_of_Death']
 		
-class AnimalForm(ModelForm):
+class AnimalFormCageID(ModelForm):
     """This form provides all fields for altering animal data.
 	
 	This is expected to be used as part of the migration to CageID rather than Cage.  Therefore, in this form, Cage is excluded and CageID is set as an integer field.
@@ -22,6 +22,14 @@ class AnimalForm(ModelForm):
     class Meta:
         model = Animal
         exclude = ['Cage', 'Alive', 'Cause_of_Death', 'Death']
+		
+class AnimalForm(ModelForm):
+	"""This modelform provides fields for modifying animal data.
+	
+	It includes all fields except CageID (not yet implemented) and Alive (which is automattically set upon saving the animal)."""
+	class Meta:
+		model = Animal
+		exclude = ['CageID', 'Alive']
 
 class BreedingForm(ModelForm):
     """This form provides most fields for creating and entring breeding cage data.

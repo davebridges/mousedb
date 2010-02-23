@@ -4,6 +4,8 @@ from django.views.generic.list_detail import object_list
 from django.views.generic.create_update import create_object, update_object, delete_object
 from django.contrib.auth.decorators import login_required, permission_required
 
+from mousedb.animal.forms import AnimalForm
+
 @login_required
 def limited_object_list(*args, **kwargs):
 	return object_list(*args, **kwargs)
@@ -23,30 +25,30 @@ def delete_animal(*args, **kwargs):
 from mousedb.animal.models import Animal
 
 urlpatterns = patterns('',
-	(r'^$', limited_object_list, {
+	url(r'^$', limited_object_list, {
 		'queryset': Animal.objects.filter(Alive=True),
 		'template_name': 'animal_list.html', 
 		'template_object_name': 'animal',
-		}),
-	(r'^(?P<id>\d*)/$', 'mousedb.animal.views.animal_detail'),
-	(r'^(?P<animal_id>\d*)/change/$', 'mousedb.animal.views.animal_change'),
-	(r'^new/$', 'mousedb.animal.views.animal_new'),
-	(r'^new/$', create_animal, {
-		'model': Animal, 
+		}, name="animal-list"),
+	url(r'^(?P<id>\d*)/$', 'mousedb.animal.views.animal_detail', name="animal-detail"),
+	url(r'^(?P<animal_id>\d*)/change/$', 'mousedb.animal.views.animal_change', name="animal-change"),
+	url(r'^new/$', create_animal, {
+		'form_class': AnimalForm, 
 		'template_name': 'animal_form.html', 
 		'login_required':True,
 		'post_save_redirect':'/mousedb/mouse/'
-		}),
-	(r'^(?P<object_id>\d*)/update/$', change_animal, {
-		'model': Animal, 
+		}, name="animal-new"),
+	url(r'^(?P<object_id>\d*)/update/$', change_animal, {
+		'form_class': AnimalForm, 
 		'template_name': 'animal_form.html', 
 		'login_required':True,
 		'post_save_redirect':'/mousedb/mouse/',
-		}),
-	(r'^(?P<object_id>\d*)/delete/$', delete_animal, {
+		}, name="animal-update"),
+	url(r'^(?P<object_id>\d*)/delete/$', delete_animal, {
 		'model': Animal, 
 		'login_required':True,
 		'post_delete_redirect':'/mousedb/mouse/',
-		}),
-)
+		}, name="animal-delete"),
+	#(r'^new/$', 'mousedb.animal.views.animal_new'),
+		)
 
