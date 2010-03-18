@@ -36,7 +36,7 @@ class BreedingForm(ModelForm):
     """
     class Meta:
         model = Breeding
-        exclude = ['CageID',]
+        exclude = ['CageID', 'Active']
 
 
 
