@@ -21,7 +21,7 @@ class AnimalAdmin(admin.ModelAdmin):
         }),
     ('Animal Death Information', {
         'classes' : ('collapse',),
-        'fields' : ('Death', 'Cause_of_Death', 'Alive'),
+        'fields' : ('Death', 'Cause_of_Death',),
         }),
     )
     raw_id_fields = ("Breeding",)
@@ -54,9 +54,7 @@ class BreedingAdmin(admin.ModelAdmin):
     """Settings in the admin interface for dealing with Breeding objects."""
     list_display = ('Cage', 'CageID', 'Start', 'Rack', 'Rack_Position', 'Strain', 'Crosstype', 'BreedingName', 'Notes', 'Active')
     list_filter = ('Timed_Mating', 'Strain', 'Active', 'Crosstype')
-    fields = ('Male', 'Females', 'Timed_Mating', 'Cage', 'CageID', 
-'Rack', 
-'Rack_Position', 'BreedingName', 'Strain', 'Start', 'End', 'Active', 'Crosstype', 'Notes')
+    fields = ('Male', 'Females', 'Timed_Mating', 'Cage', 'CageID', 'Rack', 'Rack_Position', 'BreedingName', 'Strain', 'Start', 'End', 'Crosstype', 'Notes')
     ordering = ('Active', 'Start')
     search_fields = ['Cage',]
     raw_id_fields = ("Male", "Females")
