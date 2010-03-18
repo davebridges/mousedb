@@ -70,7 +70,7 @@ class Animal(models.Model):
     Weaned = models.DateField(blank = True, null=True)
     Death = models.DateField(blank = True, null=True)
     Cause_of_Death = models.CharField(max_length = 50, choices = CAUSE_OF_DEATH, blank=True)
-    Backcross = models.IntegerField(max_length = 5, null=True, blank=True)
+    Backcross = models.IntegerField(max_length = 5, null=True, blank=True, help_text="Leave blank for mixed background")
     Generation = models.IntegerField(max_length=5, null=True, blank=True)
     Breeding = models.ForeignKey('Breeding', blank=True, null=True)
     Father = models.ForeignKey('Animal', null=True, blank=True, related_name='father')
