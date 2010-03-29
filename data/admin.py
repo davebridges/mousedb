@@ -1,4 +1,4 @@
-from mousedb.data.models import Experiment, Assay, Measurement, Researcher, Study, Treatment, Vendor, Diet, Environment, Implantation, Transplantation, Pharmaceutical
+from data.models import Experiment, Assay, Measurement, Researcher, Study, Treatment, Vendor, Diet, Environment, Implantation, Transplantation, Pharmaceutical
 from django.contrib import admin
 
 class MeasurementInline(admin.TabularInline):

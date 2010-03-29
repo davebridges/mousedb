@@ -1,9 +1,11 @@
+import datetime
+
 from django.shortcuts import render_to_response
-from mousedb.animal.models import Animal, Strain
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from django.db import connection
-import datetime
+
+from animal.models import Animal, Strain
 
 @login_required
 def todo(request):

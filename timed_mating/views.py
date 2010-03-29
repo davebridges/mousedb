@@ -3,8 +3,8 @@ from django.contrib.auth.decorators import permission_required
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 
-from mousedb.animal.models import Breeding, Animal
-from mousedb.timed_mating.forms import BreedingPlugForm
+from animal.models import Breeding, Animal
+from timed_mating.forms import BreedingPlugForm
 
 @permission_required('timed_mating.add_plugevents')
 def breeding_plugevent(request, breeding_id):

@@ -1,5 +1,6 @@
 from django.contrib import admin
-from mousedb.timed_mating.models import PlugEvents
+
+from timed_mating.models import PlugEvents
 
 
 class PlugEventsAdmin(admin.ModelAdmin):

@@ -3,7 +3,7 @@
 from django.forms import ModelForm
 from django import forms
 
-from mousedb.animal.models import Animal, Breeding
+from models import Animal, Breeding
 
 class AnimalFormCageID(ModelForm):
     """This form provides all fields for altering animal data.

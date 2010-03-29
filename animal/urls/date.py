@@ -2,7 +2,7 @@ from django.conf.urls.defaults import *
 from django.contrib.auth.decorators import login_required
 from django.views.generic.date_based import archive_year, archive_month
 
-from mousedb.animal.models import Animal
+from animal.models import Animal
 
 @login_required
 def limited_archive_year(*args, **kwargs):

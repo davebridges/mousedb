@@ -1,6 +1,6 @@
 """Admin site settings for the animal app."""
 
-from mousedb.animal.models import Strain, Animal, Breeding, Cage
+from animal.models import Strain, Animal, Breeding, Cage
 from django.contrib import admin
 import datetime
 

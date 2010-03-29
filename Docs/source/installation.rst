@@ -55,6 +55,16 @@ You need to set up a server to serve both the django installation and saved file
 
 If you want to restrict access to these files, change the Allow from all directive to specific domains or ip addresses (for example Allow from 192.168.0.0/99 would allow from 192.168.0.0 to 192.168.0.99)
 
+Group Setup
+-----------
+    * Open a command line window and navigate to the mousedb directory
+    * Instantiate the database tables by entering python manage.py syncdb and enter a superuser account username, password and email.
+    * Enter python manage.py shell to open a python shell and enter the following commands, where "group name" is the name of your group (keep the quotation marks)::
+
+      from groups.models import Group
+      g = Group(group="group name")
+      g.save()
+
 Final Configuration and User Setup
 ----------------------------------
 1. Go to mousedb/admin/auth/users/ and create users, selecting usernames, full names, password (or have the user set the password) and then choose group permissions.

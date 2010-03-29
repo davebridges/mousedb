@@ -4,7 +4,7 @@ from django.views.generic.list_detail import object_list
 from django.views.generic.create_update import create_object, update_object, delete_object
 from django.contrib.auth.decorators import login_required, permission_required
 
-from mousedb.animal.forms import AnimalForm
+from animal.forms import AnimalForm
 
 @login_required
 def limited_object_list(*args, **kwargs):

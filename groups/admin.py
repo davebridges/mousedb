@@ -1,5 +1,5 @@
 from django.contrib import admin
-from mousedb.groups.models import License, Group
+from groups.models import License, Group
 
 class GroupAdmin(admin.ModelAdmin):
 	pass

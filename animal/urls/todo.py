@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic.list_detail import object_list, object_detail
 from django.contrib.auth.decorators import login_required
 
-from mousedb.animal.models import Animal
+from animal.models import Animal
 
 @login_required
 def limited_object_list(*args, **kwargs):

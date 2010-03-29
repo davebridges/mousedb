@@ -1,6 +1,6 @@
-from mousedb.animal.models import Animal
-from mousedb.data.models import Experiment, Measurement, Study, Treatment
-from mousedb.data.forms import MeasurementForm, StudyExperimentForm
+from animal.models import Animal
+from data.models import Experiment, Measurement, Study, Treatment
+from data.forms import MeasurementForm, StudyExperimentForm
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required, permission_required
 from django.http import HttpResponseRedirect

@@ -2,7 +2,7 @@ from django.conf.urls.defaults import *
 from django.contrib.auth.decorators import permission_required
 from django.views.generic.create_update import create_object, update_object, delete_object
 
-from mousedb.animal.models import Strain
+from animal.models import Strain
 
 @permission_required('animal.add_strain')
 def create_strain(*args, **kwargs):

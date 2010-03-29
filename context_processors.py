@@ -1,4 +1,4 @@
-from mousedb.groups.models import Group
+from groups.models import Group
 
 def group_info(request):
     """This context processor provides group information to all templates."""

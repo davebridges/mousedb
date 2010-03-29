@@ -2,8 +2,8 @@ from django.forms import ModelForm
 from django import forms
 from django.contrib.admin import widgets
 
-from mousedb.data.models import Experiment, Measurement, Study, Treatment
-from mousedb.animal.models import Animal
+from data.models import Experiment, Measurement, Study, Treatment
+from animal.models import Animal
 
 class ExperimentForm(ModelForm):
 	animals = forms.ModelMultipleChoiceField(queryset=Animal.objects.all(), widget=widgets.FilteredSelectMultiple("animals",True))

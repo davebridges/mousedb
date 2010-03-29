@@ -1,4 +1,4 @@
-from mousedb.animal.models import Animal
+from animal.models import Animal
 from filter import *
 
 class AnimalFilter(FilterSet):

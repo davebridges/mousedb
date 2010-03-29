@@ -1,5 +1,5 @@
 from django.db import models
-from mousedb.animal.models import Animal, Strain
+from animal.models import Animal, Strain
 
 FEEDING_TYPES = (
 	('fed', 'Fed'),

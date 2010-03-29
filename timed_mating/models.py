@@ -1,5 +1,5 @@
 from django.db import models
-from mousedb.animal.models import Animal, Strain, Breeding
+from animal.models import Animal, Strain, Breeding
 from django.contrib.auth.models import User
 
 class PlugEvents(models.Model):

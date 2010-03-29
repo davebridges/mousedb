@@ -2,7 +2,7 @@ from django.conf.urls.defaults import *
 from django.views.generic.list_detail import object_list, object_detail
 from django.contrib.auth.decorators import login_required, permission_required
 
-from mousedb.timed_mating.models import PlugEvents
+from timed_mating.models import PlugEvents
 
 @login_required
 def limited_object_list(*args, **kwargs):

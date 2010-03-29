@@ -8,8 +8,8 @@ from django.views.generic.list_detail import object_list, object_detail
 from django.views.generic.create_update import create_object, update_object, delete_object
 from django.contrib.auth.decorators import login_required, permission_required
 
-from mousedb.data.models import Treatment
-from mousedb.data.forms import TreatmentForm
+from data.models import Treatment
+from data.forms import TreatmentForm
 
 @login_required
 def limited_object_list(*args, **kwargs):

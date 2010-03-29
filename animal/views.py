@@ -10,9 +10,9 @@ from django.template import RequestContext
 from django.db.models import Count
 from django.core import serializers
 
-from mousedb.animal.models import Animal, Strain, Breeding, Cage
-from mousedb.data.models import Measurement
-from mousedb.animal.forms import AnimalFormCageID
+from animal.models import Animal, Strain, Breeding, Cage
+from data.models import Measurement
+from animal.forms import AnimalFormCageID
 
 @login_required
 def animal_detail(request, id):
