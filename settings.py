@@ -1,4 +1,4 @@
-# Django settings for experimentdb project.
+# Django settings for mousedb project.
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -81,10 +81,10 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-	'mousedb.data',
-	'mousedb.animal',
-	'mousedb.timed_mating',
-	'mousedb.groups',
+	'data',
+	'animal',
+	'timed_mating',
+	'groups',
 	'django.contrib.admin',
 )
 
