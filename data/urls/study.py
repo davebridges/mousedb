@@ -26,28 +26,28 @@ def delete_study(*args, **kwargs):
 	return delete_object(*args, **kwargs)
 
 urlpatterns = patterns('',
-	(r'^$', limited_object_list, {
+	url(r'^$', limited_object_list, {
 		'queryset': Study.objects.all(),
 		'template_name': 'study_list.html',
 		'template_object_name': 'study',
-		}),
-	(r'^new/$', create_study, {
+		}, name="study-list"),
+	url(r'^new/$', create_study, {
 		'model': Study,
 		'template_name': 'study_form.html',
-		}),
-	(r'^(?P<object_id>\d*)/$', limited_object_detail, {
+		}, name="study-new"),
+	url(r'^(?P<object_id>\d*)/$', limited_object_detail, {
 		'queryset': Study.objects.all(),
 		'template_name': 'study_detail.html',
 		'template_object_name': 'study',
-		}),
-	(r'^(?P<object_id>\d*)/edit/$', change_study, {
+		}, name="study-detail"),
+	url(r'^(?P<object_id>\d*)/edit/$', change_study, {
 		'model': Study,
 		'template_name': 'study_form.html',
-		}),
-	(r'^(?P<object_id>\d*)/delete/$', delete_study, {
+		}, name="study-edit"),
+	url(r'^(?P<object_id>\d*)/delete/$', delete_study, {
 		'model': Study,
 		'post_save_redirect': '/mousedb/study',
 		'template_name' : 'confirm_delete.html',
-		}),
-	(r'^(?P<study_id>\d*)/experiment/new/$', 'mousedb.data.views.study_experiment'),
+		}, name = "study-delete"),
+	url(r'^(?P<study_id>\d*)/experiment/new/$', 'mousedb.data.views.study_experiment'),
 )

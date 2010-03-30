@@ -77,6 +77,8 @@ class Study(models.Model):
 		return u'%s' % self.description
 	class Meta:
 		verbose_name_plural = "Studies"
+	def get_absolute_url(self):
+		return "/study/%s" % self.id
 	
 class Treatment(models.Model):
 	treatment = models.CharField(max_length=50)
