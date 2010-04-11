@@ -720,41 +720,20 @@ The result of this is that a query for a particular strain may then need to be f
 <h3>Forms<a class="headerlink" href="#module-animal.forms" title="Permalink to this headline">¶</a></h3>
 <p>Forms for use in manipulating objects in the animal app.</p>
 <dl class="class">
-<dt id="animal.forms.AnimalChangeForm">
-<em class="property">class </em><tt class="descclassname">animal.forms.</tt><tt class="descname">AnimalChangeForm</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=':'</em>, <em>empty_permitted=False</em>, <em>instance=None</em><big>)</big><a class="headerlink" href="#animal.forms.AnimalChangeForm" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.forms.models.ModelForm</span></tt></p>
-<p>This form provides fields for altering animal fields.</p>
-<dl class="docutils">
-<dt>This form us used with the mouse/(MouseID)/change url.</dt>
-<dd>This modelform excludes the fields CageID (not yet implemented), Gender, Born, Weaned, Backcross, Generation, Mother, Father, Notes and Alive (automatically set upon death).</dd>
-</dl>
-<dl class="class">
-<dt id="animal.forms.AnimalChangeForm.Meta">
-<em class="property">class </em><tt class="descname">Meta</tt><a class="headerlink" href="#animal.forms.AnimalChangeForm.Meta" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
-<dt id="animal.forms.AnimalChangeForm.Meta.model">
-<tt class="descname">model</tt><a class="headerlink" href="#animal.forms.AnimalChangeForm.Meta.model" title="Permalink to this definition">¶</a></dt>
-<dd>alias of <tt class="xref docutils literal"><span class="pre">Animal</span></tt></dd></dl>
-
-</dd></dl>
-
-<dl class="attribute">
-<dt id="animal.forms.AnimalChangeForm.media">
-<tt class="descclassname">AnimalChangeForm.</tt><tt class="descname">media</tt><a class="headerlink" href="#animal.forms.AnimalChangeForm.media" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
 <dt id="animal.forms.AnimalForm">
 <em class="property">class </em><tt class="descclassname">animal.forms.</tt><tt class="descname">AnimalForm</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=':'</em>, <em>empty_permitted=False</em>, <em>instance=None</em><big>)</big><a class="headerlink" href="#animal.forms.AnimalForm" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.forms.models.ModelForm</span></tt></p>
-<p>This form provides all fields for altering animal data.</p>
-<p>This is expected to be used as part of the migration to CageID rather than Cage.  Therefore, in this form, Cage is excluded and CageID is set as an integer field.
-The CageID will be set based on that integer, and a pre-save step will generate that foreignkey field if necesssary.</p>
+<p>This modelform provides fields for modifying animal data.</p>
+<p>It includes all fields except CageID (not yet implemented) and Alive (which is automattically set upon saving the animal).
+This form also automatically loads javascript and css for the datepicker jquery-ui widget.</p>
+<dl class="class">
+<dt id="animal.forms.AnimalForm.Media">
+<em class="property">class </em><tt class="descname">Media</tt><a class="headerlink" href="#animal.forms.AnimalForm.Media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="class">
 <dt id="animal.forms.AnimalForm.Meta">
-<em class="property">class </em><tt class="descname">Meta</tt><a class="headerlink" href="#animal.forms.AnimalForm.Meta" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">AnimalForm.</tt><tt class="descname">Meta</tt><a class="headerlink" href="#animal.forms.AnimalForm.Meta" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="attribute">
 <dt id="animal.forms.AnimalForm.Meta.model">
 <tt class="descname">model</tt><a class="headerlink" href="#animal.forms.AnimalForm.Meta.model" title="Permalink to this definition">¶</a></dt>
@@ -770,11 +749,35 @@ The CageID will be set based on that integer, and a pre-save step will generate 
 </dd></dl>
 
 <dl class="class">
+<dt id="animal.forms.AnimalFormCageID">
+<em class="property">class </em><tt class="descclassname">animal.forms.</tt><tt class="descname">AnimalFormCageID</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=':'</em>, <em>empty_permitted=False</em>, <em>instance=None</em><big>)</big><a class="headerlink" href="#animal.forms.AnimalFormCageID" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.forms.models.ModelForm</span></tt></p>
+<p>This form provides all fields for altering animal data.</p>
+<p>This is expected to be used as part of the migration to CageID rather than Cage.  Therefore, in this form, Cage is excluded and CageID is set as an integer field.
+The CageID will be set based on that integer, and a pre-save step will generate that foreignkey field if necesssary.</p>
+<dl class="class">
+<dt id="animal.forms.AnimalFormCageID.Meta">
+<em class="property">class </em><tt class="descname">Meta</tt><a class="headerlink" href="#animal.forms.AnimalFormCageID.Meta" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="animal.forms.AnimalFormCageID.Meta.model">
+<tt class="descname">model</tt><a class="headerlink" href="#animal.forms.AnimalFormCageID.Meta.model" title="Permalink to this definition">¶</a></dt>
+<dd>alias of <tt class="xref docutils literal"><span class="pre">Animal</span></tt></dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="animal.forms.AnimalFormCageID.media">
+<tt class="descclassname">AnimalFormCageID.</tt><tt class="descname">media</tt><a class="headerlink" href="#animal.forms.AnimalFormCageID.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="animal.forms.BreedingForm">
 <em class="property">class </em><tt class="descclassname">animal.forms.</tt><tt class="descname">BreedingForm</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=':'</em>, <em>empty_permitted=False</em>, <em>instance=None</em><big>)</big><a class="headerlink" href="#animal.forms.BreedingForm" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.forms.models.ModelForm</span></tt></p>
-<p>This form provides for creating and modifying breeding cage information.</p>
-<p>This form is called by using /mousedb/breeding/new and is a generic create view.  It excludes CageID until this feature is fully implemented.  It also excludes Active as this value is automatically set upon setting and End date.</p>
+<p>This form provides most fields for creating and entring breeding cage data.</p>
+<p>This form is used from the url /mousedb/breeding/new and is a generic create view.  The only excluded field is CageID, as this feature is not implemented yet.</p>
 <dl class="class">
 <dt id="animal.forms.BreedingForm.Meta">
 <em class="property">class </em><tt class="descname">Meta</tt><a class="headerlink" href="#animal.forms.BreedingForm.Meta" title="Permalink to this definition">¶</a></dt>
@@ -797,15 +800,6 @@ The CageID will be set based on that integer, and a pre-save step will generate 
 <h3>Views and URLs<a class="headerlink" href="#module-animal.urls" title="Permalink to this headline">¶</a></h3>
 <p>These views define template redirects for the animal app.</p>
 <p>This module contains only non-generic views.  Several generic views are also used and are defined in animal/urls/.</p>
-<dl class="attribute">
-<dt id="animal.views.animal_change">
-<tt class="descclassname">animal.views.</tt><tt class="descname">animal_change</tt><a class="headerlink" href="#animal.views.animal_change" title="Permalink to this definition">¶</a></dt>
-<dd><p>This view is used to render a form to modify one animal.</p>
-<p>To modify several animals go to the /breeding/(breeding_id)/change or /breeding/(breeding_id)/pups instead.
-The request takes the form /mouse/(id)/change/ or insetad of mouse mice, animal or animals.  This returns a form specific to the animal defined in id.  id represents the background identification number of a mouse and not the eartag or other identification number for an animal.
-This view is restricted to users with the permission animal.change_animal.</p>
-</dd></dl>
-
 <dl class="attribute">
 <dt id="animal.views.animal_detail">
 <tt class="descclassname">animal.views.</tt><tt class="descname">animal_detail</tt><a class="headerlink" href="#animal.views.animal_detail" title="Permalink to this definition">¶</a></dt>
@@ -936,6 +930,14 @@ This admin action also shows as the output the number of mice sacrificed.</p>
 <em class="property">class </em><tt class="descclassname">animal.admin.</tt><tt class="descname">BreedingAdmin</tt><big>(</big><em>model</em>, <em>admin_site</em><big>)</big><a class="headerlink" href="#animal.admin.BreedingAdmin" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.contrib.admin.options.ModelAdmin</span></tt></p>
 <p>Settings in the admin interface for dealing with Breeding objects.</p>
+<dl class="method">
+<dt id="animal.admin.BreedingAdmin.mark_deactivated">
+<tt class="descname">mark_deactivated</tt><big>(</big><em>request</em>, <em>queryset</em><big>)</big><a class="headerlink" href="#animal.admin.BreedingAdmin.mark_deactivated" title="Permalink to this definition">¶</a></dt>
+<dd><p>An admin action for marking several cages as inactive.</p>
+<p>This action sets the selected cages as Active=False and Death=today.
+This admin action also shows as the output the number of mice sacrificed.</p>
+</dd></dl>
+
 <dl class="attribute">
 <dt id="animal.admin.BreedingAdmin.media">
 <tt class="descname">media</tt><a class="headerlink" href="#animal.admin.BreedingAdmin.media" title="Permalink to this definition">¶</a></dt>

@@ -12,7 +12,7 @@
 
 
 \title{MouseDB Documentation}
-\date{February 14, 2010}
+\date{April 11, 2010}
 \release{0.1}
 \author{Dave Bridges, Ph.D.}
 \newcommand{\sphinxlogo}{}
@@ -1031,38 +1031,18 @@ This model, which is not yet implemented will be used by both breeding and non-b
 \declaremodule[animal.forms]{}{animal.forms}
 \modulesynopsis{}
 Forms for use in manipulating objects in the animal app.
-\index{AnimalChangeForm (class in animal.forms)}
-
-\hypertarget{animal.forms.AnimalChangeForm}{}\begin{classdesc}{AnimalChangeForm}{data=None, files=None, auto\_id='id\_\%s', prefix=None, initial=None, error\_class=\textless{}class 'django.forms.util.ErrorList'\textgreater{}, label\_suffix=':', empty\_permitted=False, instance=None}
-Bases: \code{django.forms.models.ModelForm}
-
-This form provides fields for altering animal fields.
-\begin{description}
-\item[This form us used with the mouse/(MouseID)/change url.] \leavevmode
-This modelform excludes the fields CageID (not yet implemented), Gender, Born, Weaned, Backcross, Generation, Mother, Father, Notes and Alive (automatically set upon death).
-
-\end{description}
-\index{AnimalChangeForm.Meta (class in animal.forms)}
-
-\hypertarget{animal.forms.AnimalChangeForm.Meta}{}\begin{classdesc}{Meta}{}~\index{model (animal.forms.AnimalChangeForm.Meta attribute)}
-
-\hypertarget{animal.forms.AnimalChangeForm.Meta.model}{}\begin{memberdesc}{model}
-alias of \code{Animal}
-\end{memberdesc}
-\end{classdesc}
-\index{media (animal.forms.AnimalChangeForm attribute)}
-
-\hypertarget{animal.forms.AnimalChangeForm.media}{}\begin{memberdesc}[AnimalChangeForm]{media}\end{memberdesc}
-\end{classdesc}
 \index{AnimalForm (class in animal.forms)}
 
 \hypertarget{animal.forms.AnimalForm}{}\begin{classdesc}{AnimalForm}{data=None, files=None, auto\_id='id\_\%s', prefix=None, initial=None, error\_class=\textless{}class 'django.forms.util.ErrorList'\textgreater{}, label\_suffix=':', empty\_permitted=False, instance=None}
 Bases: \code{django.forms.models.ModelForm}
 
-This form provides all fields for altering animal data.
+This modelform provides fields for modifying animal data.
 
-This is expected to be used as part of the migration to CageID rather than Cage.  Therefore, in this form, Cage is excluded and CageID is set as an integer field.
-The CageID will be set based on that integer, and a pre-save step will generate that foreignkey field if necesssary.
+It includes all fields except CageID (not yet implemented) and Alive (which is automattically set upon saving the animal).
+This form also automatically loads javascript and css for the datepicker jquery-ui widget.
+\index{AnimalForm.Media (class in animal.forms)}
+
+\hypertarget{animal.forms.AnimalForm.Media}{}\begin{classdesc}{Media}{}\end{classdesc}
 \index{AnimalForm.Meta (class in animal.forms)}
 
 \hypertarget{animal.forms.AnimalForm.Meta}{}\begin{classdesc}{Meta}{}~\index{model (animal.forms.AnimalForm.Meta attribute)}
@@ -1075,14 +1055,35 @@ alias of \code{Animal}
 
 \hypertarget{animal.forms.AnimalForm.media}{}\begin{memberdesc}[AnimalForm]{media}\end{memberdesc}
 \end{classdesc}
+\index{AnimalFormCageID (class in animal.forms)}
+
+\hypertarget{animal.forms.AnimalFormCageID}{}\begin{classdesc}{AnimalFormCageID}{data=None, files=None, auto\_id='id\_\%s', prefix=None, initial=None, error\_class=\textless{}class 'django.forms.util.ErrorList'\textgreater{}, label\_suffix=':', empty\_permitted=False, instance=None}
+Bases: \code{django.forms.models.ModelForm}
+
+This form provides all fields for altering animal data.
+
+This is expected to be used as part of the migration to CageID rather than Cage.  Therefore, in this form, Cage is excluded and CageID is set as an integer field.
+The CageID will be set based on that integer, and a pre-save step will generate that foreignkey field if necesssary.
+\index{AnimalFormCageID.Meta (class in animal.forms)}
+
+\hypertarget{animal.forms.AnimalFormCageID.Meta}{}\begin{classdesc}{Meta}{}~\index{model (animal.forms.AnimalFormCageID.Meta attribute)}
+
+\hypertarget{animal.forms.AnimalFormCageID.Meta.model}{}\begin{memberdesc}{model}
+alias of \code{Animal}
+\end{memberdesc}
+\end{classdesc}
+\index{media (animal.forms.AnimalFormCageID attribute)}
+
+\hypertarget{animal.forms.AnimalFormCageID.media}{}\begin{memberdesc}[AnimalFormCageID]{media}\end{memberdesc}
+\end{classdesc}
 \index{BreedingForm (class in animal.forms)}
 
 \hypertarget{animal.forms.BreedingForm}{}\begin{classdesc}{BreedingForm}{data=None, files=None, auto\_id='id\_\%s', prefix=None, initial=None, error\_class=\textless{}class 'django.forms.util.ErrorList'\textgreater{}, label\_suffix=':', empty\_permitted=False, instance=None}
 Bases: \code{django.forms.models.ModelForm}
 
-This form provides for creating and modifying breeding cage information.
+This form provides most fields for creating and entring breeding cage data.
 
-This form is called by using /mousedb/breeding/new and is a generic create view.  It excludes CageID until this feature is fully implemented.  It also excludes Active as this value is automatically set upon setting and End date.
+This form is used from the url /mousedb/breeding/new and is a generic create view.  The only excluded field is CageID, as this feature is not implemented yet.
 \index{BreedingForm.Meta (class in animal.forms)}
 
 \hypertarget{animal.forms.BreedingForm.Meta}{}\begin{classdesc}{Meta}{}~\index{model (animal.forms.BreedingForm.Meta attribute)}
@@ -1105,15 +1106,6 @@ alias of \code{Breeding}
 These views define template redirects for the animal app.
 
 This module contains only non-generic views.  Several generic views are also used and are defined in animal/urls/.
-\index{animal\_change (in module animal.views)}
-
-\hypertarget{animal.views.animal\_change}{}\begin{memberdesc}[animal.views]{animal\_change}
-This view is used to render a form to modify one animal.
-
-To modify several animals go to the /breeding/(breeding\_id)/change or /breeding/(breeding\_id)/pups instead.
-The request takes the form /mouse/(id)/change/ or insetad of mouse mice, animal or animals.  This returns a form specific to the animal defined in id.  id represents the background identification number of a mouse and not the eartag or other identification number for an animal.
-This view is restricted to users with the permission animal.change\_animal.
-\end{memberdesc}
 \index{animal\_detail (in module animal.views)}
 
 \hypertarget{animal.views.animal\_detail}{}\begin{memberdesc}[animal.views]{animal\_detail}
@@ -1251,6 +1243,14 @@ alias of \code{Animal}
 Bases: \code{django.contrib.admin.options.ModelAdmin}
 
 Settings in the admin interface for dealing with Breeding objects.
+\index{mark\_deactivated() (animal.admin.BreedingAdmin method)}
+
+\hypertarget{animal.admin.BreedingAdmin.mark\_deactivated}{}\begin{methoddesc}{mark\_deactivated}{request, queryset}
+An admin action for marking several cages as inactive.
+
+This action sets the selected cages as Active=False and Death=today.
+This admin action also shows as the output the number of mice sacrificed.
+\end{methoddesc}
 \index{media (animal.admin.BreedingAdmin attribute)}
 
 \hypertarget{animal.admin.BreedingAdmin.media}{}\begin{memberdesc}{media}\end{memberdesc}
