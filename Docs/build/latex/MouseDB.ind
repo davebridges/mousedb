@@ -11,14 +11,14 @@
   \item animal.models (module), \hyperpage{19}
   \item animal.urls (module), \hyperpage{22}
   \item animal.views (module), \hyperpage{21}
-  \item animal\_change (in module animal.views), \hyperpage{21}
   \item animal\_detail (in module animal.views), \hyperpage{21}
   \item animal\_new (in module animal.views), \hyperpage{21}
   \item AnimalAdmin (class in animal.admin), \hyperpage{22}
-  \item AnimalChangeForm (class in animal.forms), \hyperpage{20}
-  \item AnimalChangeForm.Meta (class in animal.forms), \hyperpage{20}
   \item AnimalForm (class in animal.forms), \hyperpage{20}
+  \item AnimalForm.Media (class in animal.forms), \hyperpage{20}
   \item AnimalForm.Meta (class in animal.forms), \hyperpage{20}
+  \item AnimalFormCageID (class in animal.forms), \hyperpage{20}
+  \item AnimalFormCageID.Meta (class in animal.forms), \hyperpage{20}
   \item AnimalInline (class in animal.admin), \hyperpage{22}
   \item animals (data.models.Experiment attribute), \hyperpage{14}
   \item animals (data.models.Treatment attribute), \hyperpage{16}
@@ -34,7 +34,7 @@
   \item breeding\_all (in module animal.views), \hyperpage{21}
   \item breeding\_change (in module animal.views), \hyperpage{21}
   \item breeding\_detail (in module animal.views), \hyperpage{21}
-  \item breeding\_pups (in module animal.views), \hyperpage{22}
+  \item breeding\_pups (in module animal.views), \hyperpage{21}
   \item BreedingAdmin (class in animal.admin), \hyperpage{22}
   \item BreedingForm (class in animal.forms), \hyperpage{20}
   \item BreedingForm.Meta (class in animal.forms), \hyperpage{20}
@@ -104,6 +104,7 @@
 
   \indexspace
   \bigletter M
+  \item mark\_deactivated() (animal.admin.BreedingAdmin method), \hyperpage{22}
   \item mark\_sacrificed() (animal.admin.AnimalAdmin method), \hyperpage{22}
   \item Measurement (class in data.models), \hyperpage{15}
   \item Measurement.DoesNotExist, \hyperpage{15}
@@ -113,11 +114,11 @@
   \item MeasurementForm (class in data.forms), \hyperpage{17}
   \item MeasurementForm.Meta (class in data.forms), \hyperpage{17}
   \item media (animal.admin.AnimalAdmin attribute), \hyperpage{22}
-  \item media (animal.admin.BreedingAdmin attribute), \hyperpage{23}
+  \item media (animal.admin.BreedingAdmin attribute), \hyperpage{22}
   \item media (animal.admin.CageAdmin attribute), \hyperpage{23}
   \item media (animal.admin.StrainAdmin attribute), \hyperpage{23}
-  \item media (animal.forms.AnimalChangeForm attribute), \hyperpage{20}
   \item media (animal.forms.AnimalForm attribute), \hyperpage{20}
+  \item media (animal.forms.AnimalFormCageID attribute), \hyperpage{20}
   \item media (animal.forms.BreedingForm attribute), \hyperpage{21}
   \item media (data.forms.ExperimentForm attribute), \hyperpage{17}
   \item media (data.forms.MeasurementForm attribute), \hyperpage{17}
@@ -125,8 +126,8 @@
   \item media (data.forms.StudyForm attribute), \hyperpage{18}
   \item media (data.forms.TreatmentForm attribute), \hyperpage{18}
   \item model (animal.admin.AnimalInline attribute), \hyperpage{22}
-  \item model (animal.forms.AnimalChangeForm.Meta attribute), \hyperpage{20}
   \item model (animal.forms.AnimalForm.Meta attribute), \hyperpage{20}
+  \item model (animal.forms.AnimalFormCageID.Meta attribute), \hyperpage{20}
   \item model (animal.forms.BreedingForm.Meta attribute), \hyperpage{21}
   \item model (data.forms.ExperimentForm.Meta attribute), \hyperpage{17}
   \item model (data.forms.MeasurementForm.Meta attribute), \hyperpage{17}
