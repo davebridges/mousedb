@@ -15,7 +15,7 @@
 {% endblock %}
 {% block header %}Data Entry ({{ experiment }}){% endblock %}
 {% block content %}
-<form action="." method="POST">
+<form action="." method="POST">{% csrf_token %}
     {{ formset.management_form }}
     {% include "formsets_table.html" %}
 <input type="submit" value="Submit" />
