@@ -36,6 +36,8 @@ class Experiment(models.Model):
 	study = models.ForeignKey('Study', blank=True, null=True)
 	def __unicode__(self):
 		return u'%s-%s' % (self.date, self.feeding_state) 
+	def get_absolute_url(self):
+		return "/mousedb/experiment/%i" % self.id
 	class Meta:
 		ordering = ['-date']
 
@@ -48,6 +50,7 @@ class Assay(models.Model):
 	def __unicode__(self):
 		return u'%s' % self.assay		
 
+
 class Measurement(models.Model):
 	animal = models.ForeignKey(Animal)
 	experiment = models.ForeignKey(Experiment)
@@ -55,6 +58,7 @@ class Measurement(models.Model):
 	values = models.CommaSeparatedIntegerField(blank=True, null=True, max_length=255, help_text="use for time courses, (comma separated values with no spaces)")
 	def __unicode__(self):
 		return u'%s %s' % (self.animal, self.assay)
+
 	
 class Researcher(models.Model):
 	first_name = models.CharField(max_length = 50)
