@@ -27,22 +27,22 @@ def delete_experiment(*args, **kwargs):
 	return delete_object(*args, **kwargs)
 
 urlpatterns = patterns('',
-	(r'^$', 'mousedb.data.views.experiment_list'),
-	(r'^(?P<object_id>\d*)/$', limited_object_detail, {
+	url(r'^$', 'mousedb.data.views.experiment_list'),
+	url(r'^(?P<object_id>\d*)/$', limited_object_detail, {
 		'queryset': Experiment.objects.all(),
 		'template_name': 'experiment_detail.html',
 		'template_object_name': 'experiment',
-		}),
-	(r'^(?P<experiment_id>\d*)/data_entry/$', 'mousedb.data.views.add_measurement'),
-	(r'^new/$', create_experiment, {
+		}, name="experiment-detail"),
+	url(r'^(?P<experiment_id>\d*)/data_entry/$', 'mousedb.data.views.add_measurement', name="data-entry"),
+	url(r'^new/$', create_experiment, {
 		'form_class': ExperimentForm, 
 		'template_name': 'experiment_form.html', 
 		'login_required':True,
 		'post_save_redirect':'/mousedb/experiment/'
-		}),
-	(r'^data/all$', limited_object_list, {
+		}, name="experiment-new"),
+	url(r'^data/all$', limited_object_list, {
 		'queryset': Measurement.objects.all(),
 		'template_name': 'data.html',
 		'template_object_name': 'data',
-		}),
+		}, name="measurement_list"),
 )
