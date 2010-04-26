@@ -1,13 +1,11 @@
-from mousedb.animal.models import Animal
-from mousedb.data.models import Experiment, Measurement, Study, Treatment
-from mousedb.data.forms import MeasurementForm, StudyExperimentForm
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404
 from django.contrib.auth.decorators import login_required, permission_required
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
-from django.forms.models import modelformset_factory
-from django.forms.formsets import formset_factory
-from django import forms
+
+from mousedb.animal.models import Animal
+from mousedb.data.models import Experiment, Measurement, Study, Treatment
+from mousedb.data.forms import MeasurementForm, MeasurementFormSet, StudyExperimentForm
 
 
 
@@ -33,15 +31,18 @@ def experiment_detail_all(request):
 
 @permission_required('data.add_measurement')
 def add_measurement(request, experiment_id):
-	experiment = Experiment.objects.get(id=experiment_id)
-	MeasurementFormSet = modelformset_factory(Measurement, form=MeasurementForm, extra=10, can_delete=True)
+	experiment = get_object_or_404(Experiment, pk=experiment_id)
 	if request.method == 'POST':
-		formset = MeasurementFormSet()
+		formset = MeasurementFormSet(request.POST)
 		if formset.is_valid():
 			formset.save()
+			return HttpResponseRedirect( experiment.get_absolute_url() ) 
 	else:
-		formset = MeasurementFormSet()
+		formset = MeasurementFormSet() 
 	return render_to_response("data_entry_form.html", {"formset": formset, "experiment": experiment }, context_instance=RequestContext(request))
+	
+	
+
 
 @permission_required('data.add_experiment')
 def study_experiment(request, study_id):
@@ -57,6 +58,5 @@ def study_experiment(request, study_id):
 			return HttpResponseRedirect('/mousedb/study/')
 	else:
 		form = StudyExperimentForm()
-		form.fields["animals"].queryset = Animal.objects.filter(treatment=treatments)
+		form.fields["animals"].queryset = Animal.objects.filter(treatment__in=treatments)
 	return render_to_response("study_experiment_form.html", {'form':form, 'study':study, 'treatments': treatments},context_instance=RequestContext(request))
-

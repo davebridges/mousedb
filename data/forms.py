@@ -1,12 +1,13 @@
 from django.forms import ModelForm
 from django import forms
 from django.contrib.admin import widgets
+from django.forms.models import inlineformset_factory
 
 from mousedb.data.models import Experiment, Measurement, Study, Treatment
 from mousedb.animal.models import Animal
 
 class ExperimentForm(ModelForm):
-	animals = forms.ModelMultipleChoiceField(queryset=Animal.objects.all(), widget=widgets.FilteredSelectMultiple("animals",True))
+	#animals = forms.ModelMultipleChoiceField(queryset=Animal.objects.all(), widget=widgets.FilteredSelectMultiple("animals",True))
 	class Meta:
 		model = Experiment
 
@@ -15,12 +16,17 @@ class StudyExperimentForm(ModelForm):
 		model = Experiment
 		exclude = ['study',]
 
+MeasurementFormSet = inlineformset_factory(Experiment, Measurement, extra=10, can_delete=True)
 
 class MeasurementForm(ModelForm):
-	animal = forms.ModelChoiceField(queryset=Animal.objects.all())
+	"""Form definition for adding and editing measurements.
+	
+	This form excludes experiment, which must be passed as a filtering parameter from the view.  
+	This form is used for formsets to add or modify measurements from within an experiment."""
+
 	class Meta:
 		model = Measurement
-
+	
 class StudyForm(ModelForm):
 	class Meta:
 		model = Study
