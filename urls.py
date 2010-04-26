@@ -22,8 +22,8 @@ urlpatterns = patterns('',
 	(r'^todo/', include('mousedb.animal.urls.todo')),
 
 	(r'^experiments?/', include('mousedb.data.urls.experiment')),
-	(r'^study/', include('mousedb.data.urls.study')),
-	(r'^studies/', include('mousedb.data.urls.study')),
+	url(r'^study/', include('mousedb.data.urls.study')),
+	url(r'^studies/', include('mousedb.data.urls.study')),
 	url(r'^treatments?/', include('mousedb.data.urls.treatment')),
 	(r'^parameters?/', include('mousedb.data.urls.parameter')),
 

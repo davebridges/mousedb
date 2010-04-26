@@ -9,7 +9,7 @@ TITLE_CHOICES = (
 )
 
 class Group(models.Model):
-	group = models.CharField(max_length = 100, help_text="Name of this Group, i.e. Saltiel Laboratory")
+	group = models.CharField(max_length = 100, help_text="Name of this Group, i.e. Smith Laboratory")
 	group_slug = models.SlugField(max_length=30, blank=True, help_text = "Short Name of this Group")
 	group_url = models.URLField(verify_exists=True, blank=True, verbose_name="Group Website")
 	license = models.ForeignKey('License', blank=True, null=True, help_text = "Data Availability License")
