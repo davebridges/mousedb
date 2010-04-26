@@ -36,7 +36,7 @@ This mouse is {{ animal.Born|timesince }} old.
 {% if animal.Cage %}<td>{{ animal.Cage }}</td>{% endif %}
 {% if animal.Generation %}<td>{{ animal.Generation }}</td>{% endif %}
 {% if animal.Markings %}<td>{{ animal.Markings }}</td>{% endif %}
-{% if animal.Breeding %}<td><a href="/mousedb/breeding/{{ animal.Breeding.id }}">{{ animal.Breeding.Cage }}</a></td>{% endif %}
+{% if animal.Breeding %}<td><a href="{% url breeding-detail animal.Breeding.id %}">{{ animal.Breeding.Cage }}</a></td>{% endif %}
 {% if animal.Notes %}<td>{{ animal.Notes }}</td>{% endif %}
 </tr>
 </table>

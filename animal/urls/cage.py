@@ -19,5 +19,5 @@ def animals_by_cage(request, cage_number):
 	)
 		
 urlpatterns = patterns('',
-	url(r'^(?P<cage_number>\d*)/$', animals_by_cage, name="animals-by-cage")
-	)
+	url(r'^(?P<cage_number>\d*)/$', animals_by_cage, name="animals-list-by-cage"),
+		)
