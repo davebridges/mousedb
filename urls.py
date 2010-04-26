@@ -20,7 +20,8 @@ urlpatterns = patterns('',
 	(r'^breedings?/', include('mousedb.animal.urls.breeding')),
 	(r'^breeding_cages?/', include('mousedb.animal.urls.breeding')),
 	(r'^todo/', include('mousedb.animal.urls.todo')),
-
+	(r'^cages?/', include('mousedb.animal.urls.cage')),
+	
 	(r'^experiments?/', include('mousedb.data.urls.experiment')),
 	url(r'^study/', include('mousedb.data.urls.study')),
 	url(r'^studies/', include('mousedb.data.urls.study')),
