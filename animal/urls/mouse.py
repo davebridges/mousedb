@@ -48,6 +48,5 @@ urlpatterns = patterns('',
 		'login_required':True,
 		'post_delete_redirect':'/mousedb/mouse/',
 		}, name="animal-delete"),
-	#(r'^new/$', 'mousedb.animal.views.animal_new'),
 		)
 

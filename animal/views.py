@@ -133,22 +133,3 @@ def breeding_change(request, breeding_id):
     else:
         formset = PupsFormSet(instance=breeding,)
     return render_to_response("breeding_change.html", {"formset":formset, 'breeding':breeding},context_instance=RequestContext(request))
-
-@permission_required('animal.add_animal')
-def animal_new(request):
-    """This view is used to generate a form to add one animal.
-
-    It takes a request of /mouse/new/ or insetad of mouse mice, animal or animals and returns a blank form.
-    If you are adding an animal as part of a breeding set it is best to use /breeding/(breeding_id)/pups.  This is part of the uncompleted migration to Cage objects."""
-    if request.method =="POST":
-        form=AnimalFormCageID(request.POST)
-        if form.is_valid():
-            animal = form.save(commit=False)
-            animal.cage,created = Cage.objects.get_or_create(Barcode='9999999')#barcode is hardcoded in, and works ok
-            animal.save()
-            form.save()
-        return HttpResponseRedirect( animal.get_absolute_url() )
-    else:
-        form = AnimalFormCageID()
-    return render_to_response("animal_form.html",{"form":form,},context_instance=RequestContext(request))
-
