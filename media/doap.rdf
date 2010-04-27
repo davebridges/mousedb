@@ -59,10 +59,10 @@
 	</doap:documenter>
 
 	<doap:repository>
-		<doap:SVNRepository>
+		<doap:GitRepository>
 			<doap:location rdf:resource="http://github.com/davebridges/mousedb" />
 			<doap:browse rdf:resource="http://github.com/davebridges/mousedb" />
-		</doap:SVNRepository>
+		</doap:GitRepository>
 	</doap:repository>
 
 </doap:Project>
