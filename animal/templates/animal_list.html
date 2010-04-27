@@ -10,7 +10,7 @@
 {% block content %}
 
 <h2>{{ animal_list.count }} mice.</h2>
-<p>To add a new mouse click <a href="/mousedb/mouse/new">here</a>.
+<p>To add a new mouse click <a href="{% url animal-new %}">here</a>.
 <p>Sort table by clicking headers.  Select multiple headers by holding SHIFT</p>
 <p class="unweaned">Pink rows are animals which have not yet been weaned.</p>  
 <p class="breeder">Yellow rows are animals which are currently in breeding cages.</p>

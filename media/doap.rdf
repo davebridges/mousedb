@@ -4,7 +4,7 @@
 	xmlns:doap="http://usefulinc.com/ns/doap#">
 <doap:Project>
 	<doap:name>mousedb</doap:name>
-	<doap:homepage rdf:resource="http://code.google.com/p/mousedb/" />
+	<doap:homepage rdf:resource="http://github.com/davebridges/mousedb" />
 	<doap:created>2009-03-16</doap:created>
 	<doap:shortdesc xml:lang="en">
 		A web based application for storage and organization of data regarding experimental animals
@@ -19,13 +19,14 @@
 			<doap:name>MouseDB v0.1</doap:name>
 			<doap:created>2009-10-24</doap:created>
 			<doap:revision>0.1</doap:revision>
-			<doap:file-release rdf:resource="http://mousedb.googlecode.com/files/mousedb-0.1.tar.gz"/>
+			<doap:file-release rdf:resource="http://github.com/downloads/davebridges/mousedb/mousedb-0.1.tar.gz"/>
 		</doap:Version>
 	</doap:release>
 
-	<doap:download-page rdf:resource="http://code.google.com/p/mousedb/downloads/list" />
+	<doap:download-page rdf:resource="http://github.com/davebridges/mousedb/downloads" />
 	
 	<doap:wiki rdf:resource="http://code.google.com/p/mousedb/w/list" />
+	<doap:wiki rdf:resource="http://wiki.github.com/davebridges/mousedb/" />
 
 	<doap:bug-database rdf:resource="http://code.google.com/p/mousedb/issues/list" />
 
@@ -34,7 +35,7 @@
 
 	<doap:license rdf:resource="http://www.opensource.org/licenses/bsd-license.php" />
 
-	<doap:repository rdf:resource="http://code.google.com/p/mousedb/source/checkout" />
+	<doap:repository rdf:resource="http://github.com/davebridges/mousedb" />
 
 	<doap:maintainer>
 		<foaf:Person>
@@ -59,8 +60,8 @@
 
 	<doap:repository>
 		<doap:SVNRepository>
-			<doap:location rdf:resource="http://code.google.com/p/mousedb/source/checkout" />
-			<doap:browse rdf:resource="http://code.google.com/p/mousedb/source/browse/" />
+			<doap:location rdf:resource="http://github.com/davebridges/mousedb" />
+			<doap:browse rdf:resource="http://github.com/davebridges/mousedb" />
 		</doap:SVNRepository>
 	</doap:repository>
 

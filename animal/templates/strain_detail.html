@@ -25,14 +25,14 @@
 	{% if animal.male.all %} class="breeder" {% endif %}
 	{% if animal.females.all %} class="breeder" {% endif %}
 >
-   <td><a href = "/mousedb/mouse/{{ animal.id }}">{{ animal.MouseID}}</a></td>
+   <td><a href = "{% url animal-detail animal.id %}">{{ animal.MouseID}}</a></td>
    <td>{{ animal.Strain }}</td>
    <td>{{ animal.Background }}</td>
    <td>{{ animal.Backcross }}</td>
    <td>{{ animal.Generation }}</td>
    <td>{{ animal.Genotype }}</td>
    <td>{{ animal.Gender }}</td>
-   <td>{{ animal.Cage }}</td>
+   <td><a href="/mousedb/cage/{{ animal.Cage }}">{{ animal.Cage }}</a></td>
    <td>{{ animal.Rack|all_caps }}</td>
    <td>{{ animal.Rack_Position|all_caps }}</td>
    <td>{{ animal.Markings }}</td>
