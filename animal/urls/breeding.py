@@ -27,7 +27,7 @@ urlpatterns = patterns('',
 	url(r'^all/$', 'mousedb.animal.views.breeding_all', name="breeding-list-all"),
 	url(r'^(?P<breeding_id>\d*)/$', 'mousedb.animal.views.breeding_detail', name="breeding-detail"),
 	url(r'^(?P<breeding_id>\d*)/pups/$', 'mousedb.animal.views.breeding_pups', name="breeding-pups"),
-	url(r'^(?P<breeding_id>\d*)/change/$', 'mousedb.animal.views.breeding_change', name="breeding-pups-changes"),
+	url(r'^(?P<breeding_id>\d*)/change/$', 'mousedb.animal.views.breeding_change', name="breeding-pups-change"),
 	url(r'^new/$', create_breeding, {
 		'form_class': BreedingForm, 
 		'template_name': 'breeding_form.html', 
