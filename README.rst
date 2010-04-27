@@ -107,6 +107,13 @@ Measurements
 ++++++++++++
 A measurement is an animal, an assay and a measurement value.  It can be associated with an experiment, or can stand alone as an individual value.  Measurements can be viewed in the context of a study, an experiment, a treatment group or an animal by going to the appropriate page.
 
+Timed Matings Module
+--------------------
+Timed matings are a specific type of breeding set.  Generally, for these experiments a mating cage is set up and pregnancy is defined by a plug event.  Based on this information, the age of an embryo can be estimated.  When a breeding cage is defined, one option is to set this cage as a timed mating cage (ie Timed_Mating=True).  If this is the case, then a plug event can be registered and recorded for this mating set.  If the mother gives birth then this cage is implicitly set as a normal breeding cage.
+
+Groups Module
+-------------
+This app defines generic Group and License information for a particular installation of MouseDB.  Because every page on this site identifies both the Group and data restrictions, at a minimum, group information must be provided upon installation (see installation instructions).
 
 
 
