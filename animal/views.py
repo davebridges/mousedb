@@ -12,7 +12,6 @@ from django.core import serializers
 
 from mousedb.animal.models import Animal, Strain, Breeding, Cage
 from mousedb.data.models import Measurement
-from mousedb.animal.forms import AnimalFormCageID
 
 @login_required
 def animal_detail(request, id):

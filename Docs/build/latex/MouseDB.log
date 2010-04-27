@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=latex 2009.10.31)  11 APR 2010 19:56
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=latex 2009.10.31)  26 APR 2010 22:36
 entering extended mode
  %&-line parsing enabled.
 **MouseDB.tex
@@ -819,19 +819,19 @@ LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
 [3] [4]
 Chapter 2.
 
-Underfull \hbox (badness 7168) in paragraph at lines 191--192
+Underfull \hbox (badness 7168) in paragraph at lines 201--202
 []\T1/ptm/b/n/10 Python\T1/ptm/m/n/10 . Re-quires Ver-sion 2.6, is not yet com-
 pat-i-ble with Python 3.0. Down-load from
  []
 
-LaTeX Font Info:    Try loading font information for TS1+ptm on input line 212.
+LaTeX Font Info:    Try loading font information for TS1+ptm on input line 222.
 
 (/usr/share/texmf-texlive/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 ) [5
 
 ]
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 239.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 249.
 
 (/usr/share/texmf-texlive/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
@@ -852,20 +852,8 @@ Chapter 5.
 ]
 Chapter 6.
 LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <10> not available
-(Font)              Font shape `T1/pcr/b/n' tried instead on input line 480.
+(Font)              Font shape `T1/pcr/b/n' tried instead on input line 490.
 [13] [14] [15] [16]
-Underfull \hbox (badness 10000) in paragraph at lines 837--837
-[]\T1/ptm/m/it/10 data=None, files=None, auto_id='id_%s', pre-fix=None, ini-tia
-l=None,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 837--837
-\T1/ptm/m/it/10 er-ror_class=<class 'django.forms.util.ErrorList'>, la-bel_suff
-ix=':',
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 853--853
 []\T1/ptm/m/it/10 data=None, files=None, auto_id='id_%s', pre-fix=None, ini-tia
 l=None,
@@ -889,19 +877,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 869--869
 ix=':',
  []
 
-[17] [18] [19]
-Underfull \hbox (badness 10000) in paragraph at lines 1060--1060
+
+Underfull \hbox (badness 10000) in paragraph at lines 890--890
 []\T1/ptm/m/it/10 data=None, files=None, auto_id='id_%s', pre-fix=None, ini-tia
 l=None,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1060--1060
+Underfull \hbox (badness 10000) in paragraph at lines 890--890
 \T1/ptm/m/it/10 er-ror_class=<class 'django.forms.util.ErrorList'>, la-bel_suff
 ix=':',
  []
 
-[20] [21] [22] [23] [24
+[17] [18] [19] [20] [21] [22] [23] [24
 
 ]
 Chapter 7.
@@ -914,49 +902,44 @@ Chapter 7.
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 86--87
+Underfull \hbox (badness 10000) in paragraph at lines 83--84
 []\T1/ptm/m/n/10 get_feeding_state_display() (data.models.Experiment
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 87--88
+Underfull \hbox (badness 10000) in paragraph at lines 84--85
 []\T1/ptm/m/n/10 get_injection_display() (data.models.Experiment
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 88--89
+Underfull \hbox (badness 10000) in paragraph at lines 85--86
 []\T1/ptm/m/n/10 get_mode_display() (data.models.Pharmaceutical
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 87--88
+[]\T1/ptm/m/n/10 get_next_by_transplant_date()
  []
 
 [29
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 90--91
-[]\T1/ptm/m/n/10 get_next_by_transplant_date()
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 92--93
+Underfull \hbox (badness 10000) in paragraph at lines 89--90
 []\T1/ptm/m/n/10 get_previous_by_date() (data.models.Experiment
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 93--94
+Underfull \hbox (badness 10000) in paragraph at lines 90--91
 []\T1/ptm/m/n/10 get_previous_by_transplant_date()
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 107--108
+Underfull \hbox (badness 10000) in paragraph at lines 113--114
 []\T1/ptm/m/n/10 mark_deactivated() (an-i-mal.admin.BreedingAdmin
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 130--131
-[]\T1/ptm/m/n/10 model (an-i-mal.forms.AnimalFormCageID.Meta at-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 134--135
+Underfull \hbox (badness 10000) in paragraph at lines 139--140
 []\T1/ptm/m/n/10 model (data.forms.StudyExperimentForm.Meta at-
  []
 
@@ -964,10 +947,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 134--135
 
 ]) (./MouseDB.aux) ) 
 Here is how much of TeX's memory you used:
- 7024 strings out of 94075
- 96277 string characters out of 1165175
+ 7039 strings out of 94075
+ 96624 string characters out of 1165175
  154968 words of memory out of 1500000
- 9869 multiletter control sequences out of 10000+50000
+ 9873 multiletter control sequences out of 10000+50000
  54556 words of font info for 56 fonts, out of 1200000 for 2000
  646 hyphenation exceptions out of 8191
  34i,12n,45p,758b,548s stack positions out of 5000i,500n,6000p,200000b,5000s
@@ -979,9 +962,9 @@ ve/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw
 texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/
 type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr
 i8a.pfb>
-Output written on MouseDB.pdf (35 pages, 236288 bytes).
+Output written on MouseDB.pdf (35 pages, 240855 bytes).
 PDF statistics:
- 807 PDF objects out of 1000 (max. 8388607)
- 294 named destinations out of 1000 (max. 131072)
- 249 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 832 PDF objects out of 1000 (max. 8388607)
+ 305 named destinations out of 1000 (max. 131072)
+ 265 words of extra memory for PDF output out of 10000 (max. 10000000)
 

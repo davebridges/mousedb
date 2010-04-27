@@ -106,6 +106,47 @@ Timed Mating Package
    :undoc-members:
    :show-inheritance:
 
+Models
+++++++
+
+.. automodule:: timed_mating.models
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+.. autoclass:: timed_mating.models.PlugEvents
+   :show-inheritance:
+
+Forms
++++++
+
+.. automodule:: timed_mating.forms
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Views and URLs
+++++++++++++++
+
+.. automodule:: timed_mating.views
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. automodule:: timed_mating.urls
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Administrative Site Configuration
++++++++++++++++++++++++++++++++++
+
+.. automodule:: timed_mating.admin
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
 Groups Package
 --------------
 
@@ -113,3 +154,32 @@ Groups Package
    :members:
    :undoc-members:
    :show-inheritance:
+
+Models
+++++++
+
+.. automodule:: groups.models
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+.. autoclass:: groups.models.Group
+   :show-inheritance:
+
+Views and URLs
+++++++++++++++
+
+.. automodule:: groups.views
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Administrative Site Configuration
++++++++++++++++++++++++++++++++++
+
+.. automodule:: groups.admin
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

@@ -163,6 +163,11 @@
 <dd></dd></dl>
 
 <dl class="method">
+<dt id="data.models.Experiment.get_absolute_url">
+<tt class="descclassname">Experiment.</tt><tt class="descname">get_absolute_url</tt><big>(</big><em>*moreargs</em>, <em>**morekwargs</em><big>)</big><a class="headerlink" href="#data.models.Experiment.get_absolute_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
 <dt id="data.models.Experiment.get_feeding_state_display">
 <tt class="descclassname">Experiment.</tt><tt class="descname">get_feeding_state_display</tt><big>(</big><em>*moreargs</em>, <em>**morekwargs</em><big>)</big><a class="headerlink" href="#data.models.Experiment.get_feeding_state_display" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -362,6 +367,11 @@
 <tt class="descclassname">Study.</tt><tt class="descname">experiment_set</tt><a class="headerlink" href="#data.models.Study.experiment_set" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="method">
+<dt id="data.models.Study.get_absolute_url">
+<tt class="descclassname">Study.</tt><tt class="descname">get_absolute_url</tt><big>(</big><em>*moreargs</em>, <em>**morekwargs</em><big>)</big><a class="headerlink" href="#data.models.Study.get_absolute_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="attribute">
 <dt id="data.models.Study.strain">
 <tt class="descclassname">Study.</tt><tt class="descname">strain</tt><a class="headerlink" href="#data.models.Study.strain" title="Permalink to this definition">¶</a></dt>
@@ -543,6 +553,9 @@
 <dt id="data.forms.MeasurementForm">
 <em class="property">class </em><tt class="descclassname">data.forms.</tt><tt class="descname">MeasurementForm</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=':'</em>, <em>empty_permitted=False</em>, <em>instance=None</em><big>)</big><a class="headerlink" href="#data.forms.MeasurementForm" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.forms.models.ModelForm</span></tt></p>
+<p>Form definition for adding and editing measurements.</p>
+<p>This form excludes experiment, which must be passed as a filtering parameter from the view.  
+This form is used for formsets to add or modify measurements from within an experiment.</p>
 <dl class="class">
 <dt id="data.forms.MeasurementForm.Meta">
 <em class="property">class </em><tt class="descname">Meta</tt><a class="headerlink" href="#data.forms.MeasurementForm.Meta" title="Permalink to this definition">¶</a></dt>
@@ -654,8 +667,8 @@
 <dd></dd></dl>
 
 </div>
-<div class="section" id="module-data.admin">
-<h3>Administrative Site Configuration<a class="headerlink" href="#module-data.admin" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="administrative-site-configuration">
+<h3>Administrative Site Configuration<a class="headerlink" href="#administrative-site-configuration" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
 <div class="section" id="module-animal">
@@ -724,7 +737,7 @@ The result of this is that a query for a particular strain may then need to be f
 <em class="property">class </em><tt class="descclassname">animal.forms.</tt><tt class="descname">AnimalForm</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=':'</em>, <em>empty_permitted=False</em>, <em>instance=None</em><big>)</big><a class="headerlink" href="#animal.forms.AnimalForm" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.forms.models.ModelForm</span></tt></p>
 <p>This modelform provides fields for modifying animal data.</p>
-<p>It includes all fields except CageID (not yet implemented) and Alive (which is automattically set upon saving the animal).
+<p>It includes all fields except CageID (will be deprecated) and Alive (which is automattically set upon saving the animal).
 This form also automatically loads javascript and css for the datepicker jquery-ui widget.</p>
 <dl class="class">
 <dt id="animal.forms.AnimalForm.Media">
@@ -749,35 +762,11 @@ This form also automatically loads javascript and css for the datepicker jquery-
 </dd></dl>
 
 <dl class="class">
-<dt id="animal.forms.AnimalFormCageID">
-<em class="property">class </em><tt class="descclassname">animal.forms.</tt><tt class="descname">AnimalFormCageID</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=':'</em>, <em>empty_permitted=False</em>, <em>instance=None</em><big>)</big><a class="headerlink" href="#animal.forms.AnimalFormCageID" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.forms.models.ModelForm</span></tt></p>
-<p>This form provides all fields for altering animal data.</p>
-<p>This is expected to be used as part of the migration to CageID rather than Cage.  Therefore, in this form, Cage is excluded and CageID is set as an integer field.
-The CageID will be set based on that integer, and a pre-save step will generate that foreignkey field if necesssary.</p>
-<dl class="class">
-<dt id="animal.forms.AnimalFormCageID.Meta">
-<em class="property">class </em><tt class="descname">Meta</tt><a class="headerlink" href="#animal.forms.AnimalFormCageID.Meta" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
-<dt id="animal.forms.AnimalFormCageID.Meta.model">
-<tt class="descname">model</tt><a class="headerlink" href="#animal.forms.AnimalFormCageID.Meta.model" title="Permalink to this definition">¶</a></dt>
-<dd>alias of <tt class="xref docutils literal"><span class="pre">Animal</span></tt></dd></dl>
-
-</dd></dl>
-
-<dl class="attribute">
-<dt id="animal.forms.AnimalFormCageID.media">
-<tt class="descclassname">AnimalFormCageID.</tt><tt class="descname">media</tt><a class="headerlink" href="#animal.forms.AnimalFormCageID.media" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
 <dt id="animal.forms.BreedingForm">
 <em class="property">class </em><tt class="descclassname">animal.forms.</tt><tt class="descname">BreedingForm</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=':'</em>, <em>empty_permitted=False</em>, <em>instance=None</em><big>)</big><a class="headerlink" href="#animal.forms.BreedingForm" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.forms.models.ModelForm</span></tt></p>
 <p>This form provides most fields for creating and entring breeding cage data.</p>
-<p>This form is used from the url /mousedb/breeding/new and is a generic create view.  The only excluded field is CageID, as this feature is not implemented yet.</p>
+<p>This form is used from the url /mousedb/breeding/new and is a generic create view.  The only excluded field is CageID, as this feature will be deprecated.</p>
 <dl class="class">
 <dt id="animal.forms.BreedingForm.Meta">
 <em class="property">class </em><tt class="descname">Meta</tt><a class="headerlink" href="#animal.forms.BreedingForm.Meta" title="Permalink to this definition">¶</a></dt>
@@ -807,14 +796,6 @@ The CageID will be set based on that integer, and a pre-save step will generate 
 <p>It takes a request in the form animal/(id)/, mice/(id) or mouse/(id)/ and renders the detail page for that mouse.  The request is defined for id not MouseID (or barcode) because this allows for details to be displayed for mice without barcode identification.
 Therefore care must be taken that animal/4932 is id=4932 and not barcode=4932.  The animal name is defined at the top of the page.
 This page is restricted to logged-in users.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="animal.views.animal_new">
-<tt class="descclassname">animal.views.</tt><tt class="descname">animal_new</tt><a class="headerlink" href="#animal.views.animal_new" title="Permalink to this definition">¶</a></dt>
-<dd><p>This view is used to generate a form to add one animal.</p>
-<p>It takes a request of /mouse/new/ or insetad of mouse mice, animal or animals and returns a blank form.
-If you are adding an animal as part of a breeding set it is best to use /breeding/(breeding_id)/pups.  This is part of the uncompleted migration to Cage objects.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -917,7 +898,7 @@ This admin action also shows as the output the number of mice sacrificed.</p>
 <em class="property">class </em><tt class="descclassname">animal.admin.</tt><tt class="descname">AnimalInline</tt><big>(</big><em>parent_model</em>, <em>admin_site</em><big>)</big><a class="headerlink" href="#animal.admin.AnimalInline" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.contrib.admin.options.TabularInline</span></tt></p>
 <p>Provides an inline tabular formset for animal objects.</p>
-<p>Not currently used.</p>
+<p>Currently used with the breeding admin page.</p>
 <dl class="attribute">
 <dt id="animal.admin.AnimalInline.model">
 <tt class="descname">model</tt><a class="headerlink" href="#animal.admin.AnimalInline.model" title="Permalink to this definition">¶</a></dt>
@@ -930,6 +911,7 @@ This admin action also shows as the output the number of mice sacrificed.</p>
 <em class="property">class </em><tt class="descclassname">animal.admin.</tt><tt class="descname">BreedingAdmin</tt><big>(</big><em>model</em>, <em>admin_site</em><big>)</big><a class="headerlink" href="#animal.admin.BreedingAdmin" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.contrib.admin.options.ModelAdmin</span></tt></p>
 <p>Settings in the admin interface for dealing with Breeding objects.</p>
+<p>This interface also includes an form for adding objects associated with this breeding cage.</p>
 <dl class="method">
 <dt id="animal.admin.BreedingAdmin.mark_deactivated">
 <tt class="descname">mark_deactivated</tt><big>(</big><em>request</em>, <em>queryset</em><big>)</big><a class="headerlink" href="#animal.admin.BreedingAdmin.mark_deactivated" title="Permalink to this definition">¶</a></dt>
@@ -941,19 +923,6 @@ This admin action also shows as the output the number of mice sacrificed.</p>
 <dl class="attribute">
 <dt id="animal.admin.BreedingAdmin.media">
 <tt class="descname">media</tt><a class="headerlink" href="#animal.admin.BreedingAdmin.media" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="animal.admin.CageAdmin">
-<em class="property">class </em><tt class="descclassname">animal.admin.</tt><tt class="descname">CageAdmin</tt><big>(</big><em>model</em>, <em>admin_site</em><big>)</big><a class="headerlink" href="#animal.admin.CageAdmin" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.contrib.admin.options.ModelAdmin</span></tt></p>
-<p>Settings in the admin interface for dealing with Cage objects.</p>
-<p>Not currently implemented as the Cage model is not yet implemented.</p>
-<dl class="attribute">
-<dt id="animal.admin.CageAdmin.media">
-<tt class="descname">media</tt><a class="headerlink" href="#animal.admin.CageAdmin.media" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -974,9 +943,75 @@ This admin action also shows as the output the number of mice sacrificed.</p>
 </div>
 <div class="section" id="module-timed_mating">
 <h2>Timed Mating Package<a class="headerlink" href="#module-timed_mating" title="Permalink to this headline">¶</a></h2>
+<p>This package defines the timed_mating app.</p>
+<p>Timed matings are a specific type of breeding set.  
+Generally, for these experiments a mating cage is set up and pregnancy is defined by a plug event.  
+Based on this information, the age of an embryo can be estimated.  
+When a breeding cage is defined, one option is to set this cage as a timed mating cage (ie Timed_Mating=True).  
+If this is the case, then a plug event can be registered and recorded for this mating set.  
+If the mother gives birth then this cage is implicitly set as a normal breeding cage.</p>
+<div class="section" id="id5">
+<h3>Models<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id6">
+<h3>Forms<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id7">
+<h3>Views and URLs<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id8">
+<h3>Administrative Site Configuration<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+</div>
 </div>
 <div class="section" id="module-groups">
 <h2>Groups Package<a class="headerlink" href="#module-groups" title="Permalink to this headline">¶</a></h2>
+<p>This package defines the Group application.
+This app defines generic Group and License information for a particular installation of MouseDB.  
+Because every page on this site identifies both the Group and data restrictions, at a minimum, group information must be provided upon installation (see installation instructions).</p>
+<div class="section" id="module-groups.models">
+<h3>Models<a class="headerlink" href="#module-groups.models" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="groups.models.Group">
+<em class="property">class </em><tt class="descclassname">groups.models.</tt><tt class="descname">Group</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#groups.models.Group" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.db.models.base.Model</span></tt></p>
+<p>This defines the data structure for the Group model.</p>
+<p>The only required field is group.
+All other fields (group_slug, group_url, license, contact_title, contact_first, contact_last and contact_email) are optional.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-groups.views">
+<h3>Views and URLs<a class="headerlink" href="#module-groups.views" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="module-groups.admin">
+<h3>Administrative Site Configuration<a class="headerlink" href="#module-groups.admin" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="groups.admin.GroupAdmin">
+<em class="property">class </em><tt class="descclassname">groups.admin.</tt><tt class="descname">GroupAdmin</tt><big>(</big><em>model</em>, <em>admin_site</em><big>)</big><a class="headerlink" href="#groups.admin.GroupAdmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.contrib.admin.options.ModelAdmin</span></tt></p>
+<p>Defines the admin interface for Groups.</p>
+<p>Currently set as default.</p>
+<dl class="attribute">
+<dt id="groups.admin.GroupAdmin.media">
+<tt class="descname">media</tt><a class="headerlink" href="#groups.admin.GroupAdmin.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="groups.admin.LicenseAdmin">
+<em class="property">class </em><tt class="descclassname">groups.admin.</tt><tt class="descname">LicenseAdmin</tt><big>(</big><em>model</em>, <em>admin_site</em><big>)</big><a class="headerlink" href="#groups.admin.LicenseAdmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.contrib.admin.options.ModelAdmin</span></tt></p>
+<p>Defines the admin interface for Licences.</p>
+<p>Currently set as default.</p>
+<dl class="attribute">
+<dt id="groups.admin.LicenseAdmin.media">
+<tt class="descname">media</tt><a class="headerlink" href="#groups.admin.LicenseAdmin.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
 </div>
 </div>
 
@@ -996,7 +1031,7 @@ This admin action also shows as the output the number of mice sacrificed.</p>
 <li><a class="reference external" href="#module-data.models">Models</a></li>
 <li><a class="reference external" href="#module-data.forms">Forms</a></li>
 <li><a class="reference external" href="#module-data.urls">Views and URLs</a></li>
-<li><a class="reference external" href="#module-data.admin">Administrative Site Configuration</a></li>
+<li><a class="reference external" href="#administrative-site-configuration">Administrative Site Configuration</a></li>
 </ul>
 </li>
 <li><a class="reference external" href="#module-animal">Animals Package</a><ul>
@@ -1012,8 +1047,19 @@ This admin action also shows as the output the number of mice sacrificed.</p>
 <li><a class="reference external" href="#module-animal.admin">Administrative Site Configuration</a></li>
 </ul>
 </li>
-<li><a class="reference external" href="#module-timed_mating">Timed Mating Package</a></li>
-<li><a class="reference external" href="#module-groups">Groups Package</a></li>
+<li><a class="reference external" href="#module-timed_mating">Timed Mating Package</a><ul>
+<li><a class="reference external" href="#id5">Models</a></li>
+<li><a class="reference external" href="#id6">Forms</a></li>
+<li><a class="reference external" href="#id7">Views and URLs</a></li>
+<li><a class="reference external" href="#id8">Administrative Site Configuration</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#module-groups">Groups Package</a><ul>
+<li><a class="reference external" href="#module-groups.models">Models</a></li>
+<li><a class="reference external" href="#module-groups.views">Views and URLs</a></li>
+<li><a class="reference external" href="#module-groups.admin">Administrative Site Configuration</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
