@@ -17,22 +17,22 @@
 <div class = "container_12">
 	<div id = "user" class="grid_12">
 	{% if user.is_authenticated %}
-		<p>Welcome, {{ user.first_name }} {{ user.last_name }}.  <a href="/mousedb/accounts/login/"><img src="/mousedb-media/admin-media/img/admin/icon_searchbox.png" border="none" alt="change" title="Change User"></a>
+		<p>Welcome, {{ user.first_name }} {{ user.last_name }}.  <a href="{% url login %}"><img src="/mousedb-media/admin-media/img/admin/icon_searchbox.png" border="none" alt="change" title="Change User"></a>
 	{% else %}
-		<p>Welcome, please <a href="/mousedb/accounts/login/">log in.</a>
+		<p>Welcome, please <a href="{% url login %}">log in.</a>
 	{% endif %}
 	</p>
 
 	<div id = "header" class="grid_12">
 		<ul id="menu">
-			<li><a href="/mousedb/index" title="Home">Home</a></li>
+			<li><a href="{% url home %}" title="Home">Home</a></li>
 			{% if user.is_staff %}<li><a href="/mousedb/admin" title="Admin">Admin Site</a></li>{% endif %}
-			<li><a href="/mousedb/todo" title="ToDo List">To Do List</a></li>
-			<li><a href="/mousedb/breeding" title="Breeding Cages">Breeding Cages</a></li>
-			<li><a href="/mousedb/strain" title="Strain List">Strain List</a></li>
-			<li><a href="/mousedb/mouse" title="Animal List">Animal List</a></li>
+			<li><a href="{% url todo-list %}" title="To Do List">To Do List</a></li>
+			<li><a href="{% url breeding-list %}" title="Breeding Cages">Breeding Cages</a></li>
+			<li><a href="{% url strain-list %}" title="Strain List">Strain List</a></li>
+			<li><a href="{% url animal-list %}" title="Animal List">Animal List</a></li>
 			<li><a href="{% url study-list %}" title="Study List">Study List</a></li>
-			<li><a href="/mousedb/experiment" title="Experiment List">Experiment List</a></li>
+			<li><a href="{% url experiment-list %}" title="Experiment List">Experiment List</a></li>
 		</ul>
 	</div>
 
@@ -46,6 +46,7 @@
 	</div>
 
 <span rel="dc:rights" hreflang="en" href="http://www.opensource.org/licenses/bsd-license.php"/>
+<span rel="dc:license" hreflang="en" value="{{ group.license }}.  {{ group.license.notes }}" />
 </div>
 </body>
 </html>

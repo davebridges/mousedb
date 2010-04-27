@@ -10,7 +10,7 @@ urlpatterns = patterns('',
 	#(r'^', 'django.views.generic.simple.direct_to_template', {'template': 'maintenance.html'}),
 	(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 	(r'^admin/', include(admin.site.urls)),
-	(r'^accounts/login/', 'django.contrib.auth.views.login'),
+	url(r'^accounts/login/', 'django.contrib.auth.views.login', name="login"),
 
 	url(r'^mouse/', include('mousedb.animal.urls.mouse')),
 	url(r'^mice/', include('mousedb.animal.urls.mouse')),
@@ -35,6 +35,7 @@ urlpatterns = patterns('',
 	url(r'^timed_matings?/', include('mousedb.timed_mating.urls')),
 	
 	url(r'^specs?/$', 'django.views.generic.simple.direct_to_template', {'template': 'specs.html'}),
-	url(r'^index/$', 'mousedb.views.home'),
+	url(r'^index/$', 'mousedb.views.home', name="home"),
+	url(r'^/?$', 'mousedb.views.home')
 )
 
