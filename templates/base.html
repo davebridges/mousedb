@@ -9,7 +9,7 @@
  	<title property="dc:title">{% block title %}{{ group}} MouseDB{% endblock title %}</title>
 	<link rel="stylesheet" type="text/css" href="/mousedb-media/mousedb.css"/> 
 	<link rel="stylesheet" type="text/css" href="/mousedb-media/960.gs.css"/> 
-        <link rel="meta" title="DOAP" href="/mousedb-media/doap.rdf" type="application/rdf+xml"/>
+        <link rel="meta" title="DOAP" href="http://github.com/davebridges/mousedb/raw/master/media/doap.rdf" type="application/rdf+xml"/>
 	{% block scripts%}{% endblock scripts %}
 </head>
 
@@ -17,28 +17,28 @@
 <div class = "container_12">
 	<div id = "user" class="grid_12">
 	{% if user.is_authenticated %}
-		<p>Welcome, {{ user.first_name }} {{ user.last_name }}.  <a href="/mousedb/accounts/login/"><img src="/mousedb-media/admin-media/img/admin/icon_searchbox.png" border="none" alt="change" title="Change User"></a>
+		<p>Welcome, {{ user.first_name }} {{ user.last_name }}.  <a href="{% url login %}"><img src="/mousedb-media/admin-media/img/admin/icon_searchbox.png" border="none" alt="change" title="Change User"></a>
 	{% else %}
-		<p>Welcome, please <a href="/mousedb/accounts/login/">log in.</a>
+		<p>Welcome, please <a href="{% url login %}">log in.</a>
 	{% endif %}
 	</p>
 
 	<div id = "header" class="grid_12">
 		<ul id="menu">
-			<li><a href="/mousedb/index" title="Home">Home</a></li>
+			<li><a href="{% url home %}" title="Home">Home</a></li>
 			{% if user.is_staff %}<li><a href="/mousedb/admin" title="Admin">Admin Site</a></li>{% endif %}
-			<li><a href="/mousedb/todo" title="ToDo List">To Do List</a></li>
-			<li><a href="/mousedb/breeding" title="Breeding Cages">Breeding Cages</a></li>
-			<li><a href="/mousedb/strain" title="Strain List">Strain List</a></li>
-			<li><a href="/mousedb/mouse" title="Animal List">Animal List</a></li>
+			<li><a href="{% url todo-list %}" title="To Do List">To Do List</a></li>
+			<li><a href="{% url breeding-list %}" title="Breeding Cages">Breeding Cages</a></li>
+			<li><a href="{% url strain-list %}" title="Strain List">Strain List</a></li>
+			<li><a href="{% url animal-list %}" title="Animal List">Animal List</a></li>
 			<li><a href="{% url study-list %}" title="Study List">Study List</a></li>
-			<li><a href="/mousedb/experiment" title="Experiment List">Experiment List</a></li>
+			<li><a href="{% url experiment-list %}" title="Experiment List">Experiment List</a></li>
 		</ul>
 	</div>
 
 	<div id = "main" class="grid_12">
-		<h1>{% block header %}Header{% endblock header %}</h1>
-		{% block content %}Content{% endblock content %}
+		<h1>{% block header %}{% endblock header %}</h1>
+		{% block content %}{% endblock content %}
 	</div>
 
 	<div id  = "footer" class="grid_12">
@@ -46,6 +46,7 @@
 	</div>
 
 <span rel="dc:rights" hreflang="en" href="http://www.opensource.org/licenses/bsd-license.php"/>
+<span rel="dc:license" hreflang="en" value="{{ group.license }}.  {{ group.license.notes }}" />
 </div>
 </body>
 </html>

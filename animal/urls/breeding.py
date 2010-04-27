@@ -23,31 +23,31 @@ def delete_breeding(*args, **kwargs):
 	return delete_object(*args, **kwargs)
 
 urlpatterns = patterns('',
-	(r'^$', 'mousedb.animal.views.breeding'),
-	(r'^all/$', 'mousedb.animal.views.breeding_all'),
-	(r'^(?P<breeding_id>\d*)/$', 'mousedb.animal.views.breeding_detail'),
-	(r'^(?P<breeding_id>\d*)/pups/$', 'mousedb.animal.views.breeding_pups'),
-	(r'^(?P<breeding_id>\d*)/change/$', 'mousedb.animal.views.breeding_change'),
-	(r'^new/$', create_breeding, {
+	url(r'^$', 'mousedb.animal.views.breeding', name="breeding-list"),
+	url(r'^all/$', 'mousedb.animal.views.breeding_all', name="breeding-list-all"),
+	url(r'^(?P<breeding_id>\d*)/$', 'mousedb.animal.views.breeding_detail', name="breeding-detail"),
+	url(r'^(?P<breeding_id>\d*)/pups/$', 'mousedb.animal.views.breeding_pups', name="breeding-pups"),
+	url(r'^(?P<breeding_id>\d*)/change/$', 'mousedb.animal.views.breeding_change', name="breeding-pups-change"),
+	url(r'^new/$', create_breeding, {
 		'form_class': BreedingForm, 
 		'template_name': 'breeding_form.html', 
 		'login_required':True,
 		'post_save_redirect':'/mousedb/breeding/'
-		}),
-	(r'^(?P<object_id>\d*)/update/$', change_breeding, {
+		}, name="breeding-new"),
+	url(r'^(?P<object_id>\d*)/update/$', change_breeding, {
 		'model': Breeding, 
 		'template_name': 'breeding_form.html', 
 		'login_required':True,
 		'post_save_redirect':'/mousedb/breeding/',
-		}),
-	(r'^(?P<object_id>\d*)/delete/$', delete_breeding, {
+		}, name="breeding-edit"),
+	url(r'^(?P<object_id>\d*)/delete/$', delete_breeding, {
 		'model': Breeding, 
 		'login_required':True,
 		'post_delete_redirect':'/mousedb/breeding/',
-		}),
-	(r'timed_mating/$', limited_object_list, {
+		}, name="breeding-delete"),
+	url(r'timed_mating/$', limited_object_list, {
 		'queryset': Breeding.objects.filter(Timed_Mating=True),
 		'template_name': 'breeding.html',
 		'template_object_name': 'breeding',
-		}),
+		}, name="breeding-list-timed-matings"),
 )

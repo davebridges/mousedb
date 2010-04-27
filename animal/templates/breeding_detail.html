@@ -36,8 +36,8 @@
 </table>
 <p>To enter information about timed matings click <a href="/mousedb/admin/timed_mating/timedmating/" title="timed matings entry page">here</a>.  For instructions please go <a href="http://code.google.com/p/mousedb/wiki/TimedMatings" title = "Timed matings Wiki page">here</a></p>
 <ul>
-<li><a href="/mousedb/breeding/{{ breeding.id }}/pups">Add/Wean Pups</a></li>
-<li><a href="/mousedb/breeding/{{ breeding.id }}/change">Eartag/Genotype/Cage Changes/Death</a></li>
+<li><a href="{% url breeding-pups breeding.id %}">Add/Wean Pups</a></li>
+<li><a href="{% url breeding-pups-change breeding.id %}">Eartag/Genotype/Cage Changes/Death</a></li>
 </ul>
 <p>For data entry instructions go to the <a href="http://code.google.com/p/mousedb/wiki/DataEntry">MouseDB Wiki</a></p>
 <h2>Pups</h2>
@@ -52,8 +52,8 @@
 {% for animal in pups %}
  <tr>
   <td>{{ animal.Born }}</td>
-  <td><a href = "/mousedb/mouse/{{ animal.id }}">{{ animal.MouseID}}</a></td>
-  <td><a href="/mousedb{{ animal.Strain.get_absolute_url }}">{{ animal.Strain }}</a></td>
+  <td><a href = "{% url animal-detail animal.id %}">{{ animal.MouseID}}</a></td>
+  <td><a href="{{ animal.Strain.get_absolute_url }}">{{ animal.Strain }}</a></td>
   <td>{{ animal.Background }}</td>
   <td>{{ animal.Gender }}</td>
   <td>{{ animal.Genotype }}</td>
@@ -71,10 +71,10 @@
  </tdata>
 </table>
 {% with breeding.plugevents_set.all as plug_list %}
-<h2>Plug Events ({{plug_list.count}}) <a href="/mousedb/plug/breeding/{{breeding.id}}/new"><img src="/mousedb-media/admin-media/img/admin/icon_addlink.gif" border="none" alt="add" title="Add Plug Event"></a></h2>
+<h2>Plug Events ({{plug_list.count}}) <a href="{% url breeding-plugevents-new breeding.id %}"><img src="/mousedb-media/admin-media/img/admin/icon_addlink.gif" border="none" alt="add" title="Add Plug Event"></a></h2>
 {% if plug_list %}
 {% include "plug_table.html" %}
 {% endif %}
 {% endwith %}
-<p>To change this breeding cage click <a href="/mousedb/breeding/{{breeding.id}}/update">here</a>.  To delete (not deactivate but to completely erase all data) this breeding cage click <a href="/mousedb/breeding/{{breeding.id}}/delete">here</a></p>
+<p>To change this breeding cage click <a href="{% url breeding-edit breeding.id">here</a>.  To delete (not deactivate but to completely erase all data) this breeding cage click <a href="/mousedb/breeding/{{breeding.id}}/delete">here</a></p>
 {% endblock content %}

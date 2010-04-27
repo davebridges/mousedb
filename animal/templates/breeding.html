@@ -8,9 +8,9 @@
 {% block header %}Breeding Cages{% endblock header %}
 
 {% block content %}
-<h2>{{ breeding_list.count }} breeding cages <a href="/mousedb/breeding/all">(see all)</a></h2>
-<p>To enter a new breeding cage click <a href="/mousedb/breeding/new">here</a>.  To see details on a breeding cage click on either the cage number or the number of pups</p>
-<p>For information about plug events click <a href="/mousedb/plug/" title="timed matings entry page">here</a>.</p>
+<h2>{{ breeding_list.count }} breeding cages <a href="{% url breeding-list-all %}">(see all)</a></h2>
+<p>To enter a new breeding cage click <a href="{% url breeding-new %}">here</a>.  To see details on a breeding cage click on either the cage number or the number of pups</p>
+<p>For information about plug events click <a href="{% url plugevents-list %}" title="timed matings entry page">here</a>.</p>
 <p>Sort table by clicking headers.  Select multiple headers by holding SHIFT</p>
 <table class="sortable">
  <thead>

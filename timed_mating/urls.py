@@ -25,32 +25,32 @@ def delete_plugevents(*args, **kwargs):
 	return django.views.generic.create_update.update_object(*args, **kwargs)
 
 urlpatterns = patterns('',
-	(r'^$', limited_object_list, {
+	url(r'^$', limited_object_list, {
 		'queryset': PlugEvents.objects.all(),
 		'template_name': 'plug_list.html',
 		'template_object_name': 'plug',
-		}),
-	(r'^(?P<object_id>\d*)/$', limited_object_detail, {
+		}, name="plugevents-list"),
+	url(r'^(?P<object_id>\d*)/$', limited_object_detail, {
 		'queryset': PlugEvents.objects.all(),
 		'template_name': 'plug_detail.html',
 		'template_object_name': 'plug',
-		}),
-	(r'^new/$', create_plugevents, {
+		}, name="plugevents-detail"),
+	url(r'^new/$', create_plugevents, {
 		'model': PlugEvents, 
 		'template_name': 'plug_form.html', 
 		'login_required':True,
 		'post_save_redirect':'/mousedb/plug_events/'
-		}),
-	(r'^(?P<object_id>\d*)/edit/$', change_plugevents, {
+		}, name="plugevents-new"),
+	url(r'^(?P<object_id>\d*)/edit/$', change_plugevents, {
 		'model': PlugEvents, 
 		'template_name': 'plug_form.html', 
 		'login_required':True,
 		'post_save_redirect':'/mousedb/plug_events/'
-		}),
-	(r'^(?P<object_id>\d*)/delete/$', delete_plugevents, {
+		}, name="plugevents-edit"),
+	url(r'^(?P<object_id>\d*)/delete/$', delete_plugevents, {
 		'model': PlugEvents, 
 		'login_required':True,
 		'post_delete_redirect':'/mousedb/plug_events/'
-		}),
-	(r'^breeding/(?P<breeding_id>\d*)/new', 'mousedb.timed_mating.views.breeding_plugevent'),
+		}, name="plugevents-delete"),
+	url(r'^breeding/(?P<breeding_id>\d*)/new', 'mousedb.timed_mating.views.breeding_plugevent', name="breeding-plugevents-new"),
 )

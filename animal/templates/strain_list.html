@@ -15,8 +15,8 @@
  </tr>
  </thead>
  <tdata>
- <tr><th>Current</th>{% for strain in strain_list_alive %}<td><a href="/mousedb/strain/{{strain.Strain_slug}}">{{ strain.alive }}</a></td>{% endfor %}</tr>
- <tr><th>All</th>{% for strain in strain_list %}<td><a href="/mousedb/strain/{{strain.Strain_slug}}/all">{{ strain.animal_set.count }}</td></a>{% endfor %}</tr>
+ <tr><th>Current</th>{% for strain in strain_list_alive %}<td><a href="{% url strain-detail strain.Strain_slug %}">{{ strain.alive }}</a></td>{% endfor %}</tr>
+ <tr><th>All</th>{% for strain in strain_list %}<td><a href="{% url strain-detail-all strain.Strain_slug %}">{{ strain.animal_set.count }}</td></a>{% endfor %}</tr>
  </tdata>
  </table>
 <div id="chart">
@@ -31,6 +31,6 @@ chs=600x250
 &amp;alt = "Chart of Mouse Distribution"
 border = 1 px/>
 </div>
-<p>To add a new mouse click <a href="/mousedb/mouse/new">here</a>.
-<p>To add a new mouse strain click <a href="/mousedb/strain/new">here</a>.
+<p>To add a new mouse click <a href="{% url animal-new %}">here</a>.
+<p>To add a new mouse strain click <a href="{% url strain-new">here</a>.
 {% endblock content %}

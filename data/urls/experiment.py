@@ -27,7 +27,7 @@ def delete_experiment(*args, **kwargs):
 	return delete_object(*args, **kwargs)
 
 urlpatterns = patterns('',
-	url(r'^$', 'mousedb.data.views.experiment_list'),
+	url(r'^$', 'mousedb.data.views.experiment_list', name="experiment-list"),
 	url(r'^(?P<object_id>\d*)/$', limited_object_detail, {
 		'queryset': Experiment.objects.all(),
 		'template_name': 'experiment_detail.html',
