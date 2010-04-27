@@ -2,25 +2,27 @@
 \def\bigletter#1{{\Large\sffamily#1}\nopagebreak\vspace{1mm}}
 
   \bigletter A
-  \item {\texttt  {animal}}, \hyperpage{17}
-  \item {\texttt  {animal.admin}}, \hyperpage{21}
-  \item {\texttt  {animal.forms}}, \hyperpage{19}
-  \item {\texttt  {animal.models}}, \hyperpage{18}
+  \item {\texttt  {animal}}, \hyperpage{18}
+  \item {\texttt  {animal.admin}}, \hyperpage{22}
+  \item {\texttt  {animal.forms}}, \hyperpage{20}
+  \item {\texttt  {animal.models}}, \hyperpage{19}
   \item {\texttt  {animal.urls}}, \hyperpage{21}
-  \item {\texttt  {animal.views}}, \hyperpage{19}
+  \item {\texttt  {animal.views}}, \hyperpage{20}
 
   \indexspace
   \bigletter D
   \item {\texttt  {data}}, \hyperpage{13}
-  \item {\texttt  {data.admin}}, \hyperpage{17}
-  \item {\texttt  {data.forms}}, \hyperpage{16}
+  \item {\texttt  {data.forms}}, \hyperpage{17}
   \item {\texttt  {data.models}}, \hyperpage{13}
-  \item {\texttt  {data.urls}}, \hyperpage{17}
-  \item {\texttt  {data.views}}, \hyperpage{17}
+  \item {\texttt  {data.urls}}, \hyperpage{18}
+  \item {\texttt  {data.views}}, \hyperpage{18}
 
   \indexspace
   \bigletter G
-  \item {\texttt  {groups}}, \hyperpage{22}
+  \item {\texttt  {groups}}, \hyperpage{23}
+  \item {\texttt  {groups.admin}}, \hyperpage{23}
+  \item {\texttt  {groups.models}}, \hyperpage{23}
+  \item {\texttt  {groups.views}}, \hyperpage{23}
 
   \indexspace
   \bigletter T

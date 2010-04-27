@@ -1,3 +1,4 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -10,7 +11,7 @@
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '',
+        URL_ROOT:    '#',
         VERSION:     '0.1',
         COLLAPSE_MODINDEX: false,
         FILE_SUFFIX: '.html',
@@ -18,6 +19,7 @@
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="MouseDB v0.1 documentation" href="index.html" />
     <link rel="next" title="MouseDB Installation" href="installation.html" />
@@ -57,6 +59,10 @@
 <div class="section" id="animal">
 <h3>Animal<a class="headerlink" href="#animal" title="Permalink to this headline">¶</a></h3>
 <p>Most parameters about an animal are set within the animal object.  Here is where the animals strain, breeding, parentage and many other parameters are included.  Animals have foreignkey relationships with both Strain and Breeding, so an animal may only belong to one of each of those.  As an example, a mouse cannot come from more than one Breeding set, and cannot belong to more than one strain.</p>
+<div class="section" id="backcrosses-and-generations">
+<h4>Backcrosses and Generations<a class="headerlink" href="#backcrosses-and-generations" title="Permalink to this headline">¶</a></h4>
+<p>For this software, optional tracking of backcrosses and generations is available and is stored as an attribute of an animal.  When an inbred cross is made against a pure background, the backcross increases by 1.  When a heterozygote cross is made, the generation increases by one.  As an example, for every time a mouse in a C57/BL6 background is crossed against a wildtype C57/B6 mouse, the backcross (but not the generation) increases by one.  For every time a mutant strain is crosses against itself (either vs a heterozygote or homozygote of that strain), the generation will increase by one.  Backcrosses should typically be performed against a separate colony of purebred mouse, rather than against wild-type alleles of the mutant strain.</p>
+</div>
 </div>
 <div class="section" id="breeding-cages">
 <h3>Breeding Cages<a class="headerlink" href="#breeding-cages" title="Permalink to this headline">¶</a></h3>
@@ -84,6 +90,14 @@ The result of this is that a query for a particular strain may then need to be f
 <p>A measurement is an animal, an assay and a measurement value.  It can be associated with an experiment, or can stand alone as an individual value.  Measurements can be viewed in the context of a study, an experiment, a treatment group or an animal by going to the appropriate page.</p>
 </div>
 </div>
+<div class="section" id="timed-matings-module">
+<h2>Timed Matings Module<a class="headerlink" href="#timed-matings-module" title="Permalink to this headline">¶</a></h2>
+<p>Timed matings are a specific type of breeding set.  Generally, for these experiments a mating cage is set up and pregnancy is defined by a plug event.  Based on this information, the age of an embryo can be estimated.  When a breeding cage is defined, one option is to set this cage as a timed mating cage (ie Timed_Mating=True).  If this is the case, then a plug event can be registered and recorded for this mating set.  If the mother gives birth then this cage is implicitly set as a normal breeding cage.</p>
+</div>
+<div class="section" id="groups-module">
+<h2>Groups Module<a class="headerlink" href="#groups-module" title="Permalink to this headline">¶</a></h2>
+<p>This app defines generic Group and License information for a particular installation of MouseDB.  Because every page on this site identifies both the Group and data restrictions, at a minimum, group information must be provided upon installation (see installation instructions).</p>
+</div>
 </div>
 
 
@@ -92,11 +106,14 @@ The result of this is that a query for a particular strain may then need to be f
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-            <h3><a href="index.html">Table Of Contents</a></h3>
-            <ul>
-<li><a class="reference external" href="">MouseDB Concepts</a><ul>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference external" href="#">MouseDB Concepts</a><ul>
 <li><a class="reference external" href="#animal-module">Animal Module</a><ul>
-<li><a class="reference external" href="#animal">Animal</a></li>
+<li><a class="reference external" href="#animal">Animal</a><ul>
+<li><a class="reference external" href="#backcrosses-and-generations">Backcrosses and Generations</a></li>
+</ul>
+</li>
 <li><a class="reference external" href="#breeding-cages">Breeding Cages</a></li>
 <li><a class="reference external" href="#strains">Strains</a></li>
 </ul>
@@ -107,34 +124,36 @@ The result of this is that a query for a particular strain may then need to be f
 <li><a class="reference external" href="#measurements">Measurements</a></li>
 </ul>
 </li>
+<li><a class="reference external" href="#timed-matings-module">Timed Matings Module</a></li>
+<li><a class="reference external" href="#groups-module">Groups Module</a></li>
 </ul>
 </li>
 </ul>
 
-            <h4>Previous topic</h4>
-            <p class="topless"><a href="index.html"
-                                  title="previous chapter">Welcome to MouseDB&#8217;s documentation!</a></p>
-            <h4>Next topic</h4>
-            <p class="topless"><a href="installation.html"
-                                  title="next chapter">MouseDB Installation</a></p>
-            <h3>This Page</h3>
-            <ul class="this-page-menu">
-              <li><a href="_sources/concepts.txt"
-                     rel="nofollow">Show Source</a></li>
-            </ul>
-          <div id="searchbox" style="display: none">
-            <h3>Quick search</h3>
-              <form class="search" action="search.html" method="get">
-                <input type="text" name="q" size="18" />
-                <input type="submit" value="Go" />
-                <input type="hidden" name="check_keywords" value="yes" />
-                <input type="hidden" name="area" value="default" />
-              </form>
-              <p class="searchtip" style="font-size: 90%">
-              Enter search terms or a module, class or function name.
-              </p>
-          </div>
-          <script type="text/javascript">$('#searchbox').show(0);</script>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to MouseDB&#8217;s documentation!</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="installation.html"
+                        title="next chapter">MouseDB Installation</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/concepts.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>

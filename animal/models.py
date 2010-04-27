@@ -70,7 +70,7 @@ class Animal(models.Model):
     Weaned = models.DateField(blank = True, null=True)
     Death = models.DateField(blank = True, null=True)
     Cause_of_Death = models.CharField(max_length = 50, choices = CAUSE_OF_DEATH, blank=True)
-    Backcross = models.IntegerField(max_length = 5, null=True, blank=True)
+    Backcross = models.IntegerField(max_length = 5, null=True, blank=True, help_text="Leave blank for mixed background")
     Generation = models.IntegerField(max_length=5, null=True, blank=True)
     Breeding = models.ForeignKey('Breeding', blank=True, null=True)
     Father = models.ForeignKey('Animal', null=True, blank=True, related_name='father')
@@ -89,7 +89,7 @@ If a eartag is present then the string reads some_strain-Eartag #some_number. If
         else:
              return u'MOUSE'
     def get_absolute_url(self):
-        return '%i' % (self.id)
+        return '/mousedb/animal/%i' % (self.id)
     def save(self):
         if self.Death:
             self.Alive = False
@@ -107,7 +107,7 @@ class Breeding(models.Model):
     Strain = models.ForeignKey(Strain, help_text="The strain of the progeny")
     Cage = models.CommaSeparatedIntegerField(max_length=100, blank=True, null=True)
     CageID = models.ForeignKey('Cage', blank=True, null=True)
-    BreedingName = models.CharField(max_length=50, blank=True)
+    BreedingName = models.CharField(max_length=50, blank=True, verbose_name="Breeding Set Name")
     Start = models.DateField(blank=True, null=True)
     End = models.DateField(blank=True, null=True)
     Crosstype = models.CharField(max_length=10, choices = CROSS_TYPE, blank=True)
@@ -123,7 +123,7 @@ class Breeding(models.Model):
     def save(self):
         if self.End:
             self.Active = False
-            super(Breeding, self).save()
+        super(Breeding, self).save()
     class Meta:
         ordering = ['Cage']
 		
@@ -135,7 +135,5 @@ class Cage(models.Model):
     Barcode = models.IntegerField(primary_key=True)
     Rack = models.CharField(max_length = 15, blank = True)
     Rack_Position = models.CharField(max_length = 15, blank = True)
-
-
-
-
+    def __unicode__(self):
+        return u'%i'  % self.Barcode

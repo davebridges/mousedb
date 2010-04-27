@@ -18,14 +18,25 @@ div#footer {
 
 table { 
 	table-layout:fixed;
+	text-align: center;
+}
+
+tr {  
 }
 
 th { 
-}
+	padding-left: 5px;
+    padding-right: 5px;
+	background-color: #888888;
+	color: #ffffff;
+	border: 1px solid #ffffff;
+	}
 
 th#left { text-align: left;}
 
-td { 
+td { padding-left: 5px;
+    padding-right: 5px;
+	border: black solid 1px;
 }
 
 td#age { text-align: left;}
@@ -87,7 +98,13 @@ input  {
 select{
 }
 
-form {
+table.form {
 	border: 1px solid #404040;
 	background: #888888;
+}
+
+.errorlist {
+	background: #fef1ec;
+	color: #cd0a0a;
+	border: 2px solid #cd0a0a;
 }
