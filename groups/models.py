@@ -31,7 +31,7 @@ class License(models.Model):
     If the contents of this installation are being made available using some licencing criteria this can either be defined in the notes field, or in an external website."""
     license = models.CharField(max_length=100)
     website = models.URLField(verify_exists=True, blank=True, help_text="Website defining License information") 
-    notes = models.TextField(max_length=100, blank=True)
+    notes = models.TextField(max_length=1000, blank=True)
     def __unicode__(self):
         return u"%s" % self.license
 	
