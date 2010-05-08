@@ -41,7 +41,7 @@ CAUSE_OF_DEATH = (
 class Strain(models.Model):
     """A data model describing a mouse strain.  
 
-    This is separate from the background of a mouse.  For example a ob/ob mouse on a mixed or a black-6 background still have the same strain.  The background is defined in the animal and breeding cages.
+    This is separate from the background of a mouse.  For example a ob/ob mouse on a mixed or a black-6 background still have the same strain.  The background is defined in the animal and breeding cages.  Strain and Strain_slug are required.
     """
     Strain = models.CharField(max_length = 100)
     Strain_slug = models.SlugField(max_length = 20, help_text="Strain name with no spaces, for use in URI's")
@@ -55,7 +55,7 @@ class Strain(models.Model):
 class Animal(models.Model):
     """A data model describing an animal.
 
-    This data model describes a wide variety of parameters of an experimental animal.  This model is linked to the Strain and Cage models via 1:1 relationships.  If the parentage of a mouse is known, this can be identified (the breeding set may not be clear on this matter). Mice are automatically marked as not alive when a Death date is provided and the object is saved.
+    This data model describes a wide variety of parameters of an experimental animal.  This model is linked to the Strain and Cage models via 1:1 relationships.  If the parentage of a mouse is known, this can be identified (the breeding set may not be clear on this matter). Mice are automatically marked as not alive when a Death date is provided and the object is saved.  Strain, Background and Genotype are required field.
     """
     MouseID = models.IntegerField(max_length = 10, blank = True, null=True)
     Cage = models.IntegerField(max_length = 15, blank = True, null=True)
@@ -100,7 +100,7 @@ If a eartag is present then the string reads some_strain-Eartag #some_number. If
 class Breeding(models.Model):
     """This data model stores information about a particular breeding set
 
-    A breeding set may contain one ore more males and females and must be defined via the progeny strain.  For example, in the case of generating a new strain, the strain indicates the new strain not the parental strains.  If the breeding set is part of a timed mating experiment, then Timed_Mating must be selected.  Breeding cages are automatically inactivated upon saving when a End date is provided.
+    A breeding set may contain one ore more males and females and must be defined via the progeny strain.  For example, in the case of generating a new strain, the strain indicates the new strain not the parental strains.  If the breeding set is part of a timed mating experiment, then Timed_Mating must be selected.  Breeding cages are automatically inactivated upon saving when a End date is provided.  The only required field Strain.
     """
     Females = models.ManyToManyField(Animal, related_name='females', blank=True)
     Male = models.ManyToManyField(Animal, related_name='male', blank=True)
