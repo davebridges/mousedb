@@ -57,4 +57,14 @@ If you want to restrict access to these files, change the Allow from all directi
 
 Final Configuration and User Setup
 ----------------------------------
-1. Go to mousedb/admin/auth/users/ and create users, selecting usernames, full names, password (or have the user set the password) and then choose group permissions.
+Go to a command prompt, navigate to inside the mousedb directory and enter the following to get to a python prompt::
+
+  python manage.py shell
+  
+From the command prompt enter the following where **groupname** is the name of your research group::
+
+  from mousedb.groups.models import Group
+  group = Group(group="groupname")
+  group.save()
+  
+Go to mousedb/admin/auth/users/ and create users, selecting usernames, full names, password (or have the user set the password) and then choose group permissions.
