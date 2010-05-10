@@ -61,9 +61,9 @@ Final Configuration and User Setup
 
   python manage.py shell
   
-  >from mousedb.groups.models import Group
-  >group = Group(group=**groupname**)
-  >group.save()
+  from mousedb.groups.models import Group
+  group = Group(group=**groupname**)
+  group.save()
   
     
 2. Go to mousedb/admin/auth/users/ and create users, selecting usernames, full names, password (or have the user set the password) and then choose group permissions.
