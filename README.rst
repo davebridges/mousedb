@@ -69,7 +69,7 @@ Go to a command prompt, navigate to inside the mousedb directory and enter the f
 From the command prompt enter the following where **groupname** is the name of your research group::
 
    from mousedb.groups.models import Group
-   group = Group(group=**groupname**)
+  group = Group(group="groupname")
    group.save()
   
 Go to mousedb/admin/auth/users/ and create users, selecting usernames, full names, password (or have the user set the password) and then choose group permissions.
