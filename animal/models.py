@@ -95,7 +95,7 @@ If a eartag is present then the string reads some_strain-Eartag #some_number. If
             self.Alive = False
         super(Animal, self).save()
     class Meta:
-        ordering = ['MouseID']
+        ordering = ['Strain', 'MouseID']
 
 class Breeding(models.Model):
     """This data model stores information about a particular breeding set
