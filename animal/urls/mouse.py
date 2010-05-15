@@ -47,6 +47,7 @@ urlpatterns = patterns('',
 		'model': Animal, 
 		'login_required':True,
 		'post_delete_redirect':'/mousedb/mouse/',
+		'template_name':'confirm_delete.html'
 		}, name="animal-delete"),
 		)
 

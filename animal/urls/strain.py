@@ -34,6 +34,7 @@ urlpatterns = patterns('',
 		'model': Strain, 
 		'login_required':True,
 		'post_delete_redirect':'/mousedb/strain/',
+		'template_name':'confirm_delete.html'
 		}, name="strain-delete"),
     url(r'^(?P<strain>.*)/$', 'mousedb.animal.views.strain_detail', name="strain-detail"),
     url(r'^(?P<strain>.*)/all$', 'mousedb.animal.views.strain_detail_all', name="strain-detail-all"),

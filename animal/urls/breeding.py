@@ -44,6 +44,7 @@ urlpatterns = patterns('',
 		'model': Breeding, 
 		'login_required':True,
 		'post_delete_redirect':'/mousedb/breeding/',
+		'template_name':'confirm_delete.html'
 		}, name="breeding-delete"),
 	url(r'timed_mating/$', limited_object_list, {
 		'queryset': Breeding.objects.filter(Timed_Mating=True),
