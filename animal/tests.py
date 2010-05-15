@@ -26,6 +26,27 @@ class BreedingModelTests(TestCase):
             for obj in model.objects.all():
                 obj.delete()
     
+    def test_create_animal_minimal(self):
+        """This is a test for creating a new animal object, with only the minimum fields being entered"""
+        example_strain = Strain(Strain="Example Strain")
+        example_strain.save()
+        animal = Animal(Strain = example_strain, Genotype="-/-", Background="Mixed")
+        animal.save()
+        animal_id = animal.id
+        self.assertEquals(animal.__unicode__(), "Example Strain (%s)" % animal_id)
+
+    def test_unicode(self):
+        """This is a test for creating a new animal object, with only the minimum fields being entered.  It then tests that the correct unicode representation is being generated."""
+        example_strain = Strain(Strain="Example Strain")
+        example_strain.save()
+        animal = Animal(Strain = example_strain, Genotype="-/-", Background="Mixed")
+        animal.save()
+        animal_id = animal.id
+        self.assertEquals(animal.__unicode__(), "Example Strain (%s)" % animal_id)
+        animal.MouseID = 1234
+        animal.save()
+        self.assertEquals(animal.__unicode__(), "Example Strain-EarTag #1234")
+
     def test_create_breeding_minimal(self):
         """This is a test for creating a new breeding object, with only the minimum being entered."""
         example_strain = Strain(Strain="Example Strain")
@@ -47,3 +68,4 @@ class BreedingModelTests(TestCase):
         test_breeding.End = datetime.date.today()
         test_breeding.save()
         self.assertEquals(test_breeding.Active, False)
+
