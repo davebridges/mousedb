@@ -100,7 +100,7 @@ If a eartag is present then the string reads some_strain-Eartag #some_number. If
 class Breeding(models.Model):
     """This data model stores information about a particular breeding set
 
-    A breeding set may contain one ore more males and females and must be defined via the progeny strain.  For example, in the case of generating a new strain, the strain indicates the new strain not the parental strains.  If the breeding set is part of a timed mating experiment, then Timed_Mating must be selected.  Breeding cages are automatically inactivated upon saving when a End date is provided.  The only required field Strain.
+    A breeding set may contain one ore more males and females and must be defined via the progeny strain.  For example, in the case of generating a new strain, the strain indicates the new strain not the parental strains.  If the breeding set is part of a timed mating experiment, then Timed_Mating must be selected.  Breeding cages are automatically inactivated upon saving when a End date is provided.  The only required field is Strain.
     """
     Females = models.ManyToManyField(Animal, related_name='females', blank=True)
     Male = models.ManyToManyField(Animal, related_name='male', blank=True)
