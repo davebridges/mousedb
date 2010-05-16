@@ -12,7 +12,7 @@
 
 
 \title{MouseDB Documentation}
-\date{April 26, 2010}
+\date{May 16, 2010}
 \release{0.1}
 \author{Dave Bridges, Ph.D.}
 \newcommand{\sphinxlogo}{}
@@ -131,7 +131,7 @@ For this software, optional tracking of backcrosses and generations is available
 
 \subsection{Breeding Cages}
 
-A breeding cage is defined as a set of one or more male and one or more female mice.  Because of this, it is not always clear who the precise parentage of an animal is.  If the parentage is known, then the Mother and Father fields can be set for a particular animal.
+A breeding cage is defined as a set of one or more male and one or more female mice.  Because of this, it is not always clear who the precise parentage of an animal is.  If the parentage is known, then the Mother and Father fields can be set for a particular animal.  In the case of Active, if an End field is specified, then the Active field is set to False.  In the case of Cage, if a Cage is provided, and animals are specified under Male or Females for a Breeding object, then the Cage field for those animals is set to that of the breeding cage.  The same is true for both Rack and Rack Position.
 
 
 \subsection{Strains}
@@ -269,11 +269,22 @@ If you want to restrict access to these files, change the Allow from all directi
 
 
 \section{Final Configuration and User Setup}
-\begin{enumerate}
-\item {} 
-Go to mousedb/admin/auth/users/ and create users, selecting usernames, full names, password (or have the user set the password) and then choose group permissions.
 
-\end{enumerate}
+Go to a command prompt, navigate to inside the mousedb directory and enter the following to get to a python prompt:
+
+\begin{Verbatim}[commandchars=@\[\]]
+python manage.py shell
+\end{Verbatim}
+
+From the command prompt enter the following where \textbf{groupname} is the name of your research group:
+
+\begin{Verbatim}[commandchars=@\[\]]
+@PYG[k+kn][from] @PYG[n+nn][mousedb.groups.models] @PYG[k+kn][import] @PYG[n][Group]
+@PYG[n][group] @PYG[o][=] @PYG[n][Group]@PYG[p][(]@PYG[n][group]@PYG[o][=]@PYG[l+s]["]@PYG[l+s][groupname]@PYG[l+s]["]@PYG[p][)]
+@PYG[n][group]@PYG[o][.]@PYG[n][save]@PYG[p][(]@PYG[p][)]
+\end{Verbatim}
+
+Go to mousedb/admin/auth/users/ and create users, selecting usernames, full names, password (or have the user set the password) and then choose group permissions.
 
 \resetcurrentobjects
 \hypertarget{--doc-usage}{}
@@ -964,7 +975,10 @@ alias of \code{Treatment}
 \modulesynopsis{}
 
 \subsection{Administrative Site Configuration}
-
+\index{data.admin (module)}
+\hypertarget{module-data.admin}{}
+\declaremodule[data.admin]{}{data.admin}
+\modulesynopsis{}
 
 \section{Animals Package}
 \index{animal (module)}
@@ -1012,7 +1026,7 @@ Bases: \code{django.db.models.base.Model}
 
 A data model describing a mouse strain.
 
-This is separate from the background of a mouse.  For example a ob/ob mouse on a mixed or a black-6 background still have the same strain.  The background is defined in the animal and breeding cages.
+This is separate from the background of a mouse.  For example a ob/ob mouse on a mixed or a black-6 background still have the same strain.  The background is defined in the animal and breeding cages.  Strain and Strain\_slug are required.
 \end{classdesc}
 \index{Animal (class in animal.models)}
 
@@ -1021,7 +1035,7 @@ Bases: \code{django.db.models.base.Model}
 
 A data model describing an animal.
 
-This data model describes a wide variety of parameters of an experimental animal.  This model is linked to the Strain and Cage models via 1:1 relationships.  If the parentage of a mouse is known, this can be identified (the breeding set may not be clear on this matter). Mice are automatically marked as not alive when a Death date is provided and the object is saved.
+This data model describes a wide variety of parameters of an experimental animal.  This model is linked to the Strain and Cage models via 1:1 relationships.  If the parentage of a mouse is known, this can be identified (the breeding set may not be clear on this matter). Mice are automatically marked as not alive when a Death date is provided and the object is saved.  Strain, Background and Genotype are required field.  By default, querysets are ordered first by strain then by MouseID.
 \end{classdesc}
 \index{Breeding (class in animal.models)}
 
@@ -1030,7 +1044,7 @@ Bases: \code{django.db.models.base.Model}
 
 This data model stores information about a particular breeding set
 
-A breeding set may contain one ore more males and females and must be defined via the progeny strain.  For example, in the case of generating a new strain, the strain indicates the new strain not the parental strains.  If the breeding set is part of a timed mating experiment, then Timed\_Mating must be selected.  Breeding cages are automatically inactivated upon saving when a End date is provided.
+A breeding set may contain one ore more males and females and must be defined via the progeny strain.  For example, in the case of generating a new strain, the strain indicates the new strain not the parental strains.  A breeding cage is defined as one male with one or more females.  If the breeding set is part of a timed mating experiment, then Timed\_Mating must be selected.  Breeding cages are automatically inactivated upon saving when a End date is provided.  The only required field is Strain.  By default, querysets are ordered by Strain, then Start.
 \end{classdesc}
 \index{Cage (class in animal.models)}
 
@@ -1274,15 +1288,154 @@ If the mother gives birth then this cage is implicitly set as a normal breeding 
 
 
 \subsection{Models}
+\index{timed\_mating.models (module)}
+\hypertarget{module-timed\_mating.models}{}
+\declaremodule[timedmating.models]{}{timed\_mating.models}
+\modulesynopsis{}
+This defines the data model for the timed\_mating app.
+
+Currently the only data model is for PlugEvents.
+\index{PlugEvents (class in timed\_mating.models)}
+
+\hypertarget{timed\_mating.models.PlugEvents}{}\begin{classdesc}{PlugEvents}{*args, **kwargs}
+Bases: \code{django.db.models.base.Model}
+
+This defines the model for PlugEvents.
+
+A PlugEvent requires a date.  All other fields are optional.
+Upon observation of a plug event, the PlugDate, Breeding Cage, Femalem, Male, Researcher and Notes can be set.
+Upon sacrifice of the mother, then genotyped alive and dead embryos can be entered, along with the SacrificeDate, Researcher and Notes.
+\index{Breeding (timed\_mating.models.PlugEvents attribute)}
+
+\hypertarget{timed\_mating.models.PlugEvents.Breeding}{}\begin{memberdesc}{Breeding}\end{memberdesc}
+\index{PlugEvents.DoesNotExist}
+
+\hypertarget{timed\_mating.models.PlugEvents.DoesNotExist}{}\begin{excdesc}{DoesNotExist}
+Bases: \code{django.core.exceptions.ObjectDoesNotExist}
+\end{excdesc}
+\index{PlugEvents.MultipleObjectsReturned}
+
+\hypertarget{timed\_mating.models.PlugEvents.MultipleObjectsReturned}{}\begin{excdesc}{MultipleObjectsReturned}
+Bases: \code{django.core.exceptions.MultipleObjectsReturned}
+\end{excdesc}
+\index{PlugFemale (timed\_mating.models.PlugEvents attribute)}
+
+\hypertarget{timed\_mating.models.PlugEvents.PlugFemale}{}\begin{memberdesc}[PlugEvents]{PlugFemale}\end{memberdesc}
+\index{PlugMale (timed\_mating.models.PlugEvents attribute)}
+
+\hypertarget{timed\_mating.models.PlugEvents.PlugMale}{}\begin{memberdesc}[PlugEvents]{PlugMale}\end{memberdesc}
+\index{Researcher (timed\_mating.models.PlugEvents attribute)}
+
+\hypertarget{timed\_mating.models.PlugEvents.Researcher}{}\begin{memberdesc}[PlugEvents]{Researcher}\end{memberdesc}
+\index{get\_absolute\_url() (timed\_mating.models.PlugEvents method)}
+
+\hypertarget{timed\_mating.models.PlugEvents.get\_absolute\_url}{}\begin{methoddesc}[PlugEvents]{get\_absolute\_url}{*moreargs, **morekwargs}\end{methoddesc}
+\index{get\_next\_by\_PlugDate() (timed\_mating.models.PlugEvents method)}
+
+\hypertarget{timed\_mating.models.PlugEvents.get\_next\_by\_PlugDate}{}\begin{methoddesc}[PlugEvents]{get\_next\_by\_PlugDate}{*moreargs, **morekwargs}\end{methoddesc}
+\index{get\_previous\_by\_PlugDate() (timed\_mating.models.PlugEvents method)}
+
+\hypertarget{timed\_mating.models.PlugEvents.get\_previous\_by\_PlugDate}{}\begin{methoddesc}[PlugEvents]{get\_previous\_by\_PlugDate}{*moreargs, **morekwargs}\end{methoddesc}
+\index{save() (timed\_mating.models.PlugEvents method)}
+
+\hypertarget{timed\_mating.models.PlugEvents.save}{}\begin{methoddesc}[PlugEvents]{save}{}
+Over-rides the default save function for PlugEvents.
+
+If a sacrifice date is set for an object in this model, then Active is set to False.
+\end{methoddesc}
+\end{classdesc}
+\index{PlugEvents (class in timed\_mating.models)}
+
+\begin{classdesc}{PlugEvents}{*args, **kwargs}
+Bases: \code{django.db.models.base.Model}
+
+This defines the model for PlugEvents.
+
+A PlugEvent requires a date.  All other fields are optional.
+Upon observation of a plug event, the PlugDate, Breeding Cage, Femalem, Male, Researcher and Notes can be set.
+Upon sacrifice of the mother, then genotyped alive and dead embryos can be entered, along with the SacrificeDate, Researcher and Notes.
+\end{classdesc}
 
 
 \subsection{Forms}
+\index{timed\_mating.forms (module)}
+\hypertarget{module-timed\_mating.forms}{}
+\declaremodule[timedmating.forms]{}{timed\_mating.forms}
+\modulesynopsis{}
+This package describes forms used by the Timed Mating app.
+\index{BreedingPlugForm (class in timed\_mating.forms)}
+
+\hypertarget{timed\_mating.forms.BreedingPlugForm}{}\begin{classdesc}{BreedingPlugForm}{data=None, files=None, auto\_id='id\_\%s', prefix=None, initial=None, error\_class=\textless{}class 'django.forms.util.ErrorList'\textgreater{}, label\_suffix=':', empty\_permitted=False, instance=None}
+Bases: \code{django.forms.models.ModelForm}
+
+This form is used to enter Plug Events from a specific breeding cage.
+\index{BreedingPlugForm.Meta (class in timed\_mating.forms)}
+
+\hypertarget{timed\_mating.forms.BreedingPlugForm.Meta}{}\begin{classdesc}{Meta}{}~\index{model (timed\_mating.forms.BreedingPlugForm.Meta attribute)}
+
+\hypertarget{timed\_mating.forms.BreedingPlugForm.Meta.model}{}\begin{memberdesc}{model}
+alias of \code{PlugEvents}
+\end{memberdesc}
+\end{classdesc}
+\index{media (timed\_mating.forms.BreedingPlugForm attribute)}
+
+\hypertarget{timed\_mating.forms.BreedingPlugForm.media}{}\begin{memberdesc}[BreedingPlugForm]{media}\end{memberdesc}
+\end{classdesc}
 
 
 \subsection{Views and URLs}
+\index{timed\_mating.views (module)}
+\hypertarget{module-timed\_mating.views}{}
+\declaremodule[timedmating.views]{}{timed\_mating.views}
+\modulesynopsis{}
+This package defines custom views for the timed\_mating application.
+
+Currently all views are generic CRUD views except for the view in which a plug event is defined from a breeding cage.
+\index{breeding\_plugevent (in module timed\_mating.views)}
+
+\hypertarget{timed\_mating.views.breeding\_plugevent}{}\begin{memberdesc}[timed\_mating.views]{breeding\_plugevent}
+This view defines a form for adding new plug events from a breeding cage.
+
+This form requires a breeding\_id from a breeding set and restricts the PlugFemale and PlugMale to animals that are defined in that breeding cage.
+\end{memberdesc}
+\index{timed\_mating.urls (module)}
+\hypertarget{module-timed\_mating.urls}{}
+\declaremodule[timedmating.urls]{}{timed\_mating.urls}
+\modulesynopsis{}\index{change\_plugevents (in module timed\_mating.urls)}
+
+\hypertarget{timed\_mating.urls.change\_plugevents}{}\begin{memberdesc}[timed\_mating.urls]{change\_plugevents}\end{memberdesc}
+\index{create\_plugevents (in module timed\_mating.urls)}
+
+\hypertarget{timed\_mating.urls.create\_plugevents}{}\begin{memberdesc}[timed\_mating.urls]{create\_plugevents}\end{memberdesc}
+\index{delete\_plugevents (in module timed\_mating.urls)}
+
+\hypertarget{timed\_mating.urls.delete\_plugevents}{}\begin{memberdesc}[timed\_mating.urls]{delete\_plugevents}\end{memberdesc}
+\index{limited\_object\_detail (in module timed\_mating.urls)}
+
+\hypertarget{timed\_mating.urls.limited\_object\_detail}{}\begin{memberdesc}[timed\_mating.urls]{limited\_object\_detail}\end{memberdesc}
+\index{limited\_object\_list (in module timed\_mating.urls)}
+
+\hypertarget{timed\_mating.urls.limited\_object\_list}{}\begin{memberdesc}[timed\_mating.urls]{limited\_object\_list}\end{memberdesc}
 
 
 \subsection{Administrative Site Configuration}
+\index{timed\_mating.admin (module)}
+\hypertarget{module-timed\_mating.admin}{}
+\declaremodule[timedmating.admin]{}{timed\_mating.admin}
+\modulesynopsis{}
+Settings to control the admin interface for the timed\_mating app.
+
+This file defines a PlugEventsAdmin object to enter parameters about individual plug events/
+\index{PlugEventsAdmin (class in timed\_mating.admin)}
+
+\hypertarget{timed\_mating.admin.PlugEventsAdmin}{}\begin{classdesc}{PlugEventsAdmin}{model, admin\_site}
+Bases: \code{django.contrib.admin.options.ModelAdmin}
+
+This class defines the admin interface for the PlugEvents model.
+\index{media (timed\_mating.admin.PlugEventsAdmin attribute)}
+
+\hypertarget{timed\_mating.admin.PlugEventsAdmin.media}{}\begin{memberdesc}{media}\end{memberdesc}
+\end{classdesc}
 
 
 \section{Groups Package}
@@ -1302,6 +1455,55 @@ Because every page on this site identifies both the Group and data restrictions,
 \modulesynopsis{}\index{Group (class in groups.models)}
 
 \hypertarget{groups.models.Group}{}\begin{classdesc}{Group}{*args, **kwargs}
+Bases: \code{django.db.models.base.Model}
+
+This defines the data structure for the Group model.
+
+The only required field is group.
+All other fields (group\_slug, group\_url, license, contact\_title, contact\_first, contact\_last and contact\_email) are optional.
+\index{Group.DoesNotExist}
+
+\hypertarget{groups.models.Group.DoesNotExist}{}\begin{excdesc}{DoesNotExist}
+Bases: \code{django.core.exceptions.ObjectDoesNotExist}
+\end{excdesc}
+\index{Group.MultipleObjectsReturned}
+
+\hypertarget{groups.models.Group.MultipleObjectsReturned}{}\begin{excdesc}{MultipleObjectsReturned}
+Bases: \code{django.core.exceptions.MultipleObjectsReturned}
+\end{excdesc}
+\index{get\_contact\_title\_display() (groups.models.Group method)}
+
+\hypertarget{groups.models.Group.get\_contact\_title\_display}{}\begin{methoddesc}[Group]{get\_contact\_title\_display}{*moreargs, **morekwargs}\end{methoddesc}
+\index{license (groups.models.Group attribute)}
+
+\hypertarget{groups.models.Group.license}{}\begin{memberdesc}[Group]{license}\end{memberdesc}
+\end{classdesc}
+\index{License (class in groups.models)}
+
+\hypertarget{groups.models.License}{}\begin{classdesc}{License}{*args, **kwargs}
+Bases: \code{django.db.models.base.Model}
+
+This defines the data structure for the License model.
+
+The only required field is license.
+If the contents of this installation are being made available using some licencing criteria this can either be defined in the notes field, or in an external website.
+\index{License.DoesNotExist}
+
+\hypertarget{groups.models.License.DoesNotExist}{}\begin{excdesc}{DoesNotExist}
+Bases: \code{django.core.exceptions.ObjectDoesNotExist}
+\end{excdesc}
+\index{License.MultipleObjectsReturned}
+
+\hypertarget{groups.models.License.MultipleObjectsReturned}{}\begin{excdesc}{MultipleObjectsReturned}
+Bases: \code{django.core.exceptions.MultipleObjectsReturned}
+\end{excdesc}
+\index{group\_set (groups.models.License attribute)}
+
+\hypertarget{groups.models.License.group\_set}{}\begin{memberdesc}[License]{group\_set}\end{memberdesc}
+\end{classdesc}
+\index{Group (class in groups.models)}
+
+\begin{classdesc}{Group}{*args, **kwargs}
 Bases: \code{django.db.models.base.Model}
 
 This defines the data structure for the Group model.

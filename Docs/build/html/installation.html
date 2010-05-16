@@ -117,9 +117,16 @@ Alias /media /usr/src/mousedb/media
 </div>
 <div class="section" id="final-configuration-and-user-setup">
 <h2>Final Configuration and User Setup<a class="headerlink" href="#final-configuration-and-user-setup" title="Permalink to this headline">¶</a></h2>
-<ol class="arabic simple">
-<li>Go to mousedb/admin/auth/users/ and create users, selecting usernames, full names, password (or have the user set the password) and then choose group permissions.</li>
-</ol>
+<p>Go to a command prompt, navigate to inside the mousedb directory and enter the following to get to a python prompt:</p>
+<div class="highlight-python"><pre>python manage.py shell</pre>
+</div>
+<p>From the command prompt enter the following where <strong>groupname</strong> is the name of your research group:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">mousedb.groups.models</span> <span class="kn">import</span> <span class="n">Group</span>
+<span class="n">group</span> <span class="o">=</span> <span class="n">Group</span><span class="p">(</span><span class="n">group</span><span class="o">=</span><span class="s">&quot;groupname&quot;</span><span class="p">)</span>
+<span class="n">group</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Go to mousedb/admin/auth/users/ and create users, selecting usernames, full names, password (or have the user set the password) and then choose group permissions.</p>
 </div>
 </div>
 
