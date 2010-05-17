@@ -76,5 +76,5 @@
 {% include "plug_table.html" %}
 {% endif %}
 {% endwith %}
-<p>To change this breeding cage click <a href="{% url breeding-edit breeding.id">here</a>.  To delete (not deactivate but to completely erase all data) this breeding cage click <a href="/mousedb/breeding/{{breeding.id}}/delete">here</a></p>
+<p>To change this breeding cage click <a href="{% url breeding-edit breeding.id %}">here</a>.  To delete (not deactivate but to completely erase all data) this breeding cage click <a href="/mousedb/breeding/{{breeding.id}}/delete">here</a></p>
 {% endblock content %}
