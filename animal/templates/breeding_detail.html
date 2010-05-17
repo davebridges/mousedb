@@ -34,6 +34,16 @@
  </tr>
  </tdata>
 </table>
+<div id="breeding-parents">
+<h2>Breeding Parents</h2>
+<table>
+  <tr>
+   <th>Male</th>{% for male in breeding.Male.all %}<td><a href="{% url animal-detail male.id %}">{{ male }}</a></td>{% endfor %}</td>
+  </tr>
+   <th>Females</th>{% for female in breeding.Females.all %}<td><a href="{% url animal-detail female.id %}">{{ female }}</a></td>{% endfor %}</td>
+  </tr>
+ </table>
+</div>
 <p>To enter information about timed matings click <a href="/mousedb/admin/timed_mating/timedmating/" title="timed matings entry page">here</a>.  For instructions please go <a href="http://code.google.com/p/mousedb/wiki/TimedMatings" title = "Timed matings Wiki page">here</a></p>
 <ul>
 <li><a href="{% url breeding-pups breeding.id %}">Add/Wean Pups</a></li>
