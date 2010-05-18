@@ -709,7 +709,11 @@ The result of this is that a query for a particular strain may then need to be f
 <em class="property">class </em><tt class="descclassname">animal.models.</tt><tt class="descname">Animal</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#animal.models.Animal" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.db.models.base.Model</span></tt></p>
 <p>A data model describing an animal.</p>
+<<<<<<< HEAD
 <p>This data model describes a wide variety of parameters of an experimental animal.  This model is linked to the Strain and Cage models via 1:1 relationships.  If the parentage of a mouse is known, this can be identified (the breeding set may not be clear on this matter). Mice are automatically marked as not alive when a Death date is provided and the object is saved.  Strain, Background and Genotype are required field.</p>
+=======
+<p>This data model describes a wide variety of parameters of an experimental animal.  This model is linked to the Strain and Cage models via 1:1 relationships.  If the parentage of a mouse is known, this can be identified (the breeding set may not be clear on this matter). Mice are automatically marked as not alive when a Death date is provided and the object is saved.  Strain, Background and Genotype are required field.  By default, querysets are ordered first by strain then by MouseID.</p>
+>>>>>>> breeding-autoupdates
 </dd></dl>
 
 <dl class="class">
@@ -717,7 +721,11 @@ The result of this is that a query for a particular strain may then need to be f
 <em class="property">class </em><tt class="descclassname">animal.models.</tt><tt class="descname">Breeding</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#animal.models.Breeding" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref docutils literal"><span class="pre">django.db.models.base.Model</span></tt></p>
 <p>This data model stores information about a particular breeding set</p>
+<<<<<<< HEAD
 <p>A breeding set may contain one ore more males and females and must be defined via the progeny strain.  For example, in the case of generating a new strain, the strain indicates the new strain not the parental strains.  If the breeding set is part of a timed mating experiment, then Timed_Mating must be selected.  Breeding cages are automatically inactivated upon saving when a End date is provided.  The only required field is Strain.</p>
+=======
+<p>A breeding set may contain one ore more males and females and must be defined via the progeny strain.  For example, in the case of generating a new strain, the strain indicates the new strain not the parental strains.  A breeding cage is defined as one male with one or more females.  If the breeding set is part of a timed mating experiment, then Timed_Mating must be selected.  Breeding cages are automatically inactivated upon saving when a End date is provided.  The only required field is Strain.  By default, querysets are ordered by Strain, then Start.</p>
+>>>>>>> breeding-autoupdates
 </dd></dl>
 
 <dl class="class">
@@ -1062,13 +1070,20 @@ Upon sacrifice of the mother, then genotyped alive and dead embryos can be enter
 <h3>Views and URLs<a class="headerlink" href="#module-timed_mating.urls" title="Permalink to this headline">¶</a></h3>
 <p>This package defines custom views for the timed_mating application.</p>
 <p>Currently all views are generic CRUD views except for the view in which a plug event is defined from a breeding cage.</p>
+<<<<<<< HEAD
 <dl class="function">
 <dt id="timed_mating.views.breeding_plugevent">
 <tt class="descclassname">timed_mating.views.</tt><tt class="descname">breeding_plugevent</tt><big>(</big><em>request</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#timed_mating.views.breeding_plugevent" title="Permalink to this definition">¶</a></dt>
+=======
+<dl class="attribute">
+<dt id="timed_mating.views.breeding_plugevent">
+<tt class="descclassname">timed_mating.views.</tt><tt class="descname">breeding_plugevent</tt><a class="headerlink" href="#timed_mating.views.breeding_plugevent" title="Permalink to this definition">¶</a></dt>
+>>>>>>> breeding-autoupdates
 <dd><p>This view defines a form for adding new plug events from a breeding cage.</p>
 <p>This form requires a breeding_id from a breeding set and restricts the PlugFemale and PlugMale to animals that are defined in that breeding cage.</p>
 </dd></dl>
 
+<<<<<<< HEAD
 <dl class="function">
 <dt id="timed_mating.urls.change_plugevents">
 <tt class="descclassname">timed_mating.urls.</tt><tt class="descname">change_plugevents</tt><big>(</big><em>request</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#timed_mating.urls.change_plugevents" title="Permalink to this definition">¶</a></dt>
@@ -1092,6 +1107,31 @@ Upon sacrifice of the mother, then genotyped alive and dead embryos can be enter
 <dl class="function">
 <dt id="timed_mating.urls.limited_object_list">
 <tt class="descclassname">timed_mating.urls.</tt><tt class="descname">limited_object_list</tt><big>(</big><em>request</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#timed_mating.urls.limited_object_list" title="Permalink to this definition">¶</a></dt>
+=======
+<dl class="attribute">
+<dt id="timed_mating.urls.change_plugevents">
+<tt class="descclassname">timed_mating.urls.</tt><tt class="descname">change_plugevents</tt><a class="headerlink" href="#timed_mating.urls.change_plugevents" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="timed_mating.urls.create_plugevents">
+<tt class="descclassname">timed_mating.urls.</tt><tt class="descname">create_plugevents</tt><a class="headerlink" href="#timed_mating.urls.create_plugevents" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="timed_mating.urls.delete_plugevents">
+<tt class="descclassname">timed_mating.urls.</tt><tt class="descname">delete_plugevents</tt><a class="headerlink" href="#timed_mating.urls.delete_plugevents" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="timed_mating.urls.limited_object_detail">
+<tt class="descclassname">timed_mating.urls.</tt><tt class="descname">limited_object_detail</tt><a class="headerlink" href="#timed_mating.urls.limited_object_detail" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="timed_mating.urls.limited_object_list">
+<tt class="descclassname">timed_mating.urls.</tt><tt class="descname">limited_object_list</tt><a class="headerlink" href="#timed_mating.urls.limited_object_list" title="Permalink to this definition">¶</a></dt>
+>>>>>>> breeding-autoupdates
 <dd></dd></dl>
 
 </div>

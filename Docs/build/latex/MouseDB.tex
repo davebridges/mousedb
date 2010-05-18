@@ -12,7 +12,11 @@
 
 
 \title{MouseDB Documentation}
+<<<<<<< HEAD
 \date{May 17, 2010}
+=======
+\date{May 16, 2010}
+>>>>>>> breeding-autoupdates
 \release{0.1}
 \author{Dave Bridges, Ph.D.}
 \newcommand{\sphinxlogo}{}
@@ -131,7 +135,7 @@ For this software, optional tracking of backcrosses and generations is available
 
 \subsection{Breeding Cages}
 
-A breeding cage is defined as a set of one or more male and one or more female mice.  Because of this, it is not always clear who the precise parentage of an animal is.  If the parentage is known, then the Mother and Father fields can be set for a particular animal.
+A breeding cage is defined as a set of one or more male and one or more female mice.  Because of this, it is not always clear who the precise parentage of an animal is.  If the parentage is known, then the Mother and Father fields can be set for a particular animal.  In the case of Active, if an End field is specified, then the Active field is set to False.  In the case of Cage, if a Cage is provided, and animals are specified under Male or Females for a Breeding object, then the Cage field for those animals is set to that of the breeding cage.  The same is true for both Rack and Rack Position.
 
 
 \subsection{Strains}
@@ -1035,7 +1039,11 @@ Bases: \code{django.db.models.base.Model}
 
 A data model describing an animal.
 
+<<<<<<< HEAD
 This data model describes a wide variety of parameters of an experimental animal.  This model is linked to the Strain and Cage models via 1:1 relationships.  If the parentage of a mouse is known, this can be identified (the breeding set may not be clear on this matter). Mice are automatically marked as not alive when a Death date is provided and the object is saved.  Strain, Background and Genotype are required field.
+=======
+This data model describes a wide variety of parameters of an experimental animal.  This model is linked to the Strain and Cage models via 1:1 relationships.  If the parentage of a mouse is known, this can be identified (the breeding set may not be clear on this matter). Mice are automatically marked as not alive when a Death date is provided and the object is saved.  Strain, Background and Genotype are required field.  By default, querysets are ordered first by strain then by MouseID.
+>>>>>>> breeding-autoupdates
 \end{classdesc}
 \index{Breeding (class in animal.models)}
 
@@ -1044,7 +1052,11 @@ Bases: \code{django.db.models.base.Model}
 
 This data model stores information about a particular breeding set
 
+<<<<<<< HEAD
 A breeding set may contain one ore more males and females and must be defined via the progeny strain.  For example, in the case of generating a new strain, the strain indicates the new strain not the parental strains.  If the breeding set is part of a timed mating experiment, then Timed\_Mating must be selected.  Breeding cages are automatically inactivated upon saving when a End date is provided.  The only required field is Strain.
+=======
+A breeding set may contain one ore more males and females and must be defined via the progeny strain.  For example, in the case of generating a new strain, the strain indicates the new strain not the parental strains.  A breeding cage is defined as one male with one or more females.  If the breeding set is part of a timed mating experiment, then Timed\_Mating must be selected.  Breeding cages are automatically inactivated upon saving when a End date is provided.  The only required field is Strain.  By default, querysets are ordered by Strain, then Start.
+>>>>>>> breeding-autoupdates
 \end{classdesc}
 \index{Cage (class in animal.models)}
 
@@ -1394,6 +1406,7 @@ alias of \code{PlugEvents}
 This package defines custom views for the timed\_mating application.
 
 Currently all views are generic CRUD views except for the view in which a plug event is defined from a breeding cage.
+<<<<<<< HEAD
 \index{breeding\_plugevent() (in module timed\_mating.views)}
 
 \hypertarget{timed\_mating.views.breeding\_plugevent}{}\begin{funcdesc}{breeding\_plugevent}{request, *args, **kwargs}
@@ -1419,6 +1432,33 @@ This form requires a breeding\_id from a breeding set and restricts the PlugFema
 \index{limited\_object\_list() (in module timed\_mating.urls)}
 
 \hypertarget{timed\_mating.urls.limited\_object\_list}{}\begin{funcdesc}{limited\_object\_list}{request, *args, **kwargs}\end{funcdesc}
+=======
+\index{breeding\_plugevent (in module timed\_mating.views)}
+
+\hypertarget{timed\_mating.views.breeding\_plugevent}{}\begin{memberdesc}[timed\_mating.views]{breeding\_plugevent}
+This view defines a form for adding new plug events from a breeding cage.
+
+This form requires a breeding\_id from a breeding set and restricts the PlugFemale and PlugMale to animals that are defined in that breeding cage.
+\end{memberdesc}
+\index{timed\_mating.urls (module)}
+\hypertarget{module-timed\_mating.urls}{}
+\declaremodule[timedmating.urls]{}{timed\_mating.urls}
+\modulesynopsis{}\index{change\_plugevents (in module timed\_mating.urls)}
+
+\hypertarget{timed\_mating.urls.change\_plugevents}{}\begin{memberdesc}[timed\_mating.urls]{change\_plugevents}\end{memberdesc}
+\index{create\_plugevents (in module timed\_mating.urls)}
+
+\hypertarget{timed\_mating.urls.create\_plugevents}{}\begin{memberdesc}[timed\_mating.urls]{create\_plugevents}\end{memberdesc}
+\index{delete\_plugevents (in module timed\_mating.urls)}
+
+\hypertarget{timed\_mating.urls.delete\_plugevents}{}\begin{memberdesc}[timed\_mating.urls]{delete\_plugevents}\end{memberdesc}
+\index{limited\_object\_detail (in module timed\_mating.urls)}
+
+\hypertarget{timed\_mating.urls.limited\_object\_detail}{}\begin{memberdesc}[timed\_mating.urls]{limited\_object\_detail}\end{memberdesc}
+\index{limited\_object\_list (in module timed\_mating.urls)}
+
+\hypertarget{timed\_mating.urls.limited\_object\_list}{}\begin{memberdesc}[timed\_mating.urls]{limited\_object\_list}\end{memberdesc}
+>>>>>>> breeding-autoupdates
 
 
 \subsection{Administrative Site Configuration}

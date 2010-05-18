@@ -22,7 +22,11 @@
   \bigletter G
   \item {\texttt  {groups}}, \hyperpage{24}
   \item {\texttt  {groups.admin}}, \hyperpage{25}
+<<<<<<< HEAD
   \item {\texttt  {groups.models}}, \hyperpage{24}
+=======
+  \item {\texttt  {groups.models}}, \hyperpage{25}
+>>>>>>> breeding-autoupdates
   \item {\texttt  {groups.views}}, \hyperpage{25}
 
   \indexspace

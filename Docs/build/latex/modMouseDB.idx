@@ -17,6 +17,10 @@
 \indexentry {timed\_mating.urls@{\texttt  {timed\_mating.urls}}|hyperpage}{24}
 \indexentry {timed\_mating.admin@{\texttt  {timed\_mating.admin}}|hyperpage}{24}
 \indexentry {groups@{\texttt  {groups}}|hyperpage}{24}
+<<<<<<< HEAD
 \indexentry {groups.models@{\texttt  {groups.models}}|hyperpage}{24}
+=======
+\indexentry {groups.models@{\texttt  {groups.models}}|hyperpage}{25}
+>>>>>>> breeding-autoupdates
 \indexentry {groups.views@{\texttt  {groups.views}}|hyperpage}{25}
 \indexentry {groups.admin@{\texttt  {groups.admin}}|hyperpage}{25}

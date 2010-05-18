@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2010.5.14)  17 MAY 2010 23:26
+=======
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2010.5.14)  16 MAY 2010 11:13
+>>>>>>> breeding-autoupdates
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -750,8 +754,13 @@ Package ifluatex Info: LuaTeX not detected.
 )
 (/usr/share/texmf-texlive/tex/generic/oberdiek/ltxcmds.sty
 Package: ltxcmds 2009/08/05 v1.0 Some LaTeX kernel commands for general use (HO
+<<<<<<< HEAD
 )
 )
+=======
+)
+)
+>>>>>>> breeding-autoupdates
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
@@ -980,11 +989,16 @@ ix=':',
  []
 
 [17] [18] [19] [20] [21] [22]
+<<<<<<< HEAD
 Underfull \hbox (badness 10000) in paragraph at lines 1371--1371
+=======
+Underfull \hbox (badness 10000) in paragraph at lines 1368--1368
+>>>>>>> breeding-autoupdates
 []\T1/ptm/m/it/10 data=None, files=None, auto_id='id_%s', pre-fix=None, ini-tia
 l=None,
  []
 
+<<<<<<< HEAD
 
 Underfull \hbox (badness 10000) in paragraph at lines 1371--1371
 \T1/ptm/m/it/10 er-ror_class=<class 'django.forms.util.ErrorList'>, la-bel_suff
@@ -992,14 +1006,32 @@ ix=':',
  []
 
 [23] [24] [25] [26
+=======
+>>>>>>> breeding-autoupdates
 
-]
+Underfull \hbox (badness 10000) in paragraph at lines 1368--1368
+\T1/ptm/m/it/10 er-ror_class=<class 'django.forms.util.ErrorList'>, la-bel_suff
+ix=':',
+ []
+
+[23] [24] [25] [26]
 Chapter 7.
+<<<<<<< HEAD
 (./modMouseDB.ind [27] [28
 
 ] [29
+=======
+(./modMouseDB.ind [27
 
+] [28
+>>>>>>> breeding-autoupdates
 
+] [29
+
+<<<<<<< HEAD
+=======
+
+>>>>>>> breeding-autoupdates
 ]) (./MouseDB.ind [30
 
 
@@ -1061,19 +1093,32 @@ Underfull \hbox (badness 10000) in paragraph at lines 134--135
  []
 
 
+<<<<<<< HEAD
 Underfull \hbox (badness 10000) in paragraph at lines 157--158
+=======
+Underfull \hbox (badness 10000) in paragraph at lines 156--157
+>>>>>>> breeding-autoupdates
 []\T1/ptm/m/n/10 media (timed_mating.forms.BreedingPlugForm at-
  []
 
 
+<<<<<<< HEAD
 Underfull \hbox (badness 10000) in paragraph at lines 163--164
+=======
+Underfull \hbox (badness 10000) in paragraph at lines 162--163
+>>>>>>> breeding-autoupdates
 []\T1/ptm/m/n/10 model (data.forms.StudyExperimentForm.Meta at-
  []
 
 [32] [33]) (./MouseDB.aux) ) 
 Here is how much of TeX's memory you used:
+<<<<<<< HEAD
  8457 strings out of 493849
  121959 string characters out of 1152846
+=======
+ 8456 strings out of 493849
+ 121928 string characters out of 1152846
+>>>>>>> breeding-autoupdates
  195860 words of memory out of 3000000
  11195 multiletter control sequences out of 15000+50000
  55177 words of font info for 58 fonts, out of 3000000 for 9000
@@ -1087,9 +1132,16 @@ ype1/urw/helvetic/uhvb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic
 r/share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texliv
 e/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/ti
 mes/utmri8a.pfb>
+<<<<<<< HEAD
 Output written on MouseDB.pdf (37 pages, 263349 bytes).
 PDF statistics:
  929 PDF objects out of 1000 (max. 8388607)
  344 named destinations out of 1000 (max. 500000)
+=======
+Output written on MouseDB.pdf (37 pages, 262700 bytes).
+PDF statistics:
+ 926 PDF objects out of 1000 (max. 8388607)
+ 343 named destinations out of 1000 (max. 500000)
+>>>>>>> breeding-autoupdates
  249 words of extra memory for PDF output out of 10000 (max. 10000000)
 

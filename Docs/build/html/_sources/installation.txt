@@ -67,4 +67,8 @@ From the command prompt enter the following where **groupname** is the name of y
   group = Group(group="groupname")
   group.save()
   
+<<<<<<< HEAD
 Go to mousedb/admin/auth/users/ and create users, selecting usernames, full names, password (or have the user set the password) and then choose group permissions.
+=======
+Go to mousedb/admin/auth/users/ and create users, selecting usernames, full names, password (or have the user set the password) and then choose group permissions.
+>>>>>>> breeding-autoupdates

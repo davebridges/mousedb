@@ -11,7 +11,11 @@
   \item animal.models (module), \hyperpage{19}
   \item animal.urls (module), \hyperpage{22}
   \item animal.views (module), \hyperpage{20}
+<<<<<<< HEAD
   \item animal\_detail() (in module animal.views), \hyperpage{20}
+=======
+  \item animal\_detail (in module animal.views), \hyperpage{21}
+>>>>>>> breeding-autoupdates
   \item AnimalAdmin (class in animal.admin), \hyperpage{22}
   \item AnimalForm (class in animal.forms), \hyperpage{20}
   \item AnimalForm.Media (class in animal.forms), \hyperpage{20}
@@ -27,6 +31,7 @@
   \indexspace
   \bigletter B
   \item Breeding (class in animal.models), \hyperpage{19}
+<<<<<<< HEAD
   \item Breeding (timed\_mating.models.PlugEvents attribute), \hyperpage{23}
   \item breeding() (in module animal.views), \hyperpage{21}
   \item breeding\_all() (in module animal.views), \hyperpage{21}
@@ -34,18 +39,37 @@
   \item breeding\_detail() (in module animal.views), \hyperpage{21}
   \item breeding\_plugevent() (in module timed\_mating.views), \hyperpage{24}
   \item breeding\_pups() (in module animal.views), \hyperpage{21}
+=======
+  \item breeding (in module animal.views), \hyperpage{21}
+  \item Breeding (timed\_mating.models.PlugEvents attribute), \hyperpage{23}
+  \item breeding\_all (in module animal.views), \hyperpage{21}
+  \item breeding\_change (in module animal.views), \hyperpage{21}
+  \item breeding\_detail (in module animal.views), \hyperpage{21}
+  \item breeding\_plugevent (in module timed\_mating.views), \hyperpage{24}
+  \item breeding\_pups (in module animal.views), \hyperpage{21}
+>>>>>>> breeding-autoupdates
   \item BreedingAdmin (class in animal.admin), \hyperpage{22}
   \item BreedingForm (class in animal.forms), \hyperpage{20}
   \item BreedingForm.Meta (class in animal.forms), \hyperpage{20}
   \item BreedingPlugForm (class in timed\_mating.forms), \hyperpage{23}
+<<<<<<< HEAD
   \item BreedingPlugForm.Meta (class in timed\_mating.forms), \hyperpage{23}
+=======
+  \item BreedingPlugForm.Meta (class in timed\_mating.forms), \hyperpage{24}
+>>>>>>> breeding-autoupdates
 
   \indexspace
   \bigletter C
   \item Cage (class in animal.models), \hyperpage{20}
+<<<<<<< HEAD
   \item change\_plugevents() (in module timed\_mating.urls), \hyperpage{24}
   \item contact (data.models.Environment attribute), \hyperpage{14}
   \item create\_plugevents() (in module timed\_mating.urls), \hyperpage{24}
+=======
+  \item change\_plugevents (in module timed\_mating.urls), \hyperpage{24}
+  \item contact (data.models.Environment attribute), \hyperpage{14}
+  \item create\_plugevents (in module timed\_mating.urls), \hyperpage{24}
+>>>>>>> breeding-autoupdates
 
   \indexspace
   \bigletter D
@@ -55,7 +79,11 @@
   \item data.models (module), \hyperpage{13}
   \item data.urls (module), \hyperpage{18}
   \item data.views (module), \hyperpage{18}
+<<<<<<< HEAD
   \item delete\_plugevents() (in module timed\_mating.urls), \hyperpage{24}
+=======
+  \item delete\_plugevents (in module timed\_mating.urls), \hyperpage{24}
+>>>>>>> breeding-autoupdates
   \item Diet (class in data.models), \hyperpage{14}
   \item diet (data.models.Treatment attribute), \hyperpage{16}
   \item Diet.DoesNotExist, \hyperpage{14}
@@ -100,14 +128,22 @@
   \item get\_previous\_by\_date() (data.models.Experiment method), \hyperpage{14}
   \item get\_previous\_by\_PlugDate() (timed\_mating.models.PlugEvents method), \hyperpage{23}
   \item get\_previous\_by\_transplant\_date() (data.models.Transplantation method), \hyperpage{16}
+<<<<<<< HEAD
   \item Group (class in groups.models), \hyperpage{24, 25}
+=======
+  \item Group (class in groups.models), \hyperpage{25}
+>>>>>>> breeding-autoupdates
   \item Group.DoesNotExist, \hyperpage{25}
   \item Group.MultipleObjectsReturned, \hyperpage{25}
   \item group\_set (groups.models.License attribute), \hyperpage{25}
   \item GroupAdmin (class in groups.admin), \hyperpage{25}
   \item groups (module), \hyperpage{24}
   \item groups.admin (module), \hyperpage{25}
+<<<<<<< HEAD
   \item groups.models (module), \hyperpage{24}
+=======
+  \item groups.models (module), \hyperpage{25}
+>>>>>>> breeding-autoupdates
   \item groups.views (module), \hyperpage{25}
 
   \indexspace
@@ -126,8 +162,13 @@
   \item License.DoesNotExist, \hyperpage{25}
   \item License.MultipleObjectsReturned, \hyperpage{25}
   \item LicenseAdmin (class in groups.admin), \hyperpage{25}
+<<<<<<< HEAD
   \item limited\_object\_detail() (in module timed\_mating.urls), \hyperpage{24}
   \item limited\_object\_list() (in module timed\_mating.urls), \hyperpage{24}
+=======
+  \item limited\_object\_detail (in module timed\_mating.urls), \hyperpage{24}
+  \item limited\_object\_list (in module timed\_mating.urls), \hyperpage{24}
+>>>>>>> breeding-autoupdates
 
   \indexspace
   \bigletter M

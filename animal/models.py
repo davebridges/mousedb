@@ -55,7 +55,7 @@ class Strain(models.Model):
 class Animal(models.Model):
     """A data model describing an animal.
 
-    This data model describes a wide variety of parameters of an experimental animal.  This model is linked to the Strain and Cage models via 1:1 relationships.  If the parentage of a mouse is known, this can be identified (the breeding set may not be clear on this matter). Mice are automatically marked as not alive when a Death date is provided and the object is saved.  Strain, Background and Genotype are required field.
+    This data model describes a wide variety of parameters of an experimental animal.  This model is linked to the Strain and Cage models via 1:1 relationships.  If the parentage of a mouse is known, this can be identified (the breeding set may not be clear on this matter). Mice are automatically marked as not alive when a Death date is provided and the object is saved.  Strain, Background and Genotype are required field.  By default, querysets are ordered first by strain then by MouseID.
     """
     MouseID = models.IntegerField(max_length = 10, blank = True, null=True)
     Cage = models.IntegerField(max_length = 15, blank = True, null=True)
@@ -100,7 +100,7 @@ If a eartag is present then the string reads some_strain-Eartag #some_number. If
 class Breeding(models.Model):
     """This data model stores information about a particular breeding set
 
-    A breeding set may contain one ore more males and females and must be defined via the progeny strain.  For example, in the case of generating a new strain, the strain indicates the new strain not the parental strains.  If the breeding set is part of a timed mating experiment, then Timed_Mating must be selected.  Breeding cages are automatically inactivated upon saving when a End date is provided.  The only required field is Strain.
+    A breeding set may contain one ore more males and females and must be defined via the progeny strain.  For example, in the case of generating a new strain, the strain indicates the new strain not the parental strains.  A breeding cage is defined as one male with one or more females.  If the breeding set is part of a timed mating experiment, then Timed_Mating must be selected.  Breeding cages are automatically inactivated upon saving when a End date is provided.  The only required field is Strain.  By default, querysets are ordered by Strain, then Start.
     """
     Females = models.ManyToManyField(Animal, related_name='females', blank=True)
     Male = models.ManyToManyField(Animal, related_name='male', blank=True)
@@ -121,11 +121,54 @@ class Breeding(models.Model):
     def get_absolute_url(self):
         return "/mousedb/breeding/%i" % (self.id)
     def save(self):
+        """The save function for a breeding cage has to automatic over-rides, Active and the Cage for the Breeder.
+        
+        In the case of Active, if an End field is specified, then the Active field is set to False.
+        In the case of Cage, if a Cage is provided, and animals are specified under Male or Females for a Breeding object, then the Cage field for those animals is set to that of the breeding cage.  The same is true for both Rack and Rack Position."""
         if self.End:
             self.Active = False
         super(Breeding, self).save()
+        if self.Cage:
+            if self.male:
+                self.male.Cage = self.Cage
+                self.male.save()
+            if self.females:
+                if hasattr(self.females, '__iter__') == True:  #This is required to determine of self.animals is a queryset or a single instance            
+                    for female_breeder in self.females:
+                        female_breeder.Cage = self.Cage
+                        female_breeder.save()
+                else: 
+                    self.females.Cage = self.Cage
+                    self.females.save()
+        super(Breeding, self).save()
+        if self.Rack:
+            if self.male:
+                self.male.Rack = self.Rack
+                self.male.save()
+            if self.females:
+                if hasattr(self.females, '__iter__') == True:     #This is required to determine of self.animals is a queryset or a single instance                     
+                    for female_breeder in self.females:
+                        female_breeder.Rack = self.Rack
+                        female_breeder.save()
+                else: 
+                    self.females.Rack = self.Rack
+                    self.females.save()
+        super(Breeding, self).save()
+        if self.Rack_Position:
+            if self.male:
+                self.male.Rack_Position = self.Rack_Position
+                self.male.save()
+            if self.females:
+                if hasattr(self.females, '__iter__') == True:     #This is required to determine of self.animals is a queryset or a single instance                     
+                    for female_breeder in self.females:
+                        female_breeder.Rack_Position = self.Rack_Position
+                        female_breeder.save()
+                else: 
+                    self.females.Rack_Position = self.Rack_Position
+                    self.females.save()
+        super(Breeding, self).save()
     class Meta:
-        ordering = ['Cage']
+        ordering = ['Strain', 'Start']
 		
 class Cage(models.Model):
     """This data model stores information about a particular cage.  

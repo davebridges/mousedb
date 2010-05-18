@@ -25,17 +25,30 @@ timed_mating mod api.html
 groups.admin mod api.html
 timed_mating.forms.BreedingPlugForm.Meta class api.html
 data.models.Transplantation.donor attribute api.html
+<<<<<<< HEAD
 animal.views.strain_list function api.html
 timed_mating.urls.limited_object_detail function api.html
 timed_mating.urls.create_plugevents function api.html
+=======
+animal.views.strain_list attribute api.html
+timed_mating.urls.limited_object_detail attribute api.html
+timed_mating.urls.create_plugevents attribute api.html
+>>>>>>> breeding-autoupdates
 data.models.Study.MultipleObjectsReturned exception api.html
 animal.views.breeding_all function api.html
 data.models.Treatment.implantation attribute api.html
 animal.forms.AnimalForm.Meta.model attribute api.html
+<<<<<<< HEAD
 data.views.study_experiment function api.html
 timed_mating.models.PlugEvents.Breeding attribute api.html
 data.models.Treatment.animals attribute api.html
 data.views.experiment_detail function api.html
+=======
+data.views.study_experiment attribute api.html
+timed_mating.models.PlugEvents.Breeding attribute api.html
+data.models.Treatment.animals attribute api.html
+data.views.experiment_detail attribute api.html
+>>>>>>> breeding-autoupdates
 timed_mating.forms.BreedingPlugForm.media attribute api.html
 data.models.Environment.DoesNotExist exception api.html
 timed_mating.models.PlugEvents.get_previous_by_PlugDate method api.html
@@ -43,7 +56,11 @@ data.models.Transplantation class api.html
 data.models.Study.strain attribute api.html
 data.models.Treatment.pharmaceutical attribute api.html
 timed_mating.models.PlugEvents.get_next_by_PlugDate method api.html
+<<<<<<< HEAD
 data.views.add_measurement function api.html
+=======
+data.views.add_measurement attribute api.html
+>>>>>>> breeding-autoupdates
 groups.models.Group.get_contact_title_display method api.html
 data.models.Experiment.MultipleObjectsReturned exception api.html
 data.models.Implantation.MultipleObjectsReturned exception api.html
@@ -101,7 +118,10 @@ animal.forms.AnimalForm.Media class api.html
 groups.admin.LicenseAdmin class api.html
 data.forms.MeasurementForm class api.html
 data.models.Experiment.DoesNotExist exception api.html
+<<<<<<< HEAD
 animal.admin.AnimalInline.media attribute api.html
+=======
+>>>>>>> breeding-autoupdates
 timed_mating.models.PlugEvents.PlugFemale attribute api.html
 groups.admin.LicenseAdmin.media attribute api.html
 data.models.Vendor.diet_set attribute api.html
@@ -133,14 +153,23 @@ data.forms.StudyExperimentForm.Meta class api.html
 animal.admin.AnimalInline class api.html
 data.models.Experiment.study attribute api.html
 data.models.Vendor.DoesNotExist exception api.html
+<<<<<<< HEAD
 timed_mating.urls.change_plugevents function api.html
+=======
+timed_mating.urls.change_plugevents attribute api.html
+>>>>>>> breeding-autoupdates
 data.models.Treatment.MultipleObjectsReturned exception api.html
 timed_mating.forms.BreedingPlugForm class api.html
 data.models.Treatment class api.html
 animal.admin.AnimalAdmin.media attribute api.html
 data.models.Vendor.get_ordering_display method api.html
+<<<<<<< HEAD
 timed_mating.urls.delete_plugevents function api.html
 animal.views.strain_detail_all function api.html
+=======
+timed_mating.urls.delete_plugevents attribute api.html
+animal.views.strain_detail_all attribute api.html
+>>>>>>> breeding-autoupdates
 data.forms.MeasurementForm.Meta.model attribute api.html
 animal.forms.BreedingForm.media attribute api.html
 data.models.Implantation.vendor attribute api.html
@@ -162,7 +191,11 @@ timed_mating.models.PlugEvents.save method api.html
 data.models.Treatment.researchers attribute api.html
 data.models.Experiment.get_absolute_url method api.html
 timed_mating.models.PlugEvents.PlugMale attribute api.html
+<<<<<<< HEAD
 timed_mating.urls.limited_object_list function api.html
+=======
+timed_mating.urls.limited_object_list attribute api.html
+>>>>>>> breeding-autoupdates
 data.models.Transplantation.get_previous_by_transplant_date method api.html
 data.models.Measurement.DoesNotExist exception api.html
 data.models.Experiment.animals attribute api.html
@@ -179,7 +212,11 @@ data.models.Experiment.get_feeding_state_display method api.html
 animal.admin.AnimalInline.model attribute api.html
 data.forms.ExperimentForm class api.html
 groups.models.License.DoesNotExist exception api.html
+<<<<<<< HEAD
 data.views.experiment_list function api.html
+=======
+data.views.experiment_list attribute api.html
+>>>>>>> breeding-autoupdates
 groups.models.License class api.html
 data.models.Experiment.get_next_by_date method api.html
 data.models.Implantation class api.html
@@ -200,7 +237,11 @@ animal.forms.BreedingForm.Meta.model attribute api.html
 data.models.Experiment.researchers attribute api.html
 data.forms.TreatmentForm.media attribute api.html
 data.forms.ExperimentForm.Meta.model attribute api.html
+<<<<<<< HEAD
 timed_mating.views.breeding_plugevent function api.html
+=======
+timed_mating.views.breeding_plugevent attribute api.html
+>>>>>>> breeding-autoupdates
 data.forms.StudyExperimentForm.Meta.model attribute api.html
 data.models.Treatment.diet attribute api.html
 animal.views.breeding_pups function api.html
