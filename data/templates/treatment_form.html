@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-<form method="POST" {% if object %} action="{% url treatment-edit object.id %}" {% else %} action="{% url treatment-new %}"{% endif %}>
+<form method="POST" {% if object %} action="{% url treatment-edit object.id %}" {% else %} action="{% url treatment-new %}"{% endif %}>{% csrf_token %}
 <table>{{ form }}</table>
 <input type="submit" value="Submit" />
 </form>
