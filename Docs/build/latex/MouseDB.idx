@@ -133,8 +133,7 @@
 \indexentry{model (animal.forms.BreedingForm.Meta attribute)|hyperpage}{20}
 \indexentry{media (animal.forms.BreedingForm attribute)|hyperpage}{20}
 \indexentry{animal.views (module)|hyperpage}{20}
-<<<<<<< HEAD
-\indexentry{animal\_detail() (in module animal.views)|hyperpage}{20}
+\indexentry{animal\_detail() (in module animal.views)|hyperpage}{21}
 \indexentry{breeding() (in module animal.views)|hyperpage}{21}
 \indexentry{breeding\_all() (in module animal.views)|hyperpage}{21}
 \indexentry{breeding\_change() (in module animal.views)|hyperpage}{21}
@@ -143,17 +142,6 @@
 \indexentry{strain\_detail() (in module animal.views)|hyperpage}{21}
 \indexentry{strain\_detail\_all() (in module animal.views)|hyperpage}{21}
 \indexentry{strain\_list() (in module animal.views)|hyperpage}{21}
-=======
-\indexentry{animal\_detail (in module animal.views)|hyperpage}{21}
-\indexentry{breeding (in module animal.views)|hyperpage}{21}
-\indexentry{breeding\_all (in module animal.views)|hyperpage}{21}
-\indexentry{breeding\_change (in module animal.views)|hyperpage}{21}
-\indexentry{breeding\_detail (in module animal.views)|hyperpage}{21}
-\indexentry{breeding\_pups (in module animal.views)|hyperpage}{21}
-\indexentry{strain\_detail (in module animal.views)|hyperpage}{21}
-\indexentry{strain\_detail\_all (in module animal.views)|hyperpage}{21}
-\indexentry{strain\_list (in module animal.views)|hyperpage}{21}
->>>>>>> breeding-autoupdates
 \indexentry{animal.urls (module)|hyperpage}{22}
 \indexentry{animal.admin (module)|hyperpage}{22}
 \indexentry{AnimalAdmin (class in animal.admin)|hyperpage}{22}
@@ -183,8 +171,7 @@
 \indexentry{PlugEvents (class in timed\_mating.models)|hyperpage}{23}
 \indexentry{timed\_mating.forms (module)|hyperpage}{23}
 \indexentry{BreedingPlugForm (class in timed\_mating.forms)|hyperpage}{23}
-<<<<<<< HEAD
-\indexentry{BreedingPlugForm.Meta (class in timed\_mating.forms)|hyperpage}{23}
+\indexentry{BreedingPlugForm.Meta (class in timed\_mating.forms)|hyperpage}{24}
 \indexentry{model (timed\_mating.forms.BreedingPlugForm.Meta attribute)|hyperpage}{24}
 \indexentry{media (timed\_mating.forms.BreedingPlugForm attribute)|hyperpage}{24}
 \indexentry{timed\_mating.views (module)|hyperpage}{24}
@@ -195,30 +182,12 @@
 \indexentry{delete\_plugevents() (in module timed\_mating.urls)|hyperpage}{24}
 \indexentry{limited\_object\_detail() (in module timed\_mating.urls)|hyperpage}{24}
 \indexentry{limited\_object\_list() (in module timed\_mating.urls)|hyperpage}{24}
-=======
-\indexentry{BreedingPlugForm.Meta (class in timed\_mating.forms)|hyperpage}{24}
-\indexentry{model (timed\_mating.forms.BreedingPlugForm.Meta attribute)|hyperpage}{24}
-\indexentry{media (timed\_mating.forms.BreedingPlugForm attribute)|hyperpage}{24}
-\indexentry{timed\_mating.views (module)|hyperpage}{24}
-\indexentry{breeding\_plugevent (in module timed\_mating.views)|hyperpage}{24}
-\indexentry{timed\_mating.urls (module)|hyperpage}{24}
-\indexentry{change\_plugevents (in module timed\_mating.urls)|hyperpage}{24}
-\indexentry{create\_plugevents (in module timed\_mating.urls)|hyperpage}{24}
-\indexentry{delete\_plugevents (in module timed\_mating.urls)|hyperpage}{24}
-\indexentry{limited\_object\_detail (in module timed\_mating.urls)|hyperpage}{24}
-\indexentry{limited\_object\_list (in module timed\_mating.urls)|hyperpage}{24}
->>>>>>> breeding-autoupdates
 \indexentry{timed\_mating.admin (module)|hyperpage}{24}
 \indexentry{PlugEventsAdmin (class in timed\_mating.admin)|hyperpage}{24}
 \indexentry{media (timed\_mating.admin.PlugEventsAdmin attribute)|hyperpage}{24}
 \indexentry{groups (module)|hyperpage}{24}
-<<<<<<< HEAD
-\indexentry{groups.models (module)|hyperpage}{24}
-\indexentry{Group (class in groups.models)|hyperpage}{24}
-=======
 \indexentry{groups.models (module)|hyperpage}{25}
 \indexentry{Group (class in groups.models)|hyperpage}{25}
->>>>>>> breeding-autoupdates
 \indexentry{Group.DoesNotExist|hyperpage}{25}
 \indexentry{Group.MultipleObjectsReturned|hyperpage}{25}
 \indexentry{get\_contact\_title\_display() (groups.models.Group method)|hyperpage}{25}

@@ -55,11 +55,7 @@
 \contentsline {subsection}{\numberline {6.3.3}Views and URLs}{24}{subsection.6.3.3}
 \contentsline {subsection}{\numberline {6.3.4}Administrative Site Configuration}{24}{subsection.6.3.4}
 \contentsline {section}{\numberline {6.4}Groups Package}{24}{section.6.4}
-<<<<<<< HEAD
-\contentsline {subsection}{\numberline {6.4.1}Models}{24}{subsection.6.4.1}
-=======
 \contentsline {subsection}{\numberline {6.4.1}Models}{25}{subsection.6.4.1}
->>>>>>> breeding-autoupdates
 \contentsline {subsection}{\numberline {6.4.2}Views and URLs}{25}{subsection.6.4.2}
 \contentsline {subsection}{\numberline {6.4.3}Administrative Site Configuration}{25}{subsection.6.4.3}
 \contentsline {chapter}{\numberline {7}Indices and tables}{27}{chapter.7}
