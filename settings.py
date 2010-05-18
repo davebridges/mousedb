@@ -75,7 +75,7 @@ INSTALLED_APPS = (
 	'mousedb.timed_mating',
 	'mousedb.groups',
 	'django.contrib.admin',
-
+)
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.fallback.FallbackStorage'
 
