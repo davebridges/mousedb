@@ -37,11 +37,27 @@
 <div id="breeding-parents">
 <h2>Breeding Parents</h2>
 <table>
+  <th></th>
+  <th>Breeder</th>
+  <th>Cage</th>
+  <th>Rack</th>
+  <th>Rack_Position</th>
+{% for male in breeding.Male.all %}
   <tr>
-   <th>Male</th>{% for male in breeding.Male.all %}<td class="breeder"><a href="{% url animal-detail male.id %}">{{ male }}</a></td>{% endfor %}</td>
+   <th>Male</th><td class="breeder"><a href="{% url animal-detail male.id %}">{{ male }}</a></td>
+   <td>{{ male.Cage }}</td>
+   <td>{{ male.Rack }}</td>
+   <td>{{ male.Rack_Position }}</td>
   </tr>
-   <th>Females</th>{% for female in breeding.Females.all %}<td class="breeder"><a href="{% url animal-detail female.id %}">{{ female }}</a></td>{% endfor %}</td>
+{% endfor %}
+{% for female in breeding.Females.all %}
+  <tr>
+   <th>Female</th><td class="breeder"><a href="{% url animal-detail female.id %}">{{ female }}</a></td>
+   <td>{{ female.Cage }}</td>
+   <td>{{ female.Rack }}</td>
+   <td>{{ female.Rack_Position }}</td>
   </tr>
+  {% endfor %}
  </table>
 </div>
 <div id="pups">
