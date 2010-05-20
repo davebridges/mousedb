@@ -12,7 +12,7 @@
 
 
 \title{MouseDB Documentation}
-\date{April 26, 2010}
+\date{May 18, 2010}
 \release{0.1}
 \author{Dave Bridges, Ph.D.}
 \newcommand{\sphinxlogo}{}
@@ -131,7 +131,7 @@ For this software, optional tracking of backcrosses and generations is available
 
 \subsection{Breeding Cages}
 
-A breeding cage is defined as a set of one or more male and one or more female mice.  Because of this, it is not always clear who the precise parentage of an animal is.  If the parentage is known, then the Mother and Father fields can be set for a particular animal.
+A breeding cage is defined as a set of one or more male and one or more female mice.  Because of this, it is not always clear who the precise parentage of an animal is.  If the parentage is known, then the Mother and Father fields can be set for a particular animal.  In the case of Active, if an End field is specified, then the Active field is set to False.  In the case of Cage, if a Cage is provided, and animals are specified under Male or Females for a Breeding object, then the Cage field for those animals is set to that of the breeding cage.  The same is true for both Rack and Rack Position.
 
 
 \subsection{Strains}
@@ -201,7 +201,7 @@ Downloading and/or unzipping will create a directory named mousedb.  You can upd
 \textbf{Python}.  Requires Version 2.6, is not yet compatible with Python 3.0.  Download from \href{http://www.python.org/download/}{http://www.python.org/download/}.
 
 \item {} 
-\textbf{Django}.  Download from \href{http://www.djangoproject.com/download/}{http://www.djangoproject.com/download/}
+\textbf{Django}.  Download from \href{http://www.djangoproject.com/download/}{http://www.djangoproject.com/download/}.  MouseDB currently requires at least Django 1.2.
 
 \item {} 
 \textbf{Database software}.  Typically MySQL is used, but PostgreSQL, Oracle or SQLite can also be used.  You also need to install the python driver for this database (unless you are using SQLite, which is internal to Python 2.5+).  See \href{http://docs.djangoproject.com/en/dev/topics/install/database-installation}{http://docs.djangoproject.com/en/dev/topics/install/database-installation} - Django Database Installation Documentation for more information.
@@ -220,19 +220,19 @@ Go to localsettings\_empty.py and edit the settings:
 \end{enumerate}
 \begin{itemize}
 \item {} 
-DATABASE\_ENGINE: `mysql', `postgresql\_psycopg2' or `sqlite3 depending on the database software used.
+ENGINE: Choose one of `django.db.backends.postgresql\_psycopg2','django.db.backends.postgresql', `django.db.backends.mysql', `django.db.backends.sqlite3', `django.db.backends.oracle' depending on the database software used.
 
 \item {} 
-DATABASE\_NAME: database name
+NAME: database name
 
 \item {} 
-DATABASE\_USER: database user
+USER: database user
 
 \item {} 
-DATABASE\_PASSWORD: database password
+PASSWORD: database password
 
 \item {} 
-DATABASE\_HOST: database host
+HOST: database host
 
 \end{itemize}
 \begin{enumerate}
@@ -269,11 +269,22 @@ If you want to restrict access to these files, change the Allow from all directi
 
 
 \section{Final Configuration and User Setup}
-\begin{enumerate}
-\item {} 
-Go to mousedb/admin/auth/users/ and create users, selecting usernames, full names, password (or have the user set the password) and then choose group permissions.
 
-\end{enumerate}
+Go to a command prompt, navigate to inside the mousedb directory and enter the following to get to a python prompt:
+
+\begin{Verbatim}[commandchars=@\[\]]
+python manage.py shell
+\end{Verbatim}
+
+From the command prompt enter the following where \textbf{groupname} is the name of your research group:
+
+\begin{Verbatim}[commandchars=@\[\]]
+@PYG[k+kn][from] @PYG[n+nn][mousedb.groups.models] @PYG[k+kn][import] @PYG[n][Group]
+@PYG[n][group] @PYG[o][=] @PYG[n][Group]@PYG[p][(]@PYG[n][group]@PYG[o][=]@PYG[l+s]["]@PYG[l+s][groupname]@PYG[l+s]["]@PYG[p][)]
+@PYG[n][group]@PYG[o][.]@PYG[n][save]@PYG[p][(]@PYG[p][)]
+\end{Verbatim}
+
+Go to mousedb/admin/auth/users/ and create users, selecting usernames, full names, password (or have the user set the password) and then choose group permissions.
 
 \resetcurrentobjects
 \hypertarget{--doc-usage}{}
@@ -943,28 +954,31 @@ alias of \code{Treatment}
 \index{data.views (module)}
 \hypertarget{module-data.views}{}
 \declaremodule[data.views]{}{data.views}
-\modulesynopsis{}\index{add\_measurement (in module data.views)}
+\modulesynopsis{}\index{add\_measurement() (in module data.views)}
 
-\hypertarget{data.views.add\_measurement}{}\begin{memberdesc}[data.views]{add\_measurement}\end{memberdesc}
-\index{experiment\_detail (in module data.views)}
+\hypertarget{data.views.add\_measurement}{}\begin{funcdesc}{add\_measurement}{request, *args, **kwargs}\end{funcdesc}
+\index{experiment\_detail() (in module data.views)}
 
-\hypertarget{data.views.experiment\_detail}{}\begin{memberdesc}[data.views]{experiment\_detail}\end{memberdesc}
-\index{experiment\_detail\_all (in module data.views)}
+\hypertarget{data.views.experiment\_detail}{}\begin{funcdesc}{experiment\_detail}{request, *args, **kwargs}\end{funcdesc}
+\index{experiment\_detail\_all() (in module data.views)}
 
-\hypertarget{data.views.experiment\_detail\_all}{}\begin{memberdesc}[data.views]{experiment\_detail\_all}\end{memberdesc}
-\index{experiment\_list (in module data.views)}
+\hypertarget{data.views.experiment\_detail\_all}{}\begin{funcdesc}{experiment\_detail\_all}{request, *args, **kwargs}\end{funcdesc}
+\index{experiment\_list() (in module data.views)}
 
-\hypertarget{data.views.experiment\_list}{}\begin{memberdesc}[data.views]{experiment\_list}\end{memberdesc}
-\index{study\_experiment (in module data.views)}
+\hypertarget{data.views.experiment\_list}{}\begin{funcdesc}{experiment\_list}{request, *args, **kwargs}\end{funcdesc}
+\index{study\_experiment() (in module data.views)}
 
-\hypertarget{data.views.study\_experiment}{}\begin{memberdesc}[data.views]{study\_experiment}\end{memberdesc}
+\hypertarget{data.views.study\_experiment}{}\begin{funcdesc}{study\_experiment}{request, *args, **kwargs}\end{funcdesc}
 \index{data.urls (module)}
 \hypertarget{module-data.urls}{}
 \declaremodule[data.urls]{}{data.urls}
 \modulesynopsis{}
 
 \subsection{Administrative Site Configuration}
-
+\index{data.admin (module)}
+\hypertarget{module-data.admin}{}
+\declaremodule[data.admin]{}{data.admin}
+\modulesynopsis{}
 
 \section{Animals Package}
 \index{animal (module)}
@@ -1012,7 +1026,7 @@ Bases: \code{django.db.models.base.Model}
 
 A data model describing a mouse strain.
 
-This is separate from the background of a mouse.  For example a ob/ob mouse on a mixed or a black-6 background still have the same strain.  The background is defined in the animal and breeding cages.
+This is separate from the background of a mouse.  For example a ob/ob mouse on a mixed or a black-6 background still have the same strain.  The background is defined in the animal and breeding cages.  Strain and Strain\_slug are required.
 \end{classdesc}
 \index{Animal (class in animal.models)}
 
@@ -1021,7 +1035,7 @@ Bases: \code{django.db.models.base.Model}
 
 A data model describing an animal.
 
-This data model describes a wide variety of parameters of an experimental animal.  This model is linked to the Strain and Cage models via 1:1 relationships.  If the parentage of a mouse is known, this can be identified (the breeding set may not be clear on this matter). Mice are automatically marked as not alive when a Death date is provided and the object is saved.
+This data model describes a wide variety of parameters of an experimental animal.  This model is linked to the Strain and Cage models via 1:1 relationships.  If the parentage of a mouse is known, this can be identified (the breeding set may not be clear on this matter). Mice are automatically marked as not alive when a Death date is provided and the object is saved.  Strain, Background and Genotype are required field.  By default, querysets are ordered first by strain then by MouseID.
 \end{classdesc}
 \index{Breeding (class in animal.models)}
 
@@ -1030,7 +1044,7 @@ Bases: \code{django.db.models.base.Model}
 
 This data model stores information about a particular breeding set
 
-A breeding set may contain one ore more males and females and must be defined via the progeny strain.  For example, in the case of generating a new strain, the strain indicates the new strain not the parental strains.  If the breeding set is part of a timed mating experiment, then Timed\_Mating must be selected.  Breeding cages are automatically inactivated upon saving when a End date is provided.
+A breeding set may contain one ore more males and females and must be defined via the progeny strain.  For example, in the case of generating a new strain, the strain indicates the new strain not the parental strains.  A breeding cage is defined as one male with one or more females.  If the breeding set is part of a timed mating experiment, then Timed\_Mating must be selected.  Breeding cages are automatically inactivated upon saving when a End date is provided.  The only required field is Strain.  By default, querysets are ordered by Strain, then Start.
 \end{classdesc}
 \index{Cage (class in animal.models)}
 
@@ -1103,86 +1117,86 @@ alias of \code{Breeding}
 These views define template redirects for the animal app.
 
 This module contains only non-generic views.  Several generic views are also used and are defined in animal/urls/.
-\index{animal\_detail (in module animal.views)}
+\index{animal\_detail() (in module animal.views)}
 
-\hypertarget{animal.views.animal\_detail}{}\begin{memberdesc}[animal.views]{animal\_detail}
+\hypertarget{animal.views.animal\_detail}{}\begin{funcdesc}{animal\_detail}{request, *args, **kwargs}
 This view displays specific details about an animal.
 
 It takes a request in the form animal/(id)/, mice/(id) or mouse/(id)/ and renders the detail page for that mouse.  The request is defined for id not MouseID (or barcode) because this allows for details to be displayed for mice without barcode identification.
 Therefore care must be taken that animal/4932 is id=4932 and not barcode=4932.  The animal name is defined at the top of the page.
 This page is restricted to logged-in users.
-\end{memberdesc}
-\index{breeding (in module animal.views)}
+\end{funcdesc}
+\index{breeding() (in module animal.views)}
 
-\hypertarget{animal.views.breeding}{}\begin{memberdesc}[animal.views]{breeding}
+\hypertarget{animal.views.breeding}{}\begin{funcdesc}{breeding}{request, *args, **kwargs}
 This view displays a list of breeding sets.
 
 It takes a request in the form /breeding/ and lists all currently active breeding sets.
 This page is restricted to logged-in users.
-\end{memberdesc}
-\index{breeding\_all (in module animal.views)}
+\end{funcdesc}
+\index{breeding\_all() (in module animal.views)}
 
-\hypertarget{animal.views.breeding\_all}{}\begin{memberdesc}[animal.views]{breeding\_all}
+\hypertarget{animal.views.breeding\_all}{}\begin{funcdesc}{breeding\_all}{request, *args, **kwargs}
 This view displays a list of breeding sets.
 
 It takes a request in the form /breeding/all and lists all breeding sets (both active and inactive).
 This page is restricted to logged-in users.
-\end{memberdesc}
-\index{breeding\_change (in module animal.views)}
+\end{funcdesc}
+\index{breeding\_change() (in module animal.views)}
 
-\hypertarget{animal.views.breeding\_change}{}\begin{memberdesc}[animal.views]{breeding\_change}
+\hypertarget{animal.views.breeding\_change}{}\begin{funcdesc}{breeding\_change}{request, *args, **kwargs}
 This view is used to generate a form by which to change pups which belong to a particular breeding set.
 
 This view typically is used to modify existing pups.  This might include marking animals as sacrificed, entering genotype or marking information or entering movement of mice to another cage.  It is used to show and modify several animals at once.
 It takes a request in the form /breeding/(breeding\_id)/change/ and returns a form specific to the breeding set defined in breeding\_id.  breeding\_id is the background identification number of the breeding set and does not refer to the barcode of any breeding cage.
 This view returns a formset in which one row represents one animal.  To add extra animals to a breeding set use /breeding/(breeding\_id)/pups/.
 This view is restricted to those with the permission animal.change\_animal.
-\end{memberdesc}
-\index{breeding\_detail (in module animal.views)}
+\end{funcdesc}
+\index{breeding\_detail() (in module animal.views)}
 
-\hypertarget{animal.views.breeding\_detail}{}\begin{memberdesc}[animal.views]{breeding\_detail}
+\hypertarget{animal.views.breeding\_detail}{}\begin{funcdesc}{breeding\_detail}{request, *args, **kwargs}
 This view displays specific details about a breeding set.
 
 It takes a request in the form /breeding/(breeding\_id)/all and renders the detail page for that breeding set.
 The breeding\_id refers to the background id of the breeding set, and not the breeding cage barcode.
 This view also passes along a dictionary of all pups belonging to that breeding set.
 This page is restricted to logged-in users.
-\end{memberdesc}
-\index{breeding\_pups (in module animal.views)}
+\end{funcdesc}
+\index{breeding\_pups() (in module animal.views)}
 
-\hypertarget{animal.views.breeding\_pups}{}\begin{memberdesc}[animal.views]{breeding\_pups}
+\hypertarget{animal.views.breeding\_pups}{}\begin{funcdesc}{breeding\_pups}{request, *args, **kwargs}
 This view is used to generate a form by which to add pups which belong to a particular breeding set.
 
 This view is intended to be used to add initial information about pups, including eartag, genotype, gender and birth or weaning information.
 It takes a request in the form /breeding/(breeding\_id)/pups/ and returns a form specific to the breeding set defined in breeding\_id.  breeding\_id is the background identification number of the breeding set and does not refer to the barcode of any breeding cage.
 This view is restricted to those with the permission animal.add\_animal.
-\end{memberdesc}
-\index{strain\_detail (in module animal.views)}
+\end{funcdesc}
+\index{strain\_detail() (in module animal.views)}
 
-\hypertarget{animal.views.strain\_detail}{}\begin{memberdesc}[animal.views]{strain\_detail}
+\hypertarget{animal.views.strain\_detail}{}\begin{funcdesc}{strain\_detail}{request, *args, **kwargs}
 This view displays specific details about a strain.
 
 It takes a request in the form strain/(strain\_slug)/ and renders the detail page for that strain.
 This view also passes along a dictionary of alive animals belonging to that strain.
 This page is restricted to logged-in users.
-\end{memberdesc}
-\index{strain\_detail\_all (in module animal.views)}
+\end{funcdesc}
+\index{strain\_detail\_all() (in module animal.views)}
 
-\hypertarget{animal.views.strain\_detail\_all}{}\begin{memberdesc}[animal.views]{strain\_detail\_all}
+\hypertarget{animal.views.strain\_detail\_all}{}\begin{funcdesc}{strain\_detail\_all}{request, *args, **kwargs}
 This view displays specific details about a strain.
 
 It takes a request in the form /strain/(strain\_slug)/all and renders the detail page for that strain.
 This view also passes along a dictionary of all animals belonging to that strain.
 This page is restricted to logged-in users.
-\end{memberdesc}
-\index{strain\_list (in module animal.views)}
+\end{funcdesc}
+\index{strain\_list() (in module animal.views)}
 
-\hypertarget{animal.views.strain\_list}{}\begin{memberdesc}[animal.views]{strain\_list}
+\hypertarget{animal.views.strain\_list}{}\begin{funcdesc}{strain\_list}{request, *args, **kwargs}
 This view presents a list of strains currently present in the database and annotates this list with a count of alive and total animals.
 
 This view redirects from a /strain/ request.
 This view is restricted to logged-in users.
-\end{memberdesc}
+\end{funcdesc}
 \index{animal.urls (module)}
 \hypertarget{module-animal.urls}{}
 \declaremodule[animal.urls]{}{animal.urls}
@@ -1220,6 +1234,9 @@ Bases: \code{django.contrib.admin.options.TabularInline}
 Provides an inline tabular formset for animal objects.
 
 Currently used with the breeding admin page.
+\index{media (animal.admin.AnimalInline attribute)}
+
+\hypertarget{animal.admin.AnimalInline.media}{}\begin{memberdesc}{media}\end{memberdesc}
 \index{model (animal.admin.AnimalInline attribute)}
 
 \hypertarget{animal.admin.AnimalInline.model}{}\begin{memberdesc}{model}
@@ -1274,15 +1291,154 @@ If the mother gives birth then this cage is implicitly set as a normal breeding 
 
 
 \subsection{Models}
+\index{timed\_mating.models (module)}
+\hypertarget{module-timed\_mating.models}{}
+\declaremodule[timedmating.models]{}{timed\_mating.models}
+\modulesynopsis{}
+This defines the data model for the timed\_mating app.
+
+Currently the only data model is for PlugEvents.
+\index{PlugEvents (class in timed\_mating.models)}
+
+\hypertarget{timed\_mating.models.PlugEvents}{}\begin{classdesc}{PlugEvents}{*args, **kwargs}
+Bases: \code{django.db.models.base.Model}
+
+This defines the model for PlugEvents.
+
+A PlugEvent requires a date.  All other fields are optional.
+Upon observation of a plug event, the PlugDate, Breeding Cage, Femalem, Male, Researcher and Notes can be set.
+Upon sacrifice of the mother, then genotyped alive and dead embryos can be entered, along with the SacrificeDate, Researcher and Notes.
+\index{Breeding (timed\_mating.models.PlugEvents attribute)}
+
+\hypertarget{timed\_mating.models.PlugEvents.Breeding}{}\begin{memberdesc}{Breeding}\end{memberdesc}
+\index{PlugEvents.DoesNotExist}
+
+\hypertarget{timed\_mating.models.PlugEvents.DoesNotExist}{}\begin{excdesc}{DoesNotExist}
+Bases: \code{django.core.exceptions.ObjectDoesNotExist}
+\end{excdesc}
+\index{PlugEvents.MultipleObjectsReturned}
+
+\hypertarget{timed\_mating.models.PlugEvents.MultipleObjectsReturned}{}\begin{excdesc}{MultipleObjectsReturned}
+Bases: \code{django.core.exceptions.MultipleObjectsReturned}
+\end{excdesc}
+\index{PlugFemale (timed\_mating.models.PlugEvents attribute)}
+
+\hypertarget{timed\_mating.models.PlugEvents.PlugFemale}{}\begin{memberdesc}[PlugEvents]{PlugFemale}\end{memberdesc}
+\index{PlugMale (timed\_mating.models.PlugEvents attribute)}
+
+\hypertarget{timed\_mating.models.PlugEvents.PlugMale}{}\begin{memberdesc}[PlugEvents]{PlugMale}\end{memberdesc}
+\index{Researcher (timed\_mating.models.PlugEvents attribute)}
+
+\hypertarget{timed\_mating.models.PlugEvents.Researcher}{}\begin{memberdesc}[PlugEvents]{Researcher}\end{memberdesc}
+\index{get\_absolute\_url() (timed\_mating.models.PlugEvents method)}
+
+\hypertarget{timed\_mating.models.PlugEvents.get\_absolute\_url}{}\begin{methoddesc}[PlugEvents]{get\_absolute\_url}{*moreargs, **morekwargs}\end{methoddesc}
+\index{get\_next\_by\_PlugDate() (timed\_mating.models.PlugEvents method)}
+
+\hypertarget{timed\_mating.models.PlugEvents.get\_next\_by\_PlugDate}{}\begin{methoddesc}[PlugEvents]{get\_next\_by\_PlugDate}{*moreargs, **morekwargs}\end{methoddesc}
+\index{get\_previous\_by\_PlugDate() (timed\_mating.models.PlugEvents method)}
+
+\hypertarget{timed\_mating.models.PlugEvents.get\_previous\_by\_PlugDate}{}\begin{methoddesc}[PlugEvents]{get\_previous\_by\_PlugDate}{*moreargs, **morekwargs}\end{methoddesc}
+\index{save() (timed\_mating.models.PlugEvents method)}
+
+\hypertarget{timed\_mating.models.PlugEvents.save}{}\begin{methoddesc}[PlugEvents]{save}{}
+Over-rides the default save function for PlugEvents.
+
+If a sacrifice date is set for an object in this model, then Active is set to False.
+\end{methoddesc}
+\end{classdesc}
+\index{PlugEvents (class in timed\_mating.models)}
+
+\begin{classdesc}{PlugEvents}{*args, **kwargs}
+Bases: \code{django.db.models.base.Model}
+
+This defines the model for PlugEvents.
+
+A PlugEvent requires a date.  All other fields are optional.
+Upon observation of a plug event, the PlugDate, Breeding Cage, Femalem, Male, Researcher and Notes can be set.
+Upon sacrifice of the mother, then genotyped alive and dead embryos can be entered, along with the SacrificeDate, Researcher and Notes.
+\end{classdesc}
 
 
 \subsection{Forms}
+\index{timed\_mating.forms (module)}
+\hypertarget{module-timed\_mating.forms}{}
+\declaremodule[timedmating.forms]{}{timed\_mating.forms}
+\modulesynopsis{}
+This package describes forms used by the Timed Mating app.
+\index{BreedingPlugForm (class in timed\_mating.forms)}
+
+\hypertarget{timed\_mating.forms.BreedingPlugForm}{}\begin{classdesc}{BreedingPlugForm}{data=None, files=None, auto\_id='id\_\%s', prefix=None, initial=None, error\_class=\textless{}class 'django.forms.util.ErrorList'\textgreater{}, label\_suffix=':', empty\_permitted=False, instance=None}
+Bases: \code{django.forms.models.ModelForm}
+
+This form is used to enter Plug Events from a specific breeding cage.
+\index{BreedingPlugForm.Meta (class in timed\_mating.forms)}
+
+\hypertarget{timed\_mating.forms.BreedingPlugForm.Meta}{}\begin{classdesc}{Meta}{}~\index{model (timed\_mating.forms.BreedingPlugForm.Meta attribute)}
+
+\hypertarget{timed\_mating.forms.BreedingPlugForm.Meta.model}{}\begin{memberdesc}{model}
+alias of \code{PlugEvents}
+\end{memberdesc}
+\end{classdesc}
+\index{media (timed\_mating.forms.BreedingPlugForm attribute)}
+
+\hypertarget{timed\_mating.forms.BreedingPlugForm.media}{}\begin{memberdesc}[BreedingPlugForm]{media}\end{memberdesc}
+\end{classdesc}
 
 
 \subsection{Views and URLs}
+\index{timed\_mating.views (module)}
+\hypertarget{module-timed\_mating.views}{}
+\declaremodule[timedmating.views]{}{timed\_mating.views}
+\modulesynopsis{}
+This package defines custom views for the timed\_mating application.
+
+Currently all views are generic CRUD views except for the view in which a plug event is defined from a breeding cage.
+\index{breeding\_plugevent() (in module timed\_mating.views)}
+
+\hypertarget{timed\_mating.views.breeding\_plugevent}{}\begin{funcdesc}{breeding\_plugevent}{request, *args, **kwargs}
+This view defines a form for adding new plug events from a breeding cage.
+
+This form requires a breeding\_id from a breeding set and restricts the PlugFemale and PlugMale to animals that are defined in that breeding cage.
+\end{funcdesc}
+\index{timed\_mating.urls (module)}
+\hypertarget{module-timed\_mating.urls}{}
+\declaremodule[timedmating.urls]{}{timed\_mating.urls}
+\modulesynopsis{}\index{change\_plugevents() (in module timed\_mating.urls)}
+
+\hypertarget{timed\_mating.urls.change\_plugevents}{}\begin{funcdesc}{change\_plugevents}{request, *args, **kwargs}\end{funcdesc}
+\index{create\_plugevents() (in module timed\_mating.urls)}
+
+\hypertarget{timed\_mating.urls.create\_plugevents}{}\begin{funcdesc}{create\_plugevents}{request, *args, **kwargs}\end{funcdesc}
+\index{delete\_plugevents() (in module timed\_mating.urls)}
+
+\hypertarget{timed\_mating.urls.delete\_plugevents}{}\begin{funcdesc}{delete\_plugevents}{request, *args, **kwargs}\end{funcdesc}
+\index{limited\_object\_detail() (in module timed\_mating.urls)}
+
+\hypertarget{timed\_mating.urls.limited\_object\_detail}{}\begin{funcdesc}{limited\_object\_detail}{request, *args, **kwargs}\end{funcdesc}
+\index{limited\_object\_list() (in module timed\_mating.urls)}
+
+\hypertarget{timed\_mating.urls.limited\_object\_list}{}\begin{funcdesc}{limited\_object\_list}{request, *args, **kwargs}\end{funcdesc}
 
 
 \subsection{Administrative Site Configuration}
+\index{timed\_mating.admin (module)}
+\hypertarget{module-timed\_mating.admin}{}
+\declaremodule[timedmating.admin]{}{timed\_mating.admin}
+\modulesynopsis{}
+Settings to control the admin interface for the timed\_mating app.
+
+This file defines a PlugEventsAdmin object to enter parameters about individual plug events/
+\index{PlugEventsAdmin (class in timed\_mating.admin)}
+
+\hypertarget{timed\_mating.admin.PlugEventsAdmin}{}\begin{classdesc}{PlugEventsAdmin}{model, admin\_site}
+Bases: \code{django.contrib.admin.options.ModelAdmin}
+
+This class defines the admin interface for the PlugEvents model.
+\index{media (timed\_mating.admin.PlugEventsAdmin attribute)}
+
+\hypertarget{timed\_mating.admin.PlugEventsAdmin.media}{}\begin{memberdesc}{media}\end{memberdesc}
+\end{classdesc}
 
 
 \section{Groups Package}
@@ -1302,6 +1458,55 @@ Because every page on this site identifies both the Group and data restrictions,
 \modulesynopsis{}\index{Group (class in groups.models)}
 
 \hypertarget{groups.models.Group}{}\begin{classdesc}{Group}{*args, **kwargs}
+Bases: \code{django.db.models.base.Model}
+
+This defines the data structure for the Group model.
+
+The only required field is group.
+All other fields (group\_slug, group\_url, license, contact\_title, contact\_first, contact\_last and contact\_email) are optional.
+\index{Group.DoesNotExist}
+
+\hypertarget{groups.models.Group.DoesNotExist}{}\begin{excdesc}{DoesNotExist}
+Bases: \code{django.core.exceptions.ObjectDoesNotExist}
+\end{excdesc}
+\index{Group.MultipleObjectsReturned}
+
+\hypertarget{groups.models.Group.MultipleObjectsReturned}{}\begin{excdesc}{MultipleObjectsReturned}
+Bases: \code{django.core.exceptions.MultipleObjectsReturned}
+\end{excdesc}
+\index{get\_contact\_title\_display() (groups.models.Group method)}
+
+\hypertarget{groups.models.Group.get\_contact\_title\_display}{}\begin{methoddesc}[Group]{get\_contact\_title\_display}{*moreargs, **morekwargs}\end{methoddesc}
+\index{license (groups.models.Group attribute)}
+
+\hypertarget{groups.models.Group.license}{}\begin{memberdesc}[Group]{license}\end{memberdesc}
+\end{classdesc}
+\index{License (class in groups.models)}
+
+\hypertarget{groups.models.License}{}\begin{classdesc}{License}{*args, **kwargs}
+Bases: \code{django.db.models.base.Model}
+
+This defines the data structure for the License model.
+
+The only required field is license.
+If the contents of this installation are being made available using some licencing criteria this can either be defined in the notes field, or in an external website.
+\index{License.DoesNotExist}
+
+\hypertarget{groups.models.License.DoesNotExist}{}\begin{excdesc}{DoesNotExist}
+Bases: \code{django.core.exceptions.ObjectDoesNotExist}
+\end{excdesc}
+\index{License.MultipleObjectsReturned}
+
+\hypertarget{groups.models.License.MultipleObjectsReturned}{}\begin{excdesc}{MultipleObjectsReturned}
+Bases: \code{django.core.exceptions.MultipleObjectsReturned}
+\end{excdesc}
+\index{group\_set (groups.models.License attribute)}
+
+\hypertarget{groups.models.License.group\_set}{}\begin{memberdesc}[License]{group\_set}\end{memberdesc}
+\end{classdesc}
+\index{Group (class in groups.models)}
+
+\begin{classdesc}{Group}{*args, **kwargs}
 Bases: \code{django.db.models.base.Model}
 
 This defines the data structure for the Group model.

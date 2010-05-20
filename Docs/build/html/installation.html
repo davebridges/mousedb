@@ -70,7 +70,7 @@
 <p>Downloading and/or unzipping will create a directory named mousedb.  You can update to the newest revision at any time either using git or downloading and re-installing the newer version.  Changing or updating software versions will not alter any saved data, but you will have to update the localsettings.py file (described below).</p>
 <ol class="arabic simple" start="2">
 <li><strong>Python</strong>.  Requires Version 2.6, is not yet compatible with Python 3.0.  Download from <a class="reference external" href="http://www.python.org/download/">http://www.python.org/download/</a>.</li>
-<li><strong>Django</strong>.  Download from <a class="reference external" href="http://www.djangoproject.com/download/">http://www.djangoproject.com/download/</a></li>
+<li><strong>Django</strong>.  Download from <a class="reference external" href="http://www.djangoproject.com/download/">http://www.djangoproject.com/download/</a>.  MouseDB currently requires at least Django 1.2.</li>
 <li><strong>Database software</strong>.  Typically MySQL is used, but PostgreSQL, Oracle or SQLite can also be used.  You also need to install the python driver for this database (unless you are using SQLite, which is internal to Python 2.5+).  See <a class="reference external" href="http://docs.djangoproject.com/en/dev/topics/install/database-installation">http://docs.djangoproject.com/en/dev/topics/install/database-installation</a> - Django Database Installation Documentation for more information.</li>
 </ol>
 </div>
@@ -82,11 +82,11 @@
 </ol>
 <blockquote>
 <ul class="simple">
-<li>DATABASE_ENGINE: &#8216;mysql&#8217;, &#8216;postgresql_psycopg2&#8217; or &#8216;sqlite3 depending on the database software used.</li>
-<li>DATABASE_NAME: database name</li>
-<li>DATABASE_USER: database user</li>
-<li>DATABASE_PASSWORD: database password</li>
-<li>DATABASE_HOST: database host</li>
+<li>ENGINE: Choose one of &#8216;django.db.backends.postgresql_psycopg2&#8217;,&#8217;django.db.backends.postgresql&#8217;, &#8216;django.db.backends.mysql&#8217;, &#8216;django.db.backends.sqlite3&#8217;, &#8216;django.db.backends.oracle&#8217; depending on the database software used.</li>
+<li>NAME: database name</li>
+<li>USER: database user</li>
+<li>PASSWORD: database password</li>
+<li>HOST: database host</li>
 </ul>
 </blockquote>
 <ol class="arabic simple" start="3">
@@ -117,9 +117,16 @@ Alias /media /usr/src/mousedb/media
 </div>
 <div class="section" id="final-configuration-and-user-setup">
 <h2>Final Configuration and User Setup<a class="headerlink" href="#final-configuration-and-user-setup" title="Permalink to this headline">¶</a></h2>
-<ol class="arabic simple">
-<li>Go to mousedb/admin/auth/users/ and create users, selecting usernames, full names, password (or have the user set the password) and then choose group permissions.</li>
-</ol>
+<p>Go to a command prompt, navigate to inside the mousedb directory and enter the following to get to a python prompt:</p>
+<div class="highlight-python"><pre>python manage.py shell</pre>
+</div>
+<p>From the command prompt enter the following where <strong>groupname</strong> is the name of your research group:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">mousedb.groups.models</span> <span class="kn">import</span> <span class="n">Group</span>
+<span class="n">group</span> <span class="o">=</span> <span class="n">Group</span><span class="p">(</span><span class="n">group</span><span class="o">=</span><span class="s">&quot;groupname&quot;</span><span class="p">)</span>
+<span class="n">group</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Go to mousedb/admin/auth/users/ and create users, selecting usernames, full names, password (or have the user set the password) and then choose group permissions.</p>
 </div>
 </div>
 

@@ -44,6 +44,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware'
 )
 
 ROOT_URLCONF = 'mousedb.urls'
@@ -57,6 +59,7 @@ TEMPLATE_CONTEXT_PROCESSORS =(
 	"django.core.context_processors.debug",
 	"django.core.context_processors.i18n",
 	"django.core.context_processors.media",
+	'django.contrib.messages.context_processors.messages',
 	"mousedb.context_processors.group_info",
 )
 
@@ -65,12 +68,16 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.admin',
 	'mousedb.data',
 	'mousedb.animal',
 	'mousedb.timed_mating',
 	'mousedb.groups',
 	'django.contrib.admin',
 )
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.fallback.FallbackStorage'
 
 try:
     from localsettings import *

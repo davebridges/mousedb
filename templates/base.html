@@ -36,6 +36,17 @@
 		</ul>
 	</div>
 
+
+        {% if messages %}
+	<div id = "messages" class="grid_12">
+	<ul>
+    	{% for message in messages %}
+	<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    	{% endfor %}
+	</ul>	
+	</div>	
+	{% endif %}
+
 	<div id = "main" class="grid_12">
 		<h1>{% block header %}{% endblock header %}</h1>
 		{% block content %}{% endblock content %}
