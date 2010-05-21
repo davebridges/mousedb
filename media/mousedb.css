@@ -33,6 +33,7 @@ th {
 	}
 
 th#left { text-align: left;}
+th.left { text-align: left;}
 
 td { padding-left: 5px;
     padding-right: 5px;
@@ -42,6 +43,7 @@ td { padding-left: 5px;
 td#age { text-align: left;}
 
 td#left { text-align: left;}
+td.left { text-align: left;}
 
 td#dead { background-color: red;}
 

@@ -36,8 +36,8 @@
    <td><a href="{{ breeding.get_absolute_url }}">{{ breeding.Cage }}</a></td>
    <td id="left">{{ breeding.BreedingName }}</td>
    <td>{{ breeding.Start }}</td>
-   <td class="breeder">{% for male in breeding.Male.all %}<a href="{% url animal-detail male.id %}">{{ male }}</a>{% endfor %}</td>
-   <td class="breeder"><ul>{% for female in breeding.Females.all %}<li><a href="{% url animal-detail female.id %}">{{ female }}</a></li>{% endfor %}</ul></td>
+   <td class="breeder left" >{% for male in breeding.Male.all %}<a href="{% url animal-detail male.id %}">{{ male }}</a>{% endfor %}</td>
+   <td class="breeder left" ><ul>{% for female in breeding.Females.all %}<li><a href="{% url animal-detail female.id %}">{{ female }}</a></li>{% endfor %}</ul></td>
    <td>{{ breeding.Rack }}</td>
    <td>{{ breeding.Rack_Position|all_caps }}</td>
    <td id="left">{{ breeding.Start|timesince }}
