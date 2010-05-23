@@ -26,7 +26,7 @@ tr {
 
 th { 
 	padding-left: 5px;
-    	padding-right: 5px;
+    padding-right: 5px;
 	background-color: #888888;
 	color: #ffffff;
 	border: 1px solid #ffffff;
@@ -111,32 +111,34 @@ table.form {
 	border: 2px solid #cd0a0a;
 }
 
-ul.debug {
-	background: #fef1ec;
+li.debug {
 	color: #2A70E8;
 	border: 2px solid #2A70E8;
+	text-align: center;
 }
 
-ul.info {
-	background: #888888;
+li.info {
+	background-color: #888888;
 	color: #ffffff;
 	border: 2px solid #ffffff;
+	text-align: center;
+
 }
 
-ul.success {
-	background: #fef1ec;
+li.success {
 	color: #33E82A;
 	border: 2px solid #33E82A;
+	text-align: center;
 }
 
-ul.warning {
-	background: #fef1ec;
+li.warning {
 	color: #FAB905;
 	border: 2px solid #FAB905;
+	text-align: center;
 }
 
-ul.error {
-	background: #fef1ec;
+li.error {
 	color: #cd0a0a;
 	border: 2px solid #cd0a0a;
+	text-align: center;
 }
