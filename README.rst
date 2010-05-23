@@ -64,16 +64,11 @@ Final Configuration and User Setup
 ----------------------------------
 Go to a command prompt, navigate to inside the mousedb directory and enter the following to get to a python prompt::
 
-   python manage.py shell
+  python manage.py shell
   
-From the command prompt enter the following where **groupname** is the name of your research group::
-
-   from mousedb.groups.models import Group
-   group = Group(group="groupname")
-   group.save()
+Go to servername/mousedb/admin/groups/group/1 and name your research group and select a license if desired
   
-Go to mousedb/admin/auth/users/ and create users, selecting usernames, full names, password (or have the user set the password) and then choose group permissions.
-
+Go to servername/mousedb/admin/auth/users/ and create users, selecting usernames, full names, password (or have the user set the password) and then choose group permissions.
 
 Concepts
 ''''''''
