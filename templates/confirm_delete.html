@@ -4,7 +4,7 @@
 {% block header %}Confirm Delete - {{object}}{% endblock header %}
 
 {% block content %}
-<form method="post" action=".">
+<form method="post" action=".">{% csrf_token %}
 <p>Delete {{object}}?</p>
 <input type="submit" value="Confirm"/>
 </form>
