@@ -128,6 +128,45 @@ class Breeding(models.Model):
         if self.End:
             self.Active = False
         super(Breeding, self).save()
+        if self.Cage:
+            if self.male:
+                self.male.Cage = self.Cage
+                self.male.save()
+            if self.females:
+                if hasattr(self.females, '__iter__') == True:  #This is required to determine of self.animals is a queryset or a single instance            
+                    for female_breeder in self.females:
+                        female_breeder.Cage = self.Cage
+                        female_breeder.save()
+                else: 
+                    self.females.Cage = self.Cage
+                    self.females.save()
+        super(Breeding, self).save()
+        if self.Rack:
+            if self.male:
+                self.male.Rack = self.Rack
+                self.male.save()
+            if self.females:
+                if hasattr(self.females, '__iter__') == True:     #This is required to determine of self.animals is a queryset or a single instance                     
+                    for female_breeder in self.females:
+                        female_breeder.Rack = self.Rack
+                        female_breeder.save()
+                else: 
+                    self.females.Rack = self.Rack
+                    self.females.save()
+        super(Breeding, self).save()
+        if self.Rack_Position:
+            if self.male:
+                self.male.Rack_Position = self.Rack_Position
+                self.male.save()
+            if self.females:
+                if hasattr(self.females, '__iter__') == True:     #This is required to determine of self.animals is a queryset or a single instance                     
+                    for female_breeder in self.females:
+                        female_breeder.Rack_Position = self.Rack_Position
+                        female_breeder.save()
+                else: 
+                    self.females.Rack_Position = self.Rack_Position
+                    self.females.save()
+        super(Breeding, self).save()
     class Meta:
         ordering = ['Strain', 'Start']
 		

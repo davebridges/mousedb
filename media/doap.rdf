@@ -22,6 +22,15 @@
 			<doap:file-release rdf:resource="http://github.com/downloads/davebridges/mousedb/mousedb-0.1.tar.gz"/>
 		</doap:Version>
 	</doap:release>
+	
+	<doap:release>
+		<doap:Version>
+			<doap:name>MouseDB v0.2</doap:name>
+			<doap:created>2010-05-22</doap:created>
+			<doap:revision>0.2</doap:revision>
+			<doap:file-release rdf:resource="http://github.com/downloads/davebridges/mousedb/mousedb-0.2.tar.gz"/>
+		</doap:Version>
+	</doap:release>
 
 	<doap:download-page rdf:resource="http://github.com/davebridges/mousedb/downloads" />
 	

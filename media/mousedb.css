@@ -10,6 +10,24 @@ html {
 	font-family: sans-serif;
 }
 
+h1 {
+	 color: #888888;
+	 font-size: 2em; 
+	 margin: .67em 0 
+}
+
+h2 {
+	 color: #888888;
+	 font-size: 1.5em; 
+	 margin: .83em 0
+}
+
+h3 {
+	 color: #888888;
+	 font-size: 1.17em; 
+	 margin: 1em 0
+}
+
 div#user {
 }
 
@@ -34,7 +52,7 @@ tr {
 
 th { 
 	padding-left: 5px;
-    	padding-right: 5px;
+    padding-right: 5px;
 	background-color: #888888;
 	color: #ffffff;
 	border: 1px solid #ffffff;
@@ -125,6 +143,7 @@ table.form {
 	background: #fef1ec;
 	color: #2A70E8;
 	border: 2px solid #2A70E8;
+	text-align: center;
 }
 
 .info {
@@ -133,6 +152,8 @@ table.form {
 	background: #888888;
 	color: #ffffff;
 	border: 2px solid #ffffff;
+	text-align: center;
+
 }
 
 .success {
@@ -141,6 +162,7 @@ table.form {
 	color: #4F8A10;
 	background-color: #DFF2BF;
 	border: 2px solid #4F8A10;
+	text-align: center;
 }
 
 .warning {
@@ -149,6 +171,7 @@ table.form {
 	background: #fef1ec;
 	color: #FAB905;
 	border: 2px solid #FAB905;
+	text-align: center;
 }
 
 .error {
@@ -157,5 +180,6 @@ table.form {
 	background: #fef1ec;
 	color: #cd0a0a;
 	border: 2px solid #cd0a0a;
+	text-align: center;
 }
 
