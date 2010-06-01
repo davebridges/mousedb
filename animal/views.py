@@ -34,8 +34,8 @@ def strain_list(request):
     """
     strain_list = Strain.objects.all()
     strain_list_alive = Strain.objects.filter(animal__Alive=True).annotate(alive=Count('animal'))
-    cages = strain_list_alive.values("animal__Cage").distinct()
-    return render_to_response('strain_list.html', {'strain_list': strain_list, 'strain_list_alive':strain_list_alive },context_instance=RequestContext(request))
+    cages = Animal.objects.filter(Alive=True).values("Cage")
+    return render_to_response('strain_list.html', {'strain_list': strain_list, 'strain_list_alive':strain_list_alive, 'cages':cages },context_instance=RequestContext(request))
 
 @login_required
 def strain_detail(request, strain):

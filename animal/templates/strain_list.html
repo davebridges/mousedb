@@ -7,7 +7,7 @@
 {% block header %}Strain List{% endblock header %}
 
 {% block content %}
-<h2>Currently {{ strain_list_alive.count }} Strains of Mice:</h2>
+<h2>Currently {{ strain_list_alive.count }} Strains of Mice in {{ cages.count }} Cages:</h2>
 <table>
  <tr>
   <th>Strain</th> {% for strain in strain_list_alive %}<th>{{strain}}</th>{% endfor %}
