@@ -16,8 +16,8 @@ def todo(request):
 @login_required
 def home(request):
 	cursor = connection.cursor()
-	cage_list = cursor.execute("select distinct Cage from animal_animal")
-	cage_list_current = cursor.execute("select distinct Cage from animal_animal where Alive='1'")
+	cage_list = Animal.objects.values("Cage")
+	cage_list_current = Animal.objects.filter(Alive=True).values("Cage")
 	animal_list = Animal.objects.all()
 	animal_list_current = Animal.objects.filter(Alive=True)
 	strain_list = Strain.objects.all()
