@@ -8,7 +8,7 @@
 {% block header %}Strain Detail - {{ strain }}{% endblock header %}
 
 {% block content %}
-<h2>{{ animal_list.count }} mice <a href="{% url strain-detail-all strain.Strain_slug %}">(see all)</a>.</h2>
+<h2>{{ animal_list.count }} mice in {{ cages.count }} cages.<a href="{% url strain-detail-all strain.Strain_slug %}">(see all)</a>.</h2>
 <p>{{ strain.Comments }}</p>
 <p>Sort table by clicking headers.  Select multiple headers by holding SHIFT</p>
 <p class="unweaned">Pink rows are animals which have not yet been weaned.</p>  
