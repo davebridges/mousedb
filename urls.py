@@ -34,7 +34,7 @@ urlpatterns = patterns('',
 	url(r'^timedmatings?/', include('mousedb.timed_mating.urls')),
 	url(r'^timed_matings?/', include('mousedb.timed_mating.urls')),
 	
-	url(r'^specs?/$', 'django.views.generic.simple.direct_to_template', {'template': 'specs.html'}),
+	url(r'^specs?/$', 'django.views.generic.simple.direct_to_template', {'template': 'specs.html'}, name="specs"),
 	url(r'^index/$', 'mousedb.views.home', name="home"),
 	url(r'^/?$', 'mousedb.views.home')
 )
