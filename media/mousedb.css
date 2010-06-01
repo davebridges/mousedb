@@ -1,3 +1,11 @@
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, table, caption, tbody, tfoot, thead, tr, th, td ,hr{
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+}
+
+
 html {
 	font-family: sans-serif;
 }
@@ -111,34 +119,49 @@ table.form {
 	border: 2px solid #cd0a0a;
 }
 
-li.debug {
+.debug {
+	text-align: center;
+	list-style-type: none;
+	background: #fef1ec;
 	color: #2A70E8;
 	border: 2px solid #2A70E8;
 	text-align: center;
 }
 
-li.info {
-	background-color: #888888;
+.info {
+	text-align: center;
+	list-style-type: none;
+	background: #888888;
 	color: #ffffff;
 	border: 2px solid #ffffff;
 	text-align: center;
 
 }
 
-li.success {
-	color: #33E82A;
-	border: 2px solid #33E82A;
+.success {
+	text-align: center;
+	list-style-type: none;
+	color: #4F8A10;
+	background-color: #DFF2BF;
+	border: 2px solid #4F8A10;
 	text-align: center;
 }
 
-li.warning {
+.warning {
+	text-align: center;
+	list-style-type: none;
+	background: #fef1ec;
 	color: #FAB905;
 	border: 2px solid #FAB905;
 	text-align: center;
 }
 
-li.error {
+.error {
+	text-align: center;
+	list-style-type: none;
+	background: #fef1ec;
 	color: #cd0a0a;
 	border: 2px solid #cd0a0a;
 	text-align: center;
 }
+
