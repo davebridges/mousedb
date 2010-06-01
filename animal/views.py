@@ -60,7 +60,8 @@ def strain_detail_all(request, strain):
     """
     strain = Strain.objects.get(Strain_slug=strain)
     animal_list = Animal.objects.filter(Strain=strain).order_by('Background','Genotype')	
-    return render_to_response('strain_detail.html', {'strain' : strain, 'animal_list' : animal_list},context_instance=RequestContext(request))
+    cages = animal_list.values("Cage").distinct()
+    return render_to_response('strain_detail.html', {'strain' : strain, 'animal_list' : animal_list, 'cages':cages},context_instance=RequestContext(request))
 
 @login_required
 def breeding(request):
