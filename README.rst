@@ -39,24 +39,21 @@ Database Setup
 
 Web Server Setup
 ----------------
-You need to set up a server to serve both the django installation and saved files.  For the saved files.  I recommend using apache for both.  The preferred setup is to use Apache2 with mod\_python.  The following is a httpd.conf example where the code is placed in /usr/src/mousedb::
+You need to set up a server to serve both the django installation and saved files.  For the saved files.  I recommend using apache for both.  The preferred setup is to use Apache2 with mod_wsgi.  See http://code.google.com/p/modwsgi/wiki/InstallationInstructions for instructions on using mod_wsgi.  The following is a httpd.conf example where the code is placed in /usr/src/mousedb::
 
-  Alias /static /usr/src/mousedb/media
-  Alias /media /usr/src/mousedb/media
-  <Directory /usr/mousedb/media>
-     Order allow,deny
-     Allow from all
-  </Directory>
-  <Location "/mousedb/">
-     SetHandler python-program
-     PythonHandler django.core.handlers.modpython
-     SetEnv DJANGO_SETTINGS_MODULE mousedb.settings
-     SetEnv PYTHON_EGG_CACHE /var/www/eggs
-     PythonOption django.root /mousedb
-     PythonDebug On
-     PythonPath "['/usr/src'] + sys.path"
-     PythonInterpreter mousedb
-  </Location>
+Alias /robots.txt "usr\src\mousedb\media\robots.txt"
+Alias /favicon.ico "usr\src\media\favicon.ico"
+
+Alias /mousedb-media "usr\src\mousedb\media"
+
+<Directory "usr\src\mousedb">
+   Order allow,deny
+   Allow from all
+</Directory>
+
+WSGIScriptAlias /mousedb "usr\src\mousedb\apache\django.wsgi"
+
+Then open up the mousedb/apache/django.wsgi file and replace the location of the mousedb directory on the sys.path.append line.
 
 If you want to restrict access to these files, change the Allow from all directive to specific domains or ip addresses (for example Allow from 192.168.0.0/99 would allow from 192.168.0.0 to 192.168.0.99)
 
@@ -64,16 +61,11 @@ Final Configuration and User Setup
 ----------------------------------
 Go to a command prompt, navigate to inside the mousedb directory and enter the following to get to a python prompt::
 
-   python manage.py shell
+  python manage.py shell
   
-From the command prompt enter the following where **groupname** is the name of your research group::
-
-   from mousedb.groups.models import Group
-   group = Group(group="groupname")
-   group.save()
+Go to servername/mousedb/admin/groups/group/1 and name your research group and select a license if desired
   
-Go to mousedb/admin/auth/users/ and create users, selecting usernames, full names, password (or have the user set the password) and then choose group permissions.
-
+Go to servername/mousedb/admin/auth/users/ and create users, selecting usernames, full names, password (or have the user set the password) and then choose group permissions.
 
 Concepts
 ''''''''

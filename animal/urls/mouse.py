@@ -30,6 +30,11 @@ urlpatterns = patterns('',
 		'template_name': 'animal_list.html', 
 		'template_object_name': 'animal',
 		}, name="animal-list"),
+	url(r'all/?$', limited_object_list, {
+		'queryset': Animal.objects.all(),
+		'template_name': 'animal_list.html', 
+		'template_object_name': 'animal',
+		}, name="animal-list-all"),
 	url(r'^(?P<id>\d*)/$', 'mousedb.animal.views.animal_detail', name="animal-detail"),
 	url(r'^new/$', create_animal, {
 		'form_class': AnimalForm, 

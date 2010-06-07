@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Cage List{% endblock title%}
+
+{% block scripts %}{% include "sortable_table_script.html" %}{% endblock scripts %}
+
+{% block header %}Cage List{% endblock header %}
+
+{% block content %}
+<h2>Currently {{ cage_list.count }} Cages:</h2>
+<table class="sortable">
+<thead>
+<tr>
+<th>Cage</th>
+<th>Strain</th>
+<th>Rack</th>
+<th>Rack Position</th>
+</tr>
+</thead>
+<tbody>
+{% for cage in cage_list %}
+<tr>
+<td>{{ cage.Cage }}</td>
+<td><a href="{% url strain-detail cage.Strain__Strain_slug %}">{{ cage.Strain__Strain }}</a></td>
+<td>{{ cage.Rack }}</td>
+<td>{{ cage.Rack_Position }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+<p>To add a new mouse click <a href="{% url animal-new %}">here</a>.
+<p>To add a new mouse strain click <a href="{% url strain-new %}">here</a>.
+{% endblock content %}

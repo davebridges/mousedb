@@ -34,7 +34,8 @@ def strain_list(request):
     """
     strain_list = Strain.objects.all()
     strain_list_alive = Strain.objects.filter(animal__Alive=True).annotate(alive=Count('animal'))
-    return render_to_response('strain_list.html', {'strain_list': strain_list, 'strain_list_alive':strain_list_alive },context_instance=RequestContext(request))
+    cages = Animal.objects.filter(Alive=True).values("Cage")
+    return render_to_response('strain_list.html', {'strain_list': strain_list, 'strain_list_alive':strain_list_alive, 'cages':cages },context_instance=RequestContext(request))
 
 @login_required
 def strain_detail(request, strain):
@@ -45,8 +46,9 @@ def strain_detail(request, strain):
     This page is restricted to logged-in users.
     """
     strain = Strain.objects.get(Strain_slug=strain)
-    animal_list = Animal.objects.filter(Strain=strain, Alive=True).order_by('Background','Genotype')	
-    return render_to_response('strain_detail.html', {'strain' : strain, 'animal_list' : animal_list},context_instance=RequestContext(request))
+    animal_list = Animal.objects.filter(Strain=strain, Alive=True).order_by('Background','Genotype')
+    cages = animal_list.values("Cage").distinct()
+    return render_to_response('strain_detail.html', {'strain' : strain, 'animal_list' : animal_list, 'cages':cages},context_instance=RequestContext(request))
 
 @login_required
 def strain_detail_all(request, strain):
@@ -58,7 +60,8 @@ def strain_detail_all(request, strain):
     """
     strain = Strain.objects.get(Strain_slug=strain)
     animal_list = Animal.objects.filter(Strain=strain).order_by('Background','Genotype')	
-    return render_to_response('strain_detail.html', {'strain' : strain, 'animal_list' : animal_list},context_instance=RequestContext(request))
+    cages = animal_list.values("Cage").distinct()
+    return render_to_response('strain_detail.html', {'strain' : strain, 'animal_list' : animal_list, 'cages':cages},context_instance=RequestContext(request))
 
 @login_required
 def breeding(request):
@@ -123,12 +126,12 @@ def breeding_change(request, breeding_id):
     """
     breeding = Breeding.objects.select_related().get(id=breeding_id)
     strain = breeding.Strain
-    PupsFormSet = inlineformset_factory(Breeding, Animal, extra=0, fields=['MouseID', 'Gender','Cage', 'Genotype', 'Death','Cause_of_Death','Born','Rack', 'Rack_Position','Markings'])
+    PupsFormSet = inlineformset_factory(Breeding, Animal, extra=0, exclude=('Alive','Father', 'Mother', 'CageID', 'Breeding', 'Notes'))
     if request.method =="POST":
         formset = PupsFormSet(request.POST, instance=breeding)
         if formset.is_valid():
             formset.save()
-            return HttpResponseRedirect("/mousedb/breeding/")
+            return HttpResponseRedirect( breeding.get_absolute_url() )
     else:
         formset = PupsFormSet(instance=breeding,)
     return render_to_response("breeding_change.html", {"formset":formset, 'breeding':breeding},context_instance=RequestContext(request))
