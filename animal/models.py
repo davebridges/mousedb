@@ -88,8 +88,9 @@ If a eartag is present then the string reads some_strain-Eartag #some_number. If
              return u'%s (%i)' % (self.Strain, self.id)
         else:
              return u'MOUSE'
+    @models.permalink
     def get_absolute_url(self):
-        return '/mousedb/animal/%i' % (self.id)
+        return ('animal-detail', [str(self.id)])
     def save(self):
         if self.Death:
             self.Alive = False
@@ -118,8 +119,9 @@ class Breeding(models.Model):
     Timed_Mating = models.BooleanField(default=False, help_text="Is this cage a timed mating cage?")
     def __unicode__(self):
         return u'%s Breeding Cage: %s starting on %s'  %(self.Strain, self.Cage, self.Start)
+    @models.permalink
     def get_absolute_url(self):
-        return "/mousedb/breeding/%i" % (self.id)
+        return ('breeding-detail', [str(self.id)])
     def save(self):
         """The save function for a breeding cage has to automatic over-rides, Active and the Cage for the Breeder.
         

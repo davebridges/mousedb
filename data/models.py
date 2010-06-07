@@ -36,8 +36,9 @@ class Experiment(models.Model):
 	study = models.ForeignKey('Study', blank=True, null=True)
 	def __unicode__(self):
 		return u'%s-%s' % (self.date, self.feeding_state) 
+	@models.permalink
 	def get_absolute_url(self):
-		return "/mousedb/experiment/%i" % self.id
+		return ('experiment-detail', [str(self.id)])
 	class Meta:
 		ordering = ['-date']
 
@@ -68,8 +69,7 @@ class Researcher(models.Model):
 	active = models.BooleanField(default = True)
 	def __unicode__(self):
 		return u'%s %s' % (self.first_name, self.last_name)
-	def get_absolute_url(self):
-		return "/researcher/%s" % self.name_slug
+
 
 class Study(models.Model): 
 	description = models.CharField(max_length=200)
@@ -81,8 +81,9 @@ class Study(models.Model):
 		return u'%s' % self.description
 	class Meta:
 		verbose_name_plural = "Studies"
+	@models.permalink
 	def get_absolute_url(self):
-		return "/study/%s" % self.id
+		return ('study-detail', [str(self.id)])
 	
 class Treatment(models.Model):
 	treatment = models.CharField(max_length=50)
@@ -97,8 +98,9 @@ class Treatment(models.Model):
 	notes = models.TextField(max_length=500, blank=True)
 	def __unicode__(self):
 		return u'%s' %(self.treatment)
+	@models.permalink
 	def get_absolute_url(self):
-		return "/experimentdb/treatment/%i" % self.id
+		return ('treatment-detail', [str(self.id)])
 
 class Vendor(models.Model):
 	vendor = models.CharField(max_length=100)
