@@ -2,5 +2,5 @@
 *.svn
 *.svn/*
 localsettings.py
-django.wsgi
+apache/django.wsgi
 *~
