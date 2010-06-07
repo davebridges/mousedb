@@ -126,12 +126,12 @@ def breeding_change(request, breeding_id):
     """
     breeding = Breeding.objects.select_related().get(id=breeding_id)
     strain = breeding.Strain
-    PupsFormSet = inlineformset_factory(Breeding, Animal, extra=0, fields=['MouseID', 'Gender','Cage', 'Genotype', 'Death','Cause_of_Death','Born','Rack', 'Rack_Position','Markings'])
+    PupsFormSet = inlineformset_factory(Breeding, Animal, extra=0, exclude=('Alive','Father', 'Mother', 'CageID', 'Breeding', 'Notes'))
     if request.method =="POST":
         formset = PupsFormSet(request.POST, instance=breeding)
         if formset.is_valid():
             formset.save()
-            return HttpResponseRedirect("/mousedb/breeding/")
+            return HttpResponseRedirect( breeding.get_absolute_url() )
     else:
         formset = PupsFormSet(instance=breeding,)
     return render_to_response("breeding_change.html", {"formset":formset, 'breeding':breeding},context_instance=RequestContext(request))
