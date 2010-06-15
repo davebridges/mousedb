@@ -3,6 +3,8 @@
 from django.forms import ModelForm
 from django import forms
 
+from ajax_select.fields import AutoCompleteSelectMultipleField, AutoCompleteSelectField
+
 from mousedb.animal.models import Animal, Breeding
 	
 class AnimalForm(ModelForm):
@@ -10,14 +12,16 @@ class AnimalForm(ModelForm):
 	
 	It includes all fields except CageID (will be deprecated) and Alive (which is automattically set upon saving the animal).
 	This form also automatically loads javascript and css for the datepicker jquery-ui widget."""
+	Father = AutoCompleteSelectField('animal', required=False)
+	Mother = AutoCompleteSelectField('animal', required=False)
 	class Meta:
 		model = Animal
 		exclude = ['CageID', 'Alive']
 	class Media:
 		css = {
-			'all': ('javascript/jquery-ui/css/custom-theme/jquery-ui-1.7.2.custom.css',)
+			'all': ('javascript/jquery-ui/css/custom-theme/jquery-ui-1.7.2.custom.css','javascript/jquery-autocomplete/jquery.autocomplete.css', 'css/iconic.css')
 				}
-		js = ('javascript/jquery-1.3.2.js','javascript/jquery-ui/js/jquery-ui-1.7.2.custom.min.js')
+		js = ('javascript/jquery-1.3.2.js','javascript/jquery-ui/js/jquery-ui-1.7.2.custom.min.js', 'javascript/jquery-autocomplete/jquery.autocomplete.js')
 
 
 class BreedingForm(ModelForm):
