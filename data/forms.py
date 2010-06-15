@@ -21,8 +21,7 @@ class ExperimentForm(ModelForm):
 			'all': ('javascript/jquery-ui/css/custom-theme/jquery-ui-1.7.2.custom.css','javascript/jquery-autocomplete/jquery.autocomplete.css', 'css/iconic.css')
 				}
 		js = ('javascript/jquery-1.3.2.js','javascript/jquery-ui/js/jquery-ui-1.7.2.custom.min.js', 'javascript/jquery-autocomplete/jquery.autocomplete.js')
-
-
+ 
 
 class StudyExperimentForm(ModelForm):
 	class Meta:
@@ -41,8 +40,18 @@ class MeasurementForm(ModelForm):
 		model = Measurement
 	
 class StudyForm(ModelForm):
-	class Meta:
-		model = Study
+    """This is the configuration for the study form.
+
+    This form is used to create and modify studies.  It uses an autocomplete widget for the animals."""
+    animals = AutoCompleteSelectMultipleField('animal')
+    class Meta:
+         model = Study
+    class Media:
+        css = {
+	'all': ('javascript/jquery-ui/css/custom-theme/jquery-ui-1.7.2.custom.css','javascript/jquery-autocomplete/jquery.autocomplete.css', 'css/iconic.css')
+		}
+        js = ('javascript/jquery-1.3.2.js','javascript/jquery-ui/js/jquery-ui-1.7.2.custom.min.js', 'javascript/jquery-autocomplete/jquery.autocomplete.js')
+                
 
 class TreatmentForm(ModelForm):
 	"""Form class for study treatment groups.
