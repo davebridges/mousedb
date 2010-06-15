@@ -75,13 +75,20 @@ INSTALLED_APPS = (
 	'mousedb.timed_mating',
 	'mousedb.groups',
 	'django.contrib.admin',
+	'ajax_select'
 )
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.fallback.FallbackStorage'
+
+AJAX_LOOKUP_CHANNELS = {
+    'animal' : dict(model='animal.Animal',search_field='MouseID'),
+}
 
 try:
     from localsettings import *
 except ImportError:
     print 'localsetting could not be imported'
     pass #Or raise
+
+
 

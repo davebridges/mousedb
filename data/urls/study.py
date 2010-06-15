@@ -4,6 +4,7 @@ from django.views.generic.create_update import create_object, update_object, del
 from django.contrib.auth.decorators import login_required, permission_required
 
 from mousedb.data.models import Study
+from mousedb.data.forms import StudyForm
 
 @login_required
 def limited_object_list(*args, **kwargs):
@@ -32,7 +33,7 @@ urlpatterns = patterns('',
 		'template_object_name': 'study',
 		}, name="study-list"),
 	url(r'^new/$', create_study, {
-		'model': Study,
+		'form_class': StudyForm,
 		'template_name': 'study_form.html',
 		}, name="study-new"),
 	url(r'^(?P<object_id>\d*)/$', limited_object_detail, {

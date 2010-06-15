@@ -8,6 +8,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
 	#(r'^', 'django.views.generic.simple.direct_to_template', {'template': 'maintenance.html'}),
+	(r'^ajax_select/', include('ajax_select.urls')),	
 	(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 	(r'^admin/', include(admin.site.urls)),
 	url(r'^accounts/login/', 'django.contrib.auth.views.login', name="login"),
