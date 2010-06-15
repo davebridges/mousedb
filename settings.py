@@ -81,7 +81,7 @@ INSTALLED_APPS = (
 MESSAGE_STORAGE = 'django.contrib.messages.storage.fallback.FallbackStorage'
 
 AJAX_LOOKUP_CHANNELS = {
-    'animal' : dict(model='animal.Animal',search_field='MouseID'),
+    'animal' : ('mousedb.animal.lookups', 'AnimalLookup'),
 }
 
 try:
