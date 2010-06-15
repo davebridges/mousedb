@@ -3,13 +3,26 @@ from django import forms
 from django.contrib.admin import widgets
 from django.forms.models import inlineformset_factory
 
+from ajax_select.fields import AutoCompleteSelectMultipleField, AutoCompleteSelectField
+
 from mousedb.data.models import Experiment, Measurement, Study, Treatment
 from mousedb.animal.models import Animal
 
 class ExperimentForm(ModelForm):
-	#animals = forms.ModelMultipleChoiceField(queryset=Animal.objects.all(), widget=widgets.FilteredSelectMultiple("animals",True))
-	class Meta:
-		model = Experiment
+    """This is the configuration for the experiment form.
+
+    This form is used to set up and modify an experiment.  It uses a datepicker widget for the date, and autocomplete forms for the animals.
+    """
+    animals = AutoCompleteSelectMultipleField('animal')
+    class Meta:
+        model = Experiment
+    class Media:
+		css = {
+			'all': ('javascript/jquery-ui/css/custom-theme/jquery-ui-1.7.2.custom.css','javascript/jquery-autocomplete/jquery.autocomplete.css', 'css/iconic.css')
+				}
+		js = ('javascript/jquery-1.3.2.js','javascript/jquery-ui/js/jquery-ui-1.7.2.custom.min.js', 'javascript/jquery-autocomplete/jquery.autocomplete.js')
+
+
 
 class StudyExperimentForm(ModelForm):
 	class Meta:
