@@ -42,12 +42,18 @@
   <th>Cage</th>
   <th>Rack</th>
   <th>Position</th>
+  <th>Age</th
 {% for male in breeding.Male.all %}
   <tr>
    <th>Male</th><td class="breeder"><a href="{% url animal-detail male.id %}">{{ male }}</a></td>
    <td>{{ male.Cage }}</td>
    <td>{{ male.Rack }}</td>
    <td>{{ male.Rack_Position }}</td>
+   	{% if animal.Death %}
+		<td id="dead">{{ male.Death }}</td>
+	{% else %}
+		<td id="age">{{ male.Born|timesince }}</td>
+	{% endif %}
   </tr>
 {% endfor %}
 {% for female in breeding.Females.all %}
@@ -56,6 +62,11 @@
    <td>{{ female.Cage }}</td>
    <td>{{ female.Rack }}</td>
    <td>{{ female.Rack_Position }}</td>
+     {% if animal.Death %}
+		<td id="dead">{{ female.Death }}</td>
+	{% else %}
+		<td id="age">{{ female.Born|timesince }}</td>
+	{% endif %}
   </tr>
   {% endfor %}
  </table>
