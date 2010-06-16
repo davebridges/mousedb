@@ -82,6 +82,8 @@ MESSAGE_STORAGE = 'django.contrib.messages.storage.fallback.FallbackStorage'
 
 AJAX_LOOKUP_CHANNELS = {
     'animal' : ('mousedb.animal.lookups', 'AnimalLookup'),
+    'animal-male' : ('mousedb.animal.lookups', 'AnimalLookupMale'),
+	'animal-female' : ('mousedb.animal.lookups', 'AnimalLookupFemale'),
 }
 
 try:
