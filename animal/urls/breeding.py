@@ -32,13 +32,11 @@ urlpatterns = patterns('',
 		'form_class': BreedingForm, 
 		'template_name': 'breeding_form.html', 
 		'login_required':True,
-		'post_save_redirect':'/mousedb/breeding/'
 		}, name="breeding-new"),
 	url(r'^(?P<object_id>\d*)/update/$', change_breeding, {
-		'model': Breeding, 
+		'form_class': BreedingForm, 
 		'template_name': 'breeding_form.html', 
 		'login_required':True,
-		'post_save_redirect':'/mousedb/breeding/',
 		}, name="breeding-edit"),
 	url(r'^(?P<object_id>\d*)/delete/$', delete_breeding, {
 		'model': Breeding, 
