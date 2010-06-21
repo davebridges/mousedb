@@ -70,6 +70,7 @@ td#age { text-align: left;}
 
 td#left { text-align: left;}
 td.left { text-align: left;}
+td.no-border { border: none;}
 
 td#dead { background-color: red;}
 
