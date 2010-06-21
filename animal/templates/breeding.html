@@ -3,13 +3,19 @@
 
 {% block title %}Breeding Cages{% endblock title%}
 
-{% block scripts %}{% include "sortable_table_script.html" %}{% endblock scripts %}
+{% block scripts %}
+{% include "sortable_table_script.html" %}
+{% include "jquery_ui_script_css.html" %}
+{% include "jquery_script.html" %}
+{% endblock scripts %}
 
 {% block header %}Breeding Cages{% endblock header %}
 
 {% block content %}
 <h2>{{ breeding_list.count }} breeding cages <a href="{% url breeding-list-all %}">(see all)</a></h2>
-<p>To enter a new breeding cage click <a href="{% url breeding-new %}">here</a>.  To see details on a breeding cage click on either the cage number or the number of pups</p>
+<p>To enter a new breeding cage click: <a href="{% url breeding-new %}" class="fg-button ui-state-default fg-button-icon-left ui-corner-all">New Breeding Cage</a>
+
+<p>To see details on a breeding cage click on either the cage number or the number of pups</p>
 <p>For information about plug events click <a href="{% url plugevents-list %}" title="timed matings entry page">here</a>.</p>
 <p>Sort table by clicking headers.  Select multiple headers by holding SHIFT</p>
 <table class="sortable">
@@ -44,6 +50,29 @@
    <td class="left">{{ breeding.Crosstype }}</td>
    <td><a href="{{ breeding.get_absolute_url }}">{{ breeding.animal_set.count }}</a></td>
    <td class="left">{{ breeding.Notes }}</td>
+<td class="fg-buttonset fg-buttonset-multi">
+{% if perms.animal.add_breeding %}
+  <a href="{% url breeding-new %}">
+   <button class="fg-button ui-state-default fg-button-icon-left ui-corner-all">
+    <span class="ui-icon ui-icon-circle-plus">Add</span>
+   </button>
+   </a>
+{% endif %}
+{% if perms.animal.change_breeding %}
+  <a href="{% url breeding-edit breeding.id %}">
+   <button class="fg-button ui-state-default fg-button-icon-left ui-corner-all">
+    <span class="ui-icon ui-icon-circle-zoomin">Edit</span>
+   </button>
+   </a>
+{% endif %}
+{% if perms.animal.delete_breeding %}
+  <a href="{% url breeding-delete breeding.id %}">
+   <button class="fg-button ui-state-default fg-button-icon-left ui-corner-all">
+    <span class="ui-icon ui-icon-circle-close">Delete</span>
+   </button>
+   </a>
+{% endif %}
+</td>
   </tr>
 {% endfor%}
  </tbody>
