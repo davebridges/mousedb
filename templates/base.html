@@ -12,20 +12,24 @@
 	<link rel="stylesheet" type="text/css" href="/mousedb-media/960.gs.css"/> 
     <link rel="meta" title="DOAP" href="http://github.com/davebridges/mousedb/raw/master/media/doap.rdf" type="application/rdf+xml"/>
 	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+	{% include "jquery_script.html" %}
+	{% include "jquery_ui_script_css.html" %}
 	{% block scripts%}{% endblock scripts %}
 </head>
 
 <body>
 <div class = "container_12">
-	<div id = "user" class="grid_12">
+	<div id = "user" class="grid_4">
 	{% if user.is_authenticated %}
-		<p>Welcome, {{ user.first_name }} {{ user.last_name }}.  <a href="{% url login %}"><img src="/mousedb-media/admin-media/img/admin/icon_searchbox.png" alt="change" title="Change User"/></a>
-	{% else %}
-		<p>Welcome, please <a href="{% url login %}">log in.</a>
-	{% endif %}
+	<p class="ui-state-default ui-corner-all">
+     <span class="ui-icon ui-icon-person" style="float:left;"></span>Welcome, <b>{{ user.first_name }} {{ user.last_name }}</b>.
 	</p>
+	{% else %}
+	<p class="ui-state-default ui-corner-all">
+	 <span class="ui-icon ui-icon-person" style="float:left;"></span>Welcome, please <a href="{% url login %}"><b>log in.</b></a>
+	</p>
+	{% endif %}
 	</div>
-
 	<div id = "header" class="grid_12">
 		<ul id="menu">
 			<li><a href="{% url home %}" title="Home">Home</a></li>
