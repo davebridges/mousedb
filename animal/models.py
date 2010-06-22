@@ -103,9 +103,9 @@ class Breeding(models.Model):
 
     A breeding set may contain one ore more males and females and must be defined via the progeny strain.  For example, in the case of generating a new strain, the strain indicates the new strain not the parental strains.  A breeding cage is defined as one male with one or more females.  If the breeding set is part of a timed mating experiment, then Timed_Mating must be selected.  Breeding cages are automatically inactivated upon saving when a End date is provided.  The only required field is Strain.  By default, querysets are ordered by Strain, then Start.
     """
-    Females = models.ManyToManyField(Animal, blank=True)
-    Male = models.ManyToManyField(Animal, related_name="male", blank=True) #should be males, but will have to check through the code to make sure this is ok to change
-    Strain = models.ForeignKey(Strain, related_name="females", help_text="The strain of the progeny")
+    Females = models.ManyToManyField(Animal, blank=True, related_name="breeding_females")
+    Male = models.ManyToManyField(Animal, related_name="breeding_males", blank=True) #should be males, but will have to check through the code to make sure this is ok to change
+    Strain = models.ForeignKey(Strain, help_text="The strain of the progeny")
     Cage = models.CommaSeparatedIntegerField(max_length=100, blank=True, null=True)
     CageID = models.ForeignKey('Cage', blank=True, null=True)
     BreedingName = models.CharField(max_length=50, blank=True, verbose_name="Breeding Set Name")

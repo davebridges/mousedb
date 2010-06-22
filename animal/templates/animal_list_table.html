@@ -23,8 +23,8 @@
 {% for animal in animal_list %}
   <tr
 	{% if not animal.Weaned %} class="unweaned" {% endif %}
-	{% if animal.male.all %} class="breeder" {% endif %}
-	{% if animal.females.all %} class="breeder" {% endif %}
+	{% if animal.breeding_males.all %} class="breeder" {% endif %}
+	{% if animal.breeding_females.all %} class="breeder" {% endif %}
 >
 			<td><a href = "{% url animal-detail animal.id %}">{{ animal.MouseID}}</a></td>
 			<td><a href="{% url strain-detail animal.Strain.Strain_slug %}">{{ animal.Strain }}</a></td>
