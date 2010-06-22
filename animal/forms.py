@@ -29,8 +29,8 @@ class BreedingForm(ModelForm):
 	
     This form is used from the url /mousedb/breeding/new and is a generic create view.  The only excluded field is CageID, as this feature will be deprecated.  This view includes a datepicker widget for Stat and End dates and autocomplete fields for the Females and Male fields
     """
-    Male = AutoCompleteSelectMultipleField('animal-male')
-    Females = AutoCompleteSelectMultipleField('animal-female')
+    Male = AutoCompleteSelectMultipleField('animal-male', required=False)
+    Females = AutoCompleteSelectMultipleField('animal-female', required=False)
     class Meta:
         model = Breeding
         exclude = ['CageID', 'Active']
