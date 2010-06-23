@@ -8,8 +8,17 @@
 {% block header %}Strain Detail - {{ strain }}{% endblock header %}
 
 {% block content %}
-<h2>{{ animal_list.count }} mice in {{ cages.count }} cages <a href="{% url strain-detail-all strain.Strain_slug %}">(see all)</a>.</h2>
+<h2>{{ animal_list.count }} mice in {{ cages.count }} cages{% if strain.breeding_set.count > 0%} ({{ strain.breeding_set.count }} Breeding Cages){% endif %}.</h2>
+<p>Only live mice are shown click <a href="{% url strain-detail-all strain.Strain_slug %}">here</a> to see all mice.
 <p>{{ strain.Comments }}</p>
+<div id ="breeding-cages">
+<h3>Breeding Cage Summary</h3>
+{% with strain.breeding_set.all as breeding_list %}
+{% include "breeding_table.html" %}
+{% endwith %}
+</div>
+
+<h3>Animal List</h3>
 <p>Sort table by clicking headers.  Select multiple headers by holding SHIFT</p>
 <p class="unweaned">Pink rows are animals which have not yet been weaned.</p>  
 <p class="breeder">Yellow rows are animals which are currently in breeding cages.</p>
@@ -23,8 +32,8 @@
 {% for animal in animal_list %}
   <tr
 	{% if not animal.Weaned %} class="unweaned" {% endif %}
-	{% if animal.male.all %} class="breeder" {% endif %}
-	{% if animal.females.all %} class="breeder" {% endif %}
+	{% if animal.breeding_males.all %} class="breeder" {% endif %}
+	{% if animal.breeding_females.all %} class="breeder" {% endif %}
 >
    <td><a href = "{% url animal-detail animal.id %}">{{ animal.MouseID}}</a></td>
    <td>{{ animal.Strain }}</td>
@@ -47,4 +56,5 @@
   {% endfor%}
 </tdata>
 </table>
+
 {% endblock content %}
