@@ -3,7 +3,19 @@
 
 {% block title %}Strain Detail - {{ strain }}{% endblock title %}
 
-{% block scripts %}{% include "sortable_table_script.html" %}{% endblock scripts %}
+{% block scripts %}
+{% include "sortable_table_script.html" %}
+ <script>
+ $(document).ready(function() {
+   $('button.toggle-breeding').click(function(){
+     $('div.toggle-breeding').toggle();
+   });
+    $('button.toggle-animals').click(function(){
+     $('div.toggle-animals').toggle();
+   });
+ });
+ </script>
+{% endblock scripts %}
 
 {% block header %}Strain Detail - {{ strain }}{% endblock header %}
 
@@ -11,13 +23,18 @@
 <h2>{{ animal_list.count }} mice in {{ cages.count }} cages{% if strain.breeding_set.count > 0%} ({{ strain.breeding_set.count }} Breeding Cages){% endif %}.</h2>
 <p>Only live mice are shown click <a href="{% url strain-detail-all strain.Strain_slug %}">here</a> to see all mice.
 <p>{{ strain.Comments }}</p>
-<div id ="breeding-cages">
+{% if strain.breeding_set.count > 0%}
+<button class="toggle-breeding fg-button ui-state-default fg-button-toggleable ui-corner-all">Breeding Cages Show/Hide</button>
+<div id ="breeding-cages" class="toggle-breeding">
 <h3>Breeding Cage Summary</h3>
 {% with strain.breeding_set.all as breeding_list %}
 {% include "breeding_table.html" %}
 {% endwith %}
 </div>
+{% endif %}
 
+<button class="toggle-animals fg-button ui-state-default fg-button-toggleable ui-corner-all">Animals Show/Hide</button>
+<div id ="animals" class="toggle-animals">
 <h3>Animal List</h3>
 <p>Sort table by clicking headers.  Select multiple headers by holding SHIFT</p>
 <p class="unweaned">Pink rows are animals which have not yet been weaned.</p>  
@@ -28,7 +45,7 @@
    <th>MouseID</th><th>Strain</th><th>Background</th><th>Backcross</th><th>Generation</th><th>Genotype</th><th>Gender</th><th>Cage</th><th>Rack</th><th>Position</th><th>Markings</th><th>Born</th><th>Age/Death</th>
   </tr>
  </thead>
- <tdata>
+ <tbody>
 {% for animal in animal_list %}
   <tr
 	{% if not animal.Weaned %} class="unweaned" {% endif %}
@@ -54,7 +71,7 @@
     {% endif %}
   </tr>
   {% endfor%}
-</tdata>
+</tbody>
 </table>
-
+</div>
 {% endblock content %}
