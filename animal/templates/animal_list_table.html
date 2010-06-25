@@ -38,9 +38,9 @@
 			<td>{{ animal.Generation }}</td>
 			<td>{{ animal.Born }}</td>
 			{% if animal.Death %}
-				<td id="dead">{{ animal.Death }}</td>
+				<td class="dead">{{ animal.Death }}</td>
 			{% else %}
-				<td id="age">{{ animal.Born|timesince }}</td>
+				<td class="age">{{ animal.Born|timesince }}</td>
 			{% endif %}
 			<td>{{ animal.Markings }}</td>
 		</tr>
