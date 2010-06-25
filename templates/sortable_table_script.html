@@ -1,9 +1,11 @@
 {% include "jquery_script.html" %}
-	<script type="text/javascript" src="/mousedb-media/javascript/dataTables-1.5/media/js/jquery.dataTables.js"></script>
+	<script type="text/javascript" src="/mousedb-media/javascript/dataTables-1.6/media/js/jquery.dataTables.js"></script>
 	<script type="text/javascript">
         $(document).ready(function() {
                 $(".sortable").dataTable( {
                         "bPaginate": false,
+						"bJQueryUI": true,
+						"bAutoWidth":false,
                         });
                 });
     	</script>
