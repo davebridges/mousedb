@@ -1,0 +1,63 @@
+{% load custom_filters %}
+<table class="sortable">
+ <thead>
+  <tr>
+   <th>Strain</th>
+   <th>Cage</th>
+   <th>Name</th>
+   <th>Start</th>
+   <th>Male</th>
+   <th>Females</th>
+   <th>Rack</th>
+   <th>Position</th>
+   <th>Duration</th>
+   <th>Crosstype</th>
+   <th>Pups</th>
+   <th id="left">Notes</th>
+   <th>Edit</th>
+  </tr>
+ </thead>
+ <tbody>
+  {% for breeding in breeding_list %}
+  {% if breeding.Active %}
+   <tr>
+   <td><a href="{{ breeding.Strain.get_absolute_url }}">{{ breeding.Strain }}</a></td>
+   <td><a href="{{ breeding.get_absolute_url }}">{{ breeding.Cage }}</a></td>
+   <td class="left">{{ breeding.BreedingName }}</td>
+   <td>{{ breeding.Start }}</td>
+   <td class="breeder left" >{% if breeding.Male.all %}<ul>{% for male in breeding.Male.all %}<li><a href="{% url animal-detail male.id %}">{{ male }}</a></li>{% endfor %}</ul>{% endif %}</td>
+   <td class="breeder left" >{% if breeding.Females.all %}<ul>{% for female in breeding.Females.all %}<li><a href="{% url animal-detail female.id %}">{{ female }}</a></li>{% endfor %}</ul>{% endif %}</td>
+   <td>{{ breeding.Rack }}</td>
+   <td>{{ breeding.Rack_Position|all_caps }}</td>
+   <td class="left">{{ breeding.Start|timesince }}</td>
+   <td class="left">{{ breeding.Crosstype }}</td>
+   <td><a href="{{ breeding.get_absolute_url }}">{{ breeding.animal_set.count }}</a></td>
+   <td class="left">{{ breeding.Notes }}</td>
+<td class="fg-buttonset fg-buttonset-multi">
+{% if perms.animal.add_breeding %}
+  <a href="{% url breeding-new %}" title="Add New Breeding Cage">
+   <button class="fg-button ui-state-default fg-button-icon-left ui-corner-all">
+    <span class="ui-icon ui-icon-circle-plus" style="float:left;">Add</span>
+   </button>
+   </a>
+{% endif %}
+{% if perms.animal.change_breeding %}
+  <a href="{% url breeding-edit breeding.id %}" title="Edit {{breeding}}">
+   <button class="fg-button ui-state-default fg-button-icon-left ui-corner-all">
+    <span class="ui-icon ui-icon-circle-zoomin" style="float:left;">Edit</span>
+   </button>
+   </a>
+{% endif %}
+{% if perms.animal.delete_breeding %}
+  <a href="{% url breeding-delete breeding.id %}" title="Delete {{breeding}}">
+   <button class="fg-button ui-state-default fg-button-icon-left ui-corner-all">
+    <span class="ui-icon ui-icon-trash" style="float:left;">Delete</span>
+   </button>
+   </a>
+{% endif %}
+</td>
+  </tr>
+  {% endif %}
+{% endfor%}
+ </tbody>
+</table>

@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -11,9 +12,9 @@
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '#',
+        URL_ROOT:    '',
         VERSION:     '0.1',
-        COLLAPSE_MODINDEX: false,
+        COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
       };
@@ -33,8 +34,8 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="modindex.html" title="Global Module Index"
-             accesskey="M">modules</a> |</li>
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
         <li class="right" >
           <a href="usage.html" title="Animal Data Entry"
              accesskey="N">next</a> |</li>
@@ -95,24 +96,18 @@
 </div>
 <div class="section" id="web-server-setup">
 <h2>Web Server Setup<a class="headerlink" href="#web-server-setup" title="Permalink to this headline">¶</a></h2>
-<p>You need to set up a server to serve both the django installation and saved files.  For the saved files.  I recommend using apache for both.  The preferred setup is to use Apache2 with mod_python.  The following is a httpd.conf example where the code is placed in /usr/src/mousedb:</p>
-<div class="highlight-python"><pre>Alias /static /usr/src/mousedb/media
-Alias /media /usr/src/mousedb/media
-&lt;Directory /usr/mousedb/media&gt;
-   Order allow,deny
-   Allow from all
-&lt;/Directory&gt;
-&lt;Location "/mousedb/"&gt;
-   SetHandler python-program
-   PythonHandler django.core.handlers.modpython
-   SetEnv DJANGO_SETTINGS_MODULE mousedb.settings
-   SetEnv PYTHON_EGG_CACHE /var/www/eggs
-   PythonOption django.root /mousedb
-   PythonDebug On
-   PythonPath "['/usr/src'] + sys.path"
-   PythonInterpreter mousedb
-&lt;/Location&gt;</pre>
-</div>
+<p>You need to set up a server to serve both the django installation and saved files.  For the saved files.  I recommend using apache for both.  The preferred setup is to use Apache2 with mod_wsgi.  See <a class="reference external" href="http://code.google.com/p/modwsgi/wiki/InstallationInstructions">http://code.google.com/p/modwsgi/wiki/InstallationInstructions</a> for instructions on using mod_wsgi.  The following is a httpd.conf example where the code is placed in /usr/src/mousedb:</p>
+<p>Alias /robots.txt &#8220;usrsrcmousedbmediarobots.txt&#8221;
+Alias /favicon.ico &#8220;usrsrcmediafavicon.ico&#8221;</p>
+<p>Alias /mousedb-media &#8220;usrsrcmousedbmedia&#8221;</p>
+<dl class="docutils">
+<dt>&lt;Directory &#8220;usrsrcmousedb&#8221;&gt;</dt>
+<dd>Order allow,deny
+Allow from all</dd>
+</dl>
+<p>&lt;/Directory&gt;</p>
+<p>WSGIScriptAlias /mousedb &#8220;usrsrcmousedbapachedjango.wsgi&#8221;</p>
+<p>Then open up the mousedb/apache/django.wsgi file and replace the location of the mousedb directory on the sys.path.append line.</p>
 <p>If you want to restrict access to these files, change the Allow from all directive to specific domains or ip addresses (for example Allow from 192.168.0.0/99 would allow from 192.168.0.0 to 192.168.0.99)</p>
 </div>
 <div class="section" id="final-configuration-and-user-setup">
@@ -120,13 +115,8 @@ Alias /media /usr/src/mousedb/media
 <p>Go to a command prompt, navigate to inside the mousedb directory and enter the following to get to a python prompt:</p>
 <div class="highlight-python"><pre>python manage.py shell</pre>
 </div>
-<p>From the command prompt enter the following where <strong>groupname</strong> is the name of your research group:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">mousedb.groups.models</span> <span class="kn">import</span> <span class="n">Group</span>
-<span class="n">group</span> <span class="o">=</span> <span class="n">Group</span><span class="p">(</span><span class="n">group</span><span class="o">=</span><span class="s">&quot;groupname&quot;</span><span class="p">)</span>
-<span class="n">group</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>Go to mousedb/admin/auth/users/ and create users, selecting usernames, full names, password (or have the user set the password) and then choose group permissions.</p>
+<p>Go to servername/mousedb/admin/groups/group/1 and name your research group and select a license if desired</p>
+<p>Go to servername/mousedb/admin/auth/users/ and create users, selecting usernames, full names, password (or have the user set the password) and then choose group permissions.</p>
 </div>
 </div>
 
@@ -138,12 +128,12 @@ Alias /media /usr/src/mousedb/media
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference external" href="#">MouseDB Installation</a><ul>
-<li><a class="reference external" href="#configuration">Configuration</a></li>
-<li><a class="reference external" href="#software-dependencies">Software Dependencies</a></li>
-<li><a class="reference external" href="#database-setup">Database Setup</a></li>
-<li><a class="reference external" href="#web-server-setup">Web Server Setup</a></li>
-<li><a class="reference external" href="#final-configuration-and-user-setup">Final Configuration and User Setup</a></li>
+<li><a class="reference internal" href="#">MouseDB Installation</a><ul>
+<li><a class="reference internal" href="#configuration">Configuration</a></li>
+<li><a class="reference internal" href="#software-dependencies">Software Dependencies</a></li>
+<li><a class="reference internal" href="#database-setup">Database Setup</a></li>
+<li><a class="reference internal" href="#web-server-setup">Web Server Setup</a></li>
+<li><a class="reference internal" href="#final-configuration-and-user-setup">Final Configuration and User Setup</a></li>
 </ul>
 </li>
 </ul>
@@ -183,7 +173,7 @@ Alias /media /usr/src/mousedb/media
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="modindex.html" title="Global Module Index"
+          <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
           <a href="usage.html" title="Animal Data Entry"
@@ -196,7 +186,7 @@ Alias /media /usr/src/mousedb/media
     </div>
     <div class="footer">
         &copy; Copyright 2009, Dave Bridges, Ph.D..
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0b2.
     </div>
   </body>
 </html>

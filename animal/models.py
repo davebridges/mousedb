@@ -103,8 +103,8 @@ class Breeding(models.Model):
 
     A breeding set may contain one ore more males and females and must be defined via the progeny strain.  For example, in the case of generating a new strain, the strain indicates the new strain not the parental strains.  A breeding cage is defined as one male with one or more females.  If the breeding set is part of a timed mating experiment, then Timed_Mating must be selected.  Breeding cages are automatically inactivated upon saving when a End date is provided.  The only required field is Strain.  By default, querysets are ordered by Strain, then Start.
     """
-    Females = models.ManyToManyField(Animal, related_name='females', blank=True)
-    Male = models.ManyToManyField(Animal, related_name='male', blank=True)
+    Females = models.ManyToManyField(Animal, blank=True, related_name="breeding_females")
+    Male = models.ManyToManyField(Animal, related_name="breeding_males", blank=True) #should be males, but will have to check through the code to make sure this is ok to change
     Strain = models.ForeignKey(Strain, help_text="The strain of the progeny")
     Cage = models.CommaSeparatedIntegerField(max_length=100, blank=True, null=True)
     CageID = models.ForeignKey('Cage', blank=True, null=True)
@@ -114,7 +114,7 @@ class Breeding(models.Model):
     Crosstype = models.CharField(max_length=10, choices = CROSS_TYPE, blank=True)
     Notes = models.TextField(max_length=500, blank=True)
     Rack = models.CharField(max_length = 15, blank = True)
-    Rack_Position = models.CharField(max_length = 15, blank = True) 
+    Rack_Position = models.CharField(max_length = 15, blank = True, verbose_name="Rack Position") 
     Active = models.BooleanField(default=True)
     Timed_Mating = models.BooleanField(default=False, help_text="Is this cage a timed mating cage?")
     def __unicode__(self):
@@ -122,53 +122,48 @@ class Breeding(models.Model):
     @models.permalink
     def get_absolute_url(self):
         return ('breeding-detail', [str(self.id)])
-    #def save(self):
-    #    """The save function for a breeding cage has to automatic over-rides, Active and the Cage for the Breeder.
-    #    
-    #    In the case of Active, if an End field is specified, then the Active field is set to False.
-    #    In the case of Cage, if a Cage is provided, and animals are specified under Male or Females for a Breeding object, then the Cage field for those animals is set to that of the breeding cage.  The same is true for both Rack and Rack Position."""
-    #    if self.End:
-    #        self.Active = False
-    #    super(Breeding, self).save()
-    #    if self.Cage:
-    #        if self.male:
-    #            self.male.Cage = self.Cage
-    #            self.male.save()
-    #        if self.females:
-    #            if hasattr(self.females, '__iter__') == True:  #This is required to determine of self.animals is a queryset or a single instance            
-    #                for female_breeder in self.females:
-    #                    female_breeder.Cage = self.Cage
-    #                    female_breeder.save()
-    #            else: 
-    #                self.females.Cage = self.Cage
-    #                self.females.save()
-    #    super(Breeding, self).save()
-    #    if self.Rack:
-    #        if self.male:
-    #            self.male.Rack = self.Rack
-    #            self.male.save()
-    #        if self.females:
-    #            if hasattr(self.females, '__iter__') == True:     #This is required to determine of self.animals is a queryset or a single instance                     
-    #                for female_breeder in self.females:
-    #                    female_breeder.Rack = self.Rack
-    #                    female_breeder.save()
-    #           else: 
-    #                self.females.Rack = self.Rack
-    #               self.females.save()
-    #    super(Breeding, self).save()
-    #    if self.Rack_Position:
-    #       if self.male:
-    #            self.male.Rack_Position = self.Rack_Position
-    #            self.male.save()
-    #        if self.females:
-    #            if hasattr(self.females, '__iter__') == True:     #This is required to determine of self.animals is a queryset or a single instance                     
-    #                for female_breeder in self.females:
-    #                    female_breeder.Rack_Position = self.Rack_Position
-    #                    female_breeder.save()
-    #            else: 
-    #                self.females.Rack_Position = self.Rack_Position
-    #                self.females.save()
-    #    super(Breeding, self).save()
+    def save(self):
+        """The save function for a breeding cage has to automatic over-rides, Active and the Cage for the Breeder.
+        
+        In the case of Active, if an End field is specified, then the Active field is set to False.
+        In the case of Cage, if a Cage is provided, and animals are specified under Male or Females for a Breeding object, then the Cage field for those animals is set to that of the breeding cage.  The same is true for both Rack and Rack Position."""
+        if self.End:
+            self.Active = False
+        #if self.Cage:
+        #    if self.Females:               
+        #        for female_breeder in self.Females:
+        #            female_breeder.Cage = self.Cage
+        #            female_breeder.save()
+        #    if self.Male:
+        #        for male_breeder in self.Male:
+        #            male_breeder.Cage = self.Cage
+        #            male_breeder.save()
+        super(Breeding, self).save()
+        #if self.Rack:
+        #    if self.Male:
+        #        self.Male.Rack = self.Rack
+        #        self.Male.save()
+        #    if self.Females:
+        #        if hasattr(self.Females, '__iter__') == True:     #This is required to determine of self.animals is a queryset or a single instance                     
+        #            for female_breeder in self.Females:
+        #                female_breeder.Rack = self.Rack
+        #                female_breeder.save()
+        #            else: 
+        #                self.Females.Rack = self.Rack
+        #                self.Females.save()
+        #if self.Rack_Position:
+        #    if self.male:
+        #        self.male.Rack_Position = self.Rack_Position
+        #        self.male.save()
+        #    if self.females:
+        #        if hasattr(self.females, '__iter__') == True:     #This is required to determine of self.animals is a queryset or a single instance                     
+        #            for female_breeder in self.females:
+        #                female_breeder.Rack_Position = self.Rack_Position
+        #                female_breeder.save()
+        #            else: 
+        #                self.females.Rack_Position = self.Rack_Position
+        #                self.females.save()
+        #super(Breeding, self).save()
     class Meta:
         ordering = ['Strain', 'Start']
 		

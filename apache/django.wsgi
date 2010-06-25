@@ -1,6 +1,6 @@
 import os
 import sys
-sys.path.append("C:\Documents and Settings\Dave Bridges\My Documents\Source") #replace with path where mousedb directory is
+sys.path.append('/usr/src/django') #replace with path where mousedb directory is
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'mousedb.settings'
 
