@@ -42,7 +42,9 @@
   <th>Cage</th>
   <th>Rack</th>
   <th>Position</th>
-  <th>Age</th
+  <th>Age</th>
+  <th>Backcross</th>
+  <th>Generation</th>
 {% for male in breeding.Male.all %}
   <tr>
    <th>Male</th><td class="breeder"><a href="{% url animal-detail male.id %}">{{ male }}</a></td>
@@ -54,6 +56,8 @@
 	{% else %}
 		<td id="age">{{ male.Born|timesince }}</td>
 	{% endif %}
+	<td>{{ male.Backcross }}</td>
+	<td>{{ male.Generation }}</td>
   </tr>
 {% endfor %}
 {% for female in breeding.Females.all %}
@@ -67,6 +71,8 @@
 	{% else %}
 		<td id="age">{{ female.Born|timesince }}</td>
 	{% endif %}
+	<td>{{ female.Backcross }}</td>
+	<td>{{ female.Generation }}</td>
   </tr>
   {% endfor %}
  </table>
@@ -79,33 +85,9 @@
 <p>For data entry instructions go to the <a href="http://code.google.com/p/mousedb/wiki/DataEntry">MouseDB Wiki</a></p>
 <h2>Pups</h2>
 <p>Sort table by clicking headers.  Select multiple headers by holding SHIFT</p>
-<table class="sortable">
- <thead>
-  <tr>
-   <th>Born</th><th>MouseID</th><th>Strain</th><th>Background</th><th>Gender</th><th>Genotype</th><th>Cage</th><th>Rack</th><th>Position</th><th>Markings</th><th>Age/Death</th>
-  </tr>
- </thead>
- <tdata>
-{% for animal in pups %}
- <tr>
-  <td>{{ animal.Born }}</td>
-  <td><a href = "{% url animal-detail animal.id %}">{{ animal.MouseID}}</a></td>
-  <td><a href="{{ animal.Strain.get_absolute_url }}">{{ animal.Strain }}</a></td>
-  <td>{{ animal.Background }}</td>
-  <td>{{ animal.Gender }}</td>
-  <td>{{ animal.Genotype }}</td>
-  <td>{{ animal.Cage }}</td>
-  <td>{{ animal.Rack|all_caps }}</td>
-  <td>{{ animal.Rack_Position|all_caps }}</td>
-  <td>{{ animal.Markings }}</td>
-  {% if animal.Death %}
-	<td id="dead">{{ animal.Death }}</td>
-  {% else %}
-	<td id="age">{{ animal.Born|timesince }}</td>
-  {% endif %}
-  </tr>
-{% endfor%}
- </tdata>
+{% with pups as animal_list %}
+{% include "animal_list_table.html" %}
+{% endwith %}
 </div>
 {% if breeding.Timed_Mating %}
  <div id="timed_matings">

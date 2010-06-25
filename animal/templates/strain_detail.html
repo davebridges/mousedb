@@ -39,39 +39,6 @@
 <p>Sort table by clicking headers.  Select multiple headers by holding SHIFT</p>
 <p class="unweaned">Pink rows are animals which have not yet been weaned.</p>  
 <p class="breeder">Yellow rows are animals which are currently in breeding cages.</p>
-<table class="sortable">
- <thead>
-  <tr>
-   <th>MouseID</th><th>Strain</th><th>Background</th><th>Backcross</th><th>Generation</th><th>Genotype</th><th>Gender</th><th>Cage</th><th>Rack</th><th>Position</th><th>Markings</th><th>Born</th><th>Age/Death</th>
-  </tr>
- </thead>
- <tbody>
-{% for animal in animal_list %}
-  <tr
-	{% if not animal.Weaned %} class="unweaned" {% endif %}
-	{% if animal.breeding_males.all %} class="breeder" {% endif %}
-	{% if animal.breeding_females.all %} class="breeder" {% endif %}
->
-   <td><a href = "{% url animal-detail animal.id %}">{{ animal.MouseID}}</a></td>
-   <td>{{ animal.Strain }}</td>
-   <td>{{ animal.Background }}</td>
-   <td>{{ animal.Backcross }}</td>
-   <td>{{ animal.Generation }}</td>
-   <td>{{ animal.Genotype }}</td>
-   <td>{{ animal.Gender }}</td>
-   <td><a href="/mousedb/cage/{{ animal.Cage }}">{{ animal.Cage }}</a></td>
-   <td>{{ animal.Rack|all_caps }}</td>
-   <td>{{ animal.Rack_Position|all_caps }}</td>
-   <td>{{ animal.Markings }}</td>
-   <td>{{ animal.Born }}</td>
-    {% if animal.Death %}
-   <td id="dead">{{ animal.Death }}</td>
-    {% else %}
-   <td id="age">{{ animal.Born|timesince }}</td>
-    {% endif %}
-  </tr>
-  {% endfor%}
-</tbody>
-</table>
+{% include "animal_list_table.html" %}
 </div>
 {% endblock content %}
