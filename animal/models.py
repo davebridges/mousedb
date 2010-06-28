@@ -6,11 +6,27 @@ from django.db import models
 import datetime
 
 GENOTYPE_CHOICES = (
-('+/+', 'Wild-Type'),
-('-/+', 'Heterozygous'),
-('-/-', 'Knockout'),
-('N.D.', 'Not Determined')
+	('Single Knockout',(
+		('+/+', 'Wild-Type'),
+		('-/+', 'Heterozygous'),
+		('-/-', 'Knockout'),
+		('N.D.', 'Not Determined')
+		)
+	),
+	('Double Knockout', (
+		('-/-; +/+', 'Knockout/Wild-Type'),
+		('-/-; +/-', 'Knockout/Heterozygoous'),
+		('-/-; -/-', 'Double Knockout'),
+		('-/+; +/+', 'Heterozygous/Wild-Type'),
+		('-/+; +/-', 'Double Heterozygous'),
+		('-/+; -/-', 'Heterozygous/Knockout'),
+		('+/+; +/+', 'Double Wild-Type'),
+		('+/+; +/-', 'Wild-Type/Heterozygous'),
+		('+/+; -/-', 'Wild-Type/Knockout'),
+		)
+	),
 )
+
 
 GENDER_CHOICES = (
 ('M', 'Male'),
