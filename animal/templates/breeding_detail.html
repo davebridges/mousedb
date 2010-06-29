@@ -21,7 +21,7 @@
   <th>Position</th>
  </tr>
  </thead>
- <tdata>
+ <tbody>
  <tr>
  <td><a href="/mousedb{{ breeding.Strain.get_absolute_url }}">{{ breeding.Strain }}</a></td>
  <td>{{ breeding.Cage }}</td>
@@ -32,7 +32,7 @@
  <td>{{ breeding.Rack }}</td>
  <td>{{ breeding.Rack_Position|all_caps }}</td>
  </tr>
- </tdata>
+ </tbody>
 </table>
 <div id="breeding-parents">
 <h2>Breeding Parents</h2>
@@ -52,9 +52,9 @@
    <td>{{ male.Rack }}</td>
    <td>{{ male.Rack_Position }}</td>
    	{% if animal.Death %}
-		<td id="dead">{{ male.Death }}</td>
+		<td class="dead">{{ male.Death }}</td>
 	{% else %}
-		<td id="age">{{ male.Born|timesince }}</td>
+		<td>{{ male.Born|timesince }}</td>
 	{% endif %}
 	<td>{{ male.Backcross }}</td>
 	<td>{{ male.Generation }}</td>
@@ -67,9 +67,9 @@
    <td>{{ female.Rack }}</td>
    <td>{{ female.Rack_Position }}</td>
      {% if animal.Death %}
-		<td id="dead">{{ female.Death }}</td>
+		<td class="dead">{{ female.Death }}</td>
 	{% else %}
-		<td id="age">{{ female.Born|timesince }}</td>
+		<td>{{ female.Born|timesince }}</td>
 	{% endif %}
 	<td>{{ female.Backcross }}</td>
 	<td>{{ female.Generation }}</td>
