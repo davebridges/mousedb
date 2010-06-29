@@ -7,7 +7,10 @@
 {% block header %}Cage List{% endblock header %}
 
 {% block content %}
-<h2>Currently {{ cage_list.count }} Cages:</h2>
+<h2>{% if all_cages %}In Total There Has Been{% else %}Currently{% endif %} {{ cage_list.count }} Cages:</h2>
+{% if all_cages %}<a class="fg-button ui-state-default fg-button-icon-left ui-corner-all" href="{% url cage-list %}">See Current Cages</a>
+{% else %}<a class="fg-button ui-state-default fg-button-icon-left ui-corner-all" href="{% url cage-list-all %}">See All Cages</a>
+{% endif %}
 <table class="sortable">
 <thead>
 <tr>
@@ -19,8 +22,8 @@
 </thead>
 <tbody>
 {% for cage in cage_list %}
-<tr>
-<td>{{ cage.Cage }}</td>
+<tr  {% if not cage.Alive %} class="dead" {% endif %}>
+<td><a href="/mousedb/cage/{{ cage.Cage }}">{{ cage.Cage }}</a></td>
 <td><a href="{% url strain-detail cage.Strain__Strain_slug %}">{{ cage.Strain__Strain }}</a></td>
 <td>{{ cage.Rack }}</td>
 <td>{{ cage.Rack_Position }}</td>

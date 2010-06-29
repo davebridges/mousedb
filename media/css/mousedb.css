@@ -28,6 +28,11 @@ h3 {
 	font-size: 1.17em; 
 }
 
+a {
+	color: red;
+	text-decoration: none;
+}
+
 div#user {
 }
 
@@ -81,13 +86,10 @@ td { padding-left: 5px;
 .dead { 	    color: white;
 			background: red url(images/ui-bg_highlight-soft_100_deedf7_1x100.png) 50% 50% repeat-x; 
 		}
-
-a {
-	color: red;
-	text-decoration: none;
-}
-
-
+		
+.dead a { 	    color: white;
+		}
+		
 ul#menu {
 	font-size: large;
 }
