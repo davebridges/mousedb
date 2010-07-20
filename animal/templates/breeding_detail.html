@@ -43,6 +43,7 @@
   <th>Rack</th>
   <th>Position</th>
   <th>Age</th>
+  <th>Status</th>
   <th>Backcross</th>
   <th>Generation</th>
 {% for male in breeding.Male.all %}
@@ -56,6 +57,11 @@
 	{% else %}
 		<td>{{ male.Born|timesince }}</td>
 	{% endif %}
+	{% if animal.Death %}
+	<td class="dead">Dead</td>
+	{% else %}
+	<td>Alive</td>
+	{% endif %}	
 	<td>{{ male.Backcross }}</td>
 	<td>{{ male.Generation }}</td>
   </tr>
@@ -70,6 +76,11 @@
 		<td class="dead">{{ female.Death }}</td>
 	{% else %}
 		<td>{{ female.Born|timesince }}</td>
+	{% endif %}
+	{% if animal.Death %}
+	<td class="dead">Dead</td>
+	{% else %}
+	<td>Alive</td>
 	{% endif %}
 	<td>{{ female.Backcross }}</td>
 	<td>{{ female.Generation }}</td>

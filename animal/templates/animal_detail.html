@@ -27,6 +27,7 @@ This mouse is {{ animal.Born|timesince }} old.
 			<th>Generation</th>
 			<th>Born</th>
 			<th>Age</th>
+			<th>Status</th>
 			<th>Markings</th>
 		</tr>
 	</thead>
@@ -52,6 +53,11 @@ This mouse is {{ animal.Born|timesince }} old.
 				<td class="dead">{{ animal.Death }}</td>
 			{% else %}
 				<td class="age">{{ animal.Born|timesince }}</td>
+			{% endif %}
+			{% if animal.Death %}
+			<td class="dead">Dead</td>
+			{% else %}
+			<td>Alive</td>
 			{% endif %}
 			<td>{{ animal.Markings }}</td>
 		</tr>
