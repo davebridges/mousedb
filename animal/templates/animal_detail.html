@@ -10,35 +10,52 @@ This mouse died on {{ animal.Death }}.  Cause of death was {{ animal.Cause_of_De
 {% else %}
 This mouse is {{ animal.Born|timesince }} old.
 {% endif %}
+{% load custom_filters %}
+
 <table>
-<tr>
-{% if animal.MouseID %}<th>MouseID</th>{% endif %}
-{% if animal.Strain %}<th>Strain</th>{% endif %}
-{% if animal.Background %}<th>Background</th>{% endif %}
-{% if animal.Genotype %}<th>Genotype</th>{% endif %}
-{% if animal.Born %}<th>Born</th>{% endif %}
-{% if animal.Death %}<th>Death</th>{% endif %}
-{% if animal.Weaned %}<th>Weaned</th>{% endif %}
-{% if animal.Cage %}<th>Cage</th>{% endif %}
-{% if animal.Generation %}<th>Generation</th>{% endif %}
-{% if animal.Markings %}<th>Markings</th>{% endif %}
-{% if animal.Breeding %}<th>Breeding</th>{% endif %}
-{% if animal.Notes %}<th>Notes</th>{% endif %}
-</tr>
-<tr>
-{% if animal.MouseID %}<td>{{ animal.MouseID}}</td>{% endif %}
-{% if animal.Strain %}<td><a href="{{ animal.Strain.get_absolute_url }}">{{ animal.Strain }}</a></td>{% endif %}
-{% if animal.Background %}<td>{{ animal.Background }}</td>{% endif %}
-{% if animal.Genotype %}<td>{{ animal.Genotype }}</td>{% endif %}
-{% if animal.Born %}<td>{{ animal.Born }}</td>{% endif %}
-{% if animal.Death %}<td>{{ animal.Death }}</td>{% endif %}
-{% if animal.Weaned %}<td>{{ animal.Weaned }}</td>{% endif %}
-{% if animal.Cage %}<td>{{ animal.Cage }}</td>{% endif %}
-{% if animal.Generation %}<td>{{ animal.Generation }}</td>{% endif %}
-{% if animal.Markings %}<td>{{ animal.Markings }}</td>{% endif %}
-{% if animal.Breeding %}<td><a href="{% url breeding-detail animal.Breeding.id %}">{{ animal.Breeding.Cage }}</a></td>{% endif %}
-{% if animal.Notes %}<td>{{ animal.Notes }}</td>{% endif %}
-</tr>
+	<thead>
+		<tr>
+			<th>MouseID</th>
+			<th>Strain</th>
+			<th>Background</th>
+			<th>Genotype</th>
+			<th>Gender</th>
+			<th>Cage</th>
+			<th>Rack</th>
+			<th>Position</th>
+			<th>Backcross</th>
+			<th>Generation</th>
+			<th>Born</th>
+			<th>Age</th>
+			<th>Markings</th>
+		</tr>
+	</thead>
+		
+	<tbody>
+  <tr
+	{% if not animal.Weaned %} class="unweaned" {% endif %}
+	{% if animal.breeding_males.all %} class="breeder" {% endif %}
+	{% if animal.breeding_females.all %} class="breeder" {% endif %}
+>
+			<td><a href = "{% url animal-detail animal.id %}">{{ animal.MouseID}}</a></td>
+			<td><a href="{% url strain-detail animal.Strain.Strain_slug %}">{{ animal.Strain }}</a></td>
+			<td>{{ animal.Background }}</td>
+			<td>{{ animal.Genotype }}</td>
+			<td>{{ animal.Gender }}</td>
+			<td><a href="/mousedb/cage/{{ animal.Cage }}">{{ animal.Cage}}</a></td>
+			<td>{{ animal.Rack|all_caps }}</td>
+			<td>{{ animal.Rack_Position|all_caps }}</td>
+			<td>{{ animal.Backcross }}</td>
+			<td>{{ animal.Generation }}</td>
+			<td>{{ animal.Born }}</td>
+			{% if animal.Death %}
+				<td class="dead">{{ animal.Death }}</td>
+			{% else %}
+				<td class="age">{{ animal.Born|timesince }}</td>
+			{% endif %}
+			<td>{{ animal.Markings }}</td>
+		</tr>
+	</tbody>
 </table>
 <a href="{% url animal-update animal.id %}">Edit Mouse Data</a>
 {% if animal_measurements %}
