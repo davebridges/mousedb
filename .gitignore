@@ -4,3 +4,7 @@
 localsettings.py
 apache/django.wsgi
 *~
+animal/migrations
+data/migrations
+groups/migrations
+timed_mating/migrations
