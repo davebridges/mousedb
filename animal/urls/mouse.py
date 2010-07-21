@@ -54,5 +54,6 @@ urlpatterns = patterns('',
 		'post_delete_redirect':'/mousedb/mouse/',
 		'template_name':'confirm_delete.html'
 		}, name="animal-delete"),
+	url(r'^new/multiple/$', 'mousedb.animal.views.multiple_pups', name="animal-multiple-new"),			
 		)
 

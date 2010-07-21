@@ -10,6 +10,7 @@
 {% block content %}
 
 <h2>{{ animal_list.count }} mice.</h2>
+<p>This shows only alive mice.  To see all mice click <a href="{% url animal-list-all %}">here</a>.</p>
 <p>To add a new mouse click <a href="{% url animal-new %}">here</a>.
 <p>Sort table by clicking headers.  Select multiple headers by holding SHIFT</p>
 <p class="unweaned">Pink rows are animals which have not yet been weaned.</p>  

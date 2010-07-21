@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}New Animals{% endblock title %}
+{% block scripts %}
+{{ form.media }}
+	<script type="text/javascript">
+	 $(document).ready(function() {	
+		$('#id_Born').datepicker({dateFormat: 'yy-mm-dd'});
+		$('#id_Weaned').datepicker({dateFormat: 'yy-mm-dd'});
+		$('#id_Death').datepicker({dateFormat: 'yy-mm-dd'});
+	});
+	</script>
+{% endblock %}
+{% block header %}Enter Many New Animals{% endblock header %}
+
+{% block content %}
+<form method="POST" action="{% url animal-multiple-new %}" >{% csrf_token %}
+	<table>{{ form }}</table>
+<input type="submit" value="Submit" />
+</form>
+
+{% endblock content %}
