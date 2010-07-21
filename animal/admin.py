@@ -28,7 +28,7 @@ class AnimalAdmin(admin.ModelAdmin):
     list_display = ('MouseID', 'Rack', 'Rack_Position', 'Cage', 'Markings','Gender', 'Genotype', 'Strain', 'Background', 'Generation', 'Backcross', 'Born', 'Alive', 'Death')
     list_filter = ('Alive','Strain', 'Background','Gender','Genotype','Backcross')
     search_fields = ['MouseID', 'Cage']
-    radio_fields = {"Gender": admin.HORIZONTAL, "Strain":admin.HORIZONTAL, "Background": admin.HORIZONTAL, "Genotype": admin.HORIZONTAL, "Cause_of_Death": admin.HORIZONTAL}
+    radio_fields = {"Gender": admin.HORIZONTAL, "Strain":admin.HORIZONTAL, "Background": admin.HORIZONTAL, "Cause_of_Death": admin.HORIZONTAL}
     actions = ['mark_sacrificed']
     def mark_sacrificed(self,request,queryset):
         """An admin action for marking several animals as sacrificed.
@@ -46,7 +46,7 @@ admin.site.register(Animal, AnimalAdmin)
 
 class StrainAdmin(admin.ModelAdmin):
     """Settings in the admin interface for dealing with Strain objects."""
-    fields = ('Strain', 'Strain_slug', 'Comments')
+    fields = ('Strain', 'Strain_slug', 'Comments', 'Source')
     prepopulated_fields = {"Strain_slug": ("Strain",)}
 admin.site.register(Strain, StrainAdmin)
 
