@@ -142,7 +142,7 @@ class Breeding(models.Model):
     """
     Females = models.ManyToManyField(Animal, blank=True, related_name="breeding_females")
     Male = models.ManyToManyField(Animal, related_name="breeding_males", blank=True) #should be males, but will have to check through the code to make sure this is ok to change
-    Strain = models.ForeignKey(Strain, help_text="The strain of the progeny")
+    Strain = models.ForeignKey(Strain, help_text="The strain of the pups")
     Cage = models.CommaSeparatedIntegerField(max_length=100, blank=True, null=True)
     CageID = models.ForeignKey('Cage', blank=True, null=True)
     BreedingName = models.CharField(max_length=50, blank=True, verbose_name="Breeding Set Name")
@@ -154,6 +154,10 @@ class Breeding(models.Model):
     Rack_Position = models.CharField(max_length = 15, blank = True, verbose_name="Rack Position") 
     Active = models.BooleanField(default=True)
     Timed_Mating = models.BooleanField(default=False, help_text="Is this cage a timed mating cage?")
+    genotype = models.CharField(max_length = 10, choices = GENOTYPE_CHOICES, default = 'N.D.', help_text="The genotype of the pups (if known)")
+    background = models.CharField(max_length = 25, choices = BACKGROUND_CHOICES, default="Mixed", help_text="The background of the pups")
+    backcross = models.IntegerField(max_length = 5, null=True, blank=True, help_text="Leave blank for mixed background.  This is the backcross of the pups.")
+    generation = models.IntegerField(max_length=5, null=True, blank=True, help_text="The generation of the pups")
     def __unicode__(self):
         return u'%s Breeding Cage: %s starting on %s'  %(self.Strain, self.Cage, self.Start)
     @models.permalink

@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}New Animals{% endblock title %}
+{% block title %}New Animals{% if breeding %} for {{ breeding }}{% endif %}{% endblock title %}
 {% block scripts %}
 {{ form.media }}
 	<script type="text/javascript">
@@ -11,10 +11,10 @@
 	});
 	</script>
 {% endblock %}
-{% block header %}Enter Many New Animals{% endblock header %}
+{% block header %}Enter Several New Animals{% if breeding %} for {{ breeding }}{% endif %}{% endblock header %}
 
 {% block content %}
-<form method="POST" action="{% url animal-multiple-new %}" >{% csrf_token %}
+<form method="POST" action="{% if breeding %}{% url animal-multiple-pups-new breeding.id %}{% else %}{% url animal-multiple-new %}{% endif %}" >{% csrf_token %}
 	<table>{{ form }}</table>
 <input type="submit" value="Submit" />
 </form>

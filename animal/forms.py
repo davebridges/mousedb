@@ -27,12 +27,20 @@ class MultipleAnimalForm(ModelForm):
 	"""This modelform provides fields for entering multiple identical copies of a set of mice.
 	
 	This form only includes the required fields Background and Strain."""
-	count = forms.IntegerField(required=True)
+	count = forms.IntegerField(required=True, help_text="Enter the number of mice to be added")
 	class Meta:
 		model = Animal
 		fields = ['Background', 'Strain', 'Breeding', 'Cage','Rack','Rack_Position','Strain', 'Background', 'Genotype', 'Gender', 'Born', 'Weaned', 'Backcross','Generation', 'Breeding', 'Father', 'Mother', 'Markings', 'Notes']
 
-
+class MultipleBreedingAnimalForm(ModelForm):
+	"""This modelform provides fields for entering multiple pups within a breeding set.
+	
+	The only fields presented are Born, Weaned, Gender and Count.  Several other fields will be automatically entered based on the Breeding Set entries."""
+	count = forms.IntegerField(required=True, help_text="Enter the number of mice to be added")
+	class Meta:
+		model = Animal
+		fields = ['Born', 'Weaned', 'Gender']
+	
 class BreedingForm(ModelForm):
     """This form provides most fields for creating and entring breeding cage data.
 	
