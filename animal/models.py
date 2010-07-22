@@ -25,7 +25,27 @@ GENOTYPE_CHOICES = (
 		('+/+; -/-', 'Wild-Type/Knockout'),
 		)
 	),
-)
+	('Floxed',(
+		('fl/fl', 'Floxed'),
+		('fl/+', 'Heterozygous Floxed'),
+		)
+	),
+	('Transgene',(
+		('Tg/Tg', 'Homozygous Transgene'),
+		('Tg/+', 'Heterozygous Transgene'),
+		)
+	),	
+	('Floxed with Transgene',(
+		('fl/fl; +/+', 'Floxed no Transgene'),
+		('fl/+; +/+', 'Heterozygous Floxed no Transgene'),
+		('fl/fl; Tg/+', 'Floxed Heterozygous Transgene'),
+		('fl/+; Tg/+', 'Heterozygous Floxed, Heterozygous Transgene'),
+		('fl/fl; Tg/Tg', 'Floxed, Homozygous Transgene'),
+		('fl/+; Tg/Tg', 'Heterozygous Floxed, Homozygous Transgene'),
+		('+/+; Tg/+', 'Wild-Type', 'Heterozygous Transgene'),
+		('+/+; Tg/Tg', 'Wild-Type', 'Homozygous Transgene'),
+		)
+		),)
 
 
 GENDER_CHOICES = (
