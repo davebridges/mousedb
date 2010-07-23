@@ -36,6 +36,7 @@ GENOTYPE_CHOICES = (
 		)
 ),
 	('Floxed with Transgene',(
+		('fl/fl; ?', 'Floxed Undetermined Transgene'),
 		('fl/fl; +/+', 'Floxed no Transgene'),
 		('fl/+; +/+', 'Heterozygous Floxed no Transgene'),
 		('fl/fl; Tg/+', 'Floxed Heterozygous Transgene'),
@@ -101,7 +102,7 @@ class Animal(models.Model):
     Rack_Position = models.CharField(max_length = 15, blank = True)
     Strain = models.ForeignKey(Strain)
     Background = models.CharField(max_length = 25, choices = BACKGROUND_CHOICES)
-    Genotype = models.CharField(max_length = 10, choices = GENOTYPE_CHOICES, default = 'N.D.')
+    Genotype = models.CharField(max_length = 15, choices = GENOTYPE_CHOICES, default = 'N.D.')
     Gender = models.CharField(max_length = 5, choices = GENDER_CHOICES, default = 'N.D.')
     Born = models.DateField(blank = True, null=True)
     Weaned = models.DateField(blank = True, null=True)
@@ -154,7 +155,7 @@ class Breeding(models.Model):
     Rack_Position = models.CharField(max_length = 15, blank = True, verbose_name="Rack Position") 
     Active = models.BooleanField(default=True)
     Timed_Mating = models.BooleanField(default=False, help_text="Is this cage a timed mating cage?")
-    genotype = models.CharField(max_length = 10, choices = GENOTYPE_CHOICES, default = 'N.D.', help_text="The genotype of the pups (if known)")
+    genotype = models.CharField(max_length = 15, choices = GENOTYPE_CHOICES, default = 'N.D.', help_text="The genotype of the pups (if known)")
     background = models.CharField(max_length = 25, choices = BACKGROUND_CHOICES, default="Mixed", help_text="The background of the pups")
     backcross = models.IntegerField(max_length = 5, null=True, blank=True, help_text="Leave blank for mixed background.  This is the backcross of the pups.")
     generation = models.IntegerField(max_length=5, null=True, blank=True, help_text="The generation of the pups")
