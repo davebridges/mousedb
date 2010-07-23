@@ -11,15 +11,22 @@
 <table>
  <thead>
  <tr>
-  <th>Strain</th>
-  <th>Cage</th>
-  <th>Name</th>
-  <th>Start</th>
-  <th>Duration</th>
-  <th>Crosstype</th>
-  <th>Rack</th>
-  <th>Position</th>
+  <th rowspan = "2">Strain</th>
+  <th rowspan = "2">Cage</th>
+  <th rowspan = "2">Name</th>
+  <th rowspan = "2">Start</th>
+  <th rowspan = "2">Duration</th>
+  <th rowspan = "2">Crosstype</th>
+  <th colspan="4">Pups</th>
+  <th rowspan = "2">Rack</th>
+  <th rowspan = "2">Position</th>
  </tr>
+ <tr>
+   <th>Genotype</th>
+  <th>Background</th>
+  <th>Backcross</th>
+  <th>Generation</th>
+  </tr>
  </thead>
  <tbody>
  <tr>
@@ -29,6 +36,10 @@
  <td>{{ breeding.Start }}</td>
  <td>{{ breeding.Start|timesince }}</td>
  <td>{{ breeding.Crosstype }}</td>
+ <td>{{ breeding.genotype }}</td>
+ <td>{{ breeding.background }}</td>
+ <td>{{ breeding.backcross }}</td>
+ <td>{{ breeding.generation }}</td>
  <td>{{ breeding.Rack }}</td>
  <td>{{ breeding.Rack_Position|all_caps }}</td>
  </tr>
@@ -46,6 +57,7 @@
   <th>Status</th>
   <th>Backcross</th>
   <th>Generation</th>
+  <th>Genotype</th>
 {% for male in breeding.Male.all %}
   <tr>
    <th>Male</th><td class="breeder"><a href="{% url animal-detail male.id %}">{{ male }}</a></td>
@@ -64,6 +76,7 @@
 	{% endif %}	
 	<td>{{ male.Backcross }}</td>
 	<td>{{ male.Generation }}</td>
+	<td>{{ male.Genotype }}</td>
   </tr>
 {% endfor %}
 {% for female in breeding.Females.all %}
@@ -84,6 +97,7 @@
 	{% endif %}
 	<td>{{ female.Backcross }}</td>
 	<td>{{ female.Generation }}</td>
+	<td>{{ female.Genotype }}</td>
   </tr>
   {% endfor %}
  </table>
