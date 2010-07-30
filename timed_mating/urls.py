@@ -52,7 +52,8 @@ urlpatterns = patterns('',
 	url(r'^(?P<object_id>\d*)/delete/$', delete_plugevents, {
 		'model': PlugEvents, 
 		'login_required':True,
-		'post_delete_redirect':'/mousedb/plug_events/'
+		'post_delete_redirect':'/mousedb/plug_events/',
+		'template_name':'confirm_delete.html',
 		}, name="plugevents-delete"),
 	url(r'^breeding/(?P<breeding_id>\d*)/new', 'mousedb.timed_mating.views.breeding_plugevent', name="breeding-plugevents-new"),
 )
