@@ -13,6 +13,7 @@
    <th>Duration</th>
    <th>Crosstype</th>
    <th>Pups</th>
+   <th>Not Weaned</th>
    <th id="left">Notes</th>
    <th>Edit</th>
   </tr>
@@ -32,6 +33,7 @@
    <td class="left">{{ breeding.Start|timesince }}</td>
    <td class="left">{{ breeding.Crosstype }}</td>
    <td><a href="{{ breeding.get_absolute_url }}">{{ breeding.animal_set.count }}</a></td>
+   <td><a href="{{ breeding.get_absolute_url }}">{{ breeding.unweaned.count }}</a></td>
    <td class="left">{{ breeding.Notes }}</td>
 <td class="fg-buttonset fg-buttonset-multi">
 {% if perms.animal.add_breeding %}
