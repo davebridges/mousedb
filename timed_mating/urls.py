@@ -1,5 +1,6 @@
 from django.conf.urls.defaults import *
 from django.views.generic.list_detail import object_list, object_detail
+from django.views.generic.create_update import create_object, update_object, delete_object
 from django.contrib.auth.decorators import login_required, permission_required
 
 from mousedb.timed_mating.models import PlugEvents
@@ -14,15 +15,15 @@ def limited_object_detail(*args, **kwargs):
 
 @permission_required('timed_mating.add_plugevents')
 def create_plugevents(*args, **kwargs):
-	return django.views.generic.create_update.create_object(*args, **kwargs)
+	return create_object(*args, **kwargs)
 
 @permission_required('timed_mating.change_plugevents')
 def change_plugevents(*args, **kwargs):
-	return django.views.generic.create_update.update_object(*args, **kwargs)
+	return update_object(*args, **kwargs)
 
 @permission_required('timed_mating.delete_plugevents')
 def delete_plugevents(*args, **kwargs):
-	return django.views.generic.create_update.update_object(*args, **kwargs)
+	return delete_object(*args, **kwargs)
 
 urlpatterns = patterns('',
 	url(r'^$', limited_object_list, {
