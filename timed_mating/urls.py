@@ -35,6 +35,7 @@ urlpatterns = patterns('',
 		'queryset': PlugEvents.objects.all(),
 		'template_name': 'plug_detail.html',
 		'template_object_name': 'plug',
+	    'template_name':'confirm_delete.html'
 		}, name="plugevents-detail"),
 	url(r'^new/$', create_plugevents, {
 		'model': PlugEvents, 
