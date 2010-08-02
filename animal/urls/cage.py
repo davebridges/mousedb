@@ -21,7 +21,7 @@ def animals_by_cage(request, cage_number):
 urlpatterns = patterns('',
 	url(r'^(?P<cage_number>\d*)/$', animals_by_cage, name="animals-list-by-cage"),
 	url(r'^/?$', limited_object_list, {
-		'queryset': Animal.objects.values('Cage', 'Strain__Strain', 'Strain__Strain_slug', 'Rack', 'Rack_Position', 'Alive').order_by('Cage').distinct().filter(Alive='True'),
+		'queryset': Animal.objects.values('Cage', 'Strain__Strain', 'Strain__Strain_slug', 'Rack', 'Rack_Position', 'Alive').filter(Alive=True).order_by('Cage').distinct().filter(Alive='True'),
 		'template_name': 'cage_list.html',
 		'template_object_name': 'cage',
 		}, name="cage-list"),
