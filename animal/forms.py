@@ -16,7 +16,7 @@ class AnimalForm(ModelForm):
 	Mother = AutoCompleteSelectField('animal', required=False)
 	class Meta:
 		model = Animal
-		exclude = ['CageID', 'Alive']
+		exclude = ['CageID',]
 	class Media:
 		css = {
 			'all': ('javascript/jquery-autocomplete/jquery.autocomplete.css', 'css/autocomplete.css')
