@@ -33,6 +33,7 @@ urlpatterns = patterns('',
 		'template_name': 'experiment_detail.html',
 		'template_object_name': 'experiment',
 		}, name="experiment-detail"),
+	url(r'^(?P<experiment_id>\d*)/csv', 'mousedb.data.views.experiment_details_csv', name="experiment-detail-csv"),
 	url(r'^(?P<experiment_id>\d*)/data_entry/$', 'mousedb.data.views.add_measurement', name="data-entry"),
 	url(r'^new/$', create_experiment, {
 		'form_class': ExperimentForm, 
