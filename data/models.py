@@ -1,5 +1,6 @@
 from django.db import models
 from mousedb.animal.models import Animal, Strain
+from mousedb.custom_fields import CommaSeparatedFloatField
 
 FEEDING_TYPES = (
 	('fed', 'Fed'),
@@ -59,6 +60,9 @@ class Measurement(models.Model):
 	values = models.CommaSeparatedIntegerField(blank=True, null=True, max_length=255, help_text="use for time courses, (comma separated values with no spaces)")
 	def __unicode__(self):
 		return u'%s %s' % (self.animal, self.assay)
+	def age(self):
+		age =  self.experiment.date - self.animal.Born
+		return age.days
 
 	
 class Researcher(models.Model):
