@@ -5,7 +5,7 @@
 			<th>Strain</th>
 			<th>Animal</th>
 			<th>Genotype</th>
-			<th>Age</th>
+			<th>Age (Days)</th>
 			<th>Assay</th>
 			<th>State</th>
 			<th>Values</th>
@@ -15,11 +15,11 @@
 	<tbody>
 	{% for data in data_list %}
 		<tr>
-			<td><a href="/mousedb/experiment/{{ data.experiment.id }}">{{ data.experiment.date }}</a></td>
-			<td><a href="/mousedb/strain/{{ data.animal.Strain.Strain_slug }}">{{ data.animal.Strain }}</a></td>
-			<td><a href="/mousedb/mouse/{{ data.animal.id }}">{{ data.animal.MouseID }}</a></td>
+			<td><a href="{% url experiment-detail data.experiment.id %}">{{ data.experiment.date }}</a></td>
+			<td><a href="{% url strain-detail data.animal.Strain.Strain_slug %}">{{ data.animal.Strain }}</a></td>
+			<td><a href="{% url animal-detail data.animal.id %}">{{ data.animal.MouseID }}</a></td>
 			<td>{{ data.animal.Genotype }}</td>
-			<td>{{ data.experiment.date|timeuntil:data.animal.Born}}</td>
+			<td>{{ data.age }}</td>
 			<td>{{ data.assay }}</td>
 			<td>{{ data.experiment.feeding_state }}{% if data.experiment.fasting_time %} - {{ data.experiment.fasting_time }}h{% endif %}
 			<td>{{ data.values }}</td>
