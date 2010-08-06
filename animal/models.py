@@ -165,7 +165,7 @@ class Breeding(models.Model):
     def get_absolute_url(self):
         return ('breeding-detail', [str(self.id)])
     def unweaned(self):
-        return Animal.objects.filter(Breeding=self, Weaned__isnull=True)
+        return Animal.objects.filter(Breeding=self, Weaned__isnull=True, Alive=True)
     def save(self):
         """The save function for a breeding cage has to automatic over-rides, Active and the Cage for the Breeder.
         
