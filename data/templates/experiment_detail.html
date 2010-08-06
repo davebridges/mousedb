@@ -26,6 +26,7 @@
 {% with experiment.measurement_set.all as data_list %}
 {% include "data_table.html" %}
 {% endwith %}
+<p>Download measurements as a csv <a href="{% url experiment-detail-csv experiment.id %}">here</a>.</p>
 <p>Enter or edit data <a href="/mousedb/experiment/{{experiment.id}}/data_entry" title="Data Entry Form">here</a></p>
 <p>Add new experiment <a href="/mousedb/experiment/new/">here</a></p>
 {% endblock content %}
