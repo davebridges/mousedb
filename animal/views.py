@@ -66,26 +66,6 @@ def strain_detail_all(request, strain):
     return render_to_response('strain_detail.html', {'strain' : strain, 'animal_list' : animal_list, 'cages':cages},context_instance=RequestContext(request))
 
 @login_required
-def breeding(request):
-    """This view displays a list of breeding sets.
-	
-    It takes a request in the form /breeding/ and lists all currently active breeding sets.
-    This page is restricted to logged-in users.
-    """
-    breeding_list = Breeding.objects.filter(Active=True).order_by('Strain','-Start')
-    return render_to_response('breeding.html', {'breeding_list': breeding_list},context_instance=RequestContext(request))
-
-@login_required
-def breeding_all(request):
-    """This view displays a list of breeding sets.
-	
-    It takes a request in the form /breeding/all and lists all breeding sets (both active and inactive).
-    This page is restricted to logged-in users.
-    """
-    breeding_list = Breeding.objects.order_by('Strain','-Start')
-    return render_to_response('breeding.html', {'breeding_list': breeding_list},context_instance=RequestContext(request))
-
-@login_required
 def breeding_detail(request, breeding_id):
     """This view displays specific details about a breeding set.
 

@@ -10,7 +10,12 @@
 {% block header %}Breeding Cages{% endblock header %}
 
 {% block content %}
-<h2>{{ breeding_list.count }} breeding cages <a href="{% url breeding-list-all %}">(see all)</a></h2>
+<h2>{{ breeding_list.count }} breeding cages<h2>
+{% if type == all %}<h3><a href="{% url breeding-list-all %}">See all cages</a></h3>{% endif %}
+{% if type == active %}<h3><a href="{% url breeding-list-active %}">See active breeding cages</a></h3>{% endif %}
+{% if type == timed_mating %}<h3><a href="{% url breeding-list-timed-matings %}">See timed mating cages</a>{% endif %}
+</h2>
+
 <p>To enter a new breeding cage click: <a href="{% url breeding-new %}" class="fg-button ui-state-default fg-button-icon-left ui-corner-all">New Breeding Cage</a></p>
 <p>To see details on a breeding cage click on either the cage number or the number of pups</p>
 <p>For information about plug events click <a href="{% url plugevents-list %}" title="timed matings entry page">here</a>.</p>
