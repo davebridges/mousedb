@@ -11,7 +11,7 @@ from django.db.models import Count
 from django.core import serializers
 from django.core.urlresolvers import reverse
 
-from mousedb.animal.models import Animal, Strain, Breeding, Cage
+from mousedb.animal.models import Animal, Strain, Breeding
 from mousedb.data.models import Measurement
 from mousedb.animal.forms import MultipleAnimalForm, MultipleBreedingAnimalForm
 
@@ -107,7 +107,7 @@ def breeding_pups(request, breeding_id):
     This view is restricted to those with the permission animal.add_animal.
     """
     breeding = get_object_or_404(Breeding, pk=breeding_id)
-    PupsFormSet = inlineformset_factory(Breeding, Animal, extra=10, exclude=('Notes','Alive', 'Death', 'Cause_of_Death', 'Father', 'Mother', 'CageID', 'Breeding'))
+    PupsFormSet = inlineformset_factory(Breeding, Animal, extra=10, exclude=('Notes','Alive', 'Death', 'Cause_of_Death', 'Father', 'Mother', 'Breeding'))
     if request.method == "POST":
         formset = PupsFormSet(request.POST, instance=breeding)
         if formset.is_valid():
@@ -128,7 +128,7 @@ def breeding_change(request, breeding_id):
     """
     breeding = Breeding.objects.select_related().get(id=breeding_id)
     strain = breeding.Strain
-    PupsFormSet = inlineformset_factory(Breeding, Animal, extra=0, exclude=('Alive','Father', 'Mother', 'CageID', 'Breeding', 'Notes'))
+    PupsFormSet = inlineformset_factory(Breeding, Animal, extra=0, exclude=('Alive','Father', 'Mother', 'Breeding', 'Notes'))
     if request.method =="POST":
         formset = PupsFormSet(request.POST, instance=breeding)
         if formset.is_valid():

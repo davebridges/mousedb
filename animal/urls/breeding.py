@@ -23,8 +23,20 @@ def delete_breeding(*args, **kwargs):
 	return delete_object(*args, **kwargs)
 
 urlpatterns = patterns('',
-	url(r'^$', 'mousedb.animal.views.breeding', name="breeding-list"),
-	url(r'^all/$', 'mousedb.animal.views.breeding_all', name="breeding-list-all"),
+	url(r'^$', limited_object_list, {
+		'queryset': Breeding.objects.filter(Active=True),
+		'template_name': 'breeding.html',
+		'template_object_name': 'breeding',
+		'extra_context':'active',
+		}, name="breeding-list"),
+	url(r'all/$', limited_object_list, {
+		'queryset': Breeding.objects.all(),
+		'template_name': 'breeding.html',
+		'template_object_name': 'breeding',
+		'extra_context':'all',
+		}, name="breeding-list-all"),
+	#url(r'^$', 'mousedb.animal.views.breeding', name="breeding-list"),
+	#url(r'^all/$', 'mousedb.animal.views.breeding_all', name="breeding-list-all"),
 	url(r'^(?P<breeding_id>\d*)/$', 'mousedb.animal.views.breeding_detail', name="breeding-detail"),
 	url(r'^(?P<breeding_id>\d*)/pups/$', 'mousedb.animal.views.breeding_pups', name="breeding-pups"),
 	url(r'^(?P<breeding_id>\d*)/change/$', 'mousedb.animal.views.breeding_change', name="breeding-pups-change"),

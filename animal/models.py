@@ -97,7 +97,6 @@ class Animal(models.Model):
     """
     MouseID = models.IntegerField(max_length = 10, blank = True, null=True)
     Cage = models.IntegerField(max_length = 15, blank = True, null=True)
-    CageID = models.ForeignKey('Cage', blank=True, null=True)
     Rack = models.CharField(max_length = 15, blank = True)
     Rack_Position = models.CharField(max_length = 15, blank = True)
     Strain = models.ForeignKey(Strain)
@@ -145,7 +144,6 @@ class Breeding(models.Model):
     Male = models.ManyToManyField(Animal, related_name="breeding_males", blank=True) #should be males, but will have to check through the code to make sure this is ok to change
     Strain = models.ForeignKey(Strain, help_text="The strain of the pups")
     Cage = models.CommaSeparatedIntegerField(max_length=100, blank=True, null=True)
-    CageID = models.ForeignKey('Cage', blank=True, null=True)
     BreedingName = models.CharField(max_length=50, blank=True, verbose_name="Breeding Set Name")
     Start = models.DateField(blank=True, null=True)
     End = models.DateField(blank=True, null=True)
@@ -210,14 +208,3 @@ class Breeding(models.Model):
         #super(Breeding, self).save()
     class Meta:
         ordering = ['Strain', 'Start']
-		
-class Cage(models.Model):
-    """This data model stores information about a particular cage.  
-
-    This model, which is not yet implemented will be used by both breeding and non-breeding cages and will facilitate easier tracking and storage of cages.  To implement this, it will be necessary to automatically generate a new cage (if a novel barcode is entered), or to use a current cage if the barcode is already present in the database
-    """
-    Barcode = models.IntegerField(primary_key=True)
-    Rack = models.CharField(max_length = 15, blank = True)
-    Rack_Position = models.CharField(max_length = 15, blank = True)
-    def __unicode__(self):
-        return u'%i'  % self.Barcode

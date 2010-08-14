@@ -1,6 +1,6 @@
 """Admin site settings for the animal app."""
 
-from mousedb.animal.models import Strain, Animal, Breeding, Cage
+from mousedb.animal.models import Strain, Animal, Breeding
 from django.contrib import admin
 import datetime
 
@@ -54,9 +54,9 @@ class BreedingAdmin(admin.ModelAdmin):
     """Settings in the admin interface for dealing with Breeding objects.
 
     This interface also includes an form for adding objects associated with this breeding cage."""
-    list_display = ('Cage', 'CageID', 'Start', 'Rack', 'Rack_Position', 'Strain', 'Crosstype', 'BreedingName', 'Notes', 'Active')
+    list_display = ('Cage', 'Start', 'Rack', 'Rack_Position', 'Strain', 'Crosstype', 'BreedingName', 'Notes', 'Active')
     list_filter = ('Timed_Mating', 'Strain', 'Active', 'Crosstype')
-    fields = ('Male', 'Females', 'Timed_Mating', 'Cage', 'CageID', 'Rack', 'Rack_Position', 'BreedingName', 'Strain', 'Start', 'End', 'Crosstype', 'Notes')
+    fields = ('Male', 'Females', 'Timed_Mating', 'Cage', 'Rack', 'Rack_Position', 'BreedingName', 'Strain', 'Start', 'End', 'Crosstype', 'Notes')
     ordering = ('Active', 'Start')
     search_fields = ['Cage',]
     raw_id_fields = ("Male", "Females")
