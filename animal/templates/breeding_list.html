@@ -10,11 +10,10 @@
 {% block header %}Breeding Cages{% endblock header %}
 
 {% block content %}
-<h2>{{ breeding_list.count }} breeding cages<h2>
-{% if type == all %}<h3><a href="{% url breeding-list-all %}">See all cages</a></h3>{% endif %}
-{% if type == active %}<h3><a href="{% url breeding-list-active %}">See active breeding cages</a></h3>{% endif %}
-{% if type == timed_mating %}<h3><a href="{% url breeding-list-timed-matings %}">See timed mating cages</a>{% endif %}
-</h2>
+<h2>{{ breeding_list.count }} breeding cages</h2>
+{% if type != "all" %}<p><a href="{% url breeding-list-all %}" class="fg-button ui-state-default fg-button-icon-left ui-corner-all">See all breeding cages</a></p>{% endif %}
+{% if type != "active" %}<p><a href="{% url breeding-list %}" class="fg-button ui-state-default fg-button-icon-left ui-corner-all">See active breeding cages</a></p>{% endif %}
+{% if type != "timed_mating" %}<p><a href="{% url breeding-list-timed-matings %}" class="fg-button ui-state-default fg-button-icon-left ui-corner-all">See timed mating cages</a></p>{% endif %}
 
 <p>To enter a new breeding cage click: <a href="{% url breeding-new %}" class="fg-button ui-state-default fg-button-icon-left ui-corner-all">New Breeding Cage</a></p>
 <p>To see details on a breeding cage click on either the cage number or the number of pups</p>
