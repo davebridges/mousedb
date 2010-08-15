@@ -125,6 +125,13 @@ If a eartag is present then the string reads some_strain-Eartag #some_number. If
              return u'%s (%i)' % (self.Strain, self.id)
         else:
              return u'MOUSE'
+    def breeding_status(self):
+        if self.Breeding.Cage == self.Cage:
+            return "resident-breeder"
+        elif self.Breeding.Cage != self.Cage:
+            return "non-resident-breeder"
+        else:
+            return "non-breeder"
     @models.permalink
     def get_absolute_url(self):
         return ('animal-detail', [str(self.id)])

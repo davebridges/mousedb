@@ -27,11 +27,13 @@
    <td class="left">{{ breeding.BreedingName }}</td>
    <td>{{ breeding.Start }}</td>
    <td class="
-       {% if breeding.Cage != breeding.Male[0] %}
-         non-resident-breeder 
-       {% else %} 
+       {% for male in breeding.Male.all %}
+       {% if male.breeding_status = "non-resident-breeder" %}
+         non-resident-breeder
+       {% else %}
          breeder
        {% endif %} 
+       {% endfor %}
          left" >
 {% if breeding.Male.all %}
        <ul>
