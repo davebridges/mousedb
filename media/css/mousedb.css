@@ -33,6 +33,10 @@ a {
 	text-decoration: none;
 }
 
+.ui-icon{
+	    display: inline-block !important;
+	}
+	
 div#user {
 }
 

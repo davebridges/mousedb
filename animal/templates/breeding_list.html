@@ -11,11 +11,11 @@
 
 {% block content %}
 <h2>{{ breeding_list.count }} breeding cages</h2>
-{% if breeding_type != "All" %}<p><a href="{% url breeding-list-all %}" class="fg-button ui-state-default fg-button-icon-left ui-corner-all">See all breeding cages</a></p>{% endif %}
-{% if breeding_type != "Active" %}<p><a href="{% url breeding-list %}" class="fg-button ui-state-default fg-button-icon-left ui-corner-all">See active breeding cages</a></p>{% endif %}
-{% if breeding_type != "Timed Matings" %}<p><a href="{% url breeding-list-timed-matings %}" class="fg-button ui-state-default fg-button-icon-left ui-corner-all">See timed mating cages</a></p>{% endif %}
+{% if breeding_type != "All" %}<a href="{% url breeding-list-all %}" class="fg-button fg-button-icon-left ui-state-default ui-corner-all"><span class="ui-icon ui-icon-info"></span>See all breeding cages</a><br/>{% endif %}
+{% if breeding_type != "Active" %}<a href="{% url breeding-list %}" class="fg-button ui-state-default fg-button-icon-left ui-corner-all"><span class="ui-icon ui-icon-info"></span>See active breeding cages</a><br/>{% endif %}
+{% if breeding_type != "Timed Matings" %}<a href="{% url breeding-list-timed-matings %}" class="fg-button ui-state-default fg-button-icon-left ui-corner-all"><span class="ui-icon ui-icon-info"></span>See timed mating cages</a><br/>{% endif %}
 
-<p>To enter a new breeding cage click: <a href="{% url breeding-new %}" class="fg-button ui-state-default fg-button-icon-left ui-corner-all">New Breeding Cage</a></p>
+<p>To enter a new breeding cage click: <a href="{% url breeding-new %}" class="fg-button ui-state-default fg-button-icon-left ui-corner-all"><span class="ui-icon ui-icon-circle-plus"></span>New Breeding Cage</a></p>
 <p>To see details on a breeding cage click on either the cage number or the number of pups</p>
 <p>For information about plug events click <a href="{% url plugevents-list %}" title="timed matings entry page">here</a>.</p>
 <p>Sort table by clicking headers.  Select multiple headers by holding SHIFT</p>
