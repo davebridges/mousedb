@@ -42,6 +42,12 @@ chs=600x250
 &amp;alt = "Chart of Mouse Distribution"
 border = 1 px/>
  </div>
-<p>To add a new mouse click <a href="{% url animal-new %}">here</a>.
-<p>To add a new mouse strain click <a href="{% url strain-new %}">here</a>.
+<div id="pups" class="fg-buttonset">
+{% if perms.animal.create_animal %}
+<a href="{% url strain-new %}"><button class="fg-button ui-state-default ui-corner-left"><span class="ui-icon ui-icon-circle-plus"></span>Add New Strain</button></a>
+{% endif %}
+{% if perms.animal.change_animal %}
+<a href="{% url animal-new %}"><button class="fg-button ui-state-default ui-corner-right"><span class="ui-icon ui-icon-circle-plus"></span>Add New Mouse</button></a>
+{% endif %}
+</div>
 {% endblock content %}

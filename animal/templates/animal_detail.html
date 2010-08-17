@@ -7,9 +7,11 @@
 {% block content %}
 {% if animal.Death %}
 This mouse died on {{ animal.Death }}.  Cause of death was {{ animal.Cause_of_Death }}
-{% else %}
+{% else %}{% if animal.Born %}
 This mouse is {{ animal.Born|timesince }} old.
-{% endif %}
+{% else %}
+This mouse has an unknown age.
+{% endif %}{% endif %}
 {% load custom_filters %}
 
 <table>
@@ -63,14 +65,26 @@ This mouse is {{ animal.Born|timesince }} old.
 		</tr>
 	</tbody>
 </table>
-<a href="{% url animal-update animal.id %}">Edit Mouse Data</a>
+
+<div class="fg-buttonset">
+{% if perms.animal.change_animal %}
+	<a href="{% url animal-update animal.id %}"><button class="fg-button ui-state-default ui-corner-left"><span class="ui-icon ui-icon-pencil"></span>Edit Mouse</button></a>
+{% endif %}
+{% if perms.animal.add_animal %}
+	<a href="{% url animal-new %}"><button class="fg-button ui-state-default"><span class="ui-icon ui-icon-circle-plus"></span>Add New Mouse</button></a>
+{% endif %}
+{% if perms.animal.delete_animal %}
+	<a href="{% url animal-delete animal.id %}"><button class="fg-button ui-state-default  ui-corner-right"><span class="ui-icon ui-icon-trash"></span>Delete Mouse</button></a>
+{% endif %}
+</div>
 {% if animal_measurements %}
+<div id="animal-measurements">
 	<h2>Measurement Summary</h2>
 	{% with animal_measurements as data_list %}
 	{% include "data_table.html" %}
 	{% endwith %}
 {% else %}
 	<p>No measurements for this animal.</p>
+</div>
 {% endif %}
-<p>To change this animal click <a href="{% url animal-update animal.id %}">here</a>.  To delete (not kill but to completely erase all data) this mouse click <a href="{% url animal-delete animal.id %}">here</a></p>
 {% endblock content%}

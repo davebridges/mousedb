@@ -3,17 +3,22 @@
 
 {% block scripts %}{% include "sortable_table_script.html" %}{% endblock scripts %}
 
-{% block title %}Animal List{% endblock title%}
+{% block title %}Animal List - {% if list_type == "Alive" %}Alive{% else %}All{% endif %} Mice{% endblock title%}
 
-{% block header %}Animal List{% endblock header %}
+{% block header %}Animal List - {% if list_type == "Alive" %}Alive{% else %}All{% endif %} Mice{% endblock header %}
 
 {% block content %}
 
 <h2>{{ animal_list.count }} mice.</h2>
-<p>This shows only alive mice.  To see all mice click <a href="{% url animal-list-all %}">here</a>.</p>
-<p>To add a new mouse click <a href="{% url animal-new %}">here</a>.
-<p>Sort table by clicking headers.  Select multiple headers by holding SHIFT</p>
-<p class="unweaned">Pink rows are animals which have not yet been weaned.</p>  
-<p class="breeder">Yellow rows are animals which are currently in breeding cages.</p>
+<div class="fg-buttonset">
+{% if list_type == "Alive" %}
+<a href="{% url animal-list-all %}"><button class="fg-button ui-state-default ui-corner-left"><span class="ui-icon ui-icon-info"></span>Show all mice</button></a>
+{% else %}
+<a href="{% url animal-list %}"><button class="fg-button ui-state-default ui-corner-left"><span class="ui-icon ui-icon-info"></span>Show alive mice</button></a>
+{% endif %}
+{% if perms.animal.add_animal %}
+	<a href="{% url animal-delete animal.id %}"><button class="fg-button ui-state-default ui-corner-right"><span class="ui-icon ui-icon-circle-plus"></span>Add New Mouse</button></a>
+{% endif %}
+</div>
 {% include "animal_list_table.html" %}
 {% endblock content %}

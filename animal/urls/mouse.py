@@ -29,6 +29,7 @@ urlpatterns = patterns('',
 		'queryset': Animal.objects.filter(Alive=True),
 		'template_name': 'animal_list.html', 
 		'template_object_name': 'animal',
+		'extra_context': {'list_type':'Alive'}	
 		}, name="animal-list"),
 	url(r'all/?$', limited_object_list, {
 		'queryset': Animal.objects.all(),

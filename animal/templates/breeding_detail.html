@@ -45,6 +45,18 @@
  </tr>
  </tbody>
 </table>
+<div class="fg-buttonset">
+{% if perms.animal.create_breeding %}
+<a href="{% url breeding-new %}"><button class="fg-button ui-state-default ui-corner-left"><span class="ui-icon ui-icon-circle-plus"></span>Add New Breeding Cage</button></a>
+{% endif %}
+{% if perms.animal.change_breeding %}
+<a href="{% url breeding-edit breeding.id %}"><button class="fg-button ui-state-default"><span class="ui-icon ui-icon-pencil"></span>Edit Breeding Cage</button></a>
+{% endif %}
+{% if perms.animal.delete_breeding %}
+<a href="{% url breeding-delete breeding.id %}"><button class="fg-button ui-state-default ui-corner-right"><span class="ui-icon ui-icon-trash"></span>Delete Breeding Cage</button></a>
+{% endif %}
+</div>
+
 <div id="breeding-parents">
 <h2>Breeding Parents</h2>
 <table>
@@ -102,15 +114,15 @@
   {% endfor %}
  </table>
 </div>
-<div id="pups">
-<ul>
-<li><a href="{% url animal-multiple-pups-new breeding.id %}">Add New Pups</a></li>
-<li><a href="{% url breeding-pups breeding.id %}">Add/Wean Pups</a></li>
-<li><a href="{% url breeding-pups-change breeding.id %}">Eartag/Genotype/Cage Changes/Death</a></li>
-</ul>
-<p>For data entry instructions go to the <a href="http://code.google.com/p/mousedb/wiki/DataEntry">MouseDB Wiki</a></p>
 <h2>Pups</h2>
-<p>Sort table by clicking headers.  Select multiple headers by holding SHIFT</p>
+<div id="pups" class="fg-buttonset">
+{% if perms.animal.create_animal %}
+<a href="{% url animal-multiple-pups-new breeding.id %}"><button class="fg-button ui-state-default ui-corner-left"><span class="ui-icon ui-icon-pencil"></span>Add New Pups</button></a>
+{% endif %}
+{% if perms.animal.change_animal %}
+<a href="{% url breeding-pups-change breeding.id %}"><button class="fg-button ui-state-default ui-corner-right"><span class="ui-icon ui-icon-pencil"></span>Edit Pups</button></a>
+{% endif %}
+</div>
 {% with pups as animal_list %}
 {% include "animal_list_table.html" %}
 {% endwith %}
@@ -127,5 +139,4 @@
 {% endwith %}
 </div>
 {% endif %}
-<p>To change this breeding cage click <a href="{% url breeding-edit breeding.id %}">here</a>.  To delete (not deactivate but to completely erase all data) this breeding cage click <a href="/mousedb/breeding/{{breeding.id}}/delete">here</a></p>
 {% endblock content %}

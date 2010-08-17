@@ -36,9 +36,9 @@
 <button class="toggle-animals fg-button ui-state-default fg-button-toggleable ui-corner-all">Animals Show/Hide</button>
 <div id ="animals" class="toggle-animals">
 <h3>Animal List</h3>
-<p>Sort table by clicking headers.  Select multiple headers by holding SHIFT</p>
-<p class="unweaned">Pink rows are animals which have not yet been weaned.</p>  
-<p class="breeder">Yellow rows are animals which are currently in breeding cages.</p>
 {% include "animal_list_table.html" %}
 </div>
+{% if perms.animal.change_strain %}
+<a href="{% url strain-edit strain.id %}"><button class="fg-button ui-state-default ui-corner-all"><span class="ui-icon ui-icon-pencil"></span>Edit {{ strain }}</button></a>
+{% endif %}
 {% endblock content %}
