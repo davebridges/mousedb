@@ -125,13 +125,6 @@ If a eartag is present then the string reads some_strain-Eartag #some_number. If
              return u'%s (%i)' % (self.Strain, self.id)
         else:
              return u'MOUSE'
-    def breeding_status(self):
-        if self.Breeding.Cage == self.Cage:
-            return "resident-breeder"
-        elif self.Breeding.Cage != self.Cage:
-            return "non-resident-breeder"
-        else:
-            return "non-breeder"
     @models.permalink
     def get_absolute_url(self):
         return ('animal-detail', [str(self.id)])
@@ -170,7 +163,17 @@ class Breeding(models.Model):
     def get_absolute_url(self):
         return ('breeding-detail', [str(self.id)])
     def unweaned(self):
+        """This attribute generates a queryset of unweaned animals for this breeding cage.  It is filtered for only Alive animals."""	
         return Animal.objects.filter(Breeding=self, Weaned__isnull=True, Alive=True)
+    def male_breeding_location_type(self):
+        """This attribute defines whether a breeding male's current location is the same as the breeding cage.
+
+        This attribute is used to color breeding table entries such that male mice which are currently in a different cage can quickly be identified."""
+        if int(self.Male.all()[0].Cage) == int(self.Cage):
+            type = "resident breeder"
+        else:
+            type = "non-resident breeder"
+        return type		
     def save(self):
         """The save function for a breeding cage has to automatic over-rides, Active and the Cage for the Breeder.
         

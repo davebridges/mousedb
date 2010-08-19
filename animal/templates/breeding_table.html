@@ -26,19 +26,11 @@
    <td><a href="{{ breeding.get_absolute_url }}">{{ breeding.Cage }}</a></td>
    <td class="left">{{ breeding.BreedingName }}</td>
    <td>{{ breeding.Start }}</td>
-   <td class="
-       {% for male in breeding.Male.all %}
-       {% if male.breeding_status = "non-resident-breeder" %}
-         non-resident-breeder
-       {% else %}
-         breeder
-       {% endif %} 
-       {% endfor %}
-         left" >
+   <td class="left {% if breeding.male_breeding_location_type == "non-resident breeder" %}non-resident-breeder{%else%}breeder{%endif%}" >
 {% if breeding.Male.all %}
        <ul>
        {% for male in breeding.Male.all %}
-       <li><a href="{% url animal-detail male.id %}">{{ male }}</a></li>
+	   <li><a href="{% url animal-detail male.id %}">{{ male }}</a></li>
        {% endfor %}
        </ul>
 {% endif %}
