@@ -66,13 +66,28 @@ class BreedingModelTests(TestCase):
         example_strain.save()
         new_breeding = Breeding(Strain = example_strain)
         new_breeding.save()
-	test_breeding = Breeding.objects.get(Strain=example_strain)
+        test_breeding = Breeding.objects.get(Strain=example_strain)
         self.assertEquals(test_breeding.Active, True)
         test_breeding.End = datetime.date.today()
         test_breeding.save()
         self.assertEquals(test_breeding.Active, False)
         print "autoset_breeding_active_state... passed"
-
+		
+	def test_male_breeding_location_type(self):
+	    """This is a test that the breeding_location_type attribute is being set correctly.
+		
+        Normal function is that if the breeding cage of a Breeding object and the cage of an Animal object are the same then the breeding male is set to "resident breeder", if not then it is a "non-resident breeder"""
+        example_strain = Strain(Strain="Example Strain")
+        example_strain.save()
+        animal = Animal(Strain = example_strain, Genotype="-/-", Background="Mixed", Cage=1234, Gender='M')
+        animal.save()		
+        test_breeding = Breeding(Strain = example_strain, Male=animal, Cage=1234)
+        test_breeding.save()
+        self.assertEquals(test_breeding.male_breeding_location_type, "resident breeder")
+        test_breeding_nr = Breeding(Strain = example_strain, Male=animal, Cage=5678)
+        self.assertEquals(test_breeding.male_breeding_location_type, "non-resident breeder")
+        print "male_breeding_location_type... passed"
+		
     #def test_update_breeding_cage_automatically_move_animal(self):
     #    """This is a test for creating a new breeding object, with only the minimum being entered.  It also tests whether the cages are updated to the breeding cage when that attribute is set.  This tests if only one female is in a breeding set."""
     #    example_strain = Strain(Strain="Example Strain")
