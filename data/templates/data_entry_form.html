@@ -16,7 +16,6 @@
 {% endblock %}
 {% block header %}Data Entry ({{ experiment }}){% endblock %}
 {% block content %}
-<<<<<<< HEAD
 <form action="{% url data-entry experiment.id %} " method="POST">{% csrf_token %}
     {{ formset.management_form }}
     {% include "formsets_table.html" %}

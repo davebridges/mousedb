@@ -3,6 +3,7 @@
 		<tr>
 			<th>Date</th>
 			<th>Strain</th>
+			<th>Cage</th>
 			<th>Animal</th>
 			<th>Genotype</th>
 			<th>Age (Days)</th>
@@ -17,6 +18,7 @@
 		<tr>
 			<td><a href="{% url experiment-detail data.experiment.id %}">{{ data.experiment.date }}</a></td>
 			<td><a href="{% url strain-detail data.animal.Strain.Strain_slug %}">{{ data.animal.Strain }}</a></td>
+			<td>{{ data.animal.Cage }}</td>
 			<td><a href="{% url animal-detail data.animal.id %}">{{ data.animal.MouseID }}</a></td>
 			<td>{{ data.animal.Genotype }}</td>
 			<td>{{ data.age }}</td>
