@@ -12,7 +12,7 @@
 
 
 \title{MouseDB Documentation}
-\date{June 20, 2010}
+\date{August 22, 2010}
 \release{0.1}
 \author{Dave Bridges, Ph.D.}
 \newcommand{\sphinxlogo}{}
@@ -736,6 +736,12 @@ Bases: \code{django.core.exceptions.MultipleObjectsReturned}
 
 \end{fulllineitems}
 
+\index{age() (data.models.Measurement method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Measurement.age}\pysiglinewithargsret{\code{Measurement.}\bfcode{age}}{}{}
+\end{fulllineitems}
+
 \index{animal (data.models.Measurement attribute)}
 
 \begin{fulllineitems}
@@ -1172,10 +1178,20 @@ alias of \code{Measurement}
 \begin{fulllineitems}
 \phantomsection\label{api:data.forms.StudyExperimentForm}\pysiglinewithargsret{\strong{class }\code{data.forms.}\bfcode{StudyExperimentForm}}{\emph{data=None}, \emph{files=None}, \emph{auto\_id='id\_\%s'}, \emph{prefix=None}, \emph{initial=None}, \emph{error\_class=\textless{}class `django.forms.util.ErrorList'\textgreater{}}, \emph{label\_suffix=':'}, \emph{empty\_permitted=False}, \emph{instance=None}}{}
 Bases: \code{django.forms.models.ModelForm}
+
+This is the configuration for a study form (From an experiment).
+
+This form provides an autocomplete field for the animals, and hides the study field which will be automatically set upon save.
+\index{StudyExperimentForm.Media (class in data.forms)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.forms.StudyExperimentForm.Media}\pysigline{\strong{class }\bfcode{Media}}{}
+\end{fulllineitems}
+
 \index{StudyExperimentForm.Meta (class in data.forms)}
 
 \begin{fulllineitems}
-\phantomsection\label{api:data.forms.StudyExperimentForm.Meta}\pysigline{\strong{class }\bfcode{Meta}}{}~\index{model (data.forms.StudyExperimentForm.Meta attribute)}
+\phantomsection\label{api:data.forms.StudyExperimentForm.Meta}\pysigline{\strong{class }\code{StudyExperimentForm.}\bfcode{Meta}}{}~\index{model (data.forms.StudyExperimentForm.Meta attribute)}
 
 \begin{fulllineitems}
 \phantomsection\label{api:data.forms.StudyExperimentForm.Meta.model}\pysigline{\bfcode{model}}{}
@@ -1242,10 +1258,16 @@ Bases: \code{django.forms.models.ModelForm}
 Form class for study treatment groups.
 
 In the case of studies, animals are defined in the treatment group rather than in the study group.  A treatment consists of a study, a set of animals and the conditions which define that treatment.  This includes related fields for environment, diet, implants and transplants.
+\index{TreatmentForm.Media (class in data.forms)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.forms.TreatmentForm.Media}\pysigline{\strong{class }\bfcode{Media}}{}
+\end{fulllineitems}
+
 \index{TreatmentForm.Meta (class in data.forms)}
 
 \begin{fulllineitems}
-\phantomsection\label{api:data.forms.TreatmentForm.Meta}\pysigline{\strong{class }\bfcode{Meta}}{}~\index{model (data.forms.TreatmentForm.Meta attribute)}
+\phantomsection\label{api:data.forms.TreatmentForm.Meta}\pysigline{\strong{class }\code{TreatmentForm.}\bfcode{Meta}}{}~\index{model (data.forms.TreatmentForm.Meta attribute)}
 
 \begin{fulllineitems}
 \phantomsection\label{api:data.forms.TreatmentForm.Meta.model}\pysigline{\bfcode{model}}{}
@@ -1286,6 +1308,16 @@ alias of \code{Treatment}
 \phantomsection\label{api:data.views.experiment_detail_all}\pysiglinewithargsret{\code{data.views.}\bfcode{experiment\_detail\_all}}{\emph{request}, \emph{*args}, \emph{**kwargs}}{}
 \end{fulllineitems}
 
+\index{experiment\_details\_csv() (in module data.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.views.experiment_details_csv}\pysiglinewithargsret{\code{data.views.}\bfcode{experiment\_details\_csv}}{\emph{request}, \emph{*args}, \emph{**kwargs}}{}
+This view generates a csv output file of an experiment.
+
+The view writes to a csv table the animal, genotype, age (in days), assay and values.
+
+\end{fulllineitems}
+
 \index{experiment\_list() (in module data.views)}
 
 \begin{fulllineitems}
@@ -1302,6 +1334,63 @@ alias of \code{Treatment}
 
 \subsection{Administrative Site Configuration}
 \label{api:administrative-site-configuration}\label{api:module-data.admin}\index{data.admin (module)}
+
+\subsection{Test Files}
+\label{api:test-files}\label{api:module-data.tests}\index{data.tests (module)}
+This file contains tests for the data application.
+
+These tests will verify generation and function of a all objects in the data application.
+\index{ExperimentModelTests (class in data.tests)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.tests.ExperimentModelTests}\pysiglinewithargsret{\strong{class }\code{data.tests.}\bfcode{ExperimentModelTests}}{\emph{methodName='runTest'}}{}
+Bases: \code{django.test.testcases.TestCase}
+
+Test the Experiment model contained in the `data' application.
+\index{setUp() (data.tests.ExperimentModelTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.tests.ExperimentModelTests.setUp}\pysiglinewithargsret{\bfcode{setUp}}{}{}
+Instantiate the test client.
+
+\end{fulllineitems}
+
+\index{tearDown() (data.tests.ExperimentModelTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.tests.ExperimentModelTests.tearDown}\pysiglinewithargsret{\bfcode{tearDown}}{}{}
+Depopulate created model instances from test database.
+
+\end{fulllineitems}
+
+\index{test\_create\_experiment\_minimal() (data.tests.ExperimentModelTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.tests.ExperimentModelTests.test_create_experiment_minimal}\pysiglinewithargsret{\bfcode{test\_create\_experiment\_minimal}}{}{}
+This is a test for creating a new experiment object, with only the minimum fields being entered
+
+\end{fulllineitems}
+
+\index{test\_experiment\_get\_absolute\_url() (data.tests.ExperimentModelTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.tests.ExperimentModelTests.test_experiment_get_absolute_url}\pysiglinewithargsret{\bfcode{test\_experiment\_get\_absolute\_url}}{}{}
+This test verifies the absolute url of an experiment object.
+
+\end{fulllineitems}
+
+\index{test\_experiment\_unicode() (data.tests.ExperimentModelTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.tests.ExperimentModelTests.test_experiment_unicode}\pysiglinewithargsret{\bfcode{test\_experiment\_unicode}}{}{}
+This test verifies that the unicode representation of an experiment is date-feeding state
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
 
 \section{Animals Package}
 \label{api:animals-package}\label{api:module-animal}\index{animal (module)}
@@ -1372,18 +1461,6 @@ A breeding set may contain one ore more males and females and must be defined vi
 
 \end{fulllineitems}
 
-\index{Cage (class in animal.models)}
-
-\begin{fulllineitems}
-\phantomsection\label{api:animal.models.Cage}\pysiglinewithargsret{\strong{class }\code{animal.models.}\bfcode{Cage}}{\emph{*args}, \emph{**kwargs}}{}
-Bases: \code{django.db.models.base.Model}
-
-This data model stores information about a particular cage.
-
-This model, which is not yet implemented will be used by both breeding and non-breeding cages and will facilitate easier tracking and storage of cages.  To implement this, it will be necessary to automatically generate a new cage (if a novel barcode is entered), or to use a current cage if the barcode is already present in the database
-
-\end{fulllineitems}
-
 
 
 \subsection{Forms}
@@ -1397,7 +1474,6 @@ Bases: \code{django.forms.models.ModelForm}
 
 This modelform provides fields for modifying animal data.
 
-It includes all fields except CageID (will be deprecated) and Alive (which is automattically set upon saving the animal).
 This form also automatically loads javascript and css for the datepicker jquery-ui widget.  It also includes auto
 \index{AnimalForm.Media (class in animal.forms)}
 
@@ -1436,7 +1512,7 @@ Bases: \code{django.forms.models.ModelForm}
 
 This form provides most fields for creating and entring breeding cage data.
 
-This form is used from the url /mousedb/breeding/new and is a generic create view.  The only excluded field is CageID, as this feature will be deprecated.  This view includes a datepicker widget for Stat and End dates and autocomplete fields for the Females and Male fields
+This form is used from the url /mousedb/breeding/new and is a generic create view.  This view includes a datepicker widget for Stat and End dates and autocomplete fields for the Females and Male fields
 \index{BreedingForm.Media (class in animal.forms)}
 
 \begin{fulllineitems}
@@ -1466,6 +1542,70 @@ alias of \code{Breeding}
 
 \end{fulllineitems}
 
+\index{MultipleAnimalForm (class in animal.forms)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.forms.MultipleAnimalForm}\pysiglinewithargsret{\strong{class }\code{animal.forms.}\bfcode{MultipleAnimalForm}}{\emph{data=None}, \emph{files=None}, \emph{auto\_id='id\_\%s'}, \emph{prefix=None}, \emph{initial=None}, \emph{error\_class=\textless{}class `django.forms.util.ErrorList'\textgreater{}}, \emph{label\_suffix=':'}, \emph{empty\_permitted=False}, \emph{instance=None}}{}
+Bases: \code{django.forms.models.ModelForm}
+
+This modelform provides fields for entering multiple identical copies of a set of mice.
+
+This form only includes the required fields Background and Strain.
+\index{MultipleAnimalForm.Meta (class in animal.forms)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.forms.MultipleAnimalForm.Meta}\pysigline{\strong{class }\bfcode{Meta}}{}~\index{model (animal.forms.MultipleAnimalForm.Meta attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.forms.MultipleAnimalForm.Meta.model}\pysigline{\bfcode{model}}{}
+alias of \code{Animal}
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+\index{media (animal.forms.MultipleAnimalForm attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.forms.MultipleAnimalForm.media}\pysigline{\code{MultipleAnimalForm.}\bfcode{media}}{}
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+\index{MultipleBreedingAnimalForm (class in animal.forms)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.forms.MultipleBreedingAnimalForm}\pysiglinewithargsret{\strong{class }\code{animal.forms.}\bfcode{MultipleBreedingAnimalForm}}{\emph{data=None}, \emph{files=None}, \emph{auto\_id='id\_\%s'}, \emph{prefix=None}, \emph{initial=None}, \emph{error\_class=\textless{}class `django.forms.util.ErrorList'\textgreater{}}, \emph{label\_suffix=':'}, \emph{empty\_permitted=False}, \emph{instance=None}}{}
+Bases: \code{django.forms.models.ModelForm}
+
+This modelform provides fields for entering multiple pups within a breeding set.
+
+The only fields presented are Born, Weaned, Gender and Count.  Several other fields will be automatically entered based on the Breeding Set entries.
+\index{MultipleBreedingAnimalForm.Meta (class in animal.forms)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.forms.MultipleBreedingAnimalForm.Meta}\pysigline{\strong{class }\bfcode{Meta}}{}~\index{model (animal.forms.MultipleBreedingAnimalForm.Meta attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.forms.MultipleBreedingAnimalForm.Meta.model}\pysigline{\bfcode{model}}{}
+alias of \code{Animal}
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+\index{media (animal.forms.MultipleBreedingAnimalForm attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.forms.MultipleBreedingAnimalForm.media}\pysigline{\code{MultipleBreedingAnimalForm.}\bfcode{media}}{}
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
 
 
 \subsection{Views and URLs}
@@ -1481,28 +1621,6 @@ This view displays specific details about an animal.
 
 It takes a request in the form animal/(id)/, mice/(id) or mouse/(id)/ and renders the detail page for that mouse.  The request is defined for id not MouseID (or barcode) because this allows for details to be displayed for mice without barcode identification.
 Therefore care must be taken that animal/4932 is id=4932 and not barcode=4932.  The animal name is defined at the top of the page.
-This page is restricted to logged-in users.
-
-\end{fulllineitems}
-
-\index{breeding() (in module animal.views)}
-
-\begin{fulllineitems}
-\phantomsection\label{api:animal.views.breeding}\pysiglinewithargsret{\code{animal.views.}\bfcode{breeding}}{\emph{request}, \emph{*args}, \emph{**kwargs}}{}
-This view displays a list of breeding sets.
-
-It takes a request in the form /breeding/ and lists all currently active breeding sets.
-This page is restricted to logged-in users.
-
-\end{fulllineitems}
-
-\index{breeding\_all() (in module animal.views)}
-
-\begin{fulllineitems}
-\phantomsection\label{api:animal.views.breeding_all}\pysiglinewithargsret{\code{animal.views.}\bfcode{breeding\_all}}{\emph{request}, \emph{*args}, \emph{**kwargs}}{}
-This view displays a list of breeding sets.
-
-It takes a request in the form /breeding/all and lists all breeding sets (both active and inactive).
 This page is restricted to logged-in users.
 
 \end{fulllineitems}
@@ -1542,6 +1660,29 @@ This view is used to generate a form by which to add pups which belong to a part
 This view is intended to be used to add initial information about pups, including eartag, genotype, gender and birth or weaning information.
 It takes a request in the form /breeding/(breeding\_id)/pups/ and returns a form specific to the breeding set defined in breeding\_id.  breeding\_id is the background identification number of the breeding set and does not refer to the barcode of any breeding cage.
 This view is restricted to those with the permission animal.add\_animal.
+
+\end{fulllineitems}
+
+\index{multiple\_breeding\_pups() (in module animal.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.views.multiple_breeding_pups}\pysiglinewithargsret{\code{animal.views.}\bfcode{multiple\_breeding\_pups}}{\emph{request}, \emph{breeding\_id}}{}
+This view is used to enter multiple animals at the same time from a breeding cage.
+\begin{description}
+\item[{It will generate a form containing animal information and a number of mice.  It is intended to create several identical animals with the same attributes.}] \leavevmode
+This view requres an input of a breeding\_id to generate the correct form.
+
+\end{description}
+
+\end{fulllineitems}
+
+\index{multiple\_pups() (in module animal.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.views.multiple_pups}\pysiglinewithargsret{\code{animal.views.}\bfcode{multiple\_pups}}{\emph{request}}{}
+This view is used to enter multiple animals at the same time.
+
+It will generate a form containing animal information and a number of mice.  It is intended to create several identical animals with the same attributes.
 
 \end{fulllineitems}
 
@@ -1685,6 +1826,109 @@ Settings in the admin interface for dealing with Strain objects.
 
 
 
+\subsection{Test Files}
+\label{api:id5}\phantomsection\label{api:module-animal.tests}\index{animal.tests (module)}
+This file contains tests for the animal application.
+
+These tests will verify generation and function of a new breeding, strain and animal object.
+\index{BreedingModelTests (class in animal.tests)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.tests.BreedingModelTests}\pysiglinewithargsret{\strong{class }\code{animal.tests.}\bfcode{BreedingModelTests}}{\emph{methodName='runTest'}}{}
+Bases: \code{django.test.testcases.TestCase}
+
+Test the models contained in the `groups' app.
+\index{setUp() (animal.tests.BreedingModelTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.tests.BreedingModelTests.setUp}\pysiglinewithargsret{\bfcode{setUp}}{}{}
+Instantiate the test client.
+
+\end{fulllineitems}
+
+\index{tearDown() (animal.tests.BreedingModelTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.tests.BreedingModelTests.tearDown}\pysiglinewithargsret{\bfcode{tearDown}}{}{}
+Depopulate created model instances from test database.
+
+\end{fulllineitems}
+
+\index{test\_autoset\_active\_state() (animal.tests.BreedingModelTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.tests.BreedingModelTests.test_autoset_active_state}\pysiglinewithargsret{\bfcode{test\_autoset\_active\_state}}{}{}
+This is a test for creating a new breeding object, with only the minimum being entered.  That object is then tested for the active state being automatically set when a End date is specified.
+
+\end{fulllineitems}
+
+\index{test\_create\_animal\_minimal() (animal.tests.BreedingModelTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.tests.BreedingModelTests.test_create_animal_minimal}\pysiglinewithargsret{\bfcode{test\_create\_animal\_minimal}}{}{}
+This is a test for creating a new animal object, with only the minimum fields being entered
+
+\end{fulllineitems}
+
+\index{test\_create\_breeding\_minimal() (animal.tests.BreedingModelTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.tests.BreedingModelTests.test_create_breeding_minimal}\pysiglinewithargsret{\bfcode{test\_create\_breeding\_minimal}}{}{}
+This is a test for creating a new breeding object, with only the minimum being entered.
+
+\end{fulllineitems}
+
+\index{test\_unicode() (animal.tests.BreedingModelTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.tests.BreedingModelTests.test_unicode}\pysiglinewithargsret{\bfcode{test\_unicode}}{}{}
+This is a test for creating a new animal object, with only the minimum fields being entered.  It then tests that the correct unicode representation is being generated.
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+\index{BreedingViewTests (class in animal.tests)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.tests.BreedingViewTests}\pysiglinewithargsret{\strong{class }\code{animal.tests.}\bfcode{BreedingViewTests}}{\emph{methodName='runTest'}}{}
+Bases: \code{django.test.testcases.TestCase}
+\index{setUp() (animal.tests.BreedingViewTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.tests.BreedingViewTests.setUp}\pysiglinewithargsret{\bfcode{setUp}}{}{}
+\end{fulllineitems}
+
+\index{tearDown() (animal.tests.BreedingViewTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.tests.BreedingViewTests.tearDown}\pysiglinewithargsret{\bfcode{tearDown}}{}{}
+\end{fulllineitems}
+
+\index{test\_breeding\_list() (animal.tests.BreedingViewTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.tests.BreedingViewTests.test_breeding_list}\pysiglinewithargsret{\bfcode{test\_breeding\_list}}{}{}
+\end{fulllineitems}
+
+\index{test\_breeding\_list\_all() (animal.tests.BreedingViewTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.tests.BreedingViewTests.test_breeding_list_all}\pysiglinewithargsret{\bfcode{test\_breeding\_list\_all}}{}{}
+\end{fulllineitems}
+
+\index{test\_breeding\_new() (animal.tests.BreedingViewTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.tests.BreedingViewTests.test_breeding_new}\pysiglinewithargsret{\bfcode{test\_breeding\_new}}{}{}
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+
 \section{Timed Mating Package}
 \label{api:module-timed_mating}\label{api:timed-mating-package}\index{timed\_mating (module)}
 This package defines the timed\_mating app.
@@ -1698,7 +1942,7 @@ If the mother gives birth then this cage is implicitly set as a normal breeding 
 
 
 \subsection{Models}
-\label{api:id5}\phantomsection\label{api:module-timed_mating.models}\index{timed\_mating.models (module)}
+\label{api:id6}\phantomsection\label{api:module-timed_mating.models}\index{timed\_mating.models (module)}
 This defines the data model for the timed\_mating app.
 
 Currently the only data model is for PlugEvents.
@@ -1719,7 +1963,7 @@ Upon sacrifice of the mother, then genotyped alive and dead embryos can be enter
 
 
 \subsection{Forms}
-\label{api:id6}\phantomsection\label{api:module-timed_mating.forms}\index{timed\_mating.forms (module)}
+\label{api:id7}\phantomsection\label{api:module-timed_mating.forms}\index{timed\_mating.forms (module)}
 This package describes forms used by the Timed Mating app.
 \index{BreedingPlugForm (class in timed\_mating.forms)}
 
@@ -1754,7 +1998,7 @@ alias of \code{PlugEvents}
 
 
 \subsection{Views and URLs}
-\label{api:id7}\phantomsection\label{api:module-timed_mating.views}\index{timed\_mating.views (module)}
+\label{api:id8}\phantomsection\label{api:module-timed_mating.views}\index{timed\_mating.views (module)}
 This package defines custom views for the timed\_mating application.
 
 Currently all views are generic CRUD views except for the view in which a plug event is defined from a breeding cage.
@@ -1801,7 +2045,7 @@ This form requires a breeding\_id from a breeding set and restricts the PlugFema
 
 
 \subsection{Administrative Site Configuration}
-\label{api:id8}\phantomsection\label{api:module-timed_mating.admin}\index{timed\_mating.admin (module)}
+\label{api:id9}\phantomsection\label{api:module-timed_mating.admin}\index{timed\_mating.admin (module)}
 Settings to control the admin interface for the timed\_mating app.
 
 This file defines a PlugEventsAdmin object to enter parameters about individual plug events/
@@ -1823,6 +2067,65 @@ This class defines the admin interface for the PlugEvents model.
 
 
 
+\subsection{Test Files}
+\label{api:id10}\phantomsection\label{api:module-timed_mating.tests}\index{timed\_mating.tests (module)}
+This file contains tests for the timed\_mating application.
+
+These tests will verify generation of a new PlugEvent object.
+\index{GroupsModelTests (class in timed\_mating.tests)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:timed_mating.tests.GroupsModelTests}\pysiglinewithargsret{\strong{class }\code{timed\_mating.tests.}\bfcode{GroupsModelTests}}{\emph{methodName='runTest'}}{}
+Bases: \code{django.test.testcases.TestCase}
+
+Test the models contained in the `groups' app.
+\index{setUp() (timed\_mating.tests.GroupsModelTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:timed_mating.tests.GroupsModelTests.setUp}\pysiglinewithargsret{\bfcode{setUp}}{}{}
+Instantiate the test client.
+
+\end{fulllineitems}
+
+\index{tearDown() (timed\_mating.tests.GroupsModelTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:timed_mating.tests.GroupsModelTests.tearDown}\pysiglinewithargsret{\bfcode{tearDown}}{}{}
+Depopulate created model instances from test database.
+
+\end{fulllineitems}
+
+\index{test\_create\_plugevent\_minimal() (timed\_mating.tests.GroupsModelTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:timed_mating.tests.GroupsModelTests.test_create_plugevent_minimal}\pysiglinewithargsret{\bfcode{test\_create\_plugevent\_minimal}}{}{}
+This is a test for creating a new PlugEvent object, with only the minimum being entered.
+
+\end{fulllineitems}
+
+\index{test\_create\_plugevent\_most\_fields() (timed\_mating.tests.GroupsModelTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:timed_mating.tests.GroupsModelTests.test_create_plugevent_most_fields}\pysiglinewithargsret{\bfcode{test\_create\_plugevent\_most\_fields}}{}{}
+This is a test for creating a new PlugEvent object.
+
+This test uses a Breeding, PlugDate, PlugMale and PlugFemale field.
+
+\end{fulllineitems}
+
+\index{test\_set\_plugevet\_inactive() (timed\_mating.tests.GroupsModelTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:timed_mating.tests.GroupsModelTests.test_set_plugevet_inactive}\pysiglinewithargsret{\bfcode{test\_set\_plugevet\_inactive}}{}{}
+This is a test for the automatic inactivation of a cage when the SacrificeDate is entered.
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+
 \section{Groups Package}
 \label{api:module-groups}\label{api:groups-package}\index{groups (module)}
 This package defines the Group application.
@@ -1831,7 +2134,7 @@ Because every page on this site identifies both the Group and data restrictions,
 
 
 \subsection{Models}
-\label{api:id9}\phantomsection\label{api:module-groups.models}\index{groups.models (module)}\index{Group (class in groups.models)}
+\label{api:id11}\phantomsection\label{api:module-groups.models}\index{groups.models (module)}\index{Group (class in groups.models)}
 
 \begin{fulllineitems}
 \phantomsection\label{api:groups.models.Group}\pysiglinewithargsret{\strong{class }\code{groups.models.}\bfcode{Group}}{\emph{*args}, \emph{**kwargs}}{}
@@ -1847,10 +2150,10 @@ All other fields (group\_slug, group\_url, license, contact\_title, contact\_fir
 
 
 \subsection{Views and URLs}
-\label{api:id10}\phantomsection\label{api:module-groups.views}\index{groups.views (module)}
+\label{api:id12}\phantomsection\label{api:module-groups.views}\index{groups.views (module)}
 
 \subsection{Administrative Site Configuration}
-\label{api:id11}\phantomsection\label{api:module-groups.admin}\index{groups.admin (module)}\index{GroupAdmin (class in groups.admin)}
+\label{api:id13}\phantomsection\label{api:module-groups.admin}\index{groups.admin (module)}\index{GroupAdmin (class in groups.admin)}
 
 \begin{fulllineitems}
 \phantomsection\label{api:groups.admin.GroupAdmin}\pysiglinewithargsret{\strong{class }\code{groups.admin.}\bfcode{GroupAdmin}}{\emph{model}, \emph{admin\_site}}{}
@@ -1888,6 +2191,71 @@ Currently set as default.
 
 
 
+\subsection{Test Files}
+\label{api:id14}\phantomsection\label{api:module-groups.tests}\index{groups.tests (module)}
+This file contains tests for the groups application.
+
+These tests will verify generation of a new group and license object.
+\index{GroupsModelTests (class in groups.tests)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:groups.tests.GroupsModelTests}\pysiglinewithargsret{\strong{class }\code{groups.tests.}\bfcode{GroupsModelTests}}{\emph{methodName='runTest'}}{}
+Bases: \code{django.test.testcases.TestCase}
+
+Test the models contained in the `groups' app.
+\index{setUp() (groups.tests.GroupsModelTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:groups.tests.GroupsModelTests.setUp}\pysiglinewithargsret{\bfcode{setUp}}{}{}
+Instantiate the test client.
+
+\end{fulllineitems}
+
+\index{tearDown() (groups.tests.GroupsModelTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:groups.tests.GroupsModelTests.tearDown}\pysiglinewithargsret{\bfcode{tearDown}}{}{}
+Depopulate created model instances from test database.
+
+\end{fulllineitems}
+
+\index{test\_create\_group\_all\_fields() (groups.tests.GroupsModelTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:groups.tests.GroupsModelTests.test_create_group_all_fields}\pysiglinewithargsret{\bfcode{test\_create\_group\_all\_fields}}{}{}
+This is a test for creating a new group object, with all fields being entered, except license.
+
+\end{fulllineitems}
+
+\index{test\_create\_group\_minimal() (groups.tests.GroupsModelTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:groups.tests.GroupsModelTests.test_create_group_minimal}\pysiglinewithargsret{\bfcode{test\_create\_group\_minimal}}{}{}
+This is a test for creating a new group object, with only the minimum being entered.
+
+\end{fulllineitems}
+
+\index{test\_create\_license\_all\_fields() (groups.tests.GroupsModelTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:groups.tests.GroupsModelTests.test_create_license_all_fields}\pysiglinewithargsret{\bfcode{test\_create\_license\_all\_fields}}{}{}
+This is a test for creating a new license object, with all fields being entered.
+
+\end{fulllineitems}
+
+\index{test\_create\_license\_minimal() (groups.tests.GroupsModelTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:groups.tests.GroupsModelTests.test_create_license_minimal}\pysiglinewithargsret{\bfcode{test\_create\_license\_minimal}}{}{}
+This is a test for creating a new license object, with only the minimum being entered.
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+
 \chapter{Indices and tables}
 \label{index:indices-and-tables}\begin{itemize}
 \item {} 
@@ -1910,6 +2278,7 @@ Currently set as default.
 \item {\texttt{animal.admin}}, \pageref{api:module-animal.admin}
 \item {\texttt{animal.forms}}, \pageref{api:module-animal.forms}
 \item {\texttt{animal.models}}, \pageref{api:module-animal.models}
+\item {\texttt{animal.tests}}, \pageref{api:module-animal.tests}
 \item {\texttt{animal.urls}}, \pageref{api:module-animal.urls}
 \item {\texttt{animal.views}}, \pageref{api:module-animal.views}
 \indexspace
@@ -1918,6 +2287,7 @@ Currently set as default.
 \item {\texttt{data.admin}}, \pageref{api:module-data.admin}
 \item {\texttt{data.forms}}, \pageref{api:module-data.forms}
 \item {\texttt{data.models}}, \pageref{api:module-data.models}
+\item {\texttt{data.tests}}, \pageref{api:module-data.tests}
 \item {\texttt{data.urls}}, \pageref{api:module-data.urls}
 \item {\texttt{data.views}}, \pageref{api:module-data.views}
 \indexspace
@@ -1925,6 +2295,7 @@ Currently set as default.
 \item {\texttt{groups}}, \pageref{api:module-groups}
 \item {\texttt{groups.admin}}, \pageref{api:module-groups.admin}
 \item {\texttt{groups.models}}, \pageref{api:module-groups.models}
+\item {\texttt{groups.tests}}, \pageref{api:module-groups.tests}
 \item {\texttt{groups.views}}, \pageref{api:module-groups.views}
 \indexspace
 \bigletter{t}
@@ -1932,6 +2303,7 @@ Currently set as default.
 \item {\texttt{timed\_mating.admin}}, \pageref{api:module-timed_mating.admin}
 \item {\texttt{timed\_mating.forms}}, \pageref{api:module-timed_mating.forms}
 \item {\texttt{timed\_mating.models}}, \pageref{api:module-timed_mating.models}
+\item {\texttt{timed\_mating.tests}}, \pageref{api:module-timed_mating.tests}
 \item {\texttt{timed\_mating.urls}}, \pageref{api:module-timed_mating.urls}
 \item {\texttt{timed\_mating.views}}, \pageref{api:module-timed_mating.views}
 \end{theindex}

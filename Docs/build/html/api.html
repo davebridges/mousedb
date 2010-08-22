@@ -264,6 +264,11 @@
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></tt></p>
 </dd></dl>
 
+<dl class="method">
+<dt id="data.models.Measurement.age">
+<tt class="descclassname">Measurement.</tt><tt class="descname">age</tt><big>(</big><big>)</big><a class="headerlink" href="#data.models.Measurement.age" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="attribute">
 <dt id="data.models.Measurement.animal">
 <tt class="descclassname">Measurement.</tt><tt class="descname">animal</tt><a class="headerlink" href="#data.models.Measurement.animal" title="Permalink to this definition">¶</a></dt>
@@ -606,9 +611,16 @@ This form is used for formsets to add or modify measurements from within an expe
 <dt id="data.forms.StudyExperimentForm">
 <em class="property">class </em><tt class="descclassname">data.forms.</tt><tt class="descname">StudyExperimentForm</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=':'</em>, <em>empty_permitted=False</em>, <em>instance=None</em><big>)</big><a class="headerlink" href="#data.forms.StudyExperimentForm" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.forms.models.ModelForm</span></tt></p>
+<p>This is the configuration for a study form (From an experiment).</p>
+<p>This form provides an autocomplete field for the animals, and hides the study field which will be automatically set upon save.</p>
+<dl class="class">
+<dt id="data.forms.StudyExperimentForm.Media">
+<em class="property">class </em><tt class="descname">Media</tt><a class="headerlink" href="#data.forms.StudyExperimentForm.Media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="class">
 <dt id="data.forms.StudyExperimentForm.Meta">
-<em class="property">class </em><tt class="descname">Meta</tt><a class="headerlink" href="#data.forms.StudyExperimentForm.Meta" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">StudyExperimentForm.</tt><tt class="descname">Meta</tt><a class="headerlink" href="#data.forms.StudyExperimentForm.Meta" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="attribute">
 <dt id="data.forms.StudyExperimentForm.Meta.model">
 <tt class="descname">model</tt><a class="headerlink" href="#data.forms.StudyExperimentForm.Meta.model" title="Permalink to this definition">¶</a></dt>
@@ -660,8 +672,13 @@ This form is used for formsets to add or modify measurements from within an expe
 <p>Form class for study treatment groups.</p>
 <p>In the case of studies, animals are defined in the treatment group rather than in the study group.  A treatment consists of a study, a set of animals and the conditions which define that treatment.  This includes related fields for environment, diet, implants and transplants.</p>
 <dl class="class">
+<dt id="data.forms.TreatmentForm.Media">
+<em class="property">class </em><tt class="descname">Media</tt><a class="headerlink" href="#data.forms.TreatmentForm.Media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
 <dt id="data.forms.TreatmentForm.Meta">
-<em class="property">class </em><tt class="descname">Meta</tt><a class="headerlink" href="#data.forms.TreatmentForm.Meta" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">TreatmentForm.</tt><tt class="descname">Meta</tt><a class="headerlink" href="#data.forms.TreatmentForm.Meta" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="attribute">
 <dt id="data.forms.TreatmentForm.Meta.model">
 <tt class="descname">model</tt><a class="headerlink" href="#data.forms.TreatmentForm.Meta.model" title="Permalink to this definition">¶</a></dt>
@@ -696,6 +713,13 @@ This form is used for formsets to add or modify measurements from within an expe
 <dd></dd></dl>
 
 <dl class="function">
+<dt id="data.views.experiment_details_csv">
+<tt class="descclassname">data.views.</tt><tt class="descname">experiment_details_csv</tt><big>(</big><em>request</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#data.views.experiment_details_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view generates a csv output file of an experiment.</p>
+<p>The view writes to a csv table the animal, genotype, age (in days), assay and values.</p>
+</dd></dl>
+
+<dl class="function">
 <dt id="data.views.experiment_list">
 <tt class="descclassname">data.views.</tt><tt class="descname">experiment_list</tt><big>(</big><em>request</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#data.views.experiment_list" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -708,6 +732,48 @@ This form is used for formsets to add or modify measurements from within an expe
 <span class="target" id="module-data.urls"></span></div>
 <div class="section" id="module-data.admin">
 <span id="administrative-site-configuration"></span><h3>Administrative Site Configuration<a class="headerlink" href="#module-data.admin" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="module-data.tests">
+<span id="test-files"></span><h3>Test Files<a class="headerlink" href="#module-data.tests" title="Permalink to this headline">¶</a></h3>
+<p>This file contains tests for the data application.</p>
+<p>These tests will verify generation and function of a all objects in the data application.</p>
+<dl class="class">
+<dt id="data.tests.ExperimentModelTests">
+<em class="property">class </em><tt class="descclassname">data.tests.</tt><tt class="descname">ExperimentModelTests</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#data.tests.ExperimentModelTests" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></tt></p>
+<p>Test the Experiment model contained in the &#8216;data&#8217; application.</p>
+<dl class="method">
+<dt id="data.tests.ExperimentModelTests.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#data.tests.ExperimentModelTests.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiate the test client.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="data.tests.ExperimentModelTests.tearDown">
+<tt class="descname">tearDown</tt><big>(</big><big>)</big><a class="headerlink" href="#data.tests.ExperimentModelTests.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Depopulate created model instances from test database.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="data.tests.ExperimentModelTests.test_create_experiment_minimal">
+<tt class="descname">test_create_experiment_minimal</tt><big>(</big><big>)</big><a class="headerlink" href="#data.tests.ExperimentModelTests.test_create_experiment_minimal" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a test for creating a new experiment object, with only the minimum fields being entered</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="data.tests.ExperimentModelTests.test_experiment_get_absolute_url">
+<tt class="descname">test_experiment_get_absolute_url</tt><big>(</big><big>)</big><a class="headerlink" href="#data.tests.ExperimentModelTests.test_experiment_get_absolute_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test verifies the absolute url of an experiment object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="data.tests.ExperimentModelTests.test_experiment_unicode">
+<tt class="descname">test_experiment_unicode</tt><big>(</big><big>)</big><a class="headerlink" href="#data.tests.ExperimentModelTests.test_experiment_unicode" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test verifies that the unicode representation of an experiment is date-feeding state</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 </div>
 <div class="section" id="module-animal">
@@ -759,14 +825,6 @@ The result of this is that a query for a particular strain may then need to be f
 <p>A breeding set may contain one ore more males and females and must be defined via the progeny strain.  For example, in the case of generating a new strain, the strain indicates the new strain not the parental strains.  A breeding cage is defined as one male with one or more females.  If the breeding set is part of a timed mating experiment, then Timed_Mating must be selected.  Breeding cages are automatically inactivated upon saving when a End date is provided.  The only required field is Strain.  By default, querysets are ordered by Strain, then Start.</p>
 </dd></dl>
 
-<dl class="class">
-<dt id="animal.models.Cage">
-<em class="property">class </em><tt class="descclassname">animal.models.</tt><tt class="descname">Cage</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#animal.models.Cage" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.db.models.base.Model</span></tt></p>
-<p>This data model stores information about a particular cage.</p>
-<p>This model, which is not yet implemented will be used by both breeding and non-breeding cages and will facilitate easier tracking and storage of cages.  To implement this, it will be necessary to automatically generate a new cage (if a novel barcode is entered), or to use a current cage if the barcode is already present in the database</p>
-</dd></dl>
-
 </div>
 <div class="section" id="id2">
 <h3>Forms<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
@@ -776,8 +834,7 @@ The result of this is that a query for a particular strain may then need to be f
 <em class="property">class </em><tt class="descclassname">animal.forms.</tt><tt class="descname">AnimalForm</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=':'</em>, <em>empty_permitted=False</em>, <em>instance=None</em><big>)</big><a class="headerlink" href="#animal.forms.AnimalForm" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.forms.models.ModelForm</span></tt></p>
 <p>This modelform provides fields for modifying animal data.</p>
-<p>It includes all fields except CageID (will be deprecated) and Alive (which is automattically set upon saving the animal).
-This form also automatically loads javascript and css for the datepicker jquery-ui widget.  It also includes auto</p>
+<p>This form also automatically loads javascript and css for the datepicker jquery-ui widget.  It also includes auto</p>
 <dl class="class">
 <dt id="animal.forms.AnimalForm.Media">
 <em class="property">class </em><tt class="descname">Media</tt><a class="headerlink" href="#animal.forms.AnimalForm.Media" title="Permalink to this definition">¶</a></dt>
@@ -806,7 +863,7 @@ This form also automatically loads javascript and css for the datepicker jquery-
 <em class="property">class </em><tt class="descclassname">animal.forms.</tt><tt class="descname">BreedingForm</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=':'</em>, <em>empty_permitted=False</em>, <em>instance=None</em><big>)</big><a class="headerlink" href="#animal.forms.BreedingForm" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.forms.models.ModelForm</span></tt></p>
 <p>This form provides most fields for creating and entring breeding cage data.</p>
-<p>This form is used from the url /mousedb/breeding/new and is a generic create view.  The only excluded field is CageID, as this feature will be deprecated.  This view includes a datepicker widget for Stat and End dates and autocomplete fields for the Females and Male fields</p>
+<p>This form is used from the url /mousedb/breeding/new and is a generic create view.  This view includes a datepicker widget for Stat and End dates and autocomplete fields for the Females and Male fields</p>
 <dl class="class">
 <dt id="animal.forms.BreedingForm.Media">
 <em class="property">class </em><tt class="descname">Media</tt><a class="headerlink" href="#animal.forms.BreedingForm.Media" title="Permalink to this definition">¶</a></dt>
@@ -830,6 +887,54 @@ This form also automatically loads javascript and css for the datepicker jquery-
 
 </dd></dl>
 
+<dl class="class">
+<dt id="animal.forms.MultipleAnimalForm">
+<em class="property">class </em><tt class="descclassname">animal.forms.</tt><tt class="descname">MultipleAnimalForm</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=':'</em>, <em>empty_permitted=False</em>, <em>instance=None</em><big>)</big><a class="headerlink" href="#animal.forms.MultipleAnimalForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.forms.models.ModelForm</span></tt></p>
+<p>This modelform provides fields for entering multiple identical copies of a set of mice.</p>
+<p>This form only includes the required fields Background and Strain.</p>
+<dl class="class">
+<dt id="animal.forms.MultipleAnimalForm.Meta">
+<em class="property">class </em><tt class="descname">Meta</tt><a class="headerlink" href="#animal.forms.MultipleAnimalForm.Meta" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="animal.forms.MultipleAnimalForm.Meta.model">
+<tt class="descname">model</tt><a class="headerlink" href="#animal.forms.MultipleAnimalForm.Meta.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="animal.forms.MultipleAnimalForm.media">
+<tt class="descclassname">MultipleAnimalForm.</tt><tt class="descname">media</tt><a class="headerlink" href="#animal.forms.MultipleAnimalForm.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="animal.forms.MultipleBreedingAnimalForm">
+<em class="property">class </em><tt class="descclassname">animal.forms.</tt><tt class="descname">MultipleBreedingAnimalForm</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=':'</em>, <em>empty_permitted=False</em>, <em>instance=None</em><big>)</big><a class="headerlink" href="#animal.forms.MultipleBreedingAnimalForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.forms.models.ModelForm</span></tt></p>
+<p>This modelform provides fields for entering multiple pups within a breeding set.</p>
+<p>The only fields presented are Born, Weaned, Gender and Count.  Several other fields will be automatically entered based on the Breeding Set entries.</p>
+<dl class="class">
+<dt id="animal.forms.MultipleBreedingAnimalForm.Meta">
+<em class="property">class </em><tt class="descname">Meta</tt><a class="headerlink" href="#animal.forms.MultipleBreedingAnimalForm.Meta" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="animal.forms.MultipleBreedingAnimalForm.Meta.model">
+<tt class="descname">model</tt><a class="headerlink" href="#animal.forms.MultipleBreedingAnimalForm.Meta.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="animal.forms.MultipleBreedingAnimalForm.media">
+<tt class="descclassname">MultipleBreedingAnimalForm.</tt><tt class="descname">media</tt><a class="headerlink" href="#animal.forms.MultipleBreedingAnimalForm.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="id3">
 <h3>Views and URLs<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
@@ -841,22 +946,6 @@ This form also automatically loads javascript and css for the datepicker jquery-
 <dd><p>This view displays specific details about an animal.</p>
 <p>It takes a request in the form animal/(id)/, mice/(id) or mouse/(id)/ and renders the detail page for that mouse.  The request is defined for id not MouseID (or barcode) because this allows for details to be displayed for mice without barcode identification.
 Therefore care must be taken that animal/4932 is id=4932 and not barcode=4932.  The animal name is defined at the top of the page.
-This page is restricted to logged-in users.</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="animal.views.breeding">
-<tt class="descclassname">animal.views.</tt><tt class="descname">breeding</tt><big>(</big><em>request</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#animal.views.breeding" title="Permalink to this definition">¶</a></dt>
-<dd><p>This view displays a list of breeding sets.</p>
-<p>It takes a request in the form /breeding/ and lists all currently active breeding sets.
-This page is restricted to logged-in users.</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="animal.views.breeding_all">
-<tt class="descclassname">animal.views.</tt><tt class="descname">breeding_all</tt><big>(</big><em>request</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#animal.views.breeding_all" title="Permalink to this definition">¶</a></dt>
-<dd><p>This view displays a list of breeding sets.</p>
-<p>It takes a request in the form /breeding/all and lists all breeding sets (both active and inactive).
 This page is restricted to logged-in users.</p>
 </dd></dl>
 
@@ -887,6 +976,23 @@ This page is restricted to logged-in users.</p>
 <p>This view is intended to be used to add initial information about pups, including eartag, genotype, gender and birth or weaning information.
 It takes a request in the form /breeding/(breeding_id)/pups/ and returns a form specific to the breeding set defined in breeding_id.  breeding_id is the background identification number of the breeding set and does not refer to the barcode of any breeding cage.
 This view is restricted to those with the permission animal.add_animal.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="animal.views.multiple_breeding_pups">
+<tt class="descclassname">animal.views.</tt><tt class="descname">multiple_breeding_pups</tt><big>(</big><em>request</em>, <em>breeding_id</em><big>)</big><a class="headerlink" href="#animal.views.multiple_breeding_pups" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view is used to enter multiple animals at the same time from a breeding cage.</p>
+<dl class="docutils">
+<dt>It will generate a form containing animal information and a number of mice.  It is intended to create several identical animals with the same attributes.</dt>
+<dd>This view requres an input of a breeding_id to generate the correct form.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="animal.views.multiple_pups">
+<tt class="descclassname">animal.views.</tt><tt class="descname">multiple_pups</tt><big>(</big><em>request</em><big>)</big><a class="headerlink" href="#animal.views.multiple_pups" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view is used to enter multiple animals at the same time.</p>
+<p>It will generate a form containing animal information and a number of mice.  It is intended to create several identical animals with the same attributes.</p>
 </dd></dl>
 
 <dl class="function">
@@ -992,6 +1098,85 @@ This admin action also shows as the output the number of mice sacrificed.</p>
 </dd></dl>
 
 </div>
+<div class="section" id="id5">
+<h3>Test Files<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<span class="target" id="module-animal.tests"></span><p>This file contains tests for the animal application.</p>
+<p>These tests will verify generation and function of a new breeding, strain and animal object.</p>
+<dl class="class">
+<dt id="animal.tests.BreedingModelTests">
+<em class="property">class </em><tt class="descclassname">animal.tests.</tt><tt class="descname">BreedingModelTests</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#animal.tests.BreedingModelTests" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></tt></p>
+<p>Test the models contained in the &#8216;groups&#8217; app.</p>
+<dl class="method">
+<dt id="animal.tests.BreedingModelTests.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#animal.tests.BreedingModelTests.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiate the test client.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="animal.tests.BreedingModelTests.tearDown">
+<tt class="descname">tearDown</tt><big>(</big><big>)</big><a class="headerlink" href="#animal.tests.BreedingModelTests.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Depopulate created model instances from test database.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="animal.tests.BreedingModelTests.test_autoset_active_state">
+<tt class="descname">test_autoset_active_state</tt><big>(</big><big>)</big><a class="headerlink" href="#animal.tests.BreedingModelTests.test_autoset_active_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a test for creating a new breeding object, with only the minimum being entered.  That object is then tested for the active state being automatically set when a End date is specified.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="animal.tests.BreedingModelTests.test_create_animal_minimal">
+<tt class="descname">test_create_animal_minimal</tt><big>(</big><big>)</big><a class="headerlink" href="#animal.tests.BreedingModelTests.test_create_animal_minimal" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a test for creating a new animal object, with only the minimum fields being entered</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="animal.tests.BreedingModelTests.test_create_breeding_minimal">
+<tt class="descname">test_create_breeding_minimal</tt><big>(</big><big>)</big><a class="headerlink" href="#animal.tests.BreedingModelTests.test_create_breeding_minimal" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a test for creating a new breeding object, with only the minimum being entered.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="animal.tests.BreedingModelTests.test_unicode">
+<tt class="descname">test_unicode</tt><big>(</big><big>)</big><a class="headerlink" href="#animal.tests.BreedingModelTests.test_unicode" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a test for creating a new animal object, with only the minimum fields being entered.  It then tests that the correct unicode representation is being generated.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="animal.tests.BreedingViewTests">
+<em class="property">class </em><tt class="descclassname">animal.tests.</tt><tt class="descname">BreedingViewTests</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#animal.tests.BreedingViewTests" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></tt></p>
+<dl class="method">
+<dt id="animal.tests.BreedingViewTests.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#animal.tests.BreedingViewTests.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="animal.tests.BreedingViewTests.tearDown">
+<tt class="descname">tearDown</tt><big>(</big><big>)</big><a class="headerlink" href="#animal.tests.BreedingViewTests.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="animal.tests.BreedingViewTests.test_breeding_list">
+<tt class="descname">test_breeding_list</tt><big>(</big><big>)</big><a class="headerlink" href="#animal.tests.BreedingViewTests.test_breeding_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="animal.tests.BreedingViewTests.test_breeding_list_all">
+<tt class="descname">test_breeding_list_all</tt><big>(</big><big>)</big><a class="headerlink" href="#animal.tests.BreedingViewTests.test_breeding_list_all" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="animal.tests.BreedingViewTests.test_breeding_new">
+<tt class="descname">test_breeding_new</tt><big>(</big><big>)</big><a class="headerlink" href="#animal.tests.BreedingViewTests.test_breeding_new" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
 </div>
 <div class="section" id="module-timed_mating">
 <span id="timed-mating-package"></span><h2>Timed Mating Package<a class="headerlink" href="#module-timed_mating" title="Permalink to this headline">¶</a></h2>
@@ -1002,8 +1187,8 @@ Based on this information, the age of an embryo can be estimated.
 When a breeding cage is defined, one option is to set this cage as a timed mating cage (ie Timed_Mating=True).  
 If this is the case, then a plug event can be registered and recorded for this mating set.  
 If the mother gives birth then this cage is implicitly set as a normal breeding cage.</p>
-<div class="section" id="id5">
-<h3>Models<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id6">
+<h3>Models<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <span class="target" id="module-timed_mating.models"></span><p>This defines the data model for the timed_mating app.</p>
 <p>Currently the only data model is for PlugEvents.</p>
 <dl class="class">
@@ -1017,8 +1202,8 @@ Upon sacrifice of the mother, then genotyped alive and dead embryos can be enter
 </dd></dl>
 
 </div>
-<div class="section" id="id6">
-<h3>Forms<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id7">
+<h3>Forms<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <span class="target" id="module-timed_mating.forms"></span><p>This package describes forms used by the Timed Mating app.</p>
 <dl class="class">
 <dt id="timed_mating.forms.BreedingPlugForm">
@@ -1044,8 +1229,8 @@ Upon sacrifice of the mother, then genotyped alive and dead embryos can be enter
 </dd></dl>
 
 </div>
-<div class="section" id="id7">
-<h3>Views and URLs<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id8">
+<h3>Views and URLs<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <span class="target" id="module-timed_mating.views"></span><p>This package defines custom views for the timed_mating application.</p>
 <p>Currently all views are generic CRUD views except for the view in which a plug event is defined from a breeding cage.</p>
 <dl class="function">
@@ -1081,8 +1266,8 @@ Upon sacrifice of the mother, then genotyped alive and dead embryos can be enter
 <dd></dd></dl>
 
 </div>
-<div class="section" id="id8">
-<h3>Administrative Site Configuration<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id9">
+<h3>Administrative Site Configuration<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
 <span class="target" id="module-timed_mating.admin"></span><p>Settings to control the admin interface for the timed_mating app.</p>
 <p>This file defines a PlugEventsAdmin object to enter parameters about individual plug events/</p>
 <dl class="class">
@@ -1098,14 +1283,57 @@ Upon sacrifice of the mother, then genotyped alive and dead embryos can be enter
 </dd></dl>
 
 </div>
+<div class="section" id="id10">
+<h3>Test Files<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<span class="target" id="module-timed_mating.tests"></span><p>This file contains tests for the timed_mating application.</p>
+<p>These tests will verify generation of a new PlugEvent object.</p>
+<dl class="class">
+<dt id="timed_mating.tests.GroupsModelTests">
+<em class="property">class </em><tt class="descclassname">timed_mating.tests.</tt><tt class="descname">GroupsModelTests</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#timed_mating.tests.GroupsModelTests" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></tt></p>
+<p>Test the models contained in the &#8216;groups&#8217; app.</p>
+<dl class="method">
+<dt id="timed_mating.tests.GroupsModelTests.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#timed_mating.tests.GroupsModelTests.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiate the test client.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="timed_mating.tests.GroupsModelTests.tearDown">
+<tt class="descname">tearDown</tt><big>(</big><big>)</big><a class="headerlink" href="#timed_mating.tests.GroupsModelTests.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Depopulate created model instances from test database.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="timed_mating.tests.GroupsModelTests.test_create_plugevent_minimal">
+<tt class="descname">test_create_plugevent_minimal</tt><big>(</big><big>)</big><a class="headerlink" href="#timed_mating.tests.GroupsModelTests.test_create_plugevent_minimal" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a test for creating a new PlugEvent object, with only the minimum being entered.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="timed_mating.tests.GroupsModelTests.test_create_plugevent_most_fields">
+<tt class="descname">test_create_plugevent_most_fields</tt><big>(</big><big>)</big><a class="headerlink" href="#timed_mating.tests.GroupsModelTests.test_create_plugevent_most_fields" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a test for creating a new PlugEvent object.</p>
+<p>This test uses a Breeding, PlugDate, PlugMale and PlugFemale field.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="timed_mating.tests.GroupsModelTests.test_set_plugevet_inactive">
+<tt class="descname">test_set_plugevet_inactive</tt><big>(</big><big>)</big><a class="headerlink" href="#timed_mating.tests.GroupsModelTests.test_set_plugevet_inactive" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a test for the automatic inactivation of a cage when the SacrificeDate is entered.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 </div>
 <div class="section" id="module-groups">
 <span id="groups-package"></span><h2>Groups Package<a class="headerlink" href="#module-groups" title="Permalink to this headline">¶</a></h2>
 <p>This package defines the Group application.
 This app defines generic Group and License information for a particular installation of MouseDB.  
 Because every page on this site identifies both the Group and data restrictions, at a minimum, group information must be provided upon installation (see installation instructions).</p>
-<div class="section" id="id9">
-<h3>Models<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id11">
+<h3>Models<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
 <span class="target" id="module-groups.models"></span><dl class="class">
 <dt id="groups.models.Group">
 <em class="property">class </em><tt class="descclassname">groups.models.</tt><tt class="descname">Group</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#groups.models.Group" title="Permalink to this definition">¶</a></dt>
@@ -1116,11 +1344,11 @@ All other fields (group_slug, group_url, license, contact_title, contact_first, 
 </dd></dl>
 
 </div>
-<div class="section" id="id10">
-<h3>Views and URLs<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id12">
+<h3>Views and URLs<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
 <span class="target" id="module-groups.views"></span></div>
-<div class="section" id="id11">
-<h3>Administrative Site Configuration<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id13">
+<h3>Administrative Site Configuration<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
 <span class="target" id="module-groups.admin"></span><dl class="class">
 <dt id="groups.admin.GroupAdmin">
 <em class="property">class </em><tt class="descclassname">groups.admin.</tt><tt class="descname">GroupAdmin</tt><big>(</big><em>model</em>, <em>admin_site</em><big>)</big><a class="headerlink" href="#groups.admin.GroupAdmin" title="Permalink to this definition">¶</a></dt>
@@ -1148,6 +1376,54 @@ All other fields (group_slug, group_url, license, contact_title, contact_first, 
 </dd></dl>
 
 </div>
+<div class="section" id="id14">
+<h3>Test Files<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<span class="target" id="module-groups.tests"></span><p>This file contains tests for the groups application.</p>
+<p>These tests will verify generation of a new group and license object.</p>
+<dl class="class">
+<dt id="groups.tests.GroupsModelTests">
+<em class="property">class </em><tt class="descclassname">groups.tests.</tt><tt class="descname">GroupsModelTests</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#groups.tests.GroupsModelTests" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></tt></p>
+<p>Test the models contained in the &#8216;groups&#8217; app.</p>
+<dl class="method">
+<dt id="groups.tests.GroupsModelTests.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#groups.tests.GroupsModelTests.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiate the test client.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="groups.tests.GroupsModelTests.tearDown">
+<tt class="descname">tearDown</tt><big>(</big><big>)</big><a class="headerlink" href="#groups.tests.GroupsModelTests.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Depopulate created model instances from test database.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="groups.tests.GroupsModelTests.test_create_group_all_fields">
+<tt class="descname">test_create_group_all_fields</tt><big>(</big><big>)</big><a class="headerlink" href="#groups.tests.GroupsModelTests.test_create_group_all_fields" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a test for creating a new group object, with all fields being entered, except license.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="groups.tests.GroupsModelTests.test_create_group_minimal">
+<tt class="descname">test_create_group_minimal</tt><big>(</big><big>)</big><a class="headerlink" href="#groups.tests.GroupsModelTests.test_create_group_minimal" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a test for creating a new group object, with only the minimum being entered.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="groups.tests.GroupsModelTests.test_create_license_all_fields">
+<tt class="descname">test_create_license_all_fields</tt><big>(</big><big>)</big><a class="headerlink" href="#groups.tests.GroupsModelTests.test_create_license_all_fields" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a test for creating a new license object, with all fields being entered.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="groups.tests.GroupsModelTests.test_create_license_minimal">
+<tt class="descname">test_create_license_minimal</tt><big>(</big><big>)</big><a class="headerlink" href="#groups.tests.GroupsModelTests.test_create_license_minimal" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a test for creating a new license object, with only the minimum being entered.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 </div>
 </div>
 
@@ -1168,6 +1444,7 @@ All other fields (group_slug, group_url, license, contact_title, contact_first, 
 <li><a class="reference internal" href="#module-data.forms">Forms</a></li>
 <li><a class="reference internal" href="#module-data.views">Views and URLs</a></li>
 <li><a class="reference internal" href="#module-data.admin">Administrative Site Configuration</a></li>
+<li><a class="reference internal" href="#module-data.tests">Test Files</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-animal">Animals Package</a><ul>
@@ -1181,19 +1458,22 @@ All other fields (group_slug, group_url, license, contact_title, contact_first, 
 <li><a class="reference internal" href="#id2">Forms</a></li>
 <li><a class="reference internal" href="#id3">Views and URLs</a></li>
 <li><a class="reference internal" href="#id4">Administrative Site Configuration</a></li>
+<li><a class="reference internal" href="#id5">Test Files</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-timed_mating">Timed Mating Package</a><ul>
-<li><a class="reference internal" href="#id5">Models</a></li>
-<li><a class="reference internal" href="#id6">Forms</a></li>
-<li><a class="reference internal" href="#id7">Views and URLs</a></li>
-<li><a class="reference internal" href="#id8">Administrative Site Configuration</a></li>
+<li><a class="reference internal" href="#id6">Models</a></li>
+<li><a class="reference internal" href="#id7">Forms</a></li>
+<li><a class="reference internal" href="#id8">Views and URLs</a></li>
+<li><a class="reference internal" href="#id9">Administrative Site Configuration</a></li>
+<li><a class="reference internal" href="#id10">Test Files</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-groups">Groups Package</a><ul>
-<li><a class="reference internal" href="#id9">Models</a></li>
-<li><a class="reference internal" href="#id10">Views and URLs</a></li>
-<li><a class="reference internal" href="#id11">Administrative Site Configuration</a></li>
+<li><a class="reference internal" href="#id11">Models</a></li>
+<li><a class="reference internal" href="#id12">Views and URLs</a></li>
+<li><a class="reference internal" href="#id13">Administrative Site Configuration</a></li>
+<li><a class="reference internal" href="#id14">Test Files</a></li>
 </ul>
 </li>
 </ul>
