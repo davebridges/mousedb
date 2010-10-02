@@ -36,25 +36,25 @@ Web Server Setup
 ----------------
 You need to set up a server to serve both the django installation and saved files.  For the saved files.  I recommend using apache for both.  The preferred setup is to use Apache2 with mod_wsgi.  See http://code.google.com/p/modwsgi/wiki/InstallationInstructions for instructions on using mod_wsgi.  The following is a httpd.conf example where the code is placed in /usr/src/mousedb::
 
-Alias /robots.txt "usr\src\mousedb\media\robots.txt"
-Alias /favicon.ico "usr\src\media\favicon.ico"
+Alias /robots.txt "usr\src\mousedb\src\media\robots.txt"
+Alias /favicon.ico "usr\src\media\src\favicon.ico"
 
-Alias /mousedb-media "usr\src\mousedb\media"
+Alias /mousedb-media "usr\src\mousedb\src\media"
 
-<Directory "usr\src\mousedb">
+<Directory "usr\src\mousedb\src">
    Order allow,deny
    Allow from all
 </Directory>
 
-WSGIScriptAlias /mousedb "usr\src\mousedb\apache\django.wsgi"
+WSGIScriptAlias /mousedb "usr\src\mousedb\src\apache\django.wsgi"
 
-Then open up the mousedb/apache/django.wsgi file and replace the location of the mousedb directory on the sys.path.append line.
+Then open up the mousedb/src/apache/django.wsgi file and replace the location of the mousedb directory on the sys.path.append line.
 
 If you want to restrict access to these files, change the Allow from all directive to specific domains or ip addresses (for example Allow from 192.168.0.0/99 would allow from 192.168.0.0 to 192.168.0.99)
 
 Final Configuration and User Setup
 ----------------------------------
-Go to a command prompt, navigate to inside the mousedb directory and enter the following to get to a python prompt::
+Go to a command prompt, navigate to inside the mousedb/src directory and enter the following to get to a python prompt::
 
   python manage.py shell
   
