@@ -39,21 +39,22 @@ Database Setup
 
 Web Server Setup
 ----------------
-You need to set up a server to serve both the django installation and saved files.  For the saved files.  I recommend using apache for both.  The preferred setup is to use Apache2 with mod_wsgi.  See http://code.google.com/p/modwsgi/wiki/InstallationInstructions for instructions on using mod_wsgi.  The following is a httpd.conf example where the code is placed in /usr/src/mousedb::
+You need to set up a server to serve both the django installation and saved files.  For the saved files.  I recommend using apache for both.  The preferred setup is to use Apache2 with mod_wsgi.  See http://code.google.com/p/modwsgi/wiki/InstallationInstructions for instructions on using mod_wsgi.  The following is a httpd.conf example where the code is placed in **/usr/src/mousedb**::
 
-Alias /robots.txt "usr\src\mousedb\src\media\robots.txt"
-Alias /favicon.ico "usr\src\mousedb\media\srcfavicon.ico"
+Alias /robots.txt /usr/src/mousedb/src/mousedb/media/robots.txt 
+Alias /favicon.ico /usr/src/mousedb/src/mousedb/media/favicon.ico
 
-Alias /mousedb-media "usr\src\mousedb\src\media"
-
-<Directory "usr\src\mousedb\src">
-   Order allow,deny
-   Allow from all
+Alias /mousedb-media/ /usr/src/mousedb/src/mousedb/media/
+<Directory /usr/src/mousedb/src/mousedb/media>
+       Order deny,allow
+       Allow from all
 </Directory>
 
-WSGIScriptAlias /mousedb "usr\src\mousedb\src\apache\django.wsgi"
-
-Then open up the mousedb/src/apache/django.wsgi file and replace the location of the mousedb directory on the sys.path.append line.
+<Directory /usr/src/mousedb/bin>
+       Order deny,allow
+       Allow from all
+</Directory>
+WSGIScriptAlias /mousedb /usr/src/mousedb/bin/django.wsgi
 
 If you want to restrict access to these files, change the Allow from all directive to specific domains or ip addresses (for example Allow from 192.168.0.0/99 would allow from 192.168.0.0 to 192.168.0.99)
 
