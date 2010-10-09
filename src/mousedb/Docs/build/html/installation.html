@@ -96,23 +96,27 @@
 </div>
 <div class="section" id="web-server-setup">
 <h2>Web Server Setup<a class="headerlink" href="#web-server-setup" title="Permalink to this headline">¶</a></h2>
-<p>You need to set up a server to serve both the django installation and saved files.  For the saved files.  I recommend using apache for both.  The preferred setup is to use Apache2 with mod_wsgi.  See <a class="reference external" href="http://code.google.com/p/modwsgi/wiki/InstallationInstructions">http://code.google.com/p/modwsgi/wiki/InstallationInstructions</a> for instructions on using mod_wsgi.  The following is a httpd.conf example where the code is placed in /usr/src/mousedb:</p>
-<p>Alias /robots.txt &#8220;usrsrcmousedbmediarobots.txt&#8221;
-Alias /favicon.ico &#8220;usrsrcmediafavicon.ico&#8221;</p>
-<p>Alias /mousedb-media &#8220;usrsrcmousedbmedia&#8221;</p>
-<dl class="docutils">
-<dt>&lt;Directory &#8220;usrsrcmousedb&#8221;&gt;</dt>
-<dd>Order allow,deny
-Allow from all</dd>
-</dl>
-<p>&lt;/Directory&gt;</p>
-<p>WSGIScriptAlias /mousedb &#8220;usrsrcmousedbapachedjango.wsgi&#8221;</p>
-<p>Then open up the mousedb/apache/django.wsgi file and replace the location of the mousedb directory on the sys.path.append line.</p>
+<p>You need to set up a server to serve both the django installation and saved files.  For the saved files.  I recommend using apache for both.  The preferred setup is to use Apache2 with mod_wsgi.  See <a class="reference external" href="http://code.google.com/p/modwsgi/wiki/InstallationInstructions">http://code.google.com/p/modwsgi/wiki/InstallationInstructions</a> for instructions on using mod_wsgi.  The following is a httpd.conf example where the code is placed in <strong>/usr/src/mousedb</strong>:</p>
+<div class="highlight-python"><pre>Alias /robots.txt /usr/src/mousedb/src/mousedb/media/robots.txt
+Alias /favicon.ico /usr/src/mousedb/src/mousedb/media/favicon.ico
+
+Alias /mousedb-media/ /usr/src/mousedb/src/mousedb/media/
+&lt;Directory /usr/src/mousedb/src/mousedb/media&gt;
+     Order deny,allow
+     Allow from all
+&lt;/Directory&gt;
+
+&lt;Directory /usr/src/mousedb/bin&gt;
+     Order deny,allow
+     Allow from all
+&lt;/Directory&gt;
+WSGIScriptAlias /mousedb /usr/src/mousedb/bin/django.wsgi</pre>
+</div>
 <p>If you want to restrict access to these files, change the Allow from all directive to specific domains or ip addresses (for example Allow from 192.168.0.0/99 would allow from 192.168.0.0 to 192.168.0.99)</p>
 </div>
 <div class="section" id="final-configuration-and-user-setup">
 <h2>Final Configuration and User Setup<a class="headerlink" href="#final-configuration-and-user-setup" title="Permalink to this headline">¶</a></h2>
-<p>Go to a command prompt, navigate to inside the mousedb directory and enter the following to get to a python prompt:</p>
+<p>Go to a command prompt, navigate to inside the mousedb/src directory and enter the following to get to a python prompt:</p>
 <div class="highlight-python"><pre>python manage.py shell</pre>
 </div>
 <p>Go to servername/mousedb/admin/groups/group/1 and name your research group and select a license if desired</p>
@@ -186,7 +190,7 @@ Allow from all</dd>
     </div>
     <div class="footer">
         &copy; Copyright 2009, Dave Bridges, Ph.D..
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0b2.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.4.
     </div>
   </body>
 </html>

@@ -12,7 +12,7 @@
 
 
 \title{MouseDB Documentation}
-\date{June 20, 2010}
+\date{October 09, 2010}
 \release{0.1}
 \author{Dave Bridges, Ph.D.}
 \newcommand{\sphinxlogo}{}
@@ -247,31 +247,31 @@ Save this file as localsettings.py in the main MouseDB directory.
 
 \section{Web Server Setup}
 \label{installation:web-server-setup}
-You need to set up a server to serve both the django installation and saved files.  For the saved files.  I recommend using apache for both.  The preferred setup is to use Apache2 with mod\_wsgi.  See \href{http://code.google.com/p/modwsgi/wiki/InstallationInstructions}{http://code.google.com/p/modwsgi/wiki/InstallationInstructions} for instructions on using mod\_wsgi.  The following is a httpd.conf example where the code is placed in /usr/src/mousedb:
+You need to set up a server to serve both the django installation and saved files.  For the saved files.  I recommend using apache for both.  The preferred setup is to use Apache2 with mod\_wsgi.  See \href{http://code.google.com/p/modwsgi/wiki/InstallationInstructions}{http://code.google.com/p/modwsgi/wiki/InstallationInstructions} for instructions on using mod\_wsgi.  The following is a httpd.conf example where the code is placed in \textbf{/usr/src/mousedb}:
 
-Alias /robots.txt ``usrsrcmousedbmediarobots.txt''
-Alias /favicon.ico ``usrsrcmediafavicon.ico''
+\begin{Verbatim}[commandchars=@\[\]]
+Alias /robots.txt /usr/src/mousedb/src/mousedb/media/robots.txt
+Alias /favicon.ico /usr/src/mousedb/src/mousedb/media/favicon.ico
 
-Alias /mousedb-media ``usrsrcmousedbmedia''
-\begin{description}
-\item[{\textless{}Directory ``usrsrcmousedb''\textgreater{}}] \leavevmode
-Order allow,deny
-Allow from all
+Alias /mousedb-media/ /usr/src/mousedb/src/mousedb/media/
+@textless[]Directory /usr/src/mousedb/src/mousedb/media@textgreater[]
+     Order deny,allow
+     Allow from all
+@textless[]/Directory@textgreater[]
 
-\end{description}
-
-\textless{}/Directory\textgreater{}
-
-WSGIScriptAlias /mousedb ``usrsrcmousedbapachedjango.wsgi''
-
-Then open up the mousedb/apache/django.wsgi file and replace the location of the mousedb directory on the sys.path.append line.
+@textless[]Directory /usr/src/mousedb/bin@textgreater[]
+     Order deny,allow
+     Allow from all
+@textless[]/Directory@textgreater[]
+WSGIScriptAlias /mousedb /usr/src/mousedb/bin/django.wsgi
+\end{Verbatim}
 
 If you want to restrict access to these files, change the Allow from all directive to specific domains or ip addresses (for example Allow from 192.168.0.0/99 would allow from 192.168.0.0 to 192.168.0.99)
 
 
 \section{Final Configuration and User Setup}
 \label{installation:final-configuration-and-user-setup}
-Go to a command prompt, navigate to inside the mousedb directory and enter the following to get to a python prompt:
+Go to a command prompt, navigate to inside the mousedb/src directory and enter the following to get to a python prompt:
 
 \begin{Verbatim}[commandchars=@\[\]]
 python manage.py shell
@@ -736,6 +736,12 @@ Bases: \code{django.core.exceptions.MultipleObjectsReturned}
 
 \end{fulllineitems}
 
+\index{age() (data.models.Measurement method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Measurement.age}\pysiglinewithargsret{\code{Measurement.}\bfcode{age}}{}{}
+\end{fulllineitems}
+
 \index{animal (data.models.Measurement attribute)}
 
 \begin{fulllineitems}
@@ -1172,10 +1178,20 @@ alias of \code{Measurement}
 \begin{fulllineitems}
 \phantomsection\label{api:data.forms.StudyExperimentForm}\pysiglinewithargsret{\strong{class }\code{data.forms.}\bfcode{StudyExperimentForm}}{\emph{data=None}, \emph{files=None}, \emph{auto\_id='id\_\%s'}, \emph{prefix=None}, \emph{initial=None}, \emph{error\_class=\textless{}class `django.forms.util.ErrorList'\textgreater{}}, \emph{label\_suffix=':'}, \emph{empty\_permitted=False}, \emph{instance=None}}{}
 Bases: \code{django.forms.models.ModelForm}
+
+This is the configuration for a study form (From an experiment).
+
+This form provides an autocomplete field for the animals, and hides the study field which will be automatically set upon save.
+\index{StudyExperimentForm.Media (class in data.forms)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.forms.StudyExperimentForm.Media}\pysigline{\strong{class }\bfcode{Media}}{}
+\end{fulllineitems}
+
 \index{StudyExperimentForm.Meta (class in data.forms)}
 
 \begin{fulllineitems}
-\phantomsection\label{api:data.forms.StudyExperimentForm.Meta}\pysigline{\strong{class }\bfcode{Meta}}{}~\index{model (data.forms.StudyExperimentForm.Meta attribute)}
+\phantomsection\label{api:data.forms.StudyExperimentForm.Meta}\pysigline{\strong{class }\code{StudyExperimentForm.}\bfcode{Meta}}{}~\index{model (data.forms.StudyExperimentForm.Meta attribute)}
 
 \begin{fulllineitems}
 \phantomsection\label{api:data.forms.StudyExperimentForm.Meta.model}\pysigline{\bfcode{model}}{}
@@ -1242,10 +1258,16 @@ Bases: \code{django.forms.models.ModelForm}
 Form class for study treatment groups.
 
 In the case of studies, animals are defined in the treatment group rather than in the study group.  A treatment consists of a study, a set of animals and the conditions which define that treatment.  This includes related fields for environment, diet, implants and transplants.
+\index{TreatmentForm.Media (class in data.forms)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.forms.TreatmentForm.Media}\pysigline{\strong{class }\bfcode{Media}}{}
+\end{fulllineitems}
+
 \index{TreatmentForm.Meta (class in data.forms)}
 
 \begin{fulllineitems}
-\phantomsection\label{api:data.forms.TreatmentForm.Meta}\pysigline{\strong{class }\bfcode{Meta}}{}~\index{model (data.forms.TreatmentForm.Meta attribute)}
+\phantomsection\label{api:data.forms.TreatmentForm.Meta}\pysigline{\strong{class }\code{TreatmentForm.}\bfcode{Meta}}{}~\index{model (data.forms.TreatmentForm.Meta attribute)}
 
 \begin{fulllineitems}
 \phantomsection\label{api:data.forms.TreatmentForm.Meta.model}\pysigline{\bfcode{model}}{}
@@ -1284,6 +1306,16 @@ alias of \code{Treatment}
 
 \begin{fulllineitems}
 \phantomsection\label{api:data.views.experiment_detail_all}\pysiglinewithargsret{\code{data.views.}\bfcode{experiment\_detail\_all}}{\emph{request}, \emph{*args}, \emph{**kwargs}}{}
+\end{fulllineitems}
+
+\index{experiment\_details\_csv() (in module data.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.views.experiment_details_csv}\pysiglinewithargsret{\code{data.views.}\bfcode{experiment\_details\_csv}}{\emph{request}, \emph{*args}, \emph{**kwargs}}{}
+This view generates a csv output file of an experiment.
+
+The view writes to a csv table the animal, genotype, age (in days), assay and values.
+
 \end{fulllineitems}
 
 \index{experiment\_list() (in module data.views)}
@@ -1372,18 +1404,6 @@ A breeding set may contain one ore more males and females and must be defined vi
 
 \end{fulllineitems}
 
-\index{Cage (class in animal.models)}
-
-\begin{fulllineitems}
-\phantomsection\label{api:animal.models.Cage}\pysiglinewithargsret{\strong{class }\code{animal.models.}\bfcode{Cage}}{\emph{*args}, \emph{**kwargs}}{}
-Bases: \code{django.db.models.base.Model}
-
-This data model stores information about a particular cage.
-
-This model, which is not yet implemented will be used by both breeding and non-breeding cages and will facilitate easier tracking and storage of cages.  To implement this, it will be necessary to automatically generate a new cage (if a novel barcode is entered), or to use a current cage if the barcode is already present in the database
-
-\end{fulllineitems}
-
 
 
 \subsection{Forms}
@@ -1397,7 +1417,6 @@ Bases: \code{django.forms.models.ModelForm}
 
 This modelform provides fields for modifying animal data.
 
-It includes all fields except CageID (will be deprecated) and Alive (which is automattically set upon saving the animal).
 This form also automatically loads javascript and css for the datepicker jquery-ui widget.  It also includes auto
 \index{AnimalForm.Media (class in animal.forms)}
 
@@ -1436,7 +1455,7 @@ Bases: \code{django.forms.models.ModelForm}
 
 This form provides most fields for creating and entring breeding cage data.
 
-This form is used from the url /mousedb/breeding/new and is a generic create view.  The only excluded field is CageID, as this feature will be deprecated.  This view includes a datepicker widget for Stat and End dates and autocomplete fields for the Females and Male fields
+This form is used from the url /mousedb/breeding/new and is a generic create view.  This view includes a datepicker widget for Stat and End dates and autocomplete fields for the Females and Male fields
 \index{BreedingForm.Media (class in animal.forms)}
 
 \begin{fulllineitems}
@@ -1466,6 +1485,70 @@ alias of \code{Breeding}
 
 \end{fulllineitems}
 
+\index{MultipleAnimalForm (class in animal.forms)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.forms.MultipleAnimalForm}\pysiglinewithargsret{\strong{class }\code{animal.forms.}\bfcode{MultipleAnimalForm}}{\emph{data=None}, \emph{files=None}, \emph{auto\_id='id\_\%s'}, \emph{prefix=None}, \emph{initial=None}, \emph{error\_class=\textless{}class `django.forms.util.ErrorList'\textgreater{}}, \emph{label\_suffix=':'}, \emph{empty\_permitted=False}, \emph{instance=None}}{}
+Bases: \code{django.forms.models.ModelForm}
+
+This modelform provides fields for entering multiple identical copies of a set of mice.
+
+This form only includes the required fields Background and Strain.
+\index{MultipleAnimalForm.Meta (class in animal.forms)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.forms.MultipleAnimalForm.Meta}\pysigline{\strong{class }\bfcode{Meta}}{}~\index{model (animal.forms.MultipleAnimalForm.Meta attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.forms.MultipleAnimalForm.Meta.model}\pysigline{\bfcode{model}}{}
+alias of \code{Animal}
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+\index{media (animal.forms.MultipleAnimalForm attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.forms.MultipleAnimalForm.media}\pysigline{\code{MultipleAnimalForm.}\bfcode{media}}{}
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+\index{MultipleBreedingAnimalForm (class in animal.forms)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.forms.MultipleBreedingAnimalForm}\pysiglinewithargsret{\strong{class }\code{animal.forms.}\bfcode{MultipleBreedingAnimalForm}}{\emph{data=None}, \emph{files=None}, \emph{auto\_id='id\_\%s'}, \emph{prefix=None}, \emph{initial=None}, \emph{error\_class=\textless{}class `django.forms.util.ErrorList'\textgreater{}}, \emph{label\_suffix=':'}, \emph{empty\_permitted=False}, \emph{instance=None}}{}
+Bases: \code{django.forms.models.ModelForm}
+
+This modelform provides fields for entering multiple pups within a breeding set.
+
+The only fields presented are Born, Weaned, Gender and Count.  Several other fields will be automatically entered based on the Breeding Set entries.
+\index{MultipleBreedingAnimalForm.Meta (class in animal.forms)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.forms.MultipleBreedingAnimalForm.Meta}\pysigline{\strong{class }\bfcode{Meta}}{}~\index{model (animal.forms.MultipleBreedingAnimalForm.Meta attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.forms.MultipleBreedingAnimalForm.Meta.model}\pysigline{\bfcode{model}}{}
+alias of \code{Animal}
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+\index{media (animal.forms.MultipleBreedingAnimalForm attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.forms.MultipleBreedingAnimalForm.media}\pysigline{\code{MultipleBreedingAnimalForm.}\bfcode{media}}{}
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
 
 
 \subsection{Views and URLs}
@@ -1481,28 +1564,6 @@ This view displays specific details about an animal.
 
 It takes a request in the form animal/(id)/, mice/(id) or mouse/(id)/ and renders the detail page for that mouse.  The request is defined for id not MouseID (or barcode) because this allows for details to be displayed for mice without barcode identification.
 Therefore care must be taken that animal/4932 is id=4932 and not barcode=4932.  The animal name is defined at the top of the page.
-This page is restricted to logged-in users.
-
-\end{fulllineitems}
-
-\index{breeding() (in module animal.views)}
-
-\begin{fulllineitems}
-\phantomsection\label{api:animal.views.breeding}\pysiglinewithargsret{\code{animal.views.}\bfcode{breeding}}{\emph{request}, \emph{*args}, \emph{**kwargs}}{}
-This view displays a list of breeding sets.
-
-It takes a request in the form /breeding/ and lists all currently active breeding sets.
-This page is restricted to logged-in users.
-
-\end{fulllineitems}
-
-\index{breeding\_all() (in module animal.views)}
-
-\begin{fulllineitems}
-\phantomsection\label{api:animal.views.breeding_all}\pysiglinewithargsret{\code{animal.views.}\bfcode{breeding\_all}}{\emph{request}, \emph{*args}, \emph{**kwargs}}{}
-This view displays a list of breeding sets.
-
-It takes a request in the form /breeding/all and lists all breeding sets (both active and inactive).
 This page is restricted to logged-in users.
 
 \end{fulllineitems}
@@ -1542,6 +1603,29 @@ This view is used to generate a form by which to add pups which belong to a part
 This view is intended to be used to add initial information about pups, including eartag, genotype, gender and birth or weaning information.
 It takes a request in the form /breeding/(breeding\_id)/pups/ and returns a form specific to the breeding set defined in breeding\_id.  breeding\_id is the background identification number of the breeding set and does not refer to the barcode of any breeding cage.
 This view is restricted to those with the permission animal.add\_animal.
+
+\end{fulllineitems}
+
+\index{multiple\_breeding\_pups() (in module animal.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.views.multiple_breeding_pups}\pysiglinewithargsret{\code{animal.views.}\bfcode{multiple\_breeding\_pups}}{\emph{request}, \emph{breeding\_id}}{}
+This view is used to enter multiple animals at the same time from a breeding cage.
+\begin{description}
+\item[{It will generate a form containing animal information and a number of mice.  It is intended to create several identical animals with the same attributes.}] \leavevmode
+This view requres an input of a breeding\_id to generate the correct form.
+
+\end{description}
+
+\end{fulllineitems}
+
+\index{multiple\_pups() (in module animal.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.views.multiple_pups}\pysiglinewithargsret{\code{animal.views.}\bfcode{multiple\_pups}}{\emph{request}}{}
+This view is used to enter multiple animals at the same time.
+
+It will generate a form containing animal information and a number of mice.  It is intended to create several identical animals with the same attributes.
 
 \end{fulllineitems}
 
