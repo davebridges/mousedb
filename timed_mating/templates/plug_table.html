@@ -32,9 +32,22 @@
 	<td>{{plug.WT_Alive}}/{{plug.WT_Dead}}</td>
 	<td>{{plug.HET_Alive}}/{{plug.HET_Dead}}</td>
 	<td>{{plug.KO_Alive}}/{{plug.KO_Dead}}</td>
-	<td><a href="/mousedb/plug/new"><img src="/mousedb-media/admin-media/img/admin/icon_addlink.gif" border="none" alt="add" title="Add Plug Event"></a></td>
-	<td><a href="/mousedb/plug/{{plug.id}}/edit"><img src="/mousedb-media/admin-media/img/admin/icon_changelink.gif" border="none" alt="edit" title="Edit Plug Event"></a></td>
-	<td><a href="/mousedb/plug/{{plug.id}}/delete"><img src="/mousedb-media/admin-media/img/admin/icon_deletelink.gif" border="none" alt="delete" title="Delete Plug Event"></a></td>
+<td class="fg-buttonset fg-buttonset-multi">
+{% if perms.timed_mating.change_plugEvents %}
+  <a href="{% url plugevents-edit plug.id %}" title="Edit {{plug}}">
+   <button class="fg-button ui-state-default fg-button-icon-left ui-corner-all">
+    <span class="ui-icon ui-icon-pencil" style="float:left;">Edit</span>
+   </button>
+   </a>
+{% endif %}
+{% if perms.timed_mating.delete_plugEvents %}
+  <a href="{% url plugevents-delete plug.id %}" title="Delete {{plug}}">
+   <button class="fg-button ui-state-default fg-button-icon-left ui-corner-all">
+    <span class="ui-icon ui-icon-trash" style="float:left;">Delete</span>
+   </button>
+   </a>
+{% endif %}
+</td>
 	</tr>
 	{% endfor %}
 	</tbody>
