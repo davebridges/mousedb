@@ -1,3 +1,7 @@
+"""This urlconf sets the directions for the timed_mating app.
+
+It comprises of create, update, delete, detail and list of plug events."""
+
 from django.conf.urls.defaults import *
 from django.views.generic.list_detail import object_list, object_detail
 from django.views.generic.create_update import create_object, update_object, delete_object
