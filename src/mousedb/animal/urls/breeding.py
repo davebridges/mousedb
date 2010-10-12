@@ -1,3 +1,7 @@
+"""This URLconf defines the routing of pages for breeding objects.
+
+This includes generic views for study breeding, breeding details and create, change and delete breeding cages."""
+
 from django.conf.urls.defaults import *
 from django.views.generic.list_detail import object_list
 from django.views.generic.create_update import create_object, update_object, delete_object
