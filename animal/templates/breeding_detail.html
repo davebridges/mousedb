@@ -133,7 +133,7 @@
 
 {% with breeding.plugevents_set.all as plug_list %}
 <h2>Plug Events ({{plug_list.count}}) {% if perms.timed_mating.add_plugEvents %}
-  <a href="{% url plugevents-new %}" title="Add New Plug Event">
+  <a href="{% url breeding-plugevents-new breeding.id %}" title="Add New Plug Event">
    <button class="fg-button ui-state-default fg-button-icon-left ui-corner-all">
     <span class="ui-icon ui-icon-circle-plus" style="float:left;">Add</span>
    </button>
