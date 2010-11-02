@@ -37,6 +37,7 @@ GENOTYPE_CHOICES = (
 ),
 	('Floxed with Transgene',(
 		('fl/fl; ?', 'Floxed Undetermined Transgene'),
+		('fl/+; ?', 'Heterozygous Floxed, Undetermined Transgene'),		
 		('fl/fl; +/+', 'Floxed no Transgene'),
 		('fl/+; +/+', 'Heterozygous Floxed no Transgene'),
 		('fl/fl; Tg/+', 'Floxed Heterozygous Transgene'),
