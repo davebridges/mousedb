@@ -7,6 +7,7 @@ import datetime
 
 from django.test import TestCase
 from django.test.client import Client
+from django.contrib.auth.models import User
 
 from mousedb.timed_mating.models import PlugEvents
 from mousedb.animal.models import Breeding, Strain, Animal
@@ -14,12 +15,18 @@ from mousedb.animal.models import Breeding, Strain, Animal
 MODELS = [PlugEvents,]
 
 
-class GroupsModelTests(TestCase):
-    """Test the models contained in the 'groups' app."""
+class Timed_MatingModelTests(TestCase):
+    """Test the models contained in the 'timed_mating' app."""
 
+    fixtures = ['test_group',]
+    
     def setUp(self):
-        """Instantiate the test client."""
+        """Instantiate the test client.  Creates a test user."""
         self.client = Client()
+        self.test_user = User.objects.create_user('blah', 'blah@blah.com', 'blah')
+        self.test_user.is_superuser = True
+        self.test_user.save()
+        self.client.login(username='blah', password='blah')
 
     def tearDown(self):
         """Depopulate created model instances from test database."""
@@ -70,3 +77,50 @@ class GroupsModelTests(TestCase):
         plugevent.save()
         self.assertEquals(plugevent.Active, False)
 
+class Timed_MatingViewTests(TestCase):
+    """Test the views contained in the 'timed_mating' app."""
+
+    fixtures = ['test_group',]
+
+    def setUp(self):
+        """Instantiate the test client.  Creates a test user."""
+        self.client = Client()
+        self.test_user = User.objects.create_user('testuser', 'blah@blah.com', 'testpassword')
+        self.test_user.is_superuser = True
+        self.test_user.save()
+        self.assertEqual(self.test_user.is_superuser, True)
+        login = self.client.login(username='testuser', password='testpassword')
+        self.failUnless(login, 'Could not log in')
+
+
+    def tearDown(self):
+        """Depopulate created model instances from test database."""
+        for model in MODELS:
+            for obj in model.objects.all():
+                obj.delete()
+
+    def test_plugevent_list(self):
+        response = self.client.get('/mousedb/timed_mating/')
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.context['user'].username, 'testuser')
+
+
+    def test_plugevent_detail(self):
+        response = self.client.get('/mousedb/timed_mating/1')
+        self.assertEqual(response.status_code, 200)
+
+    def test_plugevent_create(self):
+        response = self.client.get('/mousedb/timed_mating/new')
+        self.assertEqual(response.status_code, 200)
+
+    def test_plugevent_change(self):
+        response = self.client.get('/mousedb/timed_mating/1/edit')
+        self.assertEqual(response.status_code, 200)
+
+    def test_plugevent_delete(self):
+        response = self.client.get('/mousedb/timed_mating/1/delete')
+        self.assertEqual(response.status_code, 200)
+
+    def test_plugevent_delete(self):
+        response = self.client.get('/mousedb/timed_mating/breeding/1/new/')
+        self.assertEqual(response.status_code, 200)
