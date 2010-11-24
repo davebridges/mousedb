@@ -48,9 +48,18 @@ def strain_detail(request, strain):
     This page is restricted to logged-in users.
     """
     strain = Strain.objects.get(Strain_slug=strain)
+    breeding_cages = Breeding.objects.filter(Strain=strain).filter(Active=True)
     animal_list = Animal.objects.filter(Strain=strain, Alive=True).order_by('Background','Genotype')
-    cages = animal_list.values("Cage").distinct()
-    return render_to_response('strain_detail.html', {'strain' : strain, 'animal_list' : animal_list, 'cages':cages},context_instance=RequestContext(request))
+    cages = animal_list.values("Cage", "Alive").filter(Alive=True).distinct()
+    active = True
+    return render_to_response('strain_detail.html', {
+        'strain' : strain, 
+        'animal_list' : animal_list, 
+        'cages':cages, 
+        'breeding_cages':breeding_cages,
+        'active':active
+        }
+        ,context_instance=RequestContext(request))
 
 @login_required
 def strain_detail_all(request, strain):
@@ -63,8 +72,17 @@ def strain_detail_all(request, strain):
     strain = Strain.objects.get(Strain_slug=strain)
     animal_list = Animal.objects.filter(Strain=strain).order_by('Background','Genotype')	
     cages = animal_list.values("Cage").distinct()
-    return render_to_response('strain_detail.html', {'strain' : strain, 'animal_list' : animal_list, 'cages':cages},context_instance=RequestContext(request))
-
+    breeding_cages = Breeding.objects.filter(Strain=strain)
+    active = False
+    return render_to_response('strain_detail.html', {
+        'strain' : strain, 
+        'animal_list' : animal_list, 
+        'cages':cages, 
+        'breeding_cages':breeding_cages,
+        'active':active
+        }
+        ,context_instance=RequestContext(request))
+	
 @login_required
 def breeding_detail(request, breeding_id):
     """This view displays specific details about a breeding set.
