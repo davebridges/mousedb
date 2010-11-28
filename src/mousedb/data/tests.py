@@ -10,7 +10,6 @@ from django.contrib.auth.models import User
 
 from mousedb.data.models import Study
 from mousedb.animal.models import Strain
-from mousedb.groups.models import Group
 
 MODELS = [Study]
 
@@ -64,9 +63,6 @@ class StudyViewTests(TestCase):
         self.client.login(username='blah', password='blah')
         self.test_study = Study(description = "Effects of x on y")
         self.test_study.save()
-        self.test_group = Group(group = "test group")
-        self.test_group.save()
-
 
     def tearDown(self):
         """Depopulate created model instances from test database."""

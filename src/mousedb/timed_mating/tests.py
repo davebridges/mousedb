@@ -18,8 +18,7 @@ MODELS = [PlugEvents,]
 class Timed_MatingModelTests(TestCase):
     """Test the models contained in the 'timed_mating' app."""
 
-    fixtures = ['test_group',]
-    
+  
     def setUp(self):
         """Instantiate the test client.  Creates a test user."""
         self.client = Client()
@@ -80,7 +79,7 @@ class Timed_MatingModelTests(TestCase):
 class Timed_MatingViewTests(TestCase):
     """Test the views contained in the 'timed_mating' app."""
 
-    fixtures = ['test_group', 'test_plugevents', 'test_breeding', 'test_animals']
+    fixtures = ['test_plugevents', 'test_breeding', 'test_animals']
 
     def setUp(self):
         """Instantiate the test client.  Creates a test user."""
