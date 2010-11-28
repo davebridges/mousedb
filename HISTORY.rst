@@ -1,7 +1,10 @@
 Version 0.2.1dev
 ================
-*Added south and django-ajax-selects dependencies to setup.py
+<<<<<<< HEAD
 *Added units tests for Study objects
+*Added south, mysql-python and django-ajax-selects dependencies to setup.py
+*Updated documentation for installation using pip and buildout
+
 
 Version 0.2.1
 =============

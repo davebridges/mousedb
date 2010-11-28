@@ -15,7 +15,7 @@ setup(
     author_email = 'dave.bridges@gmail.com',
     packages = find_packages('src'),
     package_dir = {'': 'src'},
-    install_requires = ['setuptools', 'south', 'django-ajax-selects'],
+    install_requires = ['setuptools', 'south', 'django-ajax-selects', 'mysql-python'],
 
 classifiers = [
         'Development Status :: 4 - Beta',
