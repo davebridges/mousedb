@@ -80,13 +80,14 @@ class Timed_MatingModelTests(TestCase):
 class Timed_MatingViewTests(TestCase):
     """Test the views contained in the 'timed_mating' app."""
 
-    fixtures = ['test_group',]
+    fixtures = ['test_group', 'test_plugevents', 'test_breeding', 'test_animals']
 
     def setUp(self):
         """Instantiate the test client.  Creates a test user."""
         self.client = Client()
         self.test_user = User.objects.create_user('testuser', 'blah@blah.com', 'testpassword')
         self.test_user.is_superuser = True
+        self.test_user.is_active = True
         self.test_user.save()
         self.assertEqual(self.test_user.is_superuser, True)
         login = self.client.login(username='testuser', password='testpassword')
@@ -100,27 +101,69 @@ class Timed_MatingViewTests(TestCase):
                 obj.delete()
 
     def test_plugevent_list(self):
-        response = self.client.get('/mousedb/timed_mating/')
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.context['user'].username, 'testuser')
+        """This tests the plugevent-list view, ensuring that templates are loaded correctly.  
 
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        response = self.client.get('/plugs/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'base.html')
+        self.assertTemplateUsed(response, 'jquery_script.html')
+        self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(response, 'plug_list.html')
+        self.assertTemplateUsed(response, 'plug_table.html')
+        self.assertTemplateUsed(response, 'sortable_table_script.html')
 
     def test_plugevent_detail(self):
-        response = self.client.get('/mousedb/timed_mating/1')
+        """This tests the plugevent-detail view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        response = self.client.get('/plugs/1/')
         self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'base.html')
+        self.assertTemplateUsed(response, 'jquery_script.html')
+        self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(response, 'plug_detail.html')
 
     def test_plugevent_create(self):
-        response = self.client.get('/mousedb/timed_mating/new')
+        """This tests the plugevent-new view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        response = self.client.get('/plugs/new/')
         self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'base.html')
+        self.assertTemplateUsed(response, 'jquery_script.html')
+        self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(response, 'plug_form.html')
 
     def test_plugevent_change(self):
-        response = self.client.get('/mousedb/timed_mating/1/edit')
+        """This tests the plugevent-edit view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        response = self.client.get('/plugs/1/edit/')
         self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'base.html')
+        self.assertTemplateUsed(response, 'jquery_script.html')
+        self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(response, 'plug_form.html')
 
     def test_plugevent_delete(self):
-        response = self.client.get('/mousedb/timed_mating/1/delete')
-        self.assertEqual(response.status_code, 200)
+        """This tests the plugevent-delete view, ensuring that templates are loaded correctly.  
 
-    def test_plugevent_delete(self):
-        response = self.client.get('/mousedb/timed_mating/breeding/1/new/')
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        response = self.client.get('/plugs/1/delete/')
         self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'base.html')
+        self.assertTemplateUsed(response, 'jquery_script.html')
+        self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(response, 'confirm_delete.html')
+
+    def test_plugeventbreeding_new(self):
+        """This tests the plugevent-new view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        response = self.client.get('/plugs/breeding/1/new/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'base.html')
+        self.assertTemplateUsed(response, 'jquery_script.html')
+        self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(response, 'breedingplug_form.html')
