@@ -109,11 +109,12 @@ GENDER_CHOICES = (
 )
 
 CROSS_TYPE = (
-('WT vs HET', 'Wild-Type vs Heterozygote'),
-('HET vs HET', 'Heterozygote vs Heterozygote'),
+('WT vs HET', 'Backcross'),
+('HET vs HET', 'Intercross'),
 ('KO vs HET', 'Knockout vs Heterozygote'),
-('KO vs WT', 'Knockout vs Wild-Type'),
-('WT vs WT', 'Wild-Type vs Wild-Type')
+('KO vs WT', 'Generate Hets'),
+('WT vs WT', 'Wild-Type Only'),
+('KO vs KO', 'Knockout Only'),
 )
 
 BACKGROUND_CHOICES = (
