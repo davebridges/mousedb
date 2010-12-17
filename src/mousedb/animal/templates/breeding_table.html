@@ -20,7 +20,6 @@
  </thead>
  <tbody>
   {% for breeding in breeding_list %}
-  {% if breeding.Active %}
    <tr>
    <td><a href="{{ breeding.Strain.get_absolute_url }}">{{ breeding.Strain }}</a></td>
    <td><a href="{{ breeding.get_absolute_url }}">{{ breeding.Cage }}</a></td>
@@ -44,30 +43,22 @@
    <td>{{ breeding.unweaned.count }}</td>
    <td class="left">{{ breeding.Notes }}</td>
 <td class="fg-buttonset fg-buttonset-multi">
-{% if perms.animal.add_breeding %}
-  <a href="{% url breeding-new %}" title="Add New Breeding Cage">
-   <button class="fg-button ui-state-default fg-button-icon-left ui-corner-all">
-    <span class="ui-icon ui-icon-circle-plus" style="float:left;">Add</span>
-   </button>
-   </a>
-{% endif %}
 {% if perms.animal.change_breeding %}
   <a href="{% url breeding-edit breeding.id %}" title="Edit {{breeding}}">
    <button class="fg-button ui-state-default fg-button-icon-left ui-corner-all">
-    <span class="ui-icon ui-icon-circle-pencil" style="float:left;">Edit</span>
+    <span class="ui-icon ui-icon-pencil" style="float:left;"></span>Edit
    </button>
    </a>
 {% endif %}
 {% if perms.animal.delete_breeding %}
   <a href="{% url breeding-delete breeding.id %}" title="Delete {{breeding}}">
    <button class="fg-button ui-state-default fg-button-icon-left ui-corner-all">
-    <span class="ui-icon ui-icon-trash" style="float:left;">Delete</span>
+    <span class="ui-icon ui-icon-trash" style="float:left;"></span>Delete
    </button>
    </a>
 {% endif %}
 </td>
   </tr>
-  {% endif %}
 {% endfor%}
  </tbody>
 </table>

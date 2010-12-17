@@ -16,7 +16,13 @@
 {% endblock scripts %}
 
 {% block content %}
-<h2>Plug Events ({{plug_list.count}}) <a href="/mousedb/plug/new"><img src="/mousedb-media/admin-media/img/admin/icon_addlink.gif" border="none" alt="add" title="Add Plug Event"></a></h2>
+<h2>Plug Events ({{plug_list.count}}) {% if perms.timed_mating.add_plugEvents %}
+  <a href="{% url plugevents-new %}" title="Add New Plug Event">
+   <button class="fg-button ui-state-default fg-button-icon-left ui-corner-all">
+    <span class="ui-icon ui-icon-circle-plus" style="float:left;">Add</span>
+   </button>
+   </a>
+{% endif %}</h2>
 {% include "plug_table.html" %}
 <p>To add a new plug event click <a href="/mousedb/plug/new">here</a>, or enter it from the <a href="/mousedb/breeding/">breeding cage</a>.</p>
 <p>To see all timed mating breeding cages click <a href="/mousedb/breeding/timed_mating">here</a>.</p>
