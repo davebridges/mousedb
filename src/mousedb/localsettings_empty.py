@@ -6,6 +6,7 @@ MANAGERS = ADMINS
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
+LOGIN_URL = '/mousedb/accounts/login/' #this presumes that apache is pointing at /mousedb and may need to be changed if a different root is being used
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
