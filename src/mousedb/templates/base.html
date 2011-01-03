@@ -33,7 +33,7 @@
 	<div id = "header" class="grid_12">
 		<ul id="menu">
 			<li><a href="{% url home %}" title="Home">Home</a></li>
-			{% if user.is_staff %}<li><a href="/mousedb/admin" title="Admin">Admin Site</a></li>{% endif %}
+			{% if user.is_staff %}<li><a href="{% url admin:index %}" title="Admin">Admin Site</a></li>{% endif %}
 			<li><a href="{% url todo-list %}" title="To Do List">To Do List</a></li>
 			<li><a href="{% url breeding-list %}" title="Breeding Cages">Breeding Cages</a></li>
 			<li><a href="{% url strain-list %}" title="Strain List">Strain List</a></li>
