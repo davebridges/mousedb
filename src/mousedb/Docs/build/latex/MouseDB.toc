@@ -1,0 +1,63 @@
+\select@language {english}
+\contentsline {chapter}{\numberline {1}MouseDB Concepts}{3}{chapter.1}
+\contentsline {section}{\numberline {1.1}Animal Module}{3}{section.1.1}
+\contentsline {subsection}{\numberline {1.1.1}Animal}{3}{subsection.1.1.1}
+\contentsline {subsubsection}{Backcrosses and Generations}{3}{subsubsection*.3}
+\contentsline {subsection}{\numberline {1.1.2}Breeding Cages}{3}{subsection.1.1.2}
+\contentsline {subsection}{\numberline {1.1.3}Strains}{4}{subsection.1.1.3}
+\contentsline {section}{\numberline {1.2}Data Module}{4}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}Studies}{4}{subsection.1.2.1}
+\contentsline {subsection}{\numberline {1.2.2}Experiments}{4}{subsection.1.2.2}
+\contentsline {subsection}{\numberline {1.2.3}Measurements}{4}{subsection.1.2.3}
+\contentsline {section}{\numberline {1.3}Timed Matings Module}{4}{section.1.3}
+\contentsline {section}{\numberline {1.4}Groups Module}{4}{section.1.4}
+\contentsline {chapter}{\numberline {2}MouseDB Installation}{5}{chapter.2}
+\contentsline {section}{\numberline {2.1}Configuration}{5}{section.2.1}
+\contentsline {section}{\numberline {2.2}Software Dependencies}{5}{section.2.2}
+\contentsline {section}{\numberline {2.3}Database Setup}{5}{section.2.3}
+\contentsline {section}{\numberline {2.4}Web Server Setup}{6}{section.2.4}
+\contentsline {section}{\numberline {2.5}Final Configuration and User Setup}{6}{section.2.5}
+\contentsline {chapter}{\numberline {3}Animal Data Entry}{7}{chapter.3}
+\contentsline {section}{\numberline {3.1}Newborn Mice or Newly Weaned Mice}{7}{section.3.1}
+\contentsline {section}{\numberline {3.2}Newborn Mice}{7}{section.3.2}
+\contentsline {section}{\numberline {3.3}Weaning Mice}{7}{section.3.3}
+\contentsline {section}{\numberline {3.4}Cage Changes (Not Weaning)}{7}{section.3.4}
+\contentsline {section}{\numberline {3.5}Genotyping or Ear Tagging}{8}{section.3.5}
+\contentsline {section}{\numberline {3.6}Marking Mice as Dead}{8}{section.3.6}
+\contentsline {subsection}{\numberline {3.6.1}Dead Mice (Single Mouse)}{8}{subsection.3.6.1}
+\contentsline {subsection}{\numberline {3.6.2}Dead Mice (Several Mice)}{8}{subsection.3.6.2}
+\contentsline {chapter}{\numberline {4}Studies and Experimental Setup}{9}{chapter.4}
+\contentsline {chapter}{\numberline {5}Measurment Entry}{11}{chapter.5}
+\contentsline {section}{\numberline {5.1}Studies}{11}{section.5.1}
+\contentsline {section}{\numberline {5.2}Experiment Details}{11}{section.5.2}
+\contentsline {section}{\numberline {5.3}Measurements}{11}{section.5.3}
+\contentsline {chapter}{\numberline {6}Automated Documentation}{13}{chapter.6}
+\contentsline {section}{\numberline {6.1}Data Package}{13}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}Studies}{13}{subsection.6.1.1}
+\contentsline {subsection}{\numberline {6.1.2}Experiments}{13}{subsection.6.1.2}
+\contentsline {subsection}{\numberline {6.1.3}Measurements}{13}{subsection.6.1.3}
+\contentsline {subsection}{\numberline {6.1.4}Models}{13}{subsection.6.1.4}
+\contentsline {subsection}{\numberline {6.1.5}Forms}{17}{subsection.6.1.5}
+\contentsline {subsection}{\numberline {6.1.6}Views and URLs}{18}{subsection.6.1.6}
+\contentsline {subsection}{\numberline {6.1.7}Administrative Site Configuration}{19}{subsection.6.1.7}
+\contentsline {section}{\numberline {6.2}Animals Package}{19}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}Animal}{19}{subsection.6.2.1}
+\contentsline {subsubsection}{Backcrosses and Generations}{19}{subsubsection*.122}
+\contentsline {subsection}{\numberline {6.2.2}Breeding Cages}{19}{subsection.6.2.2}
+\contentsline {subsection}{\numberline {6.2.3}Strains}{19}{subsection.6.2.3}
+\contentsline {subsection}{\numberline {6.2.4}Models}{20}{subsection.6.2.4}
+\contentsline {subsection}{\numberline {6.2.5}Forms}{20}{subsection.6.2.5}
+\contentsline {subsection}{\numberline {6.2.6}Views and URLs}{21}{subsection.6.2.6}
+\contentsline {subsection}{\numberline {6.2.7}Administrative Site Configuration}{23}{subsection.6.2.7}
+\contentsline {section}{\numberline {6.3}Timed Mating Package}{23}{section.6.3}
+\contentsline {subsection}{\numberline {6.3.1}Models}{24}{subsection.6.3.1}
+\contentsline {subsection}{\numberline {6.3.2}Forms}{24}{subsection.6.3.2}
+\contentsline {subsection}{\numberline {6.3.3}Views and URLs}{24}{subsection.6.3.3}
+\contentsline {subsection}{\numberline {6.3.4}Administrative Site Configuration}{25}{subsection.6.3.4}
+\contentsline {section}{\numberline {6.4}Groups Package}{25}{section.6.4}
+\contentsline {subsection}{\numberline {6.4.1}Models}{25}{subsection.6.4.1}
+\contentsline {subsection}{\numberline {6.4.2}Views and URLs}{25}{subsection.6.4.2}
+\contentsline {subsection}{\numberline {6.4.3}Administrative Site Configuration}{25}{subsection.6.4.3}
+\contentsline {chapter}{\numberline {7}Indices and tables}{27}{chapter.7}
+\contentsline {chapter}{Python Module Index}{29}{section*.195}
+\contentsline {chapter}{Index}{31}{section*.196}
