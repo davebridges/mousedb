@@ -31,8 +31,8 @@
  <tdata>
 {% for study in study_list %}
  <tr>
-  <td><a href="/mousedb/study/{{study.id}}">{{study.description}}</td>
-  {% for strain in study.strain.all %}<td><a href="/mousedb/strain/{{ strain.Strain_slug }}">{{ strain }}</a>{% endfor %}</td>
+  <td><a href="{{study.get_absolute_url}}">{{study.description}}</td>
+  {% for strain in study.strain.all %}<td><a href="{{ strain.get_absolute_url }}"</a>{% endfor %}</td>
   <td>{{study.start_date}}</td>
  </tr>
 {% endfor %}

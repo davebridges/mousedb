@@ -8,6 +8,12 @@ DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 LOGIN_URL = '/mousedb/accounts/login/' #this presumes that apache is pointing at /mousedb and may need to be changed if a different root is being used
 
+# URL that handles the media served from MEDIA_ROOT. Make sure to use a
+# trailing slash if there is a path component (optional in other cases).
+# Examples: "http://media.lawrence.com", "http://example.com/media/"
+# This presumes that media is being served at mousedb-media.  If it is not then change this setting.
+MEDIA_URL = '/mousedb-media/'
+
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.

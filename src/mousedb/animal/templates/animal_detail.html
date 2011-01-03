@@ -45,7 +45,7 @@ This mouse has an unknown age.
 			<td>{{ animal.Background }}</td>
 			<td>{{ animal.Genotype }}</td>
 			<td>{{ animal.Gender }}</td>
-			<td><a href="/mousedb/cage/{{ animal.Cage }}">{{ animal.Cage}}</a></td>
+			<td><a href="{% cage-detail animal.Cage %}">{{ animal.Cage}}</a></td>
 			<td>{{ animal.Rack|all_caps }}</td>
 			<td>{{ animal.Rack_Position|all_caps }}</td>
 			<td>{{ animal.Backcross }}</td>
