@@ -3,9 +3,8 @@
 {% block title %}Experiment List{% endblock title%}
 
 {% block scripts %}
-	<script type="text/javascript" src="/javascript/jquery-1.3.2.js"></script> 
-	<script type="text/javascript" src="/javascript/dataTables-1.4/media/js/jquery.dataTables.js"</script>
-	<script type="text/javascript">
+{% include "sortable_table_scripts" %}
+		<script type="text/javascript">
         $(document).ready(function() {
                 $("#sortable").dataTable( {
                         "bPaginate": false,
@@ -20,6 +19,6 @@
 
 {% block content %}
 {% include "experiment_list_table.html" %}
-<p>Add new experiment <a href="/mousedb/experiment/new/">here</a></p>
-<a href="/mousedb/data/all">Show All Data</a>
+<p>Add new experiment <a href="{% url experiment-new %}">here</a></p>
+<a href="{% url measurement_list %}">Show All Data</a>
 {% endblock content %}
