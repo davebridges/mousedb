@@ -17,10 +17,10 @@ urlpatterns = patterns('',
 		'queryset': Pharmaceutical.objects.all(),
 		'template_name': 'pharmaceutical_detail.html',
 		'template_object_name': 'pharmaceutical',
-		}),
+		}, name="pharmaceutical-list"),
 	(r'^diets?/(?P<object_id>\d*)', limited_object_detail, {
 		'queryset': Diet.objects.all(),
 		'template_name': 'diet_detail.html',
 		'template_object_name': 'diet',
-		}),
+		}, name="diet-list"),
 )

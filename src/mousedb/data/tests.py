@@ -99,7 +99,7 @@ class StudyViewTests(TestCase):
         self.assertTemplateUsed(response, 'study_form.html')
         self.assertTemplateUsed(response, 'autocompleteselectmultiple.html')
 
-    def test_study_change(self):
+    def test_study_edit(self):
         """This test checks the view which displays a study edit page.  It checks for the correct templates and status code."""
         response = self.client.get('/study/1/edit/')
         self.assertEqual(response.status_code, 200)

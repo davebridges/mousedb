@@ -66,7 +66,7 @@ class Timed_MatingModelTests(TestCase):
         self.assertEquals(test_plugevent, new_plugevent)
         self.assertEquals(test_plugevent.__unicode__(), "Plug Event - %i" % test_plugevent.id)
 
-    def test_set_plugevet_inactive(self):
+    def test_set_plugevent_inactive(self):
         """This is a test for the automatic inactivation of a cage when the SacrificeDate is entered."""
         plugevent = PlugEvents(PlugDate = datetime.date.today() )
         plugevent.save()
@@ -123,7 +123,7 @@ class Timed_MatingViewTests(TestCase):
         self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
         self.assertTemplateUsed(response, 'plug_detail.html')
 
-    def test_plugevent_create(self):
+    def test_plugevent_new(self):
         """This tests the plugevent-new view, ensuring that templates are loaded correctly.  
 
         This view uses a user with superuser permissions so does not test the permission levels for this view."""
@@ -134,7 +134,7 @@ class Timed_MatingViewTests(TestCase):
         self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
         self.assertTemplateUsed(response, 'plug_form.html')
 
-    def test_plugevent_change(self):
+    def test_plugevent_edit(self):
         """This tests the plugevent-edit view, ensuring that templates are loaded correctly.  
 
         This view uses a user with superuser permissions so does not test the permission levels for this view."""
