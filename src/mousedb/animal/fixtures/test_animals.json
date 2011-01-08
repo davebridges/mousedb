@@ -16,7 +16,8 @@
             "Genotype": "-/-", 
             "Background": "Mixed", 
             "Strain": "1",
-			"Cage": "123456"
+			"Cage": "123456",
+			"Born": "2011-01-01"
         }
     } 
 ]
