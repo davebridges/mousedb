@@ -23,7 +23,7 @@
 <tbody>
 {% for cage in cage_list %}
 <tr  {% if not cage.Alive %} class="dead" {% endif %}>
-<td>{{ cage.Cage }}</a></td>
+<td><a href="{% url cage-detail cage.Cage %}">{{ cage.Cage }}</a></td>
 <td><a href="{% url strain-detail cage.Strain__Strain_slug %}">{{ cage.Strain__Strain }}</a></td>
 <td>{{ cage.Rack }}</td>
 <td>{{ cage.Rack_Position }}</td>

@@ -156,7 +156,7 @@ class BreedingViewTests(TestCase):
         self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
         self.assertTemplateUsed(response, 'breeding_detail.html')
 
-    def test_breeding_change(self):
+    def test_breeding_edit(self):
         """This test checks the view which displays a breeding edit page.  It checks for the correct templates and status code."""
         response = self.client.get('/breeding/1/update/')
         self.assertEqual(response.status_code, 200)
@@ -174,5 +174,56 @@ class BreedingViewTests(TestCase):
         self.assertTemplateUsed(response, 'jquery_script.html')
         self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
         self.assertTemplateUsed(response, 'confirm_delete.html')
+
+		
+class CageViewTests(TestCase):
+    """These are tests for views based on animal objects as directed by cage urls.  Included are tests for cage list, cage-list-all and cage-detail"""
+    fixtures = ['test_animals',]
+
+    def setUp(self):
+        self.client = Client()
+        self.test_user = User.objects.create_user('blah', 'blah@blah.com', 'blah')
+        self.test_user.is_superuser = True
+        self.test_user.is_active = True
+        self.test_user.save()
+        self.client.login(username='blah', password='blah')
+
+    def tearDown(self):
+        self.client.logout()
+        self.test_user.delete()
+
+    def test_cage_list(self):
+        """This test checks the view which displays a cage list page for active animals.  It checks for the correct templates and status code."""        
+
+        response = self.client.get('/cage/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'base.html')
+        self.assertTemplateUsed(response, 'jquery_script.html')
+        self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(response, 'sortable_table_script.html')		
+        self.assertTemplateUsed(response, 'cage_list.html')
+		
+    def test_cage_list(self):
+        """This test checks the view which displays a cage list page showing all animals.  It checks for the correct templates and status code."""        
+
+        response = self.client.get('/cage/all')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'base.html')
+        self.assertTemplateUsed(response, 'jquery_script.html')
+        self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(response, 'sortable_table_script.html')
+        self.assertTemplateUsed(response, 'cage_list.html')		
+
+    def test_cage_detail(self):
+        """This test checks the view which displays a animal list page showing all animals with a specified cage number.  It checks for the correct templates and status code."""        
+
+        response = self.client.get('/cage/123456/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'base.html')
+        self.assertTemplateUsed(response, 'jquery_script.html')
+        self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(response, 'sortable_table_script.html')
+        self.assertTemplateUsed(response, 'animal_list.html')				
+        self.assertTemplateUsed(response, 'animal_list_table.html')	
 
 

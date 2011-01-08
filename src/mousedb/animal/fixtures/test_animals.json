@@ -15,7 +15,8 @@
         "fields": {
             "Genotype": "-/-", 
             "Background": "Mixed", 
-            "Strain": "1"
+            "Strain": "1",
+			"Cage": "123456"
         }
     } 
 ]
