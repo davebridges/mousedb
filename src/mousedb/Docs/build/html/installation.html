@@ -7,13 +7,13 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>MouseDB Installation &mdash; MouseDB v0.1 documentation</title>
+    <title>MouseDB Installation &mdash; MouseDB v0.2.1dev documentation</title>
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '0.1',
+        VERSION:     '0.2.1dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -22,7 +22,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="MouseDB v0.1 documentation" href="index.html" />
+    <link rel="top" title="MouseDB v0.2.1dev documentation" href="index.html" />
     <link rel="next" title="Animal Data Entry" href="usage.html" />
     <link rel="prev" title="MouseDB Concepts" href="concepts.html" /> 
   </head>
@@ -42,7 +42,7 @@
         <li class="right" >
           <a href="concepts.html" title="MouseDB Concepts"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">MouseDB v0.1 documentation</a> &raquo;</li> 
+        <li><a href="index.html">MouseDB v0.2.1dev documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -60,26 +60,36 @@
 <div class="section" id="software-dependencies">
 <h2>Software Dependencies<a class="headerlink" href="#software-dependencies" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
+<li><strong>Python</strong>.  Requires Version 2.6, is not yet compatible with Python 3.0.  Download from <a class="reference external" href="http://www.python.org/download/">http://www.python.org/download/</a>.</li>
 <li><strong>MouseDB source code</strong>.  Download from one of the following:</li>
 </ol>
 <blockquote>
 <ol class="loweralpha simple">
-<li><a class="reference external" href="http://github.com/davebridges/mousedb/downloads">http://github.com/davebridges/mousedb/downloads</a> for the current release</li>
-<li><a class="reference external" href="http://github.com/davebridges/mousedb">http://github.com/davebridges/mousedb</a> for the source code via Git</li>
+<li>Using <strong>pip or easy_install</strong>.  If setuptools (available at <a class="reference external" href="http://pypi.python.org/pypi/setuptools">http://pypi.python.org/pypi/setuptools</a>) is installed type <strong>pip install mousedb</strong> at a command prompt.</li>
+<li><a class="reference external" href="http://github.com/davebridges/mousedb/downloads">http://github.com/davebridges/mousedb/downloads</a> for the current release.  If you will not be contributing to the code, download from here.</li>
+<li><a class="reference external" href="http://github.com/davebridges/mousedb">http://github.com/davebridges/mousedb</a> for the source code via Git.  If you might contribute code to the project use the source code.</li>
 </ol>
 </blockquote>
 <p>Downloading and/or unzipping will create a directory named mousedb.  You can update to the newest revision at any time either using git or downloading and re-installing the newer version.  Changing or updating software versions will not alter any saved data, but you will have to update the localsettings.py file (described below).</p>
-<ol class="arabic simple" start="2">
-<li><strong>Python</strong>.  Requires Version 2.6, is not yet compatible with Python 3.0.  Download from <a class="reference external" href="http://www.python.org/download/">http://www.python.org/download/</a>.</li>
-<li><strong>Django</strong>.  Download from <a class="reference external" href="http://www.djangoproject.com/download/">http://www.djangoproject.com/download/</a>.  MouseDB currently requires at least Django 1.2.</li>
-<li><strong>Database software</strong>.  Typically MySQL is used, but PostgreSQL, Oracle or SQLite can also be used.  You also need to install the python driver for this database (unless you are using SQLite, which is internal to Python 2.5+).  See <a class="reference external" href="http://docs.djangoproject.com/en/dev/topics/install/database-installation">http://docs.djangoproject.com/en/dev/topics/install/database-installation</a> - Django Database Installation Documentation for more information.</li>
+<ol class="arabic simple" start="3">
+<li><strong>Database software</strong>.  Recommended to use mysql, available at <a class="reference external" href="http://dev.mysql.com/downloads/mysql/">http://dev.mysql.com/downloads/mysql/</a> .  It is also possible to use SQLite, PostgreSQL, MySQL, or Oracle.  See <a class="reference external" href="http://docs.djangoproject.com/en/1.2/topics/install/#database-installation">http://docs.djangoproject.com/en/1.2/topics/install/#database-installation</a> for more information.  You will also need the python bindings for your database.  If using MySQL python-mysql will be installed below.</li>
+<li><strong>Webserver</strong>.  Apache is recommended, available at <a class="reference external" href="http://www.apache.org/dyn/closer.cgi">http://www.apache.org/dyn/closer.cgi</a> .  It is also possible to use FastCGI, SCGI, or AJP.  See <a class="reference external" href="http://docs.djangoproject.com/en/1.2/howto/deployment/">http://docs.djangoproject.com/en/1.2/howto/deployment/</a> for more details.  You will also need to enable mod_wsgi if using apache.  See <a class="reference external" href="http://code.google.com/p/modwsgi/wiki/InstallationInstructions">http://code.google.com/p/modwsgi/wiki/InstallationInstructions</a> for those instructions.</li>
+</ol>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Navigate into mousedb folder</li>
+<li>Run <strong>python setup.py install</strong> to get dependencies.  If you installed via pip, this step is not necessary (but wont hurt).  This will install the dependencies South, mysql-python and django-ajax-selects.</li>
+<li>Run <strong>python bootstrap.py</strong> to get the correct version of Django and to set up an isolated environment.  This step may take a few minutes.</li>
+<li>Run <strong>bin\buildout</strong> to generate django, test and wsgi scripts.  This step may take a few minutes.</li>
 </ol>
 </div>
 <div class="section" id="database-setup">
 <h2>Database Setup<a class="headerlink" href="#database-setup" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Create a new database.  You need to record the user, password, host and database name.  If you are using SQLite this step is not required.</li>
-<li>Go to localsettings_empty.py and edit the settings:</li>
+<li>Create a new database.  Check the documentation for your database software for the appropriate syntax for this step.  You need to record the user, password, host and database name.  If you are using SQLite this step is not required.</li>
+<li>Go to mousedbsrcmousedblocalsettings_empty.py and edit the settings:</li>
 </ol>
 <blockquote>
 <ul class="simple">
@@ -91,7 +101,8 @@
 </ul>
 </blockquote>
 <ol class="arabic simple" start="3">
-<li>Save this file as localsettings.py in the main MouseDB directory.</li>
+<li>Save this file as <strong>localsettings.py</strong> in the same folder as localsettings_empty.py</li>
+<li>Migrate into first mousedb directory and enter <em>django syncdb</em>.  When prompted create a superuser (who will have all availabler permissions) and a password for this user.</li>
 </ol>
 </div>
 <div class="section" id="web-server-setup">
@@ -116,11 +127,14 @@ WSGIScriptAlias /mousedb /usr/src/mousedb/bin/django.wsgi</pre>
 </div>
 <div class="section" id="final-configuration-and-user-setup">
 <h2>Final Configuration and User Setup<a class="headerlink" href="#final-configuration-and-user-setup" title="Permalink to this headline">¶</a></h2>
-<p>Go to a command prompt, navigate to inside the mousedb/src directory and enter the following to get to a python prompt:</p>
-<div class="highlight-python"><pre>python manage.py shell</pre>
+<ul class="simple">
+<li>Go to <em>servername/mousedb/admin/groups/group/1</em> and name your research group and select a license if desired</li>
+<li>Go to <em>servername/mousedb/admin/auth/users/</em> and create users, selecting usernames, full names, password (or have the user set the password) and then choose group permissions.</li>
+</ul>
 </div>
-<p>Go to servername/mousedb/admin/groups/group/1 and name your research group and select a license if desired</p>
-<p>Go to servername/mousedb/admin/auth/users/ and create users, selecting usernames, full names, password (or have the user set the password) and then choose group permissions.</p>
+<div class="section" id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
+<p>From the mousedb directory run <strong>bin\test</strong> or <strong>bin\django test</strong> to run the test suite.  See <a class="reference external" href="https://github.com/davebridges/mousedb/wiki/Known-Issues---Test-Suite">https://github.com/davebridges/mousedb/wiki/Known-Issues&#8212;Test-Suite</a> for known issues.  Report any additional errors at the issue page at <a class="reference external" href="https://github.com/davebridges/mousedb/issues">https://github.com/davebridges/mousedb/issues</a>.</p>
 </div>
 </div>
 
@@ -135,9 +149,11 @@ WSGIScriptAlias /mousedb /usr/src/mousedb/bin/django.wsgi</pre>
 <li><a class="reference internal" href="#">MouseDB Installation</a><ul>
 <li><a class="reference internal" href="#configuration">Configuration</a></li>
 <li><a class="reference internal" href="#software-dependencies">Software Dependencies</a></li>
+<li><a class="reference internal" href="#installation">Installation</a></li>
 <li><a class="reference internal" href="#database-setup">Database Setup</a></li>
 <li><a class="reference internal" href="#web-server-setup">Web Server Setup</a></li>
 <li><a class="reference internal" href="#final-configuration-and-user-setup">Final Configuration and User Setup</a></li>
+<li><a class="reference internal" href="#testing">Testing</a></li>
 </ul>
 </li>
 </ul>
@@ -185,12 +201,12 @@ WSGIScriptAlias /mousedb /usr/src/mousedb/bin/django.wsgi</pre>
         <li class="right" >
           <a href="concepts.html" title="MouseDB Concepts"
              >previous</a> |</li>
-        <li><a href="index.html">MouseDB v0.1 documentation</a> &raquo;</li> 
+        <li><a href="index.html">MouseDB v0.2.1dev documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2009, Dave Bridges, Ph.D..
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.4.
+        &copy; Copyright 2009-2011, Dave Bridges, Ph.D..
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.6.
     </div>
   </body>
 </html>
