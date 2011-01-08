@@ -1,3 +1,7 @@
+"""This URLconf defines the routing of pages for study objects.
+
+This includes generic views for study list, study details and create, change and delete studies."""
+
 from django.conf.urls.defaults import *
 from django.views.generic.list_detail import object_list, object_detail
 from django.views.generic.create_update import create_object, update_object, delete_object
@@ -47,8 +51,10 @@ urlpatterns = patterns('',
 		}, name="study-edit"),
 	url(r'^(?P<object_id>\d*)/delete/$', delete_study, {
 		'model': Study,
-		'post_save_redirect': '/mousedb/study',
+		'post_delete_redirect': '/mousedb/study/',
 		'template_name' : 'confirm_delete.html',
 		}, name = "study-delete"),
-	url(r'^(?P<study_id>\d*)/experiment/new/$', 'mousedb.data.views.study_experiment'),
+	url(r'^(?P<study_id>\d*)/experiment/new/$', 
+            'mousedb.data.views.study_experiment',
+             name="study-experiment-new"),
 )

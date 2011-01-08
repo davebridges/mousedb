@@ -42,6 +42,13 @@ Administrative Site Configuration
 
 .. automodule:: data.admin
 
+Test Files
+++++++++++
+.. automodule:: data.tests
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Animals Package
 ---------------
 
@@ -98,6 +105,13 @@ Administrative Site Configuration
    :undoc-members:
    :show-inheritance:
 
+Test Files
+++++++++++
+.. automodule:: animal.tests
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Timed Mating Package
 --------------------
 
@@ -146,6 +160,12 @@ Administrative Site Configuration
    :undoc-members:
    :show-inheritance:
 
+Test Files
+++++++++++
+.. automodule:: timed_mating.tests
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
 Groups Package
 --------------
@@ -174,7 +194,6 @@ Views and URLs
    :undoc-members:
    :show-inheritance:
 
-
 Administrative Site Configuration
 +++++++++++++++++++++++++++++++++
 
@@ -183,3 +202,9 @@ Administrative Site Configuration
    :undoc-members:
    :show-inheritance:
 
+Test Files
+++++++++++
+.. automodule:: groups.tests
+   :members:
+   :undoc-members:
+   :show-inheritance:

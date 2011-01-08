@@ -1,0 +1,12 @@
+[
+    {
+        "pk": 1, 
+        "model": "animal.breeding", 
+        "fields": {
+            "Strain": "1",
+            "Start": "2010-01-01",
+            "Cage":  "12345"
+        }
+    } 
+]
+
