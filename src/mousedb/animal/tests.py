@@ -177,7 +177,7 @@ class BreedingViewTests(TestCase):
 
 		
 class CageViewTests(TestCase):
-    """These are tests for views based on animal objects as directed by cage urls.  Included are tests for cage list, cage-list-all and cage-detail"""
+    """These are tests for views based on animal objects as directed by cage urls.  Included are tests for cage-list, cage-list-all and cage-detail"""
     fixtures = ['test_animals',]
 
     def setUp(self):
@@ -225,5 +225,54 @@ class CageViewTests(TestCase):
         self.assertTemplateUsed(response, 'sortable_table_script.html')
         self.assertTemplateUsed(response, 'animal_list.html')				
         self.assertTemplateUsed(response, 'animal_list_table.html')	
+		
+class DateViewTests(TestCase):
+    """These are tests for views based on animal objects as directed by date based urls.  Included are tests for archive-home, archive-month and archive-year"""
+    fixtures = ['test_animals',]
 
+    def setUp(self):
+        self.client = Client()
+        self.test_user = User.objects.create_user('blah', 'blah@blah.com', 'blah')
+        self.test_user.is_superuser = True
+        self.test_user.is_active = True
+        self.test_user.save()
+        self.client.login(username='blah', password='blah')
+
+    def tearDown(self):
+        self.client.logout()
+        self.test_user.delete()
+
+    def test_archive_home(self):
+        """This test checks the view which displays a summary of the birthdates of animals.  It checks for the correct templates and status code."""        
+
+        response = self.client.get('/date/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'base.html')
+        self.assertTemplateUsed(response, 'jquery_script.html')
+        self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(response, 'home.html')		
+		
+    def test_archive_year(self):
+        """This test checks the view which displays a list of the animals, filtered by year.  It checks for the correct templates and status code."""        
+
+        response = self.client.get('/date/2011/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'animal_list.html')
+        self.assertTemplateUsed(response, 'base.html')
+        self.assertTemplateUsed(response, 'jquery_script.html')
+        self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(response, 'sortable_table_script.html')	
+        self.assertTemplateUsed(response, 'animal_list_table.html')	
+		
+    def test_archive_month(self):
+        """This test checks the view which displays a list of the animals, filtered by month.  It checks for the correct templates and status code."""        
+
+        response = self.client.get('/date/2011/01/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'animal_list.html')
+        self.assertTemplateUsed(response, 'base.html')
+        self.assertTemplateUsed(response, 'jquery_script.html')
+        self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(response, 'sortable_table_script.html')	
+        self.assertTemplateUsed(response, 'animal_list_table.html')			
 
