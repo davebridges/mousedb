@@ -13,7 +13,7 @@ Stuff To Do
 * Still need the following tests
  * ModelTests: animal.Strain, data.Treatment, data.Assay, data.Diet, data.Environment, data.Experiment, data.Implantation, data.Measurement, data.Pharmaceutical, data.Researcher, data.Transplantation, data.Vendor
  * ViewTests: treatment-list,treatment-new, treatment-detail, treatment-edit, treatment-delete, experiment-list, experiment-detail, experiment-detail-csv, data-entry, experiment-new, measurement-list, pharmaceutical-list, diet-list, study-experiment-new
-* Update Documentation and move to root directory
+* Change version number in setup.py and Docs/source/conf.py Update Documentation and move to root directory
 
 
 Version 0.2.1
