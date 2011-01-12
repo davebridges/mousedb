@@ -17,7 +17,7 @@
 <a href="{% url animal-list %}"><button class="fg-button ui-state-default ui-corner-left"><span class="ui-icon ui-icon-info"></span>Show alive mice</button></a>
 {% endif %}
 {% if perms.animal.add_animal %}
-	<a href="{% url animal-delete animal.id %}"><button class="fg-button ui-state-default ui-corner-right"><span class="ui-icon ui-icon-circle-plus"></span>Add New Mouse</button></a>
+	<a href="{% url animal-new %}"><button class="fg-button ui-state-default ui-corner-right"><span class="ui-icon ui-icon-circle-plus"></span>Add New Mouse</button></a>
 {% endif %}
 </div>
 {% include "animal_list_table.html" %}
