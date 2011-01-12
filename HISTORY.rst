@@ -7,7 +7,9 @@ Version 0.2.1dev
 
 Stuff To Do
 +++++++++++
-* Removed cage-detail links
+* Add researcher/new page
+* Make experiment_add into a form without the experiment field where that is saved automatically.
+* Add edit and delete measurement forms.  Link to measurement display tables.
 * The MEDIA_URL and LOGIN_URL are hardcoded, this should be fixed.
 * Need to update get_absolute_url for all models
 * Still need the following tests
