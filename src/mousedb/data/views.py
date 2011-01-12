@@ -74,6 +74,13 @@ def experiment_details_csv(request, experiment_id):
     writer = csv.writer(response)
     writer.writerow(["Animal", "Genotype", "Age (in Days)", "Assay", "Value(s)", "Treatment"])
     for measurement in experiment.measurement_set.iterator():
-        writer.writerow([measurement.animal, measurement.animal.Genotype, measurement.age(), measurement.assay, measurement.values, measurement.animal.treatment_set.all()[0]])
+        writer.writerow([
+			measurement.animal, 
+			measurement.animal.Genotype, 
+			measurement.age(), 
+			measurement.assay, 
+			measurement.values, 
+			#measurement.animal.treatment_set.all()[0] this only works if an animal is in a treatment group
+			])
     return response
 
