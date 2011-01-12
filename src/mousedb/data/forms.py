@@ -27,7 +27,7 @@ class StudyExperimentForm(ModelForm):
     """This is the configuration for a study form (From an experiment).
 	
     This form provides an autocomplete field for the animals, and hides the study field which will be automatically set upon save."""
-    animals = AutoCompleteSelectMultipleField('animal')
+    animals = AutoCompleteSelectField('animal')
     class Meta:
         model = Experiment
         exclude = ['study',]
@@ -42,11 +42,15 @@ MeasurementFormSet = inlineformset_factory(Experiment, Measurement, extra=10, ca
 class MeasurementForm(ModelForm):
     """Form definition for adding and editing measurements.
 	
-    This form excludes experiment, which must be passed as a filtering parameter from the view.  
-    This form is used for formsets to add or modify measurements from within an experiment."""
-
+    This form is used for adding or modifying single measurements from within an experiment.  It has an autocomplete field for animal."""
+    animal = AutoCompleteSelectMultipleField('animal')
     class Meta:
         model = Measurement
+    class Media:
+        css = {
+            'all': ('javascript/jquery-autocomplete/jquery.autocomplete.css', 'css/autocomplete.css')
+        }
+        js = ('javascript/jquery-ui/js/jquery-ui-1.8.2.custom.min.js', 'javascript/jquery-autocomplete/jquery.autocomplete.js')
 	
 class StudyForm(ModelForm):
     """This is the configuration for the study form.
