@@ -33,7 +33,7 @@ def experiment_detail_all(request):
 
 @permission_required('data.add_measurement')
 def add_measurement(request, experiment_id):
-    """This is a view to display a form to add single measurements to an experiment.
+	"""This is a view to display a form to add single measurements to an experiment.
 	
 	It calls the object MeasurementForm, which has an autocomplete field for animal."""
 	experiment = get_object_or_404(Experiment, pk=experiment_id)

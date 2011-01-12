@@ -43,7 +43,7 @@ class MeasurementForm(ModelForm):
     """Form definition for adding and editing measurements.
 	
     This form is used for adding or modifying single measurements from within an experiment.  It has an autocomplete field for animal."""
-    animal = AutoCompleteSelectMultipleField('animal')
+    animal = AutoCompleteSelectField('animal', required=False)
     class Meta:
         model = Measurement
     class Media:
