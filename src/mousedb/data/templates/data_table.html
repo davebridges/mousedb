@@ -26,6 +26,22 @@
 			<td>{{ data.experiment.feeding_state }}{% if data.experiment.fasting_time %} - {{ data.experiment.fasting_time }}h{% endif %}
 			<td>{{ data.values }}</td>
 			<td>{% for treatment in data.animal.treatment_set.all %}{{ treatment }}{% endfor %}
+			<td class="fg-buttonset fg-buttonset-multi">
+{% if perms.data.change_measurement %}
+  <a href="{% url measurement-edit data.id %}" title="Edit">
+   <button class="fg-button ui-state-default fg-button-icon-left ui-corner-all">
+    <span class="ui-icon ui-icon-pencil" style="float:left;"></span>Edit
+   </button>
+   </a>
+{% endif %}
+{% if perms.data.delete_measurement %}
+  <a href="{% url measurement-delete data.id %}" title="Delete">
+   <button class="fg-button ui-state-default fg-button-icon-left ui-corner-all">
+    <span class="ui-icon ui-icon-trash" style="float:left;"></span>Delete
+   </button>
+   </a>
+{% endif %}
+</td>
 		</tr>
 	{% endfor %}
 	</tbody>
