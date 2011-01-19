@@ -49,6 +49,10 @@ urlpatterns = patterns('',
 		'login_required':True,
 		'post_save_redirect':'/mousedb/experiment/'
 		}, name="experiment-new"),
+	url(r'^(?P<object_id>\d*)/edit/$', change_experiment, {
+		'form_class': ExperimentForm,
+		'template_name': 'experiment_form.html',
+		}, name="experiment-edit"),		
 	url(r'^data/all$', limited_object_list, {
 		'queryset': Measurement.objects.all(),
 		'template_name': 'data.html',
