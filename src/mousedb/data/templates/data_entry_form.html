@@ -2,9 +2,6 @@
 
 {% block title %}Data Entry ({{ experiment }}){% endblock %}
 {% block scripts %}
-	<link type="text/css" href="/mousedb-media/javascript/jquery-ui/css/custom-theme/jquery-ui-1.7.2.custom.css" rel="Stylesheet" />
-	<script type="text/javascript" src="/mousedb-media/javascript/jquery-1.3.2.js"></script> 
-	<script type="text/javascript" src="/mousedb-media/javascript/jquery-ui/js/jquery-ui-1.7.2.custom.min.js"></script> 
 	<script type="text/javascript">
 	 $(document).ready(function() {	
 		$('#id_Born').datepicker({dateFormat: 'yy-mm-dd'});
@@ -17,8 +14,9 @@
 {% block header %}Data Entry ({{ experiment }}){% endblock %}
 {% block content %}
 <form action="{% url data-entry experiment.id %} " method="POST">{% csrf_token %}
-    {{ formset.management_form }}
-    {% include "formsets_table.html" %}
+    <table>
+	{{ form }}
+    </table>
 <input type="submit" value="Submit" />
 </form>
 {% endblock %}

@@ -16,7 +16,7 @@ class AnimalLookup(object):
         """ This sets up the query for the lookup.
 		
 		The lookup searches the MouseID or the id (database identifier) for the mouse."""
-        return Animal.objects.filter(Q(MouseID__icontains=q)|Q(id__icontains=q))
+        return Animal.objects.filter(Q(MouseID__icontains=q)|Q(id__icontains=q)|Q(Cage__icontains=q))
 
     def format_result(self,animal):
         """ This controls the display of the dropdown menu.
@@ -45,7 +45,7 @@ class AnimalLookupMale(object):
         """ This sets up the query for the lookup.
 		
 		The lookup searches the MouseID or the id (database identifier) for the mouse.  It then filters this set for only males."""
-        return Animal.objects.filter(Q(MouseID__icontains=q)|Q(id__icontains=q)).filter(Gender='M')
+        return Animal.objects.filter(Q(MouseID__icontains=q)|Q(id__icontains=q)|Q(Cage__icontains=q)).filter(Gender='M')
 
     def format_result(self,animal):
         """ This controls the display of the dropdown menu.
@@ -74,7 +74,7 @@ class AnimalLookupFemale(object):
         """ This sets up the query for the lookup.
 		
 		The lookup searches the MouseID or the id (database identifier) for the mouse.  It then filters this set for only females."""
-        return Animal.objects.filter(Q(MouseID__icontains=q)|Q(id__icontains=q)).filter(Gender='F')
+        return Animal.objects.filter(Q(MouseID__icontains=q)|Q(id__icontains=q)|Q(Cage__icontains=q)).filter(Gender='F')
 
     def format_result(self,animal):
         """ This controls the display of the dropdown menu.

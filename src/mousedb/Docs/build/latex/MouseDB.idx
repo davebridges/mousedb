@@ -121,11 +121,30 @@
 \indexentry{study\_experiment() (in module data.views)|hyperpage}{19}
 \indexentry{data.urls (module)|hyperpage}{19}
 \indexentry{data.admin (module)|hyperpage}{19}
+<<<<<<< HEAD:Docs/build/latex/MouseDB.idx
+\indexentry{data.tests (module)|hyperpage}{19}
+\indexentry{ExperimentModelTests (class in data.tests)|hyperpage}{19}
+\indexentry{setUp() (data.tests.ExperimentModelTests method)|hyperpage}{19}
+\indexentry{tearDown() (data.tests.ExperimentModelTests method)|hyperpage}{19}
+\indexentry{test\_create\_experiment\_minimal() (data.tests.ExperimentModelTests method)|hyperpage}{19}
+\indexentry{test\_experiment\_get\_absolute\_url() (data.tests.ExperimentModelTests method)|hyperpage}{19}
+\indexentry{test\_experiment\_unicode() (data.tests.ExperimentModelTests method)|hyperpage}{19}
+=======
+>>>>>>> buildout:src/mousedb/Docs/build/latex/MouseDB.idx
 \indexentry{animal (module)|hyperpage}{19}
 \indexentry{animal.models (module)|hyperpage}{20}
 \indexentry{Strain (class in animal.models)|hyperpage}{20}
 \indexentry{Animal (class in animal.models)|hyperpage}{20}
 \indexentry{Breeding (class in animal.models)|hyperpage}{20}
+<<<<<<< HEAD:Docs/build/latex/MouseDB.idx
+\indexentry{animal.forms (module)|hyperpage}{21}
+\indexentry{AnimalForm (class in animal.forms)|hyperpage}{21}
+\indexentry{AnimalForm.Media (class in animal.forms)|hyperpage}{21}
+\indexentry{AnimalForm.Meta (class in animal.forms)|hyperpage}{21}
+\indexentry{model (animal.forms.AnimalForm.Meta attribute)|hyperpage}{21}
+\indexentry{media (animal.forms.AnimalForm attribute)|hyperpage}{21}
+\indexentry{BreedingForm (class in animal.forms)|hyperpage}{21}
+=======
 \indexentry{animal.forms (module)|hyperpage}{20}
 \indexentry{AnimalForm (class in animal.forms)|hyperpage}{20}
 \indexentry{AnimalForm.Media (class in animal.forms)|hyperpage}{20}
@@ -133,6 +152,7 @@
 \indexentry{model (animal.forms.AnimalForm.Meta attribute)|hyperpage}{20}
 \indexentry{media (animal.forms.AnimalForm attribute)|hyperpage}{20}
 \indexentry{BreedingForm (class in animal.forms)|hyperpage}{20}
+>>>>>>> buildout:src/mousedb/Docs/build/latex/MouseDB.idx
 \indexentry{BreedingForm.Media (class in animal.forms)|hyperpage}{21}
 \indexentry{BreedingForm.Meta (class in animal.forms)|hyperpage}{21}
 \indexentry{model (animal.forms.BreedingForm.Meta attribute)|hyperpage}{21}
@@ -142,19 +162,34 @@
 \indexentry{model (animal.forms.MultipleAnimalForm.Meta attribute)|hyperpage}{21}
 \indexentry{media (animal.forms.MultipleAnimalForm attribute)|hyperpage}{21}
 \indexentry{MultipleBreedingAnimalForm (class in animal.forms)|hyperpage}{21}
+<<<<<<< HEAD:Docs/build/latex/MouseDB.idx
+\indexentry{MultipleBreedingAnimalForm.Meta (class in animal.forms)|hyperpage}{22}
+\indexentry{model (animal.forms.MultipleBreedingAnimalForm.Meta attribute)|hyperpage}{22}
+\indexentry{media (animal.forms.MultipleBreedingAnimalForm attribute)|hyperpage}{22}
+\indexentry{animal.views (module)|hyperpage}{22}
+=======
 \indexentry{MultipleBreedingAnimalForm.Meta (class in animal.forms)|hyperpage}{21}
 \indexentry{model (animal.forms.MultipleBreedingAnimalForm.Meta attribute)|hyperpage}{21}
 \indexentry{media (animal.forms.MultipleBreedingAnimalForm attribute)|hyperpage}{21}
 \indexentry{animal.views (module)|hyperpage}{21}
+>>>>>>> buildout:src/mousedb/Docs/build/latex/MouseDB.idx
 \indexentry{animal\_detail() (in module animal.views)|hyperpage}{22}
 \indexentry{breeding\_change() (in module animal.views)|hyperpage}{22}
 \indexentry{breeding\_detail() (in module animal.views)|hyperpage}{22}
 \indexentry{breeding\_pups() (in module animal.views)|hyperpage}{22}
+<<<<<<< HEAD:Docs/build/latex/MouseDB.idx
+\indexentry{multiple\_breeding\_pups() (in module animal.views)|hyperpage}{23}
+\indexentry{multiple\_pups() (in module animal.views)|hyperpage}{23}
+\indexentry{strain\_detail() (in module animal.views)|hyperpage}{23}
+\indexentry{strain\_detail\_all() (in module animal.views)|hyperpage}{23}
+\indexentry{strain\_list() (in module animal.views)|hyperpage}{23}
+=======
 \indexentry{multiple\_breeding\_pups() (in module animal.views)|hyperpage}{22}
 \indexentry{multiple\_pups() (in module animal.views)|hyperpage}{22}
 \indexentry{strain\_detail() (in module animal.views)|hyperpage}{22}
 \indexentry{strain\_detail\_all() (in module animal.views)|hyperpage}{22}
 \indexentry{strain\_list() (in module animal.views)|hyperpage}{22}
+>>>>>>> buildout:src/mousedb/Docs/build/latex/MouseDB.idx
 \indexentry{animal.urls (module)|hyperpage}{23}
 \indexentry{animal.admin (module)|hyperpage}{23}
 \indexentry{AnimalAdmin (class in animal.admin)|hyperpage}{23}
@@ -164,6 +199,69 @@
 \indexentry{media (animal.admin.AnimalInline attribute)|hyperpage}{23}
 \indexentry{model (animal.admin.AnimalInline attribute)|hyperpage}{23}
 \indexentry{BreedingAdmin (class in animal.admin)|hyperpage}{23}
+<<<<<<< HEAD:Docs/build/latex/MouseDB.idx
+\indexentry{mark\_deactivated() (animal.admin.BreedingAdmin method)|hyperpage}{24}
+\indexentry{media (animal.admin.BreedingAdmin attribute)|hyperpage}{24}
+\indexentry{StrainAdmin (class in animal.admin)|hyperpage}{24}
+\indexentry{media (animal.admin.StrainAdmin attribute)|hyperpage}{24}
+\indexentry{animal.tests (module)|hyperpage}{24}
+\indexentry{BreedingModelTests (class in animal.tests)|hyperpage}{24}
+\indexentry{setUp() (animal.tests.BreedingModelTests method)|hyperpage}{24}
+\indexentry{tearDown() (animal.tests.BreedingModelTests method)|hyperpage}{24}
+\indexentry{test\_autoset\_active\_state() (animal.tests.BreedingModelTests method)|hyperpage}{24}
+\indexentry{test\_create\_animal\_minimal() (animal.tests.BreedingModelTests method)|hyperpage}{24}
+\indexentry{test\_create\_breeding\_minimal() (animal.tests.BreedingModelTests method)|hyperpage}{24}
+\indexentry{test\_unicode() (animal.tests.BreedingModelTests method)|hyperpage}{24}
+\indexentry{BreedingViewTests (class in animal.tests)|hyperpage}{24}
+\indexentry{setUp() (animal.tests.BreedingViewTests method)|hyperpage}{24}
+\indexentry{tearDown() (animal.tests.BreedingViewTests method)|hyperpage}{24}
+\indexentry{test\_breeding\_list() (animal.tests.BreedingViewTests method)|hyperpage}{24}
+\indexentry{test\_breeding\_list\_all() (animal.tests.BreedingViewTests method)|hyperpage}{24}
+\indexentry{test\_breeding\_new() (animal.tests.BreedingViewTests method)|hyperpage}{24}
+\indexentry{timed\_mating (module)|hyperpage}{25}
+\indexentry{timed\_mating.models (module)|hyperpage}{25}
+\indexentry{PlugEvents (class in timed\_mating.models)|hyperpage}{25}
+\indexentry{timed\_mating.forms (module)|hyperpage}{25}
+\indexentry{BreedingPlugForm (class in timed\_mating.forms)|hyperpage}{25}
+\indexentry{BreedingPlugForm.Meta (class in timed\_mating.forms)|hyperpage}{25}
+\indexentry{model (timed\_mating.forms.BreedingPlugForm.Meta attribute)|hyperpage}{25}
+\indexentry{media (timed\_mating.forms.BreedingPlugForm attribute)|hyperpage}{25}
+\indexentry{timed\_mating.views (module)|hyperpage}{25}
+\indexentry{breeding\_plugevent() (in module timed\_mating.views)|hyperpage}{25}
+\indexentry{timed\_mating.urls (module)|hyperpage}{25}
+\indexentry{change\_plugevents() (in module timed\_mating.urls)|hyperpage}{25}
+\indexentry{create\_plugevents() (in module timed\_mating.urls)|hyperpage}{26}
+\indexentry{delete\_plugevents() (in module timed\_mating.urls)|hyperpage}{26}
+\indexentry{limited\_object\_detail() (in module timed\_mating.urls)|hyperpage}{26}
+\indexentry{limited\_object\_list() (in module timed\_mating.urls)|hyperpage}{26}
+\indexentry{timed\_mating.admin (module)|hyperpage}{26}
+\indexentry{PlugEventsAdmin (class in timed\_mating.admin)|hyperpage}{26}
+\indexentry{media (timed\_mating.admin.PlugEventsAdmin attribute)|hyperpage}{26}
+\indexentry{timed\_mating.tests (module)|hyperpage}{26}
+\indexentry{GroupsModelTests (class in timed\_mating.tests)|hyperpage}{26}
+\indexentry{setUp() (timed\_mating.tests.GroupsModelTests method)|hyperpage}{26}
+\indexentry{tearDown() (timed\_mating.tests.GroupsModelTests method)|hyperpage}{26}
+\indexentry{test\_create\_plugevent\_minimal() (timed\_mating.tests.GroupsModelTests method)|hyperpage}{26}
+\indexentry{test\_create\_plugevent\_most\_fields() (timed\_mating.tests.GroupsModelTests method)|hyperpage}{26}
+\indexentry{test\_set\_plugevet\_inactive() (timed\_mating.tests.GroupsModelTests method)|hyperpage}{26}
+\indexentry{groups (module)|hyperpage}{26}
+\indexentry{groups.models (module)|hyperpage}{27}
+\indexentry{Group (class in groups.models)|hyperpage}{27}
+\indexentry{groups.views (module)|hyperpage}{27}
+\indexentry{groups.admin (module)|hyperpage}{27}
+\indexentry{GroupAdmin (class in groups.admin)|hyperpage}{27}
+\indexentry{media (groups.admin.GroupAdmin attribute)|hyperpage}{27}
+\indexentry{LicenseAdmin (class in groups.admin)|hyperpage}{27}
+\indexentry{media (groups.admin.LicenseAdmin attribute)|hyperpage}{27}
+\indexentry{groups.tests (module)|hyperpage}{27}
+\indexentry{GroupsModelTests (class in groups.tests)|hyperpage}{27}
+\indexentry{setUp() (groups.tests.GroupsModelTests method)|hyperpage}{27}
+\indexentry{tearDown() (groups.tests.GroupsModelTests method)|hyperpage}{27}
+\indexentry{test\_create\_group\_all\_fields() (groups.tests.GroupsModelTests method)|hyperpage}{27}
+\indexentry{test\_create\_group\_minimal() (groups.tests.GroupsModelTests method)|hyperpage}{27}
+\indexentry{test\_create\_license\_all\_fields() (groups.tests.GroupsModelTests method)|hyperpage}{27}
+\indexentry{test\_create\_license\_minimal() (groups.tests.GroupsModelTests method)|hyperpage}{27}
+=======
 \indexentry{mark\_deactivated() (animal.admin.BreedingAdmin method)|hyperpage}{23}
 \indexentry{media (animal.admin.BreedingAdmin attribute)|hyperpage}{23}
 \indexentry{StrainAdmin (class in animal.admin)|hyperpage}{23}
@@ -196,3 +294,4 @@
 \indexentry{media (groups.admin.GroupAdmin attribute)|hyperpage}{25}
 \indexentry{LicenseAdmin (class in groups.admin)|hyperpage}{25}
 \indexentry{media (groups.admin.LicenseAdmin attribute)|hyperpage}{25}
+>>>>>>> buildout:src/mousedb/Docs/build/latex/MouseDB.idx

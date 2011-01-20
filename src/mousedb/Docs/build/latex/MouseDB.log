@@ -1,4 +1,8 @@
+<<<<<<< HEAD:Docs/build/latex/MouseDB.log
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2010.7.3)  21 AUG 2010 23:34
+=======
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2010.8.28)  9 OCT 2010 13:33
+>>>>>>> buildout:src/mousedb/Docs/build/latex/MouseDB.log
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -917,7 +921,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 225--226
 [5
 
 ]
+<<<<<<< HEAD:Docs/build/latex/MouseDB.log
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 276.
+=======
 LaTeX Font Info:    Try loading font information for T1+pcr on input line 252.
+>>>>>>> buildout:src/mousedb/Docs/build/latex/MouseDB.log
  (/usr/share/texmf-texlive/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 ) [6]
@@ -954,6 +962,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 1179--1179
 Underfull \hbox (badness 10000) in paragraph at lines 1179--1179
 \T1/ptm/m/it/10 `django.forms.util.ErrorList'>\T1/ptm/m/n/10 , \T1/ptm/m/it/10 
 la-bel_suffix=':'\T1/ptm/m/n/10 ,
+<<<<<<< HEAD:Docs/build/latex/MouseDB.log
+ []
+
+[17]
+Underfull \hbox (badness 10000) in paragraph at lines 1217--1217
+\T1/ptm/m/it/10 er-ror_class=<class `django.forms.util.ErrorList'>\T1/ptm/m/n/1
+0 , \T1/ptm/m/it/10 la-bel_suffix=':'\T1/ptm/m/n/10 ,
+=======
+>>>>>>> buildout:src/mousedb/Docs/build/latex/MouseDB.log
  []
 
 [17]
@@ -969,19 +986,127 @@ Underfull \hbox (badness 6094) in paragraph at lines 1255--1255
 =None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 ini-
  []
 
+<<<<<<< HEAD:Docs/build/latex/MouseDB.log
+Underfull \hbox (badness 6094) in paragraph at lines 1255--1255
+=======
 [18] [19]
 Underfull \hbox (badness 10000) in paragraph at lines 1415--1415
+>>>>>>> buildout:src/mousedb/Docs/build/latex/MouseDB.log
 []\T1/ptm/m/it/10 data=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 files=None\T1/ptm/m
 /n/10 , \T1/ptm/m/it/10 auto_id='id_%s'\T1/ptm/m/n/10 , \T1/ptm/m/it/10 pre-fix
 =None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 ini-
  []
 
+[18] [19] [20]
+Underfull \hbox (badness 10000) in paragraph at lines 1472--1472
+[]\T1/ptm/m/it/10 data=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 files=None\T1/ptm/m
+/n/10 , \T1/ptm/m/it/10 auto_id='id_%s'\T1/ptm/m/n/10 , \T1/ptm/m/it/10 pre-fix
+=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 ini-
+ []
 
+<<<<<<< HEAD:Docs/build/latex/MouseDB.log
+
+Underfull \hbox (badness 10000) in paragraph at lines 1472--1472
+=======
 Underfull \hbox (badness 10000) in paragraph at lines 1415--1415
+>>>>>>> buildout:src/mousedb/Docs/build/latex/MouseDB.log
 \T1/ptm/m/it/10 tial=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 er-ror_class=<class `
 django.forms.util.ErrorList'>\T1/ptm/m/n/10 ,
  []
 
+<<<<<<< HEAD:Docs/build/latex/MouseDB.log
+
+Underfull \hbox (badness 10000) in paragraph at lines 1548--1548
+[]\T1/ptm/m/it/10 data=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 files=None\T1/ptm/m
+/n/10 , \T1/ptm/m/it/10 auto_id='id_%s'\T1/ptm/m/n/10 , \T1/ptm/m/it/10 pre-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1548--1548
+\T1/ptm/m/it/10 fix=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 ini-tial=None\T1/ptm/m
+/n/10 , \T1/ptm/m/it/10 er-ror_class=<class
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1548--1548
+\T1/ptm/m/it/10 `django.forms.util.ErrorList'>\T1/ptm/m/n/10 , \T1/ptm/m/it/10 
+la-bel_suffix=':'\T1/ptm/m/n/10 ,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1580--1580
+[]\T1/ptm/m/it/10 data=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 files=None\T1/ptm/m
+/n/10 ,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1580--1580
+\T1/ptm/m/it/10 auto_id='id_%s'\T1/ptm/m/n/10 , \T1/ptm/m/it/10 pre-fix=None\T1
+/ptm/m/n/10 , \T1/ptm/m/it/10 ini-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1580--1580
+\T1/ptm/m/it/10 tial=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 er-ror_class=<class
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1580--1580
+\T1/ptm/m/it/10 `django.forms.util.ErrorList'>\T1/ptm/m/n/10 , \T1/ptm/m/it/10 
+la-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1580--1580
+\T1/ptm/m/it/10 bel_suffix=':'\T1/ptm/m/n/10 , \T1/ptm/m/it/10 empty_permitted=
+False\T1/ptm/m/n/10 ,
+ []
+
+[21] [22]
+Overfull \hbox (200.21822pt too wide) in paragraph at lines 1672--1674
+[]
+ []
+
+[23] [24]
+Underfull \hbox (badness 10000) in paragraph at lines 1971--1971
+\T1/ptm/m/it/10 fix=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 ini-tial=None\T1/ptm/m
+/n/10 , \T1/ptm/m/it/10 er-ror_class=<class
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1971--1971
+\T1/ptm/m/it/10 `django.forms.util.ErrorList'>\T1/ptm/m/n/10 , \T1/ptm/m/it/10 
+la-bel_suffix=':'\T1/ptm/m/n/10 ,
+ []
+
+[25] [26] [27] [28
+
+]
+Chapter 7.
+[29] [30
+
+]
+
+LaTeX Warning: Reference `api:module-animal' on page 31 undefined on input line
+ 2277.
+
+
+LaTeX Warning: Reference `api:module-animal.admin' on page 31 undefined on inpu
+t line 2278.
+
+
+LaTeX Warning: Reference `api:module-animal.forms' on page 31 undefined on inpu
+t line 2279.
+
+
+LaTeX Warning: Reference `api:module-animal.models' on page 31 undefined on inp
+ut line 2280.
+
+
+LaTeX Warning: Reference `api:module-animal.tests' on page 31 undefined on inpu
+t line 2281.
+
+=======
 [20]
 Underfull \hbox (badness 10000) in paragraph at lines 1491--1491
 []\T1/ptm/m/it/10 data=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 files=None\T1/ptm/m
@@ -1016,12 +1141,102 @@ Underfull \hbox (badness 10000) in paragraph at lines 1523--1523
 Underfull \hbox (badness 10000) in paragraph at lines 1523--1523
 \T1/ptm/m/it/10 tial=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 er-ror_class=<class
  []
+>>>>>>> buildout:src/mousedb/Docs/build/latex/MouseDB.log
+
+LaTeX Warning: Reference `api:module-animal.urls' on page 31 undefined on input
+ line 2282.
+
+<<<<<<< HEAD:Docs/build/latex/MouseDB.log
+
+LaTeX Warning: Reference `api:module-animal.views' on page 31 undefined on inpu
+t line 2283.
 
 
+LaTeX Warning: Reference `api:module-data' on page 31 undefined on input line 2
+286.
+
+
+LaTeX Warning: Reference `api:module-data.admin' on page 31 undefined on input 
+line 2287.
+
+
+LaTeX Warning: Reference `api:module-data.forms' on page 31 undefined on input 
+line 2288.
+
+
+LaTeX Warning: Reference `api:module-data.models' on page 31 undefined on input
+ line 2289.
+
+
+LaTeX Warning: Reference `api:module-data.tests' on page 31 undefined on input 
+line 2290.
+
+
+LaTeX Warning: Reference `api:module-data.urls' on page 31 undefined on input l
+ine 2291.
+
+
+LaTeX Warning: Reference `api:module-data.views' on page 31 undefined on input 
+line 2292.
+
+
+LaTeX Warning: Reference `api:module-groups' on page 31 undefined on input line
+ 2295.
+
+
+LaTeX Warning: Reference `api:module-groups.admin' on page 31 undefined on inpu
+t line 2296.
+
+
+LaTeX Warning: Reference `api:module-groups.models' on page 31 undefined on inp
+ut line 2297.
+
+
+LaTeX Warning: Reference `api:module-groups.tests' on page 31 undefined on inpu
+t line 2298.
+
+
+LaTeX Warning: Reference `api:module-groups.views' on page 31 undefined on inpu
+t line 2299.
+
+
+LaTeX Warning: Reference `api:module-timed_mating' on page 31 undefined on inpu
+t line 2302.
+
+
+LaTeX Warning: Reference `api:module-timed_mating.admin' on page 31 undefined o
+n input line 2303.
+
+
+LaTeX Warning: Reference `api:module-timed_mating.forms' on page 31 undefined o
+n input line 2304.
+
+
+LaTeX Warning: Reference `api:module-timed_mating.models' on page 31 undefined 
+on input line 2305.
+
+
+LaTeX Warning: Reference `api:module-timed_mating.tests' on page 31 undefined o
+n input line 2306.
+
+
+LaTeX Warning: Reference `api:module-timed_mating.urls' on page 31 undefined on
+ input line 2307.
+
+
+LaTeX Warning: Reference `api:module-timed_mating.views' on page 31 undefined o
+n input line 2308.
+
+[31
+
+
+] (./MouseDB.ind [32
+=======
 Underfull \hbox (badness 10000) in paragraph at lines 1523--1523
 \T1/ptm/m/it/10 `django.forms.util.ErrorList'>\T1/ptm/m/n/10 , \T1/ptm/m/it/10 
 la-
  []
+>>>>>>> buildout:src/mousedb/Docs/build/latex/MouseDB.log
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 1523--1523
@@ -1029,10 +1244,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 1523--1523
 False\T1/ptm/m/n/10 ,
  []
 
+<<<<<<< HEAD:Docs/build/latex/MouseDB.log
+[33
+=======
 [21]
 Overfull \hbox (200.21822pt too wide) in paragraph at lines 1615--1617
 []
  []
+>>>>>>> buildout:src/mousedb/Docs/build/latex/MouseDB.log
 
 [22] [23]
 Underfull \hbox (badness 10000) in paragraph at lines 1811--1811
@@ -1110,6 +1329,40 @@ Overfull \hbox (1.57965pt too wide) in paragraph at lines 152--153
 []\T1/ptm/m/n/10 model (an-i-mal.forms.MultipleBreedingAnimalForm.Meta
  []
 
+<<<<<<< HEAD:Docs/build/latex/MouseDB.log
+[34]
+Underfull \hbox (badness 10000) in paragraph at lines 204--205
+[]\T1/ptm/m/n/10 model (data.forms.StudyExperimentForm.Meta at-
+ []
+
+[35]) (./MouseDB.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 8686 strings out of 495062
+ 123261 string characters out of 1182645
+ 193471 words of memory out of 3000000
+ 11304 multiletter control sequences out of 15000+50000
+ 56831 words of font info for 64 fonts, out of 3000000 for 9000
+ 29 hyphenation exceptions out of 8191
+ 45i,12n,45p,758b,458s stack positions out of 5000i,500n,10000p,200000b,50000s
+{/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-texli
+ve/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw
+/courier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.p
+fb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/t
+exmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texlive/font
+s/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/ut
+mr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
+Output written on MouseDB.pdf (39 pages, 260819 bytes).
+PDF statistics:
+ 960 PDF objects out of 1000 (max. 8388607)
+ 368 named destinations out of 1000 (max. 500000)
+=======
 
 Underfull \hbox (badness 10000) in paragraph at lines 155--156
 []\T1/ptm/m/n/10 model (data.forms.StudyExperimentForm.Meta at-
@@ -1143,5 +1396,6 @@ Output written on MouseDB.pdf (37 pages, 249153 bytes).
 PDF statistics:
  904 PDF objects out of 1000 (max. 8388607)
  327 named destinations out of 1000 (max. 500000)
+>>>>>>> buildout:src/mousedb/Docs/build/latex/MouseDB.log
  249 words of extra memory for PDF output out of 10000 (max. 10000000)
 

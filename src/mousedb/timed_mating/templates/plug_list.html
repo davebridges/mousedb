@@ -3,8 +3,7 @@
 {% block header %}All Plug Events{% endblock %}
 {% block title %}All Plug Events{% endblock %}
 {% block scripts %}
-	<script type="text/javascript" src="/javascript/jquery-1.3.2.js"></script> 
-	<script type="text/javascript" src="/javascript/dataTables-1.4/media/js/jquery.dataTables.js"</script>
+{% include "sortable_table_script.html " %}
 	<script type="text/javascript">
         $(document).ready(function() {
                 $("#sortable").dataTable( {

@@ -38,7 +38,7 @@
    <td>{{ breeding.Rack }}</td>
    <td>{{ breeding.Rack_Position|all_caps }}</td>
    <td class="left">{{ breeding.Start|timesince }}</td>
-   <td class="left">{{ breeding.Crosstype }}</td>
+   <td class="left">{{ breeding.get_Crosstype_display }}</td>
    <td>{{ breeding.animal_set.count }}</td>
    <td>{{ breeding.unweaned.count }}</td>
    <td class="left">{{ breeding.Notes }}</td>

@@ -31,11 +31,11 @@
  <tbody>
  <tr>
  <td><a href="{{ breeding.Strain.get_absolute_url }}">{{ breeding.Strain }}</a></td>
- <td>{{ breeding.Cage }}</td>
+ <td><a href="{% url cage-detail breeding.Cage %}">{{ breeding.Cage }}</a></td>
  <td>{{ breeding.BreedingName }}</td>
  <td>{{ breeding.Start }}</td>
  <td>{{ breeding.Start|timesince }}</td>
- <td>{{ breeding.Crosstype }}</td>
+ <td>{{ breeding.get_Crosstype_display }}</td>
  <td>{{ breeding.genotype }}</td>
  <td>{{ breeding.background }}</td>
  <td>{{ breeding.backcross }}</td>

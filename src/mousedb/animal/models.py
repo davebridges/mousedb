@@ -146,7 +146,7 @@ class Strain(models.Model):
 class Animal(models.Model):
     """A data model describing an animal.
 
-    This data model describes a wide variety of parameters of an experimental animal.  This model is linked to the Strain and Cage models via 1:1 relationships.  If the parentage of a mouse is known, this can be identified (the breeding set may not be clear on this matter). Mice are automatically marked as not alive when a Death date is provided and the object is saved.  Strain, Background and Genotype are required field.  By default, querysets are ordered first by strain then by MouseID.
+    This data model describes a wide variety of parameters of an experimental animal.  This model is linked to the Strain.  If the parentage of a mouse is known, this can be identified (the breeding set may not be clear on this matter). Mice are automatically marked as not alive when a Death date is provided and the object is saved.  Strain, Background and Genotype are required fields.  By default, querysets are ordered first by strain then by MouseID.
     """
     MouseID = models.IntegerField(max_length = 10, blank = True, null=True)
     Cage = models.IntegerField(max_length = 15, blank = True, null=True)

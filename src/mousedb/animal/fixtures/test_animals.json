@@ -1,0 +1,24 @@
+[
+    {
+        "pk": 1, 
+        "model": "animal.strain", 
+        "fields": {
+            "Strain_slug": "", 
+            "Strain": "test_strain", 
+            "Comments": "", 
+            "Source": ""
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "animal.animal", 
+        "fields": {
+            "Genotype": "-/-", 
+            "Background": "Mixed", 
+            "Strain": "1",
+			"Cage": "123456",
+			"Born": "2011-01-01"
+        }
+    } 
+]
+

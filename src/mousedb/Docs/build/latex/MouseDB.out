@@ -27,5 +27,10 @@
 \BOOKMARK [1][-]{section.6.3}{Timed Mating Package}{chapter.6}
 \BOOKMARK [1][-]{section.6.4}{Groups Package}{chapter.6}
 \BOOKMARK [0][-]{chapter.7}{Indices and tables}{}
+<<<<<<< HEAD:Docs/build/latex/MouseDB.out
+\BOOKMARK [0][-]{section*.230}{Python Module Index}{}
+\BOOKMARK [0][-]{section*.231}{Index}{}
+=======
 \BOOKMARK [0][-]{section*.195}{Python Module Index}{}
 \BOOKMARK [0][-]{section*.196}{Index}{}
+>>>>>>> buildout:src/mousedb/Docs/build/latex/MouseDB.out

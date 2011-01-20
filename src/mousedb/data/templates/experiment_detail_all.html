@@ -3,15 +3,13 @@
 {% block title %}Experiment Details - All{% endblock title%}
 
 {% block scripts %}
-	<script type="text/javascript" src="/javascript/jquery-1.3.2.js"></script> 
-	<script type="text/javascript" src="/javascript/dataTables-1.4/media/js/jquery.dataTables.js"</script>
-	<script type="text/javascript">
+{% include "sortable_table_script.html" %}
+		<script type="text/javascript">
         $(document).ready(function() {
                 $(".sortable").dataTable( {
                         "bPaginate": false,
                         });
                 });
-    	</script>
     	</script>
 
 {% endblock scripts %}
@@ -36,8 +34,8 @@
 <tbody>
 {% for measurement in measurement_bodyweight|dictsort:"animal.Genotype" %}
 	<tr>
-		<td><a href="/mousedb/mouse/{{ measurement.animal.get_absolute_url }}">{{ measurement.animal.MouseID }}</a></td>
-		<td><a href="/mousedb{{ measurement.animal.Strain.get_absolute_url }}">{{ measurement.animal.Strain }}</a></td>
+		<td><a href="{{ measurement.animal.get_absolute_url }}">{{ measurement.animal.MouseID }}</a></td>
+		<td><a href="{{ measurement.animal.Strain.get_absolute_url }}">{{ measurement.animal.Strain }}</a></td>
 		<td>{{ measurement.animal.Background }}</td>
 		<td>{{ measurement.animal.Genotype }}</td>
 		<td>{{ experiment.date|timeuntil:measurement.animal.Born }}</td>
@@ -63,8 +61,8 @@
 </thead>
 {% for measurement in measurement_plasmaglucose|dictsort:"animal.Genotype" %}
 	<tr>
-		<td><a href="/mousedb/mouse/{{ measurement.animal.get_absolute_url }}">{{ measurement.animal.MouseID }}</a></td>
-		<td><a href="/mousedb{{ measurement.animal.Strain.get_absolute_url }}">{{ measurement.animal.Strain }}</a></td>
+		<td><a href="{{ measurement.animal.get_absolute_url }}">{{ measurement.animal.MouseID }}</a></td>
+		<td><a href="{{ measurement.animal.Strain.get_absolute_url }}">{{ measurement.animal.Strain }}</a></td>
 		<td>{{ measurement.animal.Background }}</td>
 		<td>{{ measurement.animal.Genotype }}</td>
 		<td>{{ experiment.date|timeuntil:measurement.animal.Born }}</td>
@@ -91,8 +89,8 @@
 <tbody>
 {% for measurement in measurement_seruminsulin|dictsort:"animal.Genotype" %}
 	<tr>
-		<td><a href="/mousedb/{{ measurement.animal.get_absolute_url }}">{{ measurement.animal.MouseID }}</a></td>
-		<td><a href="/mousedb{{ measurement.animal.Strain.get_absolute_url }}">{{ measurement.animal.Strain }}</a></td>
+		<td><a href="{{ measurement.animal.get_absolute_url }}">{{ measurement.animal.MouseID }}</a></td>
+		<td><a href="{{ measurement.animal.Strain.get_absolute_url }}">{{ measurement.animal.Strain }}</a></td>
 		<td>{{ measurement.animal.MouseID }}</td>
 		<td>{{ measurement.animal.Strain }}</td>
 		<td>{{ measurement.animal.Background }}</td>

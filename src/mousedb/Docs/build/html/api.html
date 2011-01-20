@@ -733,6 +733,48 @@ This form is used for formsets to add or modify measurements from within an expe
 <div class="section" id="module-data.admin">
 <span id="administrative-site-configuration"></span><h3>Administrative Site Configuration<a class="headerlink" href="#module-data.admin" title="Permalink to this headline">¶</a></h3>
 </div>
+<div class="section" id="module-data.tests">
+<span id="test-files"></span><h3>Test Files<a class="headerlink" href="#module-data.tests" title="Permalink to this headline">¶</a></h3>
+<p>This file contains tests for the data application.</p>
+<p>These tests will verify generation and function of a all objects in the data application.</p>
+<dl class="class">
+<dt id="data.tests.ExperimentModelTests">
+<em class="property">class </em><tt class="descclassname">data.tests.</tt><tt class="descname">ExperimentModelTests</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#data.tests.ExperimentModelTests" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></tt></p>
+<p>Test the Experiment model contained in the &#8216;data&#8217; application.</p>
+<dl class="method">
+<dt id="data.tests.ExperimentModelTests.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#data.tests.ExperimentModelTests.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiate the test client.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="data.tests.ExperimentModelTests.tearDown">
+<tt class="descname">tearDown</tt><big>(</big><big>)</big><a class="headerlink" href="#data.tests.ExperimentModelTests.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Depopulate created model instances from test database.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="data.tests.ExperimentModelTests.test_create_experiment_minimal">
+<tt class="descname">test_create_experiment_minimal</tt><big>(</big><big>)</big><a class="headerlink" href="#data.tests.ExperimentModelTests.test_create_experiment_minimal" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a test for creating a new experiment object, with only the minimum fields being entered</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="data.tests.ExperimentModelTests.test_experiment_get_absolute_url">
+<tt class="descname">test_experiment_get_absolute_url</tt><big>(</big><big>)</big><a class="headerlink" href="#data.tests.ExperimentModelTests.test_experiment_get_absolute_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test verifies the absolute url of an experiment object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="data.tests.ExperimentModelTests.test_experiment_unicode">
+<tt class="descname">test_experiment_unicode</tt><big>(</big><big>)</big><a class="headerlink" href="#data.tests.ExperimentModelTests.test_experiment_unicode" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test verifies that the unicode representation of an experiment is date-feeding state</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 </div>
 <div class="section" id="module-animal">
 <span id="animals-package"></span><h2>Animals Package<a class="headerlink" href="#module-animal" title="Permalink to this headline">¶</a></h2>
@@ -1056,6 +1098,85 @@ This admin action also shows as the output the number of mice sacrificed.</p>
 </dd></dl>
 
 </div>
+<div class="section" id="id5">
+<h3>Test Files<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<span class="target" id="module-animal.tests"></span><p>This file contains tests for the animal application.</p>
+<p>These tests will verify generation and function of a new breeding, strain and animal object.</p>
+<dl class="class">
+<dt id="animal.tests.BreedingModelTests">
+<em class="property">class </em><tt class="descclassname">animal.tests.</tt><tt class="descname">BreedingModelTests</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#animal.tests.BreedingModelTests" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></tt></p>
+<p>Test the models contained in the &#8216;groups&#8217; app.</p>
+<dl class="method">
+<dt id="animal.tests.BreedingModelTests.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#animal.tests.BreedingModelTests.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiate the test client.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="animal.tests.BreedingModelTests.tearDown">
+<tt class="descname">tearDown</tt><big>(</big><big>)</big><a class="headerlink" href="#animal.tests.BreedingModelTests.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Depopulate created model instances from test database.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="animal.tests.BreedingModelTests.test_autoset_active_state">
+<tt class="descname">test_autoset_active_state</tt><big>(</big><big>)</big><a class="headerlink" href="#animal.tests.BreedingModelTests.test_autoset_active_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a test for creating a new breeding object, with only the minimum being entered.  That object is then tested for the active state being automatically set when a End date is specified.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="animal.tests.BreedingModelTests.test_create_animal_minimal">
+<tt class="descname">test_create_animal_minimal</tt><big>(</big><big>)</big><a class="headerlink" href="#animal.tests.BreedingModelTests.test_create_animal_minimal" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a test for creating a new animal object, with only the minimum fields being entered</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="animal.tests.BreedingModelTests.test_create_breeding_minimal">
+<tt class="descname">test_create_breeding_minimal</tt><big>(</big><big>)</big><a class="headerlink" href="#animal.tests.BreedingModelTests.test_create_breeding_minimal" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a test for creating a new breeding object, with only the minimum being entered.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="animal.tests.BreedingModelTests.test_unicode">
+<tt class="descname">test_unicode</tt><big>(</big><big>)</big><a class="headerlink" href="#animal.tests.BreedingModelTests.test_unicode" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a test for creating a new animal object, with only the minimum fields being entered.  It then tests that the correct unicode representation is being generated.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="animal.tests.BreedingViewTests">
+<em class="property">class </em><tt class="descclassname">animal.tests.</tt><tt class="descname">BreedingViewTests</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#animal.tests.BreedingViewTests" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></tt></p>
+<dl class="method">
+<dt id="animal.tests.BreedingViewTests.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#animal.tests.BreedingViewTests.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="animal.tests.BreedingViewTests.tearDown">
+<tt class="descname">tearDown</tt><big>(</big><big>)</big><a class="headerlink" href="#animal.tests.BreedingViewTests.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="animal.tests.BreedingViewTests.test_breeding_list">
+<tt class="descname">test_breeding_list</tt><big>(</big><big>)</big><a class="headerlink" href="#animal.tests.BreedingViewTests.test_breeding_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="animal.tests.BreedingViewTests.test_breeding_list_all">
+<tt class="descname">test_breeding_list_all</tt><big>(</big><big>)</big><a class="headerlink" href="#animal.tests.BreedingViewTests.test_breeding_list_all" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="animal.tests.BreedingViewTests.test_breeding_new">
+<tt class="descname">test_breeding_new</tt><big>(</big><big>)</big><a class="headerlink" href="#animal.tests.BreedingViewTests.test_breeding_new" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
 </div>
 <div class="section" id="module-timed_mating">
 <span id="timed-mating-package"></span><h2>Timed Mating Package<a class="headerlink" href="#module-timed_mating" title="Permalink to this headline">¶</a></h2>
@@ -1066,8 +1187,8 @@ Based on this information, the age of an embryo can be estimated.
 When a breeding cage is defined, one option is to set this cage as a timed mating cage (ie Timed_Mating=True).  
 If this is the case, then a plug event can be registered and recorded for this mating set.  
 If the mother gives birth then this cage is implicitly set as a normal breeding cage.</p>
-<div class="section" id="id5">
-<h3>Models<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id6">
+<h3>Models<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <span class="target" id="module-timed_mating.models"></span><p>This defines the data model for the timed_mating app.</p>
 <p>Currently the only data model is for PlugEvents.</p>
 <dl class="class">
@@ -1081,8 +1202,8 @@ Upon sacrifice of the mother, then genotyped alive and dead embryos can be enter
 </dd></dl>
 
 </div>
-<div class="section" id="id6">
-<h3>Forms<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id7">
+<h3>Forms<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <span class="target" id="module-timed_mating.forms"></span><p>This package describes forms used by the Timed Mating app.</p>
 <dl class="class">
 <dt id="timed_mating.forms.BreedingPlugForm">
@@ -1108,8 +1229,8 @@ Upon sacrifice of the mother, then genotyped alive and dead embryos can be enter
 </dd></dl>
 
 </div>
-<div class="section" id="id7">
-<h3>Views and URLs<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id8">
+<h3>Views and URLs<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <span class="target" id="module-timed_mating.views"></span><p>This package defines custom views for the timed_mating application.</p>
 <p>Currently all views are generic CRUD views except for the view in which a plug event is defined from a breeding cage.</p>
 <dl class="function">
@@ -1145,8 +1266,8 @@ Upon sacrifice of the mother, then genotyped alive and dead embryos can be enter
 <dd></dd></dl>
 
 </div>
-<div class="section" id="id8">
-<h3>Administrative Site Configuration<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id9">
+<h3>Administrative Site Configuration<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
 <span class="target" id="module-timed_mating.admin"></span><p>Settings to control the admin interface for the timed_mating app.</p>
 <p>This file defines a PlugEventsAdmin object to enter parameters about individual plug events/</p>
 <dl class="class">
@@ -1162,14 +1283,57 @@ Upon sacrifice of the mother, then genotyped alive and dead embryos can be enter
 </dd></dl>
 
 </div>
+<div class="section" id="id10">
+<h3>Test Files<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<span class="target" id="module-timed_mating.tests"></span><p>This file contains tests for the timed_mating application.</p>
+<p>These tests will verify generation of a new PlugEvent object.</p>
+<dl class="class">
+<dt id="timed_mating.tests.GroupsModelTests">
+<em class="property">class </em><tt class="descclassname">timed_mating.tests.</tt><tt class="descname">GroupsModelTests</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#timed_mating.tests.GroupsModelTests" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></tt></p>
+<p>Test the models contained in the &#8216;groups&#8217; app.</p>
+<dl class="method">
+<dt id="timed_mating.tests.GroupsModelTests.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#timed_mating.tests.GroupsModelTests.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiate the test client.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="timed_mating.tests.GroupsModelTests.tearDown">
+<tt class="descname">tearDown</tt><big>(</big><big>)</big><a class="headerlink" href="#timed_mating.tests.GroupsModelTests.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Depopulate created model instances from test database.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="timed_mating.tests.GroupsModelTests.test_create_plugevent_minimal">
+<tt class="descname">test_create_plugevent_minimal</tt><big>(</big><big>)</big><a class="headerlink" href="#timed_mating.tests.GroupsModelTests.test_create_plugevent_minimal" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a test for creating a new PlugEvent object, with only the minimum being entered.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="timed_mating.tests.GroupsModelTests.test_create_plugevent_most_fields">
+<tt class="descname">test_create_plugevent_most_fields</tt><big>(</big><big>)</big><a class="headerlink" href="#timed_mating.tests.GroupsModelTests.test_create_plugevent_most_fields" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a test for creating a new PlugEvent object.</p>
+<p>This test uses a Breeding, PlugDate, PlugMale and PlugFemale field.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="timed_mating.tests.GroupsModelTests.test_set_plugevet_inactive">
+<tt class="descname">test_set_plugevet_inactive</tt><big>(</big><big>)</big><a class="headerlink" href="#timed_mating.tests.GroupsModelTests.test_set_plugevet_inactive" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a test for the automatic inactivation of a cage when the SacrificeDate is entered.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 </div>
 <div class="section" id="module-groups">
 <span id="groups-package"></span><h2>Groups Package<a class="headerlink" href="#module-groups" title="Permalink to this headline">¶</a></h2>
 <p>This package defines the Group application.
 This app defines generic Group and License information for a particular installation of MouseDB.  
 Because every page on this site identifies both the Group and data restrictions, at a minimum, group information must be provided upon installation (see installation instructions).</p>
-<div class="section" id="id9">
-<h3>Models<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id11">
+<h3>Models<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
 <span class="target" id="module-groups.models"></span><dl class="class">
 <dt id="groups.models.Group">
 <em class="property">class </em><tt class="descclassname">groups.models.</tt><tt class="descname">Group</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#groups.models.Group" title="Permalink to this definition">¶</a></dt>
@@ -1180,11 +1344,11 @@ All other fields (group_slug, group_url, license, contact_title, contact_first, 
 </dd></dl>
 
 </div>
-<div class="section" id="id10">
-<h3>Views and URLs<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id12">
+<h3>Views and URLs<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
 <span class="target" id="module-groups.views"></span></div>
-<div class="section" id="id11">
-<h3>Administrative Site Configuration<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id13">
+<h3>Administrative Site Configuration<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
 <span class="target" id="module-groups.admin"></span><dl class="class">
 <dt id="groups.admin.GroupAdmin">
 <em class="property">class </em><tt class="descclassname">groups.admin.</tt><tt class="descname">GroupAdmin</tt><big>(</big><em>model</em>, <em>admin_site</em><big>)</big><a class="headerlink" href="#groups.admin.GroupAdmin" title="Permalink to this definition">¶</a></dt>
@@ -1212,6 +1376,54 @@ All other fields (group_slug, group_url, license, contact_title, contact_first, 
 </dd></dl>
 
 </div>
+<div class="section" id="id14">
+<h3>Test Files<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<span class="target" id="module-groups.tests"></span><p>This file contains tests for the groups application.</p>
+<p>These tests will verify generation of a new group and license object.</p>
+<dl class="class">
+<dt id="groups.tests.GroupsModelTests">
+<em class="property">class </em><tt class="descclassname">groups.tests.</tt><tt class="descname">GroupsModelTests</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#groups.tests.GroupsModelTests" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></tt></p>
+<p>Test the models contained in the &#8216;groups&#8217; app.</p>
+<dl class="method">
+<dt id="groups.tests.GroupsModelTests.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#groups.tests.GroupsModelTests.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiate the test client.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="groups.tests.GroupsModelTests.tearDown">
+<tt class="descname">tearDown</tt><big>(</big><big>)</big><a class="headerlink" href="#groups.tests.GroupsModelTests.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Depopulate created model instances from test database.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="groups.tests.GroupsModelTests.test_create_group_all_fields">
+<tt class="descname">test_create_group_all_fields</tt><big>(</big><big>)</big><a class="headerlink" href="#groups.tests.GroupsModelTests.test_create_group_all_fields" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a test for creating a new group object, with all fields being entered, except license.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="groups.tests.GroupsModelTests.test_create_group_minimal">
+<tt class="descname">test_create_group_minimal</tt><big>(</big><big>)</big><a class="headerlink" href="#groups.tests.GroupsModelTests.test_create_group_minimal" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a test for creating a new group object, with only the minimum being entered.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="groups.tests.GroupsModelTests.test_create_license_all_fields">
+<tt class="descname">test_create_license_all_fields</tt><big>(</big><big>)</big><a class="headerlink" href="#groups.tests.GroupsModelTests.test_create_license_all_fields" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a test for creating a new license object, with all fields being entered.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="groups.tests.GroupsModelTests.test_create_license_minimal">
+<tt class="descname">test_create_license_minimal</tt><big>(</big><big>)</big><a class="headerlink" href="#groups.tests.GroupsModelTests.test_create_license_minimal" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a test for creating a new license object, with only the minimum being entered.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 </div>
 </div>
 
@@ -1232,6 +1444,7 @@ All other fields (group_slug, group_url, license, contact_title, contact_first, 
 <li><a class="reference internal" href="#module-data.forms">Forms</a></li>
 <li><a class="reference internal" href="#module-data.views">Views and URLs</a></li>
 <li><a class="reference internal" href="#module-data.admin">Administrative Site Configuration</a></li>
+<li><a class="reference internal" href="#module-data.tests">Test Files</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-animal">Animals Package</a><ul>
@@ -1245,19 +1458,22 @@ All other fields (group_slug, group_url, license, contact_title, contact_first, 
 <li><a class="reference internal" href="#id2">Forms</a></li>
 <li><a class="reference internal" href="#id3">Views and URLs</a></li>
 <li><a class="reference internal" href="#id4">Administrative Site Configuration</a></li>
+<li><a class="reference internal" href="#id5">Test Files</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-timed_mating">Timed Mating Package</a><ul>
-<li><a class="reference internal" href="#id5">Models</a></li>
-<li><a class="reference internal" href="#id6">Forms</a></li>
-<li><a class="reference internal" href="#id7">Views and URLs</a></li>
-<li><a class="reference internal" href="#id8">Administrative Site Configuration</a></li>
+<li><a class="reference internal" href="#id6">Models</a></li>
+<li><a class="reference internal" href="#id7">Forms</a></li>
+<li><a class="reference internal" href="#id8">Views and URLs</a></li>
+<li><a class="reference internal" href="#id9">Administrative Site Configuration</a></li>
+<li><a class="reference internal" href="#id10">Test Files</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-groups">Groups Package</a><ul>
-<li><a class="reference internal" href="#id9">Models</a></li>
-<li><a class="reference internal" href="#id10">Views and URLs</a></li>
-<li><a class="reference internal" href="#id11">Administrative Site Configuration</a></li>
+<li><a class="reference internal" href="#id11">Models</a></li>
+<li><a class="reference internal" href="#id12">Views and URLs</a></li>
+<li><a class="reference internal" href="#id13">Administrative Site Configuration</a></li>
+<li><a class="reference internal" href="#id14">Test Files</a></li>
 </ul>
 </li>
 </ul>

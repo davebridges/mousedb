@@ -8,10 +8,10 @@
 
 <head>
  	<title property="dc:title">{% block title %}{{ group}} MouseDB{% endblock title %}</title>
-	<link rel="stylesheet" type="text/css" href="/mousedb-media/css/mousedb.css"/> 
-	<link rel="stylesheet" type="text/css" href="/mousedb-media/css/960.gs.css"/> 
+	<link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}/css/mousedb.css"/> 
+	<link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}/css/960.gs.css"/> 
     <link rel="meta" title="DOAP" href="http://github.com/davebridges/mousedb/raw/master/media/doap.rdf" type="application/rdf+xml"/>
-	<link rel="shortcut icon" href="/mousedb-media/favicon.ico" type="image/x-icon"/>
+	<link rel="shortcut icon" href="{{MEDIA_URL}}/favicon.ico" type="image/x-icon"/>
 	{% include "jquery_script.html" %}
 	{% include "jquery_ui_script_css.html" %}
 	{% block scripts%}{% endblock scripts %}
@@ -33,7 +33,7 @@
 	<div id = "header" class="grid_12">
 		<ul id="menu">
 			<li><a href="{% url home %}" title="Home">Home</a></li>
-			{% if user.is_staff %}<li><a href="/mousedb/admin" title="Admin">Admin Site</a></li>{% endif %}
+			{% if user.is_staff %}<li><a href="{% url admin:index %}" title="Admin">Admin Site</a></li>{% endif %}
 			<li><a href="{% url todo-list %}" title="To Do List">To Do List</a></li>
 			<li><a href="{% url breeding-list %}" title="Breeding Cages">Breeding Cages</a></li>
 			<li><a href="{% url strain-list %}" title="Strain List">Strain List</a></li>

@@ -13,14 +13,14 @@ def limited_object_detail(*args, **kwargs):
 	return object_detail(*args, **kwargs)
 
 urlpatterns = patterns('',
-	(r'^pharmaceuticals?/(?P<object_id>\d*)', limited_object_detail, {
+	url(r'^pharmaceuticals?/(?P<object_id>\d*)', limited_object_detail, {
 		'queryset': Pharmaceutical.objects.all(),
 		'template_name': 'pharmaceutical_detail.html',
 		'template_object_name': 'pharmaceutical',
-		}),
-	(r'^diets?/(?P<object_id>\d*)', limited_object_detail, {
+		}, name="pharmaceutical-list"),
+	url(r'^diets?/(?P<object_id>\d*)', limited_object_detail, {
 		'queryset': Diet.objects.all(),
 		'template_name': 'diet_detail.html',
 		'template_object_name': 'diet',
-		}),
+		}, name="diet-list"),
 )
