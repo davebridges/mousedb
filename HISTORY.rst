@@ -11,6 +11,7 @@ Stuff To Do
 * Make experiment_add into a form without the experiment field where that is saved automatically.
 * The MEDIA_URL and LOGIN_URL are hardcoded, this should be fixed.
 * Need to update get_absolute_url for all models
+* Set a post-save-redirect for measurement-new and measurement-edit
 * Still need the following tests
  * ModelTests: animal.Strain, data.Treatment, data.Assay, data.Diet, data.Environment, data.Experiment, data.Implantation, data.Measurement, data.Pharmaceutical, data.Researcher, data.Transplantation, data.Vendor
  * ViewTests: treatment-list,treatment-new, treatment-edit, treatment-delete, experiment-list, experiment-detail, experiment-detail-csv, data-entry, experiment-new, measurement-list, experiemnt-edit, measurement-edit, measurement-delete, pharmaceutical-list, diet-list, study-experiment-new
