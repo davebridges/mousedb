@@ -116,7 +116,7 @@
 </div>
 <h2>Pups</h2>
 <div id="pups" class="fg-buttonset">
-{% if perms.animal.create_animal %}
+{% if perms.animal.add_animal %}
 <a href="{% url animal-multiple-pups-new breeding.id %}"><button class="fg-button ui-state-default ui-corner-left"><span class="ui-icon ui-icon-pencil"></span>Add New Pups</button></a>
 {% endif %}
 {% if perms.animal.change_animal %}
