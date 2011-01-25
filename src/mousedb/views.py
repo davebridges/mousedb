@@ -9,8 +9,8 @@ import datetime
 def todo(request):
 	eartag_list = Animal.objects.filter(MouseID__isnull=True, Alive=True).order_by('Strain','Background','Rack','Cage')
 	genotype_list = Animal.objects.filter(Genotype="N.D.", Alive=True).exclude(Strain__Strain="C57BL/6").order_by('Strain','Background','Rack','Cage')
-	wean = datetime.date.today() - datetime.timedelta(days=30)
-	wean_list = Animal.objects.filter(Born__gt=wean).filter(Weaned=None,Alive=True).exclude(Strain=2).order_by('Strain','Background','Rack','Cage')
+	wean = datetime.date.today() - datetime.timedelta(days=21)
+	wean_list = Animal.objects.filter(Born__lt=wean).filter(Weaned=None,Alive=True).exclude(Strain=2).order_by('Strain','Background','Rack','Cage')
 	return render_to_response('todo.html', {'eartag_list':eartag_list, 'wean_list':wean_list, 'genotype_list':genotype_list},context_instance=RequestContext(request))
 
 @login_required

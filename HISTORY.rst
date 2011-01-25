@@ -3,6 +3,7 @@ Version 0.2.1dev
 * Added units tests for data and timed_mating apps.  
 * Added south, mysql-python and django-ajax-selects dependencies to setup.py
 * Removed all references to "mousedb" in urls.  This allows for separate installations to use different server locations (ie /mousedb-dave and /mousedb-nicole.  Checked that all templates use get_absolute_url or {% url url-name %} tags.
+* Fixed error in todo/wean page to show only animals >21 days old which have not been weaned.
 * Updated documentation for installation using pip and buildout
 
 Stuff To Do

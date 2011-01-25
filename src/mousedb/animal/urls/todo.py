@@ -19,7 +19,7 @@ def limited_object_list(*args, **kwargs):
 def limited_object_detail(*args, **kwargs):
 	return object_detail(*args, **kwargs)
 
-wean = datetime.date.today() - datetime.timedelta(days=30)
+wean = datetime.date.today() - datetime.timedelta(days=21)
 
 urlpatterns = patterns('',
 	url(r'^$', 'mousedb.views.todo', name="todo-list"),
@@ -34,7 +34,7 @@ urlpatterns = patterns('',
 		'template_object_name': 'animal',
 		}, name="todo-genotype"),
 	url(r'^wean/$',limited_object_list, {
-		'queryset': Animal.objects.filter(Born__gt=wean).filter(Weaned=None,Alive=True).exclude(Strain=2),
+		'queryset': Animal.objects.filter(Born__lt=(datetime.date.today() - datetime.timedelta(days=21)),Weaned=None,Alive=True).exclude(Strain__Strain="C57BL/6"),
 		'template_name': 'animal_list.html',
 		'template_object_name': 'animal',
 		}, name="todo-weaning"),
