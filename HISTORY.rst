@@ -4,6 +4,7 @@ Version 0.2.1dev
 * Added south, mysql-python and django-ajax-selects dependencies to setup.py
 * Removed all references to "mousedb" in urls.  This allows for separate installations to use different server locations (ie /mousedb-dave and /mousedb-nicole.  Checked that all templates use get_absolute_url or {% url url-name %} tags.
 * Fixed error in todo/wean page to show only animals >21 days old which have not been weaned.
+* Added logout button
 * Updated documentation for installation using pip and buildout
 
 Stuff To Do
@@ -15,7 +16,7 @@ Stuff To Do
 * Set a post-save-redirect for measurement-new and measurement-edit
 * Still need the following tests
  * ModelTests: animal.Strain, data.Treatment, data.Assay, data.Diet, data.Environment, data.Experiment, data.Implantation, data.Measurement, data.Pharmaceutical, data.Researcher, data.Transplantation, data.Vendor
- * ViewTests: treatment-list,treatment-new, treatment-edit, treatment-delete, experiment-list, experiment-detail, experiment-detail-csv, data-entry, experiment-new, measurement-list, experiemnt-edit, measurement-edit, measurement-delete, pharmaceutical-list, diet-list, study-experiment-new
+ * ViewTests: logout-view,treatment-list,treatment-new, treatment-edit, treatment-delete, experiment-list, experiment-detail, experiment-detail-csv, data-entry, experiment-new, measurement-list, experiemnt-edit, measurement-edit, measurement-delete, pharmaceutical-list, diet-list, study-experiment-new
 * Change version number in setup.py and Docs/source/conf.py Update Documentation and move to root directory
 
 
