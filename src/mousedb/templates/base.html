@@ -22,7 +22,10 @@
 	<div id = "user" class="grid_4">
 	{% if user.is_authenticated %}
 	<p class="ui-state-default ui-corner-all">
-     <span class="ui-icon ui-icon-person" style="float:left;"></span>Welcome, <b>{{ user.first_name }} {{ user.last_name }}</b>.
+     <span class="ui-icon ui-icon-person" style="float:left;"></span>Welcome, <b>{{ user.first_name }} {{ user.last_name }}</b>
+	</p>
+	<p class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-circle-close" style="float:left;"></span>
+	<a href="{% url logout %}">Log out</a>
 	</p>
 	{% else %}
 	<p class="ui-state-default ui-corner-all">

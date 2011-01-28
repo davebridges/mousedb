@@ -1,9 +1,19 @@
 from django.shortcuts import render_to_response
 from mousedb.animal.models import Animal, Strain
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 from django.template import RequestContext
 from django.db import connection
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
 import datetime
+
+def logout_view(request):
+    """This view logs out the current user.
+	
+    It redirects the user to the '/index/' page which in turn should redirect to the login page."""
+    logout(request)
+    return HttpResponseRedirect(reverse('home'))
 
 @login_required
 def todo(request):
