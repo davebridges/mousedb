@@ -32,3 +32,5 @@ DATABASES = {
     }
 }
 
+WEAN_AGE = 21 #this is the earliers age at which pups can be weaned from their parents.
+GENOTYPE_AGE = 14 #this is the earliest age at which pups can be genotyped or ear tagged.

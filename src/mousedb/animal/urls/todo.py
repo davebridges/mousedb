@@ -8,8 +8,10 @@ from django.conf.urls.defaults import *
 from django.contrib.auth.decorators import login_required
 from django.views.generic.list_detail import object_list, object_detail
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
 from mousedb.animal.models import Animal
+from mousedb import settings
 
 @login_required
 def limited_object_list(*args, **kwargs):
@@ -19,22 +21,20 @@ def limited_object_list(*args, **kwargs):
 def limited_object_detail(*args, **kwargs):
 	return object_detail(*args, **kwargs)
 
-wean = datetime.date.today() - datetime.timedelta(days=21)
-
 urlpatterns = patterns('',
 	url(r'^$', 'mousedb.views.todo', name="todo-list"),
 	url(r'^eartag/$', limited_object_list, {
-		'queryset': Animal.objects.filter(MouseID__isnull=True, Alive=True),
+		'queryset': Animal.objects.filter(Born__lt=(datetime.date.today() - datetime.timedelta(days=settings.WEAN_AGE))).filter(MouseID__isnull=True, Alive=True),
 		'template_name': 'animal_list.html',
 		'template_object_name': 'animal',
 		}, name="todo-eartags"),
 	url(r'^genotype/$', limited_object_list, {
-		'queryset': Animal.objects.filter(Genotype="N.D.", Alive=True).exclude(Strain__Strain="C57BL/6"),
+		'queryset': Animal.objects.filter(Q(Genotype='N.D.')|Q(Genotype__icontains='?')).filter(Alive=True, Born__lt=(datetime.date.today() - datetime.timedelta(days=settings.GENOTYPE_AGE))),
 		'template_name': 'animal_list.html',
 		'template_object_name': 'animal',
 		}, name="todo-genotype"),
 	url(r'^wean/$',limited_object_list, {
-		'queryset': Animal.objects.filter(Born__lt=(datetime.date.today() - datetime.timedelta(days=21)),Weaned=None,Alive=True).exclude(Strain__Strain="C57BL/6"),
+		'queryset': Animal.objects.filter(Born__lt=(datetime.date.today() - datetime.timedelta(days=settings.WEAN_AGE)),Weaned=None,Alive=True).exclude(Strain__Strain="C57BL/6"),
 		'template_name': 'animal_list.html',
 		'template_object_name': 'animal',
 		}, name="todo-weaning"),

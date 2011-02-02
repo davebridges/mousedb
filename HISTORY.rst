@@ -5,6 +5,7 @@ Version 0.2.1dev
 * Removed all references to "mousedb" in urls.  This allows for separate installations to use different server locations (ie /mousedb-dave and /mousedb-nicole.  Checked that all templates use get_absolute_url or {% url url-name %} tags.
 * Fixed error in todo/wean page to show only animals >21 days old which have not been weaned.
 * Added logout button
+* Adjusted filters for genotyping and weaning.  Updated localsettings_empty.py with default values.
 * Updated documentation for installation using pip and buildout
 
 Stuff To Do
