@@ -117,6 +117,30 @@ class StudyViewTests(TestCase):
         self.assertTemplateUsed(response, 'jquery_script.html')
         self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
         self.assertTemplateUsed(response, 'confirm_delete.html')
+		
+		
+class TreatmentViewTests(TestCase):
+    """These tests test the views associated with Treatment objects."""
 
+    def setUp(self):
+        self.client = Client()
+        self.test_user = User.objects.create_user('blah', 'blah@blah.com', 'blah')
+        self.test_user.is_superuser = True
+        self.test_user.is_active = True
+        self.test_user.save()
+        self.client.login(username='blah', password='blah')
 
+    def tearDown(self):
+        self.client.logout()
+        self.test_user.delete()
 
+    def test_treatment_detail(self):
+        """This test checks the view which displays a treatment-detail page.  It checks for the correct templates and status code."""        
+
+        response = self.client.get('/breeding/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'base.html')
+        self.assertTemplateUsed(response, 'jquery_script.html')
+        self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(response, 'treatment_detail.html')
+        self.assertTemplateUsed(response, 'sortable_table_script.html')

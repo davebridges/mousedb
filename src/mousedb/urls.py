@@ -12,6 +12,7 @@ urlpatterns = patterns('',
 	(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 	(r'^admin/', include(admin.site.urls)),
 	url(r'^accounts/login/', 'django.contrib.auth.views.login', name="login"),
+	url(r'^accounts/logout/', 'mousedb.views.logout_view', name="logout"),
 
 	url(r'^mouse/', include('mousedb.animal.urls.mouse')),
 	url(r'^mice/', include('mousedb.animal.urls.mouse')),

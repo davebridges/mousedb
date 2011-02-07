@@ -3,7 +3,7 @@ from django.views.generic.list_detail import object_list, object_detail
 from django.views.generic.create_update import create_object, update_object, delete_object
 from django.contrib.auth.decorators import login_required, permission_required
 
-from mousedb.data.forms import ExperimentForm
+from mousedb.data.forms import ExperimentForm, MeasurementForm
 from mousedb.data.models import Measurement, Experiment
 
 @login_required
@@ -25,6 +25,14 @@ def change_experiment(*args, **kwargs):
 @permission_required('data.delete_experiment')
 def delete_experiment(*args, **kwargs):
 	return delete_object(*args, **kwargs)
+	
+@permission_required('data.change_measurement')
+def change_measurement(*args, **kwargs):
+	return update_object(*args, **kwargs)
+
+@permission_required('data.delete_measurement')
+def delete_measurement(*args, **kwargs):
+	return delete_object(*args, **kwargs)	
 
 urlpatterns = patterns('',
 	url(r'^$', 'mousedb.data.views.experiment_list', name="experiment-list"),
@@ -41,9 +49,22 @@ urlpatterns = patterns('',
 		'login_required':True,
 		'post_save_redirect':'/mousedb/experiment/'
 		}, name="experiment-new"),
+	url(r'^(?P<object_id>\d*)/edit/$', change_experiment, {
+		'form_class': ExperimentForm,
+		'template_name': 'experiment_form.html',
+		}, name="experiment-edit"),		
 	url(r'^data/all$', limited_object_list, {
 		'queryset': Measurement.objects.all(),
 		'template_name': 'data.html',
 		'template_object_name': 'data',
 		}, name="measurement_list"),
+	url(r'^data/(?P<object_id>\d*)/edit/$', change_measurement, {
+		'form_class': MeasurementForm,
+		'template_name': 'measurement_form.html',
+		}, name="measurement-edit"),
+	url(r'^(?P<object_id>\d*)/delete/$', delete_measurement, {
+		'model': Measurement,
+		'post_delete_redirect': '/mousedb/data/',
+		'template_name' : 'confirm_delete.html',
+		}, name = "measurement-delete"),		
 )
