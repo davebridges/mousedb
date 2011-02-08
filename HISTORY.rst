@@ -17,7 +17,7 @@ Stuff To Do
 * Set a post-save-redirect for measurement-new and measurement-edit
 * Still need the following tests
  * ModelTests: animal.Strain, data.Treatment, data.Assay, data.Diet, data.Environment, data.Experiment, data.Implantation, data.Measurement, data.Pharmaceutical, data.Researcher, data.Transplantation, data.Vendor
- * ViewTests: logout-view,treatment-list,treatment-new, treatment-edit, treatment-delete, experiment-list, experiment-detail, experiment-detail-csv, data-entry, experiment-new, measurement-list, experiemnt-edit, measurement-edit, measurement-delete, pharmaceutical-list, diet-list, study-experiment-new
+ * ViewTests: breeding-pups-wean,logout-view,treatment-list,treatment-new, treatment-edit, treatment-delete, experiment-list, experiment-detail, experiment-detail-csv, data-entry, experiment-new, measurement-list, experiemnt-edit, measurement-edit, measurement-delete, pharmaceutical-list, diet-list, study-experiment-new
 * Change version number in setup.py and Docs/source/conf.py Update Documentation and move to root directory
 
 
