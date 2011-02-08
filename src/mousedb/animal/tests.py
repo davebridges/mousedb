@@ -44,6 +44,7 @@ class AnimalModelTests(TestCase):
         animal.MouseID = 1234
         animal.save()
         self.assertEquals(animal.__unicode__(), "test_strain-EarTag #1234")
+		
 
 class BreedingModelTests(TestCase):
     """Tests the model attributes of Breeding objects contained in the animal app."""

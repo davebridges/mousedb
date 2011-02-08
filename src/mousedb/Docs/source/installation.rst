@@ -16,20 +16,21 @@ Software Dependencies
   c. http://github.com/davebridges/mousedb for the source code via Git.  If you might contribute code to the project use the source code.
 
 Downloading and/or unzipping will create a directory named mousedb.  You can update to the newest revision at any time either using git or downloading and re-installing the newer version.  Changing or updating software versions will not alter any saved data, but you will have to update the localsettings.py file (described below).
-3. **Database software**.  Recommended to use mysql, available at http://dev.mysql.com/downloads/mysql/ .  It is also possible to use SQLite, PostgreSQL, MySQL, or Oracle.  See http://docs.djangoproject.com/en/1.2/topics/install/#database-installation for more information.
-4. **Webserver**.  Apache is recommended, available at http://www.apache.org/dyn/closer.cgi .  It is also possible to use FastCGI, SCGI, or AJP.  See http://docs.djangoproject.com/en/1.2/howto/deployment/ for more details.
+
+3. **Database software**.  Recommended to use mysql, available at http://dev.mysql.com/downloads/mysql/ .  It is also possible to use SQLite, PostgreSQL, MySQL, or Oracle.  See http://docs.djangoproject.com/en/1.2/topics/install/#database-installation for more information.  You will also need the python bindings for your database.  If using MySQL python-mysql will be installed below.
+4. **Webserver**.  Apache is recommended, available at http://www.apache.org/dyn/closer.cgi .  It is also possible to use FastCGI, SCGI, or AJP.  See http://docs.djangoproject.com/en/1.2/howto/deployment/ for more details.  You will also need to enable mod_wsgi if using apache.  See http://code.google.com/p/modwsgi/wiki/InstallationInstructions for those instructions.
 
 Installation
 ------------
 1. Navigate into mousedb folder
 2. Run **python setup.py install** to get dependencies.  If you installed via pip, this step is not necessary (but wont hurt).  This will install the dependencies South, mysql-python and django-ajax-selects.
 3. Run **python bootstrap.py** to get the correct version of Django and to set up an isolated environment.  This step may take a few minutes.
-4. Run **bin\buildout** to generate django, test and wsgi scripts.  This step may take a few minutes.
+4. Run **bin\\buildout** to generate django, test and wsgi scripts.  This step may take a few minutes.
 
 Database Setup
 --------------
 1. Create a new database.  Check the documentation for your database software for the appropriate syntax for this step.  You need to record the user, password, host and database name.  If you are using SQLite this step is not required.
-2. Go to localsettings_empty.py and edit the settings:
+2. Go to \mousedb\src\mousedb\localsettings_empty.py and edit the settings:
 
   * ENGINE: Choose one of 'django.db.backends.postgresql_psycopg2','django.db.backends.postgresql', 'django.db.backends.mysql', 'django.db.backends.sqlite3', 'django.db.backends.oracle' depending on the database software used.
   * NAME: database name
@@ -38,6 +39,7 @@ Database Setup
   * HOST: database host
 
 3. Save this file as **localsettings.py** in the same folder as localsettings_empty.py
+4. Migrate into first mousedb directory and enter *django syncdb*.  When prompted create a superuser (who will have all availabler permissions) and a password for this user.
 
 Web Server Setup
 ----------------
@@ -62,14 +64,9 @@ If you want to restrict access to these files, change the Allow from all directi
 
 Final Configuration and User Setup
 ----------------------------------
-Go to a command prompt, navigate to inside the mousedb/src directory and enter the following to get to a python prompt::
-
-  python manage.py shell
-  
-Go to servername/mousedb/admin/groups/group/1 and name your research group and select a license if desired
-  
-Go to servername/mousedb/admin/auth/users/ and create users, selecting usernames, full names, password (or have the user set the password) and then choose group permissions.
+* Go to *servername/mousedb/admin/groups/group/1* and name your research group and select a license if desired
+* Go to *servername/mousedb/admin/auth/users/* and create users, selecting usernames, full names, password (or have the user set the password) and then choose group permissions.
 
 Testing
 -------
-From the mousedb directory run **bin\test** to run the test suite.  See https://github.com/davebridges/mousedb/wiki/Known-Issues---Test-Suite for known issues.  Report any additional errors at the issue page at https://github.com/davebridges/mousedb/issues.
+From the mousedb directory run **bin\\test** or **bin\\django test** to run the test suite.  See https://github.com/davebridges/mousedb/wiki/Known-Issues---Test-Suite for known issues.  Report any additional errors at the issue page at https://github.com/davebridges/mousedb/issues.

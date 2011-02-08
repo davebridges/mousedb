@@ -170,21 +170,25 @@ class Animal(models.Model):
     Alive = models.BooleanField(default=True)
     def __unicode__(self):
         """This defines the unicode string of a mouse.
-If a eartag is present then the string reads some_strain-Eartag #some_number. If an eartag is not present then the mouse is labelled as use some_number, where this number is the internal database identification number and not an eartag.
-"""
+        If a eartag is present then the string reads some_strain-Eartag #some_number. If an eartag is not present then the mouse is labelled as use some_number, where this number is the internal database identification number and not an eartag.
+        """
         if self.MouseID:
             return u'%s-EarTag #%i' % (self.Strain, self.MouseID)
         elif self.id:
              return u'%s (%i)' % (self.Strain, self.id)
         else:
              return u'MOUSE'
+
     @models.permalink
     def get_absolute_url(self):
         return ('animal-detail', [str(self.id)])
+
     def save(self):
+        """The save method for Animal class is over-ridden to set Alive=False when a Death date is entered.  This is not the case for a cause of death."""
         if self.Death:
             self.Alive = False
         super(Animal, self).save()
+
     class Meta:
         ordering = ['Strain', 'MouseID']
 
