@@ -14,7 +14,7 @@
 			<th>Backcross</th>
 			<th>Generation</th>
 			<th>Born</th>
-			<th>Age</th>
+			<th>Age (Days)</th>
 			<th>Markings</th>
 		</tr>
 	</thead>
@@ -38,9 +38,9 @@
 			<td>{{ animal.Generation }}</td>
 			<td>{{ animal.Born }}</td>
 			{% if animal.Death %}
-				<td class="dead">{{ animal.Death }}</td>
+				<td class="dead">{{ animal.age }}</td>
 			{% else %}
-				<td class="age">{{ animal.Born|timesince }}</td>
+				<td class="age">{{ animal.age }}</td>
 			{% endif %}
 			<td>{{ animal.Markings }}</td>
 			{% if perms.animal.add_animal %}
