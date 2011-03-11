@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 
 from mousedb.data.models import Study
 from mousedb.data.forms import StudyForm
+from mousedb.animal.models import Animal
 
 @login_required
 def limited_object_list(*args, **kwargs):
@@ -57,4 +58,9 @@ urlpatterns = patterns('',
 	url(r'^(?P<study_id>\d*)/experiment/new/$', 
             'mousedb.data.views.study_experiment',
              name="study-experiment-new"),
+	url(r'^aging$', limited_object_list, {
+		'queryset': Animal.objects.filter(Alive=False, Cause_of_Death="Unknown"),
+		'template_name': 'animal_list.html',
+		'template_object_name': 'animal',
+		}, name="study-aging-detail"),
 )
