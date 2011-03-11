@@ -31,7 +31,10 @@
 			<td>{{ animal.Background }}</td>
 			<td>{{ animal.Genotype }}</td>
 			<td>{{ animal.Gender }}</td>
-			<td><a href="{% url cage-detail animal.Cage %}">{{ animal.Cage }}</a></td>
+			<td>{% if animal.Cage %}<a href="{% url cage-detail animal.Cage %}">{{ animal.Cage }}</a>
+                {% else %}No Cage Number
+                {% endif %}
+            </td>
 			<td>{{ animal.Rack|all_caps }}</td>
 			<td>{{ animal.Rack_Position|all_caps }}</td>
 			<td>{{ animal.Backcross }}</td>
