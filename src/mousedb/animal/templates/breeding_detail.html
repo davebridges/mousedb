@@ -8,6 +8,7 @@
 {% block header %}Breeding Cage - {{ breeding.Cage }}{% endblock header %}
 
 {% block content %}
+{% if not breeding.Active %}<h2 class="dead">This Breeding Cage is Inactive</h2>{% endif %}
 <table>
  <thead>
  <tr>
