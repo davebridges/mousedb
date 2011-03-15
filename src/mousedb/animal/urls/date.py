@@ -13,7 +13,7 @@ def limited_archive_month(*args, **kwargs):
 	return archive_month(*args, **kwargs)
 
 urlpatterns = patterns('',
-	url(r'^$','mousedb.views.home', name="archive-home"), 
+	url(r'^$','mousedb.animal.views.date_archive_year', name="archive-home"), 
 	url(r'^(?P<year>\d{4})/$', limited_archive_year, {
 		'queryset': Animal.objects.all(),
 		'date_field': 'Born',

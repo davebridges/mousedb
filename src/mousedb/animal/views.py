@@ -2,6 +2,8 @@
 
 This module contains only non-generic views.  Several generic views are also used and are defined in animal/urls/."""
 
+import datetime
+
 from django.shortcuts import render_to_response, get_object_or_404
 from django.contrib.auth.decorators import login_required, permission_required
 from django.forms.models import inlineformset_factory
@@ -219,4 +221,19 @@ def multiple_breeding_pups(request, breeding_id):
         return HttpResponseRedirect( breeding.get_absolute_url() )	
     else:
         form = MultipleBreedingAnimalForm()
-    return render_to_response("animal_multiple_form.html", {"form":form, "breeding":breeding}, context_instance=RequestContext(request))		
+    return render_to_response("animal_multiple_form.html", {"form":form, "breeding":breeding}, context_instance=RequestContext(request))	
+
+def date_archive_year(request):
+    """This view will generate a table of the number of mice born on an annual basis.
+    
+    This view is associated with the url name archive-home, and returns an dictionary of a date and a animal count."""
+    oldest_animal = Animal.objects.order_by('Born')[0]
+    archive_dict = {}
+    tested_year = oldest_animal.Born.year
+    while tested_year <= datetime.date.today().year:
+        archive_dict[tested_year] = Animal.objects.filter(Born__year=tested_year).count()
+        tested_year = tested_year + 1
+    return render_to_response("animal_archive.html", {"archive_dict": archive_dict}, context_instance=RequestContext(request))	    
+
+
+
