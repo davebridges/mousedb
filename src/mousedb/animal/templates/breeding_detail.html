@@ -85,7 +85,7 @@
 	{% if animal.Death %}
 	<td class="dead">Dead</td>
 	{% else %}
-	<td>Alive</td>
+	<td>{{ male.Alive|yesno:"Alive,Deceased,Unknown"  }}</td>
 	{% endif %}	
 	<td>{{ male.Backcross }}</td>
 	<td>{{ male.Generation }}</td>
@@ -106,7 +106,7 @@
 	{% if animal.Death %}
 	<td class="dead">Dead</td>
 	{% else %}
-	<td>Alive</td>
+	<td>{{ female.Alive|yesno:"Alive,Deceased,Unknown" }}</td>
 	{% endif %}
 	<td>{{ female.Backcross }}</td>
 	<td>{{ female.Generation }}</td>
