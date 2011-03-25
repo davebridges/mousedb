@@ -54,15 +54,20 @@ class Assay(models.Model):
 
 
 class Measurement(models.Model):
-	animal = models.ForeignKey(Animal)
-	experiment = models.ForeignKey(Experiment)
-	assay = models.ForeignKey(Assay)
-	values = models.CommaSeparatedIntegerField(blank=True, null=True, max_length=255, help_text="use for time courses, (comma separated values with no spaces)")
-	def __unicode__(self):
-		return u'%s %s' % (self.animal, self.assay)
-	def age(self):
-		age =  self.experiment.date - self.animal.Born
-		return age.days
+    animal = models.ForeignKey(Animal)
+    experiment = models.ForeignKey(Experiment)
+    assay = models.ForeignKey(Assay)
+    values = models.CommaSeparatedIntegerField(blank=True, null=True, max_length=255, help_text="use for time courses, (comma separated values with no spaces)")
+	
+    def __unicode__(self):
+        return u'%s %s' % (self.animal, self.assay)
+	
+    def age(self):
+        age =  self.experiment.date - self.animal.Born
+        return age.days
+    
+    def get_absolute_url(self):
+        return self.animal.get_absolute_url()
 
 	
 class Researcher(models.Model):
