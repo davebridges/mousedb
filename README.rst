@@ -23,7 +23,7 @@ Software Dependencies
 
 Downloading and/or unzipping will create a directory named mousedb.  You can update to the newest revision at any time either using git or downloading and re-installing the newer version.  Changing or updating software versions will not alter any saved data, but you will have to update the localsettings.py file (described below).
 3. **Database software**.  Recommended to use mysql, available at http://dev.mysql.com/downloads/mysql/ .  It is also possible to use SQLite, PostgreSQL, MySQL, or Oracle.  See http://docs.djangoproject.com/en/1.2/topics/install/#database-installation for more information.
-4. **Webserver**.  Apache is recommended, available at http://www.apache.org/dyn/closer.cgi .  It is also possible to use FastCGI, SCGI, or AJP.  See http://docs.djangoproject.com/en/1.2/howto/deployment/ for more details.
+4. **Webserver**.  Apache is recommended, available at http://www.apache.org/dyn/closer.cgi .  It is also possible to use FastCGI, SCGI, or AJP.  See http://docs.djangoproject.com/en/1.2/howto/deployment/ for more details.  The recommended way to use Apache is to download and enable mod_wsgi.  See http://code.google.com/p/modwsgi/ for more details.
 
 Installation
 ------------
