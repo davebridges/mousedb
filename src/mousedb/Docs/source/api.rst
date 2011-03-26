@@ -71,9 +71,6 @@ Models
 .. autoclass:: animal.models.Breeding
    :show-inheritance:
 
-.. autoclass:: animal.models.Cage
-   :show-inheritance:
-
 
 Forms
 +++++

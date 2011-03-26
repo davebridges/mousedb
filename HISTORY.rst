@@ -40,6 +40,7 @@ Stuff To Do
    * **animals app**: breeding-pups, breeding-pups-wean, breeding-pups-change, animal-multiple-pups-new, breeding-list-timed-matings, todo-eartags, todo-genotype, todo-weaning, todo-eartags, todo-no-cage, todo-no-rack, strain-list, strain-new, strain-edit, strain-delete, strain-detail, strain-detail-all, animal-list, animal-list-all, animal-new, animal-update, animal-delete, animal-multiple-new
 * Write a view and template for archive-home.  Update unit test
 * Used jquery-ui buttons in timed_mating app.
+* Update usage document.
 * Change version number in setup.py and Docs/source/conf.py Update Documentation and move to root directory
 
 Version 0.2.1

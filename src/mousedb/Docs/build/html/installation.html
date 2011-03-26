@@ -64,16 +64,16 @@
 <li><strong>MouseDB source code</strong>.  Download from one of the following:</li>
 </ol>
 <blockquote>
-<ol class="loweralpha simple">
+<div><ol class="loweralpha simple">
 <li>Using <strong>pip or easy_install</strong>.  If setuptools (available at <a class="reference external" href="http://pypi.python.org/pypi/setuptools">http://pypi.python.org/pypi/setuptools</a>) is installed type <strong>pip install mousedb</strong> at a command prompt.</li>
 <li><a class="reference external" href="http://github.com/davebridges/mousedb/downloads">http://github.com/davebridges/mousedb/downloads</a> for the current release.  If you will not be contributing to the code, download from here.</li>
 <li><a class="reference external" href="http://github.com/davebridges/mousedb">http://github.com/davebridges/mousedb</a> for the source code via Git.  If you might contribute code to the project use the source code.</li>
 </ol>
-</blockquote>
+</div></blockquote>
 <p>Downloading and/or unzipping will create a directory named mousedb.  You can update to the newest revision at any time either using git or downloading and re-installing the newer version.  Changing or updating software versions will not alter any saved data, but you will have to update the localsettings.py file (described below).</p>
 <ol class="arabic simple" start="3">
 <li><strong>Database software</strong>.  Recommended to use mysql, available at <a class="reference external" href="http://dev.mysql.com/downloads/mysql/">http://dev.mysql.com/downloads/mysql/</a> .  It is also possible to use SQLite, PostgreSQL, MySQL, or Oracle.  See <a class="reference external" href="http://docs.djangoproject.com/en/1.2/topics/install/#database-installation">http://docs.djangoproject.com/en/1.2/topics/install/#database-installation</a> for more information.  You will also need the python bindings for your database.  If using MySQL python-mysql will be installed below.</li>
-<li><strong>Webserver</strong>.  Apache is recommended, available at <a class="reference external" href="http://www.apache.org/dyn/closer.cgi">http://www.apache.org/dyn/closer.cgi</a> .  It is also possible to use FastCGI, SCGI, or AJP.  See <a class="reference external" href="http://docs.djangoproject.com/en/1.2/howto/deployment/">http://docs.djangoproject.com/en/1.2/howto/deployment/</a> for more details.  You will also need to enable mod_wsgi if using apache.  See <a class="reference external" href="http://code.google.com/p/modwsgi/wiki/InstallationInstructions">http://code.google.com/p/modwsgi/wiki/InstallationInstructions</a> for those instructions.</li>
+<li><strong>Webserver</strong>.  Apache is recommended, available at <a class="reference external" href="http://www.apache.org/dyn/closer.cgi">http://www.apache.org/dyn/closer.cgi</a> .  It is also possible to use FastCGI, SCGI, or AJP.  See <a class="reference external" href="http://docs.djangoproject.com/en/1.2/howto/deployment/">http://docs.djangoproject.com/en/1.2/howto/deployment/</a> for more details.  The recommended way to use Apache is to download and enable mod_wsgi.  See <a class="reference external" href="http://code.google.com/p/modwsgi/">http://code.google.com/p/modwsgi/</a> for more details.</li>
 </ol>
 </div>
 <div class="section" id="installation">
@@ -92,14 +92,14 @@
 <li>Go to mousedbsrcmousedblocalsettings_empty.py and edit the settings:</li>
 </ol>
 <blockquote>
-<ul class="simple">
+<div><ul class="simple">
 <li>ENGINE: Choose one of &#8216;django.db.backends.postgresql_psycopg2&#8217;,&#8217;django.db.backends.postgresql&#8217;, &#8216;django.db.backends.mysql&#8217;, &#8216;django.db.backends.sqlite3&#8217;, &#8216;django.db.backends.oracle&#8217; depending on the database software used.</li>
 <li>NAME: database name</li>
 <li>USER: database user</li>
 <li>PASSWORD: database password</li>
 <li>HOST: database host</li>
 </ul>
-</blockquote>
+</div></blockquote>
 <ol class="arabic simple" start="3">
 <li>Save this file as <strong>localsettings.py</strong> in the same folder as localsettings_empty.py</li>
 <li>Migrate into first mousedb directory and enter <em>django syncdb</em>.  When prompted create a superuser (who will have all availabler permissions) and a password for this user.</li>
@@ -113,6 +113,12 @@ Alias /favicon.ico /usr/src/mousedb/src/mousedb/media/favicon.ico
 
 Alias /mousedb-media/ /usr/src/mousedb/src/mousedb/media/
 &lt;Directory /usr/src/mousedb/src/mousedb/media&gt;
+     Order deny,allow
+     Allow from all
+&lt;/Directory&gt;
+
+Alias /static/ /usr/src/mousedb/src/mousedb/static/
+&lt;Directory /usr/src/mousedb/src/mousedb/static&gt;
      Order deny,allow
      Allow from all
 &lt;/Directory&gt;
@@ -206,7 +212,7 @@ WSGIScriptAlias /mousedb /usr/src/mousedb/bin/django.wsgi</pre>
     </div>
     <div class="footer">
         &copy; Copyright 2009-2011, Dave Bridges, Ph.D..
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.6.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
     </div>
   </body>
 </html>

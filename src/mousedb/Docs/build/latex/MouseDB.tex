@@ -12,7 +12,7 @@
 
 
 \title{MouseDB Documentation}
-\date{January 08, 2011}
+\date{March 26, 2011}
 \release{0.2.1dev}
 \author{Dave Bridges, Ph.D.}
 \newcommand{\sphinxlogo}{}
@@ -116,11 +116,9 @@
 Contents:
 
 
-
 \chapter{MouseDB Concepts}
 \label{concepts:welcome-to-mousedb-s-documentation}\label{concepts::doc}\label{concepts:mousedb-concepts}
 Data storage for MouseDB is separated into packages which contain information about animals, and information collected about animals.  There is also a separate module for timed matings of animals.  This document will describe the basics of how data is stored in each of these modules.
-
 
 
 \section{Animal Module}
@@ -128,11 +126,9 @@ Data storage for MouseDB is separated into packages which contain information ab
 Animals are tracked as individual entities, and given associations to breeding cages to follow ancestry, and strains.
 
 
-
 \subsection{Animal}
 \label{concepts:animal}
 Most parameters about an animal are set within the animal object.  Here is where the animals strain, breeding, parentage and many other parameters are included.  Animals have foreignkey relationships with both Strain and Breeding, so an animal may only belong to one of each of those.  As an example, a mouse cannot come from more than one Breeding set, and cannot belong to more than one strain.
-
 
 
 \subsubsection{Backcrosses and Generations}
@@ -140,11 +136,9 @@ Most parameters about an animal are set within the animal object.  Here is where
 For this software, optional tracking of backcrosses and generations is available and is stored as an attribute of an animal.  When an inbred cross is made against a pure background, the backcross increases by 1.  When a heterozygote cross is made, the generation increases by one.  As an example, for every time a mouse in a C57/BL6 background is crossed against a wildtype C57/B6 mouse, the backcross (but not the generation) increases by one.  For every time a mutant strain is crosses against itself (either vs a heterozygote or homozygote of that strain), the generation will increase by one.  Backcrosses should typically be performed against a separate colony of purebred mouse, rather than against wild-type alleles of the mutant strain.
 
 
-
 \subsection{Breeding Cages}
 \label{concepts:breeding-cages}
 A breeding cage is defined as a set of one or more male and one or more female mice.  Because of this, it is not always clear who the precise parentage of an animal is.  If the parentage is known, then the Mother and Father fields can be set for a particular animal.  In the case of Active, if an End field is specified, then the Active field is set to False.  In the case of Cage, if a Cage is provided, and animals are specified under Male or Females for a Breeding object, then the Cage field for those animals is set to that of the breeding cage.  The same is true for both Rack and Rack Position.
-
 
 
 \subsection{Strains}
@@ -153,11 +147,9 @@ A strain is a set of mice with a similar genetics.  Importantly strains are sepa
 The result of this is that a query for a particular strain may then need to be filtered to a specific background.
 
 
-
 \section{Data Module}
 \label{concepts:data-module}
 Data (or measurements) can be stored for any type of measurement.  Conceptually, several pieces of data belong to an experiment (for example several mice are measured at some time) and several experiments belong to a study.  Measurements can be stored independent of experiments and experiments can be performed outside of the context of a study.  It is however, perfered that measurements are stored within an experiment and experiments are stored within studies as this will greatly facilitate the organization of the data.
-
 
 
 \subsection{Studies}
@@ -165,11 +157,9 @@ Data (or measurements) can be stored for any type of measurement.  Conceptually,
 In general studies are a collection of experiments.  These can be grouped together on the basis of animals and/or treatment groups.  A study must have at least one treatment group, which defines the animals and their conditions.
 
 
-
 \subsection{Experiments}
 \label{concepts:experiments}
 An experiment is a collection of measurements for a given set of animals.  In general, an experiment is defined as a number of measurements take in a given day.
-
 
 
 \subsection{Measurements}
@@ -177,17 +167,14 @@ An experiment is a collection of measurements for a given set of animals.  In ge
 A measurement is an animal, an assay and a measurement value.  It can be associated with an experiment, or can stand alone as an individual value.  Measurements can be viewed in the context of a study, an experiment, a treatment group or an animal by going to the appropriate page.
 
 
-
 \section{Timed Matings Module}
 \label{concepts:timed-matings-module}
 Timed matings are a specific type of breeding set.  Generally, for these experiments a mating cage is set up and pregnancy is defined by a plug event.  Based on this information, the age of an embryo can be estimated.  When a breeding cage is defined, one option is to set this cage as a timed mating cage (ie Timed\_Mating=True).  If this is the case, then a plug event can be registered and recorded for this mating set.  If the mother gives birth then this cage is implicitly set as a normal breeding cage.
 
 
-
 \section{Groups Module}
 \label{concepts:groups-module}
 This app defines generic Group and License information for a particular installation of MouseDB.  Because every page on this site identifies both the Group and data restrictions, at a minimum, group information must be provided upon installation (see installation instructions).
-
 
 
 \chapter{MouseDB Installation}
@@ -198,44 +185,35 @@ This app defines generic Group and License information for a particular installa
 MouseDB requires both a database and a webserver to be set up.  Ideally, the database should be hosted separately from the webserver and MouseDB installation, but this is not necessary, as both can be used from the same server.  If you are using a remote server for the database, it is best to set up a user for this database that can only be accessed from the webserver.  If you want to set up several installations (ie for different users or different laboratories), you need separate databases and MouseDB installations for each.  You will also need to set up the webserver with different addresses for each installation.
 
 
-
 \section{Software Dependencies}
 \label{installation:software-dependencies}\begin{enumerate}
 \item {} 
 \textbf{Python}.  Requires Version 2.6, is not yet compatible with Python 3.0.  Download from \href{http://www.python.org/download/}{http://www.python.org/download/}.
 
-
 \item {} 
 \textbf{MouseDB source code}.  Download from one of the following:
-
 
 \end{enumerate}
 \begin{enumerate}
 \item {} 
 Using \textbf{pip or easy\_install}.  If setuptools (available at \href{http://pypi.python.org/pypi/setuptools}{http://pypi.python.org/pypi/setuptools}) is installed type \textbf{pip install mousedb} at a command prompt.
 
-
 \item {} 
 \href{http://github.com/davebridges/mousedb/downloads}{http://github.com/davebridges/mousedb/downloads} for the current release.  If you will not be contributing to the code, download from here.
-
 
 \item {} 
 \href{http://github.com/davebridges/mousedb}{http://github.com/davebridges/mousedb} for the source code via Git.  If you might contribute code to the project use the source code.
 
-
 \end{enumerate}
 
 Downloading and/or unzipping will create a directory named mousedb.  You can update to the newest revision at any time either using git or downloading and re-installing the newer version.  Changing or updating software versions will not alter any saved data, but you will have to update the localsettings.py file (described below).
-
 \begin{enumerate}
 \setcounter{enumi}{2}
 \item {} 
 \textbf{Database software}.  Recommended to use mysql, available at \href{http://dev.mysql.com/downloads/mysql/}{http://dev.mysql.com/downloads/mysql/} .  It is also possible to use SQLite, PostgreSQL, MySQL, or Oracle.  See \href{http://docs.djangoproject.com/en/1.2/topics/install/\#database-installation}{http://docs.djangoproject.com/en/1.2/topics/install/\#database-installation} for more information.  You will also need the python bindings for your database.  If using MySQL python-mysql will be installed below.
 
-
 \item {} 
-\textbf{Webserver}.  Apache is recommended, available at \href{http://www.apache.org/dyn/closer.cgi}{http://www.apache.org/dyn/closer.cgi} .  It is also possible to use FastCGI, SCGI, or AJP.  See \href{http://docs.djangoproject.com/en/1.2/howto/deployment/}{http://docs.djangoproject.com/en/1.2/howto/deployment/} for more details.  You will also need to enable mod\_wsgi if using apache.  See \href{http://code.google.com/p/modwsgi/wiki/InstallationInstructions}{http://code.google.com/p/modwsgi/wiki/InstallationInstructions} for those instructions.
-
+\textbf{Webserver}.  Apache is recommended, available at \href{http://www.apache.org/dyn/closer.cgi}{http://www.apache.org/dyn/closer.cgi} .  It is also possible to use FastCGI, SCGI, or AJP.  See \href{http://docs.djangoproject.com/en/1.2/howto/deployment/}{http://docs.djangoproject.com/en/1.2/howto/deployment/} for more details.  The recommended way to use Apache is to download and enable mod\_wsgi.  See \href{http://code.google.com/p/modwsgi/}{http://code.google.com/p/modwsgi/} for more details.
 
 \end{enumerate}
 
@@ -245,18 +223,14 @@ Downloading and/or unzipping will create a directory named mousedb.  You can upd
 \item {} 
 Navigate into mousedb folder
 
-
 \item {} 
 Run \textbf{python setup.py install} to get dependencies.  If you installed via pip, this step is not necessary (but wont hurt).  This will install the dependencies South, mysql-python and django-ajax-selects.
-
 
 \item {} 
 Run \textbf{python bootstrap.py} to get the correct version of Django and to set up an isolated environment.  This step may take a few minutes.
 
-
 \item {} 
 Run \textbf{bin\textbackslash{}buildout} to generate django, test and wsgi scripts.  This step may take a few minutes.
-
 
 \end{enumerate}
 
@@ -266,32 +240,25 @@ Run \textbf{bin\textbackslash{}buildout} to generate django, test and wsgi scrip
 \item {} 
 Create a new database.  Check the documentation for your database software for the appropriate syntax for this step.  You need to record the user, password, host and database name.  If you are using SQLite this step is not required.
 
-
 \item {} 
 Go to mousedbsrcmousedblocalsettings\_empty.py and edit the settings:
-
 
 \end{enumerate}
 \begin{itemize}
 \item {} 
 ENGINE: Choose one of `django.db.backends.postgresql\_psycopg2','django.db.backends.postgresql', `django.db.backends.mysql', `django.db.backends.sqlite3', `django.db.backends.oracle' depending on the database software used.
 
-
 \item {} 
 NAME: database name
-
 
 \item {} 
 USER: database user
 
-
 \item {} 
 PASSWORD: database password
 
-
 \item {} 
 HOST: database host
-
 
 \end{itemize}
 \begin{enumerate}
@@ -299,10 +266,8 @@ HOST: database host
 \item {} 
 Save this file as \textbf{localsettings.py} in the same folder as localsettings\_empty.py
 
-
 \item {} 
 Migrate into first mousedb directory and enter \emph{django syncdb}.  When prompted create a superuser (who will have all availabler permissions) and a password for this user.
-
 
 \end{enumerate}
 
@@ -311,13 +276,18 @@ Migrate into first mousedb directory and enter \emph{django syncdb}.  When promp
 \label{installation:web-server-setup}
 You need to set up a server to serve both the django installation and saved files.  For the saved files.  I recommend using apache for both.  The preferred setup is to use Apache2 with mod\_wsgi.  See \href{http://code.google.com/p/modwsgi/wiki/InstallationInstructions}{http://code.google.com/p/modwsgi/wiki/InstallationInstructions} for instructions on using mod\_wsgi.  The following is a httpd.conf example where the code is placed in \textbf{/usr/src/mousedb}:
 
-
 \begin{Verbatim}[commandchars=@\[\]]
 Alias /robots.txt /usr/src/mousedb/src/mousedb/media/robots.txt
 Alias /favicon.ico /usr/src/mousedb/src/mousedb/media/favicon.ico
 
 Alias /mousedb-media/ /usr/src/mousedb/src/mousedb/media/
 @textless[]Directory /usr/src/mousedb/src/mousedb/media@textgreater[]
+     Order deny,allow
+     Allow from all
+@textless[]/Directory@textgreater[]
+
+Alias /static/ /usr/src/mousedb/src/mousedb/static/
+@textless[]Directory /usr/src/mousedb/src/mousedb/static@textgreater[]
      Order deny,allow
      Allow from all
 @textless[]/Directory@textgreater[]
@@ -332,16 +302,13 @@ WSGIScriptAlias /mousedb /usr/src/mousedb/bin/django.wsgi
 If you want to restrict access to these files, change the Allow from all directive to specific domains or ip addresses (for example Allow from 192.168.0.0/99 would allow from 192.168.0.0 to 192.168.0.99)
 
 
-
 \section{Final Configuration and User Setup}
 \label{installation:final-configuration-and-user-setup}\begin{itemize}
 \item {} 
 Go to \emph{servername/mousedb/admin/groups/group/1} and name your research group and select a license if desired
 
-
 \item {} 
 Go to \emph{servername/mousedb/admin/auth/users/} and create users, selecting usernames, full names, password (or have the user set the password) and then choose group permissions.
-
 
 \end{itemize}
 
@@ -349,7 +316,6 @@ Go to \emph{servername/mousedb/admin/auth/users/} and create users, selecting us
 \section{Testing}
 \label{installation:testing}
 From the mousedb directory run \textbf{bin\textbackslash{}test} or \textbf{bin\textbackslash{}django test} to run the test suite.  See \href{https://github.com/davebridges/mousedb/wiki/Known-Issues---Test-Suite}{https://github.com/davebridges/mousedb/wiki/Known-Issues---Test-Suite} for known issues.  Report any additional errors at the issue page at \href{https://github.com/davebridges/mousedb/issues}{https://github.com/davebridges/mousedb/issues}.
-
 
 
 \chapter{Animal Data Entry}
@@ -360,22 +326,17 @@ From the mousedb directory run \textbf{bin\textbackslash{}test} or \textbf{bin\t
 \item {} 
 Go to Breeding Cages Tab
 
-
 \item {} 
 Click on Add/Wean Pups Button
-
 
 \item {} 
 Each row is a new animal.  If you accidentaly enter an extra animal, check off the delete box then submit.
 
-
 \item {} 
 Leave extra lines blank if you have less than 10 mice to enter
 
-
 \item {} 
 If you need to enter more than 10 mice, enter the first ten and submit them.  Go back and enter up to 10 more animals (10 more blank spaces will appear)
-
 
 \end{enumerate}
 
@@ -385,22 +346,17 @@ If you need to enter more than 10 mice, enter the first ten and submit them.  Go
 \item {} 
 Enter Breeding Cage under Cage
 
-
 \item {} 
 Enter Strain
-
 
 \item {} 
 Enter Background (normally Mixed or C57BL/6-BA unless from the LY breeding cages in which case it is C57BL/6-LY5.2)
 
-
 \item {} 
 Enter Birthdate in format YYYY-MM-DD
 
-
 \item {} 
 Enter Generation and Backcross
-
 
 \end{enumerate}
 
@@ -410,18 +366,14 @@ Enter Generation and Backcross
 \item {} 
 If not previously entered, enter data as if newborn mice
 
-
 \item {} 
 Enter gender
-
 
 \item {} 
 Enter Wean Date in format YYYY-MM-DD
 
-
 \item {} 
 Enter new Cage number for Cage
-
 
 \end{enumerate}
 
@@ -431,14 +383,11 @@ Enter new Cage number for Cage
 \item {} 
 Find mouse either from animal list or strain list
 
-
 \item {} 
 Click the edit mouse button
 
-
 \item {} 
 Change the Cage, Rack and Rack Position as Necessary
-
 
 \end{enumerate}
 
@@ -448,14 +397,11 @@ Change the Cage, Rack and Rack Position as Necessary
 \item {} 
 Find mouse either from animal list or strain list, or through breeding cage
 
-
 \item {} 
 Click the edit mouse button or the Eartag/Genotype/Cage Change/Death Button
 
-
 \item {} 
 Enter the Ear Tag and/or select the Genotype from the Pull Down List
-
 
 \end{enumerate}
 
@@ -468,18 +414,14 @@ Enter the Ear Tag and/or select the Genotype from the Pull Down List
 \item {} 
 Find mouse from animal list or strain list
 
-
 \item {} 
 Click the edit mouse button
-
 
 \item {} 
 Enter the death date in format YYYY-MM-DD
 
-
 \item {} 
 Choose Cause of Death from Pull Down List
-
 
 \end{enumerate}
 
@@ -489,18 +431,14 @@ Choose Cause of Death from Pull Down List
 \item {} 
 Find mice from breeding cages
 
-
 \item {} 
 Click the Eartag/Genotype/Cage Change/Death Button
-
 
 \item {} 
 Enter the death date in format YYYY-MM-DD
 
-
 \item {} 
 Choose the Cause of Death from Pull Down List
-
 
 \end{enumerate}
 
@@ -509,21 +447,17 @@ Choose the Cause of Death from Pull Down List
 \label{usage:studies-and-experimental-setup}
 Set up a new study at /mousedb/admin/data/study/ selecting animals
 
-
 You must put a description and select animals in one or more treatment groups
-
 
 If you have more than 2 treatment groups save the first two, then two more empty slots will appear. For animals, click on the magnifying glass then find the animal in that treatment group and click on the MouseID. The number displayed now in that field will not be the MouseID, but don't worry its just a different number to describe the mouse. To add more animals, click on the magnifying glass again and select the next animal. There should be now two numbers, separated by commas in this field. Repeat to fill all your treatment groups. You must enter a diet and environment for each treatment. The other fields are optional, and should only be used if appropriate. Ensure for pharmaceutical, you include a saline treatment group.
 
 
-
-\chapter{Measurment Entry}
-\label{usage:measurment-entry}
+\chapter{Measurement Entry}
+\label{usage:measurement-entry}
 
 \section{Studies}
 \label{usage:studies}
 If this measurement is part of a study (ie a group of experiments) then click on the plus sign beside the study field and enter in the details about the study and treatment groups.  Unfortunately until i can figure out how to filter the treatment group animals in the admin interface, at each of the subsequent steps you will see all the animals in the database (soon hopefully it will only be the ones as part of the study group).
-
 
 
 \section{Experiment Details}
@@ -531,14 +465,11 @@ If this measurement is part of a study (ie a group of experiments) then click on
 \item {} 
 Pick experiment date, feeding state and resarchers
 
-
 \item {} 
 Pick animals used in this experiment (the search box will filter results)
 
-
 \item {} 
 Fasting state, time, injections, concentration, experimentID and notes are all optional
-
 
 \end{itemize}
 
@@ -548,18 +479,14 @@ Fasting state, time, injections, concentration, experimentID and notes are all o
 \item {} 
 There is room to enter 14 measurements.  If you need more rows, enter the first 14 and select ``Save and Continue Editing'' and 14 more blank spots will appear.
 
-
 \item {} 
 Each row is a measurement, so if you have glucose and weight for some animal that is two rows entered.
-
 
 \item {} 
 For animals, click on the magnifying glass then find the animal in that treatment group and click on the MouseID. The number displayed now in that field will not be the MouseID, but don't worry its just a different number to describe the mouse.
 
-
 \item {} 
 For values, the standard units (defined by each assay) are mg for weights, mg/dL for glucose and pg/mL for insulin).  You must enter integers here (no decimal places).  If you have several measurements (ie several glucose readings during a GTT, enter them all in one measurement row, separated by commas and \emph{NO spaces}).
-
 
 \end{itemize}
 
@@ -568,12 +495,11 @@ For values, the standard units (defined by each assay) are mg for weights, mg/dL
 \label{api:automated-documentation}\label{api::doc}
 
 \section{Data Package}
-\label{api:data-package}\label{api:module-data}\index{data (module)}
+\label{api:data-package}\label{api:module-data}
+\index{data (module)}
 The data module describes the conditions and collection of data regarding experimental animals.
 
-
 Data (or measurements) can be stored for any type of measurement.  Conceptually, several pieces of data belong to an experiment (for example several mice are measured at some time) and several experiments belong to a study.  Measurements can be stored independent of experiments and experiments can be performed outside of the context of a study.  It is however, perfered that measurements are stored within an experiment and experiments are stored within studies as this will greatly facilitate the organization of the data.
-
 
 
 \subsection{Studies}
@@ -581,11 +507,9 @@ Data (or measurements) can be stored for any type of measurement.  Conceptually,
 In general studies are a collection of experiments.  These can be grouped together on the basis of animals and/or treatment groups.  A study must have at least one treatment group, which defines the animals and their conditions.
 
 
-
 \subsection{Experiments}
 \label{api:experiments}
 An experiment is a collection of measurements for a given set of animals.  In general, an experiment is defined as a number of measurements take in a given day.
-
 
 
 \subsection{Measurements}
@@ -593,29 +517,1171 @@ An experiment is a collection of measurements for a given set of animals.  In ge
 A measurement is an animal, an assay and a measurement value.  It can be associated with an experiment, or can stand alone as an individual value.  Measurements can be viewed in the context of a study, an experiment, a treatment group or an animal by going to the appropriate page.
 
 
-
 \subsection{Models}
-\label{api:models}
+\label{api:models}\label{api:module-data.models}
+\index{data.models (module)}
+\index{Assay (class in data.models)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Assay}\pysiglinewithargsret{\strong{class }\code{data.models.}\bfcode{Assay}}{\emph{*args}, \emph{**kwargs}}{}
+Bases: \code{django.db.models.base.Model}
+
+Assay(id, assay, assay\_slug, notes, measurement\_units)
+
+\index{Assay.DoesNotExist}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Assay.DoesNotExist}\pysigline{\strong{exception }\bfcode{DoesNotExist}}{}
+Bases: \code{django.core.exceptions.ObjectDoesNotExist}
+
+\end{fulllineitems}
+
+
+\index{Assay.MultipleObjectsReturned}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Assay.MultipleObjectsReturned}\pysigline{\strong{exception }\code{Assay.}\bfcode{MultipleObjectsReturned}}{}
+Bases: \code{django.core.exceptions.MultipleObjectsReturned}
+
+\end{fulllineitems}
+
+
+\index{measurement\_set (data.models.Assay attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Assay.measurement_set}\pysigline{\code{Assay.}\bfcode{measurement\_set}}{}
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{Diet (class in data.models)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Diet}\pysiglinewithargsret{\strong{class }\code{data.models.}\bfcode{Diet}}{\emph{*args}, \emph{**kwargs}}{}
+Bases: \code{django.db.models.base.Model}
+
+Diet(id, vendor\_id, description, product\_id, fat\_content, protein\_content, carb\_content, irradiated, notes)
+
+\index{Diet.DoesNotExist}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Diet.DoesNotExist}\pysigline{\strong{exception }\bfcode{DoesNotExist}}{}
+Bases: \code{django.core.exceptions.ObjectDoesNotExist}
+
+\end{fulllineitems}
+
+
+\index{Diet.MultipleObjectsReturned}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Diet.MultipleObjectsReturned}\pysigline{\strong{exception }\code{Diet.}\bfcode{MultipleObjectsReturned}}{}
+Bases: \code{django.core.exceptions.MultipleObjectsReturned}
+
+\end{fulllineitems}
+
+
+\index{treatment\_set (data.models.Diet attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Diet.treatment_set}\pysigline{\code{Diet.}\bfcode{treatment\_set}}{}
+\end{fulllineitems}
+
+
+\index{vendor (data.models.Diet attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Diet.vendor}\pysigline{\code{Diet.}\bfcode{vendor}}{}
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{Environment (class in data.models)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Environment}\pysiglinewithargsret{\strong{class }\code{data.models.}\bfcode{Environment}}{\emph{*args}, \emph{**kwargs}}{}
+Bases: \code{django.db.models.base.Model}
+
+Environment(id, building, room, temperature, humidity, notes)
+
+\index{Environment.DoesNotExist}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Environment.DoesNotExist}\pysigline{\strong{exception }\bfcode{DoesNotExist}}{}
+Bases: \code{django.core.exceptions.ObjectDoesNotExist}
+
+\end{fulllineitems}
+
+
+\index{Environment.MultipleObjectsReturned}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Environment.MultipleObjectsReturned}\pysigline{\strong{exception }\code{Environment.}\bfcode{MultipleObjectsReturned}}{}
+Bases: \code{django.core.exceptions.MultipleObjectsReturned}
+
+\end{fulllineitems}
+
+
+\index{contact (data.models.Environment attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Environment.contact}\pysigline{\code{Environment.}\bfcode{contact}}{}
+\end{fulllineitems}
+
+
+\index{treatment\_set (data.models.Environment attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Environment.treatment_set}\pysigline{\code{Environment.}\bfcode{treatment\_set}}{}
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{Experiment (class in data.models)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Experiment}\pysiglinewithargsret{\strong{class }\code{data.models.}\bfcode{Experiment}}{\emph{*args}, \emph{**kwargs}}{}
+Bases: \code{django.db.models.base.Model}
+
+Experiment(id, date, notes, experimentID, feeding\_state, fasting\_time, injection, concentration, study\_id)
+
+\index{Experiment.DoesNotExist}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Experiment.DoesNotExist}\pysigline{\strong{exception }\bfcode{DoesNotExist}}{}
+Bases: \code{django.core.exceptions.ObjectDoesNotExist}
+
+\end{fulllineitems}
+
+
+\index{Experiment.MultipleObjectsReturned}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Experiment.MultipleObjectsReturned}\pysigline{\strong{exception }\code{Experiment.}\bfcode{MultipleObjectsReturned}}{}
+Bases: \code{django.core.exceptions.MultipleObjectsReturned}
+
+\end{fulllineitems}
+
+
+\index{animals (data.models.Experiment attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Experiment.animals}\pysigline{\code{Experiment.}\bfcode{animals}}{}
+\end{fulllineitems}
+
+
+\index{get\_absolute\_url() (data.models.Experiment method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Experiment.get_absolute_url}\pysiglinewithargsret{\code{Experiment.}\bfcode{get\_absolute\_url}}{\emph{*moreargs}, \emph{**morekwargs}}{}
+\end{fulllineitems}
+
+
+\index{get\_feeding\_state\_display() (data.models.Experiment method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Experiment.get_feeding_state_display}\pysiglinewithargsret{\code{Experiment.}\bfcode{get\_feeding\_state\_display}}{\emph{*moreargs}, \emph{**morekwargs}}{}
+\end{fulllineitems}
+
+
+\index{get\_injection\_display() (data.models.Experiment method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Experiment.get_injection_display}\pysiglinewithargsret{\code{Experiment.}\bfcode{get\_injection\_display}}{\emph{*moreargs}, \emph{**morekwargs}}{}
+\end{fulllineitems}
+
+
+\index{get\_next\_by\_date() (data.models.Experiment method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Experiment.get_next_by_date}\pysiglinewithargsret{\code{Experiment.}\bfcode{get\_next\_by\_date}}{\emph{*moreargs}, \emph{**morekwargs}}{}
+\end{fulllineitems}
+
+
+\index{get\_previous\_by\_date() (data.models.Experiment method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Experiment.get_previous_by_date}\pysiglinewithargsret{\code{Experiment.}\bfcode{get\_previous\_by\_date}}{\emph{*moreargs}, \emph{**morekwargs}}{}
+\end{fulllineitems}
+
+
+\index{measurement\_set (data.models.Experiment attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Experiment.measurement_set}\pysigline{\code{Experiment.}\bfcode{measurement\_set}}{}
+\end{fulllineitems}
+
+
+\index{researchers (data.models.Experiment attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Experiment.researchers}\pysigline{\code{Experiment.}\bfcode{researchers}}{}
+\end{fulllineitems}
+
+
+\index{study (data.models.Experiment attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Experiment.study}\pysigline{\code{Experiment.}\bfcode{study}}{}
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{Implantation (class in data.models)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Implantation}\pysiglinewithargsret{\strong{class }\code{data.models.}\bfcode{Implantation}}{\emph{*args}, \emph{**kwargs}}{}
+Bases: \code{django.db.models.base.Model}
+
+Implantation(id, implant, vendor\_id, product\_id, notes)
+
+\index{Implantation.DoesNotExist}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Implantation.DoesNotExist}\pysigline{\strong{exception }\bfcode{DoesNotExist}}{}
+Bases: \code{django.core.exceptions.ObjectDoesNotExist}
+
+\end{fulllineitems}
+
+
+\index{Implantation.MultipleObjectsReturned}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Implantation.MultipleObjectsReturned}\pysigline{\strong{exception }\code{Implantation.}\bfcode{MultipleObjectsReturned}}{}
+Bases: \code{django.core.exceptions.MultipleObjectsReturned}
+
+\end{fulllineitems}
+
+
+\index{surgeon (data.models.Implantation attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Implantation.surgeon}\pysigline{\code{Implantation.}\bfcode{surgeon}}{}
+\end{fulllineitems}
+
+
+\index{treatment\_set (data.models.Implantation attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Implantation.treatment_set}\pysigline{\code{Implantation.}\bfcode{treatment\_set}}{}
+\end{fulllineitems}
+
+
+\index{vendor (data.models.Implantation attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Implantation.vendor}\pysigline{\code{Implantation.}\bfcode{vendor}}{}
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{Measurement (class in data.models)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Measurement}\pysiglinewithargsret{\strong{class }\code{data.models.}\bfcode{Measurement}}{\emph{*args}, \emph{**kwargs}}{}
+Bases: \code{django.db.models.base.Model}
+
+Measurement(id, animal\_id, experiment\_id, assay\_id, values)
+
+\index{Measurement.DoesNotExist}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Measurement.DoesNotExist}\pysigline{\strong{exception }\bfcode{DoesNotExist}}{}
+Bases: \code{django.core.exceptions.ObjectDoesNotExist}
+
+\end{fulllineitems}
+
+
+\index{Measurement.MultipleObjectsReturned}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Measurement.MultipleObjectsReturned}\pysigline{\strong{exception }\code{Measurement.}\bfcode{MultipleObjectsReturned}}{}
+Bases: \code{django.core.exceptions.MultipleObjectsReturned}
+
+\end{fulllineitems}
+
+
+\index{age() (data.models.Measurement method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Measurement.age}\pysiglinewithargsret{\code{Measurement.}\bfcode{age}}{}{}
+\end{fulllineitems}
+
+
+\index{animal (data.models.Measurement attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Measurement.animal}\pysigline{\code{Measurement.}\bfcode{animal}}{}
+\end{fulllineitems}
+
+
+\index{assay (data.models.Measurement attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Measurement.assay}\pysigline{\code{Measurement.}\bfcode{assay}}{}
+\end{fulllineitems}
+
+
+\index{experiment (data.models.Measurement attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Measurement.experiment}\pysigline{\code{Measurement.}\bfcode{experiment}}{}
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{Pharmaceutical (class in data.models)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Pharmaceutical}\pysiglinewithargsret{\strong{class }\code{data.models.}\bfcode{Pharmaceutical}}{\emph{*args}, \emph{**kwargs}}{}
+Bases: \code{django.db.models.base.Model}
+
+Pharmaceutical(id, drug, dose, recurrance, mode, vendor\_id, notes)
+
+\index{Pharmaceutical.DoesNotExist}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Pharmaceutical.DoesNotExist}\pysigline{\strong{exception }\bfcode{DoesNotExist}}{}
+Bases: \code{django.core.exceptions.ObjectDoesNotExist}
+
+\end{fulllineitems}
+
+
+\index{Pharmaceutical.MultipleObjectsReturned}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Pharmaceutical.MultipleObjectsReturned}\pysigline{\strong{exception }\code{Pharmaceutical.}\bfcode{MultipleObjectsReturned}}{}
+Bases: \code{django.core.exceptions.MultipleObjectsReturned}
+
+\end{fulllineitems}
+
+
+\index{get\_mode\_display() (data.models.Pharmaceutical method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Pharmaceutical.get_mode_display}\pysiglinewithargsret{\code{Pharmaceutical.}\bfcode{get\_mode\_display}}{\emph{*moreargs}, \emph{**morekwargs}}{}
+\end{fulllineitems}
+
+
+\index{treatment\_set (data.models.Pharmaceutical attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Pharmaceutical.treatment_set}\pysigline{\code{Pharmaceutical.}\bfcode{treatment\_set}}{}
+\end{fulllineitems}
+
+
+\index{vendor (data.models.Pharmaceutical attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Pharmaceutical.vendor}\pysigline{\code{Pharmaceutical.}\bfcode{vendor}}{}
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{Researcher (class in data.models)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Researcher}\pysiglinewithargsret{\strong{class }\code{data.models.}\bfcode{Researcher}}{\emph{*args}, \emph{**kwargs}}{}
+Bases: \code{django.db.models.base.Model}
+
+Researcher(id, first\_name, last\_name, name\_slug, email, active)
+
+\index{Researcher.DoesNotExist}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Researcher.DoesNotExist}\pysigline{\strong{exception }\bfcode{DoesNotExist}}{}
+Bases: \code{django.core.exceptions.ObjectDoesNotExist}
+
+\end{fulllineitems}
+
+
+\index{Researcher.MultipleObjectsReturned}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Researcher.MultipleObjectsReturned}\pysigline{\strong{exception }\code{Researcher.}\bfcode{MultipleObjectsReturned}}{}
+Bases: \code{django.core.exceptions.MultipleObjectsReturned}
+
+\end{fulllineitems}
+
+
+\index{environment\_set (data.models.Researcher attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Researcher.environment_set}\pysigline{\code{Researcher.}\bfcode{environment\_set}}{}
+\end{fulllineitems}
+
+
+\index{experiment\_set (data.models.Researcher attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Researcher.experiment_set}\pysigline{\code{Researcher.}\bfcode{experiment\_set}}{}
+\end{fulllineitems}
+
+
+\index{implantation\_set (data.models.Researcher attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Researcher.implantation_set}\pysigline{\code{Researcher.}\bfcode{implantation\_set}}{}
+\end{fulllineitems}
+
+
+\index{transplantation\_set (data.models.Researcher attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Researcher.transplantation_set}\pysigline{\code{Researcher.}\bfcode{transplantation\_set}}{}
+\end{fulllineitems}
+
+
+\index{treatment\_set (data.models.Researcher attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Researcher.treatment_set}\pysigline{\code{Researcher.}\bfcode{treatment\_set}}{}
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{Study (class in data.models)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Study}\pysiglinewithargsret{\strong{class }\code{data.models.}\bfcode{Study}}{\emph{*args}, \emph{**kwargs}}{}
+Bases: \code{django.db.models.base.Model}
+
+Study(id, description, start\_date, stop\_date, notes)
+
+\index{Study.DoesNotExist}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Study.DoesNotExist}\pysigline{\strong{exception }\bfcode{DoesNotExist}}{}
+Bases: \code{django.core.exceptions.ObjectDoesNotExist}
+
+\end{fulllineitems}
+
+
+\index{Study.MultipleObjectsReturned}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Study.MultipleObjectsReturned}\pysigline{\strong{exception }\code{Study.}\bfcode{MultipleObjectsReturned}}{}
+Bases: \code{django.core.exceptions.MultipleObjectsReturned}
+
+\end{fulllineitems}
+
+
+\index{experiment\_set (data.models.Study attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Study.experiment_set}\pysigline{\code{Study.}\bfcode{experiment\_set}}{}
+\end{fulllineitems}
+
+
+\index{get\_absolute\_url() (data.models.Study method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Study.get_absolute_url}\pysiglinewithargsret{\code{Study.}\bfcode{get\_absolute\_url}}{\emph{*moreargs}, \emph{**morekwargs}}{}
+\end{fulllineitems}
+
+
+\index{strain (data.models.Study attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Study.strain}\pysigline{\code{Study.}\bfcode{strain}}{}
+\end{fulllineitems}
+
+
+\index{treatment\_set (data.models.Study attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Study.treatment_set}\pysigline{\code{Study.}\bfcode{treatment\_set}}{}
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{Transplantation (class in data.models)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Transplantation}\pysiglinewithargsret{\strong{class }\code{data.models.}\bfcode{Transplantation}}{\emph{*args}, \emph{**kwargs}}{}
+Bases: \code{django.db.models.base.Model}
+
+Transplantation(id, tissue, transplant\_date, notes)
+
+\index{Transplantation.DoesNotExist}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Transplantation.DoesNotExist}\pysigline{\strong{exception }\bfcode{DoesNotExist}}{}
+Bases: \code{django.core.exceptions.ObjectDoesNotExist}
+
+\end{fulllineitems}
+
+
+\index{Transplantation.MultipleObjectsReturned}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Transplantation.MultipleObjectsReturned}\pysigline{\strong{exception }\code{Transplantation.}\bfcode{MultipleObjectsReturned}}{}
+Bases: \code{django.core.exceptions.MultipleObjectsReturned}
+
+\end{fulllineitems}
+
+
+\index{donor (data.models.Transplantation attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Transplantation.donor}\pysigline{\code{Transplantation.}\bfcode{donor}}{}
+\end{fulllineitems}
+
+
+\index{get\_next\_by\_transplant\_date() (data.models.Transplantation method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Transplantation.get_next_by_transplant_date}\pysiglinewithargsret{\code{Transplantation.}\bfcode{get\_next\_by\_transplant\_date}}{\emph{*moreargs}, \emph{**morekwargs}}{}
+\end{fulllineitems}
+
+
+\index{get\_previous\_by\_transplant\_date() (data.models.Transplantation method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Transplantation.get_previous_by_transplant_date}\pysiglinewithargsret{\code{Transplantation.}\bfcode{get\_previous\_by\_transplant\_date}}{\emph{*moreargs}, \emph{**morekwargs}}{}
+\end{fulllineitems}
+
+
+\index{surgeon (data.models.Transplantation attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Transplantation.surgeon}\pysigline{\code{Transplantation.}\bfcode{surgeon}}{}
+\end{fulllineitems}
+
+
+\index{treatment\_set (data.models.Transplantation attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Transplantation.treatment_set}\pysigline{\code{Transplantation.}\bfcode{treatment\_set}}{}
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{Treatment (class in data.models)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Treatment}\pysiglinewithargsret{\strong{class }\code{data.models.}\bfcode{Treatment}}{\emph{*args}, \emph{**kwargs}}{}
+Bases: \code{django.db.models.base.Model}
+
+Treatment(id, treatment, study\_id, diet\_id, environment\_id, transplantation\_id, notes)
+
+\index{Treatment.DoesNotExist}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Treatment.DoesNotExist}\pysigline{\strong{exception }\bfcode{DoesNotExist}}{}
+Bases: \code{django.core.exceptions.ObjectDoesNotExist}
+
+\end{fulllineitems}
+
+
+\index{Treatment.MultipleObjectsReturned}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Treatment.MultipleObjectsReturned}\pysigline{\strong{exception }\code{Treatment.}\bfcode{MultipleObjectsReturned}}{}
+Bases: \code{django.core.exceptions.MultipleObjectsReturned}
+
+\end{fulllineitems}
+
+
+\index{animals (data.models.Treatment attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Treatment.animals}\pysigline{\code{Treatment.}\bfcode{animals}}{}
+\end{fulllineitems}
+
+
+\index{diet (data.models.Treatment attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Treatment.diet}\pysigline{\code{Treatment.}\bfcode{diet}}{}
+\end{fulllineitems}
+
+
+\index{environment (data.models.Treatment attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Treatment.environment}\pysigline{\code{Treatment.}\bfcode{environment}}{}
+\end{fulllineitems}
+
+
+\index{get\_absolute\_url() (data.models.Treatment method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Treatment.get_absolute_url}\pysiglinewithargsret{\code{Treatment.}\bfcode{get\_absolute\_url}}{\emph{*moreargs}, \emph{**morekwargs}}{}
+\end{fulllineitems}
+
+
+\index{implantation (data.models.Treatment attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Treatment.implantation}\pysigline{\code{Treatment.}\bfcode{implantation}}{}
+\end{fulllineitems}
+
+
+\index{pharmaceutical (data.models.Treatment attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Treatment.pharmaceutical}\pysigline{\code{Treatment.}\bfcode{pharmaceutical}}{}
+\end{fulllineitems}
+
+
+\index{researchers (data.models.Treatment attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Treatment.researchers}\pysigline{\code{Treatment.}\bfcode{researchers}}{}
+\end{fulllineitems}
+
+
+\index{study (data.models.Treatment attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Treatment.study}\pysigline{\code{Treatment.}\bfcode{study}}{}
+\end{fulllineitems}
+
+
+\index{transplantation (data.models.Treatment attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Treatment.transplantation}\pysigline{\code{Treatment.}\bfcode{transplantation}}{}
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{Vendor (class in data.models)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Vendor}\pysiglinewithargsret{\strong{class }\code{data.models.}\bfcode{Vendor}}{\emph{*args}, \emph{**kwargs}}{}
+Bases: \code{django.db.models.base.Model}
+
+Vendor(id, vendor, website, email, ordering, notes)
+
+\index{Vendor.DoesNotExist}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Vendor.DoesNotExist}\pysigline{\strong{exception }\bfcode{DoesNotExist}}{}
+Bases: \code{django.core.exceptions.ObjectDoesNotExist}
+
+\end{fulllineitems}
+
+
+\index{Vendor.MultipleObjectsReturned}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Vendor.MultipleObjectsReturned}\pysigline{\strong{exception }\code{Vendor.}\bfcode{MultipleObjectsReturned}}{}
+Bases: \code{django.core.exceptions.MultipleObjectsReturned}
+
+\end{fulllineitems}
+
+
+\index{diet\_set (data.models.Vendor attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Vendor.diet_set}\pysigline{\code{Vendor.}\bfcode{diet\_set}}{}
+\end{fulllineitems}
+
+
+\index{get\_ordering\_display() (data.models.Vendor method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Vendor.get_ordering_display}\pysiglinewithargsret{\code{Vendor.}\bfcode{get\_ordering\_display}}{\emph{*moreargs}, \emph{**morekwargs}}{}
+\end{fulllineitems}
+
+
+\index{implantation\_set (data.models.Vendor attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Vendor.implantation_set}\pysigline{\code{Vendor.}\bfcode{implantation\_set}}{}
+\end{fulllineitems}
+
+
+\index{pharmaceutical\_set (data.models.Vendor attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.models.Vendor.pharmaceutical_set}\pysigline{\code{Vendor.}\bfcode{pharmaceutical\_set}}{}
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
 
 \subsection{Forms}
-\label{api:forms}
+\label{api:forms}\label{api:module-data.forms}
+\index{data.forms (module)}
+\index{ExperimentForm (class in data.forms)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.forms.ExperimentForm}\pysiglinewithargsret{\strong{class }\code{data.forms.}\bfcode{ExperimentForm}}{\emph{data=None}, \emph{files=None}, \emph{auto\_id='id\_\%s'}, \emph{prefix=None}, \emph{initial=None}, \emph{error\_class=\textless{}class `django.forms.util.ErrorList'\textgreater{}}, \emph{label\_suffix=':'}, \emph{empty\_permitted=False}, \emph{instance=None}}{}
+Bases: \code{django.forms.models.ModelForm}
+
+This is the configuration for the experiment form.
+
+This form is used to set up and modify an experiment.  It uses a datepicker widget for the date, and autocomplete forms for the animals.
+
+\index{ExperimentForm.Media (class in data.forms)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.forms.ExperimentForm.Media}\pysigline{\strong{class }\bfcode{Media}}{}
+\end{fulllineitems}
+
+
+\index{ExperimentForm.Meta (class in data.forms)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.forms.ExperimentForm.Meta}\pysigline{\strong{class }\code{ExperimentForm.}\bfcode{Meta}}{}~
+\index{model (data.forms.ExperimentForm.Meta attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.forms.ExperimentForm.Meta.model}\pysigline{\bfcode{model}}{}
+alias of \code{Experiment}
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{media (data.forms.ExperimentForm attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.forms.ExperimentForm.media}\pysigline{\code{ExperimentForm.}\bfcode{media}}{}
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{MeasurementForm (class in data.forms)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.forms.MeasurementForm}\pysiglinewithargsret{\strong{class }\code{data.forms.}\bfcode{MeasurementForm}}{\emph{data=None}, \emph{files=None}, \emph{auto\_id='id\_\%s'}, \emph{prefix=None}, \emph{initial=None}, \emph{error\_class=\textless{}class `django.forms.util.ErrorList'\textgreater{}}, \emph{label\_suffix=':'}, \emph{empty\_permitted=False}, \emph{instance=None}}{}
+Bases: \code{django.forms.models.ModelForm}
+
+Form definition for adding and editing measurements.
+
+This form is used for adding or modifying single measurements from within an experiment.  It has an autocomplete field for animal.
+
+\index{MeasurementForm.Media (class in data.forms)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.forms.MeasurementForm.Media}\pysigline{\strong{class }\bfcode{Media}}{}
+\end{fulllineitems}
+
+
+\index{MeasurementForm.Meta (class in data.forms)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.forms.MeasurementForm.Meta}\pysigline{\strong{class }\code{MeasurementForm.}\bfcode{Meta}}{}~
+\index{model (data.forms.MeasurementForm.Meta attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.forms.MeasurementForm.Meta.model}\pysigline{\bfcode{model}}{}
+alias of \code{Measurement}
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{media (data.forms.MeasurementForm attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.forms.MeasurementForm.media}\pysigline{\code{MeasurementForm.}\bfcode{media}}{}
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{StudyExperimentForm (class in data.forms)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.forms.StudyExperimentForm}\pysiglinewithargsret{\strong{class }\code{data.forms.}\bfcode{StudyExperimentForm}}{\emph{data=None}, \emph{files=None}, \emph{auto\_id='id\_\%s'}, \emph{prefix=None}, \emph{initial=None}, \emph{error\_class=\textless{}class `django.forms.util.ErrorList'\textgreater{}}, \emph{label\_suffix=':'}, \emph{empty\_permitted=False}, \emph{instance=None}}{}
+Bases: \code{django.forms.models.ModelForm}
+
+This is the configuration for a study form (From an experiment).
+
+This form provides an autocomplete field for the animals, and hides the study field which will be automatically set upon save.
+
+\index{StudyExperimentForm.Media (class in data.forms)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.forms.StudyExperimentForm.Media}\pysigline{\strong{class }\bfcode{Media}}{}
+\end{fulllineitems}
+
+
+\index{StudyExperimentForm.Meta (class in data.forms)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.forms.StudyExperimentForm.Meta}\pysigline{\strong{class }\code{StudyExperimentForm.}\bfcode{Meta}}{}~
+\index{model (data.forms.StudyExperimentForm.Meta attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.forms.StudyExperimentForm.Meta.model}\pysigline{\bfcode{model}}{}
+alias of \code{Experiment}
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{media (data.forms.StudyExperimentForm attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.forms.StudyExperimentForm.media}\pysigline{\code{StudyExperimentForm.}\bfcode{media}}{}
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{StudyForm (class in data.forms)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.forms.StudyForm}\pysiglinewithargsret{\strong{class }\code{data.forms.}\bfcode{StudyForm}}{\emph{data=None}, \emph{files=None}, \emph{auto\_id='id\_\%s'}, \emph{prefix=None}, \emph{initial=None}, \emph{error\_class=\textless{}class `django.forms.util.ErrorList'\textgreater{}}, \emph{label\_suffix=':'}, \emph{empty\_permitted=False}, \emph{instance=None}}{}
+Bases: \code{django.forms.models.ModelForm}
+
+This is the configuration for the study form.
+
+This form is used to create and modify studies.  It uses an autocomplete widget for the animals.
+
+\index{StudyForm.Media (class in data.forms)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.forms.StudyForm.Media}\pysigline{\strong{class }\bfcode{Media}}{}
+\end{fulllineitems}
+
+
+\index{StudyForm.Meta (class in data.forms)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.forms.StudyForm.Meta}\pysigline{\strong{class }\code{StudyForm.}\bfcode{Meta}}{}~
+\index{model (data.forms.StudyForm.Meta attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.forms.StudyForm.Meta.model}\pysigline{\bfcode{model}}{}
+alias of \code{Study}
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{media (data.forms.StudyForm attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.forms.StudyForm.media}\pysigline{\code{StudyForm.}\bfcode{media}}{}
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{TreatmentForm (class in data.forms)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.forms.TreatmentForm}\pysiglinewithargsret{\strong{class }\code{data.forms.}\bfcode{TreatmentForm}}{\emph{data=None}, \emph{files=None}, \emph{auto\_id='id\_\%s'}, \emph{prefix=None}, \emph{initial=None}, \emph{error\_class=\textless{}class `django.forms.util.ErrorList'\textgreater{}}, \emph{label\_suffix=':'}, \emph{empty\_permitted=False}, \emph{instance=None}}{}
+Bases: \code{django.forms.models.ModelForm}
+
+Form class for study treatment groups.
+
+In the case of studies, animals are defined in the treatment group rather than in the study group.  A treatment consists of a study, a set of animals and the conditions which define that treatment.  This includes related fields for environment, diet, implants and transplants.
+
+\index{TreatmentForm.Media (class in data.forms)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.forms.TreatmentForm.Media}\pysigline{\strong{class }\bfcode{Media}}{}
+\end{fulllineitems}
+
+
+\index{TreatmentForm.Meta (class in data.forms)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.forms.TreatmentForm.Meta}\pysigline{\strong{class }\code{TreatmentForm.}\bfcode{Meta}}{}~
+\index{model (data.forms.TreatmentForm.Meta attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.forms.TreatmentForm.Meta.model}\pysigline{\bfcode{model}}{}
+alias of \code{Treatment}
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{media (data.forms.TreatmentForm attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.forms.TreatmentForm.media}\pysigline{\code{TreatmentForm.}\bfcode{media}}{}
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
 
 \subsection{Views and URLs}
-\label{api:views-and-urls}\phantomsection\label{api:module-data.urls}\index{data.urls (module)}
+\label{api:views-and-urls}\label{api:module-data.views}
+\index{data.views (module)}
+\index{add\_measurement() (in module data.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.views.add_measurement}\pysiglinewithargsret{\code{data.views.}\bfcode{add\_measurement}}{\emph{request}, \emph{*args}, \emph{**kwargs}}{}
+This is a view to display a form to add single measurements to an experiment.
+
+It calls the object MeasurementForm, which has an autocomplete field for animal.
+
+\end{fulllineitems}
+
+
+\index{experiment\_detail() (in module data.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.views.experiment_detail}\pysiglinewithargsret{\code{data.views.}\bfcode{experiment\_detail}}{\emph{request}, \emph{*args}, \emph{**kwargs}}{}
+\end{fulllineitems}
+
+
+\index{experiment\_detail\_all() (in module data.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.views.experiment_detail_all}\pysiglinewithargsret{\code{data.views.}\bfcode{experiment\_detail\_all}}{\emph{request}, \emph{*args}, \emph{**kwargs}}{}
+\end{fulllineitems}
+
+
+\index{experiment\_details\_csv() (in module data.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.views.experiment_details_csv}\pysiglinewithargsret{\code{data.views.}\bfcode{experiment\_details\_csv}}{\emph{request}, \emph{*args}, \emph{**kwargs}}{}
+This view generates a csv output file of an experiment.
+
+The view writes to a csv table the animal, genotype, age (in days), assay and values.
+
+\end{fulllineitems}
+
+
+\index{experiment\_list() (in module data.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.views.experiment_list}\pysiglinewithargsret{\code{data.views.}\bfcode{experiment\_list}}{\emph{request}, \emph{*args}, \emph{**kwargs}}{}
+\end{fulllineitems}
+
+
+\index{study\_experiment() (in module data.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.views.study_experiment}\pysiglinewithargsret{\code{data.views.}\bfcode{study\_experiment}}{\emph{request}, \emph{*args}, \emph{**kwargs}}{}
+\end{fulllineitems}
+
+\phantomsection\label{api:module-data.urls}
+\index{data.urls (module)}
 
 \subsection{Administrative Site Configuration}
-\label{api:administrative-site-configuration}
+\label{api:administrative-site-configuration}\label{api:module-data.admin}
+\index{data.admin (module)}
 
 \subsection{Test Files}
-\label{api:test-files}
+\label{api:test-files}\label{api:module-data.tests}
+\index{data.tests (module)}
+This file contains tests for the data application.
+
+These tests will verify generation of new experiment, measurement, assay, researcher, study, treatment, vendor, diet, environment, implantation, transplantation and pharnaceutical objects.
+
+\index{StudyModelTests (class in data.tests)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.tests.StudyModelTests}\pysiglinewithargsret{\strong{class }\code{data.tests.}\bfcode{StudyModelTests}}{\emph{methodName='runTest'}}{}
+Bases: \code{django.test.testcases.TestCase}
+
+Test the creation and modification of Study objects.
+
+\index{setUp() (data.tests.StudyModelTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.tests.StudyModelTests.setUp}\pysiglinewithargsret{\bfcode{setUp}}{}{}
+Instantiate the test client.
+
+\end{fulllineitems}
+
+
+\index{tearDown() (data.tests.StudyModelTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.tests.StudyModelTests.tearDown}\pysiglinewithargsret{\bfcode{tearDown}}{}{}
+Depopulate created model instances from test database.
+
+\end{fulllineitems}
+
+
+\index{test\_create\_studey\_detailed() (data.tests.StudyModelTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.tests.StudyModelTests.test_create_studey_detailed}\pysiglinewithargsret{\bfcode{test\_create\_studey\_detailed}}{}{}
+This is a test for creating a new study object, with all fields being entered.  It also verifies that unicode is set correctly.  This test is dependent on the ability to create a new Strain object (see animal.tests.StrainModelTests.test\_create\_minimal\_strain).
+
+\end{fulllineitems}
+
+
+\index{test\_create\_study\_minimal() (data.tests.StudyModelTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.tests.StudyModelTests.test_create_study_minimal}\pysiglinewithargsret{\bfcode{test\_create\_study\_minimal}}{}{}
+This is a test for creating a new study object, with only the minimum being entered.  It also verifies that unicode is set correctly.
+
+\end{fulllineitems}
+
+
+\index{test\_study\_absolute\_url() (data.tests.StudyModelTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.tests.StudyModelTests.test_study_absolute_url}\pysiglinewithargsret{\bfcode{test\_study\_absolute\_url}}{}{}
+This test verifies that the absolute url of a study object is set correctly.  This study is dependend on a positive result on test\_create\_study\_minimal.
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{StudyViewTests (class in data.tests)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.tests.StudyViewTests}\pysiglinewithargsret{\strong{class }\code{data.tests.}\bfcode{StudyViewTests}}{\emph{methodName='runTest'}}{}
+Bases: \code{django.test.testcases.TestCase}
+
+These tests test the views associated with Study objects.
+
+\index{setUp() (data.tests.StudyViewTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.tests.StudyViewTests.setUp}\pysiglinewithargsret{\bfcode{setUp}}{}{}
+This function sets up the test client, and creates a test study.
+
+\end{fulllineitems}
+
+
+\index{tearDown() (data.tests.StudyViewTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.tests.StudyViewTests.tearDown}\pysiglinewithargsret{\bfcode{tearDown}}{}{}
+Depopulate created model instances from test database.
+
+\end{fulllineitems}
+
+
+\index{test\_study\_delete() (data.tests.StudyViewTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.tests.StudyViewTests.test_study_delete}\pysiglinewithargsret{\bfcode{test\_study\_delete}}{}{}
+This test checks the view which displays a study detail page.  It checks for the correct templates and status code.
+
+\end{fulllineitems}
+
+
+\index{test\_study\_detail() (data.tests.StudyViewTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.tests.StudyViewTests.test_study_detail}\pysiglinewithargsret{\bfcode{test\_study\_detail}}{}{}
+This test checks the view which displays a study detail page.  It checks for the correct templates and status code.
+
+\end{fulllineitems}
+
+
+\index{test\_study\_edit() (data.tests.StudyViewTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.tests.StudyViewTests.test_study_edit}\pysiglinewithargsret{\bfcode{test\_study\_edit}}{}{}
+This test checks the view which displays a study edit page.  It checks for the correct templates and status code.
+
+\end{fulllineitems}
+
+
+\index{test\_study\_list() (data.tests.StudyViewTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.tests.StudyViewTests.test_study_list}\pysiglinewithargsret{\bfcode{test\_study\_list}}{}{}
+This test checks the status code, and templates for study lists.
+
+\end{fulllineitems}
+
+
+\index{test\_study\_new() (data.tests.StudyViewTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.tests.StudyViewTests.test_study_new}\pysiglinewithargsret{\bfcode{test\_study\_new}}{}{}
+This test checks the view which displays a study creation page.  It checks for the correct templates and status code.
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{TreatmentViewTests (class in data.tests)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.tests.TreatmentViewTests}\pysiglinewithargsret{\strong{class }\code{data.tests.}\bfcode{TreatmentViewTests}}{\emph{methodName='runTest'}}{}
+Bases: \code{django.test.testcases.TestCase}
+
+These tests test the views associated with Treatment objects.
+
+\index{setUp() (data.tests.TreatmentViewTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.tests.TreatmentViewTests.setUp}\pysiglinewithargsret{\bfcode{setUp}}{}{}
+\end{fulllineitems}
+
+
+\index{tearDown() (data.tests.TreatmentViewTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.tests.TreatmentViewTests.tearDown}\pysiglinewithargsret{\bfcode{tearDown}}{}{}
+\end{fulllineitems}
+
+
+\index{test\_treatment\_detail() (data.tests.TreatmentViewTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:data.tests.TreatmentViewTests.test_treatment_detail}\pysiglinewithargsret{\bfcode{test\_treatment\_detail}}{}{}
+This test checks the view which displays a treatment-detail page.  It checks for the correct templates and status code.
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
 
 \section{Animals Package}
-\label{api:animals-package}\label{api:module-animal}\index{animal (module)}
+\label{api:animals-package}\label{api:module-animal}
+\index{animal (module)}
 The animal app contains and controls the display of data about animals.
 
-
 Animals are tracked as individual entities, and given associations to breeding cages to follow ancestry, and strains.
-
 
 
 \subsection{Animal}
@@ -623,17 +1689,14 @@ Animals are tracked as individual entities, and given associations to breeding c
 Most parameters about an animal are set within the animal object.  Here is where the animals strain, breeding, parentage and many other parameters are included.  Animals have foreignkey relationships with both Strain and Breeding, so an animal may only belong to one of each of those.  As an example, a mouse cannot come from more than one Breeding set, and cannot belong to more than one strain.
 
 
-
 \subsubsection{Backcrosses and Generations}
 \label{api:backcrosses-and-generations}
 For this software, optional tracking of backcrosses and generations is available and is stored as an attribute of an animal.  When an inbred cross is made against a pure background, the backcross increases by 1.  When a heterozygote cross is made, the generation increases by one.  As an example, for every time a mouse in a C57/BL6 background is crossed against a wildtype C57/B6 mouse, the backcross (but not the generation) increases by one.  For every time a mutant strain is crosses against itself (either vs a heterozygote or homozygote of that strain), the generation will increase by one.  Backcrosses should typically be performed against a separate colony of purebred mouse, rather than against wild-type alleles of the mutant strain.
 
 
-
 \subsection{Breeding Cages}
 \label{api:breeding-cages}
 A breeding cage is defined as a set of one or more male and one or more female mice.  Because of this, it is not always clear who the precise parentage of an animal is.  If the parentage is known, then the Mother and Father fields can be set for a particular animal.
-
 
 
 \subsection{Strains}
@@ -642,11 +1705,10 @@ A strain is a set of mice with a similar genetics.  Importantly strains are sepa
 The result of this is that a query for a particular strain may then need to be filtered to a specific background.
 
 
-
 \subsection{Models}
-\label{api:id1}\phantomsection\label{api:module-animal.models}\index{animal.models (module)}
+\label{api:id1}\phantomsection\label{api:module-animal.models}
+\index{animal.models (module)}
 This module describes the Strain, Animal, Breeding and Cage data models.
-
 
 This module stores all data regarding a particular laboratory animal.  Information about experimental data and timed matings are stored in the data and timed\_matings packages.  This module describes the database structure for each data model.
 
@@ -656,14 +1718,12 @@ This module stores all data regarding a particular laboratory animal.  Informati
 \phantomsection\label{api:animal.models.Strain}\pysiglinewithargsret{\strong{class }\code{animal.models.}\bfcode{Strain}}{\emph{*args}, \emph{**kwargs}}{}
 Bases: \code{django.db.models.base.Model}
 
-
 A data model describing a mouse strain.
-
 
 This is separate from the background of a mouse.  For example a ob/ob mouse on a mixed or a black-6 background still have the same strain.  The background is defined in the animal and breeding cages.  Strain and Strain\_slug are required.
 
-
 \end{fulllineitems}
+
 
 \index{Animal (class in animal.models)}
 
@@ -671,14 +1731,12 @@ This is separate from the background of a mouse.  For example a ob/ob mouse on a
 \phantomsection\label{api:animal.models.Animal}\pysiglinewithargsret{\strong{class }\code{animal.models.}\bfcode{Animal}}{\emph{*args}, \emph{**kwargs}}{}
 Bases: \code{django.db.models.base.Model}
 
-
 A data model describing an animal.
 
-
-This data model describes a wide variety of parameters of an experimental animal.  This model is linked to the Strain and Cage models via 1:1 relationships.  If the parentage of a mouse is known, this can be identified (the breeding set may not be clear on this matter). Mice are automatically marked as not alive when a Death date is provided and the object is saved.  Strain, Background and Genotype are required field.  By default, querysets are ordered first by strain then by MouseID.
-
+This data model describes a wide variety of parameters of an experimental animal.  This model is linked to the Strain.  If the parentage of a mouse is known, this can be identified (the breeding set may not be clear on this matter). Mice are automatically marked as not alive when a Death date is provided and the object is saved.  Strain, Background and Genotype are required fields.  By default, querysets are ordered first by strain then by MouseID.
 
 \end{fulllineitems}
+
 
 \index{Breeding (class in animal.models)}
 
@@ -686,25 +1744,332 @@ This data model describes a wide variety of parameters of an experimental animal
 \phantomsection\label{api:animal.models.Breeding}\pysiglinewithargsret{\strong{class }\code{animal.models.}\bfcode{Breeding}}{\emph{*args}, \emph{**kwargs}}{}
 Bases: \code{django.db.models.base.Model}
 
-
 This data model stores information about a particular breeding set
 
-
 A breeding set may contain one ore more males and females and must be defined via the progeny strain.  For example, in the case of generating a new strain, the strain indicates the new strain not the parental strains.  A breeding cage is defined as one male with one or more females.  If the breeding set is part of a timed mating experiment, then Timed\_Mating must be selected.  Breeding cages are automatically inactivated upon saving when a End date is provided.  The only required field is Strain.  By default, querysets are ordered by Strain, then Start.
-
 
 \end{fulllineitems}
 
 
 
 \subsection{Forms}
-\label{api:id2}
+\label{api:id2}\phantomsection\label{api:module-animal.forms}
+\index{animal.forms (module)}
+Forms for use in manipulating objects in the animal app.
+
+\index{AnimalForm (class in animal.forms)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.forms.AnimalForm}\pysiglinewithargsret{\strong{class }\code{animal.forms.}\bfcode{AnimalForm}}{\emph{data=None}, \emph{files=None}, \emph{auto\_id='id\_\%s'}, \emph{prefix=None}, \emph{initial=None}, \emph{error\_class=\textless{}class `django.forms.util.ErrorList'\textgreater{}}, \emph{label\_suffix=':'}, \emph{empty\_permitted=False}, \emph{instance=None}}{}
+Bases: \code{django.forms.models.ModelForm}
+
+This modelform provides fields for modifying animal data.
+
+This form also automatically loads javascript and css for the datepicker jquery-ui widget.  It also includes auto
+
+\index{AnimalForm.Media (class in animal.forms)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.forms.AnimalForm.Media}\pysigline{\strong{class }\bfcode{Media}}{}
+\end{fulllineitems}
+
+
+\index{AnimalForm.Meta (class in animal.forms)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.forms.AnimalForm.Meta}\pysigline{\strong{class }\code{AnimalForm.}\bfcode{Meta}}{}~
+\index{model (animal.forms.AnimalForm.Meta attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.forms.AnimalForm.Meta.model}\pysigline{\bfcode{model}}{}
+alias of \code{Animal}
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{media (animal.forms.AnimalForm attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.forms.AnimalForm.media}\pysigline{\code{AnimalForm.}\bfcode{media}}{}
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{BreedingForm (class in animal.forms)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.forms.BreedingForm}\pysiglinewithargsret{\strong{class }\code{animal.forms.}\bfcode{BreedingForm}}{\emph{data=None}, \emph{files=None}, \emph{auto\_id='id\_\%s'}, \emph{prefix=None}, \emph{initial=None}, \emph{error\_class=\textless{}class `django.forms.util.ErrorList'\textgreater{}}, \emph{label\_suffix=':'}, \emph{empty\_permitted=False}, \emph{instance=None}}{}
+Bases: \code{django.forms.models.ModelForm}
+
+This form provides most fields for creating and entring breeding cage data.
+
+This form is used from the url /mousedb/breeding/new and is a generic create view.  This view includes a datepicker widget for Stat and End dates and autocomplete fields for the Females and Male fields
+
+\index{BreedingForm.Media (class in animal.forms)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.forms.BreedingForm.Media}\pysigline{\strong{class }\bfcode{Media}}{}
+\end{fulllineitems}
+
+
+\index{BreedingForm.Meta (class in animal.forms)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.forms.BreedingForm.Meta}\pysigline{\strong{class }\code{BreedingForm.}\bfcode{Meta}}{}~
+\index{model (animal.forms.BreedingForm.Meta attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.forms.BreedingForm.Meta.model}\pysigline{\bfcode{model}}{}
+alias of \code{Breeding}
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{media (animal.forms.BreedingForm attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.forms.BreedingForm.media}\pysigline{\code{BreedingForm.}\bfcode{media}}{}
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{MultipleAnimalForm (class in animal.forms)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.forms.MultipleAnimalForm}\pysiglinewithargsret{\strong{class }\code{animal.forms.}\bfcode{MultipleAnimalForm}}{\emph{data=None}, \emph{files=None}, \emph{auto\_id='id\_\%s'}, \emph{prefix=None}, \emph{initial=None}, \emph{error\_class=\textless{}class `django.forms.util.ErrorList'\textgreater{}}, \emph{label\_suffix=':'}, \emph{empty\_permitted=False}, \emph{instance=None}}{}
+Bases: \code{django.forms.models.ModelForm}
+
+This modelform provides fields for entering multiple identical copies of a set of mice.
+
+This form only includes the required fields Background and Strain.
+
+\index{MultipleAnimalForm.Meta (class in animal.forms)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.forms.MultipleAnimalForm.Meta}\pysigline{\strong{class }\bfcode{Meta}}{}~
+\index{model (animal.forms.MultipleAnimalForm.Meta attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.forms.MultipleAnimalForm.Meta.model}\pysigline{\bfcode{model}}{}
+alias of \code{Animal}
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{media (animal.forms.MultipleAnimalForm attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.forms.MultipleAnimalForm.media}\pysigline{\code{MultipleAnimalForm.}\bfcode{media}}{}
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{MultipleBreedingAnimalForm (class in animal.forms)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.forms.MultipleBreedingAnimalForm}\pysiglinewithargsret{\strong{class }\code{animal.forms.}\bfcode{MultipleBreedingAnimalForm}}{\emph{data=None}, \emph{files=None}, \emph{auto\_id='id\_\%s'}, \emph{prefix=None}, \emph{initial=None}, \emph{error\_class=\textless{}class `django.forms.util.ErrorList'\textgreater{}}, \emph{label\_suffix=':'}, \emph{empty\_permitted=False}, \emph{instance=None}}{}
+Bases: \code{django.forms.models.ModelForm}
+
+This modelform provides fields for entering multiple pups within a breeding set.
+
+The only fields presented are Born, Weaned, Gender and Count.  Several other fields will be automatically entered based on the Breeding Set entries.
+
+\index{MultipleBreedingAnimalForm.Meta (class in animal.forms)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.forms.MultipleBreedingAnimalForm.Meta}\pysigline{\strong{class }\bfcode{Meta}}{}~
+\index{model (animal.forms.MultipleBreedingAnimalForm.Meta attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.forms.MultipleBreedingAnimalForm.Meta.model}\pysigline{\bfcode{model}}{}
+alias of \code{Animal}
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{media (animal.forms.MultipleBreedingAnimalForm attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.forms.MultipleBreedingAnimalForm.media}\pysigline{\code{MultipleBreedingAnimalForm.}\bfcode{media}}{}
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
 
 \subsection{Views and URLs}
-\label{api:id3}\phantomsection\label{api:module-animal.urls}\index{animal.urls (module)}
+\label{api:id3}\phantomsection\label{api:module-animal.views}
+\index{animal.views (module)}
+These views define template redirects for the animal app.
+
+This module contains only non-generic views.  Several generic views are also used and are defined in animal/urls/.
+
+\index{animal\_detail() (in module animal.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.views.animal_detail}\pysiglinewithargsret{\code{animal.views.}\bfcode{animal\_detail}}{\emph{request}, \emph{*args}, \emph{**kwargs}}{}
+This view displays specific details about an animal.
+
+It takes a request in the form animal/(id)/, mice/(id) or mouse/(id)/ and renders the detail page for that mouse.  The request is defined for id not MouseID (or barcode) because this allows for details to be displayed for mice without barcode identification.
+Therefore care must be taken that animal/4932 is id=4932 and not barcode=4932.  The animal name is defined at the top of the page.
+This page is restricted to logged-in users.
+
+\end{fulllineitems}
+
+
+\index{breeding\_change() (in module animal.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.views.breeding_change}\pysiglinewithargsret{\code{animal.views.}\bfcode{breeding\_change}}{\emph{request}, \emph{*args}, \emph{**kwargs}}{}
+This view is used to generate a form by which to change pups which belong to a particular breeding set.
+
+This view typically is used to modify existing pups.  This might include marking animals as sacrificed, entering genotype or marking information or entering movement of mice to another cage.  It is used to show and modify several animals at once.
+It takes a request in the form /breeding/(breeding\_id)/change/ and returns a form specific to the breeding set defined in breeding\_id.  breeding\_id is the background identification number of the breeding set and does not refer to the barcode of any breeding cage.
+This view returns a formset in which one row represents one animal.  To add extra animals to a breeding set use /breeding/(breeding\_id)/pups/.
+This view is restricted to those with the permission animal.change\_animal.
+
+\end{fulllineitems}
+
+
+\index{breeding\_detail() (in module animal.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.views.breeding_detail}\pysiglinewithargsret{\code{animal.views.}\bfcode{breeding\_detail}}{\emph{request}, \emph{*args}, \emph{**kwargs}}{}
+This view displays specific details about a breeding set.
+
+It takes a request in the form /breeding/(breeding\_id)/all and renders the detail page for that breeding set.
+The breeding\_id refers to the background id of the breeding set, and not the breeding cage barcode.
+This view also passes along a dictionary of all pups belonging to that breeding set.
+This page is restricted to logged-in users.
+
+\end{fulllineitems}
+
+
+\index{breeding\_pups() (in module animal.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.views.breeding_pups}\pysiglinewithargsret{\code{animal.views.}\bfcode{breeding\_pups}}{\emph{request}, \emph{*args}, \emph{**kwargs}}{}
+This view is used to generate a form by which to add pups which belong to a particular breeding set.
+
+This view is intended to be used to add initial information about pups, including eartag, genotype, gender and birth or weaning information.
+It takes a request in the form /breeding/(breeding\_id)/pups/ and returns a form specific to the breeding set defined in breeding\_id.  breeding\_id is the background identification number of the breeding set and does not refer to the barcode of any breeding cage.
+This view is restricted to those with the permission animal.add\_animal.
+
+\end{fulllineitems}
+
+
+\index{breeding\_wean() (in module animal.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.views.breeding_wean}\pysiglinewithargsret{\code{animal.views.}\bfcode{breeding\_wean}}{\emph{request}, \emph{*args}, \emph{**kwargs}}{}
+This view is used to generate a form by which to wean pups which belong to a particular breeding set.
+
+This view typically is used to wean existing pups.  This includes the MouseID, Cage, Markings, Gender and Wean Date fields.  For other fields use the breeding-change page.
+It takes a request in the form /breeding/(breeding\_id)/wean/ and returns a form specific to the breeding set defined in breeding\_id.  breeding\_id is the background identification number of the breeding set and does not refer to the barcode of any breeding cage.
+This view returns a formset in which one row represents one animal.  To add extra animals to a breeding set use /breeding/(breeding\_id)/pups/.
+This view is restricted to those with the permission animal.change\_animal.
+
+\end{fulllineitems}
+
+
+\index{date\_archive\_year() (in module animal.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.views.date_archive_year}\pysiglinewithargsret{\code{animal.views.}\bfcode{date\_archive\_year}}{\emph{request}}{}
+This view will generate a table of the number of mice born on an annual basis.
+
+This view is associated with the url name archive-home, and returns an dictionary of a date and a animal count.
+
+\end{fulllineitems}
+
+
+\index{multiple\_breeding\_pups() (in module animal.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.views.multiple_breeding_pups}\pysiglinewithargsret{\code{animal.views.}\bfcode{multiple\_breeding\_pups}}{\emph{request}, \emph{breeding\_id}}{}
+This view is used to enter multiple animals at the same time from a breeding cage.
+\begin{description}
+\item[{It will generate a form containing animal information and a number of mice.  It is intended to create several identical animals with the same attributes.}] \leavevmode
+This view requres an input of a breeding\_id to generate the correct form.
+
+\end{description}
+
+\end{fulllineitems}
+
+
+\index{multiple\_pups() (in module animal.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.views.multiple_pups}\pysiglinewithargsret{\code{animal.views.}\bfcode{multiple\_pups}}{\emph{request}}{}
+This view is used to enter multiple animals at the same time.
+
+It will generate a form containing animal information and a number of mice.  It is intended to create several identical animals with the same attributes.
+
+\end{fulllineitems}
+
+
+\index{strain\_detail() (in module animal.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.views.strain_detail}\pysiglinewithargsret{\code{animal.views.}\bfcode{strain\_detail}}{\emph{request}, \emph{*args}, \emph{**kwargs}}{}
+This view displays specific details about a strain.
+
+It takes a request in the form strain/(strain\_slug)/ and renders the detail page for that strain.
+This view also passes along a dictionary of alive animals belonging to that strain.
+This page is restricted to logged-in users.
+
+\end{fulllineitems}
+
+
+\index{strain\_detail\_all() (in module animal.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.views.strain_detail_all}\pysiglinewithargsret{\code{animal.views.}\bfcode{strain\_detail\_all}}{\emph{request}, \emph{*args}, \emph{**kwargs}}{}
+This view displays specific details about a strain.
+
+It takes a request in the form /strain/(strain\_slug)/all and renders the detail page for that strain.
+This view also passes along a dictionary of all animals belonging to that strain.
+This page is restricted to logged-in users.
+
+\end{fulllineitems}
+
+
+\index{strain\_list() (in module animal.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.views.strain_list}\pysiglinewithargsret{\code{animal.views.}\bfcode{strain\_list}}{\emph{request}, \emph{*args}, \emph{**kwargs}}{}
+This view presents a list of strains currently present in the database and annotates this list with a count of alive and total animals.
+
+This view redirects from a /strain/ request.
+This view is restricted to logged-in users.
+
+\end{fulllineitems}
+
+\phantomsection\label{api:module-animal.urls}
+\index{animal.urls (module)}
 
 \subsection{Administrative Site Configuration}
-\label{api:id4}\phantomsection\label{api:module-animal.admin}\index{animal.admin (module)}
+\label{api:id4}\phantomsection\label{api:module-animal.admin}
+\index{animal.admin (module)}
 Admin site settings for the animal app.
 
 \index{AnimalAdmin (class in animal.admin)}
@@ -712,7 +2077,6 @@ Admin site settings for the animal app.
 \begin{fulllineitems}
 \phantomsection\label{api:animal.admin.AnimalAdmin}\pysiglinewithargsret{\strong{class }\code{animal.admin.}\bfcode{AnimalAdmin}}{\emph{model}, \emph{admin\_site}}{}
 Bases: \code{django.contrib.admin.options.ModelAdmin}
-
 
 Provides parameters for animal objects within the admin interface.
 
@@ -722,12 +2086,11 @@ Provides parameters for animal objects within the admin interface.
 \phantomsection\label{api:animal.admin.AnimalAdmin.mark_sacrificed}\pysiglinewithargsret{\bfcode{mark\_sacrificed}}{\emph{request}, \emph{queryset}}{}
 An admin action for marking several animals as sacrificed.
 
-
 This action sets the selected animals as Alive=False, Death=today and Cause\_of\_Death as sacrificed.  To use other paramters, mice muse be individually marked as sacrificed.
 This admin action also shows as the output the number of mice sacrificed.
 
-
 \end{fulllineitems}
+
 
 \index{media (animal.admin.AnimalAdmin attribute)}
 
@@ -738,15 +2101,14 @@ This admin action also shows as the output the number of mice sacrificed.
 
 \end{fulllineitems}
 
+
 \index{AnimalInline (class in animal.admin)}
 
 \begin{fulllineitems}
 \phantomsection\label{api:animal.admin.AnimalInline}\pysiglinewithargsret{\strong{class }\code{animal.admin.}\bfcode{AnimalInline}}{\emph{parent\_model}, \emph{admin\_site}}{}
 Bases: \code{django.contrib.admin.options.TabularInline}
 
-
 Provides an inline tabular formset for animal objects.
-
 
 Currently used with the breeding admin page.
 
@@ -756,17 +2118,18 @@ Currently used with the breeding admin page.
 \phantomsection\label{api:animal.admin.AnimalInline.media}\pysigline{\bfcode{media}}{}
 \end{fulllineitems}
 
+
 \index{model (animal.admin.AnimalInline attribute)}
 
 \begin{fulllineitems}
 \phantomsection\label{api:animal.admin.AnimalInline.model}\pysigline{\bfcode{model}}{}
 alias of \code{Animal}
 
-
 \end{fulllineitems}
 
 
 \end{fulllineitems}
+
 
 \index{BreedingAdmin (class in animal.admin)}
 
@@ -774,9 +2137,7 @@ alias of \code{Animal}
 \phantomsection\label{api:animal.admin.BreedingAdmin}\pysiglinewithargsret{\strong{class }\code{animal.admin.}\bfcode{BreedingAdmin}}{\emph{model}, \emph{admin\_site}}{}
 Bases: \code{django.contrib.admin.options.ModelAdmin}
 
-
 Settings in the admin interface for dealing with Breeding objects.
-
 
 This interface also includes an form for adding objects associated with this breeding cage.
 
@@ -786,12 +2147,11 @@ This interface also includes an form for adding objects associated with this bre
 \phantomsection\label{api:animal.admin.BreedingAdmin.mark_deactivated}\pysiglinewithargsret{\bfcode{mark\_deactivated}}{\emph{request}, \emph{queryset}}{}
 An admin action for marking several cages as inactive.
 
-
 This action sets the selected cages as Active=False and Death=today.
 This admin action also shows as the output the number of mice sacrificed.
 
-
 \end{fulllineitems}
+
 
 \index{media (animal.admin.BreedingAdmin attribute)}
 
@@ -802,12 +2162,12 @@ This admin action also shows as the output the number of mice sacrificed.
 
 \end{fulllineitems}
 
+
 \index{StrainAdmin (class in animal.admin)}
 
 \begin{fulllineitems}
 \phantomsection\label{api:animal.admin.StrainAdmin}\pysiglinewithargsret{\strong{class }\code{animal.admin.}\bfcode{StrainAdmin}}{\emph{model}, \emph{admin\_site}}{}
 Bases: \code{django.contrib.admin.options.ModelAdmin}
-
 
 Settings in the admin interface for dealing with Strain objects.
 
@@ -823,9 +2183,9 @@ Settings in the admin interface for dealing with Strain objects.
 
 
 \subsection{Test Files}
-\label{api:id5}\phantomsection\label{api:module-animal.tests}\index{animal.tests (module)}
+\label{api:id5}\phantomsection\label{api:module-animal.tests}
+\index{animal.tests (module)}
 This file contains tests for the animal application.
-
 
 These tests will verify generation and function of a new breeding, strain and animal object.
 
@@ -835,7 +2195,6 @@ These tests will verify generation and function of a new breeding, strain and an
 \phantomsection\label{api:animal.tests.AnimalModelTests}\pysiglinewithargsret{\strong{class }\code{animal.tests.}\bfcode{AnimalModelTests}}{\emph{methodName='runTest'}}{}
 Bases: \code{django.test.testcases.TestCase}
 
-
 Tests the model attributes of Animal objects contained in the animal app.
 
 \index{setUp() (animal.tests.AnimalModelTests method)}
@@ -844,8 +2203,8 @@ Tests the model attributes of Animal objects contained in the animal app.
 \phantomsection\label{api:animal.tests.AnimalModelTests.setUp}\pysiglinewithargsret{\bfcode{setUp}}{}{}
 Instantiate the test client.
 
-
 \end{fulllineitems}
+
 
 \index{tearDown() (animal.tests.AnimalModelTests method)}
 
@@ -853,8 +2212,8 @@ Instantiate the test client.
 \phantomsection\label{api:animal.tests.AnimalModelTests.tearDown}\pysiglinewithargsret{\bfcode{tearDown}}{}{}
 Depopulate created model instances from test database.
 
-
 \end{fulllineitems}
+
 
 \index{test\_animal\_unicode() (animal.tests.AnimalModelTests method)}
 
@@ -862,8 +2221,8 @@ Depopulate created model instances from test database.
 \phantomsection\label{api:animal.tests.AnimalModelTests.test_animal_unicode}\pysiglinewithargsret{\bfcode{test\_animal\_unicode}}{}{}
 This is a test for creating a new animal object, with only the minimum fields being entered.  It then tests that the correct unicode representation is being generated.
 
-
 \end{fulllineitems}
+
 
 \index{test\_create\_animal\_minimal() (animal.tests.AnimalModelTests method)}
 
@@ -871,18 +2230,17 @@ This is a test for creating a new animal object, with only the minimum fields be
 \phantomsection\label{api:animal.tests.AnimalModelTests.test_create_animal_minimal}\pysiglinewithargsret{\bfcode{test\_create\_animal\_minimal}}{}{}
 This is a test for creating a new animal object, with only the minimum fields being entered
 
-
 \end{fulllineitems}
 
 
 \end{fulllineitems}
+
 
 \index{BreedingModelTests (class in animal.tests)}
 
 \begin{fulllineitems}
 \phantomsection\label{api:animal.tests.BreedingModelTests}\pysiglinewithargsret{\strong{class }\code{animal.tests.}\bfcode{BreedingModelTests}}{\emph{methodName='runTest'}}{}
 Bases: \code{django.test.testcases.TestCase}
-
 
 Tests the model attributes of Breeding objects contained in the animal app.
 
@@ -892,8 +2250,8 @@ Tests the model attributes of Breeding objects contained in the animal app.
 \phantomsection\label{api:animal.tests.BreedingModelTests.setUp}\pysiglinewithargsret{\bfcode{setUp}}{}{}
 Instantiate the test client.
 
-
 \end{fulllineitems}
+
 
 \index{tearDown() (animal.tests.BreedingModelTests method)}
 
@@ -901,8 +2259,8 @@ Instantiate the test client.
 \phantomsection\label{api:animal.tests.BreedingModelTests.tearDown}\pysiglinewithargsret{\bfcode{tearDown}}{}{}
 Depopulate created model instances from test database.
 
-
 \end{fulllineitems}
+
 
 \index{test\_autoset\_active\_state() (animal.tests.BreedingModelTests method)}
 
@@ -910,8 +2268,8 @@ Depopulate created model instances from test database.
 \phantomsection\label{api:animal.tests.BreedingModelTests.test_autoset_active_state}\pysiglinewithargsret{\bfcode{test\_autoset\_active\_state}}{}{}
 This is a test for creating a new breeding object, with only the minimum being entered.  That object is then tested for the active state being automatically set when a End date is specified.
 
-
 \end{fulllineitems}
+
 
 \index{test\_create\_breeding\_minimal() (animal.tests.BreedingModelTests method)}
 
@@ -919,8 +2277,8 @@ This is a test for creating a new breeding object, with only the minimum being e
 \phantomsection\label{api:animal.tests.BreedingModelTests.test_create_breeding_minimal}\pysiglinewithargsret{\bfcode{test\_create\_breeding\_minimal}}{}{}
 This is a test for creating a new breeding object, with only the minimum being entered.
 
-
 \end{fulllineitems}
+
 
 \index{test\_study\_absolute\_url() (animal.tests.BreedingModelTests method)}
 
@@ -928,8 +2286,8 @@ This is a test for creating a new breeding object, with only the minimum being e
 \phantomsection\label{api:animal.tests.BreedingModelTests.test_study_absolute_url}\pysiglinewithargsret{\bfcode{test\_study\_absolute\_url}}{}{}
 This test verifies that the absolute url of a breeding object is set correctly.
 
-
 \end{fulllineitems}
+
 
 \index{test\_unweaned() (animal.tests.BreedingModelTests method)}
 
@@ -937,18 +2295,17 @@ This test verifies that the absolute url of a breeding object is set correctly.
 \phantomsection\label{api:animal.tests.BreedingModelTests.test_unweaned}\pysiglinewithargsret{\bfcode{test\_unweaned}}{}{}
 This is a test for the unweaned animal list.  It creates several animals for a breeding object and tests that they are tagged as unweaned.  They are then weaned and retested to be tagged as not unweaned.  This test is incomplete.
 
-
 \end{fulllineitems}
 
 
 \end{fulllineitems}
+
 
 \index{BreedingViewTests (class in animal.tests)}
 
 \begin{fulllineitems}
 \phantomsection\label{api:animal.tests.BreedingViewTests}\pysiglinewithargsret{\strong{class }\code{animal.tests.}\bfcode{BreedingViewTests}}{\emph{methodName='runTest'}}{}
 Bases: \code{django.test.testcases.TestCase}
-
 
 These are tests for views based on Breeding objects.  Included are tests for breeding list (active and all), details, create, update and delete pages as well as for the timed mating lists.
 
@@ -958,20 +2315,13 @@ These are tests for views based on Breeding objects.  Included are tests for bre
 \phantomsection\label{api:animal.tests.BreedingViewTests.setUp}\pysiglinewithargsret{\bfcode{setUp}}{}{}
 \end{fulllineitems}
 
+
 \index{tearDown() (animal.tests.BreedingViewTests method)}
 
 \begin{fulllineitems}
 \phantomsection\label{api:animal.tests.BreedingViewTests.tearDown}\pysiglinewithargsret{\bfcode{tearDown}}{}{}
 \end{fulllineitems}
 
-\index{test\_breeding\_change() (animal.tests.BreedingViewTests method)}
-
-\begin{fulllineitems}
-\phantomsection\label{api:animal.tests.BreedingViewTests.test_breeding_change}\pysiglinewithargsret{\bfcode{test\_breeding\_change}}{}{}
-This test checks the view which displays a breeding edit page.  It checks for the correct templates and status code.
-
-
-\end{fulllineitems}
 
 \index{test\_breeding\_delete() (animal.tests.BreedingViewTests method)}
 
@@ -979,8 +2329,8 @@ This test checks the view which displays a breeding edit page.  It checks for th
 \phantomsection\label{api:animal.tests.BreedingViewTests.test_breeding_delete}\pysiglinewithargsret{\bfcode{test\_breeding\_delete}}{}{}
 This test checks the view which displays a breeding detail page.  It checks for the correct templates and status code.
 
-
 \end{fulllineitems}
+
 
 \index{test\_breeding\_detail() (animal.tests.BreedingViewTests method)}
 
@@ -988,8 +2338,17 @@ This test checks the view which displays a breeding detail page.  It checks for 
 \phantomsection\label{api:animal.tests.BreedingViewTests.test_breeding_detail}\pysiglinewithargsret{\bfcode{test\_breeding\_detail}}{}{}
 This test checks the view which displays a breeding detail page.  It checks for the correct templates and status code.
 
+\end{fulllineitems}
+
+
+\index{test\_breeding\_edit() (animal.tests.BreedingViewTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.tests.BreedingViewTests.test_breeding_edit}\pysiglinewithargsret{\bfcode{test\_breeding\_edit}}{}{}
+This test checks the view which displays a breeding edit page.  It checks for the correct templates and status code.
 
 \end{fulllineitems}
+
 
 \index{test\_breeding\_list() (animal.tests.BreedingViewTests method)}
 
@@ -997,8 +2356,8 @@ This test checks the view which displays a breeding detail page.  It checks for 
 \phantomsection\label{api:animal.tests.BreedingViewTests.test_breeding_list}\pysiglinewithargsret{\bfcode{test\_breeding\_list}}{}{}
 This test checks the view which displays a breeding list page.  It checks for the correct templates and status code.
 
-
 \end{fulllineitems}
+
 
 \index{test\_breeding\_list\_all() (animal.tests.BreedingViewTests method)}
 
@@ -1006,8 +2365,8 @@ This test checks the view which displays a breeding list page.  It checks for th
 \phantomsection\label{api:animal.tests.BreedingViewTests.test_breeding_list_all}\pysiglinewithargsret{\bfcode{test\_breeding\_list\_all}}{}{}
 This test checks the view which displays a breeding list page, for all the cages.  It checks for the correct templates and status code.
 
-
 \end{fulllineitems}
+
 
 \index{test\_breeding\_new() (animal.tests.BreedingViewTests method)}
 
@@ -1015,8 +2374,8 @@ This test checks the view which displays a breeding list page, for all the cages
 \phantomsection\label{api:animal.tests.BreedingViewTests.test_breeding_new}\pysiglinewithargsret{\bfcode{test\_breeding\_new}}{}{}
 This test checks the view which displays a new breeding page.  It checks for the correct templates and status code.
 
-
 \end{fulllineitems}
+
 
 \index{test\_timed\_mating\_list() (animal.tests.BreedingViewTests method)}
 
@@ -1024,6 +2383,100 @@ This test checks the view which displays a new breeding page.  It checks for the
 \phantomsection\label{api:animal.tests.BreedingViewTests.test_timed_mating_list}\pysiglinewithargsret{\bfcode{test\_timed\_mating\_list}}{}{}
 This test checks the view which displays a breeding list page, for all the cages.  It checks for the correct templates and status code.
 
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{CageViewTests (class in animal.tests)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.tests.CageViewTests}\pysiglinewithargsret{\strong{class }\code{animal.tests.}\bfcode{CageViewTests}}{\emph{methodName='runTest'}}{}
+Bases: \code{django.test.testcases.TestCase}
+
+These are tests for views based on animal objects as directed by cage urls.  Included are tests for cage-list, cage-list-all and cage-detail
+
+\index{setUp() (animal.tests.CageViewTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.tests.CageViewTests.setUp}\pysiglinewithargsret{\bfcode{setUp}}{}{}
+\end{fulllineitems}
+
+
+\index{tearDown() (animal.tests.CageViewTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.tests.CageViewTests.tearDown}\pysiglinewithargsret{\bfcode{tearDown}}{}{}
+\end{fulllineitems}
+
+
+\index{test\_cage\_detail() (animal.tests.CageViewTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.tests.CageViewTests.test_cage_detail}\pysiglinewithargsret{\bfcode{test\_cage\_detail}}{}{}
+This test checks the view which displays a animal list page showing all animals with a specified cage number.  It checks for the correct templates and status code.
+
+\end{fulllineitems}
+
+
+\index{test\_cage\_list() (animal.tests.CageViewTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.tests.CageViewTests.test_cage_list}\pysiglinewithargsret{\bfcode{test\_cage\_list}}{}{}
+This test checks the view which displays a cage list page showing all animals.  It checks for the correct templates and status code.
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{DateViewTests (class in animal.tests)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.tests.DateViewTests}\pysiglinewithargsret{\strong{class }\code{animal.tests.}\bfcode{DateViewTests}}{\emph{methodName='runTest'}}{}
+Bases: \code{django.test.testcases.TestCase}
+
+These are tests for views based on animal objects as directed by date based urls.  Included are tests for archive-home, archive-month and archive-year
+
+\index{setUp() (animal.tests.DateViewTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.tests.DateViewTests.setUp}\pysiglinewithargsret{\bfcode{setUp}}{}{}
+\end{fulllineitems}
+
+
+\index{tearDown() (animal.tests.DateViewTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.tests.DateViewTests.tearDown}\pysiglinewithargsret{\bfcode{tearDown}}{}{}
+\end{fulllineitems}
+
+
+\index{test\_archive\_home() (animal.tests.DateViewTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.tests.DateViewTests.test_archive_home}\pysiglinewithargsret{\bfcode{test\_archive\_home}}{}{}
+This test checks the view which displays a summary of the birthdates of animals.  It checks for the correct templates and status code.
+
+\end{fulllineitems}
+
+
+\index{test\_archive\_month() (animal.tests.DateViewTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.tests.DateViewTests.test_archive_month}\pysiglinewithargsret{\bfcode{test\_archive\_month}}{}{}
+This test checks the view which displays a list of the animals, filtered by month.  It checks for the correct templates and status code.
+
+\end{fulllineitems}
+
+
+\index{test\_archive\_year() (animal.tests.DateViewTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:animal.tests.DateViewTests.test_archive_year}\pysiglinewithargsret{\bfcode{test\_archive\_year}}{}{}
+This test checks the view which displays a list of the animals, filtered by year.  It checks for the correct templates and status code.
 
 \end{fulllineitems}
 
@@ -1033,9 +2486,9 @@ This test checks the view which displays a breeding list page, for all the cages
 
 
 \section{Timed Mating Package}
-\label{api:module-timed_mating}\label{api:timed-mating-package}\index{timed\_mating (module)}
+\label{api:module-timed_mating}\label{api:timed-mating-package}
+\index{timed\_mating (module)}
 This package defines the timed\_mating app.
-
 
 Timed matings are a specific type of breeding set.  
 Generally, for these experiments a mating cage is set up and pregnancy is defined by a plug event.  
@@ -1045,11 +2498,10 @@ If this is the case, then a plug event can be registered and recorded for this m
 If the mother gives birth then this cage is implicitly set as a normal breeding cage.
 
 
-
 \subsection{Models}
-\label{api:id6}\phantomsection\label{api:module-timed_mating.models}\index{timed\_mating.models (module)}
+\label{api:id6}\phantomsection\label{api:module-timed_mating.models}
+\index{timed\_mating.models (module)}
 This defines the data model for the timed\_mating app.
-
 
 Currently the only data model is for PlugEvents.
 
@@ -1059,9 +2511,7 @@ Currently the only data model is for PlugEvents.
 \phantomsection\label{api:timed_mating.models.PlugEvents}\pysiglinewithargsret{\strong{class }\code{timed\_mating.models.}\bfcode{PlugEvents}}{\emph{*args}, \emph{**kwargs}}{}
 Bases: \code{django.db.models.base.Model}
 
-
 This defines the model for PlugEvents.
-
 
 A PlugEvent requires a date.  All other fields are optional.
 Upon observation of a plug event, the PlugDate, Breeding Cage, Femalem, Male, Researcher and Notes can be set.
@@ -1073,14 +2523,15 @@ Upon sacrifice of the mother, then genotyped alive and dead embryos can be enter
 \phantomsection\label{api:timed_mating.models.PlugEvents.Breeding}\pysigline{\bfcode{Breeding}}{}
 \end{fulllineitems}
 
+
 \index{PlugEvents.DoesNotExist}
 
 \begin{fulllineitems}
 \phantomsection\label{api:timed_mating.models.PlugEvents.DoesNotExist}\pysigline{\strong{exception }\bfcode{DoesNotExist}}{}
 Bases: \code{django.core.exceptions.ObjectDoesNotExist}
 
-
 \end{fulllineitems}
+
 
 \index{PlugEvents.MultipleObjectsReturned}
 
@@ -1088,8 +2539,8 @@ Bases: \code{django.core.exceptions.ObjectDoesNotExist}
 \phantomsection\label{api:timed_mating.models.PlugEvents.MultipleObjectsReturned}\pysigline{\strong{exception }\code{PlugEvents.}\bfcode{MultipleObjectsReturned}}{}
 Bases: \code{django.core.exceptions.MultipleObjectsReturned}
 
-
 \end{fulllineitems}
+
 
 \index{PlugFemale (timed\_mating.models.PlugEvents attribute)}
 
@@ -1097,11 +2548,13 @@ Bases: \code{django.core.exceptions.MultipleObjectsReturned}
 \phantomsection\label{api:timed_mating.models.PlugEvents.PlugFemale}\pysigline{\code{PlugEvents.}\bfcode{PlugFemale}}{}
 \end{fulllineitems}
 
+
 \index{PlugMale (timed\_mating.models.PlugEvents attribute)}
 
 \begin{fulllineitems}
 \phantomsection\label{api:timed_mating.models.PlugEvents.PlugMale}\pysigline{\code{PlugEvents.}\bfcode{PlugMale}}{}
 \end{fulllineitems}
+
 
 \index{Researcher (timed\_mating.models.PlugEvents attribute)}
 
@@ -1109,11 +2562,13 @@ Bases: \code{django.core.exceptions.MultipleObjectsReturned}
 \phantomsection\label{api:timed_mating.models.PlugEvents.Researcher}\pysigline{\code{PlugEvents.}\bfcode{Researcher}}{}
 \end{fulllineitems}
 
+
 \index{get\_absolute\_url() (timed\_mating.models.PlugEvents method)}
 
 \begin{fulllineitems}
 \phantomsection\label{api:timed_mating.models.PlugEvents.get_absolute_url}\pysiglinewithargsret{\code{PlugEvents.}\bfcode{get\_absolute\_url}}{\emph{*moreargs}, \emph{**morekwargs}}{}
 \end{fulllineitems}
+
 
 \index{get\_next\_by\_PlugDate() (timed\_mating.models.PlugEvents method)}
 
@@ -1121,11 +2576,13 @@ Bases: \code{django.core.exceptions.MultipleObjectsReturned}
 \phantomsection\label{api:timed_mating.models.PlugEvents.get_next_by_PlugDate}\pysiglinewithargsret{\code{PlugEvents.}\bfcode{get\_next\_by\_PlugDate}}{\emph{*moreargs}, \emph{**morekwargs}}{}
 \end{fulllineitems}
 
+
 \index{get\_previous\_by\_PlugDate() (timed\_mating.models.PlugEvents method)}
 
 \begin{fulllineitems}
 \phantomsection\label{api:timed_mating.models.PlugEvents.get_previous_by_PlugDate}\pysiglinewithargsret{\code{PlugEvents.}\bfcode{get\_previous\_by\_PlugDate}}{\emph{*moreargs}, \emph{**morekwargs}}{}
 \end{fulllineitems}
+
 
 \index{save() (timed\_mating.models.PlugEvents method)}
 
@@ -1133,14 +2590,13 @@ Bases: \code{django.core.exceptions.MultipleObjectsReturned}
 \phantomsection\label{api:timed_mating.models.PlugEvents.save}\pysiglinewithargsret{\code{PlugEvents.}\bfcode{save}}{}{}
 Over-rides the default save function for PlugEvents.
 
-
 If a sacrifice date is set for an object in this model, then Active is set to False.
 
-
 \end{fulllineitems}
 
 
 \end{fulllineitems}
+
 
 \index{PlugEvents (class in timed\_mating.models)}
 
@@ -1148,21 +2604,19 @@ If a sacrifice date is set for an object in this model, then Active is set to Fa
 \pysiglinewithargsret{\strong{class }\code{timed\_mating.models.}\bfcode{PlugEvents}}{\emph{*args}, \emph{**kwargs}}{}
 Bases: \code{django.db.models.base.Model}
 
-
 This defines the model for PlugEvents.
-
 
 A PlugEvent requires a date.  All other fields are optional.
 Upon observation of a plug event, the PlugDate, Breeding Cage, Femalem, Male, Researcher and Notes can be set.
 Upon sacrifice of the mother, then genotyped alive and dead embryos can be entered, along with the SacrificeDate, Researcher and Notes.
-
 
 \end{fulllineitems}
 
 
 
 \subsection{Forms}
-\label{api:id7}\phantomsection\label{api:module-timed_mating.forms}\index{timed\_mating.forms (module)}
+\label{api:id7}\phantomsection\label{api:module-timed_mating.forms}
+\index{timed\_mating.forms (module)}
 This package describes forms used by the Timed Mating app.
 
 \index{BreedingPlugForm (class in timed\_mating.forms)}
@@ -1171,23 +2625,23 @@ This package describes forms used by the Timed Mating app.
 \phantomsection\label{api:timed_mating.forms.BreedingPlugForm}\pysiglinewithargsret{\strong{class }\code{timed\_mating.forms.}\bfcode{BreedingPlugForm}}{\emph{data=None}, \emph{files=None}, \emph{auto\_id='id\_\%s'}, \emph{prefix=None}, \emph{initial=None}, \emph{error\_class=\textless{}class `django.forms.util.ErrorList'\textgreater{}}, \emph{label\_suffix=':'}, \emph{empty\_permitted=False}, \emph{instance=None}}{}
 Bases: \code{django.forms.models.ModelForm}
 
-
 This form is used to enter Plug Events from a specific breeding cage.
 
 \index{BreedingPlugForm.Meta (class in timed\_mating.forms)}
 
 \begin{fulllineitems}
-\phantomsection\label{api:timed_mating.forms.BreedingPlugForm.Meta}\pysigline{\strong{class }\bfcode{Meta}}{}~\index{model (timed\_mating.forms.BreedingPlugForm.Meta attribute)}
+\phantomsection\label{api:timed_mating.forms.BreedingPlugForm.Meta}\pysigline{\strong{class }\bfcode{Meta}}{}~
+\index{model (timed\_mating.forms.BreedingPlugForm.Meta attribute)}
 
 \begin{fulllineitems}
 \phantomsection\label{api:timed_mating.forms.BreedingPlugForm.Meta.model}\pysigline{\bfcode{model}}{}
 alias of \code{PlugEvents}
 
-
 \end{fulllineitems}
 
 
 \end{fulllineitems}
+
 
 \index{media (timed\_mating.forms.BreedingPlugForm attribute)}
 
@@ -1201,9 +2655,9 @@ alias of \code{PlugEvents}
 
 
 \subsection{Views and URLs}
-\label{api:id8}\phantomsection\label{api:module-timed_mating.views}\index{timed\_mating.views (module)}
+\label{api:id8}\phantomsection\label{api:module-timed_mating.views}
+\index{timed\_mating.views (module)}
 This package defines custom views for the timed\_mating application.
-
 
 Currently all views are generic CRUD views except for the view in which a plug event is defined from a breeding cage.
 
@@ -1213,15 +2667,13 @@ Currently all views are generic CRUD views except for the view in which a plug e
 \phantomsection\label{api:timed_mating.views.breeding_plugevent}\pysiglinewithargsret{\code{timed\_mating.views.}\bfcode{breeding\_plugevent}}{\emph{request}, \emph{*args}, \emph{**kwargs}}{}
 This view defines a form for adding new plug events from a breeding cage.
 
-
 This form requires a breeding\_id from a breeding set and restricts the PlugFemale and PlugMale to animals that are defined in that breeding cage.
-
 
 \end{fulllineitems}
 
-\phantomsection\label{api:module-timed_mating.urls}\index{timed\_mating.urls (module)}
+\phantomsection\label{api:module-timed_mating.urls}
+\index{timed\_mating.urls (module)}
 This urlconf sets the directions for the timed\_mating app.
-
 
 It comprises of create, update, delete, detail and list of plug events.
 
@@ -1231,11 +2683,13 @@ It comprises of create, update, delete, detail and list of plug events.
 \phantomsection\label{api:timed_mating.urls.change_plugevents}\pysiglinewithargsret{\code{timed\_mating.urls.}\bfcode{change\_plugevents}}{\emph{request}, \emph{*args}, \emph{**kwargs}}{}
 \end{fulllineitems}
 
+
 \index{create\_plugevents() (in module timed\_mating.urls)}
 
 \begin{fulllineitems}
 \phantomsection\label{api:timed_mating.urls.create_plugevents}\pysiglinewithargsret{\code{timed\_mating.urls.}\bfcode{create\_plugevents}}{\emph{request}, \emph{*args}, \emph{**kwargs}}{}
 \end{fulllineitems}
+
 
 \index{delete\_plugevents() (in module timed\_mating.urls)}
 
@@ -1243,11 +2697,13 @@ It comprises of create, update, delete, detail and list of plug events.
 \phantomsection\label{api:timed_mating.urls.delete_plugevents}\pysiglinewithargsret{\code{timed\_mating.urls.}\bfcode{delete\_plugevents}}{\emph{request}, \emph{*args}, \emph{**kwargs}}{}
 \end{fulllineitems}
 
+
 \index{limited\_object\_detail() (in module timed\_mating.urls)}
 
 \begin{fulllineitems}
 \phantomsection\label{api:timed_mating.urls.limited_object_detail}\pysiglinewithargsret{\code{timed\_mating.urls.}\bfcode{limited\_object\_detail}}{\emph{request}, \emph{*args}, \emph{**kwargs}}{}
 \end{fulllineitems}
+
 
 \index{limited\_object\_list() (in module timed\_mating.urls)}
 
@@ -1258,9 +2714,9 @@ It comprises of create, update, delete, detail and list of plug events.
 
 
 \subsection{Administrative Site Configuration}
-\label{api:id9}\phantomsection\label{api:module-timed_mating.admin}\index{timed\_mating.admin (module)}
+\label{api:id9}\phantomsection\label{api:module-timed_mating.admin}
+\index{timed\_mating.admin (module)}
 Settings to control the admin interface for the timed\_mating app.
-
 
 This file defines a PlugEventsAdmin object to enter parameters about individual plug events/
 
@@ -1269,7 +2725,6 @@ This file defines a PlugEventsAdmin object to enter parameters about individual 
 \begin{fulllineitems}
 \phantomsection\label{api:timed_mating.admin.PlugEventsAdmin}\pysiglinewithargsret{\strong{class }\code{timed\_mating.admin.}\bfcode{PlugEventsAdmin}}{\emph{model}, \emph{admin\_site}}{}
 Bases: \code{django.contrib.admin.options.ModelAdmin}
-
 
 This class defines the admin interface for the PlugEvents model.
 
@@ -1285,9 +2740,9 @@ This class defines the admin interface for the PlugEvents model.
 
 
 \subsection{Test Files}
-\label{api:id10}\phantomsection\label{api:module-timed_mating.tests}\index{timed\_mating.tests (module)}
+\label{api:id10}\phantomsection\label{api:module-timed_mating.tests}
+\index{timed\_mating.tests (module)}
 This file contains tests for the timed\_mating application.
-
 
 These tests will verify generation of a new PlugEvent object.
 
@@ -1297,7 +2752,6 @@ These tests will verify generation of a new PlugEvent object.
 \phantomsection\label{api:timed_mating.tests.Timed_MatingModelTests}\pysiglinewithargsret{\strong{class }\code{timed\_mating.tests.}\bfcode{Timed\_MatingModelTests}}{\emph{methodName='runTest'}}{}
 Bases: \code{django.test.testcases.TestCase}
 
-
 Test the models contained in the `timed\_mating' app.
 
 \index{setUp() (timed\_mating.tests.Timed\_MatingModelTests method)}
@@ -1306,8 +2760,8 @@ Test the models contained in the `timed\_mating' app.
 \phantomsection\label{api:timed_mating.tests.Timed_MatingModelTests.setUp}\pysiglinewithargsret{\bfcode{setUp}}{}{}
 Instantiate the test client.  Creates a test user.
 
-
 \end{fulllineitems}
+
 
 \index{tearDown() (timed\_mating.tests.Timed\_MatingModelTests method)}
 
@@ -1315,8 +2769,8 @@ Instantiate the test client.  Creates a test user.
 \phantomsection\label{api:timed_mating.tests.Timed_MatingModelTests.tearDown}\pysiglinewithargsret{\bfcode{tearDown}}{}{}
 Depopulate created model instances from test database.
 
-
 \end{fulllineitems}
+
 
 \index{test\_create\_plugevent\_minimal() (timed\_mating.tests.Timed\_MatingModelTests method)}
 
@@ -1324,8 +2778,8 @@ Depopulate created model instances from test database.
 \phantomsection\label{api:timed_mating.tests.Timed_MatingModelTests.test_create_plugevent_minimal}\pysiglinewithargsret{\bfcode{test\_create\_plugevent\_minimal}}{}{}
 This is a test for creating a new PlugEvent object, with only the minimum being entered.
 
-
 \end{fulllineitems}
+
 
 \index{test\_create\_plugevent\_most\_fields() (timed\_mating.tests.Timed\_MatingModelTests method)}
 
@@ -1333,11 +2787,10 @@ This is a test for creating a new PlugEvent object, with only the minimum being 
 \phantomsection\label{api:timed_mating.tests.Timed_MatingModelTests.test_create_plugevent_most_fields}\pysiglinewithargsret{\bfcode{test\_create\_plugevent\_most\_fields}}{}{}
 This is a test for creating a new PlugEvent object.
 
-
 This test uses a Breeding, PlugDate, PlugMale and PlugFemale field.
 
-
 \end{fulllineitems}
+
 
 \index{test\_set\_plugevent\_inactive() (timed\_mating.tests.Timed\_MatingModelTests method)}
 
@@ -1345,18 +2798,17 @@ This test uses a Breeding, PlugDate, PlugMale and PlugFemale field.
 \phantomsection\label{api:timed_mating.tests.Timed_MatingModelTests.test_set_plugevent_inactive}\pysiglinewithargsret{\bfcode{test\_set\_plugevent\_inactive}}{}{}
 This is a test for the automatic inactivation of a cage when the SacrificeDate is entered.
 
-
 \end{fulllineitems}
 
 
 \end{fulllineitems}
+
 
 \index{Timed\_MatingViewTests (class in timed\_mating.tests)}
 
 \begin{fulllineitems}
 \phantomsection\label{api:timed_mating.tests.Timed_MatingViewTests}\pysiglinewithargsret{\strong{class }\code{timed\_mating.tests.}\bfcode{Timed\_MatingViewTests}}{\emph{methodName='runTest'}}{}
 Bases: \code{django.test.testcases.TestCase}
-
 
 Test the views contained in the `timed\_mating' app.
 
@@ -1366,8 +2818,8 @@ Test the views contained in the `timed\_mating' app.
 \phantomsection\label{api:timed_mating.tests.Timed_MatingViewTests.setUp}\pysiglinewithargsret{\bfcode{setUp}}{}{}
 Instantiate the test client.  Creates a test user.
 
-
 \end{fulllineitems}
+
 
 \index{tearDown() (timed\_mating.tests.Timed\_MatingViewTests method)}
 
@@ -1375,8 +2827,8 @@ Instantiate the test client.  Creates a test user.
 \phantomsection\label{api:timed_mating.tests.Timed_MatingViewTests.tearDown}\pysiglinewithargsret{\bfcode{tearDown}}{}{}
 Depopulate created model instances from test database.
 
-
 \end{fulllineitems}
+
 
 \index{test\_plugevent\_delete() (timed\_mating.tests.Timed\_MatingViewTests method)}
 
@@ -1384,11 +2836,10 @@ Depopulate created model instances from test database.
 \phantomsection\label{api:timed_mating.tests.Timed_MatingViewTests.test_plugevent_delete}\pysiglinewithargsret{\bfcode{test\_plugevent\_delete}}{}{}
 This tests the plugevent-delete view, ensuring that templates are loaded correctly.
 
-
 This view uses a user with superuser permissions so does not test the permission levels for this view.
 
-
 \end{fulllineitems}
+
 
 \index{test\_plugevent\_detail() (timed\_mating.tests.Timed\_MatingViewTests method)}
 
@@ -1396,11 +2847,10 @@ This view uses a user with superuser permissions so does not test the permission
 \phantomsection\label{api:timed_mating.tests.Timed_MatingViewTests.test_plugevent_detail}\pysiglinewithargsret{\bfcode{test\_plugevent\_detail}}{}{}
 This tests the plugevent-detail view, ensuring that templates are loaded correctly.
 
-
 This view uses a user with superuser permissions so does not test the permission levels for this view.
 
-
 \end{fulllineitems}
+
 
 \index{test\_plugevent\_edit() (timed\_mating.tests.Timed\_MatingViewTests method)}
 
@@ -1408,11 +2858,10 @@ This view uses a user with superuser permissions so does not test the permission
 \phantomsection\label{api:timed_mating.tests.Timed_MatingViewTests.test_plugevent_edit}\pysiglinewithargsret{\bfcode{test\_plugevent\_edit}}{}{}
 This tests the plugevent-edit view, ensuring that templates are loaded correctly.
 
-
 This view uses a user with superuser permissions so does not test the permission levels for this view.
 
-
 \end{fulllineitems}
+
 
 \index{test\_plugevent\_list() (timed\_mating.tests.Timed\_MatingViewTests method)}
 
@@ -1420,11 +2869,10 @@ This view uses a user with superuser permissions so does not test the permission
 \phantomsection\label{api:timed_mating.tests.Timed_MatingViewTests.test_plugevent_list}\pysiglinewithargsret{\bfcode{test\_plugevent\_list}}{}{}
 This tests the plugevent-list view, ensuring that templates are loaded correctly.
 
-
 This view uses a user with superuser permissions so does not test the permission levels for this view.
 
-
 \end{fulllineitems}
+
 
 \index{test\_plugevent\_new() (timed\_mating.tests.Timed\_MatingViewTests method)}
 
@@ -1432,11 +2880,10 @@ This view uses a user with superuser permissions so does not test the permission
 \phantomsection\label{api:timed_mating.tests.Timed_MatingViewTests.test_plugevent_new}\pysiglinewithargsret{\bfcode{test\_plugevent\_new}}{}{}
 This tests the plugevent-new view, ensuring that templates are loaded correctly.
 
-
 This view uses a user with superuser permissions so does not test the permission levels for this view.
 
-
 \end{fulllineitems}
+
 
 \index{test\_plugeventbreeding\_new() (timed\_mating.tests.Timed\_MatingViewTests method)}
 
@@ -1444,9 +2891,7 @@ This view uses a user with superuser permissions so does not test the permission
 \phantomsection\label{api:timed_mating.tests.Timed_MatingViewTests.test_plugeventbreeding_new}\pysiglinewithargsret{\bfcode{test\_plugeventbreeding\_new}}{}{}
 This tests the plugevent-new view, ensuring that templates are loaded correctly.
 
-
 This view uses a user with superuser permissions so does not test the permission levels for this view.
-
 
 \end{fulllineitems}
 
@@ -1456,23 +2901,23 @@ This view uses a user with superuser permissions so does not test the permission
 
 
 \section{Groups Package}
-\label{api:module-groups}\label{api:groups-package}\index{groups (module)}
+\label{api:module-groups}\label{api:groups-package}
+\index{groups (module)}
 This package defines the Group application.
 This app defines generic Group and License information for a particular installation of MouseDB.  
 Because every page on this site identifies both the Group and data restrictions, at a minimum, group information must be provided upon installation (see installation instructions).
 
 
-
 \subsection{Models}
-\label{api:id11}\phantomsection\label{api:module-groups.models}\index{groups.models (module)}\index{Group (class in groups.models)}
+\label{api:id11}\phantomsection\label{api:module-groups.models}
+\index{groups.models (module)}
+\index{Group (class in groups.models)}
 
 \begin{fulllineitems}
 \phantomsection\label{api:groups.models.Group}\pysiglinewithargsret{\strong{class }\code{groups.models.}\bfcode{Group}}{\emph{*args}, \emph{**kwargs}}{}
 Bases: \code{django.db.models.base.Model}
 
-
 This defines the data structure for the Group model.
-
 
 The only required field is group.
 All other fields (group\_slug, group\_url, license, contact\_title, contact\_first, contact\_last and contact\_email) are optional.
@@ -1483,8 +2928,8 @@ All other fields (group\_slug, group\_url, license, contact\_title, contact\_fir
 \phantomsection\label{api:groups.models.Group.DoesNotExist}\pysigline{\strong{exception }\bfcode{DoesNotExist}}{}
 Bases: \code{django.core.exceptions.ObjectDoesNotExist}
 
-
 \end{fulllineitems}
+
 
 \index{Group.MultipleObjectsReturned}
 
@@ -1492,14 +2937,15 @@ Bases: \code{django.core.exceptions.ObjectDoesNotExist}
 \phantomsection\label{api:groups.models.Group.MultipleObjectsReturned}\pysigline{\strong{exception }\code{Group.}\bfcode{MultipleObjectsReturned}}{}
 Bases: \code{django.core.exceptions.MultipleObjectsReturned}
 
-
 \end{fulllineitems}
+
 
 \index{get\_contact\_title\_display() (groups.models.Group method)}
 
 \begin{fulllineitems}
 \phantomsection\label{api:groups.models.Group.get_contact_title_display}\pysiglinewithargsret{\code{Group.}\bfcode{get\_contact\_title\_display}}{\emph{*moreargs}, \emph{**morekwargs}}{}
 \end{fulllineitems}
+
 
 \index{license (groups.models.Group attribute)}
 
@@ -1510,15 +2956,14 @@ Bases: \code{django.core.exceptions.MultipleObjectsReturned}
 
 \end{fulllineitems}
 
+
 \index{License (class in groups.models)}
 
 \begin{fulllineitems}
 \phantomsection\label{api:groups.models.License}\pysiglinewithargsret{\strong{class }\code{groups.models.}\bfcode{License}}{\emph{*args}, \emph{**kwargs}}{}
 Bases: \code{django.db.models.base.Model}
 
-
 This defines the data structure for the License model.
-
 
 The only required field is license.
 If the contents of this installation are being made available using some licencing criteria this can either be defined in the notes field, or in an external website.
@@ -1529,8 +2974,8 @@ If the contents of this installation are being made available using some licenci
 \phantomsection\label{api:groups.models.License.DoesNotExist}\pysigline{\strong{exception }\bfcode{DoesNotExist}}{}
 Bases: \code{django.core.exceptions.ObjectDoesNotExist}
 
-
 \end{fulllineitems}
+
 
 \index{License.MultipleObjectsReturned}
 
@@ -1538,8 +2983,8 @@ Bases: \code{django.core.exceptions.ObjectDoesNotExist}
 \phantomsection\label{api:groups.models.License.MultipleObjectsReturned}\pysigline{\strong{exception }\code{License.}\bfcode{MultipleObjectsReturned}}{}
 Bases: \code{django.core.exceptions.MultipleObjectsReturned}
 
-
 \end{fulllineitems}
+
 
 \index{group\_set (groups.models.License attribute)}
 
@@ -1550,37 +2995,36 @@ Bases: \code{django.core.exceptions.MultipleObjectsReturned}
 
 \end{fulllineitems}
 
+
 \index{Group (class in groups.models)}
 
 \begin{fulllineitems}
 \pysiglinewithargsret{\strong{class }\code{groups.models.}\bfcode{Group}}{\emph{*args}, \emph{**kwargs}}{}
 Bases: \code{django.db.models.base.Model}
 
-
 This defines the data structure for the Group model.
-
 
 The only required field is group.
 All other fields (group\_slug, group\_url, license, contact\_title, contact\_first, contact\_last and contact\_email) are optional.
-
 
 \end{fulllineitems}
 
 
 
 \subsection{Views and URLs}
-\label{api:id12}\phantomsection\label{api:module-groups.views}\index{groups.views (module)}
+\label{api:id12}\phantomsection\label{api:module-groups.views}
+\index{groups.views (module)}
 
 \subsection{Administrative Site Configuration}
-\label{api:id13}\phantomsection\label{api:module-groups.admin}\index{groups.admin (module)}\index{GroupAdmin (class in groups.admin)}
+\label{api:id13}\phantomsection\label{api:module-groups.admin}
+\index{groups.admin (module)}
+\index{GroupAdmin (class in groups.admin)}
 
 \begin{fulllineitems}
 \phantomsection\label{api:groups.admin.GroupAdmin}\pysiglinewithargsret{\strong{class }\code{groups.admin.}\bfcode{GroupAdmin}}{\emph{model}, \emph{admin\_site}}{}
 Bases: \code{django.contrib.admin.options.ModelAdmin}
 
-
 Defines the admin interface for Groups.
-
 
 Currently set as default.
 
@@ -1593,15 +3037,14 @@ Currently set as default.
 
 \end{fulllineitems}
 
+
 \index{LicenseAdmin (class in groups.admin)}
 
 \begin{fulllineitems}
 \phantomsection\label{api:groups.admin.LicenseAdmin}\pysiglinewithargsret{\strong{class }\code{groups.admin.}\bfcode{LicenseAdmin}}{\emph{model}, \emph{admin\_site}}{}
 Bases: \code{django.contrib.admin.options.ModelAdmin}
 
-
 Defines the admin interface for Licences.
-
 
 Currently set as default.
 
@@ -1617,9 +3060,9 @@ Currently set as default.
 
 
 \subsection{Test Files}
-\label{api:id14}\phantomsection\label{api:module-groups.tests}\index{groups.tests (module)}
+\label{api:id14}\phantomsection\label{api:module-groups.tests}
+\index{groups.tests (module)}
 This file contains tests for the groups application.
-
 
 These tests will verify generation of a new group and license object.
 
@@ -1629,7 +3072,6 @@ These tests will verify generation of a new group and license object.
 \phantomsection\label{api:groups.tests.GroupsModelTests}\pysiglinewithargsret{\strong{class }\code{groups.tests.}\bfcode{GroupsModelTests}}{\emph{methodName='runTest'}}{}
 Bases: \code{django.test.testcases.TestCase}
 
-
 Test the models contained in the `groups' app.
 
 \index{setUp() (groups.tests.GroupsModelTests method)}
@@ -1638,8 +3080,8 @@ Test the models contained in the `groups' app.
 \phantomsection\label{api:groups.tests.GroupsModelTests.setUp}\pysiglinewithargsret{\bfcode{setUp}}{}{}
 Instantiate the test client.
 
-
 \end{fulllineitems}
+
 
 \index{tearDown() (groups.tests.GroupsModelTests method)}
 
@@ -1647,8 +3089,8 @@ Instantiate the test client.
 \phantomsection\label{api:groups.tests.GroupsModelTests.tearDown}\pysiglinewithargsret{\bfcode{tearDown}}{}{}
 Depopulate created model instances from test database.
 
-
 \end{fulllineitems}
+
 
 \index{test\_create\_group\_all\_fields() (groups.tests.GroupsModelTests method)}
 
@@ -1656,8 +3098,8 @@ Depopulate created model instances from test database.
 \phantomsection\label{api:groups.tests.GroupsModelTests.test_create_group_all_fields}\pysiglinewithargsret{\bfcode{test\_create\_group\_all\_fields}}{}{}
 This is a test for creating a new group object, with all fields being entered, except license.
 
-
 \end{fulllineitems}
+
 
 \index{test\_create\_group\_minimal() (groups.tests.GroupsModelTests method)}
 
@@ -1665,8 +3107,8 @@ This is a test for creating a new group object, with all fields being entered, e
 \phantomsection\label{api:groups.tests.GroupsModelTests.test_create_group_minimal}\pysiglinewithargsret{\bfcode{test\_create\_group\_minimal}}{}{}
 This is a test for creating a new group object, with only the minimum being entered.
 
-
 \end{fulllineitems}
+
 
 \index{test\_create\_license\_all\_fields() (groups.tests.GroupsModelTests method)}
 
@@ -1674,15 +3116,14 @@ This is a test for creating a new group object, with only the minimum being ente
 \phantomsection\label{api:groups.tests.GroupsModelTests.test_create_license_all_fields}\pysiglinewithargsret{\bfcode{test\_create\_license\_all\_fields}}{}{}
 This is a test for creating a new license object, with all fields being entered.
 
-
 \end{fulllineitems}
+
 
 \index{test\_create\_license\_minimal() (groups.tests.GroupsModelTests method)}
 
 \begin{fulllineitems}
 \phantomsection\label{api:groups.tests.GroupsModelTests.test_create_license_minimal}\pysiglinewithargsret{\bfcode{test\_create\_license\_minimal}}{}{}
 This is a test for creating a new license object, with only the minimum being entered.
-
 
 \end{fulllineitems}
 
@@ -1696,14 +3137,11 @@ This is a test for creating a new license object, with only the minimum being en
 \item {} 
 \emph{genindex}
 
-
 \item {} 
 \emph{modindex}
 
-
 \item {} 
 \emph{search}
-
 
 \end{itemize}
 
@@ -1714,13 +3152,20 @@ This is a test for creating a new license object, with only the minimum being en
 \bigletter{a}
 \item {\texttt{animal}}, \pageref{api:module-animal}
 \item {\texttt{animal.admin}}, \pageref{api:module-animal.admin}
+\item {\texttt{animal.forms}}, \pageref{api:module-animal.forms}
 \item {\texttt{animal.models}}, \pageref{api:module-animal.models}
 \item {\texttt{animal.tests}}, \pageref{api:module-animal.tests}
 \item {\texttt{animal.urls}}, \pageref{api:module-animal.urls}
+\item {\texttt{animal.views}}, \pageref{api:module-animal.views}
 \indexspace
 \bigletter{d}
 \item {\texttt{data}}, \pageref{api:module-data}
+\item {\texttt{data.admin}}, \pageref{api:module-data.admin}
+\item {\texttt{data.forms}}, \pageref{api:module-data.forms}
+\item {\texttt{data.models}}, \pageref{api:module-data.models}
+\item {\texttt{data.tests}}, \pageref{api:module-data.tests}
 \item {\texttt{data.urls}}, \pageref{api:module-data.urls}
+\item {\texttt{data.views}}, \pageref{api:module-data.views}
 \indexspace
 \bigletter{g}
 \item {\texttt{groups}}, \pageref{api:module-groups}
