@@ -17,6 +17,7 @@ USE_I18N = True
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
 MEDIA_ROOT = os.path.join(PROJECT_DIR, "media")
+STATIC_ROOT = os.path.join(PROJECT_DIR, "static")
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
@@ -64,6 +65,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.admin',
 	'django.contrib.sites',
+    'django.contrib.staticfiles'
 	'mousedb.data',
 	'mousedb.animal',
 	'mousedb.timed_mating',
