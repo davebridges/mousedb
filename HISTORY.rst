@@ -1,5 +1,6 @@
 Version 0.2.1dev
 ================
+* Upgraded to Django 1.3.  To upgrade from Django 1.2.x to 1.3.x two things must be done.  First re-run bin/buildout from the root directory.  Second run **django sqlindexes sessions** to update the index for the sessions app.
 * Added units tests for data and timed_mating apps.  
 * Added south, mysql-python and django-ajax-selects dependencies to setup.py.  There is a problem with installing mysql-python on windows that needs to be addressed (see http://stackoverflow.com/questions/1972259/mysql-python-install-problem-using-virtualenv-windows-pip and https://sourceforge.net/tracker/?func=detail&aid=3153396&group_id=22307&atid=374932)
 * Removed all references to "mousedb" in urls.  This allows for separate installations to use different server locations (ie /mousedb-dave and /mousedb-nicole.  Checked that all templates use get_absolute_url or {% url url-name %} tags.
