@@ -4,8 +4,7 @@
 {% block title %}Study Detail - {{ study.description }}{% endblock title%}
 
 {% block scripts %}
-	<script type="text/javascript" src="/javascript/jquery-1.3.2.js"></script> 
-	<script type="text/javascript" src="/javascript/dataTables-1.4/media/js/jquery.dataTables.js"</script>
+{% include "sortable_table_scripts.html" %}
 	<script type="text/javascript">
         $(document).ready(function() {
                 $(".sortable").dataTable( {
@@ -13,8 +12,7 @@
                         });
                 });
     	</script>
-    	</script>
-
+		
 {% endblock scripts %}
 
 {% block header %}Study Detail - {{ study.description }}{% endblock header%}
