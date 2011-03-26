@@ -5,7 +5,7 @@
 
 
 {% block content %}
-<h2>Plug Events ({{plug_list.count}}) <a href="/mousedb/plug/new"><img src="/mousedb-media/admin-media/img/admin/icon_addlink.gif" border="none" alt="add" title="Add Plug Event"></a></h2>
+<h2>Plug Events ({{plug_list.count}}) <a href="{% url plugevents-new %}"><img src="{{STATIC_URL}}admin-media/img/admin/icon_addlink.gif" border="none" alt="add" title="Add Plug Event"></a></h2>
 
 <table class="sortable">
 	<thead>	
@@ -23,11 +23,11 @@
 	</thead>
 	<tbody>
 	<tr>
-	<td><a href="/mousedb/breeding/{{plug.Breeding.id}}">{{plug.Breeding.Cage}}</a></td>
-	<td><a href="/mousedb/strain/{{plug.Breeding.Strain.Strain_slug}}">{{plug.Breeding.Strain}}</a></td>
+	<td><a href="{% url breeding-detail plug.Breeding.id %}">{{plug.Breeding.Cage}}</a></td>
+	<td><a href="{% url strain-detail plug.Breeding.Strain.Strain_slug %}">{{plug.Breeding.Strain}}</a></td>
 	<td><ul>
-		<li><a href="/mousedb/mouse/{{plug.PlugMale.id}}">{{plug.PlugMale}}</a></li>
-		<li><a href="/mousedb/mouse/{{plug.PlugFemale.id}}">{{plug.PlugFemale}}</a></li>
+		<li><a href="{% url animal-detail plug.PlugMale.id %}">{{plug.PlugMale}}</a></li>
+		<li><a href="{% url animal-detail plug.PlugFemale.id %}">{{plug.PlugFemale}}</a></li>
 	</ul></td>
 	<td>{{plug.PlugDate}}</td>
 	<td>{{plug.SacrificeDate}}</td>
@@ -40,13 +40,13 @@
 	<td>{{plug.WT_Alive}}/{{plug.WT_Dead}}</td>
 	<td>{{plug.HET_Alive}}/{{plug.HET_Dead}}</td>
 	<td>{{plug.KO_Alive}}/{{plug.KO_Dead}}</td>
-	<td><a href="/mousedb/plug/new"><img src="{{STATIC_URL}}admin-media/img/admin/icon_addlink.gif" border="none" alt="add" title="Add Plug Event"></a></td>
-	<td><a href="/mousedb/plug/{{plug.id}}/edit"><img src="{{STATIC_URL}}admin-media/img/admin/icon_changelink.gif" border="none" alt="edit" title="Edit Plug Event"></a></td>
-	<td><a href="/mousedb/plug/{{plug.id}}/delete"><img src="{{STATIC_URL}}admin-media/img/admin/icon_deletelink.gif" border="none" alt="delete" title="Delete Plug Event"></a></td>
+	<td><a href="{% url plugevents-new %}"><img src="{{STATIC_URL}}admin-media/img/admin/icon_addlink.gif" border="none" alt="add" title="Add Plug Event"></a></td>
+	<td><a href="{% url plugevents-edit %}"><img src="{{STATIC_URL}}admin-media/img/admin/icon_changelink.gif" border="none" alt="edit" title="Edit Plug Event"></a></td>
+	<td><a href="{% url plugevents-delete %}"><img src="{{STATIC_URL}}admin-media/img/admin/icon_deletelink.gif" border="none" alt="delete" title="Delete Plug Event"></a></td>
 	</tr>
 	</tbody>
 </table>
 
-<p>To add a new plug event click <a href="/mousedb/plug/new">here</a>, or enter it from the <a href="/mousedb/breeding/">breeding cage</a>.</p>
-<p>To see all timed mating breeding cages click <a href="/mousedb/breeding/timed_mating">here</a>.</p>
+<p>To add a new plug event click <a href="{% url plugevents-new %}">here</a>, or enter it from the <a href="{% url breeding-list %}">breeding cage</a>.</p>
+<p>To see all timed mating breeding cages click <a href="{% url breeding-list-timed-matings %}">here</a>.</p>
 {% endblock %}

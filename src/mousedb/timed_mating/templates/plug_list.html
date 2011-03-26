@@ -23,6 +23,6 @@
    </a>
 {% endif %}</h2>
 {% include "plug_table.html" %}
-<p>To add a new plug event click <a href="/mousedb/plug/new">here</a>, or enter it from the <a href="/mousedb/breeding/">breeding cage</a>.</p>
-<p>To see all timed mating breeding cages click <a href="/mousedb/breeding/timed_mating">here</a>.</p>
+<p>To add a new plug event click <a href="{% url plugevents-new %}">here</a>, or enter it from the <a href="{% url breeding-list %}">breeding cage</a>.</p>
+<p>To see all timed mating breeding cages click <a href="{% url breeding-list-timed-matings %}">here</a>.</p>
 {% endblock %}
