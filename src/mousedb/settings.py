@@ -65,7 +65,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.admin',
 	'django.contrib.sites',
-    'django.contrib.staticfiles'
+    'django.contrib.staticfiles',
 	'mousedb.data',
 	'mousedb.animal',
 	'mousedb.timed_mating',
