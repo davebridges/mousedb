@@ -53,6 +53,12 @@ You need to set up a server to serve both the django installation and saved file
        Order deny,allow
        Allow from all
   </Directory>
+  
+  Alias /static/ /usr/src/mousedb/src/mousedb/static/  
+  <Directory /usr/src/mousedb/src/mousedb/static>
+       Order deny,allow
+       Allow from all
+  </Directory>  
 
   <Directory /usr/src/mousedb/bin>
        Order deny,allow
