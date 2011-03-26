@@ -10,6 +10,12 @@ Version 0.2.1dev
 
 Stuff To Do
 +++++++++++
+* Move static files to static folder and upgrade to **django.contrib.staticfiles**
+* Migrate views to class based generic views and added docstrings.  See http://docs.djangoproject.com/en/dev/topics/class-based-views/ and http://docs.djangoproject.com/en/dev/topics/generic-views-migration/
+* Check for non-cascading deletes on foreignkey models.  See http://docs.djangoproject.com/en/dev/ref/models/fields/#django.db.models.ForeignKey.on_delete
+* Look into logging as potentially useful.  See http://docs.djangoproject.com/en/dev/topics/logging/
+* Examine potential of using transaction managers.  See http://docs.djangoproject.com/en/dev/topics/db/transactions/#transaction-management-functions
+* Check for use of RequestFactory objects in testing.  See http://docs.djangoproject.com/en/dev/topics/testing/#django.test.client.RequestFactory
 * The MEDIA_URL and LOGIN_URL are hardcoded, this should be fixed.
 * Need to update get_absolute_url for all models
 * Still need the following tests
