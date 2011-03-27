@@ -65,15 +65,15 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.admin',
-	'django.contrib.sites',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
-	'mousedb.data',
-	'mousedb.animal',
-	'mousedb.timed_mating',
-	'mousedb.groups',
-	'django.contrib.admin',
-	'ajax_select',
-	'south'
+    'mousedb.data',
+    'mousedb.animal',
+    'mousedb.timed_mating',
+    'mousedb.groups',
+    'django.contrib.admin',
+    'ajax_select',
+    'south'
 )
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.fallback.FallbackStorage'
