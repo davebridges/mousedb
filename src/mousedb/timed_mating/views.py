@@ -6,6 +6,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import permission_required
+from django.db.models import Q
 
 from mousedb.views import ProtectedListView
 from mousedb.animal.models import Breeding, Animal, Strain
@@ -25,14 +26,17 @@ class PlugEventsListView(ProtectedListView):
 class StrainPlugEventsListView(ProtectedListView):
     """This class generates an object list for PlugEvent objects.
     
-    This view takes PlugEvents belonging to a particular strain_slug and sends them to plugevents_list.html as a plug_list dictionary.  The url for this view is **/plugs/strain/strain-slug**"""
+    This view takes PlugEvents belonging to a particular strain_slug and sends them to plugevents_list.html as a plug_list dictionary.  The url for this view is **/plugs/strain/strain-slug**.  This view is not yet working."""
     model = PlugEvents
     context_object_name = 'plug_list'
-    template_name = "plugevents_list.html"    
+    template_name = "plugevents_list.html" 
 
     def get_queryset(self):
+        """This function defines the queryset for the StrainPlugEventsListView.
+        
+        The function takes an argument, which is typically a Strain_slug and filters the PlugEvents by that strain."""
         strain = get_object_or_404(Strain, Strain_slug__iexact=self.args[0])
-        return PlugEvents.objects.filter(Animal__Strain_slug=strain)    
+        return PlugEvents.objects.filter(PlugFemale__strain=strain)
     
 @permission_required('timed_mating.add_plugevents')
 def breeding_plugevent(request, breeding_id):

@@ -36,7 +36,8 @@ Stuff To Do
  * ViewTests: 
    * **data App**: treatment-list,treatment-new, treatment-detail, treatment-edit, treatment-delete, experiment-list, experiment-detail, experiment-detail-csv, data-entry, experiment-new, measurement-list, pharmaceutical-list, diet-list, study-experiment-new
    * **animals app**: breeding-pups, breeding-pups-wean, breeding-pups-change, animal-multiple-pups-new, breeding-list-timed-matings, todo-eartags, todo-genotype, todo-weaning, todo-eartags, todo-no-cage, todo-no-rack, strain-list, strain-new, strain-edit, strain-delete, strain-detail, strain-detail-all, animal-list, animal-list-all, animal-new, animal-update, animal-delete, animal-multiple-new
-* Write a view and template for archive-home.  Update unit test
+* Write a view and template for archive-home.  Update unit test.
+* Fix the strain-plugevents-list view and correct the unit test.
 * Used jquery-ui buttons in timed_mating app.
 * Update usage document.
 * Change version number in setup.py and Docs/source/conf.py Update Documentation and move to root directory
