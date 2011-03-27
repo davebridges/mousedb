@@ -47,7 +47,6 @@ urlpatterns = patterns('',
 		'form_class': AnimalForm, 
 		'template_name': 'animal_form.html', 
 		'login_required':True,
-		'post_save_redirect':'/mousedb/mouse/',
 		}, name="animal-update"),
 	url(r'^(?P<object_id>\d*)/delete/$', delete_animal, {
 		'model': Animal, 
