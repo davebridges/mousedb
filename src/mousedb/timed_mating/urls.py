@@ -1,19 +1,13 @@
 """This urlconf sets the directions for the timed_mating app.
 
-It comprises of create, update, delete, detail and list of plug events."""
+It takes a url in the form of /plug/something and sends it to the appropriate view class or function."""
 
 from django.conf.urls.defaults import *
-from django.views.generic.list_detail import object_detail
 from django.views.generic.create_update import create_object, update_object, delete_object
 from django.contrib.auth.decorators import login_required, permission_required
 
 from mousedb.timed_mating.models import PlugEvents
 from mousedb.timed_mating.views import PlugEventsListView, StrainPlugEventsListView, PlugEventsDetailView
-
-
-@login_required
-def limited_object_detail(*args, **kwargs):
-	return object_detail(*args, **kwargs)
 
 @permission_required('timed_mating.add_plugevents')
 def create_plugevents(*args, **kwargs):
