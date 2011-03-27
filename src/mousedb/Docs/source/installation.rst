@@ -68,6 +68,22 @@ You need to set up a server to serve both the django installation and saved file
 
 If you want to restrict access to these files, change the Allow from all directive to specific domains or ip addresses (for example Allow from 192.168.0.0/99 would allow from 192.168.0.0 to 192.168.0.99)
 
+Enabling of South for Future Migrations
+---------------------------------------
+Schema updates will utilize south as a way to alter database tables.  This must be enabled initially by entering the following commands from /mousedb/bin::
+
+    django schemamigration animal --initial
+    django schemamigration data --initial
+    django schemamigration groups --initial
+    django schemamigration timed_mating --initial
+    django migrate
+    django syncdb
+    
+Future schema changes (se the UPGRADE_NOTES.rst file for whether this is necessary) are accomplished by entering::
+
+    django schemamigration <INDICATED_APP> --auto
+    django migrate <INDICATED_APP>
+
 Final Configuration and User Setup
 ----------------------------------
 * Go to *servername/mousedb/admin/groups/group/1* and name your research group and select a license if desired

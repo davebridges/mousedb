@@ -1,5 +1,9 @@
 Upgrading Notes
 +++++++++++++++
+If installing a new version of MouseDB and not upgrading, none of this needs to be considered.  However if you are upgrading from a previous version, please follow these instructions.  Database schema upgrades will be attempted to be minimized, but when necessary **south** will be utilized.  When a schema upgrade is indicated follow these instructions from within the mousedb/bin directory::
+
+    django schemamigration <INDICATED_APP> --auto
+    django migrate <INDICATED_APP>
 
 From 0.2 to 0.3
 ===============
