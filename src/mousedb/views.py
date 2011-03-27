@@ -5,14 +5,16 @@ Currently this package includes views for both the logout and home pages."""
 import datetime
 
 from django.shortcuts import render_to_response
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth import logout
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from mousedb.animal.models import Animal, Strain
 from django.utils.decorators import method_decorator
-from django.views.generic import ListView, DetailView
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from mousedb import settings
 
@@ -50,5 +52,35 @@ class ProtectedDetailView(DetailView):
     This ProtectedDetailView is then subclassed instead of using ListView for login_required views."""
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        return super(ProtectedDetailView, self).dispatch(*args, **kwargs)            
+        return super(ProtectedDetailView, self).dispatch(*args, **kwargs)
+
+class RestrictedUpdateView(UpdateView):
+    """Generic update view that checks permissions.
+    
+    This is from http://djangosnippets.org/snippets/2317/ and subclasses the UpdateView into one that requires permissions to update a particular model."""
+    def dispatch(self, request, *args, **kwargs):
+        @permission_required('%s.change_%s' % (self.model._meta.app_label, self.model._meta.module_name))
+        def wrapper(request, *args, **kwargs):
+            return super(RestrictedUpdateView, self).dispatch(request, *args, **kwargs)
+        return wrapper(request, *args, **kwargs)
+
+class RestrictedCreateView(CreateView):
+    """Generic create view that checks permissions.
+    
+    This is from http://djangosnippets.org/snippets/2317/ and subclasses the UpdateView into one that requires permissions to create a particular model."""
+    def dispatch(self, request, *args, **kwargs):
+        @permission_required('%s.create_%s' % (self.model._meta.app_label, self.model._meta.module_name))
+        def wrapper(request, *args, **kwargs):
+            return super(RestrictedCreateView, self).dispatch(request, *args, **kwargs)
+        return wrapper(request, *args, **kwargs)
+
+class RestrictedDeleteView(DeleteView):
+    """Generic delete view that checks permissions.
+    
+    This is from http://djangosnippets.org/snippets/2317/ and subclasses the UpdateView into one that requires permissions to delete a particular model."""
+    def dispatch(self, request, *args, **kwargs):
+        @permission_required('%s.delete_%s' % (self.model._meta.app_label, self.model._meta.module_name))
+        def wrapper(request, *args, **kwargs):
+            return super(RestrictedDeleteView, self).dispatch(request, *args, **kwargs)
+        return wrapper(request, *args, **kwargs)        
 
