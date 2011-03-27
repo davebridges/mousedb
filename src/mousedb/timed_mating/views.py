@@ -8,7 +8,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import permission_required
 from django.db.models import Q
 
-from mousedb.views import ProtectedListView, ProtectedDetailView
+from mousedb.views import ProtectedListView, ProtectedDetailView, RestrictedCreateView, RestrictedUpdateView, RestrictedDeleteView
 from mousedb.animal.models import Breeding, Animal, Strain
 from mousedb.timed_mating.forms import BreedingPlugForm
 from mousedb.timed_mating.models import PlugEvents
@@ -45,7 +45,8 @@ class PlugEventsDetailView(ProtectedDetailView):
     model = PlugEvents
     template_name = 'plugevents_detail.html'
     context_object_name = 'plug'
-       
+    
+  
     
 @permission_required('timed_mating.add_plugevents')
 def breeding_plugevent(request, breeding_id):
