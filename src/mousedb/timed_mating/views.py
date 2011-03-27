@@ -3,13 +3,24 @@
 Currently all views are generic CRUD views except for the view in which a plug event is defined from a breeding cage."""
 
 from django.shortcuts import render_to_response
-from django.contrib.auth.decorators import permission_required
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import permission_required
 
+from mousedb.views import ProtectedListView
 from mousedb.animal.models import Breeding, Animal
 from mousedb.timed_mating.forms import BreedingPlugForm
+from mousedb.timed_mating.models import PlugEvents
 
+
+class PlugEventsListView(ProtectedListView):
+    """This class generates an object list for PlugEvent objects.
+    
+    This view takes all PlugEvents objects and sends them to plugevents_list.html as a plug_list dictionary"""
+    model = PlugEvents
+    context_object_name = 'plug_list'
+    template_name = "plugevents_list.html"    
+    
 @permission_required('timed_mating.add_plugevents')
 def breeding_plugevent(request, breeding_id):
     """This view defines a form for adding new plug events from a breeding cage.
