@@ -1,6 +1,43 @@
 Automated Documentation
 =======================
 
+Root Package
+------------
+
+.. automodule:: 
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Views and URLs
+++++++++++++++
+
+.. automodule:: views
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   
+.. automodule:: urls
+   :members:
+   :undoc-members:
+   :show-inheritance:   
+   
+
+Administrative Site Configuration
++++++++++++++++++++++++++++++++++
+
+.. automodule:: admin
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Test Files
+++++++++++
+.. automodule:: tests
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Data Package
 ------------
 
