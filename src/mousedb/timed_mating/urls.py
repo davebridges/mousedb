@@ -8,7 +8,7 @@ from django.views.generic.create_update import create_object, update_object, del
 from django.contrib.auth.decorators import login_required, permission_required
 
 from mousedb.timed_mating.models import PlugEvents
-from mousedb.timed_mating.views import PlugEventsListView
+from mousedb.timed_mating.views import PlugEventsListView, StrainPlugEventsListView
 
 
 @login_required
@@ -29,6 +29,7 @@ def delete_plugevents(*args, **kwargs):
 
 urlpatterns = patterns('',
     url(r'^$', PlugEventsListView.as_view(), name="plugevents-list"),
+    url(r'^strain/(\w+)/$', StrainPlugEventsListView.as_view(), name="strain-plugevents-list"),
 	url(r'^(?P<object_id>\d*)/$', limited_object_detail, {
 		'queryset': PlugEvents.objects.all(),
 		'template_name': 'plug_detail.html',
