@@ -12,7 +12,7 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from mousedb.animal.models import Animal, Strain
 from django.utils.decorators import method_decorator
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 from mousedb import settings
 
@@ -37,10 +37,18 @@ def home(request):
     return render_to_response('home.html', {'animal_list':animal_list, 'animal_list_current':animal_list_current, 'strain_list':strain_list, 'strain_list_current':strain_list_current, 'cage_list':cage_list, 'cage_list_current':cage_list_current},context_instance=RequestContext(request))
     
 class ProtectedListView(ListView):
-    """This subclass of LisView generates a login_required protected version of the ListView.
+    """This subclass of ListView generates a login_required protected version of the ListView.
     
     This ProtectedListView is then subclassed instead of using ListView for login_required views."""
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(ProtectedListView, self).dispatch(*args, **kwargs)    
+        
+class ProtectedDetailView(DetailView):
+    """This subclass of DetailView generates a login_required protected version of the DetailView.
+    
+    This ProtectedDetailView is then subclassed instead of using ListView for login_required views."""
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(ProtectedDetailView, self).dispatch(*args, **kwargs)            
 
