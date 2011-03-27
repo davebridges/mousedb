@@ -8,7 +8,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import permission_required
 from django.db.models import Q
 
-from mousedb.views import ProtectedListView
+from mousedb.views import ProtectedListView, ProtectedDetailView
 from mousedb.animal.models import Breeding, Animal, Strain
 from mousedb.timed_mating.forms import BreedingPlugForm
 from mousedb.timed_mating.models import PlugEvents
@@ -17,7 +17,7 @@ from mousedb.timed_mating.models import PlugEvents
 class PlugEventsListView(ProtectedListView):
     """This class generates an object list for PlugEvent objects.
     
-    This view takes all PlugEvents objects and sends them to plugevents_list.html as a plug_list dictionary.
+    This login protected view takes all PlugEvents objects and sends them to plugevents_list.html as a plug_list dictionary.
     The url for this view is **/plugs/**"""
     model = PlugEvents
     context_object_name = 'plug_list'
@@ -26,7 +26,7 @@ class PlugEventsListView(ProtectedListView):
 class StrainPlugEventsListView(ProtectedListView):
     """This class generates an object list for PlugEvent objects.
     
-    This view takes PlugEvents belonging to a particular strain_slug and sends them to plugevents_list.html as a plug_list dictionary.  The url for this view is **/plugs/strain/strain-slug**.  This view is not yet working."""
+    This login protected view takes PlugEvents belonging to a particular strain_slug and sends them to plugevents_list.html as a plug_list dictionary.  The url for this view is **/plugs/strain/strain-slug**.  This view is not yet working."""
     model = PlugEvents
     context_object_name = 'plug_list'
     template_name = "plugevents_list.html" 
@@ -37,6 +37,15 @@ class StrainPlugEventsListView(ProtectedListView):
         The function takes an argument, which is typically a Strain_slug and filters the PlugEvents by that strain."""
         strain = get_object_or_404(Strain, Strain_slug__iexact=self.args[0])
         return PlugEvents.objects.filter(PlugFemale__strain=strain)
+        
+class PlugEventsDetailView(ProtectedDetailView): 
+    """This class generates the plugevents-detail view.
+    
+    This login protected takes a url in the form **/plugs/1** for plug event id=1 and passes a plug object to plugevents_detail.html"""
+    model = PlugEvents
+    template_name = 'plugevents_detail.html'
+    context_object_name = 'plug'
+       
     
 @permission_required('timed_mating.add_plugevents')
 def breeding_plugevent(request, breeding_id):

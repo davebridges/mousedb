@@ -132,7 +132,7 @@ class Timed_MatingViewTests(TestCase):
         self.assertTemplateUsed(response, 'base.html')
         self.assertTemplateUsed(response, 'jquery_script.html')
         self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
-        self.assertTemplateUsed(response, 'plug_detail.html')
+        self.assertTemplateUsed(response, 'plugevents_detail.html')
 
     def test_plugevent_new(self):
         """This tests the plugevent-new view, ensuring that templates are loaded correctly.  
