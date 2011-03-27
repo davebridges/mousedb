@@ -28,14 +28,12 @@ Stuff To Do
 * Migrate views to class based generic views and added docstrings.  See http://docs.djangoproject.com/en/dev/topics/class-based-views/ and http://docs.djangoproject.com/en/dev/topics/generic-views-migration/
 * Check for non-cascading deletes on foreignkey models.  See http://docs.djangoproject.com/en/dev/ref/models/fields/#django.db.models.ForeignKey.on_delete
 * Look into logging as potentially useful.  See http://docs.djangoproject.com/en/dev/topics/logging/
-* Examine potential of using transaction managers.  See http://docs.djangoproject.com/en/dev/topics/db/transactions/#transaction-management-functions
 * Check for use of RequestFactory objects in testing.  See http://docs.djangoproject.com/en/dev/topics/testing/#django.test.client.RequestFactory
 * The MEDIA_URL and LOGIN_URL are hardcoded, this should be fixed.
 * Need to update get_absolute_url for all models
 * Still need the following tests
  * ModelTests: animal.Strain, data.Treatment, data.Assay, data.Diet, data.Environment, data.Experiment, data.Implantation, data.Measurement, data.Pharmaceutical, data.Researcher, data.Transplantation, data.Vendor
  * ViewTests: 
-   * **root App**: logout-view
    * **data App**: treatment-list,treatment-new, treatment-detail, treatment-edit, treatment-delete, experiment-list, experiment-detail, experiment-detail-csv, data-entry, experiment-new, measurement-list, pharmaceutical-list, diet-list, study-experiment-new
    * **animals app**: breeding-pups, breeding-pups-wean, breeding-pups-change, animal-multiple-pups-new, breeding-list-timed-matings, todo-eartags, todo-genotype, todo-weaning, todo-eartags, todo-no-cage, todo-no-rack, strain-list, strain-new, strain-edit, strain-delete, strain-detail, strain-detail-all, animal-list, animal-list-all, animal-new, animal-update, animal-delete, animal-multiple-new
 * Write a view and template for archive-home.  Update unit test
