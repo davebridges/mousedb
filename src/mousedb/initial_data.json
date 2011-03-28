@@ -12,5 +12,14 @@
             "group_slug": "", 
             "contact_title": ""
         }
+    },
+    {
+        "pk": 1, 
+        "model": "groups.license", 
+        "fields": {
+            "license": "default", 
+            "website": "", 
+            "notes": ""
+        }
     }
 ]
