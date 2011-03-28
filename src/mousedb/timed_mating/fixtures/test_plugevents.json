@@ -13,7 +13,7 @@
             "KO_Alive": null, 
             "PlugMale": null, 
             "KO_Dead": null, 
-            "PlugFemale": null, 
+            "PlugFemale": "1", 
             "Active": true, 
             "Breeding": null, 
             "SacrificeDate": null

@@ -17,6 +17,7 @@ USE_I18N = True
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
 MEDIA_ROOT = os.path.join(PROJECT_DIR, "media")
+STATIC_ROOT = os.path.join(PROJECT_DIR, "static")
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
@@ -52,6 +53,7 @@ TEMPLATE_CONTEXT_PROCESSORS =(
 	"django.core.context_processors.debug",
 	"django.core.context_processors.i18n",
 	"django.core.context_processors.media",
+    "django.core.context_processors.static",
 	'django.contrib.messages.context_processors.messages',
 	"mousedb.context_processors.group_info",
 )
@@ -63,14 +65,15 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.admin',
-	'django.contrib.sites',
-	'mousedb.data',
-	'mousedb.animal',
-	'mousedb.timed_mating',
-	'mousedb.groups',
-	'django.contrib.admin',
-	'ajax_select',
-	'south'
+    'django.contrib.sites',
+    'django.contrib.staticfiles',
+    'mousedb.data',
+    'mousedb.animal',
+    'mousedb.timed_mating',
+    'mousedb.groups',
+    'django.contrib.admin',
+    'ajax_select',
+    'south'
 )
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.fallback.FallbackStorage'

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (MiKTeX 2.8) (preloaded format=pdflatex 2011.1.8)  8 JAN 2011 13:30
+This is pdfTeX, Version 3.1415926-1.40.10 (MiKTeX 2.8) (preloaded format=pdflatex 2011.2.19)  26 MAR 2011 12:18
 entering extended mode
 **MouseDB.tex
 
@@ -654,10 +654,9 @@ Package graphics Info: Driver file: pdftex.def on input line 91.
 )
 ("C:\Program Files\MiKTeX 2.8\tex\plain\misc\pdfcolor.tex")
 \distancetoright=\skip70
-\leftsidespace=\skip71
-\py@argswidth=\skip72
-\py@noticelength=\skip73
-\lineblockindentation=\skip74
+\py@argswidth=\skip71
+\py@noticelength=\skip72
+\lineblockindentation=\skip73
 \image@box=\box39
 \image@width=\dimen135
 
@@ -797,12 +796,12 @@ Package: uniquecounter 2009/12/18 v1.1 Provides unlimited unique counter (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 71.
 )
-\Hy@SectionHShift=\skip75
+\Hy@SectionHShift=\skip74
 )
 ("C:\Program Files\MiKTeX 2.8\tex\latex\oberdiek\hypcap.sty"
 Package: hypcap 2008/09/08 v1.10 Adjusting anchors of captions (HO)
 )
-\DUlineblockindent=\skip76
+\DUlineblockindent=\skip75
 )
 \@indexfile=\write5
 
@@ -906,7 +905,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.69 ...ntsline {chapter}{Index}{29}{section*.115}
+l.69 ...ntsline {chapter}{Index}{39}{section*.293}
                                                    [1
 
 ])
@@ -923,49 +922,44 @@ l.112 \tableofcontents
 ]
 Chapter 1.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 120.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 119.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 132.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 129.
 [3] [4]
 Chapter 2.
 
-Underfull \hbox (badness 7168) in paragraph at lines 205--206
+Underfull \hbox (badness 7168) in paragraph at lines 191--192
 []\T1/ptm/b/n/10 Python\T1/ptm/m/n/10 . Re-quires Ver-sion 2.6, is not yet com-
 pat-i-ble with Python 3.0. Down-load from
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 233--234
+Underfull \hbox (badness 10000) in paragraph at lines 213--214
 \T1/ptm/m/n/10 . It is also pos-si-ble to use SQLite, Post-greSQL, MySQL, or Or
 -a-cle. See
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 237--238
-\T1/ptm/m/n/10 for more de-tails. You will also need to en-able mod_wsgi if us-
-ing apache. See
  []
 
 [5
 
 ]
-LaTeX Font Info:    Try loading font information for TS1+ptm on input line 276.
+LaTeX Font Info:    Try loading font information for TS1+ptm on input line 248.
 
  ("C:\Program Files\MiKTeX 2.8\tex\latex\psnfss\ts1ptm.fd"
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
-Underfull \hbox (badness 10000) in paragraph at lines 277--278
+Underfull \hbox (badness 10000) in paragraph at lines 249--250
 []\T1/ptm/m/n/10 ENGINE: Choose one of `django.db.backends.postgresql_psycopg2'
 ,'django.db.backends.postgresql',
  []
 
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 315.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 279.
 ("C:\Program Files\MiKTeX 2.8\tex\latex\psnfss\t1pcr.fd"
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 ) [6]
-Underfull \hbox (badness 10000) in paragraph at lines 351--352
-\T1/ptm/m/n/10 From the mousedb di-rec-tory run \T1/ptm/b/n/10 bin-test \T1/ptm
-/m/n/10 to run the test suite. See
+Underfull \hbox (badness 10000) in paragraph at lines 318--319
+\T1/ptm/m/n/10 From the mousedb di-rec-tory run \T1/ptm/b/n/10 bin\test \T1/ptm
+/m/n/10 or \T1/ptm/b/n/10 bin\django test \T1/ptm/m/n/10 to run the test suite.
+ See
  []
 
 [7] [8
@@ -984,279 +978,452 @@ Chapter 5.
 
 ]
 Chapter 6.
-[15] [16]
 LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <10> not available
-(Font)              Font shape `T1/pcr/b/n' tried instead on input line 656.
- [17] [18] [19] [20]
-Underfull \hbox (badness 10000) in paragraph at lines 1171--1171
+(Font)              Font shape `T1/pcr/b/n' tried instead on input line 526.
+[15] [16] [17] [18]
+Underfull \hbox (badness 10000) in paragraph at lines 1321--1321
+[]\T1/ptm/m/it/10 data=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 files=None\T1/ptm/m
+/n/10 , \T1/ptm/m/it/10 auto_id='id_%s'\T1/ptm/m/n/10 , \T1/ptm/m/it/10 pre-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1321--1321
 \T1/ptm/m/it/10 fix=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 ini-tial=None\T1/ptm/m
 /n/10 , \T1/ptm/m/it/10 er-ror_class=<class
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1171--1171
+Underfull \hbox (badness 10000) in paragraph at lines 1321--1321
 \T1/ptm/m/it/10 `django.forms.util.ErrorList'>\T1/ptm/m/n/10 , \T1/ptm/m/it/10 
 la-bel_suffix=':'\T1/ptm/m/n/10 ,
  []
 
-[21] [22] [23] [24]
+[19]
+Underfull \hbox (badness 10000) in paragraph at lines 1364--1364
+\T1/ptm/m/it/10 er-ror_class=<class `django.forms.util.ErrorList'>\T1/ptm/m/n/1
+0 , \T1/ptm/m/it/10 la-bel_suffix=':'\T1/ptm/m/n/10 ,
+ []
+
+
+Underfull \hbox (badness 6094) in paragraph at lines 1407--1407
+[]\T1/ptm/m/it/10 data=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 files=None\T1/ptm/m
+/n/10 , \T1/ptm/m/it/10 auto_id='id_%s'\T1/ptm/m/n/10 , \T1/ptm/m/it/10 pre-fix
+=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 ini-
+ []
+
+[20] [21] [22] [23]
+Underfull \hbox (badness 10000) in paragraph at lines 1763--1763
+[]\T1/ptm/m/it/10 data=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 files=None\T1/ptm/m
+/n/10 , \T1/ptm/m/it/10 auto_id='id_%s'\T1/ptm/m/n/10 , \T1/ptm/m/it/10 pre-fix
+=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 ini-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1763--1763
+\T1/ptm/m/it/10 tial=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 er-ror_class=<class `
+django.forms.util.ErrorList'>\T1/ptm/m/n/10 ,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1849--1849
+[]\T1/ptm/m/it/10 data=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 files=None\T1/ptm/m
+/n/10 , \T1/ptm/m/it/10 auto_id='id_%s'\T1/ptm/m/n/10 , \T1/ptm/m/it/10 pre-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1849--1849
+\T1/ptm/m/it/10 fix=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 ini-tial=None\T1/ptm/m
+/n/10 , \T1/ptm/m/it/10 er-ror_class=<class
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1849--1849
+\T1/ptm/m/it/10 `django.forms.util.ErrorList'>\T1/ptm/m/n/10 , \T1/ptm/m/it/10 
+la-bel_suffix=':'\T1/ptm/m/n/10 ,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1885--1885
+[]\T1/ptm/m/it/10 data=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 files=None\T1/ptm/m
+/n/10 ,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1885--1885
+\T1/ptm/m/it/10 auto_id='id_%s'\T1/ptm/m/n/10 , \T1/ptm/m/it/10 pre-fix=None\T1
+/ptm/m/n/10 , \T1/ptm/m/it/10 ini-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1885--1885
+\T1/ptm/m/it/10 tial=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 er-ror_class=<class
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1885--1885
+\T1/ptm/m/it/10 `django.forms.util.ErrorList'>\T1/ptm/m/n/10 , \T1/ptm/m/it/10 
+la-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1885--1885
+\T1/ptm/m/it/10 bel_suffix=':'\T1/ptm/m/n/10 , \T1/ptm/m/it/10 empty_permitted=
+False\T1/ptm/m/n/10 ,
+ []
+
+[24] [25]
+Overfull \hbox (200.21822pt too wide) in paragraph at lines 2011--2013
+[]
+ []
+
+[26] [27] [28] [29]
+Underfull \hbox (badness 10000) in paragraph at lines 2625--2625
+\T1/ptm/m/it/10 fix=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 ini-tial=None\T1/ptm/m
+/n/10 , \T1/ptm/m/it/10 er-ror_class=<class
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2625--2625
+\T1/ptm/m/it/10 `django.forms.util.ErrorList'>\T1/ptm/m/n/10 , \T1/ptm/m/it/10 
+la-bel_suffix=':'\T1/ptm/m/n/10 ,
+ []
+
+[30] [31] [32] [33] [34]
 Chapter 7.
-[25
+[35
 
-] [26
+] [36
 
-] [27
+] [37
 
 
 ]
 ("C:\Documents and Settings\Dave Bridges\My Documents\Source\mousedb\src\moused
-b\Docs\build\latex\MouseDB.ind" [28
+b\Docs\build\latex\MouseDB.ind" [38
 
+
+] [39
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 39--40
+Underfull \hbox (badness 10000) in paragraph at lines 100--101
 []\T1/ptm/m/n/10 get_absolute_url() (timed_mating.models.PlugEvents
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 40--41
+Underfull \hbox (badness 10000) in paragraph at lines 101--102
 []\T1/ptm/m/n/10 get_contact_title_display() (groups.models.Group
  []
 
 
-Overfull \hbox (8.38022pt too wide) in paragraph at lines 41--42
+Underfull \hbox (badness 10000) in paragraph at lines 102--103
+[]\T1/ptm/m/n/10 get_feeding_state_display() (data.models.Experiment
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 103--104
+[]\T1/ptm/m/n/10 get_injection_display() (data.models.Experiment
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 104--105
+[]\T1/ptm/m/n/10 get_mode_display() (data.models.Pharmaceutical
+ []
+
+
+Overfull \hbox (8.38022pt too wide) in paragraph at lines 106--107
 []\T1/ptm/m/n/10 get_next_by_PlugDate() (timed_mating.models.PlugEvents
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 42--43
+Underfull \hbox (badness 10000) in paragraph at lines 107--108
+[]\T1/ptm/m/n/10 get_next_by_transplant_date()
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 109--110
+[]\T1/ptm/m/n/10 get_previous_by_date() (data.models.Experiment
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 110--111
 []\T1/ptm/m/n/10 get_previous_by_PlugDate()
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 67--68
+Underfull \hbox (badness 10000) in paragraph at lines 111--112
+[]\T1/ptm/m/n/10 get_previous_by_transplant_date()
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 145--146
 []\T1/ptm/m/n/10 mark_deactivated() (an-i-mal.admin.BreedingAdmin
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 76--77
+Underfull \hbox (badness 10000) in paragraph at lines 171--172
 []\T1/ptm/m/n/10 media (timed_mating.forms.BreedingPlugForm at-
  []
 
-[29
 
-]
-Underfull \hbox (badness 10000) in paragraph at lines 100--101
+Underfull \hbox (badness 10000) in paragraph at lines 175--176
+[]\T1/ptm/m/n/10 model (an-i-mal.forms.MultipleAnimalForm.Meta at-
+ []
+
+
+Overfull \hbox (1.57965pt too wide) in paragraph at lines 176--177
+[]\T1/ptm/m/n/10 model (an-i-mal.forms.MultipleBreedingAnimalForm.Meta
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 179--180
+[]\T1/ptm/m/n/10 model (data.forms.StudyExperimentForm.Meta at-
+ []
+
+[40]
+Underfull \hbox (badness 10000) in paragraph at lines 188--189
+[]\T1/ptm/m/n/10 MultipleBreedingAnimalForm.Meta (class in an-i-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 225--226
 []\T1/ptm/m/n/10 setUp() (timed_mating.tests.Timed_MatingModelTests
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 101--102
+Underfull \hbox (badness 10000) in paragraph at lines 226--227
 []\T1/ptm/m/n/10 setUp() (timed_mating.tests.Timed_MatingViewTests
  []
 
 
-Overfull \hbox (5.69952pt too wide) in paragraph at lines 111--112
+Overfull \hbox (5.69952pt too wide) in paragraph at lines 261--262
 []\T1/ptm/m/n/10 tearDown() (timed_mating.tests.Timed_MatingModelTests
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 113--114
+Underfull \hbox (badness 10000) in paragraph at lines 263--264
 []\T1/ptm/m/n/10 test_animal_unicode() (an-i-mal.tests.AnimalModelTests
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 114--115
+Underfull \hbox (badness 10000) in paragraph at lines 264--265
+[]\T1/ptm/m/n/10 test_archive_home() (an-i-mal.tests.DateViewTests
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 265--266
+[]\T1/ptm/m/n/10 test_archive_month() (an-i-mal.tests.DateViewTests
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 267--268
 []\T1/ptm/m/n/10 test_autoset_active_state() (an-i-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 114--115
+Underfull \hbox (badness 10000) in paragraph at lines 267--268
 \T1/ptm/m/n/10 mal.tests.BreedingModelTests method),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 116--117
+Underfull \hbox (badness 10000) in paragraph at lines 268--269
 []\T1/ptm/m/n/10 test_breeding_delete() (an-i-mal.tests.BreedingViewTests
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 117--118
+Underfull \hbox (badness 10000) in paragraph at lines 269--270
 []\T1/ptm/m/n/10 test_breeding_detail() (an-i-mal.tests.BreedingViewTests
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 118--119
-[]\T1/ptm/m/n/10 test_breeding_list() (an-i-mal.tests.BreedingViewTests
+Underfull \hbox (badness 10000) in paragraph at lines 270--271
+[]\T1/ptm/m/n/10 test_breeding_edit() (an-i-mal.tests.BreedingViewTests
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 120--121
+Underfull \hbox (badness 10000) in paragraph at lines 271--272
+[]\T1/ptm/m/n/10 test_breeding_list() (an-i-mal.tests.BreedingViewTests
+ []
+
+[41]
+Underfull \hbox (badness 10000) in paragraph at lines 273--274
 []\T1/ptm/m/n/10 test_breeding_new() (an-i-mal.tests.BreedingViewTests
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 121--122
+Underfull \hbox (badness 10000) in paragraph at lines 276--277
 []\T1/ptm/m/n/10 test_create_animal_minimal() (an-i-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 122--123
+Underfull \hbox (badness 10000) in paragraph at lines 277--278
 []\T1/ptm/m/n/10 test_create_breeding_minimal() (an-i-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 122--123
+Underfull \hbox (badness 10000) in paragraph at lines 277--278
 \T1/ptm/m/n/10 mal.tests.BreedingModelTests method),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 123--124
+Underfull \hbox (badness 10000) in paragraph at lines 278--279
 []\T1/ptm/m/n/10 test_create_group_all_fields()
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 123--124
+Underfull \hbox (badness 10000) in paragraph at lines 278--279
 \T1/ptm/m/n/10 (groups.tests.GroupsModelTests method),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 124--125
+Underfull \hbox (badness 10000) in paragraph at lines 279--280
 []\T1/ptm/m/n/10 test_create_group_minimal()
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 124--125
+Underfull \hbox (badness 10000) in paragraph at lines 279--280
 \T1/ptm/m/n/10 (groups.tests.GroupsModelTests method),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 125--126
+Underfull \hbox (badness 10000) in paragraph at lines 280--281
 []\T1/ptm/m/n/10 test_create_license_all_fields()
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 125--126
+Underfull \hbox (badness 10000) in paragraph at lines 280--281
 \T1/ptm/m/n/10 (groups.tests.GroupsModelTests method),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 126--127
+Underfull \hbox (badness 10000) in paragraph at lines 281--282
 []\T1/ptm/m/n/10 test_create_license_minimal()
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 126--127
+Underfull \hbox (badness 10000) in paragraph at lines 281--282
 \T1/ptm/m/n/10 (groups.tests.GroupsModelTests method),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 127--129
+Underfull \hbox (badness 10000) in paragraph at lines 282--284
 []\T1/ptm/m/n/10 test_create_plugevent_minimal()
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 127--129
+Underfull \hbox (badness 10000) in paragraph at lines 282--284
 \T1/ptm/m/n/10 (timed_mating.tests.Timed_MatingModelTests
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 129--131
+Underfull \hbox (badness 10000) in paragraph at lines 284--286
 []\T1/ptm/m/n/10 test_create_plugevent_most_fields()
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 129--131
+Underfull \hbox (badness 10000) in paragraph at lines 284--286
 \T1/ptm/m/n/10 (timed_mating.tests.Timed_MatingModelTests
  []
 
 
-Overfull \hbox (48.0289pt too wide) in paragraph at lines 131--133
+Underfull \hbox (badness 10000) in paragraph at lines 286--287
+[]\T1/ptm/m/n/10 test_create_studey_detailed()
+ []
+
+
+Overfull \hbox (48.0289pt too wide) in paragraph at lines 288--290
 []\T1/ptm/m/n/10 test_plugevent_delete() (timed_mating.tests.Timed_MatingViewTe
 sts
  []
 
 
-Overfull \hbox (46.36885pt too wide) in paragraph at lines 133--135
+Overfull \hbox (46.36885pt too wide) in paragraph at lines 290--292
 []\T1/ptm/m/n/10 test_plugevent_detail() (timed_mating.tests.Timed_MatingViewTe
 sts
  []
 
 
-Overfull \hbox (39.14902pt too wide) in paragraph at lines 135--136
+Overfull \hbox (39.14902pt too wide) in paragraph at lines 292--293
 []\T1/ptm/m/n/10 test_plugevent_edit() (timed_mating.tests.Timed_MatingViewTest
 s
  []
 
 
-Overfull \hbox (36.37886pt too wide) in paragraph at lines 136--137
+Overfull \hbox (36.37886pt too wide) in paragraph at lines 293--294
 []\T1/ptm/m/n/10 test_plugevent_list() (timed_mating.tests.Timed_MatingViewTest
 s
  []
 
 
-Overfull \hbox (40.5592pt too wide) in paragraph at lines 137--138
+Overfull \hbox (40.5592pt too wide) in paragraph at lines 294--295
 []\T1/ptm/m/n/10 test_plugevent_new() (timed_mating.tests.Timed_MatingViewTests
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 138--140
+Underfull \hbox (badness 10000) in paragraph at lines 295--297
 []\T1/ptm/m/n/10 test_plugeventbreeding_new()
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 138--140
+Underfull \hbox (badness 10000) in paragraph at lines 295--297
 \T1/ptm/m/n/10 (timed_mating.tests.Timed_MatingViewTests
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 140--142
+Underfull \hbox (badness 10000) in paragraph at lines 297--299
 []\T1/ptm/m/n/10 test_set_plugevent_inactive()
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 140--142
+Underfull \hbox (badness 10000) in paragraph at lines 297--299
 \T1/ptm/m/n/10 (timed_mating.tests.Timed_MatingModelTests
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 142--143
+Underfull \hbox (badness 10000) in paragraph at lines 299--300
 []\T1/ptm/m/n/10 test_study_absolute_url() (an-i-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 142--143
+Underfull \hbox (badness 10000) in paragraph at lines 299--300
 \T1/ptm/m/n/10 mal.tests.BreedingModelTests method),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 143--144
+Underfull \hbox (badness 10000) in paragraph at lines 300--301
+[]\T1/ptm/m/n/10 test_study_absolute_url() (data.tests.StudyModelTests
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 306--307
 []\T1/ptm/m/n/10 test_timed_mating_list() (an-i-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 144--145
+Underfull \hbox (badness 10000) in paragraph at lines 307--308
+[]\T1/ptm/m/n/10 test_treatment_detail() (data.tests.TreatmentViewTests
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 308--309
 []\T1/ptm/m/n/10 test_unweaned() (an-i-mal.tests.BreedingModelTests
  []
 
-[30] [31
-
-])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1744.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1744.
+[42])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3189.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 3189.
 
 ("C:\Documents and Settings\Dave Bridges\My Documents\Source\mousedb\src\moused
 b\Docs\build\latex\MouseDB.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1744.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 3189.
 Package rerunfilecheck Info: File `MouseDB.out' has not changed.
-(rerunfilecheck)             Checksum: 583464A5381AD7F510CE0E3280A2382F;2048.
+(rerunfilecheck)             Checksum: 1B1B603A167BA3BBC3B2D36D50E9C782;2049.
  ) 
 Here is how much of TeX's memory you used:
- 8763 strings out of 495285
- 127051 string characters out of 3180320
- 212520 words of memory out of 3000000
- 11493 multiletter control sequences out of 15000+200000
+ 9133 strings out of 495285
+ 136443 string characters out of 3180319
+ 224737 words of memory out of 3000000
+ 11674 multiletter control sequences out of 15000+200000
  56831 words of font info for 64 fonts, out of 3000000 for 9000
  15 hyphenation exceptions out of 8191
  38i,12n,48p,759b,493s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1268,9 +1435,9 @@ a.pfb><C:/Program Files/MiKTeX 2.8/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Prog
 ram Files/MiKTeX 2.8/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 
 2.8/fonts/type1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.8/fonts/type1/u
 rw/times/utmri8a.pfb>
-Output written on MouseDB.pdf (35 pages, 223282 bytes).
+Output written on MouseDB.pdf (46 pages, 305651 bytes).
 PDF statistics:
- 736 PDF objects out of 1000 (max. 8388607)
- 256 named destinations out of 1000 (max. 500000)
+ 1192 PDF objects out of 1200 (max. 8388607)
+ 445 named destinations out of 1000 (max. 500000)
  265 words of extra memory for PDF output out of 10000 (max. 10000000)
 

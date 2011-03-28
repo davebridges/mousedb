@@ -22,7 +22,7 @@ def limited_object_detail(*args, **kwargs):
 	return object_detail(*args, **kwargs)
 
 urlpatterns = patterns('',
-	url(r'^$', 'mousedb.views.todo', name="todo-list"),
+	url(r'^$', 'mousedb.animal.views.todo', name="todo-list"),
 	url(r'^eartag/$', limited_object_list, {
 		'queryset': Animal.objects.filter(Born__lt=(datetime.date.today() - datetime.timedelta(days=settings.WEAN_AGE))).filter(MouseID__isnull=True, Alive=True),
 		'template_name': 'animal_list.html',

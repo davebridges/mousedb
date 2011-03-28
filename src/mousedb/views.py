@@ -1,15 +1,21 @@
+"""This package defines simple root views.
+
+Currently this package includes views for both the logout and home pages."""
+
 import datetime
 
 from django.shortcuts import render_to_response
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth import logout
 from django.template import RequestContext
-from django.db import connection
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from django.db.models import Q
-
 from mousedb.animal.models import Animal, Strain
+from django.utils.decorators import method_decorator
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
 from mousedb import settings
 
 def logout_view(request):
@@ -20,21 +26,61 @@ def logout_view(request):
     return HttpResponseRedirect(reverse('home'))
 
 @login_required
-def todo(request):
-	eartag_list = Animal.objects.filter(Born__lt=(datetime.date.today() - datetime.timedelta(days=settings.WEAN_AGE))).filter(MouseID__isnull=True, Alive=True)
-	genotype_list = Animal.objects.filter(Q(Genotype='N.D.')|Q(Genotype__icontains='?')).filter(Alive=True, Born__lt=(datetime.date.today() - datetime.timedelta(days=settings.GENOTYPE_AGE)))
-	wean = datetime.date.today() - datetime.timedelta(days=settings.WEAN_AGE)
-	wean_list = Animal.objects.filter(Born__lt=wean).filter(Weaned=None,Alive=True).exclude(Strain=2).order_by('Strain','Background','Rack','Cage')
-	return render_to_response('todo.html', {'eartag_list':eartag_list, 'wean_list':wean_list, 'genotype_list':genotype_list},context_instance=RequestContext(request))
-
-@login_required
 def home(request):
-	cursor = connection.cursor()
-	cage_list = Animal.objects.values("Cage")
-	cage_list_current = Animal.objects.filter(Alive=True).values("Cage")
-	animal_list = Animal.objects.all()
-	animal_list_current = Animal.objects.filter(Alive=True)
-	strain_list = Strain.objects.all()
-	strain_list_current = Strain.objects.filter(animal__Alive=True)
-	return render_to_response('home.html', {'animal_list':animal_list, 'animal_list_current':animal_list_current, 'strain_list':strain_list, 'strain_list_current':strain_list_current, 'cage_list':cage_list, 'cage_list_current':cage_list_current},context_instance=RequestContext(request))
+    """This view generates the data for the home page.
+    
+    This login restricted view passes dictionaries containing the current cages, animals and strains as well as the totals for each.  This data is passed to the template home.html"""
+    cage_list = Animal.objects.values("Cage").distinct()
+    cage_list_current = cage_list.filter(Alive=True)
+    animal_list = Animal.objects.all()
+    animal_list_current = animal_list.filter(Alive=True)
+    strain_list = animal_list.values("Strain").distinct()
+    strain_list_current = animal_list_current.values("Strain").distinct()
+    return render_to_response('home.html', {'animal_list':animal_list, 'animal_list_current':animal_list_current, 'strain_list':strain_list, 'strain_list_current':strain_list_current, 'cage_list':cage_list, 'cage_list_current':cage_list_current},context_instance=RequestContext(request))
+    
+class ProtectedListView(ListView):
+    """This subclass of ListView generates a login_required protected version of the ListView.
+    
+    This ProtectedListView is then subclassed instead of using ListView for login_required views."""
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(ProtectedListView, self).dispatch(*args, **kwargs)    
+        
+class ProtectedDetailView(DetailView):
+    """This subclass of DetailView generates a login_required protected version of the DetailView.
+    
+    This ProtectedDetailView is then subclassed instead of using ListView for login_required views."""
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(ProtectedDetailView, self).dispatch(*args, **kwargs)
+
+class RestrictedUpdateView(UpdateView):
+    """Generic update view that checks permissions.
+    
+    This is from http://djangosnippets.org/snippets/2317/ and subclasses the UpdateView into one that requires permissions to update a particular model."""
+    def dispatch(self, request, *args, **kwargs):
+        @permission_required('%s.change_%s' % (self.model._meta.app_label, self.model._meta.module_name))
+        def wrapper(request, *args, **kwargs):
+            return super(RestrictedUpdateView, self).dispatch(request, *args, **kwargs)
+        return wrapper(request, *args, **kwargs)
+
+class RestrictedCreateView(CreateView):
+    """Generic create view that checks permissions.
+    
+    This is from http://djangosnippets.org/snippets/2317/ and subclasses the UpdateView into one that requires permissions to create a particular model."""
+    def dispatch(self, request, *args, **kwargs):
+        @permission_required('%s.create_%s' % (self.model._meta.app_label, self.model._meta.module_name))
+        def wrapper(request, *args, **kwargs):
+            return super(RestrictedCreateView, self).dispatch(request, *args, **kwargs)
+        return wrapper(request, *args, **kwargs)
+
+class RestrictedDeleteView(DeleteView):
+    """Generic delete view that checks permissions.
+    
+    This is from http://djangosnippets.org/snippets/2317/ and subclasses the UpdateView into one that requires permissions to delete a particular model."""
+    def dispatch(self, request, *args, **kwargs):
+        @permission_required('%s.delete_%s' % (self.model._meta.app_label, self.model._meta.module_name))
+        def wrapper(request, *args, **kwargs):
+            return super(RestrictedDeleteView, self).dispatch(request, *args, **kwargs)
+        return wrapper(request, *args, **kwargs)        
 

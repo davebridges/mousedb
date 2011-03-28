@@ -2,7 +2,7 @@
 MouseDB
 =======
 
-MouseDB is a data management and analysis system for experimental animals.  Source code is freely available via Github (through the BSD License please see LICENSE file or http://www.opensource.org/licenses/bsd-license.php), and collaboration is encouraged.  For specific details please contact Dave Bridges via Github.  MouseDB uses a web interface and a database server to store information and a web interface to access and analyse this information.  The standard setup is to use MySQL as the database and Apache as the webserver, but this can be modified if necessary.  The software was written using Django, which itself is based on the Python programming language.  Please see www.djangoproject.com and www.python.org for more information.
+MouseDB is a data management and analysis system for experimental animals.  Source code is freely available via Github (through the BSD License please see LICENSE file or http://www.opensource.org/licenses/bsd-license.php), and collaboration is encouraged.  For specific details please contact Dave Bridges via Github.  MouseDB uses a web interface and a database server to store information and a web interface to access and analyse this information.  The standard setup is to use MySQL as the database and Apache as the webserver, but this can be modified if necessary.  The software was written using Django, which itself is based on the Python programming language.  Please see www.djangoproject.com and www.python.org for more information.  Documentation for this project is available at http://packages.python.org/mousedb/ or within this repository (in the Docs folder).
 
 MouseDB Installation
 ''''''''''''''''''''
@@ -23,7 +23,7 @@ Software Dependencies
 
 Downloading and/or unzipping will create a directory named mousedb.  You can update to the newest revision at any time either using git or downloading and re-installing the newer version.  Changing or updating software versions will not alter any saved data, but you will have to update the localsettings.py file (described below).
 3. **Database software**.  Recommended to use mysql, available at http://dev.mysql.com/downloads/mysql/ .  It is also possible to use SQLite, PostgreSQL, MySQL, or Oracle.  See http://docs.djangoproject.com/en/1.2/topics/install/#database-installation for more information.
-4. **Webserver**.  Apache is recommended, available at http://www.apache.org/dyn/closer.cgi .  It is also possible to use FastCGI, SCGI, or AJP.  See http://docs.djangoproject.com/en/1.2/howto/deployment/ for more details.
+4. **Webserver**.  Apache is recommended, available at http://www.apache.org/dyn/closer.cgi .  It is also possible to use FastCGI, SCGI, or AJP.  See http://docs.djangoproject.com/en/1.2/howto/deployment/ for more details.  The recommended way to use Apache is to download and enable mod_wsgi.  See http://code.google.com/p/modwsgi/ for more details.
 
 Installation
 ------------
@@ -57,6 +57,12 @@ You need to set up a server to serve both the django installation and saved file
        Order deny,allow
        Allow from all
   </Directory>
+  
+  Alias /static/ /usr/src/mousedb/src/mousedb/static/  
+  <Directory /usr/src/mousedb/src/mousedb/static>
+       Order deny,allow
+       Allow from all
+  </Directory>    
 
   <Directory /usr/src/mousedb/bin>
        Order deny,allow
@@ -65,6 +71,22 @@ You need to set up a server to serve both the django installation and saved file
   WSGIScriptAlias /mousedb /usr/src/mousedb/bin/django.wsgi
 
 If you want to restrict access to these files, change the Allow from all directive to specific domains or ip addresses (for example Allow from 192.168.0.0/99 would allow from 192.168.0.0 to 192.168.0.99)
+
+Enabling of South for Future Migrations
+---------------------------------------
+Schema updates will utilize south as a way to alter database tables.  This must be enabled initially by entering the following commands from /mousedb/bin::
+
+    django schemamigration animal --initial
+    django schemamigration data --initial
+    django schemamigration groups --initial
+    django schemamigration timed_mating --initial
+    django migrate
+    django syncdb
+    
+Future schema changes (se the UPGRADE_NOTES.rst file for whether this is necessary) are accomplished by entering::
+
+    django schemamigration <INDICATED_APP> --auto
+    django migrate <INDICATED_APP>
 
 Final Configuration and User Setup
 ----------------------------------

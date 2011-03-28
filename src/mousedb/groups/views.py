@@ -1,1 +1,1 @@
-# Create your views here.
+# The groups app has no views.

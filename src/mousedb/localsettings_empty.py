@@ -10,9 +10,12 @@ LOGIN_URL = '/mousedb/accounts/login/' #this presumes that apache is pointing at
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
+# These are for user uploaded files.  Javascript, css and images are in static
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
-# This presumes that media is being served at mousedb-media.  If it is not then change this setting.
+# This presumes that media is being served at yourdomain.com/mousedb-media/.  If it is not then change this setting.
 MEDIA_URL = '/mousedb-media/'
+# This handles static media (ie files that are not user uploaded).  This presumes that media is being served at yourdomain.com/static/.  If it is not then change this setting
+STATIC_URL = '/static/'
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name

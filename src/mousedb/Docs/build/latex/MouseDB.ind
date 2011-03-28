@@ -2,154 +2,346 @@
 \def\bigletter#1{{\Large\sffamily#1}\nopagebreak\vspace{1mm}}
 
   \bigletter A
-  \item Animal (class in animal.models), \hyperpage{17}
-  \item animal (module), \hyperpage{16}
-  \item animal.admin (module), \hyperpage{17}
-  \item animal.models (module), \hyperpage{17}
-  \item animal.tests (module), \hyperpage{18}
-  \item animal.urls (module), \hyperpage{17}
-  \item AnimalAdmin (class in animal.admin), \hyperpage{17}
-  \item AnimalInline (class in animal.admin), \hyperpage{18}
-  \item AnimalModelTests (class in animal.tests), \hyperpage{18}
+  \item add\_measurement() (in module data.views), \hyperpage{21}
+  \item age() (data.models.Measurement method), \hyperpage{17}
+  \item Animal (class in animal.models), \hyperpage{23}
+  \item animal (data.models.Measurement attribute), \hyperpage{17}
+  \item animal (module), \hyperpage{22}
+  \item animal.admin (module), \hyperpage{26}
+  \item animal.forms (module), \hyperpage{24}
+  \item animal.models (module), \hyperpage{23}
+  \item animal.tests (module), \hyperpage{27}
+  \item animal.urls (module), \hyperpage{26}
+  \item animal.views (module), \hyperpage{25}
+  \item animal\_detail() (in module animal.views), \hyperpage{25}
+  \item AnimalAdmin (class in animal.admin), \hyperpage{26}
+  \item AnimalForm (class in animal.forms), \hyperpage{24}
+  \item AnimalForm.Media (class in animal.forms), \hyperpage{24}
+  \item AnimalForm.Meta (class in animal.forms), \hyperpage{24}
+  \item AnimalInline (class in animal.admin), \hyperpage{27}
+  \item AnimalModelTests (class in animal.tests), \hyperpage{27}
+  \item animals (data.models.Experiment attribute), \hyperpage{16}
+  \item animals (data.models.Treatment attribute), \hyperpage{18}
+  \item Assay (class in data.models), \hyperpage{15}
+  \item assay (data.models.Measurement attribute), \hyperpage{17}
+  \item Assay.DoesNotExist, \hyperpage{15}
+  \item Assay.MultipleObjectsReturned, \hyperpage{15}
 
   \indexspace
   \bigletter B
-  \item Breeding (class in animal.models), \hyperpage{17}
-  \item Breeding (timed\_mating.models.PlugEvents attribute), \hyperpage{20}
-  \item breeding\_plugevent() (in module timed\_mating.views), \hyperpage{21}
-  \item BreedingAdmin (class in animal.admin), \hyperpage{18}
-  \item BreedingModelTests (class in animal.tests), \hyperpage{18}
-  \item BreedingPlugForm (class in timed\_mating.forms), \hyperpage{21}
-  \item BreedingPlugForm.Meta (class in timed\_mating.forms), \hyperpage{21}
-  \item BreedingViewTests (class in animal.tests), \hyperpage{19}
+  \item Breeding (class in animal.models), \hyperpage{23}
+  \item Breeding (timed\_mating.models.PlugEvents attribute), \hyperpage{30}
+  \item breeding\_change() (in module animal.views), \hyperpage{25}
+  \item breeding\_detail() (in module animal.views), \hyperpage{25}
+  \item breeding\_plugevent() (in module timed\_mating.views), \hyperpage{31}
+  \item breeding\_pups() (in module animal.views), \hyperpage{25}
+  \item breeding\_wean() (in module animal.views), \hyperpage{26}
+  \item BreedingAdmin (class in animal.admin), \hyperpage{27}
+  \item BreedingForm (class in animal.forms), \hyperpage{24}
+  \item BreedingForm.Media (class in animal.forms), \hyperpage{24}
+  \item BreedingForm.Meta (class in animal.forms), \hyperpage{24}
+  \item BreedingModelTests (class in animal.tests), \hyperpage{27}
+  \item BreedingPlugForm (class in timed\_mating.forms), \hyperpage{30}
+  \item BreedingPlugForm.Meta (class in timed\_mating.forms), \hyperpage{30}
+  \item BreedingViewTests (class in animal.tests), \hyperpage{28}
 
   \indexspace
   \bigletter C
-  \item change\_plugevents() (in module timed\_mating.urls), \hyperpage{21}
-  \item create\_plugevents() (in module timed\_mating.urls), \hyperpage{21}
+  \item CageViewTests (class in animal.tests), \hyperpage{28}
+  \item change\_plugevents() (in module timed\_mating.urls), \hyperpage{31}
+  \item contact (data.models.Environment attribute), \hyperpage{16}
+  \item create\_plugevents() (in module timed\_mating.urls), \hyperpage{31}
 
   \indexspace
   \bigletter D
   \item data (module), \hyperpage{15}
-  \item data.urls (module), \hyperpage{16}
-  \item delete\_plugevents() (in module timed\_mating.urls), \hyperpage{21}
+  \item data.admin (module), \hyperpage{21}
+  \item data.forms (module), \hyperpage{19}
+  \item data.models (module), \hyperpage{15}
+  \item data.tests (module), \hyperpage{21}
+  \item data.urls (module), \hyperpage{21}
+  \item data.views (module), \hyperpage{21}
+  \item date\_archive\_year() (in module animal.views), \hyperpage{26}
+  \item DateViewTests (class in animal.tests), \hyperpage{29}
+  \item delete\_plugevents() (in module timed\_mating.urls), \hyperpage{31}
+  \item Diet (class in data.models), \hyperpage{16}
+  \item diet (data.models.Treatment attribute), \hyperpage{18}
+  \item Diet.DoesNotExist, \hyperpage{16}
+  \item Diet.MultipleObjectsReturned, \hyperpage{16}
+  \item diet\_set (data.models.Vendor attribute), \hyperpage{19}
+  \item donor (data.models.Transplantation attribute), \hyperpage{18}
+
+  \indexspace
+  \bigletter E
+  \item Environment (class in data.models), \hyperpage{16}
+  \item environment (data.models.Treatment attribute), \hyperpage{18}
+  \item Environment.DoesNotExist, \hyperpage{16}
+  \item Environment.MultipleObjectsReturned, \hyperpage{16}
+  \item environment\_set (data.models.Researcher attribute), \hyperpage{17}
+  \item Experiment (class in data.models), \hyperpage{16}
+  \item experiment (data.models.Measurement attribute), \hyperpage{17}
+  \item Experiment.DoesNotExist, \hyperpage{16}
+  \item Experiment.MultipleObjectsReturned, \hyperpage{16}
+  \item experiment\_detail() (in module data.views), \hyperpage{21}
+  \item experiment\_detail\_all() (in module data.views), \hyperpage{21}
+  \item experiment\_details\_csv() (in module data.views), \hyperpage{21}
+  \item experiment\_list() (in module data.views), \hyperpage{21}
+  \item experiment\_set (data.models.Researcher attribute), \hyperpage{17}
+  \item experiment\_set (data.models.Study attribute), \hyperpage{18}
+  \item ExperimentForm (class in data.forms), \hyperpage{19}
+  \item ExperimentForm.Media (class in data.forms), \hyperpage{19}
+  \item ExperimentForm.Meta (class in data.forms), \hyperpage{19}
 
   \indexspace
   \bigletter G
-  \item get\_absolute\_url() (timed\_mating.models.PlugEvents method), \hyperpage{20}
-  \item get\_contact\_title\_display() (groups.models.Group method), \hyperpage{23}
-  \item get\_next\_by\_PlugDate() (timed\_mating.models.PlugEvents method), \hyperpage{20}
-  \item get\_previous\_by\_PlugDate() (timed\_mating.models.PlugEvents method), \hyperpage{20}
-  \item Group (class in groups.models), \hyperpage{23}
-  \item Group.DoesNotExist, \hyperpage{23}
-  \item Group.MultipleObjectsReturned, \hyperpage{23}
-  \item group\_set (groups.models.License attribute), \hyperpage{23}
-  \item GroupAdmin (class in groups.admin), \hyperpage{24}
-  \item groups (module), \hyperpage{23}
-  \item groups.admin (module), \hyperpage{24}
-  \item groups.models (module), \hyperpage{23}
-  \item groups.tests (module), \hyperpage{24}
-  \item groups.views (module), \hyperpage{24}
-  \item GroupsModelTests (class in groups.tests), \hyperpage{24}
+  \item get\_absolute\_url() (data.models.Experiment method), \hyperpage{16}
+  \item get\_absolute\_url() (data.models.Study method), \hyperpage{18}
+  \item get\_absolute\_url() (data.models.Treatment method), \hyperpage{18}
+  \item get\_absolute\_url() (timed\_mating.models.PlugEvents method), \hyperpage{30}
+  \item get\_contact\_title\_display() (groups.models.Group method), \hyperpage{33}
+  \item get\_feeding\_state\_display() (data.models.Experiment method), \hyperpage{16}
+  \item get\_injection\_display() (data.models.Experiment method), \hyperpage{16}
+  \item get\_mode\_display() (data.models.Pharmaceutical method), \hyperpage{17}
+  \item get\_next\_by\_date() (data.models.Experiment method), \hyperpage{16}
+  \item get\_next\_by\_PlugDate() (timed\_mating.models.PlugEvents method), \hyperpage{30}
+  \item get\_next\_by\_transplant\_date() (data.models.Transplantation method), \hyperpage{18}
+  \item get\_ordering\_display() (data.models.Vendor method), \hyperpage{19}
+  \item get\_previous\_by\_date() (data.models.Experiment method), \hyperpage{16}
+  \item get\_previous\_by\_PlugDate() (timed\_mating.models.PlugEvents method), \hyperpage{30}
+  \item get\_previous\_by\_transplant\_date() (data.models.Transplantation method), \hyperpage{18}
+  \item Group (class in groups.models), \hyperpage{32, 33}
+  \item Group.DoesNotExist, \hyperpage{32}
+  \item Group.MultipleObjectsReturned, \hyperpage{33}
+  \item group\_set (groups.models.License attribute), \hyperpage{33}
+  \item GroupAdmin (class in groups.admin), \hyperpage{33}
+  \item groups (module), \hyperpage{32}
+  \item groups.admin (module), \hyperpage{33}
+  \item groups.models (module), \hyperpage{32}
+  \item groups.tests (module), \hyperpage{33}
+  \item groups.views (module), \hyperpage{33}
+  \item GroupsModelTests (class in groups.tests), \hyperpage{33}
+
+  \indexspace
+  \bigletter I
+  \item Implantation (class in data.models), \hyperpage{16}
+  \item implantation (data.models.Treatment attribute), \hyperpage{18}
+  \item Implantation.DoesNotExist, \hyperpage{16}
+  \item Implantation.MultipleObjectsReturned, \hyperpage{16}
+  \item implantation\_set (data.models.Researcher attribute), \hyperpage{17}
+  \item implantation\_set (data.models.Vendor attribute), \hyperpage{19}
 
   \indexspace
   \bigletter L
-  \item License (class in groups.models), \hyperpage{23}
-  \item license (groups.models.Group attribute), \hyperpage{23}
-  \item License.DoesNotExist, \hyperpage{23}
-  \item License.MultipleObjectsReturned, \hyperpage{23}
-  \item LicenseAdmin (class in groups.admin), \hyperpage{24}
-  \item limited\_object\_detail() (in module timed\_mating.urls), \hyperpage{21}
-  \item limited\_object\_list() (in module timed\_mating.urls), \hyperpage{21}
+  \item License (class in groups.models), \hyperpage{33}
+  \item license (groups.models.Group attribute), \hyperpage{33}
+  \item License.DoesNotExist, \hyperpage{33}
+  \item License.MultipleObjectsReturned, \hyperpage{33}
+  \item LicenseAdmin (class in groups.admin), \hyperpage{33}
+  \item limited\_object\_detail() (in module timed\_mating.urls), \hyperpage{31}
+  \item limited\_object\_list() (in module timed\_mating.urls), \hyperpage{31}
 
   \indexspace
   \bigletter M
-  \item mark\_deactivated() (animal.admin.BreedingAdmin method), \hyperpage{18}
-  \item mark\_sacrificed() (animal.admin.AnimalAdmin method), \hyperpage{17}
-  \item media (animal.admin.AnimalAdmin attribute), \hyperpage{17}
-  \item media (animal.admin.AnimalInline attribute), \hyperpage{18}
-  \item media (animal.admin.BreedingAdmin attribute), \hyperpage{18}
-  \item media (animal.admin.StrainAdmin attribute), \hyperpage{18}
-  \item media (groups.admin.GroupAdmin attribute), \hyperpage{24}
-  \item media (groups.admin.LicenseAdmin attribute), \hyperpage{24}
-  \item media (timed\_mating.admin.PlugEventsAdmin attribute), \hyperpage{21}
-  \item media (timed\_mating.forms.BreedingPlugForm attribute), \hyperpage{21}
-  \item model (animal.admin.AnimalInline attribute), \hyperpage{18}
-  \item model (timed\_mating.forms.BreedingPlugForm.Meta attribute), \hyperpage{21}
+  \item mark\_deactivated() (animal.admin.BreedingAdmin method), \hyperpage{27}
+  \item mark\_sacrificed() (animal.admin.AnimalAdmin method), \hyperpage{26}
+  \item Measurement (class in data.models), \hyperpage{17}
+  \item Measurement.DoesNotExist, \hyperpage{17}
+  \item Measurement.MultipleObjectsReturned, \hyperpage{17}
+  \item measurement\_set (data.models.Assay attribute), \hyperpage{16}
+  \item measurement\_set (data.models.Experiment attribute), \hyperpage{16}
+  \item MeasurementForm (class in data.forms), \hyperpage{19}
+  \item MeasurementForm.Media (class in data.forms), \hyperpage{19}
+  \item MeasurementForm.Meta (class in data.forms), \hyperpage{19}
+  \item media (animal.admin.AnimalAdmin attribute), \hyperpage{27}
+  \item media (animal.admin.AnimalInline attribute), \hyperpage{27}
+  \item media (animal.admin.BreedingAdmin attribute), \hyperpage{27}
+  \item media (animal.admin.StrainAdmin attribute), \hyperpage{27}
+  \item media (animal.forms.AnimalForm attribute), \hyperpage{24}
+  \item media (animal.forms.BreedingForm attribute), \hyperpage{24}
+  \item media (animal.forms.MultipleAnimalForm attribute), \hyperpage{24}
+  \item media (animal.forms.MultipleBreedingAnimalForm attribute), \hyperpage{25}
+  \item media (data.forms.ExperimentForm attribute), \hyperpage{19}
+  \item media (data.forms.MeasurementForm attribute), \hyperpage{19}
+  \item media (data.forms.StudyExperimentForm attribute), \hyperpage{20}
+  \item media (data.forms.StudyForm attribute), \hyperpage{20}
+  \item media (data.forms.TreatmentForm attribute), \hyperpage{20}
+  \item media (groups.admin.GroupAdmin attribute), \hyperpage{33}
+  \item media (groups.admin.LicenseAdmin attribute), \hyperpage{33}
+  \item media (timed\_mating.admin.PlugEventsAdmin attribute), \hyperpage{31}
+  \item media (timed\_mating.forms.BreedingPlugForm attribute), \hyperpage{30}
+  \item model (animal.admin.AnimalInline attribute), \hyperpage{27}
+  \item model (animal.forms.AnimalForm.Meta attribute), \hyperpage{24}
+  \item model (animal.forms.BreedingForm.Meta attribute), \hyperpage{24}
+  \item model (animal.forms.MultipleAnimalForm.Meta attribute), \hyperpage{24}
+  \item model (animal.forms.MultipleBreedingAnimalForm.Meta attribute), \hyperpage{25}
+  \item model (data.forms.ExperimentForm.Meta attribute), \hyperpage{19}
+  \item model (data.forms.MeasurementForm.Meta attribute), \hyperpage{19}
+  \item model (data.forms.StudyExperimentForm.Meta attribute), \hyperpage{20}
+  \item model (data.forms.StudyForm.Meta attribute), \hyperpage{20}
+  \item model (data.forms.TreatmentForm.Meta attribute), \hyperpage{20}
+  \item model (timed\_mating.forms.BreedingPlugForm.Meta attribute), \hyperpage{30}
+  \item multiple\_breeding\_pups() (in module animal.views), \hyperpage{26}
+  \item multiple\_pups() (in module animal.views), \hyperpage{26}
+  \item MultipleAnimalForm (class in animal.forms), \hyperpage{24}
+  \item MultipleAnimalForm.Meta (class in animal.forms), \hyperpage{24}
+  \item MultipleBreedingAnimalForm (class in animal.forms), \hyperpage{24}
+  \item MultipleBreedingAnimalForm.Meta (class in animal.forms), \hyperpage{25}
 
   \indexspace
   \bigletter P
-  \item PlugEvents (class in timed\_mating.models), \hyperpage{20}
-  \item PlugEvents.DoesNotExist, \hyperpage{20}
-  \item PlugEvents.MultipleObjectsReturned, \hyperpage{20}
-  \item PlugEventsAdmin (class in timed\_mating.admin), \hyperpage{21}
-  \item PlugFemale (timed\_mating.models.PlugEvents attribute), \hyperpage{20}
-  \item PlugMale (timed\_mating.models.PlugEvents attribute), \hyperpage{20}
+  \item Pharmaceutical (class in data.models), \hyperpage{17}
+  \item pharmaceutical (data.models.Treatment attribute), \hyperpage{18}
+  \item Pharmaceutical.DoesNotExist, \hyperpage{17}
+  \item Pharmaceutical.MultipleObjectsReturned, \hyperpage{17}
+  \item pharmaceutical\_set (data.models.Vendor attribute), \hyperpage{19}
+  \item PlugEvents (class in timed\_mating.models), \hyperpage{29, 30}
+  \item PlugEvents.DoesNotExist, \hyperpage{30}
+  \item PlugEvents.MultipleObjectsReturned, \hyperpage{30}
+  \item PlugEventsAdmin (class in timed\_mating.admin), \hyperpage{31}
+  \item PlugFemale (timed\_mating.models.PlugEvents attribute), \hyperpage{30}
+  \item PlugMale (timed\_mating.models.PlugEvents attribute), \hyperpage{30}
 
   \indexspace
   \bigletter R
-  \item Researcher (timed\_mating.models.PlugEvents attribute), \hyperpage{20}
+  \item Researcher (class in data.models), \hyperpage{17}
+  \item Researcher (timed\_mating.models.PlugEvents attribute), \hyperpage{30}
+  \item Researcher.DoesNotExist, \hyperpage{17}
+  \item Researcher.MultipleObjectsReturned, \hyperpage{17}
+  \item researchers (data.models.Experiment attribute), \hyperpage{16}
+  \item researchers (data.models.Treatment attribute), \hyperpage{18}
 
   \indexspace
   \bigletter S
-  \item save() (timed\_mating.models.PlugEvents method), \hyperpage{20}
-  \item setUp() (animal.tests.AnimalModelTests method), \hyperpage{18}
-  \item setUp() (animal.tests.BreedingModelTests method), \hyperpage{18}
-  \item setUp() (animal.tests.BreedingViewTests method), \hyperpage{19}
-  \item setUp() (groups.tests.GroupsModelTests method), \hyperpage{24}
-  \item setUp() (timed\_mating.tests.Timed\_MatingModelTests method), \hyperpage{22}
-  \item setUp() (timed\_mating.tests.Timed\_MatingViewTests method), \hyperpage{22}
-  \item Strain (class in animal.models), \hyperpage{17}
-  \item StrainAdmin (class in animal.admin), \hyperpage{18}
+  \item save() (timed\_mating.models.PlugEvents method), \hyperpage{30}
+  \item setUp() (animal.tests.AnimalModelTests method), \hyperpage{27}
+  \item setUp() (animal.tests.BreedingModelTests method), \hyperpage{28}
+  \item setUp() (animal.tests.BreedingViewTests method), \hyperpage{28}
+  \item setUp() (animal.tests.CageViewTests method), \hyperpage{29}
+  \item setUp() (animal.tests.DateViewTests method), \hyperpage{29}
+  \item setUp() (data.tests.StudyModelTests method), \hyperpage{21}
+  \item setUp() (data.tests.StudyViewTests method), \hyperpage{21}
+  \item setUp() (data.tests.TreatmentViewTests method), \hyperpage{22}
+  \item setUp() (groups.tests.GroupsModelTests method), \hyperpage{34}
+  \item setUp() (timed\_mating.tests.Timed\_MatingModelTests method), \hyperpage{31}
+  \item setUp() (timed\_mating.tests.Timed\_MatingViewTests method), \hyperpage{32}
+  \item Strain (class in animal.models), \hyperpage{23}
+  \item strain (data.models.Study attribute), \hyperpage{18}
+  \item strain\_detail() (in module animal.views), \hyperpage{26}
+  \item strain\_detail\_all() (in module animal.views), \hyperpage{26}
+  \item strain\_list() (in module animal.views), \hyperpage{26}
+  \item StrainAdmin (class in animal.admin), \hyperpage{27}
+  \item Study (class in data.models), \hyperpage{17}
+  \item study (data.models.Experiment attribute), \hyperpage{16}
+  \item study (data.models.Treatment attribute), \hyperpage{18}
+  \item Study.DoesNotExist, \hyperpage{18}
+  \item Study.MultipleObjectsReturned, \hyperpage{18}
+  \item study\_experiment() (in module data.views), \hyperpage{21}
+  \item StudyExperimentForm (class in data.forms), \hyperpage{19}
+  \item StudyExperimentForm.Media (class in data.forms), \hyperpage{20}
+  \item StudyExperimentForm.Meta (class in data.forms), \hyperpage{20}
+  \item StudyForm (class in data.forms), \hyperpage{20}
+  \item StudyForm.Media (class in data.forms), \hyperpage{20}
+  \item StudyForm.Meta (class in data.forms), \hyperpage{20}
+  \item StudyModelTests (class in data.tests), \hyperpage{21}
+  \item StudyViewTests (class in data.tests), \hyperpage{21}
+  \item surgeon (data.models.Implantation attribute), \hyperpage{17}
+  \item surgeon (data.models.Transplantation attribute), \hyperpage{18}
 
   \indexspace
   \bigletter T
-  \item tearDown() (animal.tests.AnimalModelTests method), \hyperpage{18}
-  \item tearDown() (animal.tests.BreedingModelTests method), \hyperpage{19}
-  \item tearDown() (animal.tests.BreedingViewTests method), \hyperpage{19}
-  \item tearDown() (groups.tests.GroupsModelTests method), \hyperpage{24}
-  \item tearDown() (timed\_mating.tests.Timed\_MatingModelTests method), \hyperpage{22}
-  \item tearDown() (timed\_mating.tests.Timed\_MatingViewTests method), \hyperpage{22}
-  \item test\_animal\_unicode() (animal.tests.AnimalModelTests method), \hyperpage{18}
-  \item test\_autoset\_active\_state() (animal.tests.BreedingModelTests method), \hyperpage{19}
-  \item test\_breeding\_change() (animal.tests.BreedingViewTests method), \hyperpage{19}
-  \item test\_breeding\_delete() (animal.tests.BreedingViewTests method), \hyperpage{19}
-  \item test\_breeding\_detail() (animal.tests.BreedingViewTests method), \hyperpage{19}
-  \item test\_breeding\_list() (animal.tests.BreedingViewTests method), \hyperpage{19}
-  \item test\_breeding\_list\_all() (animal.tests.BreedingViewTests method), \hyperpage{19}
-  \item test\_breeding\_new() (animal.tests.BreedingViewTests method), \hyperpage{19}
-  \item test\_create\_animal\_minimal() (animal.tests.AnimalModelTests method), \hyperpage{18}
-  \item test\_create\_breeding\_minimal() (animal.tests.BreedingModelTests method), \hyperpage{19}
-  \item test\_create\_group\_all\_fields() (groups.tests.GroupsModelTests method), \hyperpage{24}
-  \item test\_create\_group\_minimal() (groups.tests.GroupsModelTests method), \hyperpage{24}
-  \item test\_create\_license\_all\_fields() (groups.tests.GroupsModelTests method), \hyperpage{24}
-  \item test\_create\_license\_minimal() (groups.tests.GroupsModelTests method), \hyperpage{24}
+  \item tearDown() (animal.tests.AnimalModelTests method), \hyperpage{27}
+  \item tearDown() (animal.tests.BreedingModelTests method), \hyperpage{28}
+  \item tearDown() (animal.tests.BreedingViewTests method), \hyperpage{28}
+  \item tearDown() (animal.tests.CageViewTests method), \hyperpage{29}
+  \item tearDown() (animal.tests.DateViewTests method), \hyperpage{29}
+  \item tearDown() (data.tests.StudyModelTests method), \hyperpage{21}
+  \item tearDown() (data.tests.StudyViewTests method), \hyperpage{21}
+  \item tearDown() (data.tests.TreatmentViewTests method), \hyperpage{22}
+  \item tearDown() (groups.tests.GroupsModelTests method), \hyperpage{34}
+  \item tearDown() (timed\_mating.tests.Timed\_MatingModelTests method), \hyperpage{31}
+  \item tearDown() (timed\_mating.tests.Timed\_MatingViewTests method), \hyperpage{32}
+  \item test\_animal\_unicode() (animal.tests.AnimalModelTests method), \hyperpage{27}
+  \item test\_archive\_home() (animal.tests.DateViewTests method), \hyperpage{29}
+  \item test\_archive\_month() (animal.tests.DateViewTests method), \hyperpage{29}
+  \item test\_archive\_year() (animal.tests.DateViewTests method), \hyperpage{29}
+  \item test\_autoset\_active\_state() (animal.tests.BreedingModelTests method), \hyperpage{28}
+  \item test\_breeding\_delete() (animal.tests.BreedingViewTests method), \hyperpage{28}
+  \item test\_breeding\_detail() (animal.tests.BreedingViewTests method), \hyperpage{28}
+  \item test\_breeding\_edit() (animal.tests.BreedingViewTests method), \hyperpage{28}
+  \item test\_breeding\_list() (animal.tests.BreedingViewTests method), \hyperpage{28}
+  \item test\_breeding\_list\_all() (animal.tests.BreedingViewTests method), \hyperpage{28}
+  \item test\_breeding\_new() (animal.tests.BreedingViewTests method), \hyperpage{28}
+  \item test\_cage\_detail() (animal.tests.CageViewTests method), \hyperpage{29}
+  \item test\_cage\_list() (animal.tests.CageViewTests method), \hyperpage{29}
+  \item test\_create\_animal\_minimal() (animal.tests.AnimalModelTests method), \hyperpage{27}
+  \item test\_create\_breeding\_minimal() (animal.tests.BreedingModelTests method), \hyperpage{28}
+  \item test\_create\_group\_all\_fields() (groups.tests.GroupsModelTests method), \hyperpage{34}
+  \item test\_create\_group\_minimal() (groups.tests.GroupsModelTests method), \hyperpage{34}
+  \item test\_create\_license\_all\_fields() (groups.tests.GroupsModelTests method), \hyperpage{34}
+  \item test\_create\_license\_minimal() (groups.tests.GroupsModelTests method), \hyperpage{34}
   \item test\_create\_plugevent\_minimal() (timed\_mating.tests.Timed\_MatingModelTests method), 
-		\hyperpage{22}
+		\hyperpage{31}
   \item test\_create\_plugevent\_most\_fields() (timed\_mating.tests.Timed\_MatingModelTests method), 
-		\hyperpage{22}
+		\hyperpage{31}
+  \item test\_create\_studey\_detailed() (data.tests.StudyModelTests method), \hyperpage{21}
+  \item test\_create\_study\_minimal() (data.tests.StudyModelTests method), \hyperpage{21}
   \item test\_plugevent\_delete() (timed\_mating.tests.Timed\_MatingViewTests method), 
-		\hyperpage{22}
+		\hyperpage{32}
   \item test\_plugevent\_detail() (timed\_mating.tests.Timed\_MatingViewTests method), 
-		\hyperpage{22}
-  \item test\_plugevent\_edit() (timed\_mating.tests.Timed\_MatingViewTests method), \hyperpage{22}
-  \item test\_plugevent\_list() (timed\_mating.tests.Timed\_MatingViewTests method), \hyperpage{22}
-  \item test\_plugevent\_new() (timed\_mating.tests.Timed\_MatingViewTests method), \hyperpage{22}
+		\hyperpage{32}
+  \item test\_plugevent\_edit() (timed\_mating.tests.Timed\_MatingViewTests method), \hyperpage{32}
+  \item test\_plugevent\_list() (timed\_mating.tests.Timed\_MatingViewTests method), \hyperpage{32}
+  \item test\_plugevent\_new() (timed\_mating.tests.Timed\_MatingViewTests method), \hyperpage{32}
   \item test\_plugeventbreeding\_new() (timed\_mating.tests.Timed\_MatingViewTests method), 
-		\hyperpage{22}
+		\hyperpage{32}
   \item test\_set\_plugevent\_inactive() (timed\_mating.tests.Timed\_MatingModelTests method), 
-		\hyperpage{22}
-  \item test\_study\_absolute\_url() (animal.tests.BreedingModelTests method), \hyperpage{19}
-  \item test\_timed\_mating\_list() (animal.tests.BreedingViewTests method), \hyperpage{19}
-  \item test\_unweaned() (animal.tests.BreedingModelTests method), \hyperpage{19}
-  \item timed\_mating (module), \hyperpage{20}
-  \item timed\_mating.admin (module), \hyperpage{21}
-  \item timed\_mating.forms (module), \hyperpage{21}
-  \item timed\_mating.models (module), \hyperpage{20}
-  \item timed\_mating.tests (module), \hyperpage{22}
-  \item timed\_mating.urls (module), \hyperpage{21}
-  \item timed\_mating.views (module), \hyperpage{21}
-  \item Timed\_MatingModelTests (class in timed\_mating.tests), \hyperpage{22}
-  \item Timed\_MatingViewTests (class in timed\_mating.tests), \hyperpage{22}
+		\hyperpage{31}
+  \item test\_study\_absolute\_url() (animal.tests.BreedingModelTests method), \hyperpage{28}
+  \item test\_study\_absolute\_url() (data.tests.StudyModelTests method), \hyperpage{21}
+  \item test\_study\_delete() (data.tests.StudyViewTests method), \hyperpage{22}
+  \item test\_study\_detail() (data.tests.StudyViewTests method), \hyperpage{22}
+  \item test\_study\_edit() (data.tests.StudyViewTests method), \hyperpage{22}
+  \item test\_study\_list() (data.tests.StudyViewTests method), \hyperpage{22}
+  \item test\_study\_new() (data.tests.StudyViewTests method), \hyperpage{22}
+  \item test\_timed\_mating\_list() (animal.tests.BreedingViewTests method), \hyperpage{28}
+  \item test\_treatment\_detail() (data.tests.TreatmentViewTests method), \hyperpage{22}
+  \item test\_unweaned() (animal.tests.BreedingModelTests method), \hyperpage{28}
+  \item timed\_mating (module), \hyperpage{29}
+  \item timed\_mating.admin (module), \hyperpage{31}
+  \item timed\_mating.forms (module), \hyperpage{30}
+  \item timed\_mating.models (module), \hyperpage{29}
+  \item timed\_mating.tests (module), \hyperpage{31}
+  \item timed\_mating.urls (module), \hyperpage{31}
+  \item timed\_mating.views (module), \hyperpage{31}
+  \item Timed\_MatingModelTests (class in timed\_mating.tests), \hyperpage{31}
+  \item Timed\_MatingViewTests (class in timed\_mating.tests), \hyperpage{32}
+  \item Transplantation (class in data.models), \hyperpage{18}
+  \item transplantation (data.models.Treatment attribute), \hyperpage{18}
+  \item Transplantation.DoesNotExist, \hyperpage{18}
+  \item Transplantation.MultipleObjectsReturned, \hyperpage{18}
+  \item transplantation\_set (data.models.Researcher attribute), \hyperpage{17}
+  \item Treatment (class in data.models), \hyperpage{18}
+  \item Treatment.DoesNotExist, \hyperpage{18}
+  \item Treatment.MultipleObjectsReturned, \hyperpage{18}
+  \item treatment\_set (data.models.Diet attribute), \hyperpage{16}
+  \item treatment\_set (data.models.Environment attribute), \hyperpage{16}
+  \item treatment\_set (data.models.Implantation attribute), \hyperpage{17}
+  \item treatment\_set (data.models.Pharmaceutical attribute), \hyperpage{17}
+  \item treatment\_set (data.models.Researcher attribute), \hyperpage{17}
+  \item treatment\_set (data.models.Study attribute), \hyperpage{18}
+  \item treatment\_set (data.models.Transplantation attribute), \hyperpage{18}
+  \item TreatmentForm (class in data.forms), \hyperpage{20}
+  \item TreatmentForm.Media (class in data.forms), \hyperpage{20}
+  \item TreatmentForm.Meta (class in data.forms), \hyperpage{20}
+  \item TreatmentViewTests (class in data.tests), \hyperpage{22}
+
+  \indexspace
+  \bigletter V
+  \item Vendor (class in data.models), \hyperpage{18}
+  \item vendor (data.models.Diet attribute), \hyperpage{16}
+  \item vendor (data.models.Implantation attribute), \hyperpage{17}
+  \item vendor (data.models.Pharmaceutical attribute), \hyperpage{17}
+  \item Vendor.DoesNotExist, \hyperpage{19}
+  \item Vendor.MultipleObjectsReturned, \hyperpage{19}
 
 \end{theindex}

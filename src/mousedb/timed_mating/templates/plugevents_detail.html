@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block header %}Plug Event - {{plug}}{% endblock %}
+{% block title %}Plug Event - {{plug}}{% endblock %}
+
+
+{% block content %}
+<h2>Plug Events ({{plug_list.count}}) <a href="{% url plugevents-new %}"><img src="{{STATIC_URL}}admin-media/img/admin/icon_addlink.gif" border="none" alt="add" title="Add Plug Event"></a></h2>
+
+<table class="sortable">
+	<thead>	
+	<tr>
+	<th>Breeding Cage</th>
+	<th>Strain</th>
+	<th>Parents(M/F)</th>
+	<th>Plug Date</th>
+	<th>Sacrifice Date</th>
+	<th>Duration</th>
+	<th>WT</th>
+	<th>HET</th>
+	<th>KO</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+	<td><a href="{% url breeding-detail plug.Breeding.id %}">{{plug.Breeding.Cage}}</a></td>
+	<td><a href="{% url strain-detail plug.Breeding.Strain.Strain_slug %}">{{plug.Breeding.Strain}}</a></td>
+	<td><ul>
+		<li><a href="{% url animal-detail plug.PlugMale.id %}">{{plug.PlugMale}}</a></li>
+		<li><a href="{% url animal-detail plug.PlugFemale.id %}">{{plug.PlugFemale}}</a></li>
+	</ul></td>
+	<td>{{plug.PlugDate}}</td>
+	<td>{{plug.SacrificeDate}}</td>
+	<td>	{% if plug.SacrificeDate %}
+		{{plug.SacrificeDate|timeuntil:plug.PlugDate}}
+		{% else %}
+		{{plug.PlugDate|timesince}}
+		{% endif %}
+	</td>
+	<td>{{plug.WT_Alive}}/{{plug.WT_Dead}}</td>
+	<td>{{plug.HET_Alive}}/{{plug.HET_Dead}}</td>
+	<td>{{plug.KO_Alive}}/{{plug.KO_Dead}}</td>
+	<td><a href="{% url plugevents-new %}"><img src="{{STATIC_URL}}admin-media/img/admin/icon_addlink.gif" border="none" alt="add" title="Add Plug Event"></a></td>
+	<td><a href="{% url plugevents-edit plug.id %}"><img src="{{STATIC_URL}}admin-media/img/admin/icon_changelink.gif" border="none" alt="edit" title="Edit Plug Event"></a></td>
+	<td><a href="{% url plugevents-delete plug.id%}"><img src="{{STATIC_URL}}admin-media/img/admin/icon_deletelink.gif" border="none" alt="delete" title="Delete Plug Event"></a></td>
+	</tr>
+	</tbody>
+</table>
+
+<p>To add a new plug event click <a href="{% url plugevents-new %}">here</a>, or enter it from the <a href="{% url breeding-list %}">breeding cage</a>.</p>
+<p>To see all timed mating breeding cages click <a href="{% url breeding-list-timed-matings %}">here</a>.</p>
+{% endblock %}
