@@ -4,7 +4,6 @@
 		<th>Date</th>
 		<th>Injection</th>
 		<th>State</th>
-		<th>Animals</th>
 		<th>Researchers</th>
 		<th>Study</th>
 	</tr>
@@ -15,7 +14,6 @@
 		<td><a href="{{ experiment.get_absolute_url }}">{{ experiment.date }}</a></td>
 		<td>{{ experiment.injection }}</td>
 		<td>{{ experiment.feeding_state }}</td>
-		<td>{{ experiment.animals.all.count}}</td>
 		<td>{% for researcher in experiment.researchers.all %}{{ researcher }} {% endfor %}</td>
 		<td>{% if experiment.study %}<a href="{% url study-detail experiment.study.id %}">{{ experiment.study}}</a>{% endif %}</td>
 	</tr>
