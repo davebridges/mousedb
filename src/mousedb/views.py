@@ -30,12 +30,12 @@ def home(request):
     """This view generates the data for the home page.
     
     This login restricted view passes dictionaries containing the current cages, animals and strains as well as the totals for each.  This data is passed to the template home.html"""
-    cage_list = Animal.objects.values("Cage")
-    cage_list_current = Animal.objects.filter(Alive=True).values("Cage")
+    cage_list = Animal.objects.values("Cage").distinct()
+    cage_list_current = cage_list.filter(Alive=True)
     animal_list = Animal.objects.all()
-    animal_list_current = Animal.objects.filter(Alive=True)
-    strain_list = Strain.objects.all()
-    strain_list_current = Strain.objects.filter(animal__Alive=True)
+    animal_list_current = animal_list.filter(Alive=True)
+    strain_list = animal_list.values("Strain").distinct()
+    strain_list_current = animal_list_current.values("Strain").distinct()
     return render_to_response('home.html', {'animal_list':animal_list, 'animal_list_current':animal_list_current, 'strain_list':strain_list, 'strain_list_current':strain_list_current, 'cage_list':cage_list, 'cage_list_current':cage_list_current},context_instance=RequestContext(request))
     
 class ProtectedListView(ListView):
