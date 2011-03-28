@@ -28,7 +28,6 @@ class Experiment(models.Model):
 	date = models.DateField()
 	notes = models.TextField(max_length = 500, blank=True)
 	researchers = models.ManyToManyField('Researcher')
-	animals = models.ManyToManyField(Animal)
 	experimentID = models.SlugField(max_length=50, help_text="ie DB-2008-11-11-A", blank=True)
 	feeding_state = models.CharField(max_length=20, default = 'fed', choices = FEEDING_TYPES)
 	fasting_time = models.IntegerField(help_text = "in hours", null = True, blank = True)

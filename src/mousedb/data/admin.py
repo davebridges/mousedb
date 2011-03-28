@@ -31,12 +31,10 @@ class AssayAdmin(admin.ModelAdmin):
 admin.site.register(Assay,AssayAdmin)
 
 class ExperimentAdmin(admin.ModelAdmin):
-	fields = ('study', 'date', 'feeding_state', 'researchers', 'animals', 'fasting_time', 'injection', 'concentration', 'experimentID','notes')
-	filter_horizontal = ('animals',)
+	fields = ('study', 'date', 'feeding_state', 'researchers','fasting_time', 'injection', 'concentration', 'experimentID','notes')
 	radio_fields = {"feeding_state": admin.VERTICAL, "injection":admin.HORIZONTAL}
 	list_display = ('date','study', 'feeding_state', 'experimentID', 'injection')
 	list_filter = ('feeding_state', 'injection')
-	raw_id_fields = ('animals',)
 	inlines = [MeasurementInline,]
 admin.site.register(Experiment, ExperimentAdmin)
 	
