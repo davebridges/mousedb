@@ -83,4 +83,25 @@ def experiment_details_csv(request, experiment_id):
 			#measurement.animal.treatment_set.all()[0] this only works if an animal is in a treatment group
 			])
     return response
+    
+    
+@login_required
+def aging_csv(request):
+    """This view generates a csv output file of all animal data for use in aging analysis.
+	
+	The view writes to a csv table the animal, strain, genotype, age (in days), and cause of death."""
+    animal_list = Animal.objects.all()
+    response = HttpResponse(mimetype='text/csv')
+    response['Content-Disposition'] = 'attachment; filename=aging.csv'
+    writer = csv.writer(response)
+    writer.writerow(["Animal", "Strain", "Genotype", "Age", "Death"])
+    for animal in animal_list.iterator():
+        writer.writerow([
+            animal.MouseID, 
+            animal.Strain, 
+            animal.Genotype, 
+            animal.age(),
+            animal.Cause_of_Death   
+            ])
+    return response    
 

@@ -8,6 +8,7 @@ Version 0.2.1dev
 * Set inactive breeding cages to be marked as red.  Put an inactive cage message on the detail page for inactive breeding cages.
 * Animals are no longer defined at the Experiment object level, but are defined in Treatment and Measurement objects.  These are then introspected at the Study and Experiment level.  **This requires a migration of the data app.**
 * Added an annual archive of mouse births using the url archive-home
+* Added a new view for exporting animal survival data
 * Updated documentation for installation using pip and buildout
 
   
