@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 from mousedb.data.models import Study
 from mousedb.data.forms import StudyForm
 from mousedb.animal.models import Animal
-from mousedb.data.views import aging_csv
+from mousedb.data.views import aging_csv, litters_csv
 
 @login_required
 def limited_object_list(*args, **kwargs):
@@ -64,5 +64,6 @@ urlpatterns = patterns('',
 		'template_name': 'animal_list.html',
 		'template_object_name': 'animal',
 		}, name="study-aging-detail"),
-    url(r'^aging/all.csv', aging_csv, name="aging-csv")
+    url(r'^aging/all.csv', aging_csv, name="aging-csv"),
+    url(r'^litters/all.csv', litters_csv, name="litters-csv")
 )
