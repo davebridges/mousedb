@@ -12,6 +12,9 @@ from django.template import RequestContext
 from django.db.models import Count
 from django.core import serializers
 from django.core.urlresolvers import reverse
+from django.db.models import Q
+
+from mousedb.settings import WEAN_AGE, GENOTYPE_AGE
 
 from mousedb.animal.models import Animal, Strain, Breeding
 from mousedb.data.models import Measurement
@@ -240,9 +243,9 @@ def todo(request):
     """This view generates a summary of the todo lists.
     
     The login restricted view passes lists for ear tagging, genotyping and weaning and passes them to the template todo.html"""
-    eartag_list = Animal.objects.filter(Born__lt=(datetime.date.today() - datetime.timedelta(days=settings.WEAN_AGE))).filter(MouseID__isnull=True, Alive=True)
-    genotype_list = Animal.objects.filter(Q(Genotype='N.D.')|Q(Genotype__icontains='?')).filter(Alive=True, Born__lt=(datetime.date.today() - datetime.timedelta(days=settings.GENOTYPE_AGE)))
-    wean = datetime.date.today() - datetime.timedelta(days=settings.WEAN_AGE)
+    eartag_list = Animal.objects.filter(Born__lt=(datetime.date.today() - datetime.timedelta(days=WEAN_AGE))).filter(MouseID__isnull=True, Alive=True)
+    genotype_list = Animal.objects.filter(Q(Genotype='N.D.')|Q(Genotype__icontains='?')).filter(Alive=True, Born__lt=(datetime.date.today() - datetime.timedelta(days=GENOTYPE_AGE)))
+    wean = datetime.date.today() - datetime.timedelta(days=WEAN_AGE)
     wean_list = Animal.objects.filter(Born__lt=wean).filter(Weaned=None,Alive=True).exclude(Strain=2).order_by('Strain','Background','Rack','Cage')
     return render_to_response('todo.html', {'eartag_list':eartag_list, 'wean_list':wean_list, 'genotype_list':genotype_list},context_instance=RequestContext(request))    
 
