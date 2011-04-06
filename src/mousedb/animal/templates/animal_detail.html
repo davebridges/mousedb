@@ -77,6 +77,16 @@ This mouse has an unknown age.
 	<a href="{% url animal-delete animal.id %}"><button class="fg-button ui-state-default  ui-corner-right"><span class="ui-icon ui-icon-trash"></span>Delete Mouse</button></a>
 {% endif %}
 </div>
+{% if animal.Breeding %}
+<div id="breeding">
+	<h2>Breeding Summary</h2>
+	{% with animal.Breeding as breeding %}
+	{% include "breeding_summary_table.html" %}
+	{% endwith %}
+{% else %}
+	<p>No measurements for this animal.</p>
+</div>
+{% endif %}
 {% if animal_measurements %}
 <div id="animal-measurements">
 	<h2>Measurement Summary</h2>
