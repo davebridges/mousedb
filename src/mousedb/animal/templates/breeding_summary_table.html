@@ -1,0 +1,50 @@
+{% load custom_filters %}
+{% if not breeding.Active %}<h2 class="dead">This Breeding Cage is Inactive</h2>{% endif %}
+<table>
+ <thead>
+ <tr>
+  <th rowspan = "2">Strain</th>
+  <th rowspan = "2">Cage</th>
+  <th rowspan = "2">Name</th>
+  <th rowspan = "2">Start</th>
+  <th rowspan = "2">Duration</th>
+  <th rowspan = "2">Crosstype</th>
+  <th colspan="4">Pups</th>
+  <th rowspan = "2">Rack</th>
+  <th rowspan = "2">Position</th>
+ </tr>
+ <tr>
+   <th>Genotype</th>
+  <th>Background</th>
+  <th>Backcross</th>
+  <th>Generation</th>
+  </tr>
+ </thead>
+ <tbody>
+ <tr>
+ <td><a href="{{ breeding.Strain.get_absolute_url }}">{{ breeding.Strain }}</a></td>
+ <td><a href="{% url cage-detail breeding.Cage %}">{{ breeding.Cage }}</a></td>
+ <td>{{ breeding.BreedingName }}</td>
+ <td>{{ breeding.Start }}</td>
+ <td>{{ breeding.Start|timesince }}</td>
+ <td>{{ breeding.get_Crosstype_display }}</td>
+ <td>{{ breeding.genotype }}</td>
+ <td>{{ breeding.background }}</td>
+ <td>{{ breeding.backcross }}</td>
+ <td>{{ breeding.generation }}</td>
+ <td>{{ breeding.Rack }}</td>
+ <td>{{ breeding.Rack_Position|all_caps }}</td>
+ </tr>
+ </tbody>
+</table>
+<div class="fg-buttonset">
+{% if perms.animal.create_breeding %}
+<a href="{% url breeding-new %}"><button class="fg-button ui-state-default ui-corner-left"><span class="ui-icon ui-icon-circle-plus"></span>Add New Breeding Cage</button></a>
+{% endif %}
+{% if perms.animal.change_breeding %}
+<a href="{% url breeding-edit breeding.id %}"><button class="fg-button ui-state-default"><span class="ui-icon ui-icon-pencil"></span>Edit Breeding Cage</button></a>
+{% endif %}
+{% if perms.animal.delete_breeding %}
+<a href="{% url breeding-delete breeding.id %}"><button class="fg-button ui-state-default ui-corner-right"><span class="ui-icon ui-icon-trash"></span>Delete Breeding Cage</button></a>
+{% endif %}
+</div>
