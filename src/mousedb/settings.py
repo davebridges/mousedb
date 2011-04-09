@@ -76,6 +76,8 @@ INSTALLED_APPS = (
     'south'
 )
 
+SOUTH_TESTS_MIGRATE = False 
+
 MESSAGE_STORAGE = 'django.contrib.messages.storage.fallback.FallbackStorage'
 
 AJAX_LOOKUP_CHANNELS = {
