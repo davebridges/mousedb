@@ -251,7 +251,8 @@ class DateViewTests(TestCase):
         self.assertTemplateUsed(response, 'base.html')
         self.assertTemplateUsed(response, 'jquery_script.html')
         self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
-        self.assertTemplateUsed(response, 'home.html')		
+        self.assertTemplateUsed(response, 'sortable_table_script.html')
+        self.assertTemplateUsed(response, 'animal_archive.html')		
 		
     def test_archive_year(self):
         """This test checks the view which displays a list of the animals, filtered by year.  It checks for the correct templates and status code."""        

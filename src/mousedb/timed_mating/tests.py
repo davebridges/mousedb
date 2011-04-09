@@ -79,7 +79,7 @@ class Timed_MatingModelTests(TestCase):
 class Timed_MatingViewTests(TestCase):
     """Test the views contained in the 'timed_mating' app."""
 
-    fixtures = ['test_plugevents', 'test_breeding', 'test_animals']
+    fixtures = ['test_breeding','test_plugevents', 'test_animals']
 
     def setUp(self):
         """Instantiate the test client.  Creates a test user."""
@@ -110,18 +110,6 @@ class Timed_MatingViewTests(TestCase):
         self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
         self.assertTemplateUsed(response, 'plugevents_list.html')
         self.assertTemplateUsed(response, 'plug_table.html')
-
-    def test_strain_plugevent_list(self):
-        """This tests the strain-plugevent-list view, ensuring that templates are loaded correctly.  
-
-        This view uses a user with superuser permissions so does not test the permission levels for this view."""
-        response = self.client.get('/plugs/strain/test-strain')
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'base.html')
-        self.assertTemplateUsed(response, 'jquery_script.html')
-        self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
-        self.assertTemplateUsed(response, 'plugevents_list.html')
-        self.assertTemplateUsed(response, 'plug_table.html')         
 
     def test_plugevent_detail(self):
         """This tests the plugevent-detail view, ensuring that templates are loaded correctly.  
@@ -166,14 +154,3 @@ class Timed_MatingViewTests(TestCase):
         self.assertTemplateUsed(response, 'jquery_script.html')
         self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
         self.assertTemplateUsed(response, 'confirm_delete.html')
-
-    def test_plugeventbreeding_new(self):
-        """This tests the plugevent-new view, ensuring that templates are loaded correctly.  
-
-        This view uses a user with superuser permissions so does not test the permission levels for this view."""
-        response = self.client.get('/plugs/breeding/1/new/')
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'base.html')
-        self.assertTemplateUsed(response, 'jquery_script.html')
-        self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
-        self.assertTemplateUsed(response, 'breedingplug_form.html')
