@@ -1,0 +1,16 @@
+[
+    {
+        "pk": 1, 
+        "model": "data.diet", 
+        "fields": {
+            "fat_content": null, 
+            "description": "", 
+            "irradiated": false, 
+            "notes": "", 
+            "protein_content": null, 
+            "vendor": 1, 
+            "carb_content": null, 
+            "product_id": ""
+        }
+    }
+]

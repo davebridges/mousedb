@@ -97,7 +97,6 @@ class StudyViewTests(TestCase):
         self.assertTemplateUsed(response, 'jquery_script.html')
         self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
         self.assertTemplateUsed(response, 'study_form.html')
-        self.assertTemplateUsed(response, 'autocompleteselectmultiple.html')
 
     def test_study_edit(self):
         """This test checks the view which displays a study edit page.  It checks for the correct templates and status code."""
@@ -122,6 +121,8 @@ class StudyViewTests(TestCase):
 class TreatmentViewTests(TestCase):
     """These tests test the views associated with Treatment objects."""
 
+    fixtures = ['test_treatment',]
+    
     def setUp(self):
         self.client = Client()
         self.test_user = User.objects.create_user('blah', 'blah@blah.com', 'blah')
@@ -137,7 +138,7 @@ class TreatmentViewTests(TestCase):
     def test_treatment_detail(self):
         """This test checks the view which displays a treatment-detail page.  It checks for the correct templates and status code."""        
 
-        response = self.client.get('/breeding/')
+        response = self.client.get('/treatment/1/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'base.html')
         self.assertTemplateUsed(response, 'jquery_script.html')

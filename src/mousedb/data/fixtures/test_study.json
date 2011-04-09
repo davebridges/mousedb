@@ -1,0 +1,13 @@
+[
+    {
+        "pk": 1, 
+        "model": "data.study", 
+        "fields": {
+            "notes": "", 
+            "strain": [], 
+            "stop_date": null, 
+            "description": "some study of something", 
+            "start_date": null
+        }
+    }
+]
