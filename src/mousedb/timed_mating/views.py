@@ -41,10 +41,17 @@ class StrainPlugEventsListView(ProtectedListView):
 class PlugEventsDetailView(ProtectedDetailView): 
     """This class generates the plugevents-detail view.
     
-    This login protected takes a url in the form **/plugs/1** for plug event id=1 and passes a plug object to plugevents_detail.html"""
+    This login protected takes a url in the form **/plugs/1** for plug event id=1 and passes a **plug** object to plugevents_detail.html"""
     model = PlugEvents
     template_name = 'plugevents_detail.html'
     context_object_name = 'plug'
+    
+class PlugEventsCreateView(RestrictedCreateView):
+    """This class generates the plugevents-new view.
+
+    This permission restricted view takes a url in the form **/plugs/new** and generates an empty plugevents_form.html."""
+    model = PlugEvents
+    template_name = 'plugevents_form.html'
     
   
     
