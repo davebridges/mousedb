@@ -13,35 +13,35 @@
 	</tr>
 	</thead>
 	<tbody>
-	{% for plug in plug_list %}
+	{% for plugevent in plugevents_list %}
 	<tr>
-	<td><a href="{{plug.Breeding.get_absolute_url}}">{{plug.Breeding.Cage}}</a></td>
-	<td><a href="{{plug.Breeding.Strain.get_absolute_url}}">{{plug.Breeding.Strain}}</a></td>
+	<td><a href="{{plugevent.Breeding.get_absolute_url}}">{{plugevent.Breeding.Cage}}</a></td>
+	<td><a href="{{plugevent.Breeding.Strain.get_absolute_url}}">{{plugevent.Breeding.Strain}}</a></td>
 	<td><ul>
-		<li><a href="{{plug.PlugMale.get_absolute_url}}">{{plug.PlugMale}}</a></li>
-		<li><a href="{{plug.PlugFemale.get_absolute_url}}">{{plug.PlugFemale}}</a></li>
+		<li><a href="{{plugevent.PlugMale.get_absolute_url}}">{{plugevent.PlugMale}}</a></li>
+		<li><a href="{{plugevent.PlugFemale.get_absolute_url}}">{{plugevent.PlugFemale}}</a></li>
 	</ul></td>
-	<td>{{plug.PlugDate}}</td>
-	<td>{{plug.SacrificeDate}}</td>
-	<td>	{% if plug.SacrificeDate %}
-		{{plug.SacrificeDate|timeuntil:plug.PlugDate}}
+	<td>{{plugevent.PlugDate}}</td>
+	<td>{{plugevent.SacrificeDate}}</td>
+	<td>	{% if plugevent.SacrificeDate %}
+		{{plugevent.SacrificeDate|timeuntil:plugevent.PlugDate}}
 		{% else %}
-		{{plug.PlugDate|timesince}}
+		{{plugevent.PlugDate|timesince}}
 		{% endif %}
 	</td>
-	<td>{{plug.WT_Alive}}/{{plug.WT_Dead}}</td>
-	<td>{{plug.HET_Alive}}/{{plug.HET_Dead}}</td>
-	<td>{{plug.KO_Alive}}/{{plug.KO_Dead}}</td>
+	<td>{{plugevent.WT_Alive}}/{{plugevent.WT_Dead}}</td>
+	<td>{{plugevent.HET_Alive}}/{{plugevent.HET_Dead}}</td>
+	<td>{{plugevent.KO_Alive}}/{{plugevent.KO_Dead}}</td>
 <td class="fg-buttonset fg-buttonset-multi">
 {% if perms.timed_mating.change_plugEvents %}
-  <a href="{% url plugevents-edit plug.id %}" title="Edit {{plug}}">
+  <a href="{% url plugevents-edit plugevent.id %}" title="Edit {{plugevent}}">
    <button class="fg-button ui-state-default fg-button-icon-left ui-corner-all">
     <span class="ui-icon ui-icon-pencil" style="float:left;">Edit</span>
    </button>
    </a>
 {% endif %}
 {% if perms.timed_mating.delete_plugEvents %}
-  <a href="{% url plugevents-delete plug.id %}" title="Delete {{plug}}">
+  <a href="{% url plugevents-delete plugevent.id %}" title="Delete {{plugevent}}">
    <button class="fg-button ui-state-default fg-button-icon-left ui-corner-all">
     <span class="ui-icon ui-icon-trash" style="float:left;">Delete</span>
    </button>

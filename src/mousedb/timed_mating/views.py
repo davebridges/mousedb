@@ -21,7 +21,7 @@ class PlugEventsList(ProtectedListView):
     This login protected view takes all PlugEvents objects and sends them to plugevents_list.html as a plug_list dictionary.
     The url for this view is **/plugs/**"""
     model = PlugEvents
-    context_object_name = 'plug_list'
+    context_object_name = 'plugevents_list'
     template_name = "plugevents_list.html"
     
 class StrainPlugEventsList(ProtectedListView):
@@ -45,7 +45,7 @@ class PlugEventsDetail(ProtectedDetailView):
     This login protected takes a url in the form **/plugs/1** for plug event id=1 and passes a **plug** object to plugevents_detail.html"""
     model = PlugEvents
     template_name = 'plugevents_detail.html'
-    context_object_name = 'plug'
+    context_object_name = 'plugevent'
     
 class PlugEventsCreate(RestrictedCreateView):
     """This class generates the plugevents-new view.
@@ -60,6 +60,7 @@ class PlugEventsUpdate(RestrictedUpdateView):
     This permission restricted view takes a url in the form **/plugs/#/edit** and generates a plugevents_form.html with that object."""
     model = PlugEvents
     template_name = 'plugevents_form.html'
+    context_object_name = 'plugevent'    
 
 class PlugEventsDelete(RestrictedDeleteView):
     """This class generates the plugevents-new view.
@@ -67,6 +68,7 @@ class PlugEventsDelete(RestrictedDeleteView):
     This permission restricted view takes a url in the form **/plugs/#/delete** and passes that object to the confirm_delete.html page."""
     model = PlugEvents
     template_name = 'confirm_delete.html'
+    context_object_name = 'plugevent'    
     success_url = "/mousedb/plugs/"
     
   

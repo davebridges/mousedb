@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
-{% block header %}Plug Event - {{plug}}{% endblock %}
-{% block title %}Plug Event - {{plug}}{% endblock %}
+{% block header %}Plug Event - {{plugevent}}{% endblock %}
+{% block title %}Plug Event - {{plugevent}}{% endblock %}
 
 
 {% block content %}
-<h2>Plug Events ({{plug_list.count}}) <a href="{% url plugevents-new %}"><img src="{{STATIC_URL}}admin-media/img/admin/icon_addlink.gif" border="none" alt="add" title="Add Plug Event"></a></h2>
+<h2>Plug Events ({{plugevents_list.count}}) <a href="{% url plugevents-new %}"><img src="{{STATIC_URL}}admin-media/img/admin/icon_addlink.gif" border="none" alt="add" title="Add Plug Event"></a></h2>
 
 <table class="sortable">
 	<thead>	
@@ -23,26 +23,26 @@
 	</thead>
 	<tbody>
 	<tr>
-	<td><a href="{% url breeding-detail plug.Breeding.id %}">{{plug.Breeding.Cage}}</a></td>
-	<td><a href="{% url strain-detail plug.Breeding.Strain.Strain_slug %}">{{plug.Breeding.Strain}}</a></td>
+	<td><a href="{% url breeding-detail plugevent.Breeding.id %}">{{plugevent.Breeding.Cage}}</a></td>
+	<td><a href="{% url strain-detail plugevent.Breeding.Strain.Strain_slug %}">{{plugevent.Breeding.Strain}}</a></td>
 	<td><ul>
-		<li><a href="{% url animal-detail plug.PlugMale.id %}">{{plug.PlugMale}}</a></li>
-		<li><a href="{% url animal-detail plug.PlugFemale.id %}">{{plug.PlugFemale}}</a></li>
+		<li><a href="{% url animal-detail plugevent.PlugMale.id %}">{{plugevent.PlugMale}}</a></li>
+		<li><a href="{% url animal-detail plugevent.PlugFemale.id %}">{{plugevent.PlugFemale}}</a></li>
 	</ul></td>
-	<td>{{plug.PlugDate}}</td>
-	<td>{{plug.SacrificeDate}}</td>
-	<td>	{% if plug.SacrificeDate %}
-		{{plug.SacrificeDate|timeuntil:plug.PlugDate}}
+	<td>{{plugevent.PlugDate}}</td>
+	<td>{{plugevent.SacrificeDate}}</td>
+	<td>	{% if plugevent.SacrificeDate %}
+		{{plugevent.SacrificeDate|timeuntil:plugevent.PlugDate}}
 		{% else %}
-		{{plug.PlugDate|timesince}}
+		{{plugevent.PlugDate|timesince}}
 		{% endif %}
 	</td>
-	<td>{{plug.WT_Alive}}/{{plug.WT_Dead}}</td>
-	<td>{{plug.HET_Alive}}/{{plug.HET_Dead}}</td>
-	<td>{{plug.KO_Alive}}/{{plug.KO_Dead}}</td>
+	<td>{{plugevent.WT_Alive}}/{{plugevent.WT_Dead}}</td>
+	<td>{{plugevent.HET_Alive}}/{{plugevent.HET_Dead}}</td>
+	<td>{{plugevent.KO_Alive}}/{{plugevent.KO_Dead}}</td>
 	<td><a href="{% url plugevents-new %}"><img src="{{STATIC_URL}}admin-media/img/admin/icon_addlink.gif" border="none" alt="add" title="Add Plug Event"></a></td>
-	<td><a href="{% url plugevents-edit plug.id %}"><img src="{{STATIC_URL}}admin-media/img/admin/icon_changelink.gif" border="none" alt="edit" title="Edit Plug Event"></a></td>
-	<td><a href="{% url plugevents-delete plug.id%}"><img src="{{STATIC_URL}}admin-media/img/admin/icon_deletelink.gif" border="none" alt="delete" title="Delete Plug Event"></a></td>
+	<td><a href="{% url plugevents-edit plugevent.id %}"><img src="{{STATIC_URL}}admin-media/img/admin/icon_changelink.gif" border="none" alt="edit" title="Edit Plug Event"></a></td>
+	<td><a href="{% url plugevents-delete plugevent.id%}"><img src="{{STATIC_URL}}admin-media/img/admin/icon_deletelink.gif" border="none" alt="delete" title="Delete Plug Event"></a></td>
 	</tr>
 	</tbody>
 </table>

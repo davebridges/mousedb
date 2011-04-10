@@ -11,7 +11,7 @@
 	</script>
 {% endblock %}
 {% block content %}
-<form method="POST" action="{% if object %}{% url plugevents-edit object.id %}{% else %}{% url plugevents-new %}{% endif %}">{% csrf_token %}
+<form method="POST" action="{% if plugevent %}{% url plugevents-edit plugevent.id %}{% else %}{% url plugevents-new %}{% endif %}">{% csrf_token %}
 <table>{{ form }}</table>
 <input type="submit" value="Submit" />
 </form>
