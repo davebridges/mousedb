@@ -29,8 +29,12 @@ class PlugEvents(models.Model):
     Notes = models.TextField(max_length=250, blank=True)
     def __unicode__(self):
         return u'Plug Event - %i' % self.id
+
+    @models.permalink
     def get_absolute_url(self):
-        return "/timedmating/plug/%i" % self.id
+        """The permalink for a plugevent is /mousedb/timed_mating/plugs/**id**."""
+        return ('plugevents-detail', [str(self.id)])
+
     def save(self):
         """Over-rides the default save function for PlugEvents.
 
