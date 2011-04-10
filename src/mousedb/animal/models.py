@@ -138,10 +138,15 @@ class Strain(models.Model):
     Strain_slug = models.SlugField(max_length = 20, help_text="Strain name with no spaces, for use in URI's")
     Source = models.TextField(max_length = 500, blank = True)
     Comments = models.TextField (max_length = 500, blank = True)
+
     def __unicode__(self):
+        """For a Strain object, the unicode representation is the Strain field."""
         return u'%s' % self.Strain
+
+    @models.permalink
     def get_absolute_url(self):
-        return "/mousedb/strain/%s" % self.Strain_slug
+        """For a Strain object, the permalinked absolute url is */strain/strain-slug*."""
+        return ('strain-detail', [str(self.Strain_slug)])
 
 class Animal(models.Model):
     """A data model describing an animal.

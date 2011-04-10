@@ -13,6 +13,8 @@ from django.db.models import Count
 from django.core import serializers
 from django.core.urlresolvers import reverse
 
+from mousedb.views import ProtectedListView, ProtectedDetailView, RestrictedCreateView, RestrictedUpdateView, RestrictedDeleteView
+
 from mousedb.animal.models import Animal, Strain, Breeding
 from mousedb.data.models import Measurement
 from mousedb.animal.forms import MultipleAnimalForm, MultipleBreedingAnimalForm
@@ -28,18 +30,24 @@ def animal_detail(request, id):
     animal = Animal.objects.get(pk=id)
     animal_measurements=Measurement.objects.filter(animal__id=id).order_by('assay','experiment')
     return render_to_response('animal_detail.html', {'animal' : animal, 'animal_measurements':animal_measurements},context_instance=RequestContext(request))
+    
+    
+class StrainList(ProtectedListView):
+    """This class generates an object list for Strain objects.
+    
+    This login protected view takes all Strain objects and sends them to strain_list.html as a strain_list dictionary.  It also passes a strain_list_alive and cages dictionary to show the numbers for total cages and total strains.
+    The url for this view is **/strain/**"""
+    model = Strain
+    context_object_name = 'strain_list'
+    template_name = "strain_list.html"
 
-@login_required
-def strain_list(request):
-    """This view presents a list of strains currently present in the database and annotates this list with a count of alive and total animals.
-	
-    This view redirects from a /strain/ request.
-    This view is restricted to logged-in users.
-    """
-    strain_list = Strain.objects.all()
-    strain_list_alive = Strain.objects.filter(animal__Alive=True).annotate(alive=Count('animal'))
-    cages = Animal.objects.filter(Alive=True).values("Cage")
-    return render_to_response('strain_list.html', {'strain_list': strain_list, 'strain_list_alive':strain_list_alive, 'cages':cages },context_instance=RequestContext(request))
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(StrainList, self).get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        context['strain_list_alive'] = Strain.objects.filter(animal__Alive=True).annotate(alive=Count('animal'))
+        context['cages'] = Animal.objects.filter(Alive=True).values("Cage")        
+        return context    
 
 @login_required
 def strain_detail(request, strain):
@@ -49,7 +57,7 @@ def strain_detail(request, strain):
     This view also passes along a dictionary of alive animals belonging to that strain.
     This page is restricted to logged-in users.
     """
-    strain = Strain.objects.get(Strain_slug=strain)
+    strain = get_object_or_404(Strain, Strain_slug=strain)
     breeding_cages = Breeding.objects.filter(Strain=strain).filter(Active=True)
     animal_list = Animal.objects.filter(Strain=strain, Alive=True).order_by('Background','Genotype')
     cages = animal_list.values("Cage", "Alive").filter(Alive=True).distinct()
@@ -71,7 +79,7 @@ def strain_detail_all(request, strain):
     This view also passes along a dictionary of all animals belonging to that strain.
     This page is restricted to logged-in users.
     """
-    strain = Strain.objects.get(Strain_slug=strain)
+    strain = get_object_or_404(Strain, Strain_slug=strain)
     animal_list = Animal.objects.filter(Strain=strain).order_by('Background','Genotype')	
     cages = animal_list.values("Cage").distinct()
     breeding_cages = Breeding.objects.filter(Strain=strain)

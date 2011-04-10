@@ -13,10 +13,192 @@ from mousedb.animal.models import Animal, Strain, Breeding
 
 MODELS = [Breeding, Animal, Strain]
 
+class StrainModelTests(TestCase):
+    """Tests the model attributes of Strain objects contained in the animal app."""
+
+    def setUp(self):
+        """Instantiate the test client.  Creates a test user."""
+        self.client = Client()
+        self.test_user = User.objects.create_user('testuser', 'blah@blah.com', 'testpassword')
+        self.test_user.is_superuser = True
+        self.test_user.is_active = True
+        self.test_user.save()
+        self.assertEqual(self.test_user.is_superuser, True)
+        login = self.client.login(username='testuser', password='testpassword')
+        self.failUnless(login, 'Could not log in')
+    
+    def tearDown(self):
+        """Depopulate created model instances from test database."""
+        for model in MODELS:
+            for obj in model.objects.all():
+                obj.delete()
+    
+    def test_create_strain_minimal(self):
+        """This is a test for creating a new strain object, with only the minimum fields being entered"""
+        test_strain = Strain(Strain = "Test Strain", Strain_slug = "test-strain")
+        test_strain.save()
+        self.assertEquals(test_strain.id, 1)
+        
+    def test_create_strain_all(self):
+        """This is a test for creating a new strain object, with only all fields being entered"""
+        test_strain = Strain(
+            Strain = "Test Strain", 
+            Strain_slug = "test-strain",
+            Source = "The test strain came from some place",
+            Comments = "Here are some comments about the Test Strain")
+        test_strain.save()
+        self.assertEquals(test_strain.id, 1)
+   
+    def test_strain_unicode(self):
+        """This is a test for creating a new strain object, then testing the unicode representation of the strain."""
+        test_strain = Strain(Strain = "Test Strain", Strain_slug = "test-strain")
+        test_strain.save()
+        self.assertEquals(test_strain.__unicode__(), "Test Strain")
+        
+    def test_strain_absolute_url(self):
+        """This is a test for creating a new strain object, then testing absolute url."""
+        test_strain = Strain(Strain = "Test Strain", Strain_slug = "test-strain")
+        test_strain.save()
+        self.assertEquals(test_strain.get_absolute_url(), "/strain/test-strain/")        
+
+class StrainViewTests(TestCase):
+    """Test the views contained in the animal app relating to Strain objects."""
+
+    fixtures = ['test_strain',]
+
+    def setUp(self):
+        """Instantiate the test client.  Creates a test user."""
+        self.client = Client()
+        self.test_user = User.objects.create_user('testuser', 'blah@blah.com', 'testpassword')
+        self.test_user.is_superuser = True
+        self.test_user.is_active = True
+        self.test_user.save()
+        self.assertEqual(self.test_user.is_superuser, True)
+        login = self.client.login(username='testuser', password='testpassword')
+        self.failUnless(login, 'Could not log in')
+
+    def tearDown(self):
+        """Depopulate created model instances from test database."""
+        for model in MODELS:
+            for obj in model.objects.all():
+                obj.delete()
+
+    def test_strain_list(self):
+        """This tests the strain-list view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        test_response = self.client.get('/strain/')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTrue('strain_list' in test_response.context)
+        self.assertTrue('strain_list_alive' in test_response.context)          
+        self.assertTrue('cages' in test_response.context)          
+        self.assertTemplateUsed(test_response, 'base.html')
+        self.assertTemplateUsed(test_response, 'jquery_script.html')
+        self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(test_response, 'strain_list.html')
+        self.assertTemplateUsed(test_response, 'sortable_table_script.html')
+        self.assertEqual([strain.pk for strain in test_response.context['strain_list']], [1])        
+        self.assertEqual([strain.Strain for strain in test_response.context['strain_list']], [u'Fixture Strain'])   
+        self.assertEqual([strain.Strain_slug for strain in test_response.context['strain_list']], [u'fixture-strain'])
+
+
+    def test_strain_detail(self):
+        """This tests the strain-detail view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        test_response = self.client.get('/strain/fixture-strain/')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTrue('strain' in test_response.context)        
+        self.assertTrue('strain' in test_response.context)          
+        self.assertTemplateUsed(test_response, 'base.html')
+        self.assertTemplateUsed(test_response, 'jquery_script.html')
+        self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(test_response, 'strain_detail.html')
+        self.assertTemplateUsed(test_response, 'sortable_table_script.html')        
+        self.assertTemplateUsed(test_response, 'animal_list_table.html')         
+        self.assertEqual(test_response.context['strain'].pk, 1)
+        self.assertEqual(test_response.context['strain'].Strain, u'Fixture Strain')
+        self.assertEqual(test_response.context['strain'].Strain_slug, 'fixture-strain') 
+
+        null_response = self.client.get('/strain/not-fixture-strain/')
+        self.assertEqual(null_response.status_code, 404)  
+
+    def test_strain_detail_all(self):
+        """This tests the strain-detail-all view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        test_response = self.client.get('/strain/fixture-strain/all/')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTrue('strain' in test_response.context)        
+        self.assertTrue('strain' in test_response.context)          
+        self.assertTemplateUsed(test_response, 'base.html')
+        self.assertTemplateUsed(test_response, 'jquery_script.html')
+        self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(test_response, 'strain_detail.html')
+        self.assertTemplateUsed(test_response, 'sortable_table_script.html')        
+        self.assertTemplateUsed(test_response, 'animal_list_table.html')         
+        self.assertEqual(test_response.context['strain'].pk, 1)
+        self.assertEqual(test_response.context['strain'].Strain, u'Fixture Strain')
+        self.assertEqual(test_response.context['strain'].Strain_slug, 'fixture-strain') 
+
+        null_response = self.client.get('/strain/not-fixture-strain/all/')
+        self.assertEqual(null_response.status_code, 404)         
+
+
+    def test_strain_new(self):
+        """This tests the strain-new view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        test_response = self.client.get('/strain/new/')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTemplateUsed(test_response, 'base.html')
+        self.assertTemplateUsed(test_response, 'jquery_script.html')
+        self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(test_response, 'strain_form.html')
+
+    def test_strain_edit(self):
+        """This tests the strain-edit view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        test_response = self.client.get('/strain/1/edit/')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTrue('strain' in test_response.context)          
+        self.assertTemplateUsed(test_response, 'base.html')
+        self.assertTemplateUsed(test_response, 'jquery_script.html')
+        self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(test_response, 'strain_form.html')
+        self.assertEqual(test_response.context['strain'].pk, 1)
+        self.assertEqual(test_response.context['strain'].Strain, u'Fixture Strain')
+        self.assertEqual(test_response.context['strain'].Strain_slug, 'fixture-strain')  
+
+        null_response = self.client.get('/strain/2/')
+        self.assertEqual(null_response.status_code, 404)         
+
+    def test_strain_delete(self):
+        """This tests the strain-delete view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        test_response = self.client.get('/strain/1/delete/')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTrue('object' in test_response.context)           
+        self.assertTemplateUsed(test_response, 'base.html')
+        self.assertTemplateUsed(test_response, 'jquery_script.html')
+        self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(test_response, 'confirm_delete.html')
+        self.assertEqual(test_response.context['object'].pk, 1)
+        self.assertEqual(test_response.context['object'].Strain, u'Fixture Strain')
+        self.assertEqual(test_response.context['object'].Strain_slug, 'fixture-strain')           
+        
+        null_response = self.client.get('/strain/2/delete/')
+        self.assertEqual(null_response.status_code, 404) 
+        
+
+        
+        
 class AnimalModelTests(TestCase):
     """Tests the model attributes of Animal objects contained in the animal app."""
 
-    fixtures = ['test_animals']
+    fixtures = ['test_animals', 'test_strain']
     
     def setUp(self):
         """Instantiate the test client."""
@@ -33,23 +215,23 @@ class AnimalModelTests(TestCase):
         animal = Animal(Strain = Strain.objects.get(pk=1), Genotype="-/-", Background="Mixed")
         animal.save()
         animal_id = animal.id
-        self.assertEquals(animal.__unicode__(), "test_strain (2)")
+        self.assertEquals(animal.__unicode__(), "Fixture Strain (2)")
 
     def test_animal_unicode(self):
         """This is a test for creating a new animal object, with only the minimum fields being entered.  It then tests that the correct unicode representation is being generated."""
         animal = Animal(Strain = Strain.objects.get(pk=1), Genotype="-/-", Background="Mixed")
         animal.save()
         animal_id = animal.id
-        self.assertEquals(animal.__unicode__(), "test_strain (2)")
+        self.assertEquals(animal.__unicode__(), "Fixture Strain (2)")
         animal.MouseID = 1234
         animal.save()
-        self.assertEquals(animal.__unicode__(), "test_strain-EarTag #1234")
-		
+        self.assertEquals(animal.__unicode__(), "Fixture Strain-EarTag #1234")
+
 
 class BreedingModelTests(TestCase):
     """Tests the model attributes of Breeding objects contained in the animal app."""
 
-    fixtures = ['test_group', 'test_animals', 'test_breeding']
+    fixtures = ['test_group', 'test_animals', 'test_breeding', 'test_strain']
     
     def setUp(self):
         """Instantiate the test client."""
@@ -63,11 +245,9 @@ class BreedingModelTests(TestCase):
 
     def test_create_breeding_minimal(self):
         """This is a test for creating a new breeding object, with only the minimum being entered."""
-        new_breeding = Breeding(Strain = Strain.objects.get(pk=1))
-        new_breeding.save()
-	test_breeding = Breeding.objects.get(pk=2)
-        self.assertEquals(test_breeding, new_breeding)
-        self.assertEquals(test_breeding.__unicode__(), "test_strain Breeding Cage: None starting on None")
+        test_breeding = Breeding(Strain = Strain.objects.get(pk=1))
+        test_breeding.save()
+        self.assertEquals(test_breeding.pk,  2)
 
     def test_study_absolute_url(self):
         """This test verifies that the absolute url of a breeding object is set correctly."""
@@ -89,7 +269,7 @@ class BreedingModelTests(TestCase):
 
 class BreedingViewTests(TestCase):
     """These are tests for views based on Breeding objects.  Included are tests for breeding list (active and all), details, create, update and delete pages as well as for the timed mating lists."""
-    fixtures = ['test_breeding', 'test_animals']
+    fixtures = ['test_breeding', 'test_animals', 'test_strain']
 
     def setUp(self):
         self.client = Client()
@@ -179,7 +359,7 @@ class BreedingViewTests(TestCase):
 		
 class CageViewTests(TestCase):
     """These are tests for views based on animal objects as directed by cage urls.  Included are tests for cage-list, cage-list-all and cage-detail"""
-    fixtures = ['test_animals',]
+    fixtures = ['test_animals', 'test_strain']
 
     def setUp(self):
         self.client = Client()
@@ -229,7 +409,7 @@ class CageViewTests(TestCase):
 		
 class DateViewTests(TestCase):
     """These are tests for views based on animal objects as directed by date based urls.  Included are tests for archive-home, archive-month and archive-year"""
-    fixtures = ['test_animals',]
+    fixtures = ['test_animals', 'test_strain']
 
     def setUp(self):
         self.client = Client()
