@@ -131,7 +131,7 @@ class Timed_MatingViewTests(TestCase):
         self.assertTemplateUsed(response, 'base.html')
         self.assertTemplateUsed(response, 'jquery_script.html')
         self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
-        self.assertTemplateUsed(response, 'plug_form.html')
+        self.assertTemplateUsed(response, 'plugevents_form.html')
 
     def test_plugevent_edit(self):
         """This tests the plugevent-edit view, ensuring that templates are loaded correctly.  
@@ -142,7 +142,7 @@ class Timed_MatingViewTests(TestCase):
         self.assertTemplateUsed(response, 'base.html')
         self.assertTemplateUsed(response, 'jquery_script.html')
         self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
-        self.assertTemplateUsed(response, 'plug_form.html')
+        self.assertTemplateUsed(response, 'plugevents_form.html')
 
     def test_plugevent_delete(self):
         """This tests the plugevent-delete view, ensuring that templates are loaded correctly.  
