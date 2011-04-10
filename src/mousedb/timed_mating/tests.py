@@ -79,7 +79,7 @@ class Timed_MatingModelTests(TestCase):
 class Timed_MatingViewTests(TestCase):
     """Test the views contained in the 'timed_mating' app."""
 
-    fixtures = ['test_breeding','test_plugevents', 'test_animals']
+    fixtures = ['test_breeding','test_plugevents', 'test_animals', 'test_strain']
 
     def setUp(self):
         """Instantiate the test client.  Creates a test user."""
@@ -181,7 +181,7 @@ class Timed_MatingViewTests(TestCase):
         null_response = self.client.get('/plugs/2/')
         self.assertEqual(null_response.status_code, 404) 
         
-    def test_plugevent_new(self):
+    def test_breeding_plugevent_new(self):
         """This tests the breeding-plugevent-new view, ensuring that templates are loaded correctly.  
 
         This view uses a user with superuser permissions so does not test the permission levels for this view."""
@@ -191,7 +191,7 @@ class Timed_MatingViewTests(TestCase):
         self.assertEqual(test_response.context['breeding'].pk, 1)
         self.assertEqual(test_response.context['breeding'].Start, datetime.date(2010,01,01))
         self.assertEqual(test_response.context['breeding'].Cage, '12345')          
-        self.assertEqual(test_response.context['breeding'].Strain.__unicode__(), 'test_strain')          
+        self.assertEqual(test_response.context['breeding'].Strain.__unicode__(), u'Fixture Strain')          
         self.assertTemplateUsed(test_response, 'base.html')
         self.assertTemplateUsed(test_response, 'jquery_script.html')
         self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
