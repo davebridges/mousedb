@@ -8,10 +8,10 @@ from mousedb.timed_mating import views
 
 urlpatterns = patterns('',
     url(r'^$', views.PlugEventsList.as_view(), name="plugevents-list"),
-    url(r'^strain/(\w*)/$', views.StrainPlugEventsList.as_view(), name="strain-plugevents-list"),
-    url(r'^(?P<pk>\d*)/$', views.PlugEventsDetail.as_view(), name="plugevents-detail"),
+    url(r'^strain/(\.+)/$', views.StrainPlugEventsList.as_view(), name="strain-plugevents-list"),
+    url(r'^(?P<pk>\d+)/$', views.PlugEventsDetail.as_view(), name="plugevents-detail"),
     url(r'^new/$', views.PlugEventsCreate.as_view(), name="plugevents-new"),
-    url(r'^(?P<pk>\d*)/edit/$', views.PlugEventsUpdate.as_view(), name="plugevents-edit"),
-    url(r'^(?P<pk>\d*)/delete/$', views.PlugEventsDelete.as_view(), name="plugevents-delete"),
+    url(r'^(?P<pk>\d+)/edit/$', views.PlugEventsUpdate.as_view(), name="plugevents-edit"),
+    url(r'^(?P<pk>\d+)/delete/$', views.PlugEventsDelete.as_view(), name="plugevents-delete"),
     url(r'^breeding/(?P<breeding_id>\d*)/new', 'mousedb.timed_mating.views.breeding_plugevent', name="breeding-plugevents-new"),
 )
