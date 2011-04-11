@@ -25,7 +25,7 @@
    <td><a href="{{ breeding.get_absolute_url }}">{{ breeding.Cage }}</a></td>
    <td class="left">{{ breeding.BreedingName }}</td>
    <td>{{ breeding.Start }}</td>
-   <td class="left {% if breeding.male_breeding_location_type == "non-resident breeder" %}non-resident-breeder{%else%}breeder{%endif%}" >
+   <td class="left" >
 {% if breeding.Male.all %}
        <ul>
        {% for male in breeding.Male.all %}
@@ -34,7 +34,7 @@
        </ul>
 {% endif %}
    </td>
-   <td class="breeder left" >{% if breeding.Females.all %}<ul>{% for female in breeding.Females.all %}<li><a href="{% url animal-detail female.id %}">{{ female }}</a></li>{% endfor %}</ul>{% endif %}</td>
+   <td class="left" >{% if breeding.Females.all %}<ul>{% for female in breeding.Females.all %}<li><a href="{% url animal-detail female.id %}">{{ female }}</a></li>{% endfor %}</ul>{% endif %}</td>
    <td>{{ breeding.Rack }}</td>
    <td>{{ breeding.Rack_Position|all_caps }}</td>
    <td class="left">{{ breeding.Start|timesince }}</td>
