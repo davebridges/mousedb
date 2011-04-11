@@ -23,7 +23,7 @@
  <tbody>
  <tr>
  <td><a href="{{ breeding.Strain.get_absolute_url }}">{{ breeding.Strain }}</a></td>
- <td><a href="{% url cage-detail breeding.Cage %}">{{ breeding.Cage }}</a></td>
+ <td><a href="{{ breeding.get_absolute_url }}">{{ breeding.Cage }}</a></td>
  <td>{{ breeding.BreedingName }}</td>
  <td>{{ breeding.Start }}</td>
  <td>{{ breeding.Start|timesince }}</td>
