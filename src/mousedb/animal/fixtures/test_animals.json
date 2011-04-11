@@ -1,16 +1,6 @@
 [
     {
         "pk": 1, 
-        "model": "animal.strain", 
-        "fields": {
-            "Strain_slug": "test-strain", 
-            "Strain": "test_strain", 
-            "Comments": "", 
-            "Source": ""
-        }
-    }, 
-    {
-        "pk": 1, 
         "model": "animal.animal", 
         "fields": {
             "Genotype": "-/-", 

@@ -79,7 +79,7 @@ class Timed_MatingModelTests(TestCase):
 class Timed_MatingViewTests(TestCase):
     """Test the views contained in the 'timed_mating' app."""
 
-    fixtures = ['test_plugevents', 'test_breeding', 'test_animals']
+    fixtures = ['test_breeding','test_plugevents', 'test_animals', 'test_strain']
 
     def setUp(self):
         """Instantiate the test client.  Creates a test user."""
@@ -92,7 +92,6 @@ class Timed_MatingViewTests(TestCase):
         login = self.client.login(username='testuser', password='testpassword')
         self.failUnless(login, 'Could not log in')
 
-
     def tearDown(self):
         """Depopulate created model instances from test database."""
         for model in MODELS:
@@ -103,77 +102,100 @@ class Timed_MatingViewTests(TestCase):
         """This tests the plugevent-list view, ensuring that templates are loaded correctly.  
 
         This view uses a user with superuser permissions so does not test the permission levels for this view."""
-        response = self.client.get('/plugs/')
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'base.html')
-        self.assertTemplateUsed(response, 'jquery_script.html')
-        self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
-        self.assertTemplateUsed(response, 'plugevents_list.html')
-        self.assertTemplateUsed(response, 'plug_table.html')
+        test_response = self.client.get('/plugs/')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTrue('plugevents_list' in test_response.context)
+        self.assertTemplateUsed(test_response, 'base.html')
+        self.assertTemplateUsed(test_response, 'jquery_script.html')
+        self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(test_response, 'plugevents_list.html')
+        self.assertTemplateUsed(test_response, 'plug_table.html')
+        self.assertEqual([plugevent.pk for plugevent in test_response.context['plugevents_list']], [1])        
+        self.assertEqual([plugevent.PlugDate for plugevent in test_response.context['plugevents_list']], [datetime.date(2010,10,01)])     
+        self.assertEqual([plugevent.PlugFemale.id for plugevent in test_response.context['plugevents_list']], [1])
 
-    def test_strain_plugevent_list(self):
-        """This tests the strain-plugevent-list view, ensuring that templates are loaded correctly.  
-
-        This view uses a user with superuser permissions so does not test the permission levels for this view."""
-        response = self.client.get('/plugs/strain/test-strain')
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'base.html')
-        self.assertTemplateUsed(response, 'jquery_script.html')
-        self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
-        self.assertTemplateUsed(response, 'plugevents_list.html')
-        self.assertTemplateUsed(response, 'plug_table.html')         
 
     def test_plugevent_detail(self):
         """This tests the plugevent-detail view, ensuring that templates are loaded correctly.  
 
         This view uses a user with superuser permissions so does not test the permission levels for this view."""
-        response = self.client.get('/plugs/1/')
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'base.html')
-        self.assertTemplateUsed(response, 'jquery_script.html')
-        self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
-        self.assertTemplateUsed(response, 'plugevents_detail.html')
+        test_response = self.client.get('/plugs/1/')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTrue('plugevent' in test_response.context)        
+        self.assertTemplateUsed(test_response, 'base.html')
+        self.assertTemplateUsed(test_response, 'jquery_script.html')
+        self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(test_response, 'plugevents_detail.html')
+        self.assertEqual(test_response.context['plugevent'].pk, 1)
+        self.assertEqual(test_response.context['plugevent'].PlugDate, datetime.date(2010,10,01))
+        self.assertEqual(test_response.context['plugevent'].PlugFemale.id, 1) 
+
+        null_response = self.client.get('/plugs/2/')
+        self.assertEqual(null_response.status_code, 404)        
+
 
     def test_plugevent_new(self):
         """This tests the plugevent-new view, ensuring that templates are loaded correctly.  
 
         This view uses a user with superuser permissions so does not test the permission levels for this view."""
-        response = self.client.get('/plugs/new/')
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'base.html')
-        self.assertTemplateUsed(response, 'jquery_script.html')
-        self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
-        self.assertTemplateUsed(response, 'plug_form.html')
+        test_response = self.client.get('/plugs/new/')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTemplateUsed(test_response, 'base.html')
+        self.assertTemplateUsed(test_response, 'jquery_script.html')
+        self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(test_response, 'plugevents_form.html')
 
     def test_plugevent_edit(self):
         """This tests the plugevent-edit view, ensuring that templates are loaded correctly.  
 
         This view uses a user with superuser permissions so does not test the permission levels for this view."""
-        response = self.client.get('/plugs/1/edit/')
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'base.html')
-        self.assertTemplateUsed(response, 'jquery_script.html')
-        self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
-        self.assertTemplateUsed(response, 'plug_form.html')
+        test_response = self.client.get('/plugs/1/edit/')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTrue('plugevent' in test_response.context)          
+        self.assertTemplateUsed(test_response, 'base.html')
+        self.assertTemplateUsed(test_response, 'jquery_script.html')
+        self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(test_response, 'plugevents_form.html')
+        self.assertEqual(test_response.context['plugevent'].pk, 1)
+        self.assertEqual(test_response.context['plugevent'].PlugDate, datetime.date(2010,10,01))
+        self.assertEqual(test_response.context['plugevent'].PlugFemale.id, 1)    
+
+        null_response = self.client.get('/plugs/2/')
+        self.assertEqual(null_response.status_code, 404)         
 
     def test_plugevent_delete(self):
         """This tests the plugevent-delete view, ensuring that templates are loaded correctly.  
 
         This view uses a user with superuser permissions so does not test the permission levels for this view."""
-        response = self.client.get('/plugs/1/delete/')
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'base.html')
-        self.assertTemplateUsed(response, 'jquery_script.html')
-        self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
-        self.assertTemplateUsed(response, 'confirm_delete.html')
-
-    def test_plugeventbreeding_new(self):
-        """This tests the plugevent-new view, ensuring that templates are loaded correctly.  
+        test_response = self.client.get('/plugs/1/delete/')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTrue('plugevent' in test_response.context)           
+        self.assertTemplateUsed(test_response, 'base.html')
+        self.assertTemplateUsed(test_response, 'jquery_script.html')
+        self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(test_response, 'confirm_delete.html')
+        self.assertEqual(test_response.context['plugevent'].pk, 1)
+        self.assertEqual(test_response.context['plugevent'].PlugDate, datetime.date(2010,10,01))
+        self.assertEqual(test_response.context['plugevent'].PlugFemale.id, 1)            
+        
+        null_response = self.client.get('/plugs/2/')
+        self.assertEqual(null_response.status_code, 404) 
+        
+    def test_breeding_plugevent_new(self):
+        """This tests the breeding-plugevent-new view, ensuring that templates are loaded correctly.  
 
         This view uses a user with superuser permissions so does not test the permission levels for this view."""
-        response = self.client.get('/plugs/breeding/1/new/')
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'base.html')
-        self.assertTemplateUsed(response, 'jquery_script.html')
-        self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
-        self.assertTemplateUsed(response, 'breedingplug_form.html')
+        test_response = self.client.get('/plugs/breeding/1/new/')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTrue('breeding' in test_response.context)
+        self.assertEqual(test_response.context['breeding'].pk, 1)
+        self.assertEqual(test_response.context['breeding'].Start, datetime.date(2010,01,01))
+        self.assertEqual(test_response.context['breeding'].Cage, '12345')          
+        self.assertEqual(test_response.context['breeding'].Strain.__unicode__(), u'Fixture Strain')          
+        self.assertTemplateUsed(test_response, 'base.html')
+        self.assertTemplateUsed(test_response, 'jquery_script.html')
+        self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(test_response, 'breeding_plugevent_form.html') 
+
+        null_response = self.client.get('/plugs/breeding/2/new/')
+        self.assertEqual(null_response.status_code, 404)         

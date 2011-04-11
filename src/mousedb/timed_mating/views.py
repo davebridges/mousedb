@@ -7,6 +7,7 @@ from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import permission_required
 from django.db.models import Q
+from django.core.urlresolvers import reverse
 
 from mousedb.views import ProtectedListView, ProtectedDetailView, RestrictedCreateView, RestrictedUpdateView, RestrictedDeleteView
 from mousedb.animal.models import Breeding, Animal, Strain
@@ -14,37 +15,46 @@ from mousedb.timed_mating.forms import BreedingPlugForm
 from mousedb.timed_mating.models import PlugEvents
 
 
-class PlugEventsListView(ProtectedListView):
+class PlugEventsList(ProtectedListView):
     """This class generates an object list for PlugEvent objects.
     
     This login protected view takes all PlugEvents objects and sends them to plugevents_list.html as a plug_list dictionary.
     The url for this view is **/plugs/**"""
     model = PlugEvents
-    context_object_name = 'plug_list'
+    context_object_name = 'plugevents_list'
     template_name = "plugevents_list.html"
     
-class StrainPlugEventsListView(ProtectedListView):
-    """This class generates an object list for PlugEvent objects.
-    
-    This login protected view takes PlugEvents belonging to a particular strain_slug and sends them to plugevents_list.html as a plug_list dictionary.  The url for this view is **/plugs/strain/strain-slug**.  This view is not yet working."""
-    model = PlugEvents
-    context_object_name = 'plug_list'
-    template_name = "plugevents_list.html" 
-
-    def get_queryset(self):
-        """This function defines the queryset for the StrainPlugEventsListView.
-        
-        The function takes an argument, which is typically a Strain_slug and filters the PlugEvents by that strain."""
-        strain = get_object_or_404(Strain, Strain_slug__iexact=self.args[0])
-        return PlugEvents.objects.filter(PlugFemale__strain=strain)
-        
-class PlugEventsDetailView(ProtectedDetailView): 
+class PlugEventsDetail(ProtectedDetailView): 
     """This class generates the plugevents-detail view.
     
-    This login protected takes a url in the form **/plugs/1** for plug event id=1 and passes a plug object to plugevents_detail.html"""
+    This login protected takes a url in the form **/plugs/1** for plug event id=1 and passes a **plug** object to plugevents_detail.html"""
     model = PlugEvents
     template_name = 'plugevents_detail.html'
-    context_object_name = 'plug'
+    context_object_name = 'plugevent'
+    
+class PlugEventsCreate(RestrictedCreateView):
+    """This class generates the plugevents-new view.
+
+    This permission restricted view takes a url in the form **/plugs/new** and generates an empty plugevents_form.html."""
+    model = PlugEvents
+    template_name = 'plugevents_form.html'
+    
+class PlugEventsUpdate(RestrictedUpdateView):
+    """This class generates the plugevents-edit view.
+
+    This permission restricted view takes a url in the form **/plugs/#/edit** and generates a plugevents_form.html with that object."""
+    model = PlugEvents
+    template_name = 'plugevents_form.html'
+    context_object_name = 'plugevent'    
+
+class PlugEventsDelete(RestrictedDeleteView):
+    """This class generates the plugevents-new view.
+
+    This permission restricted view takes a url in the form **/plugs/#/delete** and passes that object to the confirm_delete.html page."""
+    model = PlugEvents
+    template_name = 'confirm_delete.html'
+    context_object_name = 'plugevent'    
+    success_url = "/mousedb/plugs/"
     
   
     
@@ -53,7 +63,7 @@ def breeding_plugevent(request, breeding_id):
     """This view defines a form for adding new plug events from a breeding cage.
 
     This form requires a breeding_id from a breeding set and restricts the PlugFemale and PlugMale to animals that are defined in that breeding cage."""
-    breeding = Breeding.objects.select_related().get(id=breeding_id)
+    breeding = get_object_or_404(Breeding, pk=breeding_id)
     if request.method == "POST":
         form = BreedingPlugForm(request.POST, request.FILES)
         if form.is_valid():
@@ -61,10 +71,10 @@ def breeding_plugevent(request, breeding_id):
             plug.Breeding_id = breeding.id
             plug.save()
             form.save()
-            return HttpResponseRedirect("/mousedb/plug/")
+            return HttpResponseRedirect(reverse("plugevents-list"))
     else:
         form = BreedingPlugForm()
         form.fields["PlugFemale"].queryset = breeding.Females.all()
         form.fields["PlugMale"].queryset = breeding.Male.all()
-    return render_to_response('breedingplug_form.html', {'form':form, 'breeding':breeding},context_instance=RequestContext(request))
+    return render_to_response('breeding_plugevent_form.html', {'form':form, 'breeding':breeding},context_instance=RequestContext(request))
 

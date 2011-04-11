@@ -4,22 +4,13 @@
         "model": "groups.group", 
         "fields": {
             "contact_first": "", 
-            "group": "test group", 
-            "license": "1", 
+            "group": "default group", 
+            "license": null, 
             "contact_last": "", 
             "contact_email": "", 
             "group_url": "", 
             "group_slug": "", 
             "contact_title": ""
-        }
-    },
-    {
-        "pk": 1, 
-        "model": "groups.license", 
-        "fields": {
-            "license": "default", 
-            "website": "", 
-            "notes": ""
         }
     }
 ]
