@@ -227,14 +227,29 @@ class Breeding(models.Model):
     background = models.CharField(max_length = 25, choices = BACKGROUND_CHOICES, default="Mixed", help_text="The background of the pups")
     backcross = models.IntegerField(max_length = 5, null=True, blank=True, help_text="Leave blank for mixed background.  This is the backcross of the pups.")
     generation = models.IntegerField(max_length=5, null=True, blank=True, help_text="The generation of the pups")
+
+    def duration(self):
+        """Calculates the breeding cage's duration.
+
+        This is relative to the current date (if alive) or the date of inactivation (if not).
+        The duration is formatted in days."""
+        if self.End:
+            age =  self.End - self.Start
+        else:    
+            age =  datetime.date.today() - self.Start
+        return age.days 
+    
     def __unicode__(self):
         return u'%s Breeding Cage: %s starting on %s'  %(self.Strain, self.Cage, self.Start)
+
     @models.permalink
     def get_absolute_url(self):
         return ('breeding-detail', [str(self.id)])
+
     def unweaned(self):
         """This attribute generates a queryset of unweaned animals for this breeding cage.  It is filtered for only Alive animals."""	
         return Animal.objects.filter(Breeding=self, Weaned__isnull=True, Alive=True)
+
     def male_breeding_location_type(self):
         """This attribute defines whether a breeding male's current location is the same as the breeding cage.
 

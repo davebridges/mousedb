@@ -10,7 +10,7 @@
    <th>Females</th>
    <th>Rack</th>
    <th>Position</th>
-   <th>Duration</th>
+   <th>Duration (days)</th>
    <th>Crosstype</th>
    <th>Pups</th>
    <th>Not Weaned</th>
@@ -37,7 +37,7 @@
    <td class="left" >{% if breeding.Females.all %}<ul>{% for female in breeding.Females.all %}<li><a href="{% url animal-detail female.id %}">{{ female }}</a></li>{% endfor %}</ul>{% endif %}</td>
    <td>{{ breeding.Rack }}</td>
    <td>{{ breeding.Rack_Position|all_caps }}</td>
-   <td class="left">{{ breeding.Start|timesince }}</td>
+   <td class="left">{{ breeding.duration}}</td>
    <td class="left">{{ breeding.get_Crosstype_display }}</td>
    <td>{{ breeding.animal_set.count }}</td>
    <td>{{ breeding.unweaned.count }}</td>
