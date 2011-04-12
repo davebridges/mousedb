@@ -13,7 +13,6 @@ This mouse is {{ animal.Born|timesince }} old.
 This mouse has an unknown age.
 {% endif %}{% endif %}
 {% load custom_filters %}
-
 <table>
 	<thead>
 		<tr>
@@ -84,11 +83,9 @@ This mouse has an unknown age.
 	{% include "breeding_summary_table.html" %}
 	{% endwith %}
 {% else %}
-	<p>No measurements for this animal.</p>
-</div>
 {% endif %}
-{% if animal_measurements %}
 <div id="animal-measurements">
+{% if animal_measurements %}
 	<h2>Measurement Summary</h2>
 	{% with animal_measurements as data_list %}
 	{% include "data_table.html" %}
