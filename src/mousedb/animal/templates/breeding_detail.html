@@ -18,7 +18,7 @@
   <th>Cage</th>
   <th>Rack</th>
   <th>Position</th>
-  <th>Age</th>
+  <th>Age (days)</th>
   <th>Status</th>
   <th>Backcross</th>
   <th>Generation</th>
@@ -32,7 +32,7 @@
    	{% if animal.Death %}
 		<td class="dead">{{ male.Death }}</td>
 	{% else %}
-		<td>{{ male.Born|timesince }}</td>
+		<td>{{ male.age }}</td>
 	{% endif %}
 	{% if animal.Death %}
 	<td class="dead">Dead</td>
@@ -53,7 +53,7 @@
      {% if animal.Death %}
 		<td class="dead">{{ female.Death }}</td>
 	{% else %}
-		<td>{{ female.Born|timesince }}</td>
+		<td>{{ female.age }}</td>
 	{% endif %}
 	{% if animal.Death %}
 	<td class="dead">Dead</td>

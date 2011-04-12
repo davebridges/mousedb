@@ -7,7 +7,7 @@
   <th rowspan = "2">Cage</th>
   <th rowspan = "2">Name</th>
   <th rowspan = "2">Start</th>
-  <th rowspan = "2">Duration</th>
+  <th rowspan = "2">Duration (days)</th>
   <th rowspan = "2">Crosstype</th>
   <th colspan="4">Pups</th>
   <th rowspan = "2">Rack</th>
@@ -26,7 +26,7 @@
  <td><a href="{{ breeding.get_absolute_url }}">{{ breeding.Cage }}</a></td>
  <td>{{ breeding.BreedingName }}</td>
  <td>{{ breeding.Start }}</td>
- <td>{{ breeding.Start|timesince }}</td>
+ <td>{{ breeding.duration }}</td>
  <td>{{ breeding.get_Crosstype_display }}</td>
  <td>{{ breeding.genotype }}</td>
  <td>{{ breeding.background }}</td>
