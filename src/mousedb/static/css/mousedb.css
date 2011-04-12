@@ -80,12 +80,19 @@ td { padding-left: 5px;
 
 .no-border { border: none;}
 
-.breeder { 	color: black;
+.resident-breeder { 	color: black;
 			background: yellow;
+            list-style-type: none;
 }
 
 .non-resident-breeder { 	color: black;
 			background: #FFFF99;
+            list-style-type: none;
+}
+
+.unknown-breeder { 	color: black;
+			background: green;
+            list-style-type: none;
 }
 
 .unweaned { 	color: #888888;
@@ -93,7 +100,8 @@ td { padding-left: 5px;
 }
 
 .dead { 	    color: white;
-			background: red; 
+			background: red;
+            list-style-type: none;            
 		}
 		
 .dead a { 	color: white;

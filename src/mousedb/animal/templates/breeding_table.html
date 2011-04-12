@@ -20,28 +20,28 @@
  </thead>
  <tbody>
   {% for breeding in breeding_list %}
-   <tr {% if not breeding.Active %}class="dead"{% endif %}>
-   <td><a href="{{ breeding.Strain.get_absolute_url }}">{{ breeding.Strain }}</a></td>
-   <td><a href="{{ breeding.get_absolute_url }}">{{ breeding.Cage }}</a></td>
-   <td class="left">{{ breeding.BreedingName }}</td>
-   <td>{{ breeding.Start }}</td>
-   <td class="left" >
+   <tr>
+   <td {% if not breeding.Active %}class="dead"{% endif %}><a href="{{ breeding.Strain.get_absolute_url }}">{{ breeding.Strain }}</a></td>
+   <td {% if not breeding.Active %}class="dead"{% endif %}><a href="{{ breeding.get_absolute_url }}">{{ breeding.Cage }}</a></td>
+      <td class="left {% if not breeding.Active %} dead{% endif %}">{{ breeding.BreedingName }}</td>
+      <td class="left {% if not breeding.Active %} dead{% endif %}">{{ breeding.Start }}</td>
+   <td class="left" {% if not breeding.Active %}class="dead"{% endif %}>
 {% if breeding.Male.all %}
        <ul>
        {% for male in breeding.Male.all %}
-	   <li><a href="{% url animal-detail male.id %}">{{ male }}</a></li>
+	   <li class="{% if not male.Alive %} dead {% endif %}{{ male.breeding_location_type }}"><a href="{% url animal-detail male.id %}">{{ male }}</a></li>
        {% endfor %}
        </ul>
 {% endif %}
    </td>
-   <td class="left" >{% if breeding.Females.all %}<ul>{% for female in breeding.Females.all %}<li><a href="{% url animal-detail female.id %}">{{ female }}</a></li>{% endfor %}</ul>{% endif %}</td>
-   <td>{{ breeding.Rack }}</td>
-   <td>{{ breeding.Rack_Position|all_caps }}</td>
-   <td class="left">{{ breeding.duration}}</td>
-   <td class="left">{{ breeding.get_Crosstype_display }}</td>
-   <td>{{ breeding.animal_set.count }}</td>
-   <td>{{ breeding.unweaned.count }}</td>
-   <td class="left">{{ breeding.Notes }}</td>
+   <td class="left" >{% if breeding.Females.all %}<ul>{% for female in breeding.Females.all %}<li class="left {% if not male.Alive %} dead{% endif %}"><a href="{% url animal-detail female.id %}">{{ female }}</a></li>{% endfor %}</ul>{% endif %}</td>
+   <td {% if not breeding.Active %}class="dead"{% endif %}>{{ breeding.Rack }}</td>
+   <td {% if not breeding.Active %}class="dead"{% endif %}>{{ breeding.Rack_Position|all_caps }}</td>
+   <td class="left {% if not breeding.Active %} dead{% endif %}">{{ breeding.duration}}</td>
+   <td class="left {% if not breeding.Active %} dead{% endif %}">{{ breeding.get_Crosstype_display }}</td>
+   <td class="left {% if not breeding.Active %} dead{% endif %}">{{ breeding.animal_set.count }}</td>
+   <td class="left {% if not breeding.Active %} dead{% endif %}">{{ breeding.unweaned.count }}</td>
+   <td class="left {% if not breeding.Active %} dead{% endif %}">{{ breeding.Notes }}</td>
 <td class="fg-buttonset fg-buttonset-multi">
 {% if perms.animal.change_breeding %}
   <a href="{% url breeding-edit breeding.id %}" title="Edit {{breeding}}">

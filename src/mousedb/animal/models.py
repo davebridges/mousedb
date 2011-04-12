@@ -173,6 +173,7 @@ class Animal(models.Model):
     Markings = models.CharField(max_length = 100, blank=True)					
     Notes = models.TextField(max_length = 500, blank=True)
     Alive = models.BooleanField(default=True)
+
     def __unicode__(self):
         """This defines the unicode string of a mouse.
         If a eartag is present then the string reads some_strain-Eartag #some_number. If an eartag is not present then the mouse is labelled as use some_number, where this number is the internal database identification number and not an eartag.
@@ -190,7 +191,26 @@ class Animal(models.Model):
             age =  self.Death - self.Born
         else:    
             age =  datetime.date.today() - self.Born
-        return age.days             
+        return age.days    
+
+    def breeding_location_type(self):
+        """This attribute defines whether a male's current location is the same as the breeding cage to which it belongs.
+
+        This attribute is used to color breeding table entries such that male mice which are currently in a different cage can quickly be identified.
+        The location is relative to the first breeding cage an animal is assigned to."""
+        if self.breeding_males.all()[0].Cage:
+            if int(self.breeding_males.all()[0].Cage) == int(self.Cage):
+                type = "resident-breeder"
+            else:
+                type = "non-resident-breeder"
+        elif self.breeding_females.all()[0].Cage:
+            if int(self.breeding_females.all()[0].Cage) == int(self.Cage):
+                type = "resident-breeder"
+            else:
+                type = "non-resident-breeder"                
+        else:
+            type = "unknown-breeder"
+        return type	        
 
     @models.permalink
     def get_absolute_url(self):
@@ -259,6 +279,7 @@ class Breeding(models.Model):
         else:
             type = "non-resident breeder"
         return type		
+
     def save(self):
         """The save function for a breeding cage has to automatic over-rides, Active and the Cage for the Breeder.
         
