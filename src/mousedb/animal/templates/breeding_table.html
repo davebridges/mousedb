@@ -29,12 +29,12 @@
 {% if breeding.Male.all %}
        <ul>
        {% for male in breeding.Male.all %}
-	   <li class="{% if not male.Alive %} dead {% endif %}{{ male.breeding_location_type }}"><a href="{% url animal-detail male.id %}">{{ male }}</a></li>
+	   <li class="{% if not male.Alive %} dead {% endif %}{{ male.breeding_male_location_type }}"><a href="{% url animal-detail male.id %}">{{ male }}</a></li>
        {% endfor %}
        </ul>
 {% endif %}
    </td>
-   <td class="left" >{% if breeding.Females.all %}<ul>{% for female in breeding.Females.all %}<li class="left {% if not male.Alive %} dead{% endif %}"><a href="{% url animal-detail female.id %}">{{ female }}</a></li>{% endfor %}</ul>{% endif %}</td>
+   <td class="left" >{% if breeding.Females.all %}<ul>{% for female in breeding.Females.all %}<li class="left {% if not female.Alive %} dead {% endif %}{{ female.breeding_female_location_type }}"><a href="{% url animal-detail female.id %}"><a href="{% url animal-detail female.id %}">{{ female }}</a></li>{% endfor %}</ul>{% endif %}</td>
    <td {% if not breeding.Active %}class="dead"{% endif %}>{{ breeding.Rack }}</td>
    <td {% if not breeding.Active %}class="dead"{% endif %}>{{ breeding.Rack_Position|all_caps }}</td>
    <td class="left {% if not breeding.Active %} dead{% endif %}">{{ breeding.duration}}</td>

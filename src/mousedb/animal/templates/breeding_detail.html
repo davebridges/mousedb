@@ -24,7 +24,7 @@
   <th>Generation</th>
   <th>Genotype</th>
 {% for male in breeding.Male.all %}
-  <tr class="{% if breeding.male_breeding_location_type == "non-resident breeder" %}non-resident-breeder{%else%}breeder{%endif%}" >
+  <tr class="{{ male.breeding_male_location_type }}" >
    <th>Male</th><td class="breeder"><a href="{% url animal-detail male.id %}">{{ male }}</a></td>
    <td>{{ male.Cage }}</td>
    <td>{{ male.Rack }}</td>
@@ -45,7 +45,7 @@
   </tr>
 {% endfor %}
 {% for female in breeding.Females.all %}
-  <tr>
+  <tr class="{{ female.breeding_female_location_type }}" >
    <th>Female</th><td class="breeder"><a href="{% url animal-detail female.id %}">{{ female }}</a></td>
    <td>{{ female.Cage }}</td>
    <td>{{ female.Rack }}</td>
