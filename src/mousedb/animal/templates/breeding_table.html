@@ -6,8 +6,8 @@
    <th>Cage</th>
    <th>Name</th>
    <th>Start</th>
-   <th>Male</th>
-   <th>Females</th>
+   <th>Male<sup><a href="#legend">*</a></sup></th>
+   <th>Females<sup><a href="#legend">*</a></sup></th>
    <th>Rack</th>
    <th>Position</th>
    <th>Duration (days)</th>
@@ -62,3 +62,13 @@
 {% endfor%}
  </tbody>
 </table>
+<div id="legend" class="grid_4">
+<h3>Legend</h3>
+<ul>
+<li class="resident-breeder">Breeder is in Designated Breeding Cage</li>
+<li class="non-resident-breeder">Breeder in Some Other Cage</li>
+<li class="dead">Breeder is Deceased</li>
+<li class="unknown-breeder">Breeder Has Some Unknown Location Status</li>
+<ul>
+</div>
+
