@@ -48,7 +48,6 @@ class BreedingForm(ModelForm):
     Females = AutoCompleteSelectMultipleField('animal-female', required=False)
     class Meta:
         model = Breeding
-        exclude = ['Active',]
     class Media:
 		css = {
 			'all': ('javascript/jquery-autocomplete/jquery.autocomplete.css', 'css/autocomplete.css')

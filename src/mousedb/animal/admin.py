@@ -56,7 +56,7 @@ class BreedingAdmin(admin.ModelAdmin):
     This interface also includes an form for adding objects associated with this breeding cage."""
     list_display = ('Cage', 'Start', 'Rack', 'Rack_Position', 'Strain', 'Crosstype', 'BreedingName', 'Notes', 'Active')
     list_filter = ('Timed_Mating', 'Strain', 'Active', 'Crosstype')
-    fields = ('Male', 'Females', 'Timed_Mating', 'Cage', 'Rack', 'Rack_Position', 'BreedingName', 'Strain', 'Start', 'End', 'Crosstype', 'Notes')
+    fields = ('Male', 'Females', 'Timed_Mating', 'Cage', 'Rack', 'Rack_Position', 'BreedingName', 'Strain', 'Start', 'End', 'Crosstype', 'Notes', 'Active')
     ordering = ('Active', 'Start')
     search_fields = ['Cage',]
     raw_id_fields = ("Male", "Females")
