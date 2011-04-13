@@ -104,6 +104,7 @@ td { padding-left: 5px;
 
 .dead { 	    color: white;
 			background: #880000;
+            margin-left: -40px;
             list-style-type: none;            
 		}
 		
