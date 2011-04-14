@@ -41,7 +41,7 @@
 			<td>{{ animal.Rack_Position|all_caps }}</td>
 			<td>{{ animal.Backcross }}</td>
 			<td>{{ animal.Generation }}</td>
-			<td>{{ animal.Born }}</td>
+			<td>{{ animal.Born|date:"Y-m-d" }}</td>
 			{% if animal.Death %}
 				<td class="dead">{{ animal.age }}</td>
 			{% else %}
