@@ -257,8 +257,8 @@ class BreedingModelTests(TestCase):
     def test_duration(self):
         """This test verifies that the duration is set correctly."""
         test_breeding = Breeding.objects.get(pk=1)
-        calculated_duration = datetime.date.today() - self.Start
-        self.assertEquals(test_breeding.duration(), calculated_duration.days() )        
+        calculated_duration = datetime.date.today() - test_breeding.Start
+        self.assertEquals(test_breeding.duration(), calculated_duration.days )        
 
     def test_autoset_active_state(self):
         """This is a test for creating a new breeding object, with only the minimum being entered.  That object is then tested for the active state being automatically set when a End date is specified."""
