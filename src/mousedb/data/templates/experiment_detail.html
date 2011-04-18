@@ -16,7 +16,10 @@
 {% with experiment.measurement_set.all as data_list %}
 {% include "data_table.html" %}
 {% endwith %}
-<p>Download measurements as a csv <a href="{% url experiment-detail-csv experiment.id %}">here</a>.</p>
-<p>Enter or edit data <a href="{% url data-entry experiment.id %}" title="Data Entry Form">here</a></p>
-<p>Add new experiment <a href="{% url experiment-new %}">here</a></p>
+<div class="fg-buttonset">
+{% if perms.data.add_experiment %}
+<a href="{% url data-entry experiment.id %}"><button class="fg-button ui-state-default ui-corner-left"><span class="ui-icon ui-icon-pencil"></span>Enter Data</button></a>
+{% endif %}
+<a href="{% url experiment-detail-csv experiment.id %}"><button class="fg-button ui-state-default ui-corner-right"><span class="ui-icon ui-icon-arrowthick-1-s"></span>Download Data</button></a>
+</div>
 {% endblock content %}
