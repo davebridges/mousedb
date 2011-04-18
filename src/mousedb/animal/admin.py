@@ -21,7 +21,7 @@ class AnimalAdmin(admin.ModelAdmin):
         }),
     ('Animal Death Information', {
         'classes' : ('collapse',),
-        'fields' : ('Death', 'Cause_of_Death',),
+        'fields' : ('Death', 'Cause_of_Death','Alive'),
         }),
     )
     raw_id_fields = ("Breeding",)
