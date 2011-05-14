@@ -235,7 +235,7 @@ class Animal(models.Model):
         super(Animal, self).save()
 
     class Meta:
-        ordering = ['Strain', 'MouseID']
+        ordering = ['Born',]
 
 class Breeding(models.Model):
     """This data model stores information about a particular breeding set

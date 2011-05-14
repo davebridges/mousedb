@@ -24,42 +24,36 @@
   <th>Generation</th>
   <th>Genotype</th>
 {% for male in breeding.Male.all %}
-  <tr class="{{ male.breeding_male_location_type }}" >
+  <tr class="{% if not male.Alive %}dead {% endif %}{{ male.breeding_male_location_type }}" >
    <th>Male</th><td class="breeder"><a href="{% url animal-detail male.id %}">{{ male }}</a></td>
    <td>{{ male.Cage }}</td>
    <td>{{ male.Rack }}</td>
    <td>{{ male.Rack_Position }}</td>
-   	{% if animal.Death %}
-		<td class="dead">{{ male.Death }}</td>
+   <td>{% if male.Death %}
+{{ male.Death }}
 	{% else %}
-		<td>{{ male.age }}</td>
+{{ male.age }}
 	{% endif %}
-	{% if animal.Death %}
-	<td class="dead">Dead</td>
-	{% else %}
+</td>    
 	<td>{{ male.Alive|yesno:"Alive,Deceased,Unknown"  }}</td>
-	{% endif %}	
 	<td>{{ male.Backcross }}</td>
 	<td>{{ male.Generation }}</td>
 	<td>{{ male.Genotype }}</td>
   </tr>
 {% endfor %}
 {% for female in breeding.Females.all %}
-  <tr class="{{ female.breeding_female_location_type }}" >
+  <tr class="{% if not female.Alive %}dead {% endif %}{{ female.breeding_female_location_type }}" >
    <th>Female</th><td class="breeder"><a href="{% url animal-detail female.id %}">{{ female }}</a></td>
    <td>{{ female.Cage }}</td>
    <td>{{ female.Rack }}</td>
    <td>{{ female.Rack_Position }}</td>
-     {% if animal.Death %}
-		<td class="dead">{{ female.Death }}</td>
+   <td>{% if female.Death %}
+{{ female.Death }}
 	{% else %}
-		<td>{{ female.age }}</td>
+{{ female.age }}</td>
 	{% endif %}
-	{% if animal.Death %}
-	<td class="dead">Dead</td>
-	{% else %}
+</td>    
 	<td>{{ female.Alive|yesno:"Alive,Deceased,Unknown" }}</td>
-	{% endif %}
 	<td>{{ female.Backcross }}</td>
 	<td>{{ female.Generation }}</td>
 	<td>{{ female.Genotype }}</td>
