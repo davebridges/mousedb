@@ -8,6 +8,7 @@ import datetime
 from django.test import TestCase
 from django.test.client import Client
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 
 from mousedb.timed_mating.models import PlugEvents
 from mousedb.animal.models import Breeding, Strain, Animal
@@ -102,7 +103,7 @@ class Timed_MatingViewTests(TestCase):
         """This tests the plugevent-list view, ensuring that templates are loaded correctly.  
 
         This view uses a user with superuser permissions so does not test the permission levels for this view."""
-        test_response = self.client.get('/plugs/')
+        test_response = self.client.get(reverse('plugevents-list'))
         self.assertEqual(test_response.status_code, 200)
         self.assertTrue('plugevents_list' in test_response.context)
         self.assertTemplateUsed(test_response, 'base.html')
@@ -119,7 +120,7 @@ class Timed_MatingViewTests(TestCase):
         """This tests the plugevent-detail view, ensuring that templates are loaded correctly.  
 
         This view uses a user with superuser permissions so does not test the permission levels for this view."""
-        test_response = self.client.get('/plugs/1/')
+        test_response = self.client.get(reverse('plugevents-detail', kwargs={'pk': 1}))
         self.assertEqual(test_response.status_code, 200)
         self.assertTrue('plugevent' in test_response.context)        
         self.assertTemplateUsed(test_response, 'base.html')
@@ -129,8 +130,8 @@ class Timed_MatingViewTests(TestCase):
         self.assertEqual(test_response.context['plugevent'].pk, 1)
         self.assertEqual(test_response.context['plugevent'].PlugDate, datetime.date(2010,10,01))
         self.assertEqual(test_response.context['plugevent'].PlugFemale.id, 1) 
-
-        null_response = self.client.get('/plugs/2/')
+        #ensure that a 404 is given with an incorrect page
+        null_response = self.client.get(reverse('plugevents-detail', kwargs={'pk': 2}))
         self.assertEqual(null_response.status_code, 404)        
 
 
@@ -138,18 +139,19 @@ class Timed_MatingViewTests(TestCase):
         """This tests the plugevent-new view, ensuring that templates are loaded correctly.  
 
         This view uses a user with superuser permissions so does not test the permission levels for this view."""
-        test_response = self.client.get('/plugs/new/')
+        test_response = self.client.get(reverse('plugevents-new'))
         self.assertEqual(test_response.status_code, 200)
         self.assertTemplateUsed(test_response, 'base.html')
         self.assertTemplateUsed(test_response, 'jquery_script.html')
         self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
         self.assertTemplateUsed(test_response, 'plugevents_form.html')
 
+       
     def test_plugevent_edit(self):
         """This tests the plugevent-edit view, ensuring that templates are loaded correctly.  
 
         This view uses a user with superuser permissions so does not test the permission levels for this view."""
-        test_response = self.client.get('/plugs/1/edit/')
+        test_response = self.client.get(reverse('plugevents-edit', kwargs={'pk': 1}))
         self.assertEqual(test_response.status_code, 200)
         self.assertTrue('plugevent' in test_response.context)          
         self.assertTemplateUsed(test_response, 'base.html')
@@ -159,15 +161,15 @@ class Timed_MatingViewTests(TestCase):
         self.assertEqual(test_response.context['plugevent'].pk, 1)
         self.assertEqual(test_response.context['plugevent'].PlugDate, datetime.date(2010,10,01))
         self.assertEqual(test_response.context['plugevent'].PlugFemale.id, 1)    
-
-        null_response = self.client.get('/plugs/2/')
+        #ensure that a 404 is given with an incorrect page
+        null_response = self.client.get(reverse('plugevents-edit', kwargs={'pk': 2}))
         self.assertEqual(null_response.status_code, 404)         
 
     def test_plugevent_delete(self):
         """This tests the plugevent-delete view, ensuring that templates are loaded correctly.  
 
         This view uses a user with superuser permissions so does not test the permission levels for this view."""
-        test_response = self.client.get('/plugs/1/delete/')
+        test_response = self.client.get(reverse('plugevents-delete', kwargs={'pk': 1}))
         self.assertEqual(test_response.status_code, 200)
         self.assertTrue('plugevent' in test_response.context)           
         self.assertTemplateUsed(test_response, 'base.html')
@@ -177,15 +179,15 @@ class Timed_MatingViewTests(TestCase):
         self.assertEqual(test_response.context['plugevent'].pk, 1)
         self.assertEqual(test_response.context['plugevent'].PlugDate, datetime.date(2010,10,01))
         self.assertEqual(test_response.context['plugevent'].PlugFemale.id, 1)            
-        
-        null_response = self.client.get('/plugs/2/')
+        #ensure that a 404 is given with an incorrect page
+        null_response = self.client.get(reverse('plugevents-delete', kwargs={'pk': 2}))
         self.assertEqual(null_response.status_code, 404) 
         
     def test_breeding_plugevent_new(self):
         """This tests the breeding-plugevent-new view, ensuring that templates are loaded correctly.  
 
         This view uses a user with superuser permissions so does not test the permission levels for this view."""
-        test_response = self.client.get('/plugs/breeding/1/new/')
+        test_response = self.client.get(reverse('breeding-plugevents-new', kwargs={'breeding_id': 1}))
         self.assertEqual(test_response.status_code, 200)
         self.assertTrue('breeding' in test_response.context)
         self.assertEqual(test_response.context['breeding'].pk, 1)
@@ -196,6 +198,6 @@ class Timed_MatingViewTests(TestCase):
         self.assertTemplateUsed(test_response, 'jquery_script.html')
         self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
         self.assertTemplateUsed(test_response, 'breeding_plugevent_form.html') 
-
-        null_response = self.client.get('/plugs/breeding/2/new/')
-        self.assertEqual(null_response.status_code, 404)         
+        #ensure that a 404 is given with an incorrect page
+        null_response = self.client.get(reverse('breeding-plugevents-new', kwargs={'breeding_id': 2}))
+        self.assertEqual(null_response.status_code, 404)        
