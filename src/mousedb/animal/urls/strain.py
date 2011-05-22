@@ -38,6 +38,6 @@ urlpatterns = patterns('',
 		'post_delete_redirect':'/mousedb/strain/',
 		'template_name':'confirm_delete.html'
 		}, name="strain-delete"),
-    url(r'^(?P<strain>.*)/all/$', 'mousedb.animal.views.strain_detail_all', name="strain-detail-all"),
-    url(r'^(?P<strain>.*)/$', 'mousedb.animal.views.strain_detail', name="strain-detail"),
+    url(r'^(?P<slug>[\w-]+)/all/?$', views.StrainDetailAll.as_view(), name="strain-detail-all"),
+    url(r'^(?P<slug>[\w-]+)/?$', views.StrainDetail.as_view(), name="strain-detail"),
 )

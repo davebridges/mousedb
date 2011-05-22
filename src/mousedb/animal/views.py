@@ -29,6 +29,7 @@ class AnimalDetailView(ProtectedDetailView):
     Therefore care must be taken that animal/4932 is id=4932 and not barcode=4932.  The animal name is defined at the top of the page.
     This page is restricted to logged-in users.
     """
+    
     model = Animal
     template_name = 'animal_detail.html'
     context_object_name = 'animal'
@@ -39,39 +40,63 @@ class StrainList(ProtectedListView):
     
     This login protected view takes all Strain objects and sends them to strain_list.html as a strain_list dictionary.  It also passes a strain_list_alive and cages dictionary to show the numbers for total cages and total strains.
     The url for this view is **/strain/**"""
+    
     model = Strain
     context_object_name = 'strain_list'
     template_name = "strain_list.html"
 
     def get_context_data(self, **kwargs):
         """This add in the context of strain_list_alive (which filters for all alive animals) and cages which filters for the number of current cages."""
+        
         context = super(StrainList, self).get_context_data(**kwargs)
         context['strain_list_alive'] = Strain.objects.filter(animal__Alive=True).annotate(alive=Count('animal'))
         context['cages'] = Animal.objects.filter(Alive=True).values("Cage")        
         return context    
 
-@login_required
-def strain_detail(request, strain):
-    """This view displays specific details about a strain.
+class StrainDetail(ProtectedDetailView):
+    """This view displays specific details about a strain showing *only current* related objects.
 	
-    It takes a request in the form strain/(strain_slug)/ and renders the detail page for that strain.
+    It takes a request in the form *strain/(strain_slug)/* and renders the detail page for that strain.
     This view also passes along a dictionary of alive animals belonging to that strain.
     This page is restricted to logged-in users.
     """
-    strain = get_object_or_404(Strain, Strain_slug=strain)
-    breeding_cages = Breeding.objects.filter(Strain=strain).filter(Active=True)
-    animal_list = Animal.objects.filter(Strain=strain, Alive=True).order_by('Background','Genotype')
-    cages = animal_list.values("Cage", "Alive").filter(Alive=True).distinct()
-    active = True
-    return render_to_response('strain_detail.html', {
-        'strain' : strain, 
-        'animal_list' : animal_list, 
-        'cages':cages, 
-        'breeding_cages':breeding_cages,
-        'active':active
-        }
-        ,context_instance=RequestContext(request))
+    
+    queryset = Strain.objects.all()
+    slug_field = 'Strain_slug'
+    context_object_name = 'strain' 
+    template_name = "strain_detail.html"    
+    
+    def get_context_data(self, **kwargs):
+        """This add in the context of strain_list_alive (which filters for only alive animals and active) and cages which filters for the number of current cages."""
+        
+        strain = super(StrainDetail, self).get_object()
+        context = super(StrainDetail, self).get_context_data(**kwargs)
+        context['breeding_cages'] = Breeding.objects.filter(Strain=strain).filter(Active=True)
+        context['animal_list'] = Animal.objects.filter(Strain=strain, Alive=True).order_by('Background','Genotype')
+        context['cages'] = Animal.objects.filter(Strain=strain, Alive=True).values("Cage", "Alive").filter(Alive=True).distinct()
+        context['active'] = True        
+        return context  
+    
+class StrainDetailAll(StrainDetail):
+    """This view displays specific details about a strain showing *all* related objects.
+	
+    This view subclasses StrainDetail and modifies the get_context_data to show associated active objects.
+    It takes a request in the form *strain/(strain_slug)/all* and renders the detail page for that strain.
+    This view also passes along a dictionary of alive animals belonging to that strain.
+    This page is restricted to logged-in users.
+    """
 
+    def get_context_data(self, **kwargs):
+        """This add in the context of strain_list_all (which filters for all alive animals and active cages) and cages which filters for the number of current cages."""
+        
+        strain = super(StrainDetail, self).get_object()
+        context = super(StrainDetail, self).get_context_data(**kwargs)
+        context['breeding_cages'] = Breeding.objects.filter(Strain=strain)
+        context['animal_list'] = Animal.objects.filter(Strain=strain).order_by('Background','Genotype')
+        context['cages'] = Animal.objects.filter(Strain=strain).values("Cage").distinct()
+        context['active'] = False        
+        return context      
+        
 @login_required
 def strain_detail_all(request, strain):
     """This view displays specific details about a strain.
