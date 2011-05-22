@@ -353,7 +353,7 @@ class BreedingViewTests(TestCase):
     def test_breeding_list_all(self):
         """This test checks the view which displays a breeding list page, for all the cages.  It checks for the correct templates and status code."""
         
-        response = self.client.get('/breeding/all/')
+        response = self.client.get('/breeding/all')
         self.assertEqual(response.status_code, 200)
         self.assertTrue('breeding_list' in response.context)  
         self.assertEqual(response.context['breeding_list'].count(), 3)
@@ -370,7 +370,7 @@ class BreedingViewTests(TestCase):
     def test_timed_mating_list(self):
         """This test checks the view which displays a breeding list page, for all the cages.  It checks for the correct templates and status code."""
         
-        response = self.client.get('/breeding/timed_mating/')
+        response = self.client.get('/breeding/timed_mating')
         self.assertEqual(response.status_code, 200)
         self.assertTrue('breeding_list' in response.context) 
         self.assertEqual(response.context['breeding_list'].count(), 1)
@@ -388,7 +388,7 @@ class BreedingViewTests(TestCase):
 
     def test_breeding_new(self):
         """This test checks the view which displays a new breeding page.  It checks for the correct templates and status code."""
-        response = self.client.get('/breeding/new/')
+        response = self.client.get('/breeding/new')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'base.html')
         self.assertTemplateUsed(response, 'jquery_script.html')
@@ -415,22 +415,38 @@ class BreedingViewTests(TestCase):
 
     def test_breeding_edit(self):
         """This test checks the view which displays a breeding edit page.  It checks for the correct templates and status code."""
-        response = self.client.get('/breeding/1/update/')
+        
+        response = self.client.get('/breeding/1/edit')
         self.assertEqual(response.status_code, 200)
+        self.assertTrue('breeding' in response.context)           
         self.assertTemplateUsed(response, 'base.html')
         self.assertTemplateUsed(response, 'jquery_script.html')
         self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
         self.assertTemplateUsed(response, 'breeding_form.html')
+        self.assertEqual(response.context['breeding'].pk, 1)
+        self.assertEqual(response.context['breeding'].Strain.Strain, u'Fixture Strain')
+        self.assertEqual(response.context['breeding'].Cage, '12345')         
+        
+        null_response = self.client.get('/breeding/999/edit')
+        self.assertEqual(null_response.status_code, 404)          
 
 
     def test_breeding_delete(self):
         """This test checks the view which displays a breeding detail page.  It checks for the correct templates and status code."""
-        response = self.client.get('/breeding/1/delete/')
+        
+        response = self.client.get('/breeding/1/delete')
         self.assertEqual(response.status_code, 200)
+        self.assertTrue('breeding' in response.context)           
         self.assertTemplateUsed(response, 'base.html')
         self.assertTemplateUsed(response, 'jquery_script.html')
         self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
         self.assertTemplateUsed(response, 'confirm_delete.html')
+        self.assertEqual(response.context['breeding'].pk, 1)
+        self.assertEqual(response.context['breeding'].Strain.Strain, u'Fixture Strain')
+        self.assertEqual(response.context['breeding'].Cage, '12345')         
+        
+        null_response = self.client.get('/breeding/999/delete')
+        self.assertEqual(null_response.status_code, 404)           
 
 		
 class CageViewTests(TestCase):

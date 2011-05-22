@@ -153,7 +153,34 @@ class BreedingListTimedMating(BreedingList):
         
         context = super(BreedingList, self).get_context_data(**kwargs)
         context['breeding_type'] = "Timed Matings" 
-        return context        
+        return context     
+
+class BreedingCreate(RestrictedCreateView):
+    """This class generates the breeding-new view.
+
+    This permission restricted view takes a url in the form */breeding/new* and generates an empty plugevents_form.html."""
+    
+    model = Breeding
+    template_name = 'breeding_form.html'
+    
+class BreedingUpdate(RestrictedUpdateView):
+    """This class generates the breeding-edit view.
+
+    This permission restricted view takes a url in the form */breeding/#/edit* and generates a plugevents_form.html with that object."""
+    
+    model = Breeding
+    template_name = 'breeding_form.html'
+    context_object_name = 'breeding'    
+
+class BreedingDelete(RestrictedDeleteView):
+    """This class generates the breeding-delete view.
+
+    This permission restricted view takes a url in the form */plugs/#/delete* and passes that object to the confirm_delete.html page."""
+    
+    model = Breeding
+    template_name = 'confirm_delete.html'
+    context_object_name = 'breeding'    
+    success_url = '/breeding/'     
         
         
 @permission_required('animal.add_animal')
