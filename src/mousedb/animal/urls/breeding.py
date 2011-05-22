@@ -28,12 +28,7 @@ def delete_breeding(*args, **kwargs):
 	return delete_object(*args, **kwargs)
 
 urlpatterns = patterns('',
-	url(r'^$', limited_object_list, {
-		'queryset': Breeding.objects.filter(Active=True),
-		'template_name': 'breeding_list.html',
-		'template_object_name': 'breeding',
-		'extra_context':{"breeding_type" : "Active",},
-		}, name="breeding-list"),
+	url(r'^$', views.BreedingList.as_view(), name="breeding-list"),
 	url(r'all/$', limited_object_list, {
 		'queryset': Breeding.objects.all(),
 		'template_name': 'breeding_list.html',

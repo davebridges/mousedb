@@ -268,49 +268,9 @@ class AnimalViewTests(TestCase):
         self.assertEqual(test_response.context['animal'].Genotype, "-/-") 
         self.assertEqual(test_response.context['animal'].Strain.Strain, "Fixture Strain")         
 
-        null_response = self.client.get('/plugs/2')
+        null_response = self.client.get('/animal/999')
         self.assertEqual(null_response.status_code, 404)  
         
-        
-    def test_strain_detail(self):
-        """This tests the strain-detail view, ensuring that templates are loaded correctly.  
-
-        This view uses a user with superuser permissions so does not test the permission levels for this view."""
-        test_response = self.client.get('/strain/fixture-strain')
-        self.assertEqual(test_response.status_code, 200)
-        self.assertTrue('strain' in test_response.context)        
-        self.assertTemplateUsed(test_response, 'base.html')
-        self.assertTemplateUsed(test_response, 'jquery_script.html')
-        self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
-        self.assertTemplateUsed(test_response, 'strain_detail.html')
-        self.assertTemplateUsed(test_response, 'sortable_table_script.html')    
-        self.assertEqual(test_response.context['strain'].pk, 1)
-        self.assertEqual(test_response.context['strain'].Strain, "Fixture Strain")
-        self.assertEqual(test_response.context['strain'].Strain_slug, "fixture-strain") 
-
-        null_response = self.client.get('/strain/incorrect-strain')
-        self.assertEqual(null_response.status_code, 404)  
-
-    def test_strain_detail_all(self):
-        """This tests the strain-detail-all view, ensuring that templates are loaded correctly.  
-
-        This view uses a user with superuser permissions so does not test the permission levels for this view."""
-        test_response = self.client.get('/strain/fixture-strain/all')
-        self.assertEqual(test_response.status_code, 200)
-        self.assertTrue('strain' in test_response.context)        
-        self.assertTemplateUsed(test_response, 'base.html')
-        self.assertTemplateUsed(test_response, 'jquery_script.html')
-        self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
-        self.assertTemplateUsed(test_response, 'strain_detail.html')
-        self.assertTemplateUsed(test_response, 'sortable_table_script.html')    
-        self.assertEqual(test_response.context['strain'].pk, 1)
-        self.assertEqual(test_response.context['strain'].Strain, "Fixture Strain")
-        self.assertEqual(test_response.context['strain'].Strain_slug, "fixture-strain") 
-
-        null_response = self.client.get('/strain/incorrect-strain/all')
-        self.assertEqual(null_response.status_code, 404)          
-
-
 class BreedingModelTests(TestCase):
     """Tests the model attributes of Breeding objects contained in the animal app."""
 
@@ -377,12 +337,17 @@ class BreedingViewTests(TestCase):
 
         response = self.client.get('/breeding/')
         self.assertEqual(response.status_code, 200)
+        self.assertTrue('breeding_list' in response.context)             
         self.assertTemplateUsed(response, 'base.html')
         self.assertTemplateUsed(response, 'jquery_script.html')
         self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
         self.assertTemplateUsed(response, 'breeding_list.html')
         self.assertTemplateUsed(response, 'breeding_table.html')
         self.assertTemplateUsed(response, 'sortable_table_script.html')
+        self.assertEqual([breeding.pk for breeding in response.context['breeding_list']], [1])        
+        self.assertEqual([breeding.Strain.Strain for breeding in response.context['breeding_list']], [u'Fixture Strain'])     
+        self.assertEqual([breeding.Cage for breeding in response.context['breeding_list']], [u'12345'])
+     
 
     def test_breeding_list_all(self):
         """This test checks the view which displays a breeding list page, for all the cages.  It checks for the correct templates and status code."""
@@ -421,13 +386,14 @@ class BreedingViewTests(TestCase):
         """This test checks the view which displays a breeding detail page.  It checks for the correct templates and status code."""
         response = self.client.get('/breeding/1')
         self.assertEqual(response.status_code, 200)
+        self.assertTrue('breeding' in response.context)        
         self.assertTemplateUsed(response, 'base.html')
         self.assertTemplateUsed(response, 'jquery_script.html')
         self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
         self.assertTemplateUsed(response, 'breeding_detail.html')
         self.assertTemplateUsed(response, 'sortable_table_script.html')    
         self.assertEqual(response.context['breeding'].pk, 1)
-        self.assertEqual(response.context['breeding'].Strain.Strain, "Fixture Strain")
+        self.assertEqual(response.context['breeding'].Strain.Strain, u'Fixture Strain')
         self.assertEqual(response.context['breeding'].Cage, '12345') 
 
         null_response = self.client.get('/breeding/999')
