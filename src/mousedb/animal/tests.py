@@ -226,6 +226,50 @@ class AnimalModelTests(TestCase):
         animal.MouseID = 1234
         animal.save()
         self.assertEquals(animal.__unicode__(), "Fixture Strain-EarTag #1234")
+        
+class AnimalViewTests(TestCase):
+    """Tests the views associated with animal objects."""
+    
+    fixtures = ['test_animals','test_strain']
+
+    def setUp(self):
+        """Instantiate the test client.  Creates a test user."""
+        self.client = Client()
+        self.test_user = User.objects.create_user('testuser', 'blah@blah.com', 'testpassword')
+        self.test_user.is_superuser = True
+        self.test_user.is_active = True
+        self.test_user.save()
+        self.assertEqual(self.test_user.is_superuser, True)
+        login = self.client.login(username='testuser', password='testpassword')
+        self.failUnless(login, 'Could not log in')
+
+    def tearDown(self):
+        """Depopulate created model instances from test database."""
+        for model in MODELS:
+            for obj in model.objects.all():
+                obj.delete()    
+    
+    def test_animal_detail(self):
+        """This tests the animal-detail view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        test_response = self.client.get('/animal/1')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTrue('animal' in test_response.context)        
+        self.assertTemplateUsed(test_response, 'base.html')
+        self.assertTemplateUsed(test_response, 'jquery_script.html')
+        self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(test_response, 'animal_detail.html')
+        self.assertTemplateUsed(test_response, 'sortable_table_script.html')        
+        self.assertEqual(test_response.context['animal'].pk, 1)
+        self.assertEqual(test_response.context['animal'].Born, datetime.date(2011,01,01))
+        self.assertEqual(test_response.context['animal'].Cage, 123456) 
+        self.assertEqual(test_response.context['animal'].Background, "Mixed") 
+        self.assertEqual(test_response.context['animal'].Genotype, "-/-") 
+        self.assertEqual(test_response.context['animal'].Strain.Strain, "Fixture Strain")         
+
+        null_response = self.client.get('/plugs/2')
+        self.assertEqual(null_response.status_code, 404)  
 
 
 class BreedingModelTests(TestCase):

@@ -4,7 +4,9 @@ from django.views.generic.list_detail import object_list
 from django.views.generic.create_update import create_object, update_object, delete_object
 from django.contrib.auth.decorators import login_required, permission_required
 
+from mousedb.animal import views
 from mousedb.animal.forms import AnimalForm
+from mousedb.animal.models import Animal
 
 @login_required
 def limited_object_list(*args, **kwargs):
@@ -22,7 +24,6 @@ def change_animal(*args, **kwargs):
 def delete_animal(*args, **kwargs):
 	return delete_object(*args, **kwargs)
 
-from mousedb.animal.models import Animal
 
 urlpatterns = patterns('',
 	url(r'^$', limited_object_list, {
@@ -36,7 +37,7 @@ urlpatterns = patterns('',
 		'template_name': 'animal_list.html', 
 		'template_object_name': 'animal',
 		}, name="animal-list-all"),
-	url(r'^(?P<id>\d*)/$', 'mousedb.animal.views.animal_detail', name="animal-detail"),
+	url(r'^(?P<pk>\d*)/?$', views.AnimalDetailView.as_view(), name="animal-detail"),
 	url(r'^new/$', create_animal, {
 		'form_class': AnimalForm, 
 		'template_name': 'animal_form.html', 

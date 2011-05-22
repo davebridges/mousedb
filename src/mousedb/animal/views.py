@@ -22,17 +22,16 @@ from mousedb.animal.models import Animal, Strain, Breeding
 from mousedb.data.models import Measurement
 from mousedb.animal.forms import MultipleAnimalForm, MultipleBreedingAnimalForm
 
-@login_required
-def animal_detail(request, id):
+class AnimalDetailView(ProtectedDetailView):
     """This view displays specific details about an animal.
 	
     It takes a request in the form animal/(id)/, mice/(id) or mouse/(id)/ and renders the detail page for that mouse.  The request is defined for id not MouseID (or barcode) because this allows for details to be displayed for mice without barcode identification.
     Therefore care must be taken that animal/4932 is id=4932 and not barcode=4932.  The animal name is defined at the top of the page.
     This page is restricted to logged-in users.
     """
-    animal = Animal.objects.get(pk=id)
-    animal_measurements=Measurement.objects.filter(animal__id=id).order_by('assay','experiment')
-    return render_to_response('animal_detail.html', {'animal' : animal, 'animal_measurements':animal_measurements},context_instance=RequestContext(request))
+    model = Animal
+    template_name = 'animal_detail.html'
+    context_object_name = 'animal'
     
     
 class StrainList(ProtectedListView):
@@ -45,9 +44,8 @@ class StrainList(ProtectedListView):
     template_name = "strain_list.html"
 
     def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
+        """This add in the context of strain_list_alive (which filters for all alive animals) and cages which filters for the number of current cages."""
         context = super(StrainList, self).get_context_data(**kwargs)
-        # Add in a QuerySet of all the books
         context['strain_list_alive'] = Strain.objects.filter(animal__Alive=True).annotate(alive=Count('animal'))
         context['cages'] = Animal.objects.filter(Alive=True).values("Cage")        
         return context    
