@@ -15,7 +15,7 @@
             "KO_Dead": null, 
             "PlugFemale": "1", 
             "Active": true, 
-            "Breeding": null, 
+            "Breeding": "1", 
             "SacrificeDate": null
         }
     }

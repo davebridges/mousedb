@@ -24,6 +24,18 @@ class PlugEventsList(ProtectedListView):
     context_object_name = 'plugevents_list'
     template_name = "plugevents_list.html"
     
+class PlugEventsListStrain(PlugEventsList):
+    """This class generates a strain filtered list for Plug Event objects.
+    
+    This is a subclass of PlugEventsList and returns as context_object_name plug_events_list to plugevents_list.html.
+    It takes a named argument (strain) which is a Strain_slug and filters based on that strain."""
+
+    def get_queryset(self):
+        """The queryset is over-ridden to show only plug events in which the strain matches the breeding strain."""
+        self.strain = get_object_or_404(Strain, Strain_slug__iexact=self.kwargs['slug'])
+        return PlugEvents.objects.filter(Breeding__Strain=self.strain)
+
+    
 class PlugEventsDetail(ProtectedDetailView): 
     """This class generates the plugevents-detail view.
     

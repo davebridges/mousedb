@@ -113,13 +113,30 @@ class Timed_MatingViewTests(TestCase):
         self.assertEqual([plugevent.pk for plugevent in test_response.context['plugevents_list']], [1])        
         self.assertEqual([plugevent.PlugDate for plugevent in test_response.context['plugevents_list']], [datetime.date(2010,10,01)])     
         self.assertEqual([plugevent.PlugFemale.id for plugevent in test_response.context['plugevents_list']], [1])
+        
+    def test_plugevent_list_strain(self):
+        """This tests the plugevent-list-strain view, ensuring that templates are loaded correctly.  
 
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        test_response = self.client.get('/plugs/fixture-strain')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTrue('plugevents_list' in test_response.context)
+        self.assertTemplateUsed(test_response, 'base.html')
+        self.assertTemplateUsed(test_response, 'jquery_script.html')
+        self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(test_response, 'plugevents_list.html')
+        self.assertTemplateUsed(test_response, 'plug_table.html')
+        self.assertEqual([plugevent.pk for plugevent in test_response.context['plugevents_list']], [1])        
+        self.assertEqual([plugevent.PlugDate for plugevent in test_response.context['plugevents_list']], [datetime.date(2010,10,01)])     
+        self.assertEqual([plugevent.PlugFemale.id for plugevent in test_response.context['plugevents_list']], [1])        
+        test_response = self.client.get('/plugs/incorrect-strain')
+        self.assertEqual(test_response.status_code, 404)
 
     def test_plugevent_detail(self):
         """This tests the plugevent-detail view, ensuring that templates are loaded correctly.  
 
         This view uses a user with superuser permissions so does not test the permission levels for this view."""
-        test_response = self.client.get('/plugs/1/')
+        test_response = self.client.get('/plugs/1')
         self.assertEqual(test_response.status_code, 200)
         self.assertTrue('plugevent' in test_response.context)        
         self.assertTemplateUsed(test_response, 'base.html')
@@ -130,7 +147,7 @@ class Timed_MatingViewTests(TestCase):
         self.assertEqual(test_response.context['plugevent'].PlugDate, datetime.date(2010,10,01))
         self.assertEqual(test_response.context['plugevent'].PlugFemale.id, 1) 
 
-        null_response = self.client.get('/plugs/2/')
+        null_response = self.client.get('/plugs/2')
         self.assertEqual(null_response.status_code, 404)        
 
 
@@ -138,7 +155,7 @@ class Timed_MatingViewTests(TestCase):
         """This tests the plugevent-new view, ensuring that templates are loaded correctly.  
 
         This view uses a user with superuser permissions so does not test the permission levels for this view."""
-        test_response = self.client.get('/plugs/new/')
+        test_response = self.client.get('/plugs/new')
         self.assertEqual(test_response.status_code, 200)
         self.assertTemplateUsed(test_response, 'base.html')
         self.assertTemplateUsed(test_response, 'jquery_script.html')
@@ -149,7 +166,7 @@ class Timed_MatingViewTests(TestCase):
         """This tests the plugevent-edit view, ensuring that templates are loaded correctly.  
 
         This view uses a user with superuser permissions so does not test the permission levels for this view."""
-        test_response = self.client.get('/plugs/1/edit/')
+        test_response = self.client.get('/plugs/1/edit')
         self.assertEqual(test_response.status_code, 200)
         self.assertTrue('plugevent' in test_response.context)          
         self.assertTemplateUsed(test_response, 'base.html')
@@ -160,14 +177,14 @@ class Timed_MatingViewTests(TestCase):
         self.assertEqual(test_response.context['plugevent'].PlugDate, datetime.date(2010,10,01))
         self.assertEqual(test_response.context['plugevent'].PlugFemale.id, 1)    
 
-        null_response = self.client.get('/plugs/2/')
+        null_response = self.client.get('/plugs/2/edit')
         self.assertEqual(null_response.status_code, 404)         
 
     def test_plugevent_delete(self):
         """This tests the plugevent-delete view, ensuring that templates are loaded correctly.  
 
         This view uses a user with superuser permissions so does not test the permission levels for this view."""
-        test_response = self.client.get('/plugs/1/delete/')
+        test_response = self.client.get('/plugs/1/delete')
         self.assertEqual(test_response.status_code, 200)
         self.assertTrue('plugevent' in test_response.context)           
         self.assertTemplateUsed(test_response, 'base.html')
@@ -178,14 +195,14 @@ class Timed_MatingViewTests(TestCase):
         self.assertEqual(test_response.context['plugevent'].PlugDate, datetime.date(2010,10,01))
         self.assertEqual(test_response.context['plugevent'].PlugFemale.id, 1)            
         
-        null_response = self.client.get('/plugs/2/')
+        null_response = self.client.get('/plugs/2/delete')
         self.assertEqual(null_response.status_code, 404) 
         
     def test_breeding_plugevent_new(self):
         """This tests the breeding-plugevent-new view, ensuring that templates are loaded correctly.  
 
         This view uses a user with superuser permissions so does not test the permission levels for this view."""
-        test_response = self.client.get('/plugs/breeding/1/new/')
+        test_response = self.client.get('/plugs/breeding/1/new')
         self.assertEqual(test_response.status_code, 200)
         self.assertTrue('breeding' in test_response.context)
         self.assertEqual(test_response.context['breeding'].pk, 1)
@@ -197,5 +214,5 @@ class Timed_MatingViewTests(TestCase):
         self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
         self.assertTemplateUsed(test_response, 'breeding_plugevent_form.html') 
 
-        null_response = self.client.get('/plugs/breeding/2/new/')
+        null_response = self.client.get('/plugs/breeding/2/new')
         self.assertEqual(null_response.status_code, 404)         
