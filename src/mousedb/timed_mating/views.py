@@ -60,7 +60,7 @@ class PlugEventsUpdate(RestrictedUpdateView):
     context_object_name = 'plugevent'    
 
 class PlugEventsDelete(RestrictedDeleteView):
-    """This class generates the plugevents-new view.
+    """This class generates the plugevents-delete view.
 
     This permission restricted view takes a url in the form **/plugs/#/delete** and passes that object to the confirm_delete.html page."""
     model = PlugEvents

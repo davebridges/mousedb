@@ -59,7 +59,7 @@ class StrainModelTests(TestCase):
         """This is a test for creating a new strain object, then testing absolute url."""
         test_strain = Strain(Strain = "Test Strain", Strain_slug = "test-strain")
         test_strain.save()
-        self.assertEquals(test_strain.get_absolute_url(), "/strain/test-strain/")        
+        self.assertEquals(test_strain.get_absolute_url(), "/strain/test-strain")        
 
 class StrainViewTests(TestCase):
     """Test the views contained in the animal app relating to Strain objects."""
@@ -191,10 +191,7 @@ class StrainViewTests(TestCase):
         
         null_response = self.client.get('/strain/2/delete/')
         self.assertEqual(null_response.status_code, 404) 
-        
 
-        
-        
 class AnimalModelTests(TestCase):
     """Tests the model attributes of Animal objects contained in the animal app."""
 
@@ -290,12 +287,12 @@ class BreedingModelTests(TestCase):
         """This is a test for creating a new breeding object, with only the minimum being entered."""
         test_breeding = Breeding(Strain = Strain.objects.get(pk=1))
         test_breeding.save()
-        self.assertEquals(test_breeding.pk,  2)
+        self.assertEquals(test_breeding.pk,  4)
 
     def test_study_absolute_url(self):
         """This test verifies that the absolute url of a breeding object is set correctly."""
         test_breeding = Breeding.objects.get(pk=1)
-        self.assertEquals(test_breeding.get_absolute_url(), '/breeding_cage/1/')
+        self.assertEquals(test_breeding.get_absolute_url(), '/breeding_cage/1')
         
     def test_duration(self):
         """This test verifies that the duration is set correctly."""
@@ -314,7 +311,6 @@ class BreedingModelTests(TestCase):
     def test_unweaned(self):
         """This is a test for the unweaned animal list.  It creates several animals for a breeding object and tests that they are tagged as unweaned.  They are then weaned and retested to be tagged as not unweaned.  This test is incomplete."""
         pass
-
 
 class BreedingViewTests(TestCase):
     """These are tests for views based on Breeding objects.  Included are tests for breeding list (active and all), details, create, update and delete pages as well as for the timed mating lists."""
@@ -447,7 +443,6 @@ class BreedingViewTests(TestCase):
         
         null_response = self.client.get('/breeding/999/delete')
         self.assertEqual(null_response.status_code, 404)           
-
 		
 class CageViewTests(TestCase):
     """These are tests for views based on animal objects as directed by cage urls.  Included are tests for cage-list, cage-list-all and cage-detail"""

@@ -214,5 +214,5 @@ class Timed_MatingViewTests(TestCase):
         self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
         self.assertTemplateUsed(test_response, 'breeding_plugevent_form.html') 
 
-        null_response = self.client.get('/plugs/breeding/2/new')
+        null_response = self.client.get('/plugs/breeding/999/new')
         self.assertEqual(null_response.status_code, 404)         
