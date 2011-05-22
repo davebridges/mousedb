@@ -4,7 +4,7 @@ Automated Documentation
 Root Package
 ------------
 
-.. automodule:: 
+.. automodule:: mousedb
    :members:
    :undoc-members:
    :show-inheritance:
@@ -12,28 +12,20 @@ Root Package
 Views and URLs
 ++++++++++++++
 
-.. automodule:: views
+.. automodule:: mousedb.views
    :members:
    :undoc-members:
    :show-inheritance:
    
-.. automodule:: urls
+.. automodule:: mousedb.urls
    :members:
    :undoc-members:
    :show-inheritance:   
    
 
-Administrative Site Configuration
-+++++++++++++++++++++++++++++++++
-
-.. automodule:: admin
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 Test Files
 ++++++++++
-.. automodule:: tests
+.. automodule:: mousedb.tests
    :members:
    :undoc-members:
    :show-inheritance:
@@ -41,7 +33,7 @@ Test Files
 Data Package
 ------------
 
-.. automodule:: data
+.. automodule:: mousedb.data
    :members:
    :undoc-members:
    :show-inheritance:
@@ -49,7 +41,7 @@ Data Package
 Models
 ++++++
 
-.. automodule:: data.models
+.. automodule:: mousedb.data.models
    :members:
    :undoc-members:
    :show-inheritance:
@@ -57,7 +49,7 @@ Models
 Forms
 +++++
 
-.. automodule:: data.forms
+.. automodule:: mousedb.data.forms
    :members:
    :undoc-members:
    :show-inheritance:
@@ -65,11 +57,11 @@ Forms
 Views and URLs
 ++++++++++++++
 
-.. automodule:: data.views
+.. automodule:: mousedb.data.views
    :members:
    :undoc-members:
    :show-inheritance:
-.. automodule:: data.urls
+.. automodule:: mousedb.data.urls
    :members:
    :undoc-members:
    :show-inheritance:
@@ -77,11 +69,11 @@ Views and URLs
 Administrative Site Configuration
 +++++++++++++++++++++++++++++++++
 
-.. automodule:: data.admin
+.. automodule:: mousedb.data.admin
 
 Test Files
 ++++++++++
-.. automodule:: data.tests
+.. automodule:: mousedb.data.tests
    :members:
    :undoc-members:
    :show-inheritance:
@@ -89,30 +81,30 @@ Test Files
 Animals Package
 ---------------
 
-.. automodule:: animal
+.. automodule:: mousedb.animal
 
 Models
 ++++++
 
-.. automodule:: animal.models
+.. automodule:: mousedb.animal.models
    :members:
    :show-inheritance:
    :undoc-members:
 
-.. autoclass:: animal.models.Strain
+.. autoclass:: mousedb.animal.models.Strain
    :show-inheritance:
 
-.. autoclass:: animal.models.Animal
+.. autoclass:: mousedb.animal.models.Animal
    :show-inheritance:
 
-.. autoclass:: animal.models.Breeding
+.. autoclass:: mousedb.animal.models.Breeding
    :show-inheritance:
 
 
 Forms
 +++++
 
-.. automodule:: animal.forms
+.. automodule:: mousedb.animal.forms
    :members:
    :undoc-members:
    :show-inheritance:
@@ -121,12 +113,12 @@ Forms
 Views and URLs
 ++++++++++++++
 
-.. automodule:: animal.views
+.. automodule:: mousedb.animal.views
    :members:
    :undoc-members:
    :show-inheritance:
 
-.. automodule:: animal.urls
+.. automodule:: mousedb.animal.urls
    :members:
    :undoc-members:
    :show-inheritance:
@@ -134,14 +126,14 @@ Views and URLs
 Administrative Site Configuration
 +++++++++++++++++++++++++++++++++
 
-.. automodule:: animal.admin
+.. automodule:: mousedb.animal.admin
    :members:
    :undoc-members:
    :show-inheritance:
 
 Test Files
 ++++++++++
-.. automodule:: animal.tests
+.. automodule:: mousedb.animal.tests
    :members:
    :undoc-members:
    :show-inheritance:
@@ -149,7 +141,7 @@ Test Files
 Timed Mating Package
 --------------------
 
-.. automodule:: timed_mating
+.. automodule:: mousedb.timed_mating
    :members:
    :undoc-members:
    :show-inheritance:
@@ -157,18 +149,15 @@ Timed Mating Package
 Models
 ++++++
 
-.. automodule:: timed_mating.models
+.. automodule:: mousedb.timed_mating.models
    :members:
    :show-inheritance:
    :undoc-members:
 
-.. autoclass:: timed_mating.models.PlugEvents
-   :show-inheritance:
-
 Forms
 +++++
 
-.. automodule:: timed_mating.forms
+.. automodule:: mousedb.timed_mating.forms
    :members:
    :undoc-members:
    :show-inheritance:
@@ -176,12 +165,12 @@ Forms
 Views and URLs
 ++++++++++++++
 
-.. automodule:: timed_mating.views
+.. automodule:: mousedb.timed_mating.views
    :members:
    :undoc-members:
    :show-inheritance:
 
-.. automodule:: timed_mating.urls
+.. automodule:: mousedb.timed_mating.urls
    :members:
    :undoc-members:
    :show-inheritance:
@@ -189,14 +178,14 @@ Views and URLs
 Administrative Site Configuration
 +++++++++++++++++++++++++++++++++
 
-.. automodule:: timed_mating.admin
+.. automodule:: mousedb.timed_mating.admin
    :members:
    :undoc-members:
    :show-inheritance:
 
 Test Files
 ++++++++++
-.. automodule:: timed_mating.tests
+.. automodule:: mousedb.timed_mating.tests
    :members:
    :undoc-members:
    :show-inheritance:
@@ -204,7 +193,7 @@ Test Files
 Groups Package
 --------------
 
-.. automodule:: groups
+.. automodule:: mousedb.groups
    :members:
    :undoc-members:
    :show-inheritance:
@@ -212,18 +201,15 @@ Groups Package
 Models
 ++++++
 
-.. automodule:: groups.models
+.. automodule:: mousedb.groups.models
    :members:
    :show-inheritance:
    :undoc-members:
 
-.. autoclass:: groups.models.Group
-   :show-inheritance:
-
 Views and URLs
 ++++++++++++++
 
-.. automodule:: groups.views
+.. automodule:: mousedb.groups.views
    :members:
    :undoc-members:
    :show-inheritance:
@@ -231,14 +217,14 @@ Views and URLs
 Administrative Site Configuration
 +++++++++++++++++++++++++++++++++
 
-.. automodule:: groups.admin
+.. automodule:: mousedb.groups.admin
    :members:
    :undoc-members:
    :show-inheritance:
 
 Test Files
 ++++++++++
-.. automodule:: groups.tests
+.. automodule:: mousedb.groups.tests
    :members:
    :undoc-members:
    :show-inheritance:

@@ -131,6 +131,21 @@ WSGIScriptAlias /mousedb /usr/src/mousedb/bin/django.wsgi</pre>
 </div>
 <p>If you want to restrict access to these files, change the Allow from all directive to specific domains or ip addresses (for example Allow from 192.168.0.0/99 would allow from 192.168.0.0 to 192.168.0.99)</p>
 </div>
+<div class="section" id="enabling-of-south-for-future-migrations">
+<h2>Enabling of South for Future Migrations<a class="headerlink" href="#enabling-of-south-for-future-migrations" title="Permalink to this headline">¶</a></h2>
+<p>Schema updates will utilize south as a way to alter database tables.  This must be enabled initially by entering the following commands from /mousedb/bin:</p>
+<div class="highlight-python"><pre>django schemamigration animal --initial
+django schemamigration data --initial
+django schemamigration groups --initial
+django schemamigration timed_mating --initial
+django migrate
+django syncdb</pre>
+</div>
+<p>Future schema changes (se the UPGRADE_NOTES.rst file for whether this is necessary) are accomplished by entering:</p>
+<div class="highlight-python"><pre>django schemamigration &lt;INDICATED_APP&gt; --auto
+django migrate &lt;INDICATED_APP&gt;</pre>
+</div>
+</div>
 <div class="section" id="final-configuration-and-user-setup">
 <h2>Final Configuration and User Setup<a class="headerlink" href="#final-configuration-and-user-setup" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
@@ -158,6 +173,7 @@ WSGIScriptAlias /mousedb /usr/src/mousedb/bin/django.wsgi</pre>
 <li><a class="reference internal" href="#installation">Installation</a></li>
 <li><a class="reference internal" href="#database-setup">Database Setup</a></li>
 <li><a class="reference internal" href="#web-server-setup">Web Server Setup</a></li>
+<li><a class="reference internal" href="#enabling-of-south-for-future-migrations">Enabling of South for Future Migrations</a></li>
 <li><a class="reference internal" href="#final-configuration-and-user-setup">Final Configuration and User Setup</a></li>
 <li><a class="reference internal" href="#testing">Testing</a></li>
 </ul>
