@@ -97,41 +97,20 @@ class StrainDetailAll(StrainDetail):
         context['active'] = False        
         return context      
         
-@login_required
-def strain_detail_all(request, strain):
-    """This view displays specific details about a strain.
-	
-    It takes a request in the form /strain/(strain_slug)/all and renders the detail page for that strain.
-    This view also passes along a dictionary of all animals belonging to that strain.
-    This page is restricted to logged-in users.
-    """
-    strain = get_object_or_404(Strain, Strain_slug=strain)
-    animal_list = Animal.objects.filter(Strain=strain).order_by('Background','Genotype')	
-    cages = animal_list.values("Cage").distinct()
-    breeding_cages = Breeding.objects.filter(Strain=strain)
-    active = False
-    return render_to_response('strain_detail.html', {
-        'strain' : strain, 
-        'animal_list' : animal_list, 
-        'cages':cages, 
-        'breeding_cages':breeding_cages,
-        'active':active
-        }
-        ,context_instance=RequestContext(request))
-	
-@login_required
-def breeding_detail(request, breeding_id):
+
+class BreedingDetail(ProtectedDetailView):
     """This view displays specific details about a breeding set.
 
-    It takes a request in the form /breeding/(breeding_id)/all and renders the detail page for that breeding set.
+    It takes a request in the form */breeding/(breeding_id)* and renders the detail page for that breeding set.
     The breeding_id refers to the background id of the breeding set, and not the breeding cage barcode.
-    This view also passes along a dictionary of all pups belonging to that breeding set.
     This page is restricted to logged-in users.
     """
-    breeding = Breeding.objects.select_related().get(id=breeding_id)
-    pups = Animal.objects.filter(Breeding=breeding)
-    return render_to_response('breeding_detail.html', {'breeding': breeding, 'pups' : pups},context_instance=RequestContext(request))
-
+    
+    model = Breeding
+    context_object_name = 'breeding' 
+    template_name = "breeding_detail.html"  
+    
+        
 @permission_required('animal.add_animal')
 def breeding_pups(request, breeding_id):
     """This view is used to generate a form by which to add pups which belong to a particular breeding set.

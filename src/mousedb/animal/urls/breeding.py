@@ -7,6 +7,7 @@ from django.views.generic.list_detail import object_list
 from django.views.generic.create_update import create_object, update_object, delete_object
 from django.contrib.auth.decorators import login_required, permission_required
 
+from mousedb.animal import views
 from mousedb.animal.models import Breeding
 from mousedb.animal.forms import BreedingForm
 
@@ -39,7 +40,7 @@ urlpatterns = patterns('',
 		'template_object_name': 'breeding',
 		'extra_context':{"breeding_type" : "All",},
 		}, name="breeding-list-all"),
-	url(r'^(?P<breeding_id>\d*)/$', 'mousedb.animal.views.breeding_detail', name="breeding-detail"),
+	url(r'^(?P<pk>\d*)/?$', views.BreedingDetail.as_view(), name="breeding-detail"),
 	url(r'^(?P<breeding_id>\d*)/pups/$', 'mousedb.animal.views.breeding_pups', name="breeding-pups"),
 	url(r'^(?P<breeding_id>\d*)/change/$', 'mousedb.animal.views.breeding_change', name="breeding-pups-change"),
 	url(r'^(?P<breeding_id>\d*)/wean/$', 'mousedb.animal.views.breeding_wean', name="breeding-pups-wean"),	

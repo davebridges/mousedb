@@ -71,7 +71,7 @@
 <a href="{% url breeding-pups-wean breeding.id %}"><button class="fg-button ui-state-default ui-corner-right"><span class="ui-icon ui-icon-pencil"></span>Wean Pups</button></a>
 {% endif %}
 </div>
-{% with pups as animal_list %}
+{% with breeding.animal_set.all as animal_list %}
 {% include "animal_list_table.html" %}
 {% endwith %}
 </div>
