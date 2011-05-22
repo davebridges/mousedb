@@ -5,8 +5,32 @@
         "fields": {
             "Strain": "1",
             "Start": "2010-01-01",
-            "Cage":  "12345"
+            "Cage":  "12345",
+            "Timed_Mating": "False",            
+            "Active" : "True"
         }
-    } 
+    },
+    {
+        "pk": 2, 
+        "model": "animal.breeding", 
+        "fields": {
+            "Strain": "1",
+            "Start": "2011-12-24",
+            "Cage":  "45678",
+            "Timed_Mating": "False",
+            "Active" : "True"
+        }
+    },
+    {
+        "pk": 3, 
+        "model": "animal.breeding", 
+        "fields": {
+            "Strain": "1",
+            "Start": "1978-12-24",
+            "Cage":  "111111",
+            "Timed_Mating": "True",
+            "Active": "False"
+        }
+    }    
 ]
 

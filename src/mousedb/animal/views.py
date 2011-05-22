@@ -141,6 +141,20 @@ class BreedingListAll(BreedingList):
         context['breeding_type'] = "All" 
         return context
         
+class BreedingListTimedMating(BreedingList):
+    """This class generates a view for breeding objects, showing only timed mating cages.
+    
+    This class is a subclass of BreedingList, changing the queryset and the  breeding_type context."""
+
+    queryset = Breeding.objects.filter(Timed_Mating=True)
+
+    def get_context_data(self, **kwargs):
+        """This add in the context of breeding_type and sets it to Timed_Matings."""
+        
+        context = super(BreedingList, self).get_context_data(**kwargs)
+        context['breeding_type'] = "Timed Matings" 
+        return context        
+        
         
 @permission_required('animal.add_animal')
 def breeding_pups(request, breeding_id):

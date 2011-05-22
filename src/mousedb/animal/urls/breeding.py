@@ -30,6 +30,7 @@ def delete_breeding(*args, **kwargs):
 urlpatterns = patterns('',
 	url(r'^$', views.BreedingList.as_view(), name="breeding-list"),
 	url(r'all/$', views.BreedingListAll.as_view(), name="breeding-list-all"),
+	url(r'timed_mating/$', views.BreedingListTimedMating.as_view(), name="breeding-list-timed-matings"),    
 	url(r'^(?P<pk>\d*)/?$', views.BreedingDetail.as_view(), name="breeding-detail"),
 	url(r'^(?P<breeding_id>\d*)/pups/$', 'mousedb.animal.views.breeding_pups', name="breeding-pups"),
 	url(r'^(?P<breeding_id>\d*)/change/$', 'mousedb.animal.views.breeding_change', name="breeding-pups-change"),
@@ -51,10 +52,4 @@ urlpatterns = patterns('',
 		'post_delete_redirect':'/mousedb/breeding/',
 		'template_name':'confirm_delete.html'
 		}, name="breeding-delete"),
-	url(r'timed_mating/$', limited_object_list, {
-		'queryset': Breeding.objects.filter(Timed_Mating=True),
-		'template_name': 'breeding_list.html',
-		'template_object_name': 'breeding',
-		'extra_context':{"breeding_type" : "Timed Matings",},
-		}, name="breeding-list-timed-matings"),
 )
