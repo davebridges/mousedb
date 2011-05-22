@@ -351,14 +351,19 @@ class BreedingViewTests(TestCase):
 
     def test_breeding_list_all(self):
         """This test checks the view which displays a breeding list page, for all the cages.  It checks for the correct templates and status code."""
+        
         response = self.client.get('/breeding/all/')
         self.assertEqual(response.status_code, 200)
+        self.assertTrue('breeding_list' in response.context)         
         self.assertTemplateUsed(response, 'base.html')
         self.assertTemplateUsed(response, 'jquery_script.html')
         self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
         self.assertTemplateUsed(response, 'breeding_list.html')
         self.assertTemplateUsed(response, 'breeding_table.html')
         self.assertTemplateUsed(response, 'sortable_table_script.html')
+        self.assertEqual([breeding.pk for breeding in response.context['breeding_list']], [1])        
+        self.assertEqual([breeding.Strain.Strain for breeding in response.context['breeding_list']], [u'Fixture Strain'])     
+        self.assertEqual([breeding.Cage for breeding in response.context['breeding_list']], [u'12345'])        
 
     def test_timed_mating_list(self):
         """This test checks the view which displays a breeding list page, for all the cages.  It checks for the correct templates and status code."""

@@ -29,12 +29,7 @@ def delete_breeding(*args, **kwargs):
 
 urlpatterns = patterns('',
 	url(r'^$', views.BreedingList.as_view(), name="breeding-list"),
-	url(r'all/$', limited_object_list, {
-		'queryset': Breeding.objects.all(),
-		'template_name': 'breeding_list.html',
-		'template_object_name': 'breeding',
-		'extra_context':{"breeding_type" : "All",},
-		}, name="breeding-list-all"),
+	url(r'all/$', views.BreedingListAll.as_view(), name="breeding-list-all"),
 	url(r'^(?P<pk>\d*)/?$', views.BreedingDetail.as_view(), name="breeding-detail"),
 	url(r'^(?P<breeding_id>\d*)/pups/$', 'mousedb.animal.views.breeding_pups', name="breeding-pups"),
 	url(r'^(?P<breeding_id>\d*)/change/$', 'mousedb.animal.views.breeding_change', name="breeding-pups-change"),

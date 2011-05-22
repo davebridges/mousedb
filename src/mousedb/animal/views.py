@@ -111,7 +111,7 @@ class BreedingDetail(ProtectedDetailView):
     template_name = "breeding_detail.html"  
     
 class BreedingList(ProtectedListView):
-    """This class generates an object list for Breeding objects.
+    """This class generates an object list for active Breeding objects.
     
     This login protected view takes all Breeding objects and sends them to strain_list.html as a strain_list dictionary.  It also passes a strain_list_alive and cages dictionary to show the numbers for total cages and total strains.
     The url for this view is */strain/*"""
@@ -125,8 +125,22 @@ class BreedingList(ProtectedListView):
         
         context = super(BreedingList, self).get_context_data(**kwargs)
         context['breeding_type'] = "Active" 
-        return context       
+        return context    
+
+class BreedingListAll(BreedingList):
+    """This class generates a view for all breeding objects.
     
+    This class is a subclass of BreedingList, changing the queryset and the  breeding_type context."""
+
+    queryset = Breeding.objects.all()
+
+    def get_context_data(self, **kwargs):
+        """This add in the context of breeding_type and sets it to All."""
+        
+        context = super(BreedingList, self).get_context_data(**kwargs)
+        context['breeding_type'] = "All" 
+        return context
+        
         
 @permission_required('animal.add_animal')
 def breeding_pups(request, breeding_id):
