@@ -85,13 +85,13 @@ This mouse has an unknown age.
 {% else %}
 {% endif %}
 <div id="animal-measurements">
-{% if animal.measurements.all %}
 	<h2>Measurement Summary</h2>
-	{% with animal_measurements as data_list %}
+    {% if animal.measurement_set.all.count > 0 %}
+	{% with animal.measurement_set.all as data_list %}
 	{% include "data_table.html" %}
 	{% endwith %}
-{% else %}
+    {% else %}
 	<p>No measurements for this animal.</p>
+    {% endif %}
 </div>
-{% endif %}
 {% endblock content%}
