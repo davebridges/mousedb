@@ -22,7 +22,7 @@
   {% for breeding in breeding_list %}
    <tr>
    <td {% if not breeding.Active %}class="dead"{% endif %}><a href="{{ breeding.Strain.get_absolute_url }}">{{ breeding.Strain }}</a></td>
-   <td {% if not breeding.Active %}class="dead"{% endif %}><a href="{{ breeding.get_absolute_url }}">{{ breeding.Cage }}</a></td>
+   <td {% if not breeding.Active %}class="dead"{% endif %}><a href="{{ breeding.get_absolute_url }}">{% if breeding.Cage %}{{ breeding.Cage }}{% else %}Details{% endif %}</a></td>
       <td class="left {% if not breeding.Active %} dead{% endif %}">{{ breeding.BreedingName }}</td>
       <td class="left {% if not breeding.Active %} dead{% endif %}">{{ breeding.Start|date:"Y-m-d" }}</td>
    <td class="left" {% if not breeding.Active %}class="dead"{% endif %}>
