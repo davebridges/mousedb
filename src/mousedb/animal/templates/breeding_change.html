@@ -15,7 +15,7 @@
 
 {% block content %}
 <p>Change fields as necessary.</p>
-<form method="POST" action=".">{% csrf_token %}
+<form method="POST" action="{% if breeding %}{% url breeding-pups-change breeding.id %}{% else %}{% url animal-multiple-new %}{% endif %}">{% csrf_token %}
     {{ formset.management_form }}
     {% include "formsets_table.html" %}
 <input type="submit" value="Submit" />
