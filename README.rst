@@ -80,8 +80,8 @@ Schema updates will utilize south as a way to alter database tables.  This must 
     django schemamigration data --initial
     django schemamigration groups --initial
     django schemamigration timed_mating --initial
-    django migrate
     django syncdb
+    django migrate
     
 Future schema changes (se the UPGRADE_NOTES.rst file for whether this is necessary) are accomplished by entering::
 
