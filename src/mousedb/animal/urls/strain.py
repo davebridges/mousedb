@@ -23,19 +23,16 @@ urlpatterns = patterns('',
 		'model': Strain, 
 		'template_name': 'strain_form.html', 
 		'login_required':True,
-		'post_save_redirect':'/mousedb/strain/'
 		}, name="strain-new"),
 	url(r'^(?P<object_id>\d*)/edit/$', change_strain, {
 		'model': Strain, 
 		'template_name': 'strain_form.html', 
 		'login_required':True,
         'template_object_name': 'strain',
-		'post_save_redirect':'/mousedb/strain/',
 		}, name="strain-edit"),
 	url(r'^(?P<object_id>\d*)/delete/$', delete_strain, {
 		'model': Strain, 
 		'login_required':True,
-		'post_delete_redirect':'/mousedb/strain/',
 		'template_name':'confirm_delete.html'
 		}, name="strain-delete"),
     url(r'^(?P<slug>[\w-]+)/all/?$', views.StrainDetailAll.as_view(), name="strain-detail-all"),

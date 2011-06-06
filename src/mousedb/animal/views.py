@@ -242,7 +242,7 @@ def breeding_wean(request, breeding_id):
             return HttpResponseRedirect( breeding.get_absolute_url() )
     else:
         formset = PupsFormSet(instance=breeding,)
-    return render_to_response("breeding_change.html", {"formset":formset, 'breeding':breeding},context_instance=RequestContext(request))	
+    return render_to_response("breeding_wean.html", {"formset":formset, 'breeding':breeding},context_instance=RequestContext(request))	
 
 def multiple_pups(request):
     """This view is used to enter multiple animals at the same time.
