@@ -4,7 +4,8 @@
         "model": "animal.animal", 
         "fields": {
             "Genotype": "-/-", 
-            "Background": "Mixed", 
+            "Background": "Mixed",
+            "background": "1",
             "Strain": "1",
 			"Cage": "123456",
 			"Born": "2011-01-01"
