@@ -7,7 +7,7 @@ Version 0.2.1dev
 * Removed all references to "mousedb" in urls.  This allows for separate installations to use different server locations (ie /mousedb-dave and /mousedb-nicole.  Checked that all templates use get_absolute_url or {% url url-name %} tags.
 * Set inactive breeding cages to be marked as red.  Put an inactive cage message on the detail page for inactive breeding cages.
 * Animals are no longer defined at the Experiment object level, but are defined in Treatment and Measurement objects.  These are then introspected at the Study and Experiment level.  **This requires a migration of the data app.**
-* Factored out the background from a hardcoded list of choices to a separate set of objects defined by a Background object.  **This requires a migration of the animal app.**.  The old Background field is still functional, but wll be deprecated 
+* Factored out the background from a hardcoded list of choices to a separate set of objects defined by a Background object.  **This requires a migration of the animal app.**.  The old Background field is still functional, but wll be deprecated.  Added several views and tests for background objects and to filter strain objects by background.
 * Added an annual archive of mouse births using the url archive-home
 * Added a new view for exporting animal survival data
 * Updated documentation for installation using pip and buildout

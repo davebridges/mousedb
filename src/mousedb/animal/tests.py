@@ -109,7 +109,6 @@ class StrainViewTests(TestCase):
         test_response = self.client.get('/strain/fixture-strain/')
         self.assertEqual(test_response.status_code, 200)
         self.assertTrue('strain' in test_response.context)        
-        self.assertTrue('strain' in test_response.context)          
         self.assertTemplateUsed(test_response, 'base.html')
         self.assertTemplateUsed(test_response, 'jquery_script.html')
         self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
@@ -130,7 +129,6 @@ class StrainViewTests(TestCase):
         test_response = self.client.get('/strain/fixture-strain/all/')
         self.assertEqual(test_response.status_code, 200)
         self.assertTrue('strain' in test_response.context)        
-        self.assertTrue('strain' in test_response.context)          
         self.assertTemplateUsed(test_response, 'base.html')
         self.assertTemplateUsed(test_response, 'jquery_script.html')
         self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
@@ -239,7 +237,182 @@ class BackgroundModelTests(TestCase):
         
         background = Background(name = "Test Background")
         background.save()
-        self.assertEquals(background.get_absolute_url(), "/strain/background/test-background")  
+        self.assertEquals(background.get_absolute_url(), "/strain/background/test-background")
+
+class BackgroundViewTests(TestCase):
+    """Test the views contained in the animal app relating to Background objects."""
+
+    fixtures = ['test_strain', 'test_animals', 'test_background']
+
+    def setUp(self):
+        """Instantiate the test client.  Creates a test user."""
+        self.client = Client()
+        self.test_user = User.objects.create_user('testuser', 'blah@blah.com', 'testpassword')
+        self.test_user.is_superuser = True
+        self.test_user.is_active = True
+        self.test_user.save()
+        self.assertEqual(self.test_user.is_superuser, True)
+        login = self.client.login(username='testuser', password='testpassword')
+        self.failUnless(login, 'Could not log in')
+
+    def tearDown(self):
+        """Depopulate created model instances from test database."""
+        for model in MODELS:
+            for obj in model.objects.all():
+                obj.delete()
+                
+    def test_background_detail(self):
+        """This tests the background-detail view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        
+        test_response = self.client.get('/strain/background/fixture-background')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTrue('animal_list' in test_response.context)        
+        self.assertEqual(test_response.context['animal_list'].count(), 1)
+        self.assertTemplateUsed(test_response, 'base.html')
+        self.assertTemplateUsed(test_response, 'jquery_script.html')
+        self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(test_response, 'animal_list.html')
+        self.assertTemplateUsed(test_response, 'sortable_table_script.html')        
+        self.assertTemplateUsed(test_response, 'animal_list_table.html')         
+        self.assertEqual([animal.pk for animal in test_response.context['animal_list']][0], 1)        
+        self.assertEqual([animal.background.name for animal in test_response.context['animal_list']][0], u'Fixture Background')     
+        self.assertEqual([animal.Genotype for animal in test_response.context['animal_list']][0], u'-/-')
+        self.assertEqual([animal.Born for animal in test_response.context['animal_list']][0], datetime.date(2011, 01, 01))
+        self.assertEqual([animal.Cage for animal in test_response.context['animal_list']][0], 123456)        
+
+        #verify that a 404 is thrown with an incorrect background name
+        null_response = self.client.get('/strain/background/not-fixture-background/')
+        self.assertEqual(null_response.status_code, 404)   
+
+    def test_background_detail_all(self):
+        """This tests the background-detail-all view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        
+        test_response = self.client.get('/strain/background/fixture-background/all')
+        self.assertEqual(test_response.context['animal_list'].count(), 1)
+        self.assertTemplateUsed(test_response, 'base.html')
+        self.assertTemplateUsed(test_response, 'jquery_script.html')
+        self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(test_response, 'animal_list.html')
+        self.assertTemplateUsed(test_response, 'sortable_table_script.html')        
+        self.assertTemplateUsed(test_response, 'animal_list_table.html')         
+        self.assertEqual([animal.pk for animal in test_response.context['animal_list']][0], 1)        
+        self.assertEqual([animal.background.name for animal in test_response.context['animal_list']][0], u'Fixture Background')     
+        self.assertEqual([animal.Genotype for animal in test_response.context['animal_list']][0], u'-/-')
+        self.assertEqual([animal.Born for animal in test_response.context['animal_list']][0], datetime.date(2011, 01, 01))
+        self.assertEqual([animal.Cage for animal in test_response.context['animal_list']][0], 123456)        
+
+        #verify that a 404 is thrown with an incorrect background name 
+        null_response = self.client.get('/strain/background/not-fixture-background/')
+        self.assertEqual(null_response.status_code, 404)          
+
+    def test_strain_background_detail(self):
+        """This tests the strain-background-detail view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        test_response = self.client.get('/strain/fixture-strain/fixture-background/')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTrue('strain' in test_response.context)        
+        self.assertTrue('background' in test_response.context)          
+        self.assertTemplateUsed(test_response, 'base.html')
+        self.assertTemplateUsed(test_response, 'jquery_script.html')
+        self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(test_response, 'strain_detail.html')
+        self.assertTemplateUsed(test_response, 'sortable_table_script.html')        
+        self.assertTemplateUsed(test_response, 'animal_list_table.html')         
+        self.assertEqual(test_response.context['strain'].pk, 1)
+        self.assertEqual(test_response.context['strain'].Strain, u'Fixture Strain')
+        self.assertEqual(test_response.context['strain'].Strain_slug, 'fixture-strain')
+        self.assertEqual(test_response.context['background'].pk, 1)
+        self.assertEqual(test_response.context['background'].name, 'Fixture Background')
+        self.assertEqual(test_response.context['background'].slug, 'fixture-background')          
+
+        #verify that a 404 is thrown with an incorrect background name         
+        null_response = self.client.get('/strain/not-fixture-strain/fixture-background/')
+        self.assertEqual(null_response.status_code, 404)  
+        second_null_response = self.client.get('/strain/fixture-strain/not-fixture-background/')
+        self.assertEqual(null_response.status_code, 404)  
+
+    def test_strain_background_detail_all(self):
+        """This tests the strain-background-detail-all view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+
+        test_response = self.client.get('/strain/fixture-strain/fixture-background/all')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTrue('strain' in test_response.context)        
+        self.assertTrue('background' in test_response.context)          
+        self.assertTemplateUsed(test_response, 'base.html')
+        self.assertTemplateUsed(test_response, 'jquery_script.html')
+        self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(test_response, 'strain_detail.html')
+        self.assertTemplateUsed(test_response, 'sortable_table_script.html')        
+        self.assertTemplateUsed(test_response, 'animal_list_table.html')         
+        self.assertEqual(test_response.context['strain'].pk, 1)
+        self.assertEqual(test_response.context['strain'].Strain, u'Fixture Strain')
+        self.assertEqual(test_response.context['strain'].Strain_slug, 'fixture-strain') 
+        self.assertEqual(test_response.context['background'].pk, 1)
+        self.assertEqual(test_response.context['background'].name, 'Fixture Background')
+        self.assertEqual(test_response.context['background'].slug, 'fixture-background')          
+
+        #verify that a 404 is thrown with an incorrect background name or incorrect strain name
+        null_response = self.client.get('/strain/not-fixture-strain/fixture-background/all/')
+        self.assertEqual(null_response.status_code, 404)  
+        second_null_response = self.client.get('/strain/fixture-strain/not-fixture-background/all/')
+        self.assertEqual(null_response.status_code, 404)         
+
+
+    def test_background_new(self):
+        """This tests the strain-new view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        test_response = self.client.get('/strain/background/new/')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTemplateUsed(test_response, 'base.html')
+        self.assertTemplateUsed(test_response, 'jquery_script.html')
+        self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(test_response, 'background_form.html')
+
+    def test_background_edit(self):
+        """This tests the strain-edit view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        test_response = self.client.get('/strain/background/fixture-background/edit/')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTrue('background' in test_response.context)          
+        self.assertTemplateUsed(test_response, 'base.html')
+        self.assertTemplateUsed(test_response, 'jquery_script.html')
+        self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(test_response, 'background_form.html')
+        self.assertEqual(test_response.context['background'].pk, 1)
+        self.assertEqual(test_response.context['background'].name, 'Fixture Background')
+        self.assertEqual(test_response.context['background'].slug, 'fixture-background')  
+
+        #verify that a 404 is thrown with an incorrect background name 
+        null_response = self.client.get('/strain/background/not-fixture-background/edit/')
+        self.assertEqual(null_response.status_code, 404)         
+
+    def test_background_delete(self):
+        """This tests the background-delete view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        test_response = self.client.get('/strain/background/fixture-background/delete/')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTrue('object' in test_response.context)           
+        self.assertTemplateUsed(test_response, 'base.html')
+        self.assertTemplateUsed(test_response, 'jquery_script.html')
+        self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(test_response, 'confirm_delete.html')
+        self.assertEqual(test_response.context['background'].pk, 1)
+        self.assertEqual(test_response.context['background'].name, 'Fixture Background')
+        self.assertEqual(test_response.context['background'].slug, 'fixture-background')         
+
+        #verify that a 404 is thrown with an incorrect background name         
+        null_response = self.client.get('/strain/background/not-fixture-background/delete/')
+        self.assertEqual(null_response.status_code, 404)         
 
 class AnimalModelTests(TestCase):
     """Tests the model attributes of Animal objects contained in the animal app."""
@@ -314,6 +487,7 @@ class AnimalViewTests(TestCase):
         self.assertEqual(test_response.context['animal'].Genotype, "-/-") 
         self.assertEqual(test_response.context['animal'].Strain.Strain, "Fixture Strain")         
 
+        #verify that a 404 is thrown with an incorrect animal number         
         null_response = self.client.get('/animal/999')
         self.assertEqual(null_response.status_code, 404)  
         
@@ -455,6 +629,7 @@ class BreedingViewTests(TestCase):
         self.assertEqual(response.context['breeding'].Strain.Strain, u'Fixture Strain')
         self.assertEqual(response.context['breeding'].Cage, '12345') 
 
+        #verify that a 404 is thrown with an incorrect breeding number
         null_response = self.client.get('/breeding/999')
         self.assertEqual(null_response.status_code, 404)          
 
@@ -471,7 +646,8 @@ class BreedingViewTests(TestCase):
         self.assertEqual(response.context['breeding'].pk, 1)
         self.assertEqual(response.context['breeding'].Strain.Strain, u'Fixture Strain')
         self.assertEqual(response.context['breeding'].Cage, '12345')         
-        
+
+        #verify that a 404 is thrown with an incorrect breeding number       
         null_response = self.client.get('/breeding/999/edit')
         self.assertEqual(null_response.status_code, 404)          
 
@@ -489,7 +665,8 @@ class BreedingViewTests(TestCase):
         self.assertEqual(response.context['breeding'].pk, 1)
         self.assertEqual(response.context['breeding'].Strain.Strain, u'Fixture Strain')
         self.assertEqual(response.context['breeding'].Cage, '12345')         
-        
+
+        #verify that a 404 is thrown with an incorrect breeding number         
         null_response = self.client.get('/breeding/999/delete')
         self.assertEqual(null_response.status_code, 404)           
 		

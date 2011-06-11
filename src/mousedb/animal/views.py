@@ -4,7 +4,7 @@ This module contains only non-generic views.  Several generic views are also use
 
 import datetime
 
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render_to_response, get_object_or_404, get_list_or_404
 from django.contrib.auth.decorators import login_required, permission_required
 from django.forms.models import inlineformset_factory
 from django.http import HttpResponseRedirect, HttpResponse
@@ -18,9 +18,20 @@ from mousedb.settings import WEAN_AGE, GENOTYPE_AGE
 
 from mousedb.views import ProtectedListView, ProtectedDetailView, RestrictedCreateView, RestrictedUpdateView, RestrictedDeleteView
 
-from mousedb.animal.models import Animal, Strain, Breeding
+from mousedb.animal.models import Animal, Strain, Breeding, Background
 from mousedb.data.models import Measurement
 from mousedb.animal.forms import MultipleAnimalForm, MultipleBreedingAnimalForm
+
+class AnimalList(ProtectedListView):
+    """This view shows a list of all animals.
+    
+    It takes a request in the form /animal and renders a list page for all animals.
+    This page is restricted to logged-in users."""
+    
+    model = Animal
+    context_object_name = 'animal_list'
+    template_name = "animal_list.html"    
+    
 
 class AnimalDetailView(ProtectedDetailView):
     """This view displays specific details about an animal.
@@ -99,16 +110,69 @@ class StrainDetailAll(StrainDetail):
         
 class StrainBackgroundDetail(StrainDetail):
     """This view shows the standard (alive/active only) strain detail pages filtered by specified backgrounds."""
-    pass
+
+    def get_context_data(self, **kwargs):
+        """This adds in the contexts of background, strain, animal_list and breeding_cages (which filters for alive animals and active breeding cages) and cages, which filters for the number of current cages."""
+        
+        strain = super(StrainBackgroundDetail, self).get_object()
+        background = get_object_or_404(Background, slug=self.kwargs['background_slug'])
+        context = super(StrainBackgroundDetail, self).get_context_data(**kwargs)
+        context['background'] = background
+        context['breeding_cages'] = Breeding.objects.filter(Strain=strain, pups_background=background).filter(Active=True)
+        context['animal_list'] = Animal.objects.filter(Strain=strain, background=background, Alive=True).order_by('Genotype')
+        context['cages'] = Animal.objects.filter(Strain=strain, background=background, Alive=True).values("Cage", "Alive").filter(Alive=True).distinct()
+        context['active'] = True        
+        return context  
     
 class StrainBackgroundDetailAll(StrainDetailAll):
     """This view shows the full strain detail page, filtered by specified backgrounds."""
-    pass
-    
-class BackgroundDetail(StrainDetail):
-    """This view shows the strain detail pages, but instead of showing just the strain, shows all animals with a specified background."""
-    pass
+
+    def get_context_data(self, **kwargs):
+        """This adds in the contexts of background, strain, animal_list and breeding_cages (which filters for all animals and all breeding cages) and cages, which filters for the total number of cages."""
         
+        strain = super(StrainBackgroundDetail, self).get_object()
+        background = get_object_or_404(Background, slug=self.kwargs['background_slug'])
+        context = super(StrainBackgroundDetail, self).get_context_data(**kwargs)
+        context['background'] = background
+        context['breeding_cages'] = Breeding.objects.filter(Strain=strain, pups_background=background).filter(Active=True)
+        context['animal_list'] = Animal.objects.filter(Strain=strain, background=background, Alive=True).order_by('Genotype')
+        context['cages'] = Animal.objects.filter(Strain=strain, background=background, Alive=True).values("Cage", "Alive").filter(Alive=True).distinct()
+        context['active'] = True        
+        return context     
+    
+class BackgroundDetail(AnimalList):
+    """This view shows the animal list page, showing all animals with a specified background."""
+    
+    def get_queryset(self):
+        background = get_object_or_404(Background, slug=self.kwargs['background_slug'])
+        return Animal.objects.filter(background=background)
+
+class BackgroundCreate(RestrictedCreateView):
+    """This class generates the background-new view.
+
+    This permission restricted view takes a url in the form */background/new* and generates an empty background_form.html."""
+    
+    model = Background
+    template_name = 'background_form.html'
+    
+class BackgroundUpdate(RestrictedUpdateView):
+    """This class generates the background-edit view.
+
+    This permission restricted view takes a url in the form */background/slug/edit* and generates a background_form.html with that object."""
+    
+    model = Background
+    template_name = 'background_form.html'
+    context_object_name = 'background'    
+
+class BackgroundDelete(RestrictedDeleteView):
+    """This class generates the breeding-delete view.
+
+    This permission restricted view takes a url in the form */background/slug/delete* and passes that object to the confirm_delete.html page."""
+    
+    model = Background
+    template_name = 'confirm_delete.html'
+    context_object_name = 'background'    
+    success_url = '/strain/'        
 
 class BreedingDetail(ProtectedDetailView):
     """This view displays specific details about a breeding set.
@@ -170,7 +234,7 @@ class BreedingListTimedMating(BreedingList):
 class BreedingCreate(RestrictedCreateView):
     """This class generates the breeding-new view.
 
-    This permission restricted view takes a url in the form */breeding/new* and generates an empty plugevents_form.html."""
+    This permission restricted view takes a url in the form */breeding/new* and generates an empty breeding_form.html."""
     
     model = Breeding
     template_name = 'breeding_form.html'
@@ -178,7 +242,7 @@ class BreedingCreate(RestrictedCreateView):
 class BreedingUpdate(RestrictedUpdateView):
     """This class generates the breeding-edit view.
 
-    This permission restricted view takes a url in the form */breeding/#/edit* and generates a plugevents_form.html with that object."""
+    This permission restricted view takes a url in the form */breeding/#/edit* and generates a breedings_form.html with that object."""
     
     model = Breeding
     template_name = 'breeding_form.html'
@@ -187,7 +251,7 @@ class BreedingUpdate(RestrictedUpdateView):
 class BreedingDelete(RestrictedDeleteView):
     """This class generates the breeding-delete view.
 
-    This permission restricted view takes a url in the form */plugs/#/delete* and passes that object to the confirm_delete.html page."""
+    This permission restricted view takes a url in the form */breeding/#/delete* and passes that object to the confirm_delete.html page."""
     
     model = Breeding
     template_name = 'confirm_delete.html'

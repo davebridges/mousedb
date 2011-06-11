@@ -295,6 +295,7 @@ class Breeding(models.Model):
     Timed_Mating = models.BooleanField(default=False, help_text="Is this cage a timed mating cage?")
     genotype = models.CharField(max_length = 15, choices = GENOTYPE_CHOICES, default = 'N.D.', help_text="The genotype of the pups (if known)")
     background = models.CharField(max_length = 25, choices = BACKGROUND_CHOICES, default="Mixed", help_text="The background of the pups")
+    pups_background = models.ForeignKey(Background, help_text="The background of the pups", blank=True, null=True)
     backcross = models.IntegerField(max_length = 5, null=True, blank=True, help_text="Leave blank for mixed background.  This is the backcross of the pups.")
     generation = models.IntegerField(max_length=5, null=True, blank=True, help_text="The generation of the pups")
 
