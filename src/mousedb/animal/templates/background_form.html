@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block header%}{% if background %}Update {{background}} {% else %}New Background{% endif %}{% endblock %}
+{% block title %}{% if background %}Update {{background}} {% else %}New Background{% endif %}{% endblock %}
+{% block content %}
+<form method="POST" action="{% if background %}{% url background-edit background.slug %}{% else %}{% url background-new %}{% endif %}">{% csrf_token %}
+<table>{{ form }}</table>
+<input type="submit" value="Submit" />
+</form>
+{% endblock %}
