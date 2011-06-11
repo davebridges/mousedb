@@ -9,7 +9,7 @@ from django.test import TestCase
 from django.test.client import Client
 from django.contrib.auth.models import User
 
-from mousedb.animal.models import Animal, Strain, Breeding
+from mousedb.animal.models import Animal, Strain, Breeding, Background
 
 MODELS = [Breeding, Animal, Strain]
 
@@ -191,6 +191,55 @@ class StrainViewTests(TestCase):
         
         null_response = self.client.get('/strain/2/delete/')
         self.assertEqual(null_response.status_code, 404) 
+        
+class BackgroundModelTests(TestCase): 
+    """Tests the model attributes of Background objects contained in the animal app."""
+
+    fixtures = []
+    
+    def setUp(self):
+        """Instantiate the test client."""
+        self.client = Client()
+    
+    def tearDown(self):
+        """Depopulate created model instances from test database."""
+        for model in MODELS:
+            for obj in model.objects.all():
+                obj.delete()
+    
+    def test_create_background_minimal(self):
+        """This is a test for creating a new background object, with only the minimum fields being entered"""
+        
+        background = Background(name = "Test Background")
+        background.save()
+        self.assertEquals(background.id, 1)
+
+    def test_background_unicode(self):
+        """This is a test for creating a new background object, with only the minimum fields being entered.  It then tests that the correct unicode representation is being generated."""
+        
+        background = Background(name = "Test Background")
+        background.save()
+        self.assertEquals(background.id, 1)
+        self.assertEquals(background.__unicode__(), "Test Background") 
+
+    def test_background_slug(self):
+        """This tests that the slug field is set correctly for background objects."""
+
+        background = Background(name = "Test Background")
+        background.save()
+        self.assertEquals(background.slug, "test-background") 
+
+        #Check that a second model with the same name has an incremented slug field
+        next_background = Background(name = "Test Background")
+        next_background.save()
+        self.assertEquals(next_background.slug, "test-background-1") 
+        
+    def test_background_get_absolute_url(self):
+        """This is a test that checks that the permacode absolute url is set correctly for background objects."""
+        
+        background = Background(name = "Test Background")
+        background.save()
+        self.assertEquals(background.get_absolute_url(), "/strain/background/test-background")  
 
 class AnimalModelTests(TestCase):
     """Tests the model attributes of Animal objects contained in the animal app."""

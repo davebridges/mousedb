@@ -2,8 +2,13 @@
 
 This module stores all data regarding a particular laboratory animal.  Information about experimental data and timed matings are stored in the data and timed_matings packages.  This module describes the database structure for each data model."""
 
-from django.db import models
 import datetime
+
+from django.db import models
+from django.template.defaultfilters import slugify
+
+from mousedb.custom_fields import SlugifyUniquely
+
 
 GENOTYPE_CHOICES = (
 	('Single Knockout',(
@@ -159,6 +164,7 @@ class Animal(models.Model):
     Rack_Position = models.CharField(max_length = 15, blank = True)
     Strain = models.ForeignKey(Strain)
     Background = models.CharField(max_length = 25, choices = BACKGROUND_CHOICES)
+    background = models.ForeignKey('Background', blank=True, null=True)
     Genotype = models.CharField(max_length = 15, choices = GENOTYPE_CHOICES, default = 'N.D.')
     Gender = models.CharField(max_length = 5, choices = GENDER_CHOICES, default = 'N.D.')
     Born = models.DateField(blank = True, null=True)
@@ -236,6 +242,38 @@ class Animal(models.Model):
 
     class Meta:
         ordering = ['Born',]
+        
+class Background(models.Model):
+    """This model stores information about a mouse's genetic background.
+    
+    The background is distinct from the genotype and is based on the other genetic elements other than the specific genome.  
+    As soon as an animal is bred against a mouse of pure background (for example C57BL/6J) for the purposes of tracking it is now considered to be of that background (with backcross set to 1 in the Animal model).
+    This will increment by one for each future backcross.  This is important since an animal which has been back-crossed only one time is now only ~50% back-crossed.
+    If there is no effort being made to back-cross the strain, mark the animals as Mixed background.
+    This model contains fields for a background name, a slugfield for that background and optional fields for a link to the origin of this background and notes.
+    This model factors out the previously hardcoded background field in the Animal model and allows for more user control of background information.
+    The slug field is automatically generated upon saving from the name field."""
+    
+    name = models.CharField(max_length=50)
+    slug = models.SlugField(blank=True, null=True, help_text="This will be automatically populated upon saving", editable = False)
+    link = models.URLField(blank=True, null=True, help_text="Webpage for details of this background")
+    notes = models.TextField(max_length=500, help_text="Enter any notes about this background, if this background is mixed, then enter the approximate proportions of the strains being mixed.")
+    
+    def __unicode__(self):
+        """The unicode representation for a background is its name."""
+        return u'%s'  %self.name
+
+    @models.permalink
+    def get_absolute_url(self):
+        """The absolute_url for these models is the background-detail page."""
+        return ('background-detail', [str(self.slug)])
+        
+    def save(self):
+        """The slug field is over-ridden with a unique slugfield derived from the name field."""
+        if not self.id:
+            # replace self.name with your prepopulate_from field
+            self.slug = SlugifyUniquely(self.name, self.__class__)
+        super(self.__class__, self).save()       
 
 class Breeding(models.Model):
     """This data model stores information about a particular breeding set

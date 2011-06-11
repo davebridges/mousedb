@@ -97,6 +97,18 @@ class StrainDetailAll(StrainDetail):
         context['active'] = False        
         return context      
         
+class StrainBackgroundDetail(StrainDetail):
+    """This view shows the standard (alive/active only) strain detail pages filtered by specified backgrounds."""
+    pass
+    
+class StrainBackgroundDetailAll(StrainDetailAll):
+    """This view shows the full strain detail page, filtered by specified backgrounds."""
+    pass
+    
+class BackgroundDetail(StrainDetail):
+    """This view shows the strain detail pages, but instead of showing just the strain, shows all animals with a specified background."""
+    pass
+        
 
 class BreedingDetail(ProtectedDetailView):
     """This view displays specific details about a breeding set.
