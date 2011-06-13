@@ -24,12 +24,12 @@ def animals_by_cage(request, cage_number):
 		
 urlpatterns = patterns('',
 	url(r'^/?$', limited_object_list, {
-		'queryset': Animal.objects.values('Cage', 'Strain__Strain', 'Strain__Strain_slug', 'Rack', 'Rack_Position', 'Alive').filter(Alive=True).order_by('Cage').distinct().filter(Alive='True'),
+		'queryset': Animal.objects.values('Cage', 'Strain__Strain', 'Strain__Strain_slug', 'Background', 'Rack', 'Rack_Position', 'Alive').filter(Alive=True).order_by('Cage').distinct().filter(Alive='True'),
 		'template_name': 'cage_list.html',
 		'template_object_name': 'cage',
 		}, name="cage-list"),
 	url(r'^all/?$', limited_object_list, {
-		'queryset': Animal.objects.values("Cage", "Strain__Strain","Strain__Strain_slug", "Rack", "Rack_Position", "Alive").order_by('Cage').distinct(),
+		'queryset': Animal.objects.values("Cage", "Strain__Strain","Strain__Strain_slug", "Background", "Rack", "Rack_Position", "Alive").order_by('Cage').distinct(),
 		'template_name': 'cage_list.html',
 		'template_object_name': 'cage',
 		'extra_context': {'all_cages':True}
