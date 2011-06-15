@@ -20,7 +20,7 @@ from mousedb.views import ProtectedListView, ProtectedDetailView, RestrictedCrea
 
 from mousedb.animal.models import Animal, Strain, Breeding
 from mousedb.data.models import Measurement
-from mousedb.animal.forms import MultipleAnimalForm, MultipleBreedingAnimalForm
+from mousedb.animal.forms import MultipleAnimalForm, MultipleBreedingAnimalForm, BreedingForm
 
 class AnimalDetailView(ProtectedDetailView):
     """This view displays specific details about an animal.
@@ -161,6 +161,7 @@ class BreedingCreate(RestrictedCreateView):
     This permission restricted view takes a url in the form */breeding/new* and generates an empty plugevents_form.html."""
     
     model = Breeding
+    form_class = BreedingForm
     template_name = 'breeding_form.html'
     
 class BreedingUpdate(RestrictedUpdateView):
@@ -169,6 +170,7 @@ class BreedingUpdate(RestrictedUpdateView):
     This permission restricted view takes a url in the form */breeding/#/edit* and generates a plugevents_form.html with that object."""
     
     model = Breeding
+    form_class = BreedingForm    
     template_name = 'breeding_form.html'
     context_object_name = 'breeding'    
 
