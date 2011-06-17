@@ -206,6 +206,8 @@ class Animal(models.Model):
                 type = "non-resident-breeder"                
         except IndexError:
             type = "unknown-breeder"
+        except ValueError:
+            type = "unknown-breeder"
         return type	 
         
     def breeding_female_location_type(self):
@@ -221,6 +223,8 @@ class Animal(models.Model):
                 type = "non-resident-breeder"                
         except IndexError:
             type = "unknown-breeder"
+        except ValueError:
+            type = "unknown-breeder"            
         return type	         
       
 
