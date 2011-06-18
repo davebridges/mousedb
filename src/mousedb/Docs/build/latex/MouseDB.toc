@@ -55,19 +55,19 @@
 \contentsline {subsection}{\numberline {6.3.4}Models}{25}{subsection.6.3.4}
 \contentsline {subsection}{\numberline {6.3.5}Forms}{28}{subsection.6.3.5}
 \contentsline {subsection}{\numberline {6.3.6}Views and URLs}{29}{subsection.6.3.6}
-\contentsline {subsection}{\numberline {6.3.7}Administrative Site Configuration}{31}{subsection.6.3.7}
-\contentsline {subsection}{\numberline {6.3.8}Test Files}{32}{subsection.6.3.8}
-\contentsline {section}{\numberline {6.4}Timed Mating Package}{35}{section.6.4}
-\contentsline {subsection}{\numberline {6.4.1}Models}{35}{subsection.6.4.1}
-\contentsline {subsection}{\numberline {6.4.2}Forms}{36}{subsection.6.4.2}
-\contentsline {subsection}{\numberline {6.4.3}Views and URLs}{36}{subsection.6.4.3}
-\contentsline {subsection}{\numberline {6.4.4}Administrative Site Configuration}{37}{subsection.6.4.4}
-\contentsline {subsection}{\numberline {6.4.5}Test Files}{37}{subsection.6.4.5}
-\contentsline {section}{\numberline {6.5}Groups Package}{39}{section.6.5}
-\contentsline {subsection}{\numberline {6.5.1}Models}{39}{subsection.6.5.1}
-\contentsline {subsection}{\numberline {6.5.2}Views and URLs}{39}{subsection.6.5.2}
-\contentsline {subsection}{\numberline {6.5.3}Administrative Site Configuration}{39}{subsection.6.5.3}
-\contentsline {subsection}{\numberline {6.5.4}Test Files}{40}{subsection.6.5.4}
-\contentsline {chapter}{\numberline {7}Indices and tables}{41}{chapter.7}
-\contentsline {chapter}{Python Module Index}{43}{section*.384}
-\contentsline {chapter}{Index}{45}{section*.385}
+\contentsline {subsection}{\numberline {6.3.7}Administrative Site Configuration}{34}{subsection.6.3.7}
+\contentsline {subsection}{\numberline {6.3.8}Test Files}{35}{subsection.6.3.8}
+\contentsline {section}{\numberline {6.4}Timed Mating Package}{39}{section.6.4}
+\contentsline {subsection}{\numberline {6.4.1}Models}{39}{subsection.6.4.1}
+\contentsline {subsection}{\numberline {6.4.2}Forms}{40}{subsection.6.4.2}
+\contentsline {subsection}{\numberline {6.4.3}Views and URLs}{40}{subsection.6.4.3}
+\contentsline {subsection}{\numberline {6.4.4}Administrative Site Configuration}{41}{subsection.6.4.4}
+\contentsline {subsection}{\numberline {6.4.5}Test Files}{41}{subsection.6.4.5}
+\contentsline {section}{\numberline {6.5}Groups Package}{43}{section.6.5}
+\contentsline {subsection}{\numberline {6.5.1}Models}{43}{subsection.6.5.1}
+\contentsline {subsection}{\numberline {6.5.2}Views and URLs}{43}{subsection.6.5.2}
+\contentsline {subsection}{\numberline {6.5.3}Administrative Site Configuration}{43}{subsection.6.5.3}
+\contentsline {subsection}{\numberline {6.5.4}Test Files}{44}{subsection.6.5.4}
+\contentsline {chapter}{\numberline {7}Indices and tables}{45}{chapter.7}
+\contentsline {chapter}{Python Module Index}{47}{section*.435}
+\contentsline {chapter}{Index}{49}{section*.436}

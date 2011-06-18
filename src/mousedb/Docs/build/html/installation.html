@@ -138,8 +138,8 @@ WSGIScriptAlias /mousedb /usr/src/mousedb/bin/django.wsgi</pre>
 django schemamigration data --initial
 django schemamigration groups --initial
 django schemamigration timed_mating --initial
-django migrate
-django syncdb</pre>
+django syncdb
+django migrate</pre>
 </div>
 <p>Future schema changes (se the UPGRADE_NOTES.rst file for whether this is necessary) are accomplished by entering:</p>
 <div class="highlight-python"><pre>django schemamigration &lt;INDICATED_APP&gt; --auto

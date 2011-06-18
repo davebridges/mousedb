@@ -12,7 +12,7 @@
 
 
 \title{MouseDB Documentation}
-\date{May 22, 2011}
+\date{June 18, 2011}
 \release{0.2.1dev}
 \author{Dave Bridges, Ph.D.}
 \newcommand{\sphinxlogo}{}
@@ -311,8 +311,8 @@ django schemamigration animal --initial
 django schemamigration data --initial
 django schemamigration groups --initial
 django schemamigration timed@_mating --initial
-django migrate
 django syncdb
+django migrate
 \end{Verbatim}
 
 Future schema changes (se the UPGRADE\_NOTES.rst file for whether this is necessary) are accomplished by entering:
@@ -2533,7 +2533,480 @@ alias of \code{Animal}
 \index{mousedb.animal.views (module)}
 These views define template redirects for the animal app.
 
-This module contains only non-generic views.  Several generic views are also used and are defined in animal/urls/.
+This module contains all views for this app as class based views.
+
+\index{AnimalCreate (class in mousedb.animal.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.AnimalCreate}\pysiglinewithargsret{\strong{class }\code{mousedb.animal.views.}\bfcode{AnimalCreate}}{\emph{**kwargs}}{}
+Bases: \code{django.views.generic.edit.CreateView}
+
+This class generates the animal-new view.
+
+This permission restricted view takes a url in the form \emph{/animal/new} and generates an empty animal\_form.html.
+This view is restricted to those with the animal.create\_animal permission.
+
+\index{dispatch() (mousedb.animal.views.AnimalCreate method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.AnimalCreate.dispatch}\pysiglinewithargsret{\bfcode{dispatch}}{\emph{*args}, \emph{**kwargs}}{}
+This decorator sets this view to have restricted permissions.
+
+\end{fulllineitems}
+
+
+\index{form\_class (mousedb.animal.views.AnimalCreate attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.AnimalCreate.form_class}\pysigline{\bfcode{form\_class}}{}
+alias of \code{AnimalForm}
+
+\end{fulllineitems}
+
+
+\index{model (mousedb.animal.views.AnimalCreate attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.AnimalCreate.model}\pysigline{\bfcode{model}}{}
+alias of \code{Animal}
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{AnimalDelete (class in mousedb.animal.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.AnimalDelete}\pysiglinewithargsret{\strong{class }\code{mousedb.animal.views.}\bfcode{AnimalDelete}}{\emph{**kwargs}}{}
+Bases: \code{django.views.generic.edit.DeleteView}
+
+This class generates the animal-delete view.
+
+This permission restricted view takes a url in the form \emph{/animal/\#/delete} and passes that object to the confirm\_delete.html page.
+This view is restricted to those with the animal.delete\_animal permission.
+
+\index{dispatch() (mousedb.animal.views.AnimalDelete method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.AnimalDelete.dispatch}\pysiglinewithargsret{\bfcode{dispatch}}{\emph{*args}, \emph{**kwargs}}{}
+This decorator sets this view to have restricted permissions.
+
+\end{fulllineitems}
+
+
+\index{model (mousedb.animal.views.AnimalDelete attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.AnimalDelete.model}\pysigline{\bfcode{model}}{}
+alias of \code{Animal}
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{AnimalDetail (class in mousedb.animal.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.AnimalDetail}\pysiglinewithargsret{\strong{class }\code{mousedb.animal.views.}\bfcode{AnimalDetail}}{\emph{**kwargs}}{}
+Bases: {\hyperref[api:mousedb.views.ProtectedDetailView]{\code{mousedb.views.ProtectedDetailView}}}
+
+This view displays specific details about an animal as the animal-detail.
+
+It takes a request in the form \emph{animal/(id)}, \emph{mice/(id)} or \emph{mouse/(id)} and renders the detail page for that mouse.  The request is defined for id not MouseID (or barcode) because this allows for details to be displayed for mice without barcode identification.
+Therefore care must be taken that animal/4932 is id=4932 and not barcode=4932.  The animal name is defined at the top of the page.
+This page is restricted to logged-in users.
+
+\index{model (mousedb.animal.views.AnimalDetail attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.AnimalDetail.model}\pysigline{\bfcode{model}}{}
+alias of \code{Animal}
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{AnimalList (class in mousedb.animal.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.AnimalList}\pysiglinewithargsret{\strong{class }\code{mousedb.animal.views.}\bfcode{AnimalList}}{\emph{**kwargs}}{}
+Bases: {\hyperref[api:mousedb.views.ProtectedListView]{\code{mousedb.views.ProtectedListView}}}
+
+This view generates a list of animals as animal-list
+
+This view responds to a url in the form \emph{/animal}
+It sends a variable animal containing all animals to animal\_list.html.
+This view is login protected.
+
+\index{model (mousedb.animal.views.AnimalList attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.AnimalList.model}\pysigline{\bfcode{model}}{}
+alias of \code{Animal}
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{AnimalListAlive (class in mousedb.animal.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.AnimalListAlive}\pysiglinewithargsret{\strong{class }\code{mousedb.animal.views.}\bfcode{AnimalListAlive}}{\emph{**kwargs}}{}
+Bases: {\hyperref[api:mousedb.animal.views.AnimalList]{\code{mousedb.animal.views.AnimalList}}}
+
+This view generates a list of alive animals or animal-list-alive.
+
+The main use for this view is to take a url in the form \emph{/animal/all} and to return a list of all alive animals to animal\_list.html in the context animal.  It also adds an extra context variable, ``list type'' as Alive.  
+This view is login protected.
+
+\index{get\_context\_data() (mousedb.animal.views.AnimalListAlive method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.AnimalListAlive.get_context_data}\pysiglinewithargsret{\bfcode{get\_context\_data}}{\emph{**kwargs}}{}
+This add in the context of list\_type and returns this as Alive.
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{AnimalUpdate (class in mousedb.animal.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.AnimalUpdate}\pysiglinewithargsret{\strong{class }\code{mousedb.animal.views.}\bfcode{AnimalUpdate}}{\emph{**kwargs}}{}
+Bases: \code{django.views.generic.edit.UpdateView}
+
+This class generates the animal-edit view.
+
+This permission restricted view takes a url in the form \emph{/animal/\#/edit} and generates a animal\_form.html with that object.
+This view is restricted to those with the animal.update\_animal permission.
+
+\index{dispatch() (mousedb.animal.views.AnimalUpdate method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.AnimalUpdate.dispatch}\pysiglinewithargsret{\bfcode{dispatch}}{\emph{*args}, \emph{**kwargs}}{}
+This decorator sets this view to have restricted permissions.
+
+\end{fulllineitems}
+
+
+\index{form\_class (mousedb.animal.views.AnimalUpdate attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.AnimalUpdate.form_class}\pysigline{\bfcode{form\_class}}{}
+alias of \code{AnimalForm}
+
+\end{fulllineitems}
+
+
+\index{model (mousedb.animal.views.AnimalUpdate attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.AnimalUpdate.model}\pysigline{\bfcode{model}}{}
+alias of \code{Animal}
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{BreedingCreate (class in mousedb.animal.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.BreedingCreate}\pysiglinewithargsret{\strong{class }\code{mousedb.animal.views.}\bfcode{BreedingCreate}}{\emph{**kwargs}}{}
+Bases: {\hyperref[api:mousedb.views.RestrictedCreateView]{\code{mousedb.views.RestrictedCreateView}}}
+
+This class generates the breeding-new view.
+
+This permission restricted view takes a url in the form \emph{/breeding/new} and generates an empty plugevents\_form.html.
+
+\index{form\_class (mousedb.animal.views.BreedingCreate attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.BreedingCreate.form_class}\pysigline{\bfcode{form\_class}}{}
+alias of \code{BreedingForm}
+
+\end{fulllineitems}
+
+
+\index{model (mousedb.animal.views.BreedingCreate attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.BreedingCreate.model}\pysigline{\bfcode{model}}{}
+alias of \code{Breeding}
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{BreedingDelete (class in mousedb.animal.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.BreedingDelete}\pysiglinewithargsret{\strong{class }\code{mousedb.animal.views.}\bfcode{BreedingDelete}}{\emph{**kwargs}}{}
+Bases: {\hyperref[api:mousedb.views.RestrictedDeleteView]{\code{mousedb.views.RestrictedDeleteView}}}
+
+This class generates the breeding-delete view.
+
+This permission restricted view takes a url in the form \emph{/breeding/\#/delete} and passes that object to the confirm\_delete.html page.
+
+\index{model (mousedb.animal.views.BreedingDelete attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.BreedingDelete.model}\pysigline{\bfcode{model}}{}
+alias of \code{Breeding}
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{BreedingDetail (class in mousedb.animal.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.BreedingDetail}\pysiglinewithargsret{\strong{class }\code{mousedb.animal.views.}\bfcode{BreedingDetail}}{\emph{**kwargs}}{}
+Bases: {\hyperref[api:mousedb.views.ProtectedDetailView]{\code{mousedb.views.ProtectedDetailView}}}
+
+This view displays specific details about a breeding set.
+
+It takes a request in the form \emph{/breeding/(breeding\_id)} and renders the detail page for that breeding set.
+The breeding\_id refers to the background id of the breeding set, and not the breeding cage barcode.
+This page is restricted to logged-in users.
+
+\index{model (mousedb.animal.views.BreedingDetail attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.BreedingDetail.model}\pysigline{\bfcode{model}}{}
+alias of \code{Breeding}
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{BreedingList (class in mousedb.animal.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.BreedingList}\pysiglinewithargsret{\strong{class }\code{mousedb.animal.views.}\bfcode{BreedingList}}{\emph{**kwargs}}{}
+Bases: {\hyperref[api:mousedb.views.ProtectedListView]{\code{mousedb.views.ProtectedListView}}}
+
+This class generates an object list for active Breeding objects.
+
+This login protected view takes all Breeding objects and sends them to strain\_list.html as a strain\_list dictionary.  It also passes a strain\_list\_alive and cages dictionary to show the numbers for total cages and total strains.
+The url for this view is \emph{/strain/}
+
+\index{get\_context\_data() (mousedb.animal.views.BreedingList method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.BreedingList.get_context_data}\pysiglinewithargsret{\bfcode{get\_context\_data}}{\emph{**kwargs}}{}
+This adds into the context of breeding\_type and sets it to Active.
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{BreedingListAll (class in mousedb.animal.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.BreedingListAll}\pysiglinewithargsret{\strong{class }\code{mousedb.animal.views.}\bfcode{BreedingListAll}}{\emph{**kwargs}}{}
+Bases: {\hyperref[api:mousedb.animal.views.BreedingList]{\code{mousedb.animal.views.BreedingList}}}
+
+This class generates a view for all breeding objects.
+
+This class is a subclass of BreedingList, changing the queryset and the  breeding\_type context.
+
+\index{get\_context\_data() (mousedb.animal.views.BreedingListAll method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.BreedingListAll.get_context_data}\pysiglinewithargsret{\bfcode{get\_context\_data}}{\emph{**kwargs}}{}
+This add in the context of breeding\_type and sets it to All.
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{BreedingListTimedMating (class in mousedb.animal.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.BreedingListTimedMating}\pysiglinewithargsret{\strong{class }\code{mousedb.animal.views.}\bfcode{BreedingListTimedMating}}{\emph{**kwargs}}{}
+Bases: {\hyperref[api:mousedb.animal.views.BreedingList]{\code{mousedb.animal.views.BreedingList}}}
+
+This class generates a view for breeding objects, showing only timed mating cages.
+
+This class is a subclass of BreedingList, changing the queryset and the  breeding\_type context.
+
+\index{get\_context\_data() (mousedb.animal.views.BreedingListTimedMating method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.BreedingListTimedMating.get_context_data}\pysiglinewithargsret{\bfcode{get\_context\_data}}{\emph{**kwargs}}{}
+This add in the context of breeding\_type and sets it to Timed\_Matings.
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{BreedingUpdate (class in mousedb.animal.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.BreedingUpdate}\pysiglinewithargsret{\strong{class }\code{mousedb.animal.views.}\bfcode{BreedingUpdate}}{\emph{**kwargs}}{}
+Bases: {\hyperref[api:mousedb.views.RestrictedUpdateView]{\code{mousedb.views.RestrictedUpdateView}}}
+
+This class generates the breeding-edit view.
+
+This permission restricted view takes a url in the form \emph{/breeding/\#/edit} and generates a breeding\_form.html with that object.
+
+\index{form\_class (mousedb.animal.views.BreedingUpdate attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.BreedingUpdate.form_class}\pysigline{\bfcode{form\_class}}{}
+alias of \code{BreedingForm}
+
+\end{fulllineitems}
+
+
+\index{model (mousedb.animal.views.BreedingUpdate attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.BreedingUpdate.model}\pysigline{\bfcode{model}}{}
+alias of \code{Breeding}
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{StrainCreate (class in mousedb.animal.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.StrainCreate}\pysiglinewithargsret{\strong{class }\code{mousedb.animal.views.}\bfcode{StrainCreate}}{\emph{**kwargs}}{}
+Bases: \code{django.views.generic.edit.CreateView}
+
+This class generates the strain-new view.
+
+This permission restricted view takes a url in the form \emph{/strain/new} and generates an empty strain\_form.html.
+This view is restricted to those with the animal.create\_strain permission.
+
+\index{dispatch() (mousedb.animal.views.StrainCreate method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.StrainCreate.dispatch}\pysiglinewithargsret{\bfcode{dispatch}}{\emph{*args}, \emph{**kwargs}}{}
+This decorator sets this view to have restricted permissions.
+
+\end{fulllineitems}
+
+
+\index{model (mousedb.animal.views.StrainCreate attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.StrainCreate.model}\pysigline{\bfcode{model}}{}
+alias of \code{Strain}
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{StrainDelete (class in mousedb.animal.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.StrainDelete}\pysiglinewithargsret{\strong{class }\code{mousedb.animal.views.}\bfcode{StrainDelete}}{\emph{**kwargs}}{}
+Bases: \code{django.views.generic.edit.DeleteView}
+
+This class generates the strain-delete view.
+
+This permission restricted view takes a url in the form \emph{/strain/\#/delete} and passes that object to the confirm\_delete.html page.
+This view is restricted to those with the animal.delete\_strain permission.
+
+\index{dispatch() (mousedb.animal.views.StrainDelete method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.StrainDelete.dispatch}\pysiglinewithargsret{\bfcode{dispatch}}{\emph{*args}, \emph{**kwargs}}{}
+This decorator sets this view to have restricted permissions.
+
+\end{fulllineitems}
+
+
+\index{model (mousedb.animal.views.StrainDelete attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.StrainDelete.model}\pysigline{\bfcode{model}}{}
+alias of \code{Strain}
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{StrainDetail (class in mousedb.animal.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.StrainDetail}\pysiglinewithargsret{\strong{class }\code{mousedb.animal.views.}\bfcode{StrainDetail}}{\emph{**kwargs}}{}
+Bases: {\hyperref[api:mousedb.views.ProtectedDetailView]{\code{mousedb.views.ProtectedDetailView}}}
+
+This view displays specific details about a strain showing \emph{only current} related objects.
+
+It takes a request in the form \emph{strain/(strain\_slug)/} and renders the detail page for that strain.
+This view also passes along a dictionary of alive animals belonging to that strain.
+This page is restricted to logged-in users.
+
+\index{get\_context\_data() (mousedb.animal.views.StrainDetail method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.StrainDetail.get_context_data}\pysiglinewithargsret{\bfcode{get\_context\_data}}{\emph{**kwargs}}{}
+This add in the context of strain\_list\_alive (which filters for only alive animals and active) and cages which filters for the number of current cages.
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{StrainDetailAll (class in mousedb.animal.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.StrainDetailAll}\pysiglinewithargsret{\strong{class }\code{mousedb.animal.views.}\bfcode{StrainDetailAll}}{\emph{**kwargs}}{}
+Bases: {\hyperref[api:mousedb.animal.views.StrainDetail]{\code{mousedb.animal.views.StrainDetail}}}
+
+This view displays specific details about a strain showing \emph{all} related objects.
+
+This view subclasses StrainDetail and modifies the get\_context\_data to show associated active objects.
+It takes a request in the form \emph{strain/(strain\_slug)/all} and renders the detail page for that strain.
+This view also passes along a dictionary of alive animals belonging to that strain.
+This page is restricted to logged-in users.
+
+\index{get\_context\_data() (mousedb.animal.views.StrainDetailAll method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.StrainDetailAll.get_context_data}\pysiglinewithargsret{\bfcode{get\_context\_data}}{\emph{**kwargs}}{}
+This adds into the context of strain\_list\_all (which filters for all alive animals and active cages) and cages which filters for the number of current cages.
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
 
 \index{StrainList (class in mousedb.animal.views)}
 
@@ -2550,6 +3023,8 @@ The url for this view is \textbf{/strain/}
 
 \begin{fulllineitems}
 \phantomsection\label{api:mousedb.animal.views.StrainList.get_context_data}\pysiglinewithargsret{\bfcode{get\_context\_data}}{\emph{**kwargs}}{}
+This add in the context of strain\_list\_alive (which filters for all alive animals) and cages which filters for the number of current cages.
+
 \end{fulllineitems}
 
 
@@ -2565,15 +3040,34 @@ alias of \code{Strain}
 \end{fulllineitems}
 
 
-\index{animal\_detail() (in module mousedb.animal.views)}
+\index{StrainUpdate (class in mousedb.animal.views)}
 
 \begin{fulllineitems}
-\phantomsection\label{api:mousedb.animal.views.animal_detail}\pysiglinewithargsret{\code{mousedb.animal.views.}\bfcode{animal\_detail}}{\emph{request}, \emph{*args}, \emph{**kwargs}}{}
-This view displays specific details about an animal.
+\phantomsection\label{api:mousedb.animal.views.StrainUpdate}\pysiglinewithargsret{\strong{class }\code{mousedb.animal.views.}\bfcode{StrainUpdate}}{\emph{**kwargs}}{}
+Bases: \code{django.views.generic.edit.UpdateView}
 
-It takes a request in the form animal/(id)/, mice/(id) or mouse/(id)/ and renders the detail page for that mouse.  The request is defined for id not MouseID (or barcode) because this allows for details to be displayed for mice without barcode identification.
-Therefore care must be taken that animal/4932 is id=4932 and not barcode=4932.  The animal name is defined at the top of the page.
-This page is restricted to logged-in users.
+This class generates the strain-edit view.
+
+This permission restricted view takes a url in the form \emph{/strain/\#/edit} and generates a strain\_form.html with that object.
+This view is restricted to those with the animal.update\_strain permission.
+
+\index{dispatch() (mousedb.animal.views.StrainUpdate method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.StrainUpdate.dispatch}\pysiglinewithargsret{\bfcode{dispatch}}{\emph{*args}, \emph{**kwargs}}{}
+This decorator sets this view to have restricted permissions.
+
+\end{fulllineitems}
+
+
+\index{model (mousedb.animal.views.StrainUpdate attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.StrainUpdate.model}\pysigline{\bfcode{model}}{}
+alias of \code{Strain}
+
+\end{fulllineitems}
+
 
 \end{fulllineitems}
 
@@ -2588,20 +3082,6 @@ This view typically is used to modify existing pups.  This might include marking
 It takes a request in the form /breeding/(breeding\_id)/change/ and returns a form specific to the breeding set defined in breeding\_id.  breeding\_id is the background identification number of the breeding set and does not refer to the barcode of any breeding cage.
 This view returns a formset in which one row represents one animal.  To add extra animals to a breeding set use /breeding/(breeding\_id)/pups/.
 This view is restricted to those with the permission animal.change\_animal.
-
-\end{fulllineitems}
-
-
-\index{breeding\_detail() (in module mousedb.animal.views)}
-
-\begin{fulllineitems}
-\phantomsection\label{api:mousedb.animal.views.breeding_detail}\pysiglinewithargsret{\code{mousedb.animal.views.}\bfcode{breeding\_detail}}{\emph{request}, \emph{*args}, \emph{**kwargs}}{}
-This view displays specific details about a breeding set.
-
-It takes a request in the form /breeding/(breeding\_id)/all and renders the detail page for that breeding set.
-The breeding\_id refers to the background id of the breeding set, and not the breeding cage barcode.
-This view also passes along a dictionary of all pups belonging to that breeding set.
-This page is restricted to logged-in users.
 
 \end{fulllineitems}
 
@@ -2669,32 +3149,6 @@ It will generate a form containing animal information and a number of mice.  It 
 \end{fulllineitems}
 
 
-\index{strain\_detail() (in module mousedb.animal.views)}
-
-\begin{fulllineitems}
-\phantomsection\label{api:mousedb.animal.views.strain_detail}\pysiglinewithargsret{\code{mousedb.animal.views.}\bfcode{strain\_detail}}{\emph{request}, \emph{*args}, \emph{**kwargs}}{}
-This view displays specific details about a strain.
-
-It takes a request in the form strain/(strain\_slug)/ and renders the detail page for that strain.
-This view also passes along a dictionary of alive animals belonging to that strain.
-This page is restricted to logged-in users.
-
-\end{fulllineitems}
-
-
-\index{strain\_detail\_all() (in module mousedb.animal.views)}
-
-\begin{fulllineitems}
-\phantomsection\label{api:mousedb.animal.views.strain_detail_all}\pysiglinewithargsret{\code{mousedb.animal.views.}\bfcode{strain\_detail\_all}}{\emph{request}, \emph{*args}, \emph{**kwargs}}{}
-This view displays specific details about a strain.
-
-It takes a request in the form /strain/(strain\_slug)/all and renders the detail page for that strain.
-This view also passes along a dictionary of all animals belonging to that strain.
-This page is restricted to logged-in users.
-
-\end{fulllineitems}
-
-
 \index{todo() (in module mousedb.animal.views)}
 
 \begin{fulllineitems}
@@ -2707,6 +3161,11 @@ The login restricted view passes lists for ear tagging, genotyping and weaning a
 
 \phantomsection\label{api:module-mousedb.animal.urls}
 \index{mousedb.animal.urls (module)}
+This package contains all url dispatchers for the animal app.
+
+It is broken down into animal, strain, breeding, cage and date url dispatchers for clarity.
+Each of these takes a different subfolder directive (ie the animal module is for \emph{/animal...} requests.
+
 
 \subsection{Administrative Site Configuration}
 \label{api:id6}\phantomsection\label{api:module-mousedb.animal.admin}
@@ -2877,6 +3336,97 @@ This is a test for creating a new animal object, with only the minimum fields be
 \end{fulllineitems}
 
 
+\index{AnimalViewTests (class in mousedb.animal.tests)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.tests.AnimalViewTests}\pysiglinewithargsret{\strong{class }\code{mousedb.animal.tests.}\bfcode{AnimalViewTests}}{\emph{methodName='runTest'}}{}
+Bases: \code{django.test.testcases.TestCase}
+
+Tests the views associated with animal objects.
+
+\index{setUp() (mousedb.animal.tests.AnimalViewTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.tests.AnimalViewTests.setUp}\pysiglinewithargsret{\bfcode{setUp}}{}{}
+Instantiate the test client.  Creates a test user.
+
+\end{fulllineitems}
+
+
+\index{tearDown() (mousedb.animal.tests.AnimalViewTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.tests.AnimalViewTests.tearDown}\pysiglinewithargsret{\bfcode{tearDown}}{}{}
+Depopulate created model instances from test database.
+
+\end{fulllineitems}
+
+
+\index{test\_animal\_delete() (mousedb.animal.tests.AnimalViewTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.tests.AnimalViewTests.test_animal_delete}\pysiglinewithargsret{\bfcode{test\_animal\_delete}}{}{}
+This test checks the view which displays an animal deletion page.
+
+It checks for the correct templates and status code and that the animal is passed correctly to the context.
+
+\end{fulllineitems}
+
+
+\index{test\_animal\_detail() (mousedb.animal.tests.AnimalViewTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.tests.AnimalViewTests.test_animal_detail}\pysiglinewithargsret{\bfcode{test\_animal\_detail}}{}{}
+This tests the animal-detail view, ensuring that templates are loaded correctly.
+
+This view uses a user with superuser permissions so does not test the permission levels for this view.
+
+\end{fulllineitems}
+
+
+\index{test\_animal\_edit() (mousedb.animal.tests.AnimalViewTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.tests.AnimalViewTests.test_animal_edit}\pysiglinewithargsret{\bfcode{test\_animal\_edit}}{}{}
+This test checks the view which displays a animal edit page.
+
+It checks for the correct templates and status code and that the animal is passed correctly to the context.
+
+\end{fulllineitems}
+
+
+\index{test\_animal\_list() (mousedb.animal.tests.AnimalViewTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.tests.AnimalViewTests.test_animal_list}\pysiglinewithargsret{\bfcode{test\_animal\_list}}{}{}
+This test checks the view which displays a breeding list page showing active animals.  It checks for the correct templates and status code.
+
+\end{fulllineitems}
+
+
+\index{test\_animal\_list\_all() (mousedb.animal.tests.AnimalViewTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.tests.AnimalViewTests.test_animal_list_all}\pysiglinewithargsret{\bfcode{test\_animal\_list\_all}}{}{}
+This test checks the view which displays a breeding list page showing all animals.  It checks for the correct templates and status code.
+
+\end{fulllineitems}
+
+
+\index{test\_animal\_new() (mousedb.animal.tests.AnimalViewTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.tests.AnimalViewTests.test_animal_new}\pysiglinewithargsret{\bfcode{test\_animal\_new}}{}{}
+This test checks the view which displays a new animal.
+
+It checks for the correct templates and status code.
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
 \index{BreedingModelTests (class in mousedb.animal.tests)}
 
 \begin{fulllineitems}
@@ -3004,7 +3554,7 @@ This test checks the view which displays a breeding edit page.  It checks for th
 
 \begin{fulllineitems}
 \phantomsection\label{api:mousedb.animal.tests.BreedingViewTests.test_breeding_list}\pysiglinewithargsret{\bfcode{test\_breeding\_list}}{}{}
-This test checks the view which displays a breeding list page.  It checks for the correct templates and status code.
+This test checks the view which displays a breeding list page showing active breeding cages.  It checks for the correct templates and status code.
 
 \end{fulllineitems}
 
@@ -3486,7 +4036,7 @@ alias of \code{PlugEvents}
 \phantomsection\label{api:mousedb.timed_mating.views.PlugEventsDelete}\pysiglinewithargsret{\strong{class }\code{mousedb.timed\_mating.views.}\bfcode{PlugEventsDelete}}{\emph{**kwargs}}{}
 Bases: {\hyperref[api:mousedb.views.RestrictedDeleteView]{\code{mousedb.views.RestrictedDeleteView}}}
 
-This class generates the plugevents-new view.
+This class generates the plugevents-delete view.
 
 This permission restricted view takes a url in the form \textbf{/plugs/\#/delete} and passes that object to the confirm\_delete.html page.
 
