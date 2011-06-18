@@ -1,6 +1,6 @@
 """These views define template redirects for the animal app.
 
-This module contains only non-generic views.  Several generic views are also used and are defined in animal/urls/."""
+This module contains all views for this app as class based views."""
 
 import datetime
 
@@ -13,18 +13,22 @@ from django.db.models import Count
 from django.core import serializers
 from django.core.urlresolvers import reverse
 from django.db.models import Q
+from django.utils.decorators import method_decorator
+from django.views.generic import CreateView, UpdateView, DeleteView
 
 from mousedb.settings import WEAN_AGE, GENOTYPE_AGE
 
 from mousedb.views import ProtectedListView, ProtectedDetailView, RestrictedCreateView, RestrictedUpdateView, RestrictedDeleteView
 
+
 from mousedb.animal.models import Animal, Strain, Breeding
 from mousedb.data.models import Measurement
-from mousedb.animal.forms import MultipleAnimalForm, MultipleBreedingAnimalForm, BreedingForm
+from mousedb.animal.forms import MultipleAnimalForm, MultipleBreedingAnimalForm, BreedingForm, AnimalForm
 
 class AnimalList(ProtectedListView):
-    """This view generates a list of animals.
+    """This view generates a list of animals as animal-list
     
+    This view responds to a url in the form */animal*
     It sends a variable animal containing all animals to animal_list.html.
     This view is login protected."""
     
@@ -33,9 +37,9 @@ class AnimalList(ProtectedListView):
     context_object_name = 'animal_list'
 
 class AnimalListAlive(AnimalList):
-    """This view generates a list of alive animals.
+    """This view generates a list of alive animals or animal-list-alive.
     
-    The main use for this view is to take a url in the form /animal and to return a list of all alive animals to animal_list.html in the context animal.  It also adds an extra context variable, "list type" as Alive.  
+    The main use for this view is to take a url in the form */animal/all* and to return a list of all alive animals to animal_list.html in the context animal.  It also adds an extra context variable, "list type" as Alive.  
     This view is login protected."""
     
     queryset = Animal.objects.filter(Alive=True)
@@ -47,11 +51,10 @@ class AnimalListAlive(AnimalList):
         context['list_type'] = 'Alive'
         return context         
 
-
 class AnimalDetail(ProtectedDetailView):
-    """This view displays specific details about an animal.
+    """This view displays specific details about an animal as the animal-detail.
 	
-    It takes a request in the form animal/(id)/, mice/(id) or mouse/(id)/ and renders the detail page for that mouse.  The request is defined for id not MouseID (or barcode) because this allows for details to be displayed for mice without barcode identification.
+    It takes a request in the form *animal/(id)*, *mice/(id)* or *mouse/(id)* and renders the detail page for that mouse.  The request is defined for id not MouseID (or barcode) because this allows for details to be displayed for mice without barcode identification.
     Therefore care must be taken that animal/4932 is id=4932 and not barcode=4932.  The animal name is defined at the top of the page.
     This page is restricted to logged-in users.
     """
@@ -59,6 +62,53 @@ class AnimalDetail(ProtectedDetailView):
     model = Animal
     template_name = 'animal_detail.html'
     context_object_name = 'animal'
+    
+class AnimalCreate(CreateView):
+    """This class generates the animal-new view.
+
+    This permission restricted view takes a url in the form */animal/new* and generates an empty animal_form.html.
+    This view is restricted to those with the animal.create_animal permission.    """
+    
+    model = Animal
+    form_class = AnimalForm
+    template_name = 'animal_form.html'
+    
+    @method_decorator(permission_required('animal.create_animal'))
+    def dispatch(self, *args, **kwargs):
+        """This decorator sets this view to have restricted permissions."""
+        return super(AnimalCreate, self).dispatch(*args, **kwargs)   
+    
+class AnimalUpdate(UpdateView):
+    """This class generates the animal-edit view.
+
+    This permission restricted view takes a url in the form */animal/#/edit* and generates a animal_form.html with that object.
+    This view is restricted to those with the animal.update_animal permission."""
+    
+    model = Animal
+    form_class = AnimalForm    
+    template_name = 'animal_form.html'
+    context_object_name = 'animal'    
+    
+    @method_decorator(permission_required('animal.update_animal'))
+    def dispatch(self, *args, **kwargs):
+        """This decorator sets this view to have restricted permissions."""
+        return super(AnimalUpdate, self).dispatch(*args, **kwargs)  
+
+class AnimalDelete(DeleteView):
+    """This class generates the animal-delete view.
+
+    This permission restricted view takes a url in the form */animal/#/delete* and passes that object to the confirm_delete.html page.
+    This view is restricted to those with the animal.delete_animal permission."""
+    
+    model = Animal
+    template_name = 'confirm_delete.html'
+    context_object_name = 'animal'    
+    success_url = '/animal/'     
+
+    @method_decorator(permission_required('animal.delete_animal'))
+    def dispatch(self, *args, **kwargs):
+        """This decorator sets this view to have restricted permissions."""
+        return super(AnimalDelete, self).dispatch(*args, **kwargs)    
     
     
 class StrainList(ProtectedListView):
@@ -113,7 +163,7 @@ class StrainDetailAll(StrainDetail):
     """
 
     def get_context_data(self, **kwargs):
-        """This add in the context of strain_list_all (which filters for all alive animals and active cages) and cages which filters for the number of current cages."""
+        """This adds into the context of strain_list_all (which filters for all alive animals and active cages) and cages which filters for the number of current cages."""
         
         strain = super(StrainDetail, self).get_object()
         context = super(StrainDetail, self).get_context_data(**kwargs)
@@ -147,7 +197,7 @@ class BreedingList(ProtectedListView):
     template_name = "breeding_list.html"
 
     def get_context_data(self, **kwargs):
-        """This add in the context of breeding_type and sets it to Active."""
+        """This adds into the context of breeding_type and sets it to Active."""
         
         context = super(BreedingList, self).get_context_data(**kwargs)
         context['breeding_type'] = "Active" 
@@ -193,7 +243,7 @@ class BreedingCreate(RestrictedCreateView):
 class BreedingUpdate(RestrictedUpdateView):
     """This class generates the breeding-edit view.
 
-    This permission restricted view takes a url in the form */breeding/#/edit* and generates a plugevents_form.html with that object."""
+    This permission restricted view takes a url in the form */breeding/#/edit* and generates a breeding_form.html with that object."""
     
     model = Breeding
     form_class = BreedingForm    
@@ -203,7 +253,7 @@ class BreedingUpdate(RestrictedUpdateView):
 class BreedingDelete(RestrictedDeleteView):
     """This class generates the breeding-delete view.
 
-    This permission restricted view takes a url in the form */plugs/#/delete* and passes that object to the confirm_delete.html page."""
+    This permission restricted view takes a url in the form */breeding/#/delete* and passes that object to the confirm_delete.html page."""
     
     model = Breeding
     template_name = 'confirm_delete.html'

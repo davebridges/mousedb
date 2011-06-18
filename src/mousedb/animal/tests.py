@@ -308,6 +308,64 @@ class AnimalViewTests(TestCase):
         null_response = self.client.get('/animal/999')
         self.assertEqual(null_response.status_code, 404)  
         
+    def test_animal_new(self):
+        """This test checks the view which displays a new animal.  
+        
+        It checks for the correct templates and status code."""
+        
+        test_response = self.client.get('/animal/new')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTemplateUsed(test_response, 'base.html')
+        self.assertTemplateUsed(test_response, 'jquery_script.html')
+        self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(test_response, 'animal_form.html')  
+
+    def test_animal_edit(self):
+        """This test checks the view which displays a animal edit page.  
+        
+        It checks for the correct templates and status code and that the animal is passed correctly to the context."""
+        
+        test_response = self.client.get('/animal/1/edit')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTrue('animal' in test_response.context)           
+        self.assertTemplateUsed(test_response, 'base.html')
+        self.assertTemplateUsed(test_response, 'jquery_script.html')
+        self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(test_response, 'animal_form.html')
+        self.assertEqual(test_response.context['animal'].pk, 1)
+        self.assertEqual(test_response.context['animal'].Born, datetime.date(2011,01,01))
+        self.assertEqual(test_response.context['animal'].Cage, 123456) 
+        self.assertEqual(test_response.context['animal'].Background, "Mixed") 
+        self.assertEqual(test_response.context['animal'].Genotype, "-/-") 
+        self.assertEqual(test_response.context['animal'].Strain.Strain, "Fixture Strain")           
+
+        #Checks that an incorrect animal number givs a 404 error.
+        null_response = self.client.get('/animal/999/edit')
+        self.assertEqual(null_response.status_code, 404)          
+
+    def test_animal_delete(self):
+        """This test checks the view which displays an animal deletion page.  
+        
+        It checks for the correct templates and status code and that the animal is passed correctly to the context."""
+        
+        test_response = self.client.get('/animal/1/delete')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTrue('animal' in test_response.context)           
+        self.assertTemplateUsed(test_response, 'base.html')
+        self.assertTemplateUsed(test_response, 'jquery_script.html')
+        self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(test_response, 'confirm_delete.html')
+        self.assertEqual(test_response.context['animal'].pk, 1)
+        self.assertEqual(test_response.context['animal'].Born, datetime.date(2011,01,01))
+        self.assertEqual(test_response.context['animal'].Cage, 123456) 
+        self.assertEqual(test_response.context['animal'].Background, "Mixed") 
+        self.assertEqual(test_response.context['animal'].Genotype, "-/-") 
+        self.assertEqual(test_response.context['animal'].Strain.Strain, "Fixture Strain")           
+        
+        #Checks that an incorrect animal number gives a 404 error.
+        null_response = self.client.get('/animal/999/delete')
+        self.assertEqual(null_response.status_code, 404)         
+        
 class BreedingModelTests(TestCase):
     """Tests the model attributes of Breeding objects contained in the animal app."""
 
