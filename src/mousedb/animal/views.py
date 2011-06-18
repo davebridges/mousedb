@@ -22,7 +22,33 @@ from mousedb.animal.models import Animal, Strain, Breeding
 from mousedb.data.models import Measurement
 from mousedb.animal.forms import MultipleAnimalForm, MultipleBreedingAnimalForm, BreedingForm
 
-class AnimalDetailView(ProtectedDetailView):
+class AnimalList(ProtectedListView):
+    """This view generates a list of animals.
+    
+    It sends a variable animal containing all animals to animal_list.html.
+    This view is login protected."""
+    
+    model = Animal
+    template_name = 'animal_list.html'
+    context_object_name = 'animal_list'
+
+class AnimalListAlive(AnimalList):
+    """This view generates a list of alive animals.
+    
+    The main use for this view is to take a url in the form /animal and to return a list of all alive animals to animal_list.html in the context animal.  It also adds an extra context variable, "list type" as Alive.  
+    This view is login protected."""
+    
+    queryset = Animal.objects.filter(Alive=True)
+        
+    def get_context_data(self, **kwargs):
+        """This add in the context of list_type and returns this as Alive."""
+        
+        context = super(AnimalListAlive, self).get_context_data(**kwargs)
+        context['list_type'] = 'Alive'
+        return context         
+
+
+class AnimalDetail(ProtectedDetailView):
     """This view displays specific details about an animal.
 	
     It takes a request in the form animal/(id)/, mice/(id) or mouse/(id)/ and renders the detail page for that mouse.  The request is defined for id not MouseID (or barcode) because this allows for details to be displayed for mice without barcode identification.

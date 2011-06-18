@@ -246,6 +246,46 @@ class AnimalViewTests(TestCase):
             for obj in model.objects.all():
                 obj.delete()    
     
+    def test_animal_list(self):
+        """This test checks the view which displays a breeding list page showing active animals.  It checks for the correct templates and status code."""        
+
+        response = self.client.get('/animal/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue('animal_list' in response.context)    
+        self.assertEqual(response.context['animal_list'].count(), 1)        
+        self.assertTemplateUsed(response, 'base.html')
+        self.assertTemplateUsed(response, 'jquery_script.html')
+        self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(response, 'animal_list.html')
+        self.assertTemplateUsed(response, 'animal_list_table.html')
+        self.assertTemplateUsed(response, 'sortable_table_script.html')
+        self.assertEqual([animal.pk for animal in response.context['animal_list']][0], 1)        
+        self.assertEqual([animal.Strain.Strain for animal in response.context['animal_list']][0], u'Fixture Strain')     
+        self.assertEqual([animal.Cage for animal in response.context['animal_list']][0], 123456)
+        self.assertEqual([animal.Born for animal in response.context['animal_list']][0], datetime.date(2011,01,01))
+        self.assertEqual([animal.Background for animal in response.context['animal_list']][0], "Mixed")
+        self.assertEqual([animal.Genotype for animal in response.context['animal_list']][0], "-/-")        
+
+    def test_animal_list_all(self):
+        """This test checks the view which displays a breeding list page showing all animals.  It checks for the correct templates and status code."""        
+
+        response = self.client.get('/animal/all/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue('animal_list' in response.context)    
+        self.assertEqual(response.context['animal_list'].count(), 1)        
+        self.assertTemplateUsed(response, 'base.html')
+        self.assertTemplateUsed(response, 'jquery_script.html')
+        self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(response, 'animal_list.html')
+        self.assertTemplateUsed(response, 'animal_list_table.html')
+        self.assertTemplateUsed(response, 'sortable_table_script.html')
+        self.assertEqual([animal.pk for animal in response.context['animal_list']][0], 1)        
+        self.assertEqual([animal.Strain.Strain for animal in response.context['animal_list']][0], u'Fixture Strain')     
+        self.assertEqual([animal.Cage for animal in response.context['animal_list']][0], 123456)
+        self.assertEqual([animal.Born for animal in response.context['animal_list']][0], datetime.date(2011,01,01))
+        self.assertEqual([animal.Background for animal in response.context['animal_list']][0], "Mixed")
+        self.assertEqual([animal.Genotype for animal in response.context['animal_list']][0], "-/-")  
+
     def test_animal_detail(self):
         """This tests the animal-detail view, ensuring that templates are loaded correctly.  
 

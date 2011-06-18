@@ -26,18 +26,9 @@ def delete_animal(*args, **kwargs):
 
 
 urlpatterns = patterns('',
-	url(r'^$', limited_object_list, {
-		'queryset': Animal.objects.filter(Alive=True),
-		'template_name': 'animal_list.html', 
-		'template_object_name': 'animal',
-		'extra_context': {'list_type':'Alive'}	
-		}, name="animal-list"),
-	url(r'all/?$', limited_object_list, {
-		'queryset': Animal.objects.all(),
-		'template_name': 'animal_list.html', 
-		'template_object_name': 'animal',
-		}, name="animal-list-all"),
-	url(r'^(?P<pk>\d*)/?$', views.AnimalDetailView.as_view(), name="animal-detail"),
+    url(r'^$', views.AnimalListAlive.as_view(), name="animal-list"),
+    url(r'^all/$', views.AnimalList.as_view(), name="animal-list-all"),    
+	url(r'^(?P<pk>\d*)/?$', views.AnimalDetail.as_view(), name="animal-detail"),
 	url(r'^new/$', create_animal, {
 		'form_class': AnimalForm, 
 		'template_name': 'animal_form.html', 
