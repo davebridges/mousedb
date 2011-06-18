@@ -172,7 +172,51 @@ class StrainDetailAll(StrainDetail):
         context['cages'] = Animal.objects.filter(Strain=strain).values("Cage").distinct()
         context['active'] = False        
         return context      
-        
+ 
+class StrainCreate(CreateView):
+    """This class generates the strain-new view.
+
+    This permission restricted view takes a url in the form */strain/new* and generates an empty strain_form.html.
+    This view is restricted to those with the animal.create_strain permission.    """
+    
+    model = Strain
+    template_name = 'strain_form.html'
+    
+    @method_decorator(permission_required('animal.create_strain'))
+    def dispatch(self, *args, **kwargs):
+        """This decorator sets this view to have restricted permissions."""
+        return super(StrainCreate, self).dispatch(*args, **kwargs)   
+    
+class StrainUpdate(UpdateView):
+    """This class generates the strain-edit view.
+
+    This permission restricted view takes a url in the form */strain/#/edit* and generates a strain_form.html with that object.
+    This view is restricted to those with the animal.update_strain permission."""
+    
+    model = Strain
+    template_name = 'strain_form.html'
+    context_object_name = 'strain'    
+    
+    @method_decorator(permission_required('animal.update_strain'))
+    def dispatch(self, *args, **kwargs):
+        """This decorator sets this view to have restricted permissions."""
+        return super(StrainUpdate, self).dispatch(*args, **kwargs)  
+
+class StrainDelete(DeleteView):
+    """This class generates the strain-delete view.
+
+    This permission restricted view takes a url in the form */strain/#/delete* and passes that object to the confirm_delete.html page.
+    This view is restricted to those with the animal.delete_strain permission."""
+    
+    model = Strain
+    template_name = 'confirm_delete.html'
+    context_object_name = 'strain'    
+    success_url = '/strain/'     
+
+    @method_decorator(permission_required('animal.delete_strain'))
+    def dispatch(self, *args, **kwargs):
+        """This decorator sets this view to have restricted permissions."""
+        return super(StrainDelete, self).dispatch(*args, **kwargs)  
 
 class BreedingDetail(ProtectedDetailView):
     """This view displays specific details about a breeding set.

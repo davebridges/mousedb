@@ -178,6 +178,7 @@ class StrainViewTests(TestCase):
         """This tests the strain-delete view, ensuring that templates are loaded correctly.  
 
         This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        
         test_response = self.client.get('/strain/1/delete/')
         self.assertEqual(test_response.status_code, 200)
         self.assertTrue('object' in test_response.context)           

@@ -1,40 +1,17 @@
+"""This module is the url dispatcher for strain related views.
+
+It takes the root */strain...* and generates strain-list, strain-new, strain-edit, strain-delete, strain-detail and strain-detail-all views from animal.views."""
+
 from django.conf.urls.defaults import *
-from django.contrib.auth.decorators import permission_required
-from django.views.generic.create_update import create_object, update_object, delete_object
 
 from mousedb.animal import views
-from mousedb.animal.models import Strain
-
-@permission_required('animal.add_strain')
-def create_strain(*args, **kwargs):
-	return create_object(*args, **kwargs)
-
-@permission_required('animal.change_strain')
-def change_strain(*args, **kwargs):
-	return update_object(*args, **kwargs)
-
-@permission_required('animal.delete_strain')
-def delete_strain(*args, **kwargs):
-	return delete_object(*args, **kwargs)
 
 urlpatterns = patterns('',
     url(r'^$', views.StrainList.as_view(), name="strain-list"),
-	url(r'^new/$', create_strain, {
-		'model': Strain, 
-		'template_name': 'strain_form.html', 
-		'login_required':True,
-		}, name="strain-new"),
-	url(r'^(?P<object_id>\d*)/edit/$', change_strain, {
-		'model': Strain, 
-		'template_name': 'strain_form.html', 
-		'login_required':True,
-        'template_object_name': 'strain',
-		}, name="strain-edit"),
-	url(r'^(?P<object_id>\d*)/delete/$', delete_strain, {
-		'model': Strain, 
-		'login_required':True,
-		'template_name':'confirm_delete.html'
-		}, name="strain-delete"),
+	url(r'^new/?$', views.StrainCreate.as_view(), name="strain-new"),
+	url(r'^(?P<pk>\d*)/edit/?$', views.StrainUpdate.as_view(), name="strain-edit"),
+	url(r'^(?P<pk>\d*)/update/?$', views.StrainUpdate.as_view(), name="strain-edit"),    
+	url(r'^(?P<pk>\d*)/delete/?$', views.StrainDelete.as_view(), name="strain-delete"),
     url(r'^(?P<slug>[\w-]+)/all/?$', views.StrainDetailAll.as_view(), name="strain-detail-all"),
     url(r'^(?P<slug>[\w-]+)/?$', views.StrainDetail.as_view(), name="strain-detail"),
 )
