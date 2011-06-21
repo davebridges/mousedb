@@ -18,7 +18,7 @@ from django.views.generic import CreateView, UpdateView, DeleteView
 
 from mousedb.settings import WEAN_AGE, GENOTYPE_AGE
 
-from mousedb.views import ProtectedListView, ProtectedDetailView, RestrictedCreateView, RestrictedUpdateView, RestrictedDeleteView
+from mousedb.views import ProtectedListView, ProtectedDetailView
 
 
 from mousedb.animal.models import Animal, Strain, Breeding
@@ -73,7 +73,7 @@ class AnimalCreate(CreateView):
     form_class = AnimalForm
     template_name = 'animal_form.html'
     
-    @method_decorator(permission_required('animal.create_animal'))
+    @method_decorator(permission_required('animal.add_animal'))
     def dispatch(self, *args, **kwargs):
         """This decorator sets this view to have restricted permissions."""
         return super(AnimalCreate, self).dispatch(*args, **kwargs)   
@@ -89,7 +89,7 @@ class AnimalUpdate(UpdateView):
     template_name = 'animal_form.html'
     context_object_name = 'animal'    
     
-    @method_decorator(permission_required('animal.update_animal'))
+    @method_decorator(permission_required('animal.change_animal'))
     def dispatch(self, *args, **kwargs):
         """This decorator sets this view to have restricted permissions."""
         return super(AnimalUpdate, self).dispatch(*args, **kwargs)  
@@ -231,7 +231,7 @@ class BreedingListTimedMating(BreedingList):
         context['breeding_type'] = "Timed Matings" 
         return context     
 
-class BreedingCreate(RestrictedCreateView):
+class BreedingCreate(CreateView):
     """This class generates the breeding-new view.
 
     This permission restricted view takes a url in the form */breeding/new* and generates an empty plugevents_form.html."""
@@ -240,7 +240,12 @@ class BreedingCreate(RestrictedCreateView):
     form_class = BreedingForm
     template_name = 'breeding_form.html'
     
-class BreedingUpdate(RestrictedUpdateView):
+    @method_decorator(permission_required('animal.add_breeding'))
+    def dispatch(self, *args, **kwargs):
+        """This decorator sets this view to have restricted permissions."""
+        return super(BreedingCreate, self).dispatch(*args, **kwargs)      
+    
+class BreedingUpdate(UpdateView):
     """This class generates the breeding-edit view.
 
     This permission restricted view takes a url in the form */breeding/#/edit* and generates a breeding_form.html with that object."""
@@ -249,8 +254,13 @@ class BreedingUpdate(RestrictedUpdateView):
     form_class = BreedingForm    
     template_name = 'breeding_form.html'
     context_object_name = 'breeding'    
+    
+    @method_decorator(permission_required('animal.change_breeding'))
+    def dispatch(self, *args, **kwargs):
+        """This decorator sets this view to have restricted permissions."""
+        return super(BreedingUpdate, self).dispatch(*args, **kwargs)      
 
-class BreedingDelete(RestrictedDeleteView):
+class BreedingDelete(DeleteView):
     """This class generates the breeding-delete view.
 
     This permission restricted view takes a url in the form */breeding/#/delete* and passes that object to the confirm_delete.html page."""
@@ -259,6 +269,11 @@ class BreedingDelete(RestrictedDeleteView):
     template_name = 'confirm_delete.html'
     context_object_name = 'breeding'    
     success_url = '/breeding/'     
+    
+    @method_decorator(permission_required('animal.delete_breeding'))
+    def dispatch(self, *args, **kwargs):
+        """This decorator sets this view to have restricted permissions."""
+        return super(BreedingDelete, self).dispatch(*args, **kwargs)      
         
         
 @permission_required('animal.add_animal')
