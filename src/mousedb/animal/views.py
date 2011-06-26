@@ -35,6 +35,12 @@ class AnimalList(ProtectedListView):
     model = Animal
     template_name = 'animal_list.html'
     context_object_name = 'animal_list'
+    allow_empty = True
+    
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        """This decorator sets this view to have restricted permissions."""
+        return super(AnimalList, self).dispatch(*args, **kwargs)      
 
 class AnimalListAlive(AnimalList):
     """This view generates a list of alive animals or animal-list-alive.
@@ -479,13 +485,12 @@ class AnimalMonthArchive(MonthArchiveView):
     def dispatch(self, *args, **kwargs):
         """This decorator sets this view to have restricted permissions."""
         return super(AnimalMonthArchive, self).dispatch(*args, **kwargs)          
-    
-    
 
 def date_archive_year(request):
     """This view will generate a table of the number of mice born on an annual basis.
     
     This view is associated with the url name archive-home, and returns an dictionary of a date and a animal count."""
+    
     oldest_animal = Animal.objects.filter(Born__isnull=False).order_by('Born')[0]
     archive_dict = {}
     tested_year = oldest_animal.Born.year
@@ -498,12 +503,60 @@ def date_archive_year(request):
 def todo(request):
     """This view generates a summary of the todo lists.
     
-    The login restricted view passes lists for ear tagging, genotyping and weaning and passes them to the template todo.html"""
+    The login restricted view passes lists for ear tagging, genotyping and weaning and passes them to the template todo.html."""
+    
     eartag_list = Animal.objects.filter(Born__lt=(datetime.date.today() - datetime.timedelta(days=WEAN_AGE))).filter(MouseID__isnull=True, Alive=True)
     genotype_list = Animal.objects.filter(Q(Genotype='N.D.')|Q(Genotype__icontains='?')).filter(Alive=True, Born__lt=(datetime.date.today() - datetime.timedelta(days=GENOTYPE_AGE)))
     wean = datetime.date.today() - datetime.timedelta(days=WEAN_AGE)
     wean_list = Animal.objects.filter(Born__lt=wean).filter(Weaned=None,Alive=True).exclude(Strain=2).order_by('Strain','Background','Rack','Cage')
-    return render_to_response('todo.html', {'eartag_list':eartag_list, 'wean_list':wean_list, 'genotype_list':genotype_list},context_instance=RequestContext(request))    
+    return render_to_response('todo.html', {'eartag_list':eartag_list, 'wean_list':wean_list, 'genotype_list':genotype_list},context_instance=RequestContext(request))  
 
+class EarTagList(AnimalList):
+    """This view is for showing animals which need to be eartagged.
+    
+    This list shows animals that do not have an eartag (MouseID) and are older than the age set by WEAN_AGE in localsettings.py (default is 14 days).
+    It takes a view **/todo/eartag**.
+    This view is login protected.
+    """
+    
+    queryset = Animal.objects.filter(Born__lt=(datetime.date.today() - datetime.timedelta(days=WEAN_AGE))).filter(MouseID__isnull=True, Alive=True)
+    
+class GenotypeList(AnimalList):
+    """This view is for showing animals which need to be genotyped.
+    
+    This list shows animals that do not have a genotype (ie N.D. or ?) and are older than GENOTYPE_AGE as designated in localsettings.py (default is 21 days).
+    It takes a view **/todo/genotype**.
+    This view is login protected.    
+    """
+    
+    queryset = Animal.objects.filter(Q(Genotype='N.D.')|Q(Genotype__icontains='?')).filter(Alive=True, Born__lt=(datetime.date.today() - datetime.timedelta(days=GENOTYPE_AGE)))  
 
+class WeanList(AnimalList):
+    """This view is for showing animals which need to be weaned.
+    
+    This list shows animals that need to be weaned.  They are animals that are older than the WEAN_AGE and are alive.
+    It takes a view **/todo/wean**.
+    This view is login protected.    
+    """
+    
+    queryset = Animal.objects.filter(Born__lt=(datetime.date.today() - datetime.timedelta(days=WEAN_AGE)),Weaned=None,Alive=True)
+    
+class NoCageList(AnimalList):
+    """This view is for showing animals which need to have a cage entered.
+    
+    This list shows animals that have no cage number and are alive.
+    It takes a view **/todo/no_cage**.
+    This view is login protected.    
+    """
+    
+    queryset = Animal.objects.filter(Cage__exact=None).filter(Alive=True) 
 
+class NoRackList(AnimalList):
+    """This view is for showing animals which need to have a cage entered.
+    
+    This list shows animals that have no cage number and are alive.
+    It takes a view **/todo/no_rack**.
+    This view is login protected.    
+    """
+    
+    queryset = Animal.objects.filter(Rack__iexact='').filter(Alive=True)

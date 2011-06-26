@@ -27,7 +27,7 @@ Stuff To Do
  * ModelTests: data.Treatment, data.Assay, data.Diet, data.Environment, data.Experiment, data.Implantation, data.Measurement, data.Pharmaceutical, data.Researcher, data.Transplantation, data.Vendor
  * ViewTests: 
    * **data App**: treatment-list,treatment-new, treatment-detail, treatment-edit, treatment-delete, experiment-list, experiment-detail, experiment-detail-csv, data-entry, experiment-new, measurement-list, pharmaceutical-list, diet-list, study-experiment-new
-   * **animals app**: breeding-pups, breeding-pups-wean, breeding-pups-change, ,animal-multiple-pups-new, todo-eartags, todo-genotype, todo-weaning, todo-eartags, todo-no-cage, todo-no-rack, animal-list, animal-list-all, animal-new, animal-update, animal-delete, animal-multiple-new
+   * **animals app**: breeding-pups, breeding-pups-wean, breeding-pups-change, ,animal-multiple-pups-new,  animal-multiple-new
    * POST tests.  See http://toastdriven.com/blog/2011/apr/17/guide-to-testing-in-django-2/
    * Add named urls to tests.  See http://toastdriven.com/blog/2011/apr/17/guide-to-testing-in-django-2/
    * Check ModelTests
