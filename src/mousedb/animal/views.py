@@ -14,7 +14,7 @@ from django.core import serializers
 from django.core.urlresolvers import reverse
 from django.db.models import Q
 from django.utils.decorators import method_decorator
-from django.views.generic import CreateView, UpdateView, DeleteView
+from django.views.generic import CreateView, UpdateView, DeleteView, YearArchiveView, MonthArchiveView
 
 from mousedb.settings import WEAN_AGE, GENOTYPE_AGE
 
@@ -444,6 +444,43 @@ def multiple_breeding_pups(request, breeding_id):
     else:
         form = MultipleBreedingAnimalForm()
     return render_to_response("animal_multiple_form.html", {"form":form, "breeding":breeding}, context_instance=RequestContext(request))	
+    
+class AnimalYearArchive(YearArchiveView):
+    """This view generates a list of animals born within the specified year.
+    
+    It takes a url in the form of **/date/####** where #### is the four digit code of the year.
+    This view is restricted to logged in users."""
+    
+    model = Animal
+    template_name = 'animal_list.html'
+    context_object_name = 'animal_list'  
+    date_field = 'Born'
+    make_object_list = True
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        """This decorator sets this view to have restricted permissions."""
+        return super(AnimalYearArchive, self).dispatch(*args, **kwargs)    
+
+class AnimalMonthArchive(MonthArchiveView):
+    """This view generates a list of animals born within the specified year.
+    
+    It takes a url in the form of **/date/####** where #### is the four digit code of the year.
+    This view is restricted to logged in users."""
+    
+    model = Animal
+    template_name = 'animal_list.html'
+    context_object_name = 'animal_list'  
+    date_field = 'Born'
+    make_object_list = True
+    month_format = '%m'
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        """This decorator sets this view to have restricted permissions."""
+        return super(AnimalMonthArchive, self).dispatch(*args, **kwargs)          
+    
+    
 
 def date_archive_year(request):
     """This view will generate a table of the number of mice born on an annual basis.
