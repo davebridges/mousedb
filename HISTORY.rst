@@ -16,6 +16,7 @@ Version 0.2.1dev
 
 Stuff To Do
 +++++++++++
+* Add create user, designate permission and change password views.
 * Migrate views to class based generic views and added docstrings.  See http://docs.djangoproject.com/en/dev/topics/class-based-views/ and http://docs.djangoproject.com/en/dev/topics/generic-views-migration/
 * Check for non-cascading deletes on foreignkey models.  See http://docs.djangoproject.com/en/dev/ref/models/fields/#django.db.models.ForeignKey.on_delete
 * Look into logging as potentially useful.  See http://docs.djangoproject.com/en/dev/topics/logging/
