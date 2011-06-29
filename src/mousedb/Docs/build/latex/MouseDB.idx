@@ -1,443 +1,467 @@
-\indexentry{mousedb (module)|hyperpage}{15}
-\indexentry{mousedb.views (module)|hyperpage}{15}
-\indexentry{ProtectedDetailView (class in mousedb.views)|hyperpage}{15}
-\indexentry{dispatch() (mousedb.views.ProtectedDetailView method)|hyperpage}{15}
-\indexentry{ProtectedListView (class in mousedb.views)|hyperpage}{15}
-\indexentry{dispatch() (mousedb.views.ProtectedListView method)|hyperpage}{15}
-\indexentry{RestrictedCreateView (class in mousedb.views)|hyperpage}{15}
-\indexentry{dispatch() (mousedb.views.RestrictedCreateView method)|hyperpage}{15}
-\indexentry{RestrictedDeleteView (class in mousedb.views)|hyperpage}{15}
-\indexentry{dispatch() (mousedb.views.RestrictedDeleteView method)|hyperpage}{16}
-\indexentry{RestrictedUpdateView (class in mousedb.views)|hyperpage}{16}
-\indexentry{dispatch() (mousedb.views.RestrictedUpdateView method)|hyperpage}{16}
-\indexentry{home() (in module mousedb.views)|hyperpage}{16}
-\indexentry{logout\_view() (in module mousedb.views)|hyperpage}{16}
-\indexentry{mousedb.urls (module)|hyperpage}{16}
-\indexentry{mousedb.tests (module)|hyperpage}{16}
-\indexentry{RootViewTests (class in mousedb.tests)|hyperpage}{16}
-\indexentry{setUp() (mousedb.tests.RootViewTests method)|hyperpage}{16}
-\indexentry{tearDown() (mousedb.tests.RootViewTests method)|hyperpage}{16}
-\indexentry{test\_home() (mousedb.tests.RootViewTests method)|hyperpage}{16}
-\indexentry{test\_logout() (mousedb.tests.RootViewTests method)|hyperpage}{16}
-\indexentry{mousedb.data (module)|hyperpage}{16}
-\indexentry{mousedb.data.models (module)|hyperpage}{17}
-\indexentry{Assay (class in mousedb.data.models)|hyperpage}{17}
-\indexentry{Assay.DoesNotExist|hyperpage}{17}
-\indexentry{Assay.MultipleObjectsReturned|hyperpage}{17}
-\indexentry{measurement\_set (mousedb.data.models.Assay attribute)|hyperpage}{17}
-\indexentry{Diet (class in mousedb.data.models)|hyperpage}{17}
-\indexentry{Diet.DoesNotExist|hyperpage}{17}
-\indexentry{Diet.MultipleObjectsReturned|hyperpage}{17}
-\indexentry{treatment\_set (mousedb.data.models.Diet attribute)|hyperpage}{17}
-\indexentry{vendor (mousedb.data.models.Diet attribute)|hyperpage}{17}
-\indexentry{Environment (class in mousedb.data.models)|hyperpage}{17}
-\indexentry{Environment.DoesNotExist|hyperpage}{17}
-\indexentry{Environment.MultipleObjectsReturned|hyperpage}{18}
-\indexentry{contact (mousedb.data.models.Environment attribute)|hyperpage}{18}
-\indexentry{treatment\_set (mousedb.data.models.Environment attribute)|hyperpage}{18}
-\indexentry{Experiment (class in mousedb.data.models)|hyperpage}{18}
-\indexentry{Experiment.DoesNotExist|hyperpage}{18}
-\indexentry{Experiment.MultipleObjectsReturned|hyperpage}{18}
-\indexentry{get\_absolute\_url() (mousedb.data.models.Experiment method)|hyperpage}{18}
-\indexentry{get\_feeding\_state\_display() (mousedb.data.models.Experiment method)|hyperpage}{18}
-\indexentry{get\_injection\_display() (mousedb.data.models.Experiment method)|hyperpage}{18}
-\indexentry{get\_next\_by\_date() (mousedb.data.models.Experiment method)|hyperpage}{18}
-\indexentry{get\_previous\_by\_date() (mousedb.data.models.Experiment method)|hyperpage}{18}
-\indexentry{measurement\_set (mousedb.data.models.Experiment attribute)|hyperpage}{18}
-\indexentry{researchers (mousedb.data.models.Experiment attribute)|hyperpage}{18}
-\indexentry{study (mousedb.data.models.Experiment attribute)|hyperpage}{18}
-\indexentry{Implantation (class in mousedb.data.models)|hyperpage}{18}
-\indexentry{Implantation.DoesNotExist|hyperpage}{18}
-\indexentry{Implantation.MultipleObjectsReturned|hyperpage}{18}
-\indexentry{surgeon (mousedb.data.models.Implantation attribute)|hyperpage}{18}
-\indexentry{treatment\_set (mousedb.data.models.Implantation attribute)|hyperpage}{18}
-\indexentry{vendor (mousedb.data.models.Implantation attribute)|hyperpage}{18}
-\indexentry{Measurement (class in mousedb.data.models)|hyperpage}{18}
-\indexentry{Measurement.DoesNotExist|hyperpage}{18}
-\indexentry{Measurement.MultipleObjectsReturned|hyperpage}{18}
-\indexentry{age() (mousedb.data.models.Measurement method)|hyperpage}{18}
-\indexentry{animal (mousedb.data.models.Measurement attribute)|hyperpage}{18}
-\indexentry{assay (mousedb.data.models.Measurement attribute)|hyperpage}{18}
-\indexentry{experiment (mousedb.data.models.Measurement attribute)|hyperpage}{19}
-\indexentry{get\_absolute\_url() (mousedb.data.models.Measurement method)|hyperpage}{19}
-\indexentry{Pharmaceutical (class in mousedb.data.models)|hyperpage}{19}
-\indexentry{Pharmaceutical.DoesNotExist|hyperpage}{19}
-\indexentry{Pharmaceutical.MultipleObjectsReturned|hyperpage}{19}
-\indexentry{get\_mode\_display() (mousedb.data.models.Pharmaceutical method)|hyperpage}{19}
-\indexentry{treatment\_set (mousedb.data.models.Pharmaceutical attribute)|hyperpage}{19}
-\indexentry{vendor (mousedb.data.models.Pharmaceutical attribute)|hyperpage}{19}
-\indexentry{Researcher (class in mousedb.data.models)|hyperpage}{19}
-\indexentry{Researcher.DoesNotExist|hyperpage}{19}
-\indexentry{Researcher.MultipleObjectsReturned|hyperpage}{19}
-\indexentry{environment\_set (mousedb.data.models.Researcher attribute)|hyperpage}{19}
-\indexentry{experiment\_set (mousedb.data.models.Researcher attribute)|hyperpage}{19}
-\indexentry{implantation\_set (mousedb.data.models.Researcher attribute)|hyperpage}{19}
-\indexentry{transplantation\_set (mousedb.data.models.Researcher attribute)|hyperpage}{19}
-\indexentry{treatment\_set (mousedb.data.models.Researcher attribute)|hyperpage}{19}
-\indexentry{Study (class in mousedb.data.models)|hyperpage}{19}
-\indexentry{Study.DoesNotExist|hyperpage}{19}
-\indexentry{Study.MultipleObjectsReturned|hyperpage}{19}
-\indexentry{experiment\_set (mousedb.data.models.Study attribute)|hyperpage}{19}
-\indexentry{get\_absolute\_url() (mousedb.data.models.Study method)|hyperpage}{19}
-\indexentry{strain (mousedb.data.models.Study attribute)|hyperpage}{19}
-\indexentry{treatment\_set (mousedb.data.models.Study attribute)|hyperpage}{19}
-\indexentry{Transplantation (class in mousedb.data.models)|hyperpage}{19}
-\indexentry{Transplantation.DoesNotExist|hyperpage}{19}
-\indexentry{Transplantation.MultipleObjectsReturned|hyperpage}{20}
-\indexentry{donor (mousedb.data.models.Transplantation attribute)|hyperpage}{20}
-\indexentry{get\_next\_by\_transplant\_date() (mousedb.data.models.Transplantation method)|hyperpage}{20}
-\indexentry{get\_previous\_by\_transplant\_date() (mousedb.data.models.Transplantation method)|hyperpage}{20}
-\indexentry{surgeon (mousedb.data.models.Transplantation attribute)|hyperpage}{20}
-\indexentry{treatment\_set (mousedb.data.models.Transplantation attribute)|hyperpage}{20}
-\indexentry{Treatment (class in mousedb.data.models)|hyperpage}{20}
-\indexentry{Treatment.DoesNotExist|hyperpage}{20}
-\indexentry{Treatment.MultipleObjectsReturned|hyperpage}{20}
-\indexentry{animals (mousedb.data.models.Treatment attribute)|hyperpage}{20}
-\indexentry{diet (mousedb.data.models.Treatment attribute)|hyperpage}{20}
-\indexentry{environment (mousedb.data.models.Treatment attribute)|hyperpage}{20}
-\indexentry{get\_absolute\_url() (mousedb.data.models.Treatment method)|hyperpage}{20}
-\indexentry{implantation (mousedb.data.models.Treatment attribute)|hyperpage}{20}
-\indexentry{pharmaceutical (mousedb.data.models.Treatment attribute)|hyperpage}{20}
-\indexentry{researchers (mousedb.data.models.Treatment attribute)|hyperpage}{20}
-\indexentry{study (mousedb.data.models.Treatment attribute)|hyperpage}{20}
-\indexentry{transplantation (mousedb.data.models.Treatment attribute)|hyperpage}{20}
-\indexentry{Vendor (class in mousedb.data.models)|hyperpage}{20}
-\indexentry{Vendor.DoesNotExist|hyperpage}{20}
-\indexentry{Vendor.MultipleObjectsReturned|hyperpage}{20}
-\indexentry{diet\_set (mousedb.data.models.Vendor attribute)|hyperpage}{20}
-\indexentry{get\_ordering\_display() (mousedb.data.models.Vendor method)|hyperpage}{20}
-\indexentry{implantation\_set (mousedb.data.models.Vendor attribute)|hyperpage}{20}
-\indexentry{pharmaceutical\_set (mousedb.data.models.Vendor attribute)|hyperpage}{20}
-\indexentry{mousedb.data.forms (module)|hyperpage}{21}
-\indexentry{ExperimentForm (class in mousedb.data.forms)|hyperpage}{21}
-\indexentry{ExperimentForm.Meta (class in mousedb.data.forms)|hyperpage}{21}
-\indexentry{model (mousedb.data.forms.ExperimentForm.Meta attribute)|hyperpage}{21}
-\indexentry{media (mousedb.data.forms.ExperimentForm attribute)|hyperpage}{21}
-\indexentry{MeasurementForm (class in mousedb.data.forms)|hyperpage}{21}
-\indexentry{MeasurementForm.Media (class in mousedb.data.forms)|hyperpage}{21}
-\indexentry{MeasurementForm.Meta (class in mousedb.data.forms)|hyperpage}{21}
-\indexentry{model (mousedb.data.forms.MeasurementForm.Meta attribute)|hyperpage}{21}
-\indexentry{media (mousedb.data.forms.MeasurementForm attribute)|hyperpage}{21}
-\indexentry{StudyExperimentForm (class in mousedb.data.forms)|hyperpage}{21}
-\indexentry{StudyExperimentForm.Meta (class in mousedb.data.forms)|hyperpage}{21}
-\indexentry{model (mousedb.data.forms.StudyExperimentForm.Meta attribute)|hyperpage}{21}
-\indexentry{media (mousedb.data.forms.StudyExperimentForm attribute)|hyperpage}{21}
-\indexentry{StudyForm (class in mousedb.data.forms)|hyperpage}{21}
-\indexentry{StudyForm.Meta (class in mousedb.data.forms)|hyperpage}{22}
-\indexentry{model (mousedb.data.forms.StudyForm.Meta attribute)|hyperpage}{22}
-\indexentry{media (mousedb.data.forms.StudyForm attribute)|hyperpage}{22}
-\indexentry{TreatmentForm (class in mousedb.data.forms)|hyperpage}{22}
-\indexentry{TreatmentForm.Media (class in mousedb.data.forms)|hyperpage}{22}
-\indexentry{TreatmentForm.Meta (class in mousedb.data.forms)|hyperpage}{22}
-\indexentry{model (mousedb.data.forms.TreatmentForm.Meta attribute)|hyperpage}{22}
-\indexentry{media (mousedb.data.forms.TreatmentForm attribute)|hyperpage}{22}
-\indexentry{mousedb.data.views (module)|hyperpage}{22}
-\indexentry{add\_measurement() (in module mousedb.data.views)|hyperpage}{22}
-\indexentry{aging\_csv() (in module mousedb.data.views)|hyperpage}{22}
-\indexentry{experiment\_detail() (in module mousedb.data.views)|hyperpage}{22}
-\indexentry{experiment\_detail\_all() (in module mousedb.data.views)|hyperpage}{22}
-\indexentry{experiment\_details\_csv() (in module mousedb.data.views)|hyperpage}{22}
-\indexentry{experiment\_list() (in module mousedb.data.views)|hyperpage}{22}
-\indexentry{litters\_csv() (in module mousedb.data.views)|hyperpage}{22}
-\indexentry{study\_experiment() (in module mousedb.data.views)|hyperpage}{23}
-\indexentry{mousedb.data.urls (module)|hyperpage}{23}
-\indexentry{mousedb.data.admin (module)|hyperpage}{23}
-\indexentry{mousedb.data.tests (module)|hyperpage}{23}
-\indexentry{StudyModelTests (class in mousedb.data.tests)|hyperpage}{23}
-\indexentry{setUp() (mousedb.data.tests.StudyModelTests method)|hyperpage}{23}
-\indexentry{tearDown() (mousedb.data.tests.StudyModelTests method)|hyperpage}{23}
-\indexentry{test\_create\_studey\_detailed() (mousedb.data.tests.StudyModelTests method)|hyperpage}{23}
-\indexentry{test\_create\_study\_minimal() (mousedb.data.tests.StudyModelTests method)|hyperpage}{23}
-\indexentry{test\_study\_absolute\_url() (mousedb.data.tests.StudyModelTests method)|hyperpage}{23}
-\indexentry{StudyViewTests (class in mousedb.data.tests)|hyperpage}{23}
-\indexentry{setUp() (mousedb.data.tests.StudyViewTests method)|hyperpage}{23}
-\indexentry{tearDown() (mousedb.data.tests.StudyViewTests method)|hyperpage}{23}
-\indexentry{test\_study\_delete() (mousedb.data.tests.StudyViewTests method)|hyperpage}{23}
-\indexentry{test\_study\_detail() (mousedb.data.tests.StudyViewTests method)|hyperpage}{23}
-\indexentry{test\_study\_edit() (mousedb.data.tests.StudyViewTests method)|hyperpage}{23}
-\indexentry{test\_study\_list() (mousedb.data.tests.StudyViewTests method)|hyperpage}{24}
-\indexentry{test\_study\_new() (mousedb.data.tests.StudyViewTests method)|hyperpage}{24}
-\indexentry{TreatmentViewTests (class in mousedb.data.tests)|hyperpage}{24}
-\indexentry{setUp() (mousedb.data.tests.TreatmentViewTests method)|hyperpage}{24}
-\indexentry{tearDown() (mousedb.data.tests.TreatmentViewTests method)|hyperpage}{24}
-\indexentry{test\_treatment\_detail() (mousedb.data.tests.TreatmentViewTests method)|hyperpage}{24}
-\indexentry{mousedb.animal (module)|hyperpage}{24}
-\indexentry{mousedb.animal.models (module)|hyperpage}{25}
-\indexentry{Animal (class in mousedb.animal.models)|hyperpage}{25}
-\indexentry{Breeding (mousedb.animal.models.Animal attribute)|hyperpage}{25}
-\indexentry{Animal.DoesNotExist|hyperpage}{25}
-\indexentry{Father (mousedb.animal.models.Animal attribute)|hyperpage}{25}
-\indexentry{Mother (mousedb.animal.models.Animal attribute)|hyperpage}{25}
-\indexentry{Animal.MultipleObjectsReturned|hyperpage}{25}
-\indexentry{PlugFemale (mousedb.animal.models.Animal attribute)|hyperpage}{25}
-\indexentry{PlugMale (mousedb.animal.models.Animal attribute)|hyperpage}{25}
-\indexentry{Strain (mousedb.animal.models.Animal attribute)|hyperpage}{25}
-\indexentry{age() (mousedb.animal.models.Animal method)|hyperpage}{25}
-\indexentry{breeding\_female\_location\_type() (mousedb.animal.models.Animal method)|hyperpage}{25}
-\indexentry{breeding\_females (mousedb.animal.models.Animal attribute)|hyperpage}{25}
-\indexentry{breeding\_male\_location\_type() (mousedb.animal.models.Animal method)|hyperpage}{25}
-\indexentry{breeding\_males (mousedb.animal.models.Animal attribute)|hyperpage}{25}
-\indexentry{father (mousedb.animal.models.Animal attribute)|hyperpage}{26}
-\indexentry{get\_Background\_display() (mousedb.animal.models.Animal method)|hyperpage}{26}
-\indexentry{get\_Cause\_of\_Death\_display() (mousedb.animal.models.Animal method)|hyperpage}{26}
-\indexentry{get\_Gender\_display() (mousedb.animal.models.Animal method)|hyperpage}{26}
-\indexentry{get\_Genotype\_display() (mousedb.animal.models.Animal method)|hyperpage}{26}
-\indexentry{get\_absolute\_url() (mousedb.animal.models.Animal method)|hyperpage}{26}
-\indexentry{measurement\_set (mousedb.animal.models.Animal attribute)|hyperpage}{26}
-\indexentry{mother (mousedb.animal.models.Animal attribute)|hyperpage}{26}
-\indexentry{save() (mousedb.animal.models.Animal method)|hyperpage}{26}
-\indexentry{transplantation\_set (mousedb.animal.models.Animal attribute)|hyperpage}{26}
-\indexentry{treatment\_set (mousedb.animal.models.Animal attribute)|hyperpage}{26}
-\indexentry{Breeding (class in mousedb.animal.models)|hyperpage}{26}
-\indexentry{Breeding.DoesNotExist|hyperpage}{26}
-\indexentry{Females (mousedb.animal.models.Breeding attribute)|hyperpage}{26}
-\indexentry{Male (mousedb.animal.models.Breeding attribute)|hyperpage}{26}
-\indexentry{Breeding.MultipleObjectsReturned|hyperpage}{26}
-\indexentry{Strain (mousedb.animal.models.Breeding attribute)|hyperpage}{26}
-\indexentry{animal\_set (mousedb.animal.models.Breeding attribute)|hyperpage}{26}
-\indexentry{duration() (mousedb.animal.models.Breeding method)|hyperpage}{26}
-\indexentry{get\_Crosstype\_display() (mousedb.animal.models.Breeding method)|hyperpage}{26}
-\indexentry{get\_absolute\_url() (mousedb.animal.models.Breeding method)|hyperpage}{26}
-\indexentry{get\_background\_display() (mousedb.animal.models.Breeding method)|hyperpage}{26}
-\indexentry{get\_genotype\_display() (mousedb.animal.models.Breeding method)|hyperpage}{26}
-\indexentry{male\_breeding\_location\_type() (mousedb.animal.models.Breeding method)|hyperpage}{26}
-\indexentry{plugevents\_set (mousedb.animal.models.Breeding attribute)|hyperpage}{27}
-\indexentry{save() (mousedb.animal.models.Breeding method)|hyperpage}{27}
-\indexentry{unweaned() (mousedb.animal.models.Breeding method)|hyperpage}{27}
-\indexentry{Strain (class in mousedb.animal.models)|hyperpage}{27}
-\indexentry{Strain.DoesNotExist|hyperpage}{27}
-\indexentry{Strain.MultipleObjectsReturned|hyperpage}{27}
-\indexentry{animal\_set (mousedb.animal.models.Strain attribute)|hyperpage}{27}
-\indexentry{breeding\_set (mousedb.animal.models.Strain attribute)|hyperpage}{27}
-\indexentry{get\_absolute\_url() (mousedb.animal.models.Strain method)|hyperpage}{27}
-\indexentry{study\_set (mousedb.animal.models.Strain attribute)|hyperpage}{27}
-\indexentry{Strain (class in mousedb.animal.models)|hyperpage}{27}
+\indexentry{mousedb (module)|hyperpage}{17}
+\indexentry{mousedb.views (module)|hyperpage}{17}
+\indexentry{ProtectedDetailView (class in mousedb.views)|hyperpage}{17}
+\indexentry{dispatch() (mousedb.views.ProtectedDetailView method)|hyperpage}{17}
+\indexentry{ProtectedListView (class in mousedb.views)|hyperpage}{17}
+\indexentry{dispatch() (mousedb.views.ProtectedListView method)|hyperpage}{17}
+\indexentry{RestrictedCreateView (class in mousedb.views)|hyperpage}{17}
+\indexentry{dispatch() (mousedb.views.RestrictedCreateView method)|hyperpage}{17}
+\indexentry{RestrictedDeleteView (class in mousedb.views)|hyperpage}{17}
+\indexentry{dispatch() (mousedb.views.RestrictedDeleteView method)|hyperpage}{18}
+\indexentry{RestrictedUpdateView (class in mousedb.views)|hyperpage}{18}
+\indexentry{dispatch() (mousedb.views.RestrictedUpdateView method)|hyperpage}{18}
+\indexentry{home() (in module mousedb.views)|hyperpage}{18}
+\indexentry{logout\_view() (in module mousedb.views)|hyperpage}{18}
+\indexentry{mousedb.urls (module)|hyperpage}{18}
+\indexentry{mousedb.tests (module)|hyperpage}{18}
+\indexentry{RootViewTests (class in mousedb.tests)|hyperpage}{18}
+\indexentry{setUp() (mousedb.tests.RootViewTests method)|hyperpage}{18}
+\indexentry{tearDown() (mousedb.tests.RootViewTests method)|hyperpage}{18}
+\indexentry{test\_home() (mousedb.tests.RootViewTests method)|hyperpage}{18}
+\indexentry{test\_logout() (mousedb.tests.RootViewTests method)|hyperpage}{18}
+\indexentry{mousedb.data (module)|hyperpage}{18}
+\indexentry{mousedb.data.models (module)|hyperpage}{19}
+\indexentry{Assay (class in mousedb.data.models)|hyperpage}{19}
+\indexentry{Assay.DoesNotExist|hyperpage}{19}
+\indexentry{Assay.MultipleObjectsReturned|hyperpage}{19}
+\indexentry{measurement\_set (mousedb.data.models.Assay attribute)|hyperpage}{19}
+\indexentry{Diet (class in mousedb.data.models)|hyperpage}{19}
+\indexentry{Diet.DoesNotExist|hyperpage}{19}
+\indexentry{Diet.MultipleObjectsReturned|hyperpage}{19}
+\indexentry{treatment\_set (mousedb.data.models.Diet attribute)|hyperpage}{19}
+\indexentry{vendor (mousedb.data.models.Diet attribute)|hyperpage}{19}
+\indexentry{Environment (class in mousedb.data.models)|hyperpage}{19}
+\indexentry{Environment.DoesNotExist|hyperpage}{19}
+\indexentry{Environment.MultipleObjectsReturned|hyperpage}{20}
+\indexentry{contact (mousedb.data.models.Environment attribute)|hyperpage}{20}
+\indexentry{treatment\_set (mousedb.data.models.Environment attribute)|hyperpage}{20}
+\indexentry{Experiment (class in mousedb.data.models)|hyperpage}{20}
+\indexentry{Experiment.DoesNotExist|hyperpage}{20}
+\indexentry{Experiment.MultipleObjectsReturned|hyperpage}{20}
+\indexentry{get\_absolute\_url() (mousedb.data.models.Experiment method)|hyperpage}{20}
+\indexentry{get\_feeding\_state\_display() (mousedb.data.models.Experiment method)|hyperpage}{20}
+\indexentry{get\_injection\_display() (mousedb.data.models.Experiment method)|hyperpage}{20}
+\indexentry{get\_next\_by\_date() (mousedb.data.models.Experiment method)|hyperpage}{20}
+\indexentry{get\_previous\_by\_date() (mousedb.data.models.Experiment method)|hyperpage}{20}
+\indexentry{measurement\_set (mousedb.data.models.Experiment attribute)|hyperpage}{20}
+\indexentry{researchers (mousedb.data.models.Experiment attribute)|hyperpage}{20}
+\indexentry{study (mousedb.data.models.Experiment attribute)|hyperpage}{20}
+\indexentry{Implantation (class in mousedb.data.models)|hyperpage}{20}
+\indexentry{Implantation.DoesNotExist|hyperpage}{20}
+\indexentry{Implantation.MultipleObjectsReturned|hyperpage}{20}
+\indexentry{surgeon (mousedb.data.models.Implantation attribute)|hyperpage}{20}
+\indexentry{treatment\_set (mousedb.data.models.Implantation attribute)|hyperpage}{20}
+\indexentry{vendor (mousedb.data.models.Implantation attribute)|hyperpage}{20}
+\indexentry{Measurement (class in mousedb.data.models)|hyperpage}{20}
+\indexentry{Measurement.DoesNotExist|hyperpage}{20}
+\indexentry{Measurement.MultipleObjectsReturned|hyperpage}{20}
+\indexentry{age() (mousedb.data.models.Measurement method)|hyperpage}{20}
+\indexentry{animal (mousedb.data.models.Measurement attribute)|hyperpage}{20}
+\indexentry{assay (mousedb.data.models.Measurement attribute)|hyperpage}{20}
+\indexentry{experiment (mousedb.data.models.Measurement attribute)|hyperpage}{21}
+\indexentry{get\_absolute\_url() (mousedb.data.models.Measurement method)|hyperpage}{21}
+\indexentry{Pharmaceutical (class in mousedb.data.models)|hyperpage}{21}
+\indexentry{Pharmaceutical.DoesNotExist|hyperpage}{21}
+\indexentry{Pharmaceutical.MultipleObjectsReturned|hyperpage}{21}
+\indexentry{get\_mode\_display() (mousedb.data.models.Pharmaceutical method)|hyperpage}{21}
+\indexentry{treatment\_set (mousedb.data.models.Pharmaceutical attribute)|hyperpage}{21}
+\indexentry{vendor (mousedb.data.models.Pharmaceutical attribute)|hyperpage}{21}
+\indexentry{Researcher (class in mousedb.data.models)|hyperpage}{21}
+\indexentry{Researcher.DoesNotExist|hyperpage}{21}
+\indexentry{Researcher.MultipleObjectsReturned|hyperpage}{21}
+\indexentry{environment\_set (mousedb.data.models.Researcher attribute)|hyperpage}{21}
+\indexentry{experiment\_set (mousedb.data.models.Researcher attribute)|hyperpage}{21}
+\indexentry{implantation\_set (mousedb.data.models.Researcher attribute)|hyperpage}{21}
+\indexentry{transplantation\_set (mousedb.data.models.Researcher attribute)|hyperpage}{21}
+\indexentry{treatment\_set (mousedb.data.models.Researcher attribute)|hyperpage}{21}
+\indexentry{Study (class in mousedb.data.models)|hyperpage}{21}
+\indexentry{Study.DoesNotExist|hyperpage}{21}
+\indexentry{Study.MultipleObjectsReturned|hyperpage}{21}
+\indexentry{experiment\_set (mousedb.data.models.Study attribute)|hyperpage}{21}
+\indexentry{get\_absolute\_url() (mousedb.data.models.Study method)|hyperpage}{21}
+\indexentry{strain (mousedb.data.models.Study attribute)|hyperpage}{21}
+\indexentry{treatment\_set (mousedb.data.models.Study attribute)|hyperpage}{21}
+\indexentry{Transplantation (class in mousedb.data.models)|hyperpage}{21}
+\indexentry{Transplantation.DoesNotExist|hyperpage}{21}
+\indexentry{Transplantation.MultipleObjectsReturned|hyperpage}{22}
+\indexentry{donor (mousedb.data.models.Transplantation attribute)|hyperpage}{22}
+\indexentry{get\_next\_by\_transplant\_date() (mousedb.data.models.Transplantation method)|hyperpage}{22}
+\indexentry{get\_previous\_by\_transplant\_date() (mousedb.data.models.Transplantation method)|hyperpage}{22}
+\indexentry{surgeon (mousedb.data.models.Transplantation attribute)|hyperpage}{22}
+\indexentry{treatment\_set (mousedb.data.models.Transplantation attribute)|hyperpage}{22}
+\indexentry{Treatment (class in mousedb.data.models)|hyperpage}{22}
+\indexentry{Treatment.DoesNotExist|hyperpage}{22}
+\indexentry{Treatment.MultipleObjectsReturned|hyperpage}{22}
+\indexentry{animals (mousedb.data.models.Treatment attribute)|hyperpage}{22}
+\indexentry{diet (mousedb.data.models.Treatment attribute)|hyperpage}{22}
+\indexentry{environment (mousedb.data.models.Treatment attribute)|hyperpage}{22}
+\indexentry{get\_absolute\_url() (mousedb.data.models.Treatment method)|hyperpage}{22}
+\indexentry{implantation (mousedb.data.models.Treatment attribute)|hyperpage}{22}
+\indexentry{pharmaceutical (mousedb.data.models.Treatment attribute)|hyperpage}{22}
+\indexentry{researchers (mousedb.data.models.Treatment attribute)|hyperpage}{22}
+\indexentry{study (mousedb.data.models.Treatment attribute)|hyperpage}{22}
+\indexentry{transplantation (mousedb.data.models.Treatment attribute)|hyperpage}{22}
+\indexentry{Vendor (class in mousedb.data.models)|hyperpage}{22}
+\indexentry{Vendor.DoesNotExist|hyperpage}{22}
+\indexentry{Vendor.MultipleObjectsReturned|hyperpage}{22}
+\indexentry{diet\_set (mousedb.data.models.Vendor attribute)|hyperpage}{22}
+\indexentry{get\_ordering\_display() (mousedb.data.models.Vendor method)|hyperpage}{22}
+\indexentry{implantation\_set (mousedb.data.models.Vendor attribute)|hyperpage}{22}
+\indexentry{pharmaceutical\_set (mousedb.data.models.Vendor attribute)|hyperpage}{22}
+\indexentry{mousedb.data.forms (module)|hyperpage}{23}
+\indexentry{ExperimentForm (class in mousedb.data.forms)|hyperpage}{23}
+\indexentry{ExperimentForm.Meta (class in mousedb.data.forms)|hyperpage}{23}
+\indexentry{model (mousedb.data.forms.ExperimentForm.Meta attribute)|hyperpage}{23}
+\indexentry{media (mousedb.data.forms.ExperimentForm attribute)|hyperpage}{23}
+\indexentry{MeasurementForm (class in mousedb.data.forms)|hyperpage}{23}
+\indexentry{MeasurementForm.Media (class in mousedb.data.forms)|hyperpage}{23}
+\indexentry{MeasurementForm.Meta (class in mousedb.data.forms)|hyperpage}{23}
+\indexentry{model (mousedb.data.forms.MeasurementForm.Meta attribute)|hyperpage}{23}
+\indexentry{media (mousedb.data.forms.MeasurementForm attribute)|hyperpage}{23}
+\indexentry{StudyExperimentForm (class in mousedb.data.forms)|hyperpage}{23}
+\indexentry{StudyExperimentForm.Meta (class in mousedb.data.forms)|hyperpage}{23}
+\indexentry{model (mousedb.data.forms.StudyExperimentForm.Meta attribute)|hyperpage}{23}
+\indexentry{media (mousedb.data.forms.StudyExperimentForm attribute)|hyperpage}{23}
+\indexentry{StudyForm (class in mousedb.data.forms)|hyperpage}{23}
+\indexentry{StudyForm.Meta (class in mousedb.data.forms)|hyperpage}{24}
+\indexentry{model (mousedb.data.forms.StudyForm.Meta attribute)|hyperpage}{24}
+\indexentry{media (mousedb.data.forms.StudyForm attribute)|hyperpage}{24}
+\indexentry{TreatmentForm (class in mousedb.data.forms)|hyperpage}{24}
+\indexentry{TreatmentForm.Media (class in mousedb.data.forms)|hyperpage}{24}
+\indexentry{TreatmentForm.Meta (class in mousedb.data.forms)|hyperpage}{24}
+\indexentry{model (mousedb.data.forms.TreatmentForm.Meta attribute)|hyperpage}{24}
+\indexentry{media (mousedb.data.forms.TreatmentForm attribute)|hyperpage}{24}
+\indexentry{mousedb.data.views (module)|hyperpage}{24}
+\indexentry{add\_measurement() (in module mousedb.data.views)|hyperpage}{24}
+\indexentry{aging\_csv() (in module mousedb.data.views)|hyperpage}{24}
+\indexentry{experiment\_detail() (in module mousedb.data.views)|hyperpage}{24}
+\indexentry{experiment\_detail\_all() (in module mousedb.data.views)|hyperpage}{24}
+\indexentry{experiment\_details\_csv() (in module mousedb.data.views)|hyperpage}{24}
+\indexentry{experiment\_list() (in module mousedb.data.views)|hyperpage}{24}
+\indexentry{litters\_csv() (in module mousedb.data.views)|hyperpage}{24}
+\indexentry{study\_experiment() (in module mousedb.data.views)|hyperpage}{25}
+\indexentry{mousedb.data.urls (module)|hyperpage}{25}
+\indexentry{mousedb.data.admin (module)|hyperpage}{25}
+\indexentry{mousedb.data.tests (module)|hyperpage}{25}
+\indexentry{StudyModelTests (class in mousedb.data.tests)|hyperpage}{25}
+\indexentry{setUp() (mousedb.data.tests.StudyModelTests method)|hyperpage}{25}
+\indexentry{tearDown() (mousedb.data.tests.StudyModelTests method)|hyperpage}{25}
+\indexentry{test\_create\_studey\_detailed() (mousedb.data.tests.StudyModelTests method)|hyperpage}{25}
+\indexentry{test\_create\_study\_minimal() (mousedb.data.tests.StudyModelTests method)|hyperpage}{25}
+\indexentry{test\_study\_absolute\_url() (mousedb.data.tests.StudyModelTests method)|hyperpage}{25}
+\indexentry{StudyViewTests (class in mousedb.data.tests)|hyperpage}{25}
+\indexentry{setUp() (mousedb.data.tests.StudyViewTests method)|hyperpage}{25}
+\indexentry{tearDown() (mousedb.data.tests.StudyViewTests method)|hyperpage}{25}
+\indexentry{test\_study\_delete() (mousedb.data.tests.StudyViewTests method)|hyperpage}{25}
+\indexentry{test\_study\_detail() (mousedb.data.tests.StudyViewTests method)|hyperpage}{25}
+\indexentry{test\_study\_edit() (mousedb.data.tests.StudyViewTests method)|hyperpage}{25}
+\indexentry{test\_study\_list() (mousedb.data.tests.StudyViewTests method)|hyperpage}{26}
+\indexentry{test\_study\_new() (mousedb.data.tests.StudyViewTests method)|hyperpage}{26}
+\indexentry{TreatmentViewTests (class in mousedb.data.tests)|hyperpage}{26}
+\indexentry{setUp() (mousedb.data.tests.TreatmentViewTests method)|hyperpage}{26}
+\indexentry{tearDown() (mousedb.data.tests.TreatmentViewTests method)|hyperpage}{26}
+\indexentry{test\_treatment\_detail() (mousedb.data.tests.TreatmentViewTests method)|hyperpage}{26}
+\indexentry{mousedb.animal (module)|hyperpage}{26}
+\indexentry{mousedb.animal.models (module)|hyperpage}{27}
 \indexentry{Animal (class in mousedb.animal.models)|hyperpage}{27}
-\indexentry{Breeding (class in mousedb.animal.models)|hyperpage}{27}
-\indexentry{mousedb.animal.forms (module)|hyperpage}{28}
-\indexentry{AnimalForm (class in mousedb.animal.forms)|hyperpage}{28}
-\indexentry{AnimalForm.Media (class in mousedb.animal.forms)|hyperpage}{28}
-\indexentry{AnimalForm.Meta (class in mousedb.animal.forms)|hyperpage}{28}
-\indexentry{model (mousedb.animal.forms.AnimalForm.Meta attribute)|hyperpage}{28}
-\indexentry{media (mousedb.animal.forms.AnimalForm attribute)|hyperpage}{28}
-\indexentry{BreedingForm (class in mousedb.animal.forms)|hyperpage}{28}
-\indexentry{BreedingForm.Media (class in mousedb.animal.forms)|hyperpage}{28}
-\indexentry{BreedingForm.Meta (class in mousedb.animal.forms)|hyperpage}{28}
-\indexentry{model (mousedb.animal.forms.BreedingForm.Meta attribute)|hyperpage}{28}
-\indexentry{media (mousedb.animal.forms.BreedingForm attribute)|hyperpage}{28}
-\indexentry{MultipleAnimalForm (class in mousedb.animal.forms)|hyperpage}{28}
-\indexentry{MultipleAnimalForm.Meta (class in mousedb.animal.forms)|hyperpage}{29}
-\indexentry{model (mousedb.animal.forms.MultipleAnimalForm.Meta attribute)|hyperpage}{29}
-\indexentry{media (mousedb.animal.forms.MultipleAnimalForm attribute)|hyperpage}{29}
-\indexentry{MultipleBreedingAnimalForm (class in mousedb.animal.forms)|hyperpage}{29}
-\indexentry{MultipleBreedingAnimalForm.Meta (class in mousedb.animal.forms)|hyperpage}{29}
-\indexentry{model (mousedb.animal.forms.MultipleBreedingAnimalForm.Meta attribute)|hyperpage}{29}
-\indexentry{media (mousedb.animal.forms.MultipleBreedingAnimalForm attribute)|hyperpage}{29}
-\indexentry{mousedb.animal.views (module)|hyperpage}{29}
-\indexentry{AnimalCreate (class in mousedb.animal.views)|hyperpage}{29}
-\indexentry{dispatch() (mousedb.animal.views.AnimalCreate method)|hyperpage}{29}
-\indexentry{form\_class (mousedb.animal.views.AnimalCreate attribute)|hyperpage}{29}
-\indexentry{model (mousedb.animal.views.AnimalCreate attribute)|hyperpage}{29}
-\indexentry{AnimalDelete (class in mousedb.animal.views)|hyperpage}{30}
-\indexentry{dispatch() (mousedb.animal.views.AnimalDelete method)|hyperpage}{30}
-\indexentry{model (mousedb.animal.views.AnimalDelete attribute)|hyperpage}{30}
-\indexentry{AnimalDetail (class in mousedb.animal.views)|hyperpage}{30}
-\indexentry{model (mousedb.animal.views.AnimalDetail attribute)|hyperpage}{30}
-\indexentry{AnimalList (class in mousedb.animal.views)|hyperpage}{30}
-\indexentry{model (mousedb.animal.views.AnimalList attribute)|hyperpage}{30}
-\indexentry{AnimalListAlive (class in mousedb.animal.views)|hyperpage}{30}
-\indexentry{get\_context\_data() (mousedb.animal.views.AnimalListAlive method)|hyperpage}{30}
-\indexentry{AnimalUpdate (class in mousedb.animal.views)|hyperpage}{30}
-\indexentry{dispatch() (mousedb.animal.views.AnimalUpdate method)|hyperpage}{30}
-\indexentry{form\_class (mousedb.animal.views.AnimalUpdate attribute)|hyperpage}{30}
-\indexentry{model (mousedb.animal.views.AnimalUpdate attribute)|hyperpage}{31}
-\indexentry{BreedingCreate (class in mousedb.animal.views)|hyperpage}{31}
-\indexentry{form\_class (mousedb.animal.views.BreedingCreate attribute)|hyperpage}{31}
-\indexentry{model (mousedb.animal.views.BreedingCreate attribute)|hyperpage}{31}
-\indexentry{BreedingDelete (class in mousedb.animal.views)|hyperpage}{31}
-\indexentry{model (mousedb.animal.views.BreedingDelete attribute)|hyperpage}{31}
-\indexentry{BreedingDetail (class in mousedb.animal.views)|hyperpage}{31}
-\indexentry{model (mousedb.animal.views.BreedingDetail attribute)|hyperpage}{31}
-\indexentry{BreedingList (class in mousedb.animal.views)|hyperpage}{31}
-\indexentry{get\_context\_data() (mousedb.animal.views.BreedingList method)|hyperpage}{31}
-\indexentry{BreedingListAll (class in mousedb.animal.views)|hyperpage}{31}
-\indexentry{get\_context\_data() (mousedb.animal.views.BreedingListAll method)|hyperpage}{31}
-\indexentry{BreedingListTimedMating (class in mousedb.animal.views)|hyperpage}{31}
-\indexentry{get\_context\_data() (mousedb.animal.views.BreedingListTimedMating method)|hyperpage}{32}
-\indexentry{BreedingUpdate (class in mousedb.animal.views)|hyperpage}{32}
-\indexentry{form\_class (mousedb.animal.views.BreedingUpdate attribute)|hyperpage}{32}
-\indexentry{model (mousedb.animal.views.BreedingUpdate attribute)|hyperpage}{32}
-\indexentry{StrainCreate (class in mousedb.animal.views)|hyperpage}{32}
-\indexentry{dispatch() (mousedb.animal.views.StrainCreate method)|hyperpage}{32}
-\indexentry{model (mousedb.animal.views.StrainCreate attribute)|hyperpage}{32}
-\indexentry{StrainDelete (class in mousedb.animal.views)|hyperpage}{32}
-\indexentry{dispatch() (mousedb.animal.views.StrainDelete method)|hyperpage}{32}
-\indexentry{model (mousedb.animal.views.StrainDelete attribute)|hyperpage}{32}
-\indexentry{StrainDetail (class in mousedb.animal.views)|hyperpage}{32}
-\indexentry{get\_context\_data() (mousedb.animal.views.StrainDetail method)|hyperpage}{32}
-\indexentry{StrainDetailAll (class in mousedb.animal.views)|hyperpage}{32}
-\indexentry{get\_context\_data() (mousedb.animal.views.StrainDetailAll method)|hyperpage}{33}
-\indexentry{StrainList (class in mousedb.animal.views)|hyperpage}{33}
-\indexentry{get\_context\_data() (mousedb.animal.views.StrainList method)|hyperpage}{33}
-\indexentry{model (mousedb.animal.views.StrainList attribute)|hyperpage}{33}
-\indexentry{StrainUpdate (class in mousedb.animal.views)|hyperpage}{33}
-\indexentry{dispatch() (mousedb.animal.views.StrainUpdate method)|hyperpage}{33}
-\indexentry{model (mousedb.animal.views.StrainUpdate attribute)|hyperpage}{33}
-\indexentry{breeding\_change() (in module mousedb.animal.views)|hyperpage}{33}
-\indexentry{breeding\_pups() (in module mousedb.animal.views)|hyperpage}{33}
-\indexentry{breeding\_wean() (in module mousedb.animal.views)|hyperpage}{33}
-\indexentry{date\_archive\_year() (in module mousedb.animal.views)|hyperpage}{34}
-\indexentry{multiple\_breeding\_pups() (in module mousedb.animal.views)|hyperpage}{34}
-\indexentry{multiple\_pups() (in module mousedb.animal.views)|hyperpage}{34}
-\indexentry{todo() (in module mousedb.animal.views)|hyperpage}{34}
-\indexentry{mousedb.animal.urls (module)|hyperpage}{34}
-\indexentry{mousedb.animal.admin (module)|hyperpage}{34}
-\indexentry{AnimalAdmin (class in mousedb.animal.admin)|hyperpage}{34}
-\indexentry{mark\_sacrificed() (mousedb.animal.admin.AnimalAdmin method)|hyperpage}{34}
-\indexentry{media (mousedb.animal.admin.AnimalAdmin attribute)|hyperpage}{34}
-\indexentry{AnimalInline (class in mousedb.animal.admin)|hyperpage}{34}
-\indexentry{media (mousedb.animal.admin.AnimalInline attribute)|hyperpage}{34}
-\indexentry{model (mousedb.animal.admin.AnimalInline attribute)|hyperpage}{35}
-\indexentry{BreedingAdmin (class in mousedb.animal.admin)|hyperpage}{35}
-\indexentry{mark\_deactivated() (mousedb.animal.admin.BreedingAdmin method)|hyperpage}{35}
-\indexentry{media (mousedb.animal.admin.BreedingAdmin attribute)|hyperpage}{35}
-\indexentry{StrainAdmin (class in mousedb.animal.admin)|hyperpage}{35}
-\indexentry{media (mousedb.animal.admin.StrainAdmin attribute)|hyperpage}{35}
-\indexentry{mousedb.animal.tests (module)|hyperpage}{35}
-\indexentry{AnimalModelTests (class in mousedb.animal.tests)|hyperpage}{35}
-\indexentry{setUp() (mousedb.animal.tests.AnimalModelTests method)|hyperpage}{35}
-\indexentry{tearDown() (mousedb.animal.tests.AnimalModelTests method)|hyperpage}{35}
-\indexentry{test\_animal\_unicode() (mousedb.animal.tests.AnimalModelTests method)|hyperpage}{35}
-\indexentry{test\_create\_animal\_minimal() (mousedb.animal.tests.AnimalModelTests method)|hyperpage}{35}
-\indexentry{AnimalViewTests (class in mousedb.animal.tests)|hyperpage}{35}
-\indexentry{setUp() (mousedb.animal.tests.AnimalViewTests method)|hyperpage}{35}
-\indexentry{tearDown() (mousedb.animal.tests.AnimalViewTests method)|hyperpage}{35}
-\indexentry{test\_animal\_delete() (mousedb.animal.tests.AnimalViewTests method)|hyperpage}{35}
-\indexentry{test\_animal\_detail() (mousedb.animal.tests.AnimalViewTests method)|hyperpage}{36}
-\indexentry{test\_animal\_edit() (mousedb.animal.tests.AnimalViewTests method)|hyperpage}{36}
-\indexentry{test\_animal\_list() (mousedb.animal.tests.AnimalViewTests method)|hyperpage}{36}
-\indexentry{test\_animal\_list\_all() (mousedb.animal.tests.AnimalViewTests method)|hyperpage}{36}
-\indexentry{test\_animal\_new() (mousedb.animal.tests.AnimalViewTests method)|hyperpage}{36}
-\indexentry{BreedingModelTests (class in mousedb.animal.tests)|hyperpage}{36}
-\indexentry{setUp() (mousedb.animal.tests.BreedingModelTests method)|hyperpage}{36}
-\indexentry{tearDown() (mousedb.animal.tests.BreedingModelTests method)|hyperpage}{36}
-\indexentry{test\_autoset\_active\_state() (mousedb.animal.tests.BreedingModelTests method)|hyperpage}{36}
-\indexentry{test\_create\_breeding\_minimal() (mousedb.animal.tests.BreedingModelTests method)|hyperpage}{36}
-\indexentry{test\_duration() (mousedb.animal.tests.BreedingModelTests method)|hyperpage}{36}
-\indexentry{test\_study\_absolute\_url() (mousedb.animal.tests.BreedingModelTests method)|hyperpage}{36}
-\indexentry{test\_unweaned() (mousedb.animal.tests.BreedingModelTests method)|hyperpage}{36}
-\indexentry{BreedingViewTests (class in mousedb.animal.tests)|hyperpage}{36}
-\indexentry{setUp() (mousedb.animal.tests.BreedingViewTests method)|hyperpage}{36}
-\indexentry{tearDown() (mousedb.animal.tests.BreedingViewTests method)|hyperpage}{36}
-\indexentry{test\_breeding\_delete() (mousedb.animal.tests.BreedingViewTests method)|hyperpage}{37}
-\indexentry{test\_breeding\_detail() (mousedb.animal.tests.BreedingViewTests method)|hyperpage}{37}
-\indexentry{test\_breeding\_edit() (mousedb.animal.tests.BreedingViewTests method)|hyperpage}{37}
-\indexentry{test\_breeding\_list() (mousedb.animal.tests.BreedingViewTests method)|hyperpage}{37}
-\indexentry{test\_breeding\_list\_all() (mousedb.animal.tests.BreedingViewTests method)|hyperpage}{37}
-\indexentry{test\_breeding\_new() (mousedb.animal.tests.BreedingViewTests method)|hyperpage}{37}
-\indexentry{test\_timed\_mating\_list() (mousedb.animal.tests.BreedingViewTests method)|hyperpage}{37}
-\indexentry{CageViewTests (class in mousedb.animal.tests)|hyperpage}{37}
-\indexentry{setUp() (mousedb.animal.tests.CageViewTests method)|hyperpage}{37}
-\indexentry{tearDown() (mousedb.animal.tests.CageViewTests method)|hyperpage}{37}
-\indexentry{test\_cage\_detail() (mousedb.animal.tests.CageViewTests method)|hyperpage}{37}
-\indexentry{test\_cage\_list() (mousedb.animal.tests.CageViewTests method)|hyperpage}{37}
-\indexentry{DateViewTests (class in mousedb.animal.tests)|hyperpage}{37}
-\indexentry{setUp() (mousedb.animal.tests.DateViewTests method)|hyperpage}{37}
-\indexentry{tearDown() (mousedb.animal.tests.DateViewTests method)|hyperpage}{37}
-\indexentry{test\_archive\_home() (mousedb.animal.tests.DateViewTests method)|hyperpage}{37}
-\indexentry{test\_archive\_month() (mousedb.animal.tests.DateViewTests method)|hyperpage}{37}
-\indexentry{test\_archive\_year() (mousedb.animal.tests.DateViewTests method)|hyperpage}{38}
-\indexentry{StrainModelTests (class in mousedb.animal.tests)|hyperpage}{38}
-\indexentry{setUp() (mousedb.animal.tests.StrainModelTests method)|hyperpage}{38}
-\indexentry{tearDown() (mousedb.animal.tests.StrainModelTests method)|hyperpage}{38}
-\indexentry{test\_create\_strain\_all() (mousedb.animal.tests.StrainModelTests method)|hyperpage}{38}
-\indexentry{test\_create\_strain\_minimal() (mousedb.animal.tests.StrainModelTests method)|hyperpage}{38}
-\indexentry{test\_strain\_absolute\_url() (mousedb.animal.tests.StrainModelTests method)|hyperpage}{38}
-\indexentry{test\_strain\_unicode() (mousedb.animal.tests.StrainModelTests method)|hyperpage}{38}
-\indexentry{StrainViewTests (class in mousedb.animal.tests)|hyperpage}{38}
-\indexentry{setUp() (mousedb.animal.tests.StrainViewTests method)|hyperpage}{38}
-\indexentry{tearDown() (mousedb.animal.tests.StrainViewTests method)|hyperpage}{38}
-\indexentry{test\_strain\_delete() (mousedb.animal.tests.StrainViewTests method)|hyperpage}{38}
-\indexentry{test\_strain\_detail() (mousedb.animal.tests.StrainViewTests method)|hyperpage}{38}
-\indexentry{test\_strain\_detail\_all() (mousedb.animal.tests.StrainViewTests method)|hyperpage}{38}
-\indexentry{test\_strain\_edit() (mousedb.animal.tests.StrainViewTests method)|hyperpage}{38}
-\indexentry{test\_strain\_list() (mousedb.animal.tests.StrainViewTests method)|hyperpage}{38}
-\indexentry{test\_strain\_new() (mousedb.animal.tests.StrainViewTests method)|hyperpage}{39}
-\indexentry{mousedb.timed\_mating (module)|hyperpage}{39}
-\indexentry{mousedb.timed\_mating.models (module)|hyperpage}{39}
-\indexentry{PlugEvents (class in mousedb.timed\_mating.models)|hyperpage}{39}
-\indexentry{Breeding (mousedb.timed\_mating.models.PlugEvents attribute)|hyperpage}{39}
-\indexentry{PlugEvents.DoesNotExist|hyperpage}{39}
-\indexentry{PlugEvents.MultipleObjectsReturned|hyperpage}{39}
-\indexentry{PlugFemale (mousedb.timed\_mating.models.PlugEvents attribute)|hyperpage}{39}
-\indexentry{PlugMale (mousedb.timed\_mating.models.PlugEvents attribute)|hyperpage}{39}
-\indexentry{Researcher (mousedb.timed\_mating.models.PlugEvents attribute)|hyperpage}{39}
-\indexentry{get\_absolute\_url() (mousedb.timed\_mating.models.PlugEvents method)|hyperpage}{39}
-\indexentry{get\_next\_by\_PlugDate() (mousedb.timed\_mating.models.PlugEvents method)|hyperpage}{39}
-\indexentry{get\_previous\_by\_PlugDate() (mousedb.timed\_mating.models.PlugEvents method)|hyperpage}{39}
-\indexentry{save() (mousedb.timed\_mating.models.PlugEvents method)|hyperpage}{39}
-\indexentry{mousedb.timed\_mating.forms (module)|hyperpage}{40}
-\indexentry{BreedingPlugForm (class in mousedb.timed\_mating.forms)|hyperpage}{40}
-\indexentry{BreedingPlugForm.Meta (class in mousedb.timed\_mating.forms)|hyperpage}{40}
-\indexentry{model (mousedb.timed\_mating.forms.BreedingPlugForm.Meta attribute)|hyperpage}{40}
-\indexentry{media (mousedb.timed\_mating.forms.BreedingPlugForm attribute)|hyperpage}{40}
-\indexentry{mousedb.timed\_mating.views (module)|hyperpage}{40}
-\indexentry{PlugEventsCreate (class in mousedb.timed\_mating.views)|hyperpage}{40}
-\indexentry{model (mousedb.timed\_mating.views.PlugEventsCreate attribute)|hyperpage}{40}
-\indexentry{PlugEventsDelete (class in mousedb.timed\_mating.views)|hyperpage}{40}
-\indexentry{model (mousedb.timed\_mating.views.PlugEventsDelete attribute)|hyperpage}{40}
-\indexentry{PlugEventsDetail (class in mousedb.timed\_mating.views)|hyperpage}{40}
-\indexentry{model (mousedb.timed\_mating.views.PlugEventsDetail attribute)|hyperpage}{40}
-\indexentry{PlugEventsList (class in mousedb.timed\_mating.views)|hyperpage}{40}
-\indexentry{model (mousedb.timed\_mating.views.PlugEventsList attribute)|hyperpage}{41}
-\indexentry{PlugEventsListStrain (class in mousedb.timed\_mating.views)|hyperpage}{41}
-\indexentry{get\_queryset() (mousedb.timed\_mating.views.PlugEventsListStrain method)|hyperpage}{41}
-\indexentry{PlugEventsUpdate (class in mousedb.timed\_mating.views)|hyperpage}{41}
-\indexentry{model (mousedb.timed\_mating.views.PlugEventsUpdate attribute)|hyperpage}{41}
-\indexentry{breeding\_plugevent() (in module mousedb.timed\_mating.views)|hyperpage}{41}
-\indexentry{mousedb.timed\_mating.urls (module)|hyperpage}{41}
-\indexentry{mousedb.timed\_mating.admin (module)|hyperpage}{41}
-\indexentry{PlugEventsAdmin (class in mousedb.timed\_mating.admin)|hyperpage}{41}
-\indexentry{media (mousedb.timed\_mating.admin.PlugEventsAdmin attribute)|hyperpage}{41}
-\indexentry{mousedb.timed\_mating.tests (module)|hyperpage}{41}
-\indexentry{Timed\_MatingModelTests (class in mousedb.timed\_mating.tests)|hyperpage}{41}
-\indexentry{setUp() (mousedb.timed\_mating.tests.Timed\_MatingModelTests method)|hyperpage}{42}
-\indexentry{tearDown() (mousedb.timed\_mating.tests.Timed\_MatingModelTests method)|hyperpage}{42}
-\indexentry{test\_create\_plugevent\_minimal() (mousedb.timed\_mating.tests.Timed\_MatingModelTests method)|hyperpage}{42}
-\indexentry{test\_create\_plugevent\_most\_fields() (mousedb.timed\_mating.tests.Timed\_MatingModelTests method)|hyperpage}{42}
-\indexentry{test\_set\_plugevent\_inactive() (mousedb.timed\_mating.tests.Timed\_MatingModelTests method)|hyperpage}{42}
-\indexentry{Timed\_MatingViewTests (class in mousedb.timed\_mating.tests)|hyperpage}{42}
-\indexentry{setUp() (mousedb.timed\_mating.tests.Timed\_MatingViewTests method)|hyperpage}{42}
-\indexentry{tearDown() (mousedb.timed\_mating.tests.Timed\_MatingViewTests method)|hyperpage}{42}
-\indexentry{test\_breeding\_plugevent\_new() (mousedb.timed\_mating.tests.Timed\_MatingViewTests method)|hyperpage}{42}
-\indexentry{test\_plugevent\_delete() (mousedb.timed\_mating.tests.Timed\_MatingViewTests method)|hyperpage}{42}
-\indexentry{test\_plugevent\_detail() (mousedb.timed\_mating.tests.Timed\_MatingViewTests method)|hyperpage}{42}
-\indexentry{test\_plugevent\_edit() (mousedb.timed\_mating.tests.Timed\_MatingViewTests method)|hyperpage}{42}
-\indexentry{test\_plugevent\_list() (mousedb.timed\_mating.tests.Timed\_MatingViewTests method)|hyperpage}{42}
-\indexentry{test\_plugevent\_list\_strain() (mousedb.timed\_mating.tests.Timed\_MatingViewTests method)|hyperpage}{42}
-\indexentry{test\_plugevent\_new() (mousedb.timed\_mating.tests.Timed\_MatingViewTests method)|hyperpage}{42}
-\indexentry{mousedb.groups (module)|hyperpage}{43}
-\indexentry{mousedb.groups.models (module)|hyperpage}{43}
-\indexentry{Group (class in mousedb.groups.models)|hyperpage}{43}
-\indexentry{Group.DoesNotExist|hyperpage}{43}
-\indexentry{Group.MultipleObjectsReturned|hyperpage}{43}
-\indexentry{get\_contact\_title\_display() (mousedb.groups.models.Group method)|hyperpage}{43}
-\indexentry{license (mousedb.groups.models.Group attribute)|hyperpage}{43}
-\indexentry{License (class in mousedb.groups.models)|hyperpage}{43}
-\indexentry{License.DoesNotExist|hyperpage}{43}
-\indexentry{License.MultipleObjectsReturned|hyperpage}{43}
-\indexentry{group\_set (mousedb.groups.models.License attribute)|hyperpage}{43}
-\indexentry{mousedb.groups.views (module)|hyperpage}{43}
-\indexentry{mousedb.groups.admin (module)|hyperpage}{43}
-\indexentry{GroupAdmin (class in mousedb.groups.admin)|hyperpage}{43}
-\indexentry{media (mousedb.groups.admin.GroupAdmin attribute)|hyperpage}{43}
-\indexentry{LicenseAdmin (class in mousedb.groups.admin)|hyperpage}{43}
-\indexentry{media (mousedb.groups.admin.LicenseAdmin attribute)|hyperpage}{44}
-\indexentry{mousedb.groups.tests (module)|hyperpage}{44}
-\indexentry{GroupsModelTests (class in mousedb.groups.tests)|hyperpage}{44}
-\indexentry{setUp() (mousedb.groups.tests.GroupsModelTests method)|hyperpage}{44}
-\indexentry{tearDown() (mousedb.groups.tests.GroupsModelTests method)|hyperpage}{44}
-\indexentry{test\_create\_group\_all\_fields() (mousedb.groups.tests.GroupsModelTests method)|hyperpage}{44}
-\indexentry{test\_create\_group\_minimal() (mousedb.groups.tests.GroupsModelTests method)|hyperpage}{44}
-\indexentry{test\_create\_license\_all\_fields() (mousedb.groups.tests.GroupsModelTests method)|hyperpage}{44}
-\indexentry{test\_create\_license\_minimal() (mousedb.groups.tests.GroupsModelTests method)|hyperpage}{44}
+\indexentry{Breeding (mousedb.animal.models.Animal attribute)|hyperpage}{27}
+\indexentry{Animal.DoesNotExist|hyperpage}{27}
+\indexentry{Father (mousedb.animal.models.Animal attribute)|hyperpage}{27}
+\indexentry{Mother (mousedb.animal.models.Animal attribute)|hyperpage}{27}
+\indexentry{Animal.MultipleObjectsReturned|hyperpage}{27}
+\indexentry{PlugFemale (mousedb.animal.models.Animal attribute)|hyperpage}{27}
+\indexentry{PlugMale (mousedb.animal.models.Animal attribute)|hyperpage}{27}
+\indexentry{Strain (mousedb.animal.models.Animal attribute)|hyperpage}{27}
+\indexentry{age() (mousedb.animal.models.Animal method)|hyperpage}{27}
+\indexentry{breeding\_female\_location\_type() (mousedb.animal.models.Animal method)|hyperpage}{27}
+\indexentry{breeding\_females (mousedb.animal.models.Animal attribute)|hyperpage}{27}
+\indexentry{breeding\_male\_location\_type() (mousedb.animal.models.Animal method)|hyperpage}{27}
+\indexentry{breeding\_males (mousedb.animal.models.Animal attribute)|hyperpage}{27}
+\indexentry{father (mousedb.animal.models.Animal attribute)|hyperpage}{28}
+\indexentry{get\_Background\_display() (mousedb.animal.models.Animal method)|hyperpage}{28}
+\indexentry{get\_Cause\_of\_Death\_display() (mousedb.animal.models.Animal method)|hyperpage}{28}
+\indexentry{get\_Gender\_display() (mousedb.animal.models.Animal method)|hyperpage}{28}
+\indexentry{get\_Genotype\_display() (mousedb.animal.models.Animal method)|hyperpage}{28}
+\indexentry{get\_absolute\_url() (mousedb.animal.models.Animal method)|hyperpage}{28}
+\indexentry{measurement\_set (mousedb.animal.models.Animal attribute)|hyperpage}{28}
+\indexentry{mother (mousedb.animal.models.Animal attribute)|hyperpage}{28}
+\indexentry{save() (mousedb.animal.models.Animal method)|hyperpage}{28}
+\indexentry{transplantation\_set (mousedb.animal.models.Animal attribute)|hyperpage}{28}
+\indexentry{treatment\_set (mousedb.animal.models.Animal attribute)|hyperpage}{28}
+\indexentry{Breeding (class in mousedb.animal.models)|hyperpage}{28}
+\indexentry{Breeding.DoesNotExist|hyperpage}{28}
+\indexentry{Females (mousedb.animal.models.Breeding attribute)|hyperpage}{28}
+\indexentry{Male (mousedb.animal.models.Breeding attribute)|hyperpage}{28}
+\indexentry{Breeding.MultipleObjectsReturned|hyperpage}{28}
+\indexentry{Strain (mousedb.animal.models.Breeding attribute)|hyperpage}{28}
+\indexentry{animal\_set (mousedb.animal.models.Breeding attribute)|hyperpage}{28}
+\indexentry{duration() (mousedb.animal.models.Breeding method)|hyperpage}{28}
+\indexentry{get\_Crosstype\_display() (mousedb.animal.models.Breeding method)|hyperpage}{28}
+\indexentry{get\_absolute\_url() (mousedb.animal.models.Breeding method)|hyperpage}{28}
+\indexentry{get\_background\_display() (mousedb.animal.models.Breeding method)|hyperpage}{28}
+\indexentry{get\_genotype\_display() (mousedb.animal.models.Breeding method)|hyperpage}{28}
+\indexentry{male\_breeding\_location\_type() (mousedb.animal.models.Breeding method)|hyperpage}{28}
+\indexentry{plugevents\_set (mousedb.animal.models.Breeding attribute)|hyperpage}{29}
+\indexentry{save() (mousedb.animal.models.Breeding method)|hyperpage}{29}
+\indexentry{unweaned() (mousedb.animal.models.Breeding method)|hyperpage}{29}
+\indexentry{Strain (class in mousedb.animal.models)|hyperpage}{29}
+\indexentry{Strain.DoesNotExist|hyperpage}{29}
+\indexentry{Strain.MultipleObjectsReturned|hyperpage}{29}
+\indexentry{animal\_set (mousedb.animal.models.Strain attribute)|hyperpage}{29}
+\indexentry{breeding\_set (mousedb.animal.models.Strain attribute)|hyperpage}{29}
+\indexentry{get\_absolute\_url() (mousedb.animal.models.Strain method)|hyperpage}{29}
+\indexentry{study\_set (mousedb.animal.models.Strain attribute)|hyperpage}{29}
+\indexentry{Strain (class in mousedb.animal.models)|hyperpage}{29}
+\indexentry{Animal (class in mousedb.animal.models)|hyperpage}{29}
+\indexentry{Breeding (class in mousedb.animal.models)|hyperpage}{29}
+\indexentry{mousedb.animal.forms (module)|hyperpage}{30}
+\indexentry{AnimalForm (class in mousedb.animal.forms)|hyperpage}{30}
+\indexentry{AnimalForm.Media (class in mousedb.animal.forms)|hyperpage}{30}
+\indexentry{AnimalForm.Meta (class in mousedb.animal.forms)|hyperpage}{30}
+\indexentry{model (mousedb.animal.forms.AnimalForm.Meta attribute)|hyperpage}{30}
+\indexentry{media (mousedb.animal.forms.AnimalForm attribute)|hyperpage}{30}
+\indexentry{BreedingForm (class in mousedb.animal.forms)|hyperpage}{30}
+\indexentry{BreedingForm.Media (class in mousedb.animal.forms)|hyperpage}{30}
+\indexentry{BreedingForm.Meta (class in mousedb.animal.forms)|hyperpage}{30}
+\indexentry{model (mousedb.animal.forms.BreedingForm.Meta attribute)|hyperpage}{30}
+\indexentry{media (mousedb.animal.forms.BreedingForm attribute)|hyperpage}{30}
+\indexentry{MultipleAnimalForm (class in mousedb.animal.forms)|hyperpage}{30}
+\indexentry{MultipleAnimalForm.Meta (class in mousedb.animal.forms)|hyperpage}{31}
+\indexentry{model (mousedb.animal.forms.MultipleAnimalForm.Meta attribute)|hyperpage}{31}
+\indexentry{media (mousedb.animal.forms.MultipleAnimalForm attribute)|hyperpage}{31}
+\indexentry{MultipleBreedingAnimalForm (class in mousedb.animal.forms)|hyperpage}{31}
+\indexentry{MultipleBreedingAnimalForm.Meta (class in mousedb.animal.forms)|hyperpage}{31}
+\indexentry{model (mousedb.animal.forms.MultipleBreedingAnimalForm.Meta attribute)|hyperpage}{31}
+\indexentry{media (mousedb.animal.forms.MultipleBreedingAnimalForm attribute)|hyperpage}{31}
+\indexentry{mousedb.animal.views (module)|hyperpage}{31}
+\indexentry{AnimalCreate (class in mousedb.animal.views)|hyperpage}{31}
+\indexentry{dispatch() (mousedb.animal.views.AnimalCreate method)|hyperpage}{31}
+\indexentry{form\_class (mousedb.animal.views.AnimalCreate attribute)|hyperpage}{31}
+\indexentry{model (mousedb.animal.views.AnimalCreate attribute)|hyperpage}{31}
+\indexentry{AnimalDelete (class in mousedb.animal.views)|hyperpage}{32}
+\indexentry{dispatch() (mousedb.animal.views.AnimalDelete method)|hyperpage}{32}
+\indexentry{model (mousedb.animal.views.AnimalDelete attribute)|hyperpage}{32}
+\indexentry{AnimalDetail (class in mousedb.animal.views)|hyperpage}{32}
+\indexentry{model (mousedb.animal.views.AnimalDetail attribute)|hyperpage}{32}
+\indexentry{AnimalList (class in mousedb.animal.views)|hyperpage}{32}
+\indexentry{dispatch() (mousedb.animal.views.AnimalList method)|hyperpage}{32}
+\indexentry{model (mousedb.animal.views.AnimalList attribute)|hyperpage}{32}
+\indexentry{AnimalListAlive (class in mousedb.animal.views)|hyperpage}{32}
+\indexentry{get\_context\_data() (mousedb.animal.views.AnimalListAlive method)|hyperpage}{32}
+\indexentry{AnimalMonthArchive (class in mousedb.animal.views)|hyperpage}{32}
+\indexentry{dispatch() (mousedb.animal.views.AnimalMonthArchive method)|hyperpage}{32}
+\indexentry{model (mousedb.animal.views.AnimalMonthArchive attribute)|hyperpage}{33}
+\indexentry{AnimalUpdate (class in mousedb.animal.views)|hyperpage}{33}
+\indexentry{dispatch() (mousedb.animal.views.AnimalUpdate method)|hyperpage}{33}
+\indexentry{form\_class (mousedb.animal.views.AnimalUpdate attribute)|hyperpage}{33}
+\indexentry{model (mousedb.animal.views.AnimalUpdate attribute)|hyperpage}{33}
+\indexentry{AnimalYearArchive (class in mousedb.animal.views)|hyperpage}{33}
+\indexentry{dispatch() (mousedb.animal.views.AnimalYearArchive method)|hyperpage}{33}
+\indexentry{model (mousedb.animal.views.AnimalYearArchive attribute)|hyperpage}{33}
+\indexentry{BreedingCreate (class in mousedb.animal.views)|hyperpage}{33}
+\indexentry{dispatch() (mousedb.animal.views.BreedingCreate method)|hyperpage}{33}
+\indexentry{form\_class (mousedb.animal.views.BreedingCreate attribute)|hyperpage}{33}
+\indexentry{model (mousedb.animal.views.BreedingCreate attribute)|hyperpage}{33}
+\indexentry{BreedingDelete (class in mousedb.animal.views)|hyperpage}{33}
+\indexentry{dispatch() (mousedb.animal.views.BreedingDelete method)|hyperpage}{33}
+\indexentry{model (mousedb.animal.views.BreedingDelete attribute)|hyperpage}{33}
+\indexentry{BreedingDetail (class in mousedb.animal.views)|hyperpage}{34}
+\indexentry{model (mousedb.animal.views.BreedingDetail attribute)|hyperpage}{34}
+\indexentry{BreedingList (class in mousedb.animal.views)|hyperpage}{34}
+\indexentry{get\_context\_data() (mousedb.animal.views.BreedingList method)|hyperpage}{34}
+\indexentry{BreedingListAll (class in mousedb.animal.views)|hyperpage}{34}
+\indexentry{get\_context\_data() (mousedb.animal.views.BreedingListAll method)|hyperpage}{34}
+\indexentry{BreedingListTimedMating (class in mousedb.animal.views)|hyperpage}{34}
+\indexentry{get\_context\_data() (mousedb.animal.views.BreedingListTimedMating method)|hyperpage}{34}
+\indexentry{BreedingUpdate (class in mousedb.animal.views)|hyperpage}{34}
+\indexentry{dispatch() (mousedb.animal.views.BreedingUpdate method)|hyperpage}{34}
+\indexentry{form\_class (mousedb.animal.views.BreedingUpdate attribute)|hyperpage}{34}
+\indexentry{model (mousedb.animal.views.BreedingUpdate attribute)|hyperpage}{34}
+\indexentry{EarTagList (class in mousedb.animal.views)|hyperpage}{34}
+\indexentry{GenotypeList (class in mousedb.animal.views)|hyperpage}{35}
+\indexentry{NoCageList (class in mousedb.animal.views)|hyperpage}{35}
+\indexentry{NoRackList (class in mousedb.animal.views)|hyperpage}{35}
+\indexentry{StrainCreate (class in mousedb.animal.views)|hyperpage}{35}
+\indexentry{dispatch() (mousedb.animal.views.StrainCreate method)|hyperpage}{35}
+\indexentry{model (mousedb.animal.views.StrainCreate attribute)|hyperpage}{35}
+\indexentry{StrainDelete (class in mousedb.animal.views)|hyperpage}{35}
+\indexentry{dispatch() (mousedb.animal.views.StrainDelete method)|hyperpage}{35}
+\indexentry{model (mousedb.animal.views.StrainDelete attribute)|hyperpage}{35}
+\indexentry{StrainDetail (class in mousedb.animal.views)|hyperpage}{35}
+\indexentry{get\_context\_data() (mousedb.animal.views.StrainDetail method)|hyperpage}{36}
+\indexentry{StrainDetailAll (class in mousedb.animal.views)|hyperpage}{36}
+\indexentry{get\_context\_data() (mousedb.animal.views.StrainDetailAll method)|hyperpage}{36}
+\indexentry{StrainList (class in mousedb.animal.views)|hyperpage}{36}
+\indexentry{get\_context\_data() (mousedb.animal.views.StrainList method)|hyperpage}{36}
+\indexentry{model (mousedb.animal.views.StrainList attribute)|hyperpage}{36}
+\indexentry{StrainUpdate (class in mousedb.animal.views)|hyperpage}{36}
+\indexentry{dispatch() (mousedb.animal.views.StrainUpdate method)|hyperpage}{36}
+\indexentry{model (mousedb.animal.views.StrainUpdate attribute)|hyperpage}{36}
+\indexentry{WeanList (class in mousedb.animal.views)|hyperpage}{36}
+\indexentry{breeding\_change() (in module mousedb.animal.views)|hyperpage}{36}
+\indexentry{breeding\_pups() (in module mousedb.animal.views)|hyperpage}{37}
+\indexentry{breeding\_wean() (in module mousedb.animal.views)|hyperpage}{37}
+\indexentry{date\_archive\_year() (in module mousedb.animal.views)|hyperpage}{37}
+\indexentry{multiple\_breeding\_pups() (in module mousedb.animal.views)|hyperpage}{37}
+\indexentry{multiple\_pups() (in module mousedb.animal.views)|hyperpage}{37}
+\indexentry{todo() (in module mousedb.animal.views)|hyperpage}{37}
+\indexentry{mousedb.animal.urls (module)|hyperpage}{37}
+\indexentry{mousedb.animal.admin (module)|hyperpage}{37}
+\indexentry{AnimalAdmin (class in mousedb.animal.admin)|hyperpage}{37}
+\indexentry{mark\_sacrificed() (mousedb.animal.admin.AnimalAdmin method)|hyperpage}{37}
+\indexentry{media (mousedb.animal.admin.AnimalAdmin attribute)|hyperpage}{38}
+\indexentry{AnimalInline (class in mousedb.animal.admin)|hyperpage}{38}
+\indexentry{media (mousedb.animal.admin.AnimalInline attribute)|hyperpage}{38}
+\indexentry{model (mousedb.animal.admin.AnimalInline attribute)|hyperpage}{38}
+\indexentry{BreedingAdmin (class in mousedb.animal.admin)|hyperpage}{38}
+\indexentry{mark\_deactivated() (mousedb.animal.admin.BreedingAdmin method)|hyperpage}{38}
+\indexentry{media (mousedb.animal.admin.BreedingAdmin attribute)|hyperpage}{38}
+\indexentry{StrainAdmin (class in mousedb.animal.admin)|hyperpage}{38}
+\indexentry{media (mousedb.animal.admin.StrainAdmin attribute)|hyperpage}{38}
+\indexentry{mousedb.animal.tests (module)|hyperpage}{38}
+\indexentry{AnimalModelTests (class in mousedb.animal.tests)|hyperpage}{38}
+\indexentry{setUp() (mousedb.animal.tests.AnimalModelTests method)|hyperpage}{38}
+\indexentry{tearDown() (mousedb.animal.tests.AnimalModelTests method)|hyperpage}{38}
+\indexentry{test\_animal\_unicode() (mousedb.animal.tests.AnimalModelTests method)|hyperpage}{38}
+\indexentry{test\_create\_animal\_minimal() (mousedb.animal.tests.AnimalModelTests method)|hyperpage}{38}
+\indexentry{AnimalViewTests (class in mousedb.animal.tests)|hyperpage}{39}
+\indexentry{setUp() (mousedb.animal.tests.AnimalViewTests method)|hyperpage}{39}
+\indexentry{tearDown() (mousedb.animal.tests.AnimalViewTests method)|hyperpage}{39}
+\indexentry{test\_animal\_delete() (mousedb.animal.tests.AnimalViewTests method)|hyperpage}{39}
+\indexentry{test\_animal\_detail() (mousedb.animal.tests.AnimalViewTests method)|hyperpage}{39}
+\indexentry{test\_animal\_edit() (mousedb.animal.tests.AnimalViewTests method)|hyperpage}{39}
+\indexentry{test\_animal\_list() (mousedb.animal.tests.AnimalViewTests method)|hyperpage}{39}
+\indexentry{test\_animal\_list\_all() (mousedb.animal.tests.AnimalViewTests method)|hyperpage}{39}
+\indexentry{test\_animal\_new() (mousedb.animal.tests.AnimalViewTests method)|hyperpage}{39}
+\indexentry{BreedingModelTests (class in mousedb.animal.tests)|hyperpage}{39}
+\indexentry{setUp() (mousedb.animal.tests.BreedingModelTests method)|hyperpage}{39}
+\indexentry{tearDown() (mousedb.animal.tests.BreedingModelTests method)|hyperpage}{39}
+\indexentry{test\_autoset\_active\_state() (mousedb.animal.tests.BreedingModelTests method)|hyperpage}{39}
+\indexentry{test\_create\_breeding\_minimal() (mousedb.animal.tests.BreedingModelTests method)|hyperpage}{39}
+\indexentry{test\_duration() (mousedb.animal.tests.BreedingModelTests method)|hyperpage}{39}
+\indexentry{test\_study\_absolute\_url() (mousedb.animal.tests.BreedingModelTests method)|hyperpage}{39}
+\indexentry{test\_unweaned() (mousedb.animal.tests.BreedingModelTests method)|hyperpage}{39}
+\indexentry{BreedingViewTests (class in mousedb.animal.tests)|hyperpage}{40}
+\indexentry{setUp() (mousedb.animal.tests.BreedingViewTests method)|hyperpage}{40}
+\indexentry{tearDown() (mousedb.animal.tests.BreedingViewTests method)|hyperpage}{40}
+\indexentry{test\_breeding\_delete() (mousedb.animal.tests.BreedingViewTests method)|hyperpage}{40}
+\indexentry{test\_breeding\_detail() (mousedb.animal.tests.BreedingViewTests method)|hyperpage}{40}
+\indexentry{test\_breeding\_edit() (mousedb.animal.tests.BreedingViewTests method)|hyperpage}{40}
+\indexentry{test\_breeding\_list() (mousedb.animal.tests.BreedingViewTests method)|hyperpage}{40}
+\indexentry{test\_breeding\_list\_all() (mousedb.animal.tests.BreedingViewTests method)|hyperpage}{40}
+\indexentry{test\_breeding\_new() (mousedb.animal.tests.BreedingViewTests method)|hyperpage}{40}
+\indexentry{test\_timed\_mating\_list() (mousedb.animal.tests.BreedingViewTests method)|hyperpage}{40}
+\indexentry{CageViewTests (class in mousedb.animal.tests)|hyperpage}{40}
+\indexentry{setUp() (mousedb.animal.tests.CageViewTests method)|hyperpage}{40}
+\indexentry{tearDown() (mousedb.animal.tests.CageViewTests method)|hyperpage}{40}
+\indexentry{test\_cage\_detail() (mousedb.animal.tests.CageViewTests method)|hyperpage}{40}
+\indexentry{test\_cage\_list() (mousedb.animal.tests.CageViewTests method)|hyperpage}{40}
+\indexentry{DateViewTests (class in mousedb.animal.tests)|hyperpage}{40}
+\indexentry{setUp() (mousedb.animal.tests.DateViewTests method)|hyperpage}{41}
+\indexentry{tearDown() (mousedb.animal.tests.DateViewTests method)|hyperpage}{41}
+\indexentry{test\_archive\_home() (mousedb.animal.tests.DateViewTests method)|hyperpage}{41}
+\indexentry{test\_archive\_month() (mousedb.animal.tests.DateViewTests method)|hyperpage}{41}
+\indexentry{test\_archive\_year() (mousedb.animal.tests.DateViewTests method)|hyperpage}{41}
+\indexentry{StrainModelTests (class in mousedb.animal.tests)|hyperpage}{41}
+\indexentry{setUp() (mousedb.animal.tests.StrainModelTests method)|hyperpage}{41}
+\indexentry{tearDown() (mousedb.animal.tests.StrainModelTests method)|hyperpage}{41}
+\indexentry{test\_create\_strain\_all() (mousedb.animal.tests.StrainModelTests method)|hyperpage}{41}
+\indexentry{test\_create\_strain\_minimal() (mousedb.animal.tests.StrainModelTests method)|hyperpage}{41}
+\indexentry{test\_strain\_absolute\_url() (mousedb.animal.tests.StrainModelTests method)|hyperpage}{41}
+\indexentry{test\_strain\_unicode() (mousedb.animal.tests.StrainModelTests method)|hyperpage}{41}
+\indexentry{StrainViewTests (class in mousedb.animal.tests)|hyperpage}{41}
+\indexentry{setUp() (mousedb.animal.tests.StrainViewTests method)|hyperpage}{41}
+\indexentry{tearDown() (mousedb.animal.tests.StrainViewTests method)|hyperpage}{41}
+\indexentry{test\_strain\_delete() (mousedb.animal.tests.StrainViewTests method)|hyperpage}{41}
+\indexentry{test\_strain\_detail() (mousedb.animal.tests.StrainViewTests method)|hyperpage}{41}
+\indexentry{test\_strain\_detail\_all() (mousedb.animal.tests.StrainViewTests method)|hyperpage}{41}
+\indexentry{test\_strain\_edit() (mousedb.animal.tests.StrainViewTests method)|hyperpage}{42}
+\indexentry{test\_strain\_list() (mousedb.animal.tests.StrainViewTests method)|hyperpage}{42}
+\indexentry{test\_strain\_new() (mousedb.animal.tests.StrainViewTests method)|hyperpage}{42}
+\indexentry{ToDoViewTests (class in mousedb.animal.tests)|hyperpage}{42}
+\indexentry{setUp() (mousedb.animal.tests.ToDoViewTests method)|hyperpage}{42}
+\indexentry{tearDown() (mousedb.animal.tests.ToDoViewTests method)|hyperpage}{42}
+\indexentry{test\_eartag\_list() (mousedb.animal.tests.ToDoViewTests method)|hyperpage}{42}
+\indexentry{test\_genotype\_list() (mousedb.animal.tests.ToDoViewTests method)|hyperpage}{42}
+\indexentry{test\_no\_cage\_list() (mousedb.animal.tests.ToDoViewTests method)|hyperpage}{42}
+\indexentry{test\_no\_rack\_list() (mousedb.animal.tests.ToDoViewTests method)|hyperpage}{42}
+\indexentry{test\_todo\_home() (mousedb.animal.tests.ToDoViewTests method)|hyperpage}{42}
+\indexentry{test\_wean\_list() (mousedb.animal.tests.ToDoViewTests method)|hyperpage}{42}
+\indexentry{mousedb.timed\_mating (module)|hyperpage}{42}
+\indexentry{mousedb.timed\_mating.models (module)|hyperpage}{43}
+\indexentry{PlugEvents (class in mousedb.timed\_mating.models)|hyperpage}{43}
+\indexentry{Breeding (mousedb.timed\_mating.models.PlugEvents attribute)|hyperpage}{43}
+\indexentry{PlugEvents.DoesNotExist|hyperpage}{43}
+\indexentry{PlugEvents.MultipleObjectsReturned|hyperpage}{43}
+\indexentry{PlugFemale (mousedb.timed\_mating.models.PlugEvents attribute)|hyperpage}{43}
+\indexentry{PlugMale (mousedb.timed\_mating.models.PlugEvents attribute)|hyperpage}{43}
+\indexentry{Researcher (mousedb.timed\_mating.models.PlugEvents attribute)|hyperpage}{43}
+\indexentry{get\_absolute\_url() (mousedb.timed\_mating.models.PlugEvents method)|hyperpage}{43}
+\indexentry{get\_next\_by\_PlugDate() (mousedb.timed\_mating.models.PlugEvents method)|hyperpage}{43}
+\indexentry{get\_previous\_by\_PlugDate() (mousedb.timed\_mating.models.PlugEvents method)|hyperpage}{43}
+\indexentry{save() (mousedb.timed\_mating.models.PlugEvents method)|hyperpage}{43}
+\indexentry{mousedb.timed\_mating.forms (module)|hyperpage}{43}
+\indexentry{BreedingPlugForm (class in mousedb.timed\_mating.forms)|hyperpage}{43}
+\indexentry{BreedingPlugForm.Meta (class in mousedb.timed\_mating.forms)|hyperpage}{43}
+\indexentry{model (mousedb.timed\_mating.forms.BreedingPlugForm.Meta attribute)|hyperpage}{43}
+\indexentry{media (mousedb.timed\_mating.forms.BreedingPlugForm attribute)|hyperpage}{44}
+\indexentry{mousedb.timed\_mating.views (module)|hyperpage}{44}
+\indexentry{PlugEventsCreate (class in mousedb.timed\_mating.views)|hyperpage}{44}
+\indexentry{model (mousedb.timed\_mating.views.PlugEventsCreate attribute)|hyperpage}{44}
+\indexentry{PlugEventsDelete (class in mousedb.timed\_mating.views)|hyperpage}{44}
+\indexentry{model (mousedb.timed\_mating.views.PlugEventsDelete attribute)|hyperpage}{44}
+\indexentry{PlugEventsDetail (class in mousedb.timed\_mating.views)|hyperpage}{44}
+\indexentry{model (mousedb.timed\_mating.views.PlugEventsDetail attribute)|hyperpage}{44}
+\indexentry{PlugEventsList (class in mousedb.timed\_mating.views)|hyperpage}{44}
+\indexentry{model (mousedb.timed\_mating.views.PlugEventsList attribute)|hyperpage}{44}
+\indexentry{PlugEventsListStrain (class in mousedb.timed\_mating.views)|hyperpage}{44}
+\indexentry{get\_queryset() (mousedb.timed\_mating.views.PlugEventsListStrain method)|hyperpage}{44}
+\indexentry{PlugEventsUpdate (class in mousedb.timed\_mating.views)|hyperpage}{45}
+\indexentry{model (mousedb.timed\_mating.views.PlugEventsUpdate attribute)|hyperpage}{45}
+\indexentry{breeding\_plugevent() (in module mousedb.timed\_mating.views)|hyperpage}{45}
+\indexentry{mousedb.timed\_mating.urls (module)|hyperpage}{45}
+\indexentry{mousedb.timed\_mating.admin (module)|hyperpage}{45}
+\indexentry{PlugEventsAdmin (class in mousedb.timed\_mating.admin)|hyperpage}{45}
+\indexentry{media (mousedb.timed\_mating.admin.PlugEventsAdmin attribute)|hyperpage}{45}
+\indexentry{mousedb.timed\_mating.tests (module)|hyperpage}{45}
+\indexentry{Timed\_MatingModelTests (class in mousedb.timed\_mating.tests)|hyperpage}{45}
+\indexentry{setUp() (mousedb.timed\_mating.tests.Timed\_MatingModelTests method)|hyperpage}{45}
+\indexentry{tearDown() (mousedb.timed\_mating.tests.Timed\_MatingModelTests method)|hyperpage}{45}
+\indexentry{test\_create\_plugevent\_minimal() (mousedb.timed\_mating.tests.Timed\_MatingModelTests method)|hyperpage}{45}
+\indexentry{test\_create\_plugevent\_most\_fields() (mousedb.timed\_mating.tests.Timed\_MatingModelTests method)|hyperpage}{45}
+\indexentry{test\_set\_plugevent\_inactive() (mousedb.timed\_mating.tests.Timed\_MatingModelTests method)|hyperpage}{45}
+\indexentry{Timed\_MatingViewTests (class in mousedb.timed\_mating.tests)|hyperpage}{46}
+\indexentry{setUp() (mousedb.timed\_mating.tests.Timed\_MatingViewTests method)|hyperpage}{46}
+\indexentry{tearDown() (mousedb.timed\_mating.tests.Timed\_MatingViewTests method)|hyperpage}{46}
+\indexentry{test\_breeding\_plugevent\_new() (mousedb.timed\_mating.tests.Timed\_MatingViewTests method)|hyperpage}{46}
+\indexentry{test\_plugevent\_delete() (mousedb.timed\_mating.tests.Timed\_MatingViewTests method)|hyperpage}{46}
+\indexentry{test\_plugevent\_detail() (mousedb.timed\_mating.tests.Timed\_MatingViewTests method)|hyperpage}{46}
+\indexentry{test\_plugevent\_edit() (mousedb.timed\_mating.tests.Timed\_MatingViewTests method)|hyperpage}{46}
+\indexentry{test\_plugevent\_list() (mousedb.timed\_mating.tests.Timed\_MatingViewTests method)|hyperpage}{46}
+\indexentry{test\_plugevent\_list\_strain() (mousedb.timed\_mating.tests.Timed\_MatingViewTests method)|hyperpage}{46}
+\indexentry{test\_plugevent\_new() (mousedb.timed\_mating.tests.Timed\_MatingViewTests method)|hyperpage}{46}
+\indexentry{mousedb.groups (module)|hyperpage}{46}
+\indexentry{mousedb.groups.models (module)|hyperpage}{46}
+\indexentry{Group (class in mousedb.groups.models)|hyperpage}{46}
+\indexentry{Group.DoesNotExist|hyperpage}{47}
+\indexentry{Group.MultipleObjectsReturned|hyperpage}{47}
+\indexentry{get\_contact\_title\_display() (mousedb.groups.models.Group method)|hyperpage}{47}
+\indexentry{license (mousedb.groups.models.Group attribute)|hyperpage}{47}
+\indexentry{License (class in mousedb.groups.models)|hyperpage}{47}
+\indexentry{License.DoesNotExist|hyperpage}{47}
+\indexentry{License.MultipleObjectsReturned|hyperpage}{47}
+\indexentry{group\_set (mousedb.groups.models.License attribute)|hyperpage}{47}
+\indexentry{mousedb.groups.views (module)|hyperpage}{47}
+\indexentry{mousedb.groups.admin (module)|hyperpage}{47}
+\indexentry{GroupAdmin (class in mousedb.groups.admin)|hyperpage}{47}
+\indexentry{media (mousedb.groups.admin.GroupAdmin attribute)|hyperpage}{47}
+\indexentry{LicenseAdmin (class in mousedb.groups.admin)|hyperpage}{47}
+\indexentry{media (mousedb.groups.admin.LicenseAdmin attribute)|hyperpage}{47}
+\indexentry{mousedb.groups.tests (module)|hyperpage}{47}
+\indexentry{GroupsModelTests (class in mousedb.groups.tests)|hyperpage}{47}
+\indexentry{setUp() (mousedb.groups.tests.GroupsModelTests method)|hyperpage}{47}
+\indexentry{tearDown() (mousedb.groups.tests.GroupsModelTests method)|hyperpage}{48}
+\indexentry{test\_create\_group\_all\_fields() (mousedb.groups.tests.GroupsModelTests method)|hyperpage}{48}
+\indexentry{test\_create\_group\_minimal() (mousedb.groups.tests.GroupsModelTests method)|hyperpage}{48}
+\indexentry{test\_create\_license\_all\_fields() (mousedb.groups.tests.GroupsModelTests method)|hyperpage}{48}
+\indexentry{test\_create\_license\_minimal() (mousedb.groups.tests.GroupsModelTests method)|hyperpage}{48}

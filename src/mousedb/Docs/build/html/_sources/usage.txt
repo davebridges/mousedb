@@ -1,3 +1,15 @@
+Users and Restriction
+=====================
+All pages in this database are restricted to logged-in users.  Users are defined using the standard Django :class:`~django.contrib.auth.models.User` objects.  It is also recommended that data is secured by only allowing access of specific IP addresses.  For more details on this see the documentation for your webserver software (for example, for Apache see here http://httpd.apache.org/docs/2.2/howto/access.html).  Each database should have at least one superuser, and that user can create and designate permissions for other users.  When a user does not have the permissions to view a page or to edit something, the link to that page will not be visible and if they enter the address, they will be redirected to a login page.
+
+Creating New Users
+++++++++++++++++++
+Create users by going to **../mousedb/admin/auth/user/add/** and filling in both pages of the form.  Permissions are set by going to **../mousedb/admin/auth/user/** selecting the user and manually moving the permissions from the box on the left to the box on the right.  If you want the user to have access to the admin site, select staff.  Only select superuser if you want that user to have all permissions.  Users can change passwords on the administration site as well.
+
+Removing Users
+++++++++++++++
+Remove inactive users by selecting their username from the **../mousedb/admin/auth/user/** page and deselecting the active box.  Only delete a user if it was generated mistakenly and that the particular user had not been used to edit any data.
+
 Animal Data Entry
 =================
 

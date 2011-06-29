@@ -5,11 +5,11 @@ Data storage for MouseDB is separated into packages which contain information ab
 
 Animal Module
 -------------
-Animals are tracked as individual entities, and given associations to breeding cages to follow ancestry, and strains.
+Animals are tracked as individual entities, and given associations to breeding cages to follow ancestry, and strains.  Animals are the main objects in the database, and most other data is linked to and can be accessed from animals.
 
 Animal
 ++++++
-Most parameters about an animal are set within the animal object.  Here is where the animals strain, breeding, parentage and many other parameters are included.  Animals have foreignkey relationships with both Strain and Breeding, so an animal may only belong to one of each of those.  As an example, a mouse cannot come from more than one Breeding set, and cannot belong to more than one strain.
+Most parameters about an animal are set within the :class:`~mousedb.animal.models.Animal` object. Here is where the animals strain, breeding, parentage and many other parameters are included.  Animals have foreignkey relationships with both :class:`~mousedb.animal.models.Strain` and :class:`~mousedb.animal.models.Breeding`, so an animal may only belong to one of each of those.  As an example, a mouse cannot come from more than one Breeding set, and cannot belong to more than one strain.
 
 Backcrosses and Generations
 ...........................

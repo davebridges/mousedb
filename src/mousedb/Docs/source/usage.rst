@@ -1,6 +1,6 @@
 Users and Restriction
 =====================
-All pages in this database are restricted to logged-in users.  It is also recommended that data is secured by only allowing access of specific IP addresses.  For more details on this see the documentation for your webserver software (for example, for Apache see here http://httpd.apache.org/docs/2.2/howto/access.html).  Each database should have at least one superuser, and that user can create and designate permissions for other users.  When a user does not have the permissions to view a page or to edit something, the link to that page will not be visible and if they enter the address, they will be redirected to a login page.
+All pages in this database are restricted to logged-in users.  Users are defined using the standard Django :class:`~django.contrib.auth.models.User` objects.  It is also recommended that data is secured by only allowing access of specific IP addresses.  For more details on this see the documentation for your webserver software (for example, for Apache see here http://httpd.apache.org/docs/2.2/howto/access.html).  Each database should have at least one superuser, and that user can create and designate permissions for other users.  When a user does not have the permissions to view a page or to edit something, the link to that page will not be visible and if they enter the address, they will be redirected to a login page.
 
 Creating New Users
 ++++++++++++++++++

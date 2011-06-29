@@ -12,7 +12,7 @@
 
 
 \title{MouseDB Documentation}
-\date{June 18, 2011}
+\date{June 29, 2011}
 \release{0.2.1dev}
 \author{Dave Bridges, Ph.D.}
 \newcommand{\sphinxlogo}{}
@@ -123,12 +123,12 @@ Data storage for MouseDB is separated into packages which contain information ab
 
 \section{Animal Module}
 \label{concepts:animal-module}
-Animals are tracked as individual entities, and given associations to breeding cages to follow ancestry, and strains.
+Animals are tracked as individual entities, and given associations to breeding cages to follow ancestry, and strains.  Animals are the main objects in the database, and most other data is linked to and can be accessed from animals.
 
 
 \subsection{Animal}
 \label{concepts:animal}
-Most parameters about an animal are set within the animal object.  Here is where the animals strain, breeding, parentage and many other parameters are included.  Animals have foreignkey relationships with both Strain and Breeding, so an animal may only belong to one of each of those.  As an example, a mouse cannot come from more than one Breeding set, and cannot belong to more than one strain.
+Most parameters about an animal are set within the {\hyperref[api:mousedb.animal.models.Animal]{\code{Animal}}} object. Here is where the animals strain, breeding, parentage and many other parameters are included.  Animals have foreignkey relationships with both {\hyperref[api:mousedb.animal.models.Strain]{\code{Strain}}} and {\hyperref[api:mousedb.animal.models.Breeding]{\code{Breeding}}}, so an animal may only belong to one of each of those.  As an example, a mouse cannot come from more than one Breeding set, and cannot belong to more than one strain.
 
 
 \subsubsection{Backcrosses and Generations}
@@ -339,8 +339,23 @@ Go to \emph{servername/mousedb/admin/auth/users/} and create users, selecting us
 From the mousedb directory run \textbf{bin\textbackslash{}test} or \textbf{bin\textbackslash{}django test} to run the test suite.  See \href{https://github.com/davebridges/mousedb/wiki/Known-Issues---Test-Suite}{https://github.com/davebridges/mousedb/wiki/Known-Issues---Test-Suite} for known issues.  Report any additional errors at the issue page at \href{https://github.com/davebridges/mousedb/issues}{https://github.com/davebridges/mousedb/issues}.
 
 
+\chapter{Users and Restriction}
+\label{usage:users-and-restriction}\label{usage::doc}
+All pages in this database are restricted to logged-in users.  Users are defined using the standard Django \href{http://docs.djangoproject.com/en/dev/topics/auth/\#django.contrib.auth.models.User}{\code{User}} objects.  It is also recommended that data is secured by only allowing access of specific IP addresses.  For more details on this see the documentation for your webserver software (for example, for Apache see here \href{http://httpd.apache.org/docs/2.2/howto/access.html}{http://httpd.apache.org/docs/2.2/howto/access.html}).  Each database should have at least one superuser, and that user can create and designate permissions for other users.  When a user does not have the permissions to view a page or to edit something, the link to that page will not be visible and if they enter the address, they will be redirected to a login page.
+
+
+\section{Creating New Users}
+\label{usage:creating-new-users}
+Create users by going to \textbf{../mousedb/admin/auth/user/add/} and filling in both pages of the form.  Permissions are set by going to \textbf{../mousedb/admin/auth/user/} selecting the user and manually moving the permissions from the box on the left to the box on the right.  If you want the user to have access to the admin site, select staff.  Only select superuser if you want that user to have all permissions.  Users can change passwords on the administration site as well.
+
+
+\section{Removing Users}
+\label{usage:removing-users}
+Remove inactive users by selecting their username from the \textbf{../mousedb/admin/auth/user/} page and deselecting the active box.  Only delete a user if it was generated mistakenly and that the particular user had not been used to edit any data.
+
+
 \chapter{Animal Data Entry}
-\label{usage:animal-data-entry}\label{usage::doc}
+\label{usage:animal-data-entry}
 
 \section{Newborn Mice or Newly Weaned Mice}
 \label{usage:newborn-mice-or-newly-weaned-mice}\begin{enumerate}
@@ -532,7 +547,7 @@ Currently this package includes views for both the logout and home pages.
 
 \begin{fulllineitems}
 \phantomsection\label{api:mousedb.views.ProtectedDetailView}\pysiglinewithargsret{\strong{class }\code{mousedb.views.}\bfcode{ProtectedDetailView}}{\emph{**kwargs}}{}
-Bases: \code{django.views.generic.detail.DetailView}
+Bases: \href{http://docs.djangoproject.com/en/dev/ref/class-based-views/\#django.views.generic.detail.DetailView}{\code{django.views.generic.detail.DetailView}}
 
 This subclass of DetailView generates a login\_required protected version of the DetailView.
 
@@ -552,7 +567,7 @@ This ProtectedDetailView is then subclassed instead of using ListView for login\
 
 \begin{fulllineitems}
 \phantomsection\label{api:mousedb.views.ProtectedListView}\pysiglinewithargsret{\strong{class }\code{mousedb.views.}\bfcode{ProtectedListView}}{\emph{**kwargs}}{}
-Bases: \code{django.views.generic.list.ListView}
+Bases: \href{http://docs.djangoproject.com/en/dev/ref/class-based-views/\#django.views.generic.list.ListView}{\code{django.views.generic.list.ListView}}
 
 This subclass of ListView generates a login\_required protected version of the ListView.
 
@@ -572,7 +587,7 @@ This ProtectedListView is then subclassed instead of using ListView for login\_r
 
 \begin{fulllineitems}
 \phantomsection\label{api:mousedb.views.RestrictedCreateView}\pysiglinewithargsret{\strong{class }\code{mousedb.views.}\bfcode{RestrictedCreateView}}{\emph{**kwargs}}{}
-Bases: \code{django.views.generic.edit.CreateView}
+Bases: \href{http://docs.djangoproject.com/en/dev/ref/class-based-views/\#django.views.generic.edit.CreateView}{\code{django.views.generic.edit.CreateView}}
 
 Generic create view that checks permissions.
 
@@ -592,7 +607,7 @@ This is from \href{http://djangosnippets.org/snippets/2317/}{http://djangosnippe
 
 \begin{fulllineitems}
 \phantomsection\label{api:mousedb.views.RestrictedDeleteView}\pysiglinewithargsret{\strong{class }\code{mousedb.views.}\bfcode{RestrictedDeleteView}}{\emph{**kwargs}}{}
-Bases: \code{django.views.generic.edit.DeleteView}
+Bases: \href{http://docs.djangoproject.com/en/dev/ref/class-based-views/\#django.views.generic.edit.DeleteView}{\code{django.views.generic.edit.DeleteView}}
 
 Generic delete view that checks permissions.
 
@@ -612,7 +627,7 @@ This is from \href{http://djangosnippets.org/snippets/2317/}{http://djangosnippe
 
 \begin{fulllineitems}
 \phantomsection\label{api:mousedb.views.RestrictedUpdateView}\pysiglinewithargsret{\strong{class }\code{mousedb.views.}\bfcode{RestrictedUpdateView}}{\emph{**kwargs}}{}
-Bases: \code{django.views.generic.edit.UpdateView}
+Bases: \href{http://docs.djangoproject.com/en/dev/ref/class-based-views/\#django.views.generic.edit.UpdateView}{\code{django.views.generic.edit.UpdateView}}
 
 Generic update view that checks permissions.
 
@@ -2539,7 +2554,7 @@ This module contains all views for this app as class based views.
 
 \begin{fulllineitems}
 \phantomsection\label{api:mousedb.animal.views.AnimalCreate}\pysiglinewithargsret{\strong{class }\code{mousedb.animal.views.}\bfcode{AnimalCreate}}{\emph{**kwargs}}{}
-Bases: \code{django.views.generic.edit.CreateView}
+Bases: \href{http://docs.djangoproject.com/en/dev/ref/class-based-views/\#django.views.generic.edit.CreateView}{\code{django.views.generic.edit.CreateView}}
 
 This class generates the animal-new view.
 
@@ -2580,7 +2595,7 @@ alias of \code{Animal}
 
 \begin{fulllineitems}
 \phantomsection\label{api:mousedb.animal.views.AnimalDelete}\pysiglinewithargsret{\strong{class }\code{mousedb.animal.views.}\bfcode{AnimalDelete}}{\emph{**kwargs}}{}
-Bases: \code{django.views.generic.edit.DeleteView}
+Bases: \href{http://docs.djangoproject.com/en/dev/ref/class-based-views/\#django.views.generic.edit.DeleteView}{\code{django.views.generic.edit.DeleteView}}
 
 This class generates the animal-delete view.
 
@@ -2644,6 +2659,15 @@ This view responds to a url in the form \emph{/animal}
 It sends a variable animal containing all animals to animal\_list.html.
 This view is login protected.
 
+\index{dispatch() (mousedb.animal.views.AnimalList method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.AnimalList.dispatch}\pysiglinewithargsret{\bfcode{dispatch}}{\emph{*args}, \emph{**kwargs}}{}
+This decorator sets this view to have restricted permissions.
+
+\end{fulllineitems}
+
+
 \index{model (mousedb.animal.views.AnimalList attribute)}
 
 \begin{fulllineitems}
@@ -2679,11 +2703,43 @@ This add in the context of list\_type and returns this as Alive.
 \end{fulllineitems}
 
 
+\index{AnimalMonthArchive (class in mousedb.animal.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.AnimalMonthArchive}\pysiglinewithargsret{\strong{class }\code{mousedb.animal.views.}\bfcode{AnimalMonthArchive}}{\emph{**kwargs}}{}
+Bases: \href{http://docs.djangoproject.com/en/dev/ref/class-based-views/\#django.views.generic.dates.MonthArchiveView}{\code{django.views.generic.dates.MonthArchiveView}}
+
+This view generates a list of animals born within the specified year.
+
+It takes a url in the form of \textbf{/date/\#\#\#\#} where \#\#\#\# is the four digit code of the year.
+This view is restricted to logged in users.
+
+\index{dispatch() (mousedb.animal.views.AnimalMonthArchive method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.AnimalMonthArchive.dispatch}\pysiglinewithargsret{\bfcode{dispatch}}{\emph{*args}, \emph{**kwargs}}{}
+This decorator sets this view to have restricted permissions.
+
+\end{fulllineitems}
+
+
+\index{model (mousedb.animal.views.AnimalMonthArchive attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.AnimalMonthArchive.model}\pysigline{\bfcode{model}}{}
+alias of \code{Animal}
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
 \index{AnimalUpdate (class in mousedb.animal.views)}
 
 \begin{fulllineitems}
 \phantomsection\label{api:mousedb.animal.views.AnimalUpdate}\pysiglinewithargsret{\strong{class }\code{mousedb.animal.views.}\bfcode{AnimalUpdate}}{\emph{**kwargs}}{}
-Bases: \code{django.views.generic.edit.UpdateView}
+Bases: \href{http://docs.djangoproject.com/en/dev/ref/class-based-views/\#django.views.generic.edit.UpdateView}{\code{django.views.generic.edit.UpdateView}}
 
 This class generates the animal-edit view.
 
@@ -2720,15 +2776,56 @@ alias of \code{Animal}
 \end{fulllineitems}
 
 
+\index{AnimalYearArchive (class in mousedb.animal.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.AnimalYearArchive}\pysiglinewithargsret{\strong{class }\code{mousedb.animal.views.}\bfcode{AnimalYearArchive}}{\emph{**kwargs}}{}
+Bases: \href{http://docs.djangoproject.com/en/dev/ref/class-based-views/\#django.views.generic.dates.YearArchiveView}{\code{django.views.generic.dates.YearArchiveView}}
+
+This view generates a list of animals born within the specified year.
+
+It takes a url in the form of \textbf{/date/\#\#\#\#} where \#\#\#\# is the four digit code of the year.
+This view is restricted to logged in users.
+
+\index{dispatch() (mousedb.animal.views.AnimalYearArchive method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.AnimalYearArchive.dispatch}\pysiglinewithargsret{\bfcode{dispatch}}{\emph{*args}, \emph{**kwargs}}{}
+This decorator sets this view to have restricted permissions.
+
+\end{fulllineitems}
+
+
+\index{model (mousedb.animal.views.AnimalYearArchive attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.AnimalYearArchive.model}\pysigline{\bfcode{model}}{}
+alias of \code{Animal}
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
 \index{BreedingCreate (class in mousedb.animal.views)}
 
 \begin{fulllineitems}
 \phantomsection\label{api:mousedb.animal.views.BreedingCreate}\pysiglinewithargsret{\strong{class }\code{mousedb.animal.views.}\bfcode{BreedingCreate}}{\emph{**kwargs}}{}
-Bases: {\hyperref[api:mousedb.views.RestrictedCreateView]{\code{mousedb.views.RestrictedCreateView}}}
+Bases: \href{http://docs.djangoproject.com/en/dev/ref/class-based-views/\#django.views.generic.edit.CreateView}{\code{django.views.generic.edit.CreateView}}
 
 This class generates the breeding-new view.
 
 This permission restricted view takes a url in the form \emph{/breeding/new} and generates an empty plugevents\_form.html.
+
+\index{dispatch() (mousedb.animal.views.BreedingCreate method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.BreedingCreate.dispatch}\pysiglinewithargsret{\bfcode{dispatch}}{\emph{*args}, \emph{**kwargs}}{}
+This decorator sets this view to have restricted permissions.
+
+\end{fulllineitems}
+
 
 \index{form\_class (mousedb.animal.views.BreedingCreate attribute)}
 
@@ -2755,11 +2852,20 @@ alias of \code{Breeding}
 
 \begin{fulllineitems}
 \phantomsection\label{api:mousedb.animal.views.BreedingDelete}\pysiglinewithargsret{\strong{class }\code{mousedb.animal.views.}\bfcode{BreedingDelete}}{\emph{**kwargs}}{}
-Bases: {\hyperref[api:mousedb.views.RestrictedDeleteView]{\code{mousedb.views.RestrictedDeleteView}}}
+Bases: \href{http://docs.djangoproject.com/en/dev/ref/class-based-views/\#django.views.generic.edit.DeleteView}{\code{django.views.generic.edit.DeleteView}}
 
 This class generates the breeding-delete view.
 
 This permission restricted view takes a url in the form \emph{/breeding/\#/delete} and passes that object to the confirm\_delete.html page.
+
+\index{dispatch() (mousedb.animal.views.BreedingDelete method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.BreedingDelete.dispatch}\pysiglinewithargsret{\bfcode{dispatch}}{\emph{*args}, \emph{**kwargs}}{}
+This decorator sets this view to have restricted permissions.
+
+\end{fulllineitems}
+
 
 \index{model (mousedb.animal.views.BreedingDelete attribute)}
 
@@ -2868,11 +2974,20 @@ This add in the context of breeding\_type and sets it to Timed\_Matings.
 
 \begin{fulllineitems}
 \phantomsection\label{api:mousedb.animal.views.BreedingUpdate}\pysiglinewithargsret{\strong{class }\code{mousedb.animal.views.}\bfcode{BreedingUpdate}}{\emph{**kwargs}}{}
-Bases: {\hyperref[api:mousedb.views.RestrictedUpdateView]{\code{mousedb.views.RestrictedUpdateView}}}
+Bases: \href{http://docs.djangoproject.com/en/dev/ref/class-based-views/\#django.views.generic.edit.UpdateView}{\code{django.views.generic.edit.UpdateView}}
 
 This class generates the breeding-edit view.
 
 This permission restricted view takes a url in the form \emph{/breeding/\#/edit} and generates a breeding\_form.html with that object.
+
+\index{dispatch() (mousedb.animal.views.BreedingUpdate method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.BreedingUpdate.dispatch}\pysiglinewithargsret{\bfcode{dispatch}}{\emph{*args}, \emph{**kwargs}}{}
+This decorator sets this view to have restricted permissions.
+
+\end{fulllineitems}
+
 
 \index{form\_class (mousedb.animal.views.BreedingUpdate attribute)}
 
@@ -2895,11 +3010,71 @@ alias of \code{Breeding}
 \end{fulllineitems}
 
 
+\index{EarTagList (class in mousedb.animal.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.EarTagList}\pysiglinewithargsret{\strong{class }\code{mousedb.animal.views.}\bfcode{EarTagList}}{\emph{**kwargs}}{}
+Bases: {\hyperref[api:mousedb.animal.views.AnimalList]{\code{mousedb.animal.views.AnimalList}}}
+
+This view is for showing animals which need to be eartagged.
+
+This list shows animals that do not have an eartag (MouseID) and are older than the age set by WEAN\_AGE in localsettings.py (default is 14 days).
+It takes a view \textbf{/todo/eartag}.
+This view is login protected.
+
+\end{fulllineitems}
+
+
+\index{GenotypeList (class in mousedb.animal.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.GenotypeList}\pysiglinewithargsret{\strong{class }\code{mousedb.animal.views.}\bfcode{GenotypeList}}{\emph{**kwargs}}{}
+Bases: {\hyperref[api:mousedb.animal.views.AnimalList]{\code{mousedb.animal.views.AnimalList}}}
+
+This view is for showing animals which need to be genotyped.
+
+This list shows animals that do not have a genotype (ie N.D. or ?) and are older than GENOTYPE\_AGE as designated in localsettings.py (default is 21 days).
+It takes a view \textbf{/todo/genotype}.
+This view is login protected.
+
+\end{fulllineitems}
+
+
+\index{NoCageList (class in mousedb.animal.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.NoCageList}\pysiglinewithargsret{\strong{class }\code{mousedb.animal.views.}\bfcode{NoCageList}}{\emph{**kwargs}}{}
+Bases: {\hyperref[api:mousedb.animal.views.AnimalList]{\code{mousedb.animal.views.AnimalList}}}
+
+This view is for showing animals which need to have a cage entered.
+
+This list shows animals that have no cage number and are alive.
+It takes a view \textbf{/todo/no\_cage}.
+This view is login protected.
+
+\end{fulllineitems}
+
+
+\index{NoRackList (class in mousedb.animal.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.NoRackList}\pysiglinewithargsret{\strong{class }\code{mousedb.animal.views.}\bfcode{NoRackList}}{\emph{**kwargs}}{}
+Bases: {\hyperref[api:mousedb.animal.views.AnimalList]{\code{mousedb.animal.views.AnimalList}}}
+
+This view is for showing animals which need to have a cage entered.
+
+This list shows animals that have no cage number and are alive.
+It takes a view \textbf{/todo/no\_rack}.
+This view is login protected.
+
+\end{fulllineitems}
+
+
 \index{StrainCreate (class in mousedb.animal.views)}
 
 \begin{fulllineitems}
 \phantomsection\label{api:mousedb.animal.views.StrainCreate}\pysiglinewithargsret{\strong{class }\code{mousedb.animal.views.}\bfcode{StrainCreate}}{\emph{**kwargs}}{}
-Bases: \code{django.views.generic.edit.CreateView}
+Bases: \href{http://docs.djangoproject.com/en/dev/ref/class-based-views/\#django.views.generic.edit.CreateView}{\code{django.views.generic.edit.CreateView}}
 
 This class generates the strain-new view.
 
@@ -2931,7 +3106,7 @@ alias of \code{Strain}
 
 \begin{fulllineitems}
 \phantomsection\label{api:mousedb.animal.views.StrainDelete}\pysiglinewithargsret{\strong{class }\code{mousedb.animal.views.}\bfcode{StrainDelete}}{\emph{**kwargs}}{}
-Bases: \code{django.views.generic.edit.DeleteView}
+Bases: \href{http://docs.djangoproject.com/en/dev/ref/class-based-views/\#django.views.generic.edit.DeleteView}{\code{django.views.generic.edit.DeleteView}}
 
 This class generates the strain-delete view.
 
@@ -3044,7 +3219,7 @@ alias of \code{Strain}
 
 \begin{fulllineitems}
 \phantomsection\label{api:mousedb.animal.views.StrainUpdate}\pysiglinewithargsret{\strong{class }\code{mousedb.animal.views.}\bfcode{StrainUpdate}}{\emph{**kwargs}}{}
-Bases: \code{django.views.generic.edit.UpdateView}
+Bases: \href{http://docs.djangoproject.com/en/dev/ref/class-based-views/\#django.views.generic.edit.UpdateView}{\code{django.views.generic.edit.UpdateView}}
 
 This class generates the strain-edit view.
 
@@ -3068,6 +3243,21 @@ alias of \code{Strain}
 
 \end{fulllineitems}
 
+
+\end{fulllineitems}
+
+
+\index{WeanList (class in mousedb.animal.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.views.WeanList}\pysiglinewithargsret{\strong{class }\code{mousedb.animal.views.}\bfcode{WeanList}}{\emph{**kwargs}}{}
+Bases: {\hyperref[api:mousedb.animal.views.AnimalList]{\code{mousedb.animal.views.AnimalList}}}
+
+This view is for showing animals which need to be weaned.
+
+This list shows animals that need to be weaned.  They are animals that are older than the WEAN\_AGE and are alive.
+It takes a view \textbf{/todo/wean}.
+This view is login protected.
 
 \end{fulllineitems}
 
@@ -3155,7 +3345,7 @@ It will generate a form containing animal information and a number of mice.  It 
 \phantomsection\label{api:mousedb.animal.views.todo}\pysiglinewithargsret{\code{mousedb.animal.views.}\bfcode{todo}}{\emph{request}, \emph{*args}, \emph{**kwargs}}{}
 This view generates a summary of the todo lists.
 
-The login restricted view passes lists for ear tagging, genotyping and weaning and passes them to the template todo.html
+The login restricted view passes lists for ear tagging, genotyping and weaning and passes them to the template todo.html.
 
 \end{fulllineitems}
 
@@ -3837,6 +4027,89 @@ This view uses a user with superuser permissions so does not test the permission
 This tests the strain-new view, ensuring that templates are loaded correctly.
 
 This view uses a user with superuser permissions so does not test the permission levels for this view.
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\index{ToDoViewTests (class in mousedb.animal.tests)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.tests.ToDoViewTests}\pysiglinewithargsret{\strong{class }\code{mousedb.animal.tests.}\bfcode{ToDoViewTests}}{\emph{methodName='runTest'}}{}
+Bases: \code{django.test.testcases.TestCase}
+
+Tests the views associated with animal objects for the three todo lists.
+
+\index{setUp() (mousedb.animal.tests.ToDoViewTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.tests.ToDoViewTests.setUp}\pysiglinewithargsret{\bfcode{setUp}}{}{}
+Instantiate the test client.  Creates a test user.
+
+\end{fulllineitems}
+
+
+\index{tearDown() (mousedb.animal.tests.ToDoViewTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.tests.ToDoViewTests.tearDown}\pysiglinewithargsret{\bfcode{tearDown}}{}{}
+Depopulate created model instances from test database.
+
+\end{fulllineitems}
+
+
+\index{test\_eartag\_list() (mousedb.animal.tests.ToDoViewTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.tests.ToDoViewTests.test_eartag_list}\pysiglinewithargsret{\bfcode{test\_eartag\_list}}{}{}
+This test checks the view which displays an animal list page showing animals which need to be eartagged.  It checks for the correct templates and status code.
+
+\end{fulllineitems}
+
+
+\index{test\_genotype\_list() (mousedb.animal.tests.ToDoViewTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.tests.ToDoViewTests.test_genotype_list}\pysiglinewithargsret{\bfcode{test\_genotype\_list}}{}{}
+This test checks the view which displays an animal list page showing animals which need to be genotyped.  It checks for the correct templates and status code.
+
+\end{fulllineitems}
+
+
+\index{test\_no\_cage\_list() (mousedb.animal.tests.ToDoViewTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.tests.ToDoViewTests.test_no_cage_list}\pysiglinewithargsret{\bfcode{test\_no\_cage\_list}}{}{}
+This test checks the view which displays an animal list page showing animals which need to have a cage entered.  It checks for the correct templates and status code.
+
+\end{fulllineitems}
+
+
+\index{test\_no\_rack\_list() (mousedb.animal.tests.ToDoViewTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.tests.ToDoViewTests.test_no_rack_list}\pysiglinewithargsret{\bfcode{test\_no\_rack\_list}}{}{}
+This test checks the view which displays an animal list page showing animals which need to have a rack entered.  It checks for the correct templates and status code.
+
+\end{fulllineitems}
+
+
+\index{test\_todo\_home() (mousedb.animal.tests.ToDoViewTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.tests.ToDoViewTests.test_todo_home}\pysiglinewithargsret{\bfcode{test\_todo\_home}}{}{}
+This test checks the view which displays a summary of the todo lists.  It checks for the correct templates and status code.
+
+\end{fulllineitems}
+
+
+\index{test\_wean\_list() (mousedb.animal.tests.ToDoViewTests method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:mousedb.animal.tests.ToDoViewTests.test_wean_list}\pysiglinewithargsret{\bfcode{test\_wean\_list}}{}{}
+This test checks the view which displays an animal list page showing animals which need to be weaned.  It checks for the correct templates and status code.
 
 \end{fulllineitems}
 

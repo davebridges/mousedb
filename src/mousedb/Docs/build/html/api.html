@@ -23,7 +23,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="MouseDB v0.2.1dev documentation" href="index.html" />
-    <link rel="prev" title="Animal Data Entry" href="usage.html" /> 
+    <link rel="prev" title="Users and Restriction" href="usage.html" /> 
   </head>
   <body>
     <div class="related">
@@ -36,7 +36,7 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="usage.html" title="Animal Data Entry"
+          <a href="usage.html" title="Users and Restriction"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">MouseDB v0.2.1dev documentation</a> &raquo;</li> 
       </ul>
@@ -59,7 +59,7 @@
 <dl class="class">
 <dt id="mousedb.views.ProtectedDetailView">
 <em class="property">class </em><tt class="descclassname">mousedb.views.</tt><tt class="descname">ProtectedDetailView</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.views.ProtectedDetailView" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.views.generic.detail.DetailView</span></tt></p>
+<dd><p>Bases: <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/class-based-views/#django.views.generic.detail.DetailView" title="(in Django v1.3)"><tt class="xref py py-class docutils literal"><span class="pre">django.views.generic.detail.DetailView</span></tt></a></p>
 <p>This subclass of DetailView generates a login_required protected version of the DetailView.</p>
 <p>This ProtectedDetailView is then subclassed instead of using ListView for login_required views.</p>
 <dl class="method">
@@ -72,7 +72,7 @@
 <dl class="class">
 <dt id="mousedb.views.ProtectedListView">
 <em class="property">class </em><tt class="descclassname">mousedb.views.</tt><tt class="descname">ProtectedListView</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.views.ProtectedListView" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.views.generic.list.ListView</span></tt></p>
+<dd><p>Bases: <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/class-based-views/#django.views.generic.list.ListView" title="(in Django v1.3)"><tt class="xref py py-class docutils literal"><span class="pre">django.views.generic.list.ListView</span></tt></a></p>
 <p>This subclass of ListView generates a login_required protected version of the ListView.</p>
 <p>This ProtectedListView is then subclassed instead of using ListView for login_required views.</p>
 <dl class="method">
@@ -85,7 +85,7 @@
 <dl class="class">
 <dt id="mousedb.views.RestrictedCreateView">
 <em class="property">class </em><tt class="descclassname">mousedb.views.</tt><tt class="descname">RestrictedCreateView</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.views.RestrictedCreateView" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.views.generic.edit.CreateView</span></tt></p>
+<dd><p>Bases: <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/class-based-views/#django.views.generic.edit.CreateView" title="(in Django v1.3)"><tt class="xref py py-class docutils literal"><span class="pre">django.views.generic.edit.CreateView</span></tt></a></p>
 <p>Generic create view that checks permissions.</p>
 <p>This is from <a class="reference external" href="http://djangosnippets.org/snippets/2317/">http://djangosnippets.org/snippets/2317/</a> and subclasses the UpdateView into one that requires permissions to create a particular model.</p>
 <dl class="method">
@@ -98,7 +98,7 @@
 <dl class="class">
 <dt id="mousedb.views.RestrictedDeleteView">
 <em class="property">class </em><tt class="descclassname">mousedb.views.</tt><tt class="descname">RestrictedDeleteView</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.views.RestrictedDeleteView" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.views.generic.edit.DeleteView</span></tt></p>
+<dd><p>Bases: <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/class-based-views/#django.views.generic.edit.DeleteView" title="(in Django v1.3)"><tt class="xref py py-class docutils literal"><span class="pre">django.views.generic.edit.DeleteView</span></tt></a></p>
 <p>Generic delete view that checks permissions.</p>
 <p>This is from <a class="reference external" href="http://djangosnippets.org/snippets/2317/">http://djangosnippets.org/snippets/2317/</a> and subclasses the UpdateView into one that requires permissions to delete a particular model.</p>
 <dl class="method">
@@ -111,7 +111,7 @@
 <dl class="class">
 <dt id="mousedb.views.RestrictedUpdateView">
 <em class="property">class </em><tt class="descclassname">mousedb.views.</tt><tt class="descname">RestrictedUpdateView</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.views.RestrictedUpdateView" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.views.generic.edit.UpdateView</span></tt></p>
+<dd><p>Bases: <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/class-based-views/#django.views.generic.edit.UpdateView" title="(in Django v1.3)"><tt class="xref py py-class docutils literal"><span class="pre">django.views.generic.edit.UpdateView</span></tt></a></p>
 <p>Generic update view that checks permissions.</p>
 <p>This is from <a class="reference external" href="http://djangosnippets.org/snippets/2317/">http://djangosnippets.org/snippets/2317/</a> and subclasses the UpdateView into one that requires permissions to update a particular model.</p>
 <dl class="method">
@@ -1417,7 +1417,7 @@ In the case of Cage, if a Cage is provided, and animals are specified under Male
 <dl class="class">
 <dt id="mousedb.animal.views.AnimalCreate">
 <em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">AnimalCreate</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.AnimalCreate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.views.generic.edit.CreateView</span></tt></p>
+<dd><p>Bases: <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/class-based-views/#django.views.generic.edit.CreateView" title="(in Django v1.3)"><tt class="xref py py-class docutils literal"><span class="pre">django.views.generic.edit.CreateView</span></tt></a></p>
 <p>This class generates the animal-new view.</p>
 <p>This permission restricted view takes a url in the form <em>/animal/new</em> and generates an empty animal_form.html.
 This view is restricted to those with the animal.create_animal permission.</p>
@@ -1444,7 +1444,7 @@ This view is restricted to those with the animal.create_animal permission.</p>
 <dl class="class">
 <dt id="mousedb.animal.views.AnimalDelete">
 <em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">AnimalDelete</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.AnimalDelete" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.views.generic.edit.DeleteView</span></tt></p>
+<dd><p>Bases: <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/class-based-views/#django.views.generic.edit.DeleteView" title="(in Django v1.3)"><tt class="xref py py-class docutils literal"><span class="pre">django.views.generic.edit.DeleteView</span></tt></a></p>
 <p>This class generates the animal-delete view.</p>
 <p>This permission restricted view takes a url in the form <em>/animal/#/delete</em> and passes that object to the confirm_delete.html page.
 This view is restricted to those with the animal.delete_animal permission.</p>
@@ -1486,6 +1486,12 @@ This page is restricted to logged-in users.</p>
 <p>This view responds to a url in the form <em>/animal</em>
 It sends a variable animal containing all animals to animal_list.html.
 This view is login protected.</p>
+<dl class="method">
+<dt id="mousedb.animal.views.AnimalList.dispatch">
+<tt class="descname">dispatch</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.AnimalList.dispatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>This decorator sets this view to have restricted permissions.</p>
+</dd></dl>
+
 <dl class="attribute">
 <dt id="mousedb.animal.views.AnimalList.model">
 <tt class="descname">model</tt><a class="headerlink" href="#mousedb.animal.views.AnimalList.model" title="Permalink to this definition">¶</a></dt>
@@ -1510,9 +1516,30 @@ This view is login protected.</p>
 </dd></dl>
 
 <dl class="class">
+<dt id="mousedb.animal.views.AnimalMonthArchive">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">AnimalMonthArchive</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.AnimalMonthArchive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/class-based-views/#django.views.generic.dates.MonthArchiveView" title="(in Django v1.3)"><tt class="xref py py-class docutils literal"><span class="pre">django.views.generic.dates.MonthArchiveView</span></tt></a></p>
+<p>This view generates a list of animals born within the specified year.</p>
+<p>It takes a url in the form of <strong>/date/####</strong> where #### is the four digit code of the year.
+This view is restricted to logged in users.</p>
+<dl class="method">
+<dt id="mousedb.animal.views.AnimalMonthArchive.dispatch">
+<tt class="descname">dispatch</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.AnimalMonthArchive.dispatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>This decorator sets this view to have restricted permissions.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.views.AnimalMonthArchive.model">
+<tt class="descname">model</tt><a class="headerlink" href="#mousedb.animal.views.AnimalMonthArchive.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="mousedb.animal.views.AnimalUpdate">
 <em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">AnimalUpdate</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.AnimalUpdate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.views.generic.edit.UpdateView</span></tt></p>
+<dd><p>Bases: <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/class-based-views/#django.views.generic.edit.UpdateView" title="(in Django v1.3)"><tt class="xref py py-class docutils literal"><span class="pre">django.views.generic.edit.UpdateView</span></tt></a></p>
 <p>This class generates the animal-edit view.</p>
 <p>This permission restricted view takes a url in the form <em>/animal/#/edit</em> and generates a animal_form.html with that object.
 This view is restricted to those with the animal.update_animal permission.</p>
@@ -1537,11 +1564,38 @@ This view is restricted to those with the animal.update_animal permission.</p>
 </dd></dl>
 
 <dl class="class">
+<dt id="mousedb.animal.views.AnimalYearArchive">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">AnimalYearArchive</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.AnimalYearArchive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/class-based-views/#django.views.generic.dates.YearArchiveView" title="(in Django v1.3)"><tt class="xref py py-class docutils literal"><span class="pre">django.views.generic.dates.YearArchiveView</span></tt></a></p>
+<p>This view generates a list of animals born within the specified year.</p>
+<p>It takes a url in the form of <strong>/date/####</strong> where #### is the four digit code of the year.
+This view is restricted to logged in users.</p>
+<dl class="method">
+<dt id="mousedb.animal.views.AnimalYearArchive.dispatch">
+<tt class="descname">dispatch</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.AnimalYearArchive.dispatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>This decorator sets this view to have restricted permissions.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.views.AnimalYearArchive.model">
+<tt class="descname">model</tt><a class="headerlink" href="#mousedb.animal.views.AnimalYearArchive.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="mousedb.animal.views.BreedingCreate">
 <em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">BreedingCreate</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.BreedingCreate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#mousedb.views.RestrictedCreateView" title="mousedb.views.RestrictedCreateView"><tt class="xref py py-class docutils literal"><span class="pre">mousedb.views.RestrictedCreateView</span></tt></a></p>
+<dd><p>Bases: <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/class-based-views/#django.views.generic.edit.CreateView" title="(in Django v1.3)"><tt class="xref py py-class docutils literal"><span class="pre">django.views.generic.edit.CreateView</span></tt></a></p>
 <p>This class generates the breeding-new view.</p>
 <p>This permission restricted view takes a url in the form <em>/breeding/new</em> and generates an empty plugevents_form.html.</p>
+<dl class="method">
+<dt id="mousedb.animal.views.BreedingCreate.dispatch">
+<tt class="descname">dispatch</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.BreedingCreate.dispatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>This decorator sets this view to have restricted permissions.</p>
+</dd></dl>
+
 <dl class="attribute">
 <dt id="mousedb.animal.views.BreedingCreate.form_class">
 <tt class="descname">form_class</tt><a class="headerlink" href="#mousedb.animal.views.BreedingCreate.form_class" title="Permalink to this definition">¶</a></dt>
@@ -1559,9 +1613,15 @@ This view is restricted to those with the animal.update_animal permission.</p>
 <dl class="class">
 <dt id="mousedb.animal.views.BreedingDelete">
 <em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">BreedingDelete</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.BreedingDelete" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#mousedb.views.RestrictedDeleteView" title="mousedb.views.RestrictedDeleteView"><tt class="xref py py-class docutils literal"><span class="pre">mousedb.views.RestrictedDeleteView</span></tt></a></p>
+<dd><p>Bases: <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/class-based-views/#django.views.generic.edit.DeleteView" title="(in Django v1.3)"><tt class="xref py py-class docutils literal"><span class="pre">django.views.generic.edit.DeleteView</span></tt></a></p>
 <p>This class generates the breeding-delete view.</p>
 <p>This permission restricted view takes a url in the form <em>/breeding/#/delete</em> and passes that object to the confirm_delete.html page.</p>
+<dl class="method">
+<dt id="mousedb.animal.views.BreedingDelete.dispatch">
+<tt class="descname">dispatch</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.BreedingDelete.dispatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>This decorator sets this view to have restricted permissions.</p>
+</dd></dl>
+
 <dl class="attribute">
 <dt id="mousedb.animal.views.BreedingDelete.model">
 <tt class="descname">model</tt><a class="headerlink" href="#mousedb.animal.views.BreedingDelete.model" title="Permalink to this definition">¶</a></dt>
@@ -1632,9 +1692,15 @@ The url for this view is <em>/strain/</em></p>
 <dl class="class">
 <dt id="mousedb.animal.views.BreedingUpdate">
 <em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">BreedingUpdate</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.BreedingUpdate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#mousedb.views.RestrictedUpdateView" title="mousedb.views.RestrictedUpdateView"><tt class="xref py py-class docutils literal"><span class="pre">mousedb.views.RestrictedUpdateView</span></tt></a></p>
+<dd><p>Bases: <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/class-based-views/#django.views.generic.edit.UpdateView" title="(in Django v1.3)"><tt class="xref py py-class docutils literal"><span class="pre">django.views.generic.edit.UpdateView</span></tt></a></p>
 <p>This class generates the breeding-edit view.</p>
 <p>This permission restricted view takes a url in the form <em>/breeding/#/edit</em> and generates a breeding_form.html with that object.</p>
+<dl class="method">
+<dt id="mousedb.animal.views.BreedingUpdate.dispatch">
+<tt class="descname">dispatch</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.BreedingUpdate.dispatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>This decorator sets this view to have restricted permissions.</p>
+</dd></dl>
+
 <dl class="attribute">
 <dt id="mousedb.animal.views.BreedingUpdate.form_class">
 <tt class="descname">form_class</tt><a class="headerlink" href="#mousedb.animal.views.BreedingUpdate.form_class" title="Permalink to this definition">¶</a></dt>
@@ -1650,9 +1716,49 @@ The url for this view is <em>/strain/</em></p>
 </dd></dl>
 
 <dl class="class">
+<dt id="mousedb.animal.views.EarTagList">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">EarTagList</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.EarTagList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#mousedb.animal.views.AnimalList" title="mousedb.animal.views.AnimalList"><tt class="xref py py-class docutils literal"><span class="pre">mousedb.animal.views.AnimalList</span></tt></a></p>
+<p>This view is for showing animals which need to be eartagged.</p>
+<p>This list shows animals that do not have an eartag (MouseID) and are older than the age set by WEAN_AGE in localsettings.py (default is 14 days).
+It takes a view <strong>/todo/eartag</strong>.
+This view is login protected.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.views.GenotypeList">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">GenotypeList</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.GenotypeList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#mousedb.animal.views.AnimalList" title="mousedb.animal.views.AnimalList"><tt class="xref py py-class docutils literal"><span class="pre">mousedb.animal.views.AnimalList</span></tt></a></p>
+<p>This view is for showing animals which need to be genotyped.</p>
+<p>This list shows animals that do not have a genotype (ie N.D. or ?) and are older than GENOTYPE_AGE as designated in localsettings.py (default is 21 days).
+It takes a view <strong>/todo/genotype</strong>.
+This view is login protected.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.views.NoCageList">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">NoCageList</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.NoCageList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#mousedb.animal.views.AnimalList" title="mousedb.animal.views.AnimalList"><tt class="xref py py-class docutils literal"><span class="pre">mousedb.animal.views.AnimalList</span></tt></a></p>
+<p>This view is for showing animals which need to have a cage entered.</p>
+<p>This list shows animals that have no cage number and are alive.
+It takes a view <strong>/todo/no_cage</strong>.
+This view is login protected.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.views.NoRackList">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">NoRackList</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.NoRackList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#mousedb.animal.views.AnimalList" title="mousedb.animal.views.AnimalList"><tt class="xref py py-class docutils literal"><span class="pre">mousedb.animal.views.AnimalList</span></tt></a></p>
+<p>This view is for showing animals which need to have a cage entered.</p>
+<p>This list shows animals that have no cage number and are alive.
+It takes a view <strong>/todo/no_rack</strong>.
+This view is login protected.</p>
+</dd></dl>
+
+<dl class="class">
 <dt id="mousedb.animal.views.StrainCreate">
 <em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">StrainCreate</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.StrainCreate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.views.generic.edit.CreateView</span></tt></p>
+<dd><p>Bases: <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/class-based-views/#django.views.generic.edit.CreateView" title="(in Django v1.3)"><tt class="xref py py-class docutils literal"><span class="pre">django.views.generic.edit.CreateView</span></tt></a></p>
 <p>This class generates the strain-new view.</p>
 <p>This permission restricted view takes a url in the form <em>/strain/new</em> and generates an empty strain_form.html.
 This view is restricted to those with the animal.create_strain permission.</p>
@@ -1673,7 +1779,7 @@ This view is restricted to those with the animal.create_strain permission.</p>
 <dl class="class">
 <dt id="mousedb.animal.views.StrainDelete">
 <em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">StrainDelete</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.StrainDelete" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.views.generic.edit.DeleteView</span></tt></p>
+<dd><p>Bases: <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/class-based-views/#django.views.generic.edit.DeleteView" title="(in Django v1.3)"><tt class="xref py py-class docutils literal"><span class="pre">django.views.generic.edit.DeleteView</span></tt></a></p>
 <p>This class generates the strain-delete view.</p>
 <p>This permission restricted view takes a url in the form <em>/strain/#/delete</em> and passes that object to the confirm_delete.html page.
 This view is restricted to those with the animal.delete_strain permission.</p>
@@ -1748,7 +1854,7 @@ The url for this view is <strong>/strain/</strong></p>
 <dl class="class">
 <dt id="mousedb.animal.views.StrainUpdate">
 <em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">StrainUpdate</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.StrainUpdate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.views.generic.edit.UpdateView</span></tt></p>
+<dd><p>Bases: <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/class-based-views/#django.views.generic.edit.UpdateView" title="(in Django v1.3)"><tt class="xref py py-class docutils literal"><span class="pre">django.views.generic.edit.UpdateView</span></tt></a></p>
 <p>This class generates the strain-edit view.</p>
 <p>This permission restricted view takes a url in the form <em>/strain/#/edit</em> and generates a strain_form.html with that object.
 This view is restricted to those with the animal.update_strain permission.</p>
@@ -1764,6 +1870,16 @@ This view is restricted to those with the animal.update_strain permission.</p>
 <dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Strain</span></tt></p>
 </dd></dl>
 
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.views.WeanList">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">WeanList</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.WeanList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#mousedb.animal.views.AnimalList" title="mousedb.animal.views.AnimalList"><tt class="xref py py-class docutils literal"><span class="pre">mousedb.animal.views.AnimalList</span></tt></a></p>
+<p>This view is for showing animals which need to be weaned.</p>
+<p>This list shows animals that need to be weaned.  They are animals that are older than the WEAN_AGE and are alive.
+It takes a view <strong>/todo/wean</strong>.
+This view is login protected.</p>
 </dd></dl>
 
 <dl class="function">
@@ -1823,7 +1939,7 @@ This view is restricted to those with the permission animal.change_animal.</p>
 <dt id="mousedb.animal.views.todo">
 <tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">todo</tt><big>(</big><em>request</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.todo" title="Permalink to this definition">¶</a></dt>
 <dd><p>This view generates a summary of the todo lists.</p>
-<p>The login restricted view passes lists for ear tagging, genotyping and weaning and passes them to the template todo.html</p>
+<p>The login restricted view passes lists for ear tagging, genotyping and weaning and passes them to the template todo.html.</p>
 </dd></dl>
 
 <span class="target" id="module-mousedb.animal.urls"></span><p>This package contains all url dispatchers for the animal app.</p>
@@ -2272,6 +2388,61 @@ This admin action also shows as the output the number of mice sacrificed.</p>
 <tt class="descname">test_strain_new</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.StrainViewTests.test_strain_new" title="Permalink to this definition">¶</a></dt>
 <dd><p>This tests the strain-new view, ensuring that templates are loaded correctly.</p>
 <p>This view uses a user with superuser permissions so does not test the permission levels for this view.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.tests.ToDoViewTests">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.tests.</tt><tt class="descname">ToDoViewTests</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#mousedb.animal.tests.ToDoViewTests" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></tt></p>
+<p>Tests the views associated with animal objects for the three todo lists.</p>
+<dl class="method">
+<dt id="mousedb.animal.tests.ToDoViewTests.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.ToDoViewTests.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiate the test client.  Creates a test user.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.ToDoViewTests.tearDown">
+<tt class="descname">tearDown</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.ToDoViewTests.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Depopulate created model instances from test database.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.ToDoViewTests.test_eartag_list">
+<tt class="descname">test_eartag_list</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.ToDoViewTests.test_eartag_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test checks the view which displays an animal list page showing animals which need to be eartagged.  It checks for the correct templates and status code.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.ToDoViewTests.test_genotype_list">
+<tt class="descname">test_genotype_list</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.ToDoViewTests.test_genotype_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test checks the view which displays an animal list page showing animals which need to be genotyped.  It checks for the correct templates and status code.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.ToDoViewTests.test_no_cage_list">
+<tt class="descname">test_no_cage_list</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.ToDoViewTests.test_no_cage_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test checks the view which displays an animal list page showing animals which need to have a cage entered.  It checks for the correct templates and status code.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.ToDoViewTests.test_no_rack_list">
+<tt class="descname">test_no_rack_list</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.ToDoViewTests.test_no_rack_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test checks the view which displays an animal list page showing animals which need to have a rack entered.  It checks for the correct templates and status code.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.ToDoViewTests.test_todo_home">
+<tt class="descname">test_todo_home</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.ToDoViewTests.test_todo_home" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test checks the view which displays a summary of the todo lists.  It checks for the correct templates and status code.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.ToDoViewTests.test_wean_list">
+<tt class="descname">test_wean_list</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.ToDoViewTests.test_wean_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test checks the view which displays an animal list page showing animals which need to be weaned.  It checks for the correct templates and status code.</p>
 </dd></dl>
 
 </dd></dl>
@@ -2821,7 +2992,7 @@ If the contents of this installation are being made available using some licenci
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="usage.html"
-                        title="previous chapter">Animal Data Entry</a></p>
+                        title="previous chapter">Users and Restriction</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/api.txt"
@@ -2854,7 +3025,7 @@ If the contents of this installation are being made available using some licenci
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="usage.html" title="Animal Data Entry"
+          <a href="usage.html" title="Users and Restriction"
              >previous</a> |</li>
         <li><a href="index.html">MouseDB v0.2.1dev documentation</a> &raquo;</li> 
       </ul>
