@@ -21,5 +21,6 @@ admin.site.register(License, LicenseAdmin)
 class LogEntryAdmin(admin.ModelAdmin):
     """Defines the admin interface for the LogEntry objects."""
     
-    list_display = ('user', 'content_type', 'object_id')
+    list_display = ('user', 'content_type', 'object_id', 'action_time')
+    fields = ('user', 'content_type', 'object_id','action_flag', 'object_repr', 'change_message')
 admin.site.register(LogEntry, LogEntryAdmin)
