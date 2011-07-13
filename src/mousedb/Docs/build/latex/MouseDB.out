@@ -12,24 +12,27 @@
 \BOOKMARK [1][-]{section.2.6}{Enabling of South for Future Migrations}{chapter.2}% 12
 \BOOKMARK [1][-]{section.2.7}{Final Configuration and User Setup}{chapter.2}% 13
 \BOOKMARK [1][-]{section.2.8}{Testing}{chapter.2}% 14
-\BOOKMARK [0][-]{chapter.3}{Animal Data Entry}{}% 15
-\BOOKMARK [1][-]{section.3.1}{Newborn Mice or Newly Weaned Mice}{chapter.3}% 16
-\BOOKMARK [1][-]{section.3.2}{Newborn Mice}{chapter.3}% 17
-\BOOKMARK [1][-]{section.3.3}{Weaning Mice}{chapter.3}% 18
-\BOOKMARK [1][-]{section.3.4}{Cage Changes \(Not Weaning\)}{chapter.3}% 19
-\BOOKMARK [1][-]{section.3.5}{Genotyping or Ear Tagging}{chapter.3}% 20
-\BOOKMARK [1][-]{section.3.6}{Marking Mice as Dead}{chapter.3}% 21
-\BOOKMARK [0][-]{chapter.4}{Studies and Experimental Setup}{}% 22
-\BOOKMARK [0][-]{chapter.5}{Measurement Entry}{}% 23
-\BOOKMARK [1][-]{section.5.1}{Studies}{chapter.5}% 24
-\BOOKMARK [1][-]{section.5.2}{Experiment Details}{chapter.5}% 25
-\BOOKMARK [1][-]{section.5.3}{Measurements}{chapter.5}% 26
-\BOOKMARK [0][-]{chapter.6}{Automated Documentation}{}% 27
-\BOOKMARK [1][-]{section.6.1}{Root Package}{chapter.6}% 28
-\BOOKMARK [1][-]{section.6.2}{Data Package}{chapter.6}% 29
-\BOOKMARK [1][-]{section.6.3}{Animals Package}{chapter.6}% 30
-\BOOKMARK [1][-]{section.6.4}{Timed Mating Package}{chapter.6}% 31
-\BOOKMARK [1][-]{section.6.5}{Groups Package}{chapter.6}% 32
-\BOOKMARK [0][-]{chapter.7}{Indices and tables}{}% 33
-\BOOKMARK [0][-]{section*.435}{Python Module Index}{}% 34
-\BOOKMARK [0][-]{section*.436}{Index}{}% 35
+\BOOKMARK [0][-]{chapter.3}{Users and Restriction}{}% 15
+\BOOKMARK [1][-]{section.3.1}{Creating New Users}{chapter.3}% 16
+\BOOKMARK [1][-]{section.3.2}{Removing Users}{chapter.3}% 17
+\BOOKMARK [0][-]{chapter.4}{Animal Data Entry}{}% 18
+\BOOKMARK [1][-]{section.4.1}{Newborn Mice or Newly Weaned Mice}{chapter.4}% 19
+\BOOKMARK [1][-]{section.4.2}{Newborn Mice}{chapter.4}% 20
+\BOOKMARK [1][-]{section.4.3}{Weaning Mice}{chapter.4}% 21
+\BOOKMARK [1][-]{section.4.4}{Cage Changes \(Not Weaning\)}{chapter.4}% 22
+\BOOKMARK [1][-]{section.4.5}{Genotyping or Ear Tagging}{chapter.4}% 23
+\BOOKMARK [1][-]{section.4.6}{Marking Mice as Dead}{chapter.4}% 24
+\BOOKMARK [0][-]{chapter.5}{Studies and Experimental Setup}{}% 25
+\BOOKMARK [0][-]{chapter.6}{Measurement Entry}{}% 26
+\BOOKMARK [1][-]{section.6.1}{Studies}{chapter.6}% 27
+\BOOKMARK [1][-]{section.6.2}{Experiment Details}{chapter.6}% 28
+\BOOKMARK [1][-]{section.6.3}{Measurements}{chapter.6}% 29
+\BOOKMARK [0][-]{chapter.7}{Automated Documentation}{}% 30
+\BOOKMARK [1][-]{section.7.1}{Root Package}{chapter.7}% 31
+\BOOKMARK [1][-]{section.7.2}{Data Package}{chapter.7}% 32
+\BOOKMARK [1][-]{section.7.3}{Animals Package}{chapter.7}% 33
+\BOOKMARK [1][-]{section.7.4}{Timed Mating Package}{chapter.7}% 34
+\BOOKMARK [1][-]{section.7.5}{Groups Package}{chapter.7}% 35
+\BOOKMARK [0][-]{chapter.8}{Indices and tables}{}% 36
+\BOOKMARK [0][-]{section*.459}{Python Module Index}{}% 37
+\BOOKMARK [0][-]{section*.460}{Index}{}% 38
