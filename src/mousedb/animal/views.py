@@ -379,12 +379,12 @@ def breeding_wean(request, breeding_id):
     strain = breeding.Strain
     PupsFormSet = inlineformset_factory(Breeding, Animal, extra=0, exclude=('Alive','Father', 'Mother', 'Breeding', 'Notes','Rack','Rack_Position','Strain','Background','Genotype','Death','Cause_of_Death','Backcross','Generation'))
     if request.method =="POST":
-        formset = PupsFormSet(request.POST, instance=breeding)
+        formset = PupsFormSet(request.POST, instance=breeding, queryset=Animal.objects.filter(Alive=True, Weaned__isnull=True))
         if formset.is_valid():
             formset.save()
             return HttpResponseRedirect( breeding.get_absolute_url() )
     else:
-        formset = PupsFormSet(instance=breeding,)
+        formset = PupsFormSet(instance=breeding, queryset=Animal.objects.filter(Alive=True, Weaned__isnull=True))
     return render_to_response("breeding_wean.html", {"formset":formset, 'breeding':breeding},context_instance=RequestContext(request))	
 
 def multiple_pups(request):
