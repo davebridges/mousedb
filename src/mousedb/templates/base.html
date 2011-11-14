@@ -13,6 +13,7 @@
     <link rel="meta" title="DOAP" href="http://github.com/davebridges/mousedb/raw/master/media/doap.rdf" type="application/rdf+xml"/>
 	<link rel="shortcut icon" href="{{STATIC_URL}}favicon.ico" type="image/x-icon"/>
 	{% include "jquery_script.html" %}
+    {% include "menu_script.html" %}
 	{% include "jquery_ui_script_css.html" %}
 	{% block scripts%}{% endblock scripts %}
 </head>
@@ -34,15 +35,22 @@
 	{% endif %}
 	</div>
 	<div id = "header" class="grid_12">
-		<ul id="menu">
-			<li><a href="{% url home %}" title="Home">Home</a></li>
+		<ul class="sf-menu">
+			<li class="headlink"><a href="{% url home %}" title="Home">Home</a></li>
 			{% if user.is_staff %}<li><a href="{% url admin:index %}" title="Admin">Admin Site</a></li>{% endif %}
-			<li><a href="{% url todo-list %}" title="To Do List">To Do List</a></li>
-			<li><a href="{% url breeding-list %}" title="Breeding Cages">Breeding Cages</a></li>
-			<li><a href="{% url strain-list %}" title="Strain List">Strain List</a></li>
-			<li><a href="{% url animal-list %}" title="Animal List">Animal List</a></li>
-			<li><a href="{% url study-list %}" title="Study List">Study List</a></li>
-			<li><a href="{% url experiment-list %}" title="Experiment List">Experiment List</a></li>
+			<li class="headlink"><a href="{% url todo-list %}" title="To Do List">To Do List</a></li>
+			<li class="headlink"><a href="{% url breeding-list %}" title="Breeding Cages">Breeding Cages</a>
+                <ul class="subnav">  
+                    <li><a href="#">Active Breeding Cages</a></li>  
+                    <li><a href="#">All Breeding Cages</a></li>  
+                    <li><a href="#">Timed Mating Cages</a></li> 
+                    <li><a href="#">Add New Breeding Cages</a></li>  
+                </ul> 
+            </li>    
+			<li class="headlink"><a href="{% url strain-list %}" title="Strain List">Strain List</a></li>
+			<li class="headlink"><a href="{% url animal-list %}" title="Animal List">Animal List</a></li>
+			<li class="headlink"><a href="{% url study-list %}" title="Study List">Study List</a></li>
+			<li class="headlink"><a href="{% url experiment-list %}" title="Experiment List">Experiment List</a></li>
 		</ul>
 	</div>
 
@@ -65,6 +73,9 @@
 	<div id  = "footer" class="grid_12">
 		{% block footer %}{% endblock footer %}
 	</div>
+
+</div>
+
 
 </div>
 </body>

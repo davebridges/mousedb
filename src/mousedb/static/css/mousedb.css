@@ -110,13 +110,22 @@ td { padding-left: 5px;
 		
 .dead a { 	color: white;
 		}
+
+li.headlink ul { display: none; }
+li.headlink:hover ul { display: block; }    
+
+#menu li.headlink ul { display: none; border-top: 1px black solid; text-align: left; }
+#menu li.headlink:hover ul { display: block; }
+#menu li.headlink ul li a { padding: 5px; height: 17px; }
+#menu li.headlink ul li a:hover { background-color: #333; }    
 		
 ul#menu {
 	font-size: large;
 }
 
 ul#menu li {
-	display: inline;
+  display: inline; /* Shows each item side-by-side */
+  list-style-type: none; /* Gets rid of the bullet points */
 }
 
 ul#menu li a {
@@ -137,6 +146,7 @@ ul#menu li a:hover {
 	font-weight: bold; 
 	color: #0070a3;
 }
+
 
 p {
 	/* if width = 30 X font size that gives about 65 characters per line */
