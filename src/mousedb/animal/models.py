@@ -46,6 +46,7 @@ GENOTYPE_CHOICES = (
 		('fl/+; Tg/Tg', 'Heterozygous Floxed, Homozygous Transgene'),
 		('+/+; Tg/+', 'Wild-Type, Heterozygous Transgene'),
 		('+/+; Tg/Tg', 'Wild-Type, Homozygous Transgene'),
+		('+/+; +/+', 'Wild-Type, No Transgene'),        
 		)
 ),
 	('Double Knockout with Transgene', (
@@ -97,6 +98,8 @@ GENOTYPE_CHOICES = (
 		('+/+;fl/+; Tg/Tg', 'Wild-Type/Heterozygous Floxed/Homozygous Transgene'),
 		('+/+;+/+; Tg/+', 'Wild-Type/Wild-Type/Heterozygous Transgene'),
 		('+/+;+/+; Tg/Tg', 'Wild-Type/Wild-Type/Homozygous Transgene'),
+        ('+/+;+/+; ?', 'Wild-Type/Wild-Type/Unknown Transgene'),
+        ('+/+;+/+; +/+', 'Wild-Type/Wild-Type/No Transgene'),        
 		)
 		)
 	)
@@ -118,6 +121,7 @@ CROSS_TYPE = (
 )
 
 BACKGROUND_CHOICES = (
+('C57BL/6J', 'C57BL/6J'),
 ('C57BL/6-BA', 'C57BL/6-BA'),
 ('C57BL/6-LY5.2', 'C57BL/S-LY5.2'),
 ('Mixed', 'Mixed')
