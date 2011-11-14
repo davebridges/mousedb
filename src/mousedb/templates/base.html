@@ -38,7 +38,13 @@
 		<ul class="sf-menu">
 			<li class="headlink"><a href="{% url home %}" title="Home">Home</a></li>
 			{% if user.is_staff %}<li><a href="{% url admin:index %}" title="Admin">Admin Site</a></li>{% endif %}
-			<li class="headlink"><a href="{% url todo-list %}" title="To Do List">To Do List</a></li>
+			<li class="headlink"><a href="{% url todo-list %}" title="To Do List">To Do List</a>
+                <ul class="subnav">  
+                    <li><a href="{% url todo-genotype %}">Genotyping List</a></li>
+                    <li><a href="{% url todo-weaning %}">Weaning List</a></li>  
+                    <li><a href="{% url todo-eartags %}">Ear Tagging List</a></li>
+                </ul>            
+            </li>
 			<li class="headlink"><a href="{% url breeding-list %}" title="Breeding Cages">Breeding Cages</a>
                 <ul class="subnav">  
                     <li><a href="{% url breeding-list %}">Active Breeding Cages</a></li>  
@@ -47,10 +53,16 @@
                     <li><a href="{% url breeding-new %}">Add New Breeding Cages</a></li>  
                 </ul> 
             </li>    
-			<li class="headlink"><a href="{% url strain-list %}" title="Strain List">Strain List</a></li>
-			<li class="headlink"><a href="{% url animal-list %}" title="Animal List">Animal List</a></li>
-			<li class="headlink"><a href="{% url study-list %}" title="Study List">Study List</a></li>
-			<li class="headlink"><a href="{% url experiment-list %}" title="Experiment List">Experiment List</a></li>
+			<li class="headlink"><a href="{% url strain-list %}" title="Strain List">Strains</a></li>
+			<li class="headlink"><a href="{% url animal-list %}" title="Animal List">Animals</a>
+                <ul class="subnav">  
+                    <li><a href="{% url animal-list %}">Active Animals</a></li>
+                    <li><a href="{% url animal-list-all %}">All Animals</a></li>  
+                    <li><a href="{% url cage-list %}">Cage List</a></li>
+                </ul>
+            </li>    
+			<li class="headlink"><a href="{% url study-list %}" title="Study List">Studies</a></li>
+			<li class="headlink"><a href="{% url experiment-list %}" title="Experiment List">Experiments</a></li>
 		</ul>
 	</div>
 
