@@ -41,10 +41,10 @@
 			<li class="headlink"><a href="{% url todo-list %}" title="To Do List">To Do List</a></li>
 			<li class="headlink"><a href="{% url breeding-list %}" title="Breeding Cages">Breeding Cages</a>
                 <ul class="subnav">  
-                    <li><a href="#">Active Breeding Cages</a></li>  
-                    <li><a href="#">All Breeding Cages</a></li>  
-                    <li><a href="#">Timed Mating Cages</a></li> 
-                    <li><a href="#">Add New Breeding Cages</a></li>  
+                    <li><a href="{% url breeding-list %}">Active Breeding Cages</a></li>  
+                    <li><a href="{% url breeding-list-all %}">All Breeding Cages</a></li>  
+                    <li><a href="{% url breeding-list-timed-matings %}">Timed Mating Cages</a></li> 
+                    <li><a href="{% url breeding-new %}">Add New Breeding Cages</a></li>  
                 </ul> 
             </li>    
 			<li class="headlink"><a href="{% url strain-list %}" title="Strain List">Strain List</a></li>

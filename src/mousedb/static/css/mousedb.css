@@ -111,43 +111,6 @@ td { padding-left: 5px;
 .dead a { 	color: white;
 		}
 
-li.headlink ul { display: none; }
-li.headlink:hover ul { display: block; }    
-
-#menu li.headlink ul { display: none; border-top: 1px black solid; text-align: left; }
-#menu li.headlink:hover ul { display: block; }
-#menu li.headlink ul li a { padding: 5px; height: 17px; }
-#menu li.headlink ul li a:hover { background-color: #333; }    
-		
-ul#menu {
-	font-size: large;
-}
-
-ul#menu li {
-  display: inline; /* Shows each item side-by-side */
-  list-style-type: none; /* Gets rid of the bullet points */
-}
-
-ul#menu li a {
-	text-decoration: none;
-	float: left;
-	padding: 10px 10px 10px 10px;
-	width: 10%;
-	height: 50px;
-	border: 1px solid #aed0ea; 
-	background: #deedf7 url(../images/ui-bg_highlight-soft_100_deedf7_1x100.png) 50% 50% repeat-x; 
-	color: #2779AA; 
-	font-weight: bold;
-}
-
-ul#menu li a:hover {
-	border: 1px solid #74b2e2; 
-	background: #e4f1fb url(../images/ui-bg_glass_100_e4f1fb_1x400.png) 50% 50% repeat-x; 
-	font-weight: bold; 
-	color: #0070a3;
-}
-
-
 p {
 	/* if width = 30 X font size that gives about 65 characters per line */
 	font-size: 15px;

@@ -58,27 +58,34 @@ ul.sf-menu li li li.sfHover ul {
 	margin-bottom:	1em;
 }
 .sf-menu a {
-	border-left:	1px solid #fff;
-	border-top:		1px solid #CFDEFF;
 	padding: 		.75em 1em;
 	text-decoration:none;
 }
 .sf-menu a, .sf-menu a:visited  { /* visited pseudo selector so IE6 applies text colour*/
-	color:			#13a;
+	color: #2779AA; 
 }
 .sf-menu li {
-	background:		#BDD2FF;
+	text-decoration: none;
+	float: left;
+	padding: 10px 10px 10px 10px;
+	border: 1px solid #aed0ea;     
+	width: 10%;
+	height: 50px;
+	background: #deedf7 url(../images/ui-bg_highlight-soft_100_deedf7_1x100.png) 50% 50% repeat-x; 
+	color: #2779AA; 
+	font-weight: bold;
 }
 .sf-menu li li {
-	background:		#AABDE6;
+	background:		#deedf7 url(../images/ui-bg_highlight-soft_100_deedf7_1x100.png) 50% 50% repeat-x; 
 }
 .sf-menu li li li {
-	background:		#9AAEDB;
+	background:		#deedf7 url(../images/ui-bg_highlight-soft_100_deedf7_1x100.png) 50% 50% repeat-x; 
 }
 .sf-menu li:hover, .sf-menu li.sfHover,
 .sf-menu a:focus, .sf-menu a:hover, .sf-menu a:active {
-	background:		#CFDEFF;
-	outline:		0;
+	background: #e4f1fb url(../images/ui-bg_glass_100_e4f1fb_1x400.png) 50% 50% repeat-x; 
+	font-weight: bold; 
+	color: #0070a3;
 }
 
 /*** arrows **/
