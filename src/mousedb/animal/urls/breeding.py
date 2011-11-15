@@ -1,6 +1,6 @@
 """This URLconf defines the routing of pages for breeding objects.
 
-This includes generic views for breeding, breeding details and create, change and delete breeding cages."""
+This includes generic views for breeding, breeding details and create, change, search and delete breeding cages."""
 
 from django.conf.urls.defaults import *
 
@@ -19,4 +19,5 @@ urlpatterns = patterns('',
 	url(r'^(?P<pk>\d*)/edit/?$', views.BreedingUpdate.as_view(), name="breeding-edit"),
 	url(r'^(?P<pk>\d*)/update/?$', views.BreedingUpdate.as_view(), name="breeding-edit"),    
 	url(r'^(?P<pk>\d*)/delete/?$', views.BreedingDelete.as_view(), name="breeding-delete"),
+    url(r'^search/?', views.BreedingSearch.as_view(), name="breeding-search")
 )

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load custom_filters %}
+
+{% block title %}Breeding Cage Search{% if query %} Results{% endif %}{% endblock title%}
+
+{% block scripts %}
+{% include "sortable_table_script.html" %}
+{% endblock scripts %}
+
+{% block header %}Breeding Cages - {{breeding_type}}{% endblock header %}
+
+{% block content %}
+  <form action="{% url breeding-search %}" method="GET">
+    <label for="q">Search: </label>
+    <input type="text" name="q" value="{{ query|escape }}">
+    <input type="submit" value="Search">
+  </form>
+
+  {% if query %}
+    {% if results %}
+    {% with results as breeding_list %}
+    <h2>{{ breeding_list.count }} breeding cages matching barcode {{ query|escape }}</h2>
+    {% include "breeding_table.html" %}
+    {% endwith %}
+    {% else %}
+    <h2>No breeding cages found matching barcode {{ query|escape }}</p>
+    {% endif %}
+  {% endif %}
+
+
+{% endblock content %}

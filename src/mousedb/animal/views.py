@@ -279,7 +279,25 @@ class BreedingListTimedMating(BreedingList):
         
         context = super(BreedingList, self).get_context_data(**kwargs)
         context['breeding_type'] = "Timed Matings" 
-        return context     
+        return context    
+
+class BreedingSearch(BreedingList):
+    """This class generates a view for breeding objects, showing the results of a search query for cage number.
+    
+    This class is a subclass of BreedingList, changing the queryset and the  breeding_type context as well as providing the search query and search results if available."""
+
+    template_name = "breeding_search.html"
+    def get_context_data(self, **kwargs):
+        """This add in the context of breeding_type and sets it to Search it also returns the query and the queryset."""
+        query = self.request.GET.get('q', '')
+        context = super(BreedingSearch, self).get_context_data(**kwargs)
+        context['breeding_type'] = "Search"
+        context['query'] = query
+        if query:
+            context['results'] = Breeding.objects.filter(Cage__icontains=query).distinct()
+        else:
+            context['results'] = []        
+        return context          
 
 class BreedingCreate(CreateView):
     """This class generates the breeding-new view.
