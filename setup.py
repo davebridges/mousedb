@@ -6,11 +6,11 @@ def read(fname):
 
 setup(
     name = "mousedb",
-    version = "0.2.1dev",
+    version = "1.0.0",
     url = 'http://github.com/davebridges/mousedb',
     license = 'BSD',
     description = "A web based application for storage and organization of data regarding experimental animals",
-    long_description = read('README.rst'),
+    long_description = open('README.txt').read(),
     author = 'Dave Bridges',
     author_email = 'dave.bridges@gmail.com',
     packages = find_packages('src'),

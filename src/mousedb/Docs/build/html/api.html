@@ -3,17 +3,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Automated Documentation &mdash; MouseDB v0.2.1dev documentation</title>
+    <title>Automated Documentation &mdash; MouseDB 1.0.0 documentation</title>
+    
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '0.2.1dev',
+        VERSION:     '1.0.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -22,7 +25,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="MouseDB v0.2.1dev documentation" href="index.html" />
+    <link rel="top" title="MouseDB 1.0.0 documentation" href="index.html" />
     <link rel="prev" title="Users and Restriction" href="usage.html" /> 
   </head>
   <body>
@@ -38,7 +41,7 @@
         <li class="right" >
           <a href="usage.html" title="Users and Restriction"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">MouseDB v0.2.1dev documentation</a> &raquo;</li> 
+        <li><a href="index.html">MouseDB 1.0.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -147,6 +150,11 @@
 <em class="property">class </em><tt class="descclassname">mousedb.tests.</tt><tt class="descname">RootViewTests</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#mousedb.tests.RootViewTests" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></tt></p>
 <p>These are tests for the root views.  Included are tests for home and logout.</p>
+<dl class="attribute">
+<dt id="mousedb.tests.RootViewTests.fixtures">
+<tt class="descname">fixtures</tt><em class="property"> = ['test_breeding', 'test_animals', 'test_strain']</em><a class="headerlink" href="#mousedb.tests.RootViewTests.fixtures" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="mousedb.tests.RootViewTests.setUp">
 <tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.tests.RootViewTests.setUp" title="Permalink to this definition">¶</a></dt>
@@ -213,6 +221,11 @@
 <tt class="descclassname">Assay.</tt><tt class="descname">measurement_set</tt><a class="headerlink" href="#mousedb.data.models.Assay.measurement_set" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="attribute">
+<dt id="mousedb.data.models.Assay.objects">
+<tt class="descclassname">Assay.</tt><tt class="descname">objects</tt><em class="property"> = &lt;django.db.models.manager.Manager object at 0x022FE5B0&gt;</em><a class="headerlink" href="#mousedb.data.models.Assay.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -231,6 +244,11 @@
 <em class="property">exception </em><tt class="descclassname">Diet.</tt><tt class="descname">MultipleObjectsReturned</tt><a class="headerlink" href="#mousedb.data.models.Diet.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></tt></p>
 </dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.data.models.Diet.objects">
+<tt class="descclassname">Diet.</tt><tt class="descname">objects</tt><em class="property"> = &lt;django.db.models.manager.Manager object at 0x02312B90&gt;</em><a class="headerlink" href="#mousedb.data.models.Diet.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="attribute">
 <dt id="mousedb.data.models.Diet.treatment_set">
@@ -264,6 +282,11 @@
 <dl class="attribute">
 <dt id="mousedb.data.models.Environment.contact">
 <tt class="descclassname">Environment.</tt><tt class="descname">contact</tt><a class="headerlink" href="#mousedb.data.models.Environment.contact" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.data.models.Environment.objects">
+<tt class="descclassname">Environment.</tt><tt class="descname">objects</tt><em class="property"> = &lt;django.db.models.manager.Manager object at 0x0231B4D0&gt;</em><a class="headerlink" href="#mousedb.data.models.Environment.objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -321,6 +344,11 @@
 <dd></dd></dl>
 
 <dl class="attribute">
+<dt id="mousedb.data.models.Experiment.objects">
+<tt class="descclassname">Experiment.</tt><tt class="descname">objects</tt><em class="property"> = &lt;django.db.models.manager.Manager object at 0x022FE2F0&gt;</em><a class="headerlink" href="#mousedb.data.models.Experiment.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
 <dt id="mousedb.data.models.Experiment.researchers">
 <tt class="descclassname">Experiment.</tt><tt class="descname">researchers</tt><a class="headerlink" href="#mousedb.data.models.Experiment.researchers" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -348,6 +376,11 @@
 <em class="property">exception </em><tt class="descclassname">Implantation.</tt><tt class="descname">MultipleObjectsReturned</tt><a class="headerlink" href="#mousedb.data.models.Implantation.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></tt></p>
 </dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.data.models.Implantation.objects">
+<tt class="descclassname">Implantation.</tt><tt class="descname">objects</tt><em class="property"> = &lt;django.db.models.manager.Manager object at 0x0231BE70&gt;</em><a class="headerlink" href="#mousedb.data.models.Implantation.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="attribute">
 <dt id="mousedb.data.models.Implantation.surgeon">
@@ -408,6 +441,11 @@
 <tt class="descclassname">Measurement.</tt><tt class="descname">get_absolute_url</tt><big>(</big><em>*moreargs</em>, <em>**morekwargs</em><big>)</big><a class="headerlink" href="#mousedb.data.models.Measurement.get_absolute_url" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="attribute">
+<dt id="mousedb.data.models.Measurement.objects">
+<tt class="descclassname">Measurement.</tt><tt class="descname">objects</tt><em class="property"> = &lt;django.db.models.manager.Manager object at 0x022FEA50&gt;</em><a class="headerlink" href="#mousedb.data.models.Measurement.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -430,6 +468,11 @@
 <dl class="method">
 <dt id="mousedb.data.models.Pharmaceutical.get_mode_display">
 <tt class="descclassname">Pharmaceutical.</tt><tt class="descname">get_mode_display</tt><big>(</big><em>*moreargs</em>, <em>**morekwargs</em><big>)</big><a class="headerlink" href="#mousedb.data.models.Pharmaceutical.get_mode_display" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.data.models.Pharmaceutical.objects">
+<tt class="descclassname">Pharmaceutical.</tt><tt class="descname">objects</tt><em class="property"> = &lt;django.db.models.manager.Manager object at 0x02324550&gt;</em><a class="headerlink" href="#mousedb.data.models.Pharmaceutical.objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -477,6 +520,11 @@
 <dd></dd></dl>
 
 <dl class="attribute">
+<dt id="mousedb.data.models.Researcher.objects">
+<tt class="descclassname">Researcher.</tt><tt class="descname">objects</tt><em class="property"> = &lt;django.db.models.manager.Manager object at 0x022FED50&gt;</em><a class="headerlink" href="#mousedb.data.models.Researcher.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
 <dt id="mousedb.data.models.Researcher.transplantation_set">
 <tt class="descclassname">Researcher.</tt><tt class="descname">transplantation_set</tt><a class="headerlink" href="#mousedb.data.models.Researcher.transplantation_set" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -513,6 +561,11 @@
 <dl class="method">
 <dt id="mousedb.data.models.Study.get_absolute_url">
 <tt class="descclassname">Study.</tt><tt class="descname">get_absolute_url</tt><big>(</big><em>*moreargs</em>, <em>**morekwargs</em><big>)</big><a class="headerlink" href="#mousedb.data.models.Study.get_absolute_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.data.models.Study.objects">
+<tt class="descclassname">Study.</tt><tt class="descname">objects</tt><em class="property"> = &lt;django.db.models.manager.Manager object at 0x02304AD0&gt;</em><a class="headerlink" href="#mousedb.data.models.Study.objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -557,6 +610,11 @@
 <dl class="method">
 <dt id="mousedb.data.models.Transplantation.get_previous_by_transplant_date">
 <tt class="descclassname">Transplantation.</tt><tt class="descname">get_previous_by_transplant_date</tt><big>(</big><em>*moreargs</em>, <em>**morekwargs</em><big>)</big><a class="headerlink" href="#mousedb.data.models.Transplantation.get_previous_by_transplant_date" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.data.models.Transplantation.objects">
+<tt class="descclassname">Transplantation.</tt><tt class="descname">objects</tt><em class="property"> = &lt;django.db.models.manager.Manager object at 0x0232A7B0&gt;</em><a class="headerlink" href="#mousedb.data.models.Transplantation.objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -614,6 +672,11 @@
 <dd></dd></dl>
 
 <dl class="attribute">
+<dt id="mousedb.data.models.Treatment.objects">
+<tt class="descclassname">Treatment.</tt><tt class="descname">objects</tt><em class="property"> = &lt;django.db.models.manager.Manager object at 0x023123F0&gt;</em><a class="headerlink" href="#mousedb.data.models.Treatment.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
 <dt id="mousedb.data.models.Treatment.pharmaceutical">
 <tt class="descclassname">Treatment.</tt><tt class="descname">pharmaceutical</tt><a class="headerlink" href="#mousedb.data.models.Treatment.pharmaceutical" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -668,6 +731,11 @@
 <dd></dd></dl>
 
 <dl class="attribute">
+<dt id="mousedb.data.models.Vendor.objects">
+<tt class="descclassname">Vendor.</tt><tt class="descname">objects</tt><em class="property"> = &lt;django.db.models.manager.Manager object at 0x023127B0&gt;</em><a class="headerlink" href="#mousedb.data.models.Vendor.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
 <dt id="mousedb.data.models.Vendor.pharmaceutical_set">
 <tt class="descclassname">Vendor.</tt><tt class="descname">pharmaceutical_set</tt><a class="headerlink" href="#mousedb.data.models.Vendor.pharmaceutical_set" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -695,6 +763,16 @@
 </dd></dl>
 
 <dl class="attribute">
+<dt id="mousedb.data.forms.ExperimentForm.base_fields">
+<tt class="descclassname">ExperimentForm.</tt><tt class="descname">base_fields</tt><em class="property"> = {'date': &lt;django.forms.fields.DateField object at 0x023F4090&gt;, 'notes': &lt;django.forms.fields.CharField object at 0x02623970&gt;, 'experimentID': &lt;django.forms.fields.SlugField object at 0x023F4130&gt;, 'feeding_state': &lt;django.forms.fields.TypedChoiceField object at 0x02623AB0&gt;, 'fasting_time': &lt;django.forms.fields.IntegerField object at 0x023C7590&gt;, 'injection': &lt;django.forms.fields.TypedChoiceField object at 0x023C7830&gt;, 'concentration': &lt;django.forms.fields.CharField object at 0x023C7610&gt;, 'study': &lt;django.forms.models.ModelChoiceField object at 0x023C7A90&gt;, 'researchers': &lt;django.forms.models.ModelMultipleChoiceField object at 0x023C7030&gt;}</em><a class="headerlink" href="#mousedb.data.forms.ExperimentForm.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.data.forms.ExperimentForm.declared_fields">
+<tt class="descclassname">ExperimentForm.</tt><tt class="descname">declared_fields</tt><em class="property"> = {}</em><a class="headerlink" href="#mousedb.data.forms.ExperimentForm.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
 <dt id="mousedb.data.forms.ExperimentForm.media">
 <tt class="descclassname">ExperimentForm.</tt><tt class="descname">media</tt><a class="headerlink" href="#mousedb.data.forms.ExperimentForm.media" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -710,7 +788,17 @@
 <dl class="class">
 <dt id="mousedb.data.forms.MeasurementForm.Media">
 <em class="property">class </em><tt class="descname">Media</tt><a class="headerlink" href="#mousedb.data.forms.MeasurementForm.Media" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="mousedb.data.forms.MeasurementForm.Media.css">
+<tt class="descname">css</tt><em class="property"> = {'all': ('javascript/jquery-autocomplete/jquery.autocomplete.css', 'css/autocomplete.css')}</em><a class="headerlink" href="#mousedb.data.forms.MeasurementForm.Media.css" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.data.forms.MeasurementForm.Media.js">
+<tt class="descname">js</tt><em class="property"> = ('javascript/jquery-ui/js/jquery-ui-1.8.2.custom.min.js', 'javascript/jquery-autocomplete/jquery.autocomplete.js')</em><a class="headerlink" href="#mousedb.data.forms.MeasurementForm.Media.js" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
 
 <dl class="class">
 <dt id="mousedb.data.forms.MeasurementForm.Meta">
@@ -722,6 +810,16 @@
 </dd></dl>
 
 </dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.data.forms.MeasurementForm.base_fields">
+<tt class="descclassname">MeasurementForm.</tt><tt class="descname">base_fields</tt><em class="property"> = {'animal': &lt;ajax_select.fields.AutoCompleteSelectField object at 0x0261ED50&gt;, 'experiment': &lt;django.forms.models.ModelChoiceField object at 0x02392250&gt;, 'assay': &lt;django.forms.models.ModelChoiceField object at 0x02392930&gt;, 'values': &lt;django.forms.fields.CharField object at 0x02392F30&gt;}</em><a class="headerlink" href="#mousedb.data.forms.MeasurementForm.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.data.forms.MeasurementForm.declared_fields">
+<tt class="descclassname">MeasurementForm.</tt><tt class="descname">declared_fields</tt><em class="property"> = {'animal': &lt;ajax_select.fields.AutoCompleteSelectField object at 0x0261ED50&gt;}</em><a class="headerlink" href="#mousedb.data.forms.MeasurementForm.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="attribute">
 <dt id="mousedb.data.forms.MeasurementForm.media">
@@ -740,12 +838,27 @@
 <dt id="mousedb.data.forms.StudyExperimentForm.Meta">
 <em class="property">class </em><tt class="descname">Meta</tt><a class="headerlink" href="#mousedb.data.forms.StudyExperimentForm.Meta" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="attribute">
+<dt id="mousedb.data.forms.StudyExperimentForm.Meta.exclude">
+<tt class="descname">exclude</tt><em class="property"> = ['study']</em><a class="headerlink" href="#mousedb.data.forms.StudyExperimentForm.Meta.exclude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
 <dt id="mousedb.data.forms.StudyExperimentForm.Meta.model">
 <tt class="descname">model</tt><a class="headerlink" href="#mousedb.data.forms.StudyExperimentForm.Meta.model" title="Permalink to this definition">¶</a></dt>
 <dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Experiment</span></tt></p>
 </dd></dl>
 
 </dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.data.forms.StudyExperimentForm.base_fields">
+<tt class="descclassname">StudyExperimentForm.</tt><tt class="descname">base_fields</tt><em class="property"> = {'date': &lt;django.forms.fields.DateField object at 0x023C74D0&gt;, 'notes': &lt;django.forms.fields.CharField object at 0x023C7F10&gt;, 'experimentID': &lt;django.forms.fields.SlugField object at 0x023C7170&gt;, 'feeding_state': &lt;django.forms.fields.TypedChoiceField object at 0x023C74B0&gt;, 'fasting_time': &lt;django.forms.fields.IntegerField object at 0x023C70D0&gt;, 'injection': &lt;django.forms.fields.TypedChoiceField object at 0x023C7070&gt;, 'concentration': &lt;django.forms.fields.CharField object at 0x023C7950&gt;, 'researchers': &lt;django.forms.models.ModelMultipleChoiceField object at 0x023C7530&gt;}</em><a class="headerlink" href="#mousedb.data.forms.StudyExperimentForm.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.data.forms.StudyExperimentForm.declared_fields">
+<tt class="descclassname">StudyExperimentForm.</tt><tt class="descname">declared_fields</tt><em class="property"> = {}</em><a class="headerlink" href="#mousedb.data.forms.StudyExperimentForm.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="attribute">
 <dt id="mousedb.data.forms.StudyExperimentForm.media">
@@ -772,6 +885,16 @@
 </dd></dl>
 
 <dl class="attribute">
+<dt id="mousedb.data.forms.StudyForm.base_fields">
+<tt class="descclassname">StudyForm.</tt><tt class="descname">base_fields</tt><em class="property"> = {'description': &lt;django.forms.fields.CharField object at 0x02392970&gt;, 'start_date': &lt;django.forms.fields.DateField object at 0x021E4250&gt;, 'stop_date': &lt;django.forms.fields.DateField object at 0x02392DD0&gt;, 'notes': &lt;django.forms.fields.CharField object at 0x02392FB0&gt;, 'strain': &lt;django.forms.models.ModelMultipleChoiceField object at 0x02237510&gt;}</em><a class="headerlink" href="#mousedb.data.forms.StudyForm.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.data.forms.StudyForm.declared_fields">
+<tt class="descclassname">StudyForm.</tt><tt class="descname">declared_fields</tt><em class="property"> = {}</em><a class="headerlink" href="#mousedb.data.forms.StudyForm.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
 <dt id="mousedb.data.forms.StudyForm.media">
 <tt class="descclassname">StudyForm.</tt><tt class="descname">media</tt><a class="headerlink" href="#mousedb.data.forms.StudyForm.media" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -787,7 +910,17 @@
 <dl class="class">
 <dt id="mousedb.data.forms.TreatmentForm.Media">
 <em class="property">class </em><tt class="descname">Media</tt><a class="headerlink" href="#mousedb.data.forms.TreatmentForm.Media" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="mousedb.data.forms.TreatmentForm.Media.css">
+<tt class="descname">css</tt><em class="property"> = {'all': ('javascript/jquery-autocomplete/jquery.autocomplete.css', 'css/autocomplete.css')}</em><a class="headerlink" href="#mousedb.data.forms.TreatmentForm.Media.css" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.data.forms.TreatmentForm.Media.js">
+<tt class="descname">js</tt><em class="property"> = ('javascript/jquery-ui/js/jquery-ui-1.8.2.custom.min.js', 'javascript/jquery-autocomplete/jquery.autocomplete.js')</em><a class="headerlink" href="#mousedb.data.forms.TreatmentForm.Media.js" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
 
 <dl class="class">
 <dt id="mousedb.data.forms.TreatmentForm.Meta">
@@ -799,6 +932,16 @@
 </dd></dl>
 
 </dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.data.forms.TreatmentForm.base_fields">
+<tt class="descclassname">TreatmentForm.</tt><tt class="descname">base_fields</tt><em class="property"> = {'treatment': &lt;django.forms.fields.CharField object at 0x02230F30&gt;, 'study': &lt;django.forms.models.ModelChoiceField object at 0x018C9690&gt;, 'diet': &lt;django.forms.models.ModelChoiceField object at 0x021805F0&gt;, 'environment': &lt;django.forms.models.ModelChoiceField object at 0x021806D0&gt;, 'transplantation': &lt;django.forms.models.ModelChoiceField object at 0x021806B0&gt;, 'notes': &lt;django.forms.fields.CharField object at 0x01EFA310&gt;, 'animals': &lt;ajax_select.fields.AutoCompleteSelectMultipleField object at 0x02392CB0&gt;, 'implantation': &lt;django.forms.models.ModelMultipleChoiceField object at 0x0269C2D0&gt;, 'pharmaceutical': &lt;django.forms.models.ModelMultipleChoiceField object at 0x0269C3D0&gt;, 'researchers': &lt;django.forms.models.ModelMultipleChoiceField object at 0x0269C530&gt;}</em><a class="headerlink" href="#mousedb.data.forms.TreatmentForm.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.data.forms.TreatmentForm.declared_fields">
+<tt class="descclassname">TreatmentForm.</tt><tt class="descname">declared_fields</tt><em class="property"> = {'animals': &lt;ajax_select.fields.AutoCompleteSelectMultipleField object at 0x02392CB0&gt;}</em><a class="headerlink" href="#mousedb.data.forms.TreatmentForm.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="attribute">
 <dt id="mousedb.data.forms.TreatmentForm.media">
@@ -957,6 +1100,11 @@
 <em class="property">class </em><tt class="descclassname">mousedb.data.tests.</tt><tt class="descname">TreatmentViewTests</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#mousedb.data.tests.TreatmentViewTests" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></tt></p>
 <p>These tests test the views associated with Treatment objects.</p>
+<dl class="attribute">
+<dt id="mousedb.data.tests.TreatmentViewTests.fixtures">
+<tt class="descname">fixtures</tt><em class="property"> = ['test_treatment']</em><a class="headerlink" href="#mousedb.data.tests.TreatmentViewTests.fixtures" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="mousedb.data.tests.TreatmentViewTests.setUp">
 <tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.data.tests.TreatmentViewTests.setUp" title="Permalink to this definition">¶</a></dt>
@@ -1122,6 +1270,11 @@ The location is relative to the first breeding cage an animal is assigned to.</p
 <tt class="descclassname">Animal.</tt><tt class="descname">mother</tt><a class="headerlink" href="#mousedb.animal.models.Animal.mother" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="attribute">
+<dt id="mousedb.animal.models.Animal.objects">
+<tt class="descclassname">Animal.</tt><tt class="descname">objects</tt><em class="property"> = &lt;django.db.models.manager.Manager object at 0x021C5190&gt;</em><a class="headerlink" href="#mousedb.animal.models.Animal.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="mousedb.animal.models.Animal.save">
 <tt class="descclassname">Animal.</tt><tt class="descname">save</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.models.Animal.save" title="Permalink to this definition">¶</a></dt>
@@ -1214,6 +1367,11 @@ The duration is formatted in days.</p>
 </dd></dl>
 
 <dl class="attribute">
+<dt id="mousedb.animal.models.Breeding.objects">
+<tt class="descclassname">Breeding.</tt><tt class="descname">objects</tt><em class="property"> = &lt;django.db.models.manager.Manager object at 0x021CE6F0&gt;</em><a class="headerlink" href="#mousedb.animal.models.Breeding.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
 <dt id="mousedb.animal.models.Breeding.plugevents_set">
 <tt class="descclassname">Breeding.</tt><tt class="descname">plugevents_set</tt><a class="headerlink" href="#mousedb.animal.models.Breeding.plugevents_set" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -1269,6 +1427,11 @@ In the case of Cage, if a Cage is provided, and animals are specified under Male
 </dd></dl>
 
 <dl class="attribute">
+<dt id="mousedb.animal.models.Strain.objects">
+<tt class="descclassname">Strain.</tt><tt class="descname">objects</tt><em class="property"> = &lt;django.db.models.manager.Manager object at 0x021C2830&gt;</em><a class="headerlink" href="#mousedb.animal.models.Strain.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
 <dt id="mousedb.animal.models.Strain.study_set">
 <tt class="descclassname">Strain.</tt><tt class="descname">study_set</tt><a class="headerlink" href="#mousedb.animal.models.Strain.study_set" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -1312,7 +1475,17 @@ In the case of Cage, if a Cage is provided, and animals are specified under Male
 <dl class="class">
 <dt id="mousedb.animal.forms.AnimalForm.Media">
 <em class="property">class </em><tt class="descname">Media</tt><a class="headerlink" href="#mousedb.animal.forms.AnimalForm.Media" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="mousedb.animal.forms.AnimalForm.Media.css">
+<tt class="descname">css</tt><em class="property"> = {'all': ('javascript/jquery-autocomplete/jquery.autocomplete.css', 'css/autocomplete.css')}</em><a class="headerlink" href="#mousedb.animal.forms.AnimalForm.Media.css" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.forms.AnimalForm.Media.js">
+<tt class="descname">js</tt><em class="property"> = ('javascript/jquery-ui/js/jquery-ui-1.8.2.custom.min.js', 'javascript/jquery-autocomplete/jquery.autocomplete.js')</em><a class="headerlink" href="#mousedb.animal.forms.AnimalForm.Media.js" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
 
 <dl class="class">
 <dt id="mousedb.animal.forms.AnimalForm.Meta">
@@ -1324,6 +1497,16 @@ In the case of Cage, if a Cage is provided, and animals are specified under Male
 </dd></dl>
 
 </dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.forms.AnimalForm.base_fields">
+<tt class="descclassname">AnimalForm.</tt><tt class="descname">base_fields</tt><em class="property"> = {'MouseID': &lt;django.forms.fields.IntegerField object at 0x0287C4F0&gt;, 'Cage': &lt;django.forms.fields.IntegerField object at 0x0287C5D0&gt;, 'Rack': &lt;django.forms.fields.CharField object at 0x0287C570&gt;, 'Rack_Position': &lt;django.forms.fields.CharField object at 0x0287C650&gt;, 'Strain': &lt;django.forms.models.ModelChoiceField object at 0x0287C710&gt;, 'Background': &lt;django.forms.fields.TypedChoiceField object at 0x0282DCB0&gt;, 'Genotype': &lt;django.forms.fields.TypedChoiceField object at 0x0282DD50&gt;, 'Gender': &lt;django.forms.fields.TypedChoiceField object at 0x0282D950&gt;, 'Born': &lt;django.forms.fields.DateField object at 0x029819B0&gt;, 'Weaned': &lt;django.forms.fields.DateField object at 0x0282DDB0&gt;, 'Death': &lt;django.forms.fields.DateField object at 0x0282D910&gt;, 'Cause_of_Death': &lt;django.forms.fields.TypedChoiceField object at 0x02237CD0&gt;, 'Backcross': &lt;django.forms.fields.IntegerField object at 0x026E6050&gt;, 'Generation': &lt;django.forms.fields.IntegerField object at 0x026E6B30&gt;, 'Breeding': &lt;django.forms.models.ModelChoiceField object at 0x0279B170&gt;, 'Father': &lt;ajax_select.fields.AutoCompleteSelectField object at 0x02981670&gt;, 'Mother': &lt;ajax_select.fields.AutoCompleteSelectField object at 0x0287CD30&gt;, 'Markings': &lt;django.forms.fields.CharField object at 0x0279B7D0&gt;, 'Notes': &lt;django.forms.fields.CharField object at 0x0279B030&gt;, 'Alive': &lt;django.forms.fields.BooleanField object at 0x0279B070&gt;}</em><a class="headerlink" href="#mousedb.animal.forms.AnimalForm.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.forms.AnimalForm.declared_fields">
+<tt class="descclassname">AnimalForm.</tt><tt class="descname">declared_fields</tt><em class="property"> = {'Father': &lt;ajax_select.fields.AutoCompleteSelectField object at 0x02981670&gt;, 'Mother': &lt;ajax_select.fields.AutoCompleteSelectField object at 0x0287CD30&gt;}</em><a class="headerlink" href="#mousedb.animal.forms.AnimalForm.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="attribute">
 <dt id="mousedb.animal.forms.AnimalForm.media">
@@ -1341,7 +1524,17 @@ In the case of Cage, if a Cage is provided, and animals are specified under Male
 <dl class="class">
 <dt id="mousedb.animal.forms.BreedingForm.Media">
 <em class="property">class </em><tt class="descname">Media</tt><a class="headerlink" href="#mousedb.animal.forms.BreedingForm.Media" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="mousedb.animal.forms.BreedingForm.Media.css">
+<tt class="descname">css</tt><em class="property"> = {'all': ('javascript/jquery-autocomplete/jquery.autocomplete.css', 'css/autocomplete.css')}</em><a class="headerlink" href="#mousedb.animal.forms.BreedingForm.Media.css" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.forms.BreedingForm.Media.js">
+<tt class="descname">js</tt><em class="property"> = ('javascript/jquery-ui/js/jquery-ui-1.8.2.custom.min.js', 'javascript/jquery-autocomplete/jquery.autocomplete.js')</em><a class="headerlink" href="#mousedb.animal.forms.BreedingForm.Media.js" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
 
 <dl class="class">
 <dt id="mousedb.animal.forms.BreedingForm.Meta">
@@ -1353,6 +1546,16 @@ In the case of Cage, if a Cage is provided, and animals are specified under Male
 </dd></dl>
 
 </dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.forms.BreedingForm.base_fields">
+<tt class="descclassname">BreedingForm.</tt><tt class="descname">base_fields</tt><em class="property"> = {'Strain': &lt;django.forms.models.ModelChoiceField object at 0x02748BB0&gt;, 'Cage': &lt;django.forms.fields.CharField object at 0x02748AB0&gt;, 'BreedingName': &lt;django.forms.fields.CharField object at 0x02748BF0&gt;, 'Start': &lt;django.forms.fields.DateField object at 0x02748C30&gt;, 'End': &lt;django.forms.fields.DateField object at 0x02748D50&gt;, 'Crosstype': &lt;django.forms.fields.TypedChoiceField object at 0x02748DB0&gt;, 'Notes': &lt;django.forms.fields.CharField object at 0x02748C90&gt;, 'Rack': &lt;django.forms.fields.CharField object at 0x02748B70&gt;, 'Rack_Position': &lt;django.forms.fields.CharField object at 0x02748FF0&gt;, 'Active': &lt;django.forms.fields.BooleanField object at 0x02748D30&gt;, 'Timed_Mating': &lt;django.forms.fields.BooleanField object at 0x02748D90&gt;, 'genotype': &lt;django.forms.fields.TypedChoiceField object at 0x027489B0&gt;, 'background': &lt;django.forms.fields.TypedChoiceField object at 0x02748E90&gt;, 'backcross': &lt;django.forms.fields.IntegerField object at 0x02748D10&gt;, 'generation': &lt;django.forms.fields.IntegerField object at 0x02748AF0&gt;, 'Females': &lt;ajax_select.fields.AutoCompleteSelectMultipleField object at 0x02748870&gt;, 'Male': &lt;ajax_select.fields.AutoCompleteSelectMultipleField object at 0x027B0130&gt;}</em><a class="headerlink" href="#mousedb.animal.forms.BreedingForm.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.forms.BreedingForm.declared_fields">
+<tt class="descclassname">BreedingForm.</tt><tt class="descname">declared_fields</tt><em class="property"> = {'Male': &lt;ajax_select.fields.AutoCompleteSelectMultipleField object at 0x027B0130&gt;, 'Females': &lt;ajax_select.fields.AutoCompleteSelectMultipleField object at 0x02748870&gt;}</em><a class="headerlink" href="#mousedb.animal.forms.BreedingForm.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="attribute">
 <dt id="mousedb.animal.forms.BreedingForm.media">
@@ -1371,12 +1574,27 @@ In the case of Cage, if a Cage is provided, and animals are specified under Male
 <dt id="mousedb.animal.forms.MultipleAnimalForm.Meta">
 <em class="property">class </em><tt class="descname">Meta</tt><a class="headerlink" href="#mousedb.animal.forms.MultipleAnimalForm.Meta" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="attribute">
+<dt id="mousedb.animal.forms.MultipleAnimalForm.Meta.fields">
+<tt class="descname">fields</tt><em class="property"> = ['Background', 'Strain', 'Breeding', 'Cage', 'Rack', 'Rack_Position', 'Strain', 'Background', 'Genotype', 'Gender', 'Born', 'Weaned', 'Backcross', 'Generation', 'Breeding', 'Father', 'Mother', 'Markings', 'Notes']</em><a class="headerlink" href="#mousedb.animal.forms.MultipleAnimalForm.Meta.fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
 <dt id="mousedb.animal.forms.MultipleAnimalForm.Meta.model">
 <tt class="descname">model</tt><a class="headerlink" href="#mousedb.animal.forms.MultipleAnimalForm.Meta.model" title="Permalink to this definition">¶</a></dt>
 <dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt></p>
 </dd></dl>
 
 </dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.forms.MultipleAnimalForm.base_fields">
+<tt class="descclassname">MultipleAnimalForm.</tt><tt class="descname">base_fields</tt><em class="property"> = {'Background': &lt;django.forms.fields.TypedChoiceField object at 0x0279B9D0&gt;, 'Strain': &lt;django.forms.models.ModelChoiceField object at 0x0279BA10&gt;, 'Breeding': &lt;django.forms.models.ModelChoiceField object at 0x027B0F30&gt;, 'Cage': &lt;django.forms.fields.IntegerField object at 0x0279B430&gt;, 'Rack': &lt;django.forms.fields.CharField object at 0x0279B9B0&gt;, 'Rack_Position': &lt;django.forms.fields.CharField object at 0x0279B1B0&gt;, 'Genotype': &lt;django.forms.fields.TypedChoiceField object at 0x027B0E30&gt;, 'Gender': &lt;django.forms.fields.TypedChoiceField object at 0x027B0F10&gt;, 'Born': &lt;django.forms.fields.DateField object at 0x027B0D90&gt;, 'Weaned': &lt;django.forms.fields.DateField object at 0x027B0DD0&gt;, 'Backcross': &lt;django.forms.fields.IntegerField object at 0x027B0FB0&gt;, 'Generation': &lt;django.forms.fields.IntegerField object at 0x027B0FD0&gt;, 'Father': &lt;django.forms.models.ModelChoiceField object at 0x0279BF90&gt;, 'Mother': &lt;django.forms.models.ModelChoiceField object at 0x0279B5D0&gt;, 'Markings': &lt;django.forms.fields.CharField object at 0x027B0D50&gt;, 'Notes': &lt;django.forms.fields.CharField object at 0x027B0F50&gt;, 'count': &lt;django.forms.fields.IntegerField object at 0x0287CCD0&gt;}</em><a class="headerlink" href="#mousedb.animal.forms.MultipleAnimalForm.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.forms.MultipleAnimalForm.declared_fields">
+<tt class="descclassname">MultipleAnimalForm.</tt><tt class="descname">declared_fields</tt><em class="property"> = {'count': &lt;django.forms.fields.IntegerField object at 0x0287CCD0&gt;}</em><a class="headerlink" href="#mousedb.animal.forms.MultipleAnimalForm.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="attribute">
 <dt id="mousedb.animal.forms.MultipleAnimalForm.media">
@@ -1395,12 +1613,27 @@ In the case of Cage, if a Cage is provided, and animals are specified under Male
 <dt id="mousedb.animal.forms.MultipleBreedingAnimalForm.Meta">
 <em class="property">class </em><tt class="descname">Meta</tt><a class="headerlink" href="#mousedb.animal.forms.MultipleBreedingAnimalForm.Meta" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="attribute">
+<dt id="mousedb.animal.forms.MultipleBreedingAnimalForm.Meta.fields">
+<tt class="descname">fields</tt><em class="property"> = ['Born', 'Weaned', 'Gender']</em><a class="headerlink" href="#mousedb.animal.forms.MultipleBreedingAnimalForm.Meta.fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
 <dt id="mousedb.animal.forms.MultipleBreedingAnimalForm.Meta.model">
 <tt class="descname">model</tt><a class="headerlink" href="#mousedb.animal.forms.MultipleBreedingAnimalForm.Meta.model" title="Permalink to this definition">¶</a></dt>
 <dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt></p>
 </dd></dl>
 
 </dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.forms.MultipleBreedingAnimalForm.base_fields">
+<tt class="descclassname">MultipleBreedingAnimalForm.</tt><tt class="descname">base_fields</tt><em class="property"> = {'Born': &lt;django.forms.fields.DateField object at 0x027B0CD0&gt;, 'Weaned': &lt;django.forms.fields.DateField object at 0x027B0150&gt;, 'Gender': &lt;django.forms.fields.TypedChoiceField object at 0x027B0170&gt;, 'count': &lt;django.forms.fields.IntegerField object at 0x0279B130&gt;}</em><a class="headerlink" href="#mousedb.animal.forms.MultipleBreedingAnimalForm.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.forms.MultipleBreedingAnimalForm.declared_fields">
+<tt class="descclassname">MultipleBreedingAnimalForm.</tt><tt class="descname">declared_fields</tt><em class="property"> = {'count': &lt;django.forms.fields.IntegerField object at 0x0279B130&gt;}</em><a class="headerlink" href="#mousedb.animal.forms.MultipleBreedingAnimalForm.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="attribute">
 <dt id="mousedb.animal.forms.MultipleBreedingAnimalForm.media">
@@ -1439,6 +1672,11 @@ This view is restricted to those with the animal.create_animal permission.</p>
 <dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt></p>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="mousedb.animal.views.AnimalCreate.template_name">
+<tt class="descname">template_name</tt><em class="property"> = 'animal_form.html'</em><a class="headerlink" href="#mousedb.animal.views.AnimalCreate.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -1448,6 +1686,11 @@ This view is restricted to those with the animal.create_animal permission.</p>
 <p>This class generates the animal-delete view.</p>
 <p>This permission restricted view takes a url in the form <em>/animal/#/delete</em> and passes that object to the confirm_delete.html page.
 This view is restricted to those with the animal.delete_animal permission.</p>
+<dl class="attribute">
+<dt id="mousedb.animal.views.AnimalDelete.context_object_name">
+<tt class="descname">context_object_name</tt><em class="property"> = 'animal'</em><a class="headerlink" href="#mousedb.animal.views.AnimalDelete.context_object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="mousedb.animal.views.AnimalDelete.dispatch">
 <tt class="descname">dispatch</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.AnimalDelete.dispatch" title="Permalink to this definition">¶</a></dt>
@@ -1460,6 +1703,16 @@ This view is restricted to those with the animal.delete_animal permission.</p>
 <dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt></p>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="mousedb.animal.views.AnimalDelete.success_url">
+<tt class="descname">success_url</tt><em class="property"> = '/animal/'</em><a class="headerlink" href="#mousedb.animal.views.AnimalDelete.success_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.views.AnimalDelete.template_name">
+<tt class="descname">template_name</tt><em class="property"> = 'confirm_delete.html'</em><a class="headerlink" href="#mousedb.animal.views.AnimalDelete.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -1471,10 +1724,20 @@ This view is restricted to those with the animal.delete_animal permission.</p>
 Therefore care must be taken that animal/4932 is id=4932 and not barcode=4932.  The animal name is defined at the top of the page.
 This page is restricted to logged-in users.</p>
 <dl class="attribute">
+<dt id="mousedb.animal.views.AnimalDetail.context_object_name">
+<tt class="descname">context_object_name</tt><em class="property"> = 'animal'</em><a class="headerlink" href="#mousedb.animal.views.AnimalDetail.context_object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
 <dt id="mousedb.animal.views.AnimalDetail.model">
 <tt class="descname">model</tt><a class="headerlink" href="#mousedb.animal.views.AnimalDetail.model" title="Permalink to this definition">¶</a></dt>
 <dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt></p>
 </dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.views.AnimalDetail.template_name">
+<tt class="descname">template_name</tt><em class="property"> = 'animal_detail.html'</em><a class="headerlink" href="#mousedb.animal.views.AnimalDetail.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -1486,6 +1749,16 @@ This page is restricted to logged-in users.</p>
 <p>This view responds to a url in the form <em>/animal</em>
 It sends a variable animal containing all animals to animal_list.html.
 This view is login protected.</p>
+<dl class="attribute">
+<dt id="mousedb.animal.views.AnimalList.allow_empty">
+<tt class="descname">allow_empty</tt><em class="property"> = True</em><a class="headerlink" href="#mousedb.animal.views.AnimalList.allow_empty" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.views.AnimalList.context_object_name">
+<tt class="descname">context_object_name</tt><em class="property"> = 'animal_list'</em><a class="headerlink" href="#mousedb.animal.views.AnimalList.context_object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="mousedb.animal.views.AnimalList.dispatch">
 <tt class="descname">dispatch</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.AnimalList.dispatch" title="Permalink to this definition">¶</a></dt>
@@ -1497,6 +1770,11 @@ This view is login protected.</p>
 <tt class="descname">model</tt><a class="headerlink" href="#mousedb.animal.views.AnimalList.model" title="Permalink to this definition">¶</a></dt>
 <dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt></p>
 </dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.views.AnimalList.template_name">
+<tt class="descname">template_name</tt><em class="property"> = 'animal_list.html'</em><a class="headerlink" href="#mousedb.animal.views.AnimalList.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -1513,6 +1791,11 @@ This view is login protected.</p>
 <dd><p>This add in the context of list_type and returns this as Alive.</p>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="mousedb.animal.views.AnimalListAlive.queryset">
+<tt class="descname">queryset</tt><a class="headerlink" href="#mousedb.animal.views.AnimalListAlive.queryset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -1522,6 +1805,16 @@ This view is login protected.</p>
 <p>This view generates a list of animals born within the specified year.</p>
 <p>It takes a url in the form of <strong>/date/####</strong> where #### is the four digit code of the year.
 This view is restricted to logged in users.</p>
+<dl class="attribute">
+<dt id="mousedb.animal.views.AnimalMonthArchive.context_object_name">
+<tt class="descname">context_object_name</tt><em class="property"> = 'animal_list'</em><a class="headerlink" href="#mousedb.animal.views.AnimalMonthArchive.context_object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.views.AnimalMonthArchive.date_field">
+<tt class="descname">date_field</tt><em class="property"> = 'Born'</em><a class="headerlink" href="#mousedb.animal.views.AnimalMonthArchive.date_field" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="mousedb.animal.views.AnimalMonthArchive.dispatch">
 <tt class="descname">dispatch</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.AnimalMonthArchive.dispatch" title="Permalink to this definition">¶</a></dt>
@@ -1529,10 +1822,25 @@ This view is restricted to logged in users.</p>
 </dd></dl>
 
 <dl class="attribute">
+<dt id="mousedb.animal.views.AnimalMonthArchive.make_object_list">
+<tt class="descname">make_object_list</tt><em class="property"> = True</em><a class="headerlink" href="#mousedb.animal.views.AnimalMonthArchive.make_object_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
 <dt id="mousedb.animal.views.AnimalMonthArchive.model">
 <tt class="descname">model</tt><a class="headerlink" href="#mousedb.animal.views.AnimalMonthArchive.model" title="Permalink to this definition">¶</a></dt>
 <dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt></p>
 </dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.views.AnimalMonthArchive.month_format">
+<tt class="descname">month_format</tt><em class="property"> = '%m'</em><a class="headerlink" href="#mousedb.animal.views.AnimalMonthArchive.month_format" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.views.AnimalMonthArchive.template_name">
+<tt class="descname">template_name</tt><em class="property"> = 'animal_list.html'</em><a class="headerlink" href="#mousedb.animal.views.AnimalMonthArchive.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -1543,6 +1851,11 @@ This view is restricted to logged in users.</p>
 <p>This class generates the animal-edit view.</p>
 <p>This permission restricted view takes a url in the form <em>/animal/#/edit</em> and generates a animal_form.html with that object.
 This view is restricted to those with the animal.update_animal permission.</p>
+<dl class="attribute">
+<dt id="mousedb.animal.views.AnimalUpdate.context_object_name">
+<tt class="descname">context_object_name</tt><em class="property"> = 'animal'</em><a class="headerlink" href="#mousedb.animal.views.AnimalUpdate.context_object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="mousedb.animal.views.AnimalUpdate.dispatch">
 <tt class="descname">dispatch</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.AnimalUpdate.dispatch" title="Permalink to this definition">¶</a></dt>
@@ -1561,6 +1874,11 @@ This view is restricted to those with the animal.update_animal permission.</p>
 <dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt></p>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="mousedb.animal.views.AnimalUpdate.template_name">
+<tt class="descname">template_name</tt><em class="property"> = 'animal_form.html'</em><a class="headerlink" href="#mousedb.animal.views.AnimalUpdate.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -1570,6 +1888,16 @@ This view is restricted to those with the animal.update_animal permission.</p>
 <p>This view generates a list of animals born within the specified year.</p>
 <p>It takes a url in the form of <strong>/date/####</strong> where #### is the four digit code of the year.
 This view is restricted to logged in users.</p>
+<dl class="attribute">
+<dt id="mousedb.animal.views.AnimalYearArchive.context_object_name">
+<tt class="descname">context_object_name</tt><em class="property"> = 'animal_list'</em><a class="headerlink" href="#mousedb.animal.views.AnimalYearArchive.context_object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.views.AnimalYearArchive.date_field">
+<tt class="descname">date_field</tt><em class="property"> = 'Born'</em><a class="headerlink" href="#mousedb.animal.views.AnimalYearArchive.date_field" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="mousedb.animal.views.AnimalYearArchive.dispatch">
 <tt class="descname">dispatch</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.AnimalYearArchive.dispatch" title="Permalink to this definition">¶</a></dt>
@@ -1577,10 +1905,20 @@ This view is restricted to logged in users.</p>
 </dd></dl>
 
 <dl class="attribute">
+<dt id="mousedb.animal.views.AnimalYearArchive.make_object_list">
+<tt class="descname">make_object_list</tt><em class="property"> = True</em><a class="headerlink" href="#mousedb.animal.views.AnimalYearArchive.make_object_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
 <dt id="mousedb.animal.views.AnimalYearArchive.model">
 <tt class="descname">model</tt><a class="headerlink" href="#mousedb.animal.views.AnimalYearArchive.model" title="Permalink to this definition">¶</a></dt>
 <dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt></p>
 </dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.views.AnimalYearArchive.template_name">
+<tt class="descname">template_name</tt><em class="property"> = 'animal_list.html'</em><a class="headerlink" href="#mousedb.animal.views.AnimalYearArchive.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -1608,6 +1946,11 @@ This view is restricted to logged in users.</p>
 <dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Breeding</span></tt></p>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="mousedb.animal.views.BreedingCreate.template_name">
+<tt class="descname">template_name</tt><em class="property"> = 'breeding_form.html'</em><a class="headerlink" href="#mousedb.animal.views.BreedingCreate.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -1616,6 +1959,11 @@ This view is restricted to logged in users.</p>
 <dd><p>Bases: <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/class-based-views/#django.views.generic.edit.DeleteView" title="(in Django v1.3)"><tt class="xref py py-class docutils literal"><span class="pre">django.views.generic.edit.DeleteView</span></tt></a></p>
 <p>This class generates the breeding-delete view.</p>
 <p>This permission restricted view takes a url in the form <em>/breeding/#/delete</em> and passes that object to the confirm_delete.html page.</p>
+<dl class="attribute">
+<dt id="mousedb.animal.views.BreedingDelete.context_object_name">
+<tt class="descname">context_object_name</tt><em class="property"> = 'breeding'</em><a class="headerlink" href="#mousedb.animal.views.BreedingDelete.context_object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="mousedb.animal.views.BreedingDelete.dispatch">
 <tt class="descname">dispatch</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.BreedingDelete.dispatch" title="Permalink to this definition">¶</a></dt>
@@ -1628,6 +1976,16 @@ This view is restricted to logged in users.</p>
 <dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Breeding</span></tt></p>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="mousedb.animal.views.BreedingDelete.success_url">
+<tt class="descname">success_url</tt><em class="property"> = '/breeding/'</em><a class="headerlink" href="#mousedb.animal.views.BreedingDelete.success_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.views.BreedingDelete.template_name">
+<tt class="descname">template_name</tt><em class="property"> = 'confirm_delete.html'</em><a class="headerlink" href="#mousedb.animal.views.BreedingDelete.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -1639,10 +1997,20 @@ This view is restricted to logged in users.</p>
 The breeding_id refers to the background id of the breeding set, and not the breeding cage barcode.
 This page is restricted to logged-in users.</p>
 <dl class="attribute">
+<dt id="mousedb.animal.views.BreedingDetail.context_object_name">
+<tt class="descname">context_object_name</tt><em class="property"> = 'breeding'</em><a class="headerlink" href="#mousedb.animal.views.BreedingDetail.context_object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
 <dt id="mousedb.animal.views.BreedingDetail.model">
 <tt class="descname">model</tt><a class="headerlink" href="#mousedb.animal.views.BreedingDetail.model" title="Permalink to this definition">¶</a></dt>
 <dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Breeding</span></tt></p>
 </dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.views.BreedingDetail.template_name">
+<tt class="descname">template_name</tt><em class="property"> = 'breeding_detail.html'</em><a class="headerlink" href="#mousedb.animal.views.BreedingDetail.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -1653,11 +2021,26 @@ This page is restricted to logged-in users.</p>
 <p>This class generates an object list for active Breeding objects.</p>
 <p>This login protected view takes all Breeding objects and sends them to strain_list.html as a strain_list dictionary.  It also passes a strain_list_alive and cages dictionary to show the numbers for total cages and total strains.
 The url for this view is <em>/strain/</em></p>
+<dl class="attribute">
+<dt id="mousedb.animal.views.BreedingList.context_object_name">
+<tt class="descname">context_object_name</tt><em class="property"> = 'breeding_list'</em><a class="headerlink" href="#mousedb.animal.views.BreedingList.context_object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="mousedb.animal.views.BreedingList.get_context_data">
 <tt class="descname">get_context_data</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.BreedingList.get_context_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>This adds into the context of breeding_type and sets it to Active.</p>
 </dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.views.BreedingList.queryset">
+<tt class="descname">queryset</tt><a class="headerlink" href="#mousedb.animal.views.BreedingList.queryset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.views.BreedingList.template_name">
+<tt class="descname">template_name</tt><em class="property"> = 'breeding_list.html'</em><a class="headerlink" href="#mousedb.animal.views.BreedingList.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -1673,6 +2056,11 @@ The url for this view is <em>/strain/</em></p>
 <dd><p>This add in the context of breeding_type and sets it to All.</p>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="mousedb.animal.views.BreedingListAll.queryset">
+<tt class="descname">queryset</tt><a class="headerlink" href="#mousedb.animal.views.BreedingListAll.queryset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -1687,6 +2075,30 @@ The url for this view is <em>/strain/</em></p>
 <dd><p>This add in the context of breeding_type and sets it to Timed_Matings.</p>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="mousedb.animal.views.BreedingListTimedMating.queryset">
+<tt class="descname">queryset</tt><a class="headerlink" href="#mousedb.animal.views.BreedingListTimedMating.queryset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.views.BreedingSearch">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">BreedingSearch</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.BreedingSearch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#mousedb.animal.views.BreedingList" title="mousedb.animal.views.BreedingList"><tt class="xref py py-class docutils literal"><span class="pre">mousedb.animal.views.BreedingList</span></tt></a></p>
+<p>This class generates a view for breeding objects, showing the results of a search query for cage number.</p>
+<p>This class is a subclass of BreedingList, changing the queryset and the  breeding_type context as well as providing the search query and search results if available.</p>
+<dl class="method">
+<dt id="mousedb.animal.views.BreedingSearch.get_context_data">
+<tt class="descname">get_context_data</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.BreedingSearch.get_context_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>This add in the context of breeding_type and sets it to Search it also returns the query and the queryset.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.views.BreedingSearch.template_name">
+<tt class="descname">template_name</tt><em class="property"> = 'breeding_search.html'</em><a class="headerlink" href="#mousedb.animal.views.BreedingSearch.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -1695,6 +2107,11 @@ The url for this view is <em>/strain/</em></p>
 <dd><p>Bases: <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/class-based-views/#django.views.generic.edit.UpdateView" title="(in Django v1.3)"><tt class="xref py py-class docutils literal"><span class="pre">django.views.generic.edit.UpdateView</span></tt></a></p>
 <p>This class generates the breeding-edit view.</p>
 <p>This permission restricted view takes a url in the form <em>/breeding/#/edit</em> and generates a breeding_form.html with that object.</p>
+<dl class="attribute">
+<dt id="mousedb.animal.views.BreedingUpdate.context_object_name">
+<tt class="descname">context_object_name</tt><em class="property"> = 'breeding'</em><a class="headerlink" href="#mousedb.animal.views.BreedingUpdate.context_object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="mousedb.animal.views.BreedingUpdate.dispatch">
 <tt class="descname">dispatch</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.BreedingUpdate.dispatch" title="Permalink to this definition">¶</a></dt>
@@ -1713,6 +2130,11 @@ The url for this view is <em>/strain/</em></p>
 <dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Breeding</span></tt></p>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="mousedb.animal.views.BreedingUpdate.template_name">
+<tt class="descname">template_name</tt><em class="property"> = 'breeding_form.html'</em><a class="headerlink" href="#mousedb.animal.views.BreedingUpdate.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -1723,6 +2145,11 @@ The url for this view is <em>/strain/</em></p>
 <p>This list shows animals that do not have an eartag (MouseID) and are older than the age set by WEAN_AGE in localsettings.py (default is 14 days).
 It takes a view <strong>/todo/eartag</strong>.
 This view is login protected.</p>
+<dl class="attribute">
+<dt id="mousedb.animal.views.EarTagList.queryset">
+<tt class="descname">queryset</tt><a class="headerlink" href="#mousedb.animal.views.EarTagList.queryset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -1733,6 +2160,11 @@ This view is login protected.</p>
 <p>This list shows animals that do not have a genotype (ie N.D. or ?) and are older than GENOTYPE_AGE as designated in localsettings.py (default is 21 days).
 It takes a view <strong>/todo/genotype</strong>.
 This view is login protected.</p>
+<dl class="attribute">
+<dt id="mousedb.animal.views.GenotypeList.queryset">
+<tt class="descname">queryset</tt><a class="headerlink" href="#mousedb.animal.views.GenotypeList.queryset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -1743,6 +2175,11 @@ This view is login protected.</p>
 <p>This list shows animals that have no cage number and are alive.
 It takes a view <strong>/todo/no_cage</strong>.
 This view is login protected.</p>
+<dl class="attribute">
+<dt id="mousedb.animal.views.NoCageList.queryset">
+<tt class="descname">queryset</tt><a class="headerlink" href="#mousedb.animal.views.NoCageList.queryset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -1753,6 +2190,11 @@ This view is login protected.</p>
 <p>This list shows animals that have no cage number and are alive.
 It takes a view <strong>/todo/no_rack</strong>.
 This view is login protected.</p>
+<dl class="attribute">
+<dt id="mousedb.animal.views.NoRackList.queryset">
+<tt class="descname">queryset</tt><a class="headerlink" href="#mousedb.animal.views.NoRackList.queryset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -1774,6 +2216,11 @@ This view is restricted to those with the animal.create_strain permission.</p>
 <dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Strain</span></tt></p>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="mousedb.animal.views.StrainCreate.template_name">
+<tt class="descname">template_name</tt><em class="property"> = 'strain_form.html'</em><a class="headerlink" href="#mousedb.animal.views.StrainCreate.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -1783,6 +2230,11 @@ This view is restricted to those with the animal.create_strain permission.</p>
 <p>This class generates the strain-delete view.</p>
 <p>This permission restricted view takes a url in the form <em>/strain/#/delete</em> and passes that object to the confirm_delete.html page.
 This view is restricted to those with the animal.delete_strain permission.</p>
+<dl class="attribute">
+<dt id="mousedb.animal.views.StrainDelete.context_object_name">
+<tt class="descname">context_object_name</tt><em class="property"> = 'strain'</em><a class="headerlink" href="#mousedb.animal.views.StrainDelete.context_object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="mousedb.animal.views.StrainDelete.dispatch">
 <tt class="descname">dispatch</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.StrainDelete.dispatch" title="Permalink to this definition">¶</a></dt>
@@ -1795,6 +2247,16 @@ This view is restricted to those with the animal.delete_strain permission.</p>
 <dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Strain</span></tt></p>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="mousedb.animal.views.StrainDelete.success_url">
+<tt class="descname">success_url</tt><em class="property"> = '/strain/'</em><a class="headerlink" href="#mousedb.animal.views.StrainDelete.success_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.views.StrainDelete.template_name">
+<tt class="descname">template_name</tt><em class="property"> = 'confirm_delete.html'</em><a class="headerlink" href="#mousedb.animal.views.StrainDelete.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -1805,11 +2267,31 @@ This view is restricted to those with the animal.delete_strain permission.</p>
 <p>It takes a request in the form <em>strain/(strain_slug)/</em> and renders the detail page for that strain.
 This view also passes along a dictionary of alive animals belonging to that strain.
 This page is restricted to logged-in users.</p>
+<dl class="attribute">
+<dt id="mousedb.animal.views.StrainDetail.context_object_name">
+<tt class="descname">context_object_name</tt><em class="property"> = 'strain'</em><a class="headerlink" href="#mousedb.animal.views.StrainDetail.context_object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="mousedb.animal.views.StrainDetail.get_context_data">
 <tt class="descname">get_context_data</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.StrainDetail.get_context_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>This add in the context of strain_list_alive (which filters for only alive animals and active) and cages which filters for the number of current cages.</p>
 </dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.views.StrainDetail.queryset">
+<tt class="descname">queryset</tt><a class="headerlink" href="#mousedb.animal.views.StrainDetail.queryset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.views.StrainDetail.slug_field">
+<tt class="descname">slug_field</tt><em class="property"> = 'Strain_slug'</em><a class="headerlink" href="#mousedb.animal.views.StrainDetail.slug_field" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.views.StrainDetail.template_name">
+<tt class="descname">template_name</tt><em class="property"> = 'strain_detail.html'</em><a class="headerlink" href="#mousedb.animal.views.StrainDetail.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -1837,6 +2319,11 @@ This page is restricted to logged-in users.</p>
 <p>This class generates an object list for Strain objects.</p>
 <p>This login protected view takes all Strain objects and sends them to strain_list.html as a strain_list dictionary.  It also passes a strain_list_alive and cages dictionary to show the numbers for total cages and total strains.
 The url for this view is <strong>/strain/</strong></p>
+<dl class="attribute">
+<dt id="mousedb.animal.views.StrainList.context_object_name">
+<tt class="descname">context_object_name</tt><em class="property"> = 'strain_list'</em><a class="headerlink" href="#mousedb.animal.views.StrainList.context_object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="mousedb.animal.views.StrainList.get_context_data">
 <tt class="descname">get_context_data</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.StrainList.get_context_data" title="Permalink to this definition">¶</a></dt>
@@ -1849,6 +2336,11 @@ The url for this view is <strong>/strain/</strong></p>
 <dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Strain</span></tt></p>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="mousedb.animal.views.StrainList.template_name">
+<tt class="descname">template_name</tt><em class="property"> = 'strain_list.html'</em><a class="headerlink" href="#mousedb.animal.views.StrainList.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -1858,6 +2350,11 @@ The url for this view is <strong>/strain/</strong></p>
 <p>This class generates the strain-edit view.</p>
 <p>This permission restricted view takes a url in the form <em>/strain/#/edit</em> and generates a strain_form.html with that object.
 This view is restricted to those with the animal.update_strain permission.</p>
+<dl class="attribute">
+<dt id="mousedb.animal.views.StrainUpdate.context_object_name">
+<tt class="descname">context_object_name</tt><em class="property"> = 'strain'</em><a class="headerlink" href="#mousedb.animal.views.StrainUpdate.context_object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="mousedb.animal.views.StrainUpdate.dispatch">
 <tt class="descname">dispatch</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.StrainUpdate.dispatch" title="Permalink to this definition">¶</a></dt>
@@ -1870,6 +2367,11 @@ This view is restricted to those with the animal.update_strain permission.</p>
 <dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Strain</span></tt></p>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="mousedb.animal.views.StrainUpdate.template_name">
+<tt class="descname">template_name</tt><em class="property"> = 'strain_form.html'</em><a class="headerlink" href="#mousedb.animal.views.StrainUpdate.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -1880,6 +2382,11 @@ This view is restricted to those with the animal.update_strain permission.</p>
 <p>This list shows animals that need to be weaned.  They are animals that are older than the WEAN_AGE and are alive.
 It takes a view <strong>/todo/wean</strong>.
 This view is login protected.</p>
+<dl class="attribute">
+<dt id="mousedb.animal.views.WeanList.queryset">
+<tt class="descname">queryset</tt><a class="headerlink" href="#mousedb.animal.views.WeanList.queryset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="function">
@@ -1954,6 +2461,26 @@ Each of these takes a different subfolder directive (ie the animal module is for
 <em class="property">class </em><tt class="descclassname">mousedb.animal.admin.</tt><tt class="descname">AnimalAdmin</tt><big>(</big><em>model</em>, <em>admin_site</em><big>)</big><a class="headerlink" href="#mousedb.animal.admin.AnimalAdmin" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.contrib.admin.options.ModelAdmin</span></tt></p>
 <p>Provides parameters for animal objects within the admin interface.</p>
+<dl class="attribute">
+<dt id="mousedb.animal.admin.AnimalAdmin.actions">
+<tt class="descname">actions</tt><em class="property"> = ['mark_sacrificed']</em><a class="headerlink" href="#mousedb.animal.admin.AnimalAdmin.actions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.admin.AnimalAdmin.fieldsets">
+<tt class="descname">fieldsets</tt><em class="property"> = ((None, {'fields': ('Strain', 'Background', 'MouseID', 'Cage', 'Genotype', 'Gender', 'Born', 'Weaned', 'Backcross', 'Generation', 'Markings', 'Notes', 'Breeding', 'Rack', 'Rack_Position')}), ('Animal Death Information', {'fields': ('Death', 'Cause_of_Death', 'Alive'), 'classes': ('collapse',)}))</em><a class="headerlink" href="#mousedb.animal.admin.AnimalAdmin.fieldsets" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.admin.AnimalAdmin.list_display">
+<tt class="descname">list_display</tt><em class="property"> = ('MouseID', 'Rack', 'Rack_Position', 'Cage', 'Markings', 'Gender', 'Genotype', 'Strain', 'Background', 'Generation', 'Backcross', 'Born', 'Alive', 'Death')</em><a class="headerlink" href="#mousedb.animal.admin.AnimalAdmin.list_display" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.admin.AnimalAdmin.list_filter">
+<tt class="descname">list_filter</tt><em class="property"> = ('Alive', 'Strain', 'Background', 'Gender', 'Genotype', 'Backcross')</em><a class="headerlink" href="#mousedb.animal.admin.AnimalAdmin.list_filter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="mousedb.animal.admin.AnimalAdmin.mark_sacrificed">
 <tt class="descname">mark_sacrificed</tt><big>(</big><em>request</em>, <em>queryset</em><big>)</big><a class="headerlink" href="#mousedb.animal.admin.AnimalAdmin.mark_sacrificed" title="Permalink to this definition">¶</a></dt>
@@ -1967,6 +2494,21 @@ This admin action also shows as the output the number of mice sacrificed.</p>
 <tt class="descname">media</tt><a class="headerlink" href="#mousedb.animal.admin.AnimalAdmin.media" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="attribute">
+<dt id="mousedb.animal.admin.AnimalAdmin.radio_fields">
+<tt class="descname">radio_fields</tt><em class="property"> = {'Gender': 1, 'Cause_of_Death': 1, 'Background': 1, 'Strain': 1}</em><a class="headerlink" href="#mousedb.animal.admin.AnimalAdmin.radio_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.admin.AnimalAdmin.raw_id_fields">
+<tt class="descname">raw_id_fields</tt><em class="property"> = ('Breeding',)</em><a class="headerlink" href="#mousedb.animal.admin.AnimalAdmin.raw_id_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.admin.AnimalAdmin.search_fields">
+<tt class="descname">search_fields</tt><em class="property"> = ['MouseID', 'Cage']</em><a class="headerlink" href="#mousedb.animal.admin.AnimalAdmin.search_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -1975,6 +2517,11 @@ This admin action also shows as the output the number of mice sacrificed.</p>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.contrib.admin.options.TabularInline</span></tt></p>
 <p>Provides an inline tabular formset for animal objects.</p>
 <p>Currently used with the breeding admin page.</p>
+<dl class="attribute">
+<dt id="mousedb.animal.admin.AnimalInline.fields">
+<tt class="descname">fields</tt><em class="property"> = ('Strain', 'Background', 'MouseID', 'Cage', 'Genotype', 'Gender', 'Born', 'Weaned', 'Generation', 'Markings', 'Notes', 'Rack', 'Rack_Position')</em><a class="headerlink" href="#mousedb.animal.admin.AnimalInline.fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="attribute">
 <dt id="mousedb.animal.admin.AnimalInline.media">
 <tt class="descname">media</tt><a class="headerlink" href="#mousedb.animal.admin.AnimalInline.media" title="Permalink to this definition">¶</a></dt>
@@ -1986,6 +2533,11 @@ This admin action also shows as the output the number of mice sacrificed.</p>
 <dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt></p>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="mousedb.animal.admin.AnimalInline.radio_fields">
+<tt class="descname">radio_fields</tt><em class="property"> = {'Gender': 1, 'Genotype': 1, 'Background': 1, 'Strain': 1}</em><a class="headerlink" href="#mousedb.animal.admin.AnimalInline.radio_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -1994,6 +2546,31 @@ This admin action also shows as the output the number of mice sacrificed.</p>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.contrib.admin.options.ModelAdmin</span></tt></p>
 <p>Settings in the admin interface for dealing with Breeding objects.</p>
 <p>This interface also includes an form for adding objects associated with this breeding cage.</p>
+<dl class="attribute">
+<dt id="mousedb.animal.admin.BreedingAdmin.actions">
+<tt class="descname">actions</tt><em class="property"> = ['mark_deactivated']</em><a class="headerlink" href="#mousedb.animal.admin.BreedingAdmin.actions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.admin.BreedingAdmin.fields">
+<tt class="descname">fields</tt><em class="property"> = ('Male', 'Females', 'Timed_Mating', 'Cage', 'Rack', 'Rack_Position', 'BreedingName', 'Strain', 'Start', 'End', 'Crosstype', 'Notes', 'Active')</em><a class="headerlink" href="#mousedb.animal.admin.BreedingAdmin.fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.admin.BreedingAdmin.inlines">
+<tt class="descname">inlines</tt><em class="property"> = [&lt;class 'mousedb.animal.admin.AnimalInline'&gt;]</em><a class="headerlink" href="#mousedb.animal.admin.BreedingAdmin.inlines" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.admin.BreedingAdmin.list_display">
+<tt class="descname">list_display</tt><em class="property"> = ('Cage', 'Start', 'Rack', 'Rack_Position', 'Strain', 'Crosstype', 'BreedingName', 'Notes', 'Active')</em><a class="headerlink" href="#mousedb.animal.admin.BreedingAdmin.list_display" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.admin.BreedingAdmin.list_filter">
+<tt class="descname">list_filter</tt><em class="property"> = ('Timed_Mating', 'Strain', 'Active', 'Crosstype')</em><a class="headerlink" href="#mousedb.animal.admin.BreedingAdmin.list_filter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="mousedb.animal.admin.BreedingAdmin.mark_deactivated">
 <tt class="descname">mark_deactivated</tt><big>(</big><em>request</em>, <em>queryset</em><big>)</big><a class="headerlink" href="#mousedb.animal.admin.BreedingAdmin.mark_deactivated" title="Permalink to this definition">¶</a></dt>
@@ -2007,6 +2584,26 @@ This admin action also shows as the output the number of mice sacrificed.</p>
 <tt class="descname">media</tt><a class="headerlink" href="#mousedb.animal.admin.BreedingAdmin.media" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="attribute">
+<dt id="mousedb.animal.admin.BreedingAdmin.ordering">
+<tt class="descname">ordering</tt><em class="property"> = ('Active', 'Start')</em><a class="headerlink" href="#mousedb.animal.admin.BreedingAdmin.ordering" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.admin.BreedingAdmin.radio_fields">
+<tt class="descname">radio_fields</tt><em class="property"> = {'Crosstype': 2, 'Strain': 1}</em><a class="headerlink" href="#mousedb.animal.admin.BreedingAdmin.radio_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.admin.BreedingAdmin.raw_id_fields">
+<tt class="descname">raw_id_fields</tt><em class="property"> = ('Male', 'Females')</em><a class="headerlink" href="#mousedb.animal.admin.BreedingAdmin.raw_id_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.admin.BreedingAdmin.search_fields">
+<tt class="descname">search_fields</tt><em class="property"> = ['Cage']</em><a class="headerlink" href="#mousedb.animal.admin.BreedingAdmin.search_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -2015,8 +2612,18 @@ This admin action also shows as the output the number of mice sacrificed.</p>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.contrib.admin.options.ModelAdmin</span></tt></p>
 <p>Settings in the admin interface for dealing with Strain objects.</p>
 <dl class="attribute">
+<dt id="mousedb.animal.admin.StrainAdmin.fields">
+<tt class="descname">fields</tt><em class="property"> = ('Strain', 'Strain_slug', 'Comments', 'Source')</em><a class="headerlink" href="#mousedb.animal.admin.StrainAdmin.fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
 <dt id="mousedb.animal.admin.StrainAdmin.media">
 <tt class="descname">media</tt><a class="headerlink" href="#mousedb.animal.admin.StrainAdmin.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.admin.StrainAdmin.prepopulated_fields">
+<tt class="descname">prepopulated_fields</tt><em class="property"> = {'Strain_slug': ('Strain',)}</em><a class="headerlink" href="#mousedb.animal.admin.StrainAdmin.prepopulated_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -2031,6 +2638,11 @@ This admin action also shows as the output the number of mice sacrificed.</p>
 <em class="property">class </em><tt class="descclassname">mousedb.animal.tests.</tt><tt class="descname">AnimalModelTests</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#mousedb.animal.tests.AnimalModelTests" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></tt></p>
 <p>Tests the model attributes of Animal objects contained in the animal app.</p>
+<dl class="attribute">
+<dt id="mousedb.animal.tests.AnimalModelTests.fixtures">
+<tt class="descname">fixtures</tt><em class="property"> = ['test_animals', 'test_strain']</em><a class="headerlink" href="#mousedb.animal.tests.AnimalModelTests.fixtures" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="mousedb.animal.tests.AnimalModelTests.setUp">
 <tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.AnimalModelTests.setUp" title="Permalink to this definition">¶</a></dt>
@@ -2062,6 +2674,11 @@ This admin action also shows as the output the number of mice sacrificed.</p>
 <em class="property">class </em><tt class="descclassname">mousedb.animal.tests.</tt><tt class="descname">AnimalViewTests</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#mousedb.animal.tests.AnimalViewTests" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></tt></p>
 <p>Tests the views associated with animal objects.</p>
+<dl class="attribute">
+<dt id="mousedb.animal.tests.AnimalViewTests.fixtures">
+<tt class="descname">fixtures</tt><em class="property"> = ['test_animals', 'test_strain']</em><a class="headerlink" href="#mousedb.animal.tests.AnimalViewTests.fixtures" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="mousedb.animal.tests.AnimalViewTests.setUp">
 <tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.AnimalViewTests.setUp" title="Permalink to this definition">¶</a></dt>
@@ -2121,6 +2738,11 @@ This admin action also shows as the output the number of mice sacrificed.</p>
 <em class="property">class </em><tt class="descclassname">mousedb.animal.tests.</tt><tt class="descname">BreedingModelTests</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#mousedb.animal.tests.BreedingModelTests" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></tt></p>
 <p>Tests the model attributes of Breeding objects contained in the animal app.</p>
+<dl class="attribute">
+<dt id="mousedb.animal.tests.BreedingModelTests.fixtures">
+<tt class="descname">fixtures</tt><em class="property"> = ['test_group', 'test_animals', 'test_breeding', 'test_strain']</em><a class="headerlink" href="#mousedb.animal.tests.BreedingModelTests.fixtures" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="mousedb.animal.tests.BreedingModelTests.setUp">
 <tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.BreedingModelTests.setUp" title="Permalink to this definition">¶</a></dt>
@@ -2170,6 +2792,11 @@ This admin action also shows as the output the number of mice sacrificed.</p>
 <em class="property">class </em><tt class="descclassname">mousedb.animal.tests.</tt><tt class="descname">BreedingViewTests</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#mousedb.animal.tests.BreedingViewTests" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></tt></p>
 <p>These are tests for views based on Breeding objects.  Included are tests for breeding list (active and all), details, create, update and delete pages as well as for the timed mating lists.</p>
+<dl class="attribute">
+<dt id="mousedb.animal.tests.BreedingViewTests.fixtures">
+<tt class="descname">fixtures</tt><em class="property"> = ['test_breeding', 'test_animals', 'test_strain']</em><a class="headerlink" href="#mousedb.animal.tests.BreedingViewTests.fixtures" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="mousedb.animal.tests.BreedingViewTests.setUp">
 <tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.BreedingViewTests.setUp" title="Permalink to this definition">¶</a></dt>
@@ -2229,6 +2856,11 @@ This admin action also shows as the output the number of mice sacrificed.</p>
 <em class="property">class </em><tt class="descclassname">mousedb.animal.tests.</tt><tt class="descname">CageViewTests</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#mousedb.animal.tests.CageViewTests" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></tt></p>
 <p>These are tests for views based on animal objects as directed by cage urls.  Included are tests for cage-list, cage-list-all and cage-detail</p>
+<dl class="attribute">
+<dt id="mousedb.animal.tests.CageViewTests.fixtures">
+<tt class="descname">fixtures</tt><em class="property"> = ['test_animals', 'test_strain']</em><a class="headerlink" href="#mousedb.animal.tests.CageViewTests.fixtures" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="mousedb.animal.tests.CageViewTests.setUp">
 <tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.CageViewTests.setUp" title="Permalink to this definition">¶</a></dt>
@@ -2258,6 +2890,11 @@ This admin action also shows as the output the number of mice sacrificed.</p>
 <em class="property">class </em><tt class="descclassname">mousedb.animal.tests.</tt><tt class="descname">DateViewTests</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#mousedb.animal.tests.DateViewTests" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></tt></p>
 <p>These are tests for views based on animal objects as directed by date based urls.  Included are tests for archive-home, archive-month and archive-year</p>
+<dl class="attribute">
+<dt id="mousedb.animal.tests.DateViewTests.fixtures">
+<tt class="descname">fixtures</tt><em class="property"> = ['test_animals', 'test_strain']</em><a class="headerlink" href="#mousedb.animal.tests.DateViewTests.fixtures" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="mousedb.animal.tests.DateViewTests.setUp">
 <tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.DateViewTests.setUp" title="Permalink to this definition">¶</a></dt>
@@ -2336,6 +2973,11 @@ This admin action also shows as the output the number of mice sacrificed.</p>
 <em class="property">class </em><tt class="descclassname">mousedb.animal.tests.</tt><tt class="descname">StrainViewTests</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#mousedb.animal.tests.StrainViewTests" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></tt></p>
 <p>Test the views contained in the animal app relating to Strain objects.</p>
+<dl class="attribute">
+<dt id="mousedb.animal.tests.StrainViewTests.fixtures">
+<tt class="descname">fixtures</tt><em class="property"> = ['test_strain']</em><a class="headerlink" href="#mousedb.animal.tests.StrainViewTests.fixtures" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="mousedb.animal.tests.StrainViewTests.setUp">
 <tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.StrainViewTests.setUp" title="Permalink to this definition">¶</a></dt>
@@ -2397,6 +3039,11 @@ This admin action also shows as the output the number of mice sacrificed.</p>
 <em class="property">class </em><tt class="descclassname">mousedb.animal.tests.</tt><tt class="descname">ToDoViewTests</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#mousedb.animal.tests.ToDoViewTests" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></tt></p>
 <p>Tests the views associated with animal objects for the three todo lists.</p>
+<dl class="attribute">
+<dt id="mousedb.animal.tests.ToDoViewTests.fixtures">
+<tt class="descname">fixtures</tt><em class="property"> = ['test_animals', 'test_strain']</em><a class="headerlink" href="#mousedb.animal.tests.ToDoViewTests.fixtures" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="mousedb.animal.tests.ToDoViewTests.setUp">
 <tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.ToDoViewTests.setUp" title="Permalink to this definition">¶</a></dt>
@@ -2518,6 +3165,11 @@ Upon sacrifice of the mother, then genotyped alive and dead embryos can be enter
 <tt class="descclassname">PlugEvents.</tt><tt class="descname">get_previous_by_PlugDate</tt><big>(</big><em>*moreargs</em>, <em>**morekwargs</em><big>)</big><a class="headerlink" href="#mousedb.timed_mating.models.PlugEvents.get_previous_by_PlugDate" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="attribute">
+<dt id="mousedb.timed_mating.models.PlugEvents.objects">
+<tt class="descclassname">PlugEvents.</tt><tt class="descname">objects</tt><em class="property"> = &lt;django.db.models.manager.Manager object at 0x023302B0&gt;</em><a class="headerlink" href="#mousedb.timed_mating.models.PlugEvents.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="mousedb.timed_mating.models.PlugEvents.save">
 <tt class="descclassname">PlugEvents.</tt><tt class="descname">save</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.timed_mating.models.PlugEvents.save" title="Permalink to this definition">¶</a></dt>
@@ -2540,12 +3192,27 @@ Upon sacrifice of the mother, then genotyped alive and dead embryos can be enter
 <dt id="mousedb.timed_mating.forms.BreedingPlugForm.Meta">
 <em class="property">class </em><tt class="descname">Meta</tt><a class="headerlink" href="#mousedb.timed_mating.forms.BreedingPlugForm.Meta" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="attribute">
+<dt id="mousedb.timed_mating.forms.BreedingPlugForm.Meta.exclude">
+<tt class="descname">exclude</tt><em class="property"> = ['Breeding']</em><a class="headerlink" href="#mousedb.timed_mating.forms.BreedingPlugForm.Meta.exclude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
 <dt id="mousedb.timed_mating.forms.BreedingPlugForm.Meta.model">
 <tt class="descname">model</tt><a class="headerlink" href="#mousedb.timed_mating.forms.BreedingPlugForm.Meta.model" title="Permalink to this definition">¶</a></dt>
 <dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">PlugEvents</span></tt></p>
 </dd></dl>
 
 </dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.timed_mating.forms.BreedingPlugForm.base_fields">
+<tt class="descclassname">BreedingPlugForm.</tt><tt class="descname">base_fields</tt><em class="property"> = {'PlugDate': &lt;django.forms.fields.DateField object at 0x0360BE50&gt;, 'PlugFemale': &lt;django.forms.models.ModelChoiceField object at 0x02E53550&gt;, 'PlugMale': &lt;django.forms.models.ModelChoiceField object at 0x0360BFF0&gt;, 'SacrificeDate': &lt;django.forms.fields.DateField object at 0x0345CEB0&gt;, 'Researcher': &lt;django.forms.models.ModelChoiceField object at 0x03624190&gt;, 'WT_Alive': &lt;django.forms.fields.IntegerField object at 0x03624170&gt;, 'HET_Alive': &lt;django.forms.fields.IntegerField object at 0x036241B0&gt;, 'KO_Alive': &lt;django.forms.fields.IntegerField object at 0x036241F0&gt;, 'WT_Dead': &lt;django.forms.fields.IntegerField object at 0x034671F0&gt;, 'HET_Dead': &lt;django.forms.fields.IntegerField object at 0x03624230&gt;, 'KO_Dead': &lt;django.forms.fields.IntegerField object at 0x03624270&gt;, 'Active': &lt;django.forms.fields.BooleanField object at 0x0345CF90&gt;, 'Notes': &lt;django.forms.fields.CharField object at 0x036242D0&gt;}</em><a class="headerlink" href="#mousedb.timed_mating.forms.BreedingPlugForm.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.timed_mating.forms.BreedingPlugForm.declared_fields">
+<tt class="descclassname">BreedingPlugForm.</tt><tt class="descname">declared_fields</tt><em class="property"> = {}</em><a class="headerlink" href="#mousedb.timed_mating.forms.BreedingPlugForm.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="attribute">
 <dt id="mousedb.timed_mating.forms.BreedingPlugForm.media">
@@ -2571,6 +3238,11 @@ Upon sacrifice of the mother, then genotyped alive and dead embryos can be enter
 <dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">PlugEvents</span></tt></p>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="mousedb.timed_mating.views.PlugEventsCreate.template_name">
+<tt class="descname">template_name</tt><em class="property"> = 'plugevents_form.html'</em><a class="headerlink" href="#mousedb.timed_mating.views.PlugEventsCreate.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -2580,10 +3252,25 @@ Upon sacrifice of the mother, then genotyped alive and dead embryos can be enter
 <p>This class generates the plugevents-delete view.</p>
 <p>This permission restricted view takes a url in the form <strong>/plugs/#/delete</strong> and passes that object to the confirm_delete.html page.</p>
 <dl class="attribute">
+<dt id="mousedb.timed_mating.views.PlugEventsDelete.context_object_name">
+<tt class="descname">context_object_name</tt><em class="property"> = 'plugevent'</em><a class="headerlink" href="#mousedb.timed_mating.views.PlugEventsDelete.context_object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
 <dt id="mousedb.timed_mating.views.PlugEventsDelete.model">
 <tt class="descname">model</tt><a class="headerlink" href="#mousedb.timed_mating.views.PlugEventsDelete.model" title="Permalink to this definition">¶</a></dt>
 <dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">PlugEvents</span></tt></p>
 </dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.timed_mating.views.PlugEventsDelete.success_url">
+<tt class="descname">success_url</tt><em class="property"> = '/mousedb/plugs/'</em><a class="headerlink" href="#mousedb.timed_mating.views.PlugEventsDelete.success_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.timed_mating.views.PlugEventsDelete.template_name">
+<tt class="descname">template_name</tt><em class="property"> = 'confirm_delete.html'</em><a class="headerlink" href="#mousedb.timed_mating.views.PlugEventsDelete.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -2594,10 +3281,20 @@ Upon sacrifice of the mother, then genotyped alive and dead embryos can be enter
 <p>This class generates the plugevents-detail view.</p>
 <p>This login protected takes a url in the form <strong>/plugs/1</strong> for plug event id=1 and passes a <strong>plug</strong> object to plugevents_detail.html</p>
 <dl class="attribute">
+<dt id="mousedb.timed_mating.views.PlugEventsDetail.context_object_name">
+<tt class="descname">context_object_name</tt><em class="property"> = 'plugevent'</em><a class="headerlink" href="#mousedb.timed_mating.views.PlugEventsDetail.context_object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
 <dt id="mousedb.timed_mating.views.PlugEventsDetail.model">
 <tt class="descname">model</tt><a class="headerlink" href="#mousedb.timed_mating.views.PlugEventsDetail.model" title="Permalink to this definition">¶</a></dt>
 <dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">PlugEvents</span></tt></p>
 </dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.timed_mating.views.PlugEventsDetail.template_name">
+<tt class="descname">template_name</tt><em class="property"> = 'plugevents_detail.html'</em><a class="headerlink" href="#mousedb.timed_mating.views.PlugEventsDetail.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -2609,10 +3306,20 @@ Upon sacrifice of the mother, then genotyped alive and dead embryos can be enter
 <p>This login protected view takes all PlugEvents objects and sends them to plugevents_list.html as a plug_list dictionary.
 The url for this view is <strong>/plugs/</strong></p>
 <dl class="attribute">
+<dt id="mousedb.timed_mating.views.PlugEventsList.context_object_name">
+<tt class="descname">context_object_name</tt><em class="property"> = 'plugevents_list'</em><a class="headerlink" href="#mousedb.timed_mating.views.PlugEventsList.context_object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
 <dt id="mousedb.timed_mating.views.PlugEventsList.model">
 <tt class="descname">model</tt><a class="headerlink" href="#mousedb.timed_mating.views.PlugEventsList.model" title="Permalink to this definition">¶</a></dt>
 <dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">PlugEvents</span></tt></p>
 </dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.timed_mating.views.PlugEventsList.template_name">
+<tt class="descname">template_name</tt><em class="property"> = 'plugevents_list.html'</em><a class="headerlink" href="#mousedb.timed_mating.views.PlugEventsList.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -2638,10 +3345,20 @@ It takes a named argument (strain) which is a Strain_slug and filters based on t
 <p>This class generates the plugevents-edit view.</p>
 <p>This permission restricted view takes a url in the form <strong>/plugs/#/edit</strong> and generates a plugevents_form.html with that object.</p>
 <dl class="attribute">
+<dt id="mousedb.timed_mating.views.PlugEventsUpdate.context_object_name">
+<tt class="descname">context_object_name</tt><em class="property"> = 'plugevent'</em><a class="headerlink" href="#mousedb.timed_mating.views.PlugEventsUpdate.context_object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
 <dt id="mousedb.timed_mating.views.PlugEventsUpdate.model">
 <tt class="descname">model</tt><a class="headerlink" href="#mousedb.timed_mating.views.PlugEventsUpdate.model" title="Permalink to this definition">¶</a></dt>
 <dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">PlugEvents</span></tt></p>
 </dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.timed_mating.views.PlugEventsUpdate.template_name">
+<tt class="descname">template_name</tt><em class="property"> = 'plugevents_form.html'</em><a class="headerlink" href="#mousedb.timed_mating.views.PlugEventsUpdate.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -2664,6 +3381,11 @@ It takes a named argument (strain) which is a Strain_slug and filters based on t
 <em class="property">class </em><tt class="descclassname">mousedb.timed_mating.admin.</tt><tt class="descname">PlugEventsAdmin</tt><big>(</big><em>model</em>, <em>admin_site</em><big>)</big><a class="headerlink" href="#mousedb.timed_mating.admin.PlugEventsAdmin" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.contrib.admin.options.ModelAdmin</span></tt></p>
 <p>This class defines the admin interface for the PlugEvents model.</p>
+<dl class="attribute">
+<dt id="mousedb.timed_mating.admin.PlugEventsAdmin.list_display">
+<tt class="descname">list_display</tt><em class="property"> = ('PlugDate', 'PlugFemale', 'PlugMale', 'SacrificeDate', 'Researcher', 'Active')</em><a class="headerlink" href="#mousedb.timed_mating.admin.PlugEventsAdmin.list_display" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="attribute">
 <dt id="mousedb.timed_mating.admin.PlugEventsAdmin.media">
 <tt class="descname">media</tt><a class="headerlink" href="#mousedb.timed_mating.admin.PlugEventsAdmin.media" title="Permalink to this definition">¶</a></dt>
@@ -2719,6 +3441,11 @@ It takes a named argument (strain) which is a Strain_slug and filters based on t
 <em class="property">class </em><tt class="descclassname">mousedb.timed_mating.tests.</tt><tt class="descname">Timed_MatingViewTests</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#mousedb.timed_mating.tests.Timed_MatingViewTests" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></tt></p>
 <p>Test the views contained in the &#8216;timed_mating&#8217; app.</p>
+<dl class="attribute">
+<dt id="mousedb.timed_mating.tests.Timed_MatingViewTests.fixtures">
+<tt class="descname">fixtures</tt><em class="property"> = ['test_breeding', 'test_plugevents', 'test_animals', 'test_strain']</em><a class="headerlink" href="#mousedb.timed_mating.tests.Timed_MatingViewTests.fixtures" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="mousedb.timed_mating.tests.Timed_MatingViewTests.setUp">
 <tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.timed_mating.tests.Timed_MatingViewTests.setUp" title="Permalink to this definition">¶</a></dt>
@@ -2820,6 +3547,11 @@ All other fields (group_slug, group_url, license, contact_title, contact_first, 
 <tt class="descclassname">Group.</tt><tt class="descname">license</tt><a class="headerlink" href="#mousedb.groups.models.Group.license" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="attribute">
+<dt id="mousedb.groups.models.Group.objects">
+<tt class="descclassname">Group.</tt><tt class="descname">objects</tt><em class="property"> = &lt;django.db.models.manager.Manager object at 0x02330890&gt;</em><a class="headerlink" href="#mousedb.groups.models.Group.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -2844,6 +3576,11 @@ If the contents of this installation are being made available using some licenci
 <dl class="attribute">
 <dt id="mousedb.groups.models.License.group_set">
 <tt class="descclassname">License.</tt><tt class="descname">group_set</tt><a class="headerlink" href="#mousedb.groups.models.License.group_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.groups.models.License.objects">
+<tt class="descclassname">License.</tt><tt class="descname">objects</tt><em class="property"> = &lt;django.db.models.manager.Manager object at 0x02330AD0&gt;</em><a class="headerlink" href="#mousedb.groups.models.License.objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -2876,6 +3613,28 @@ If the contents of this installation are being made available using some licenci
 <dl class="attribute">
 <dt id="mousedb.groups.admin.LicenseAdmin.media">
 <tt class="descname">media</tt><a class="headerlink" href="#mousedb.groups.admin.LicenseAdmin.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.groups.admin.LogEntryAdmin">
+<em class="property">class </em><tt class="descclassname">mousedb.groups.admin.</tt><tt class="descname">LogEntryAdmin</tt><big>(</big><em>model</em>, <em>admin_site</em><big>)</big><a class="headerlink" href="#mousedb.groups.admin.LogEntryAdmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.contrib.admin.options.ModelAdmin</span></tt></p>
+<p>Defines the admin interface for the LogEntry objects.</p>
+<dl class="attribute">
+<dt id="mousedb.groups.admin.LogEntryAdmin.fields">
+<tt class="descname">fields</tt><em class="property"> = ('user', 'content_type', 'object_id', 'action_flag', 'object_repr', 'change_message')</em><a class="headerlink" href="#mousedb.groups.admin.LogEntryAdmin.fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.groups.admin.LogEntryAdmin.list_display">
+<tt class="descname">list_display</tt><em class="property"> = ('user', 'content_type', 'object_id', 'action_time')</em><a class="headerlink" href="#mousedb.groups.admin.LogEntryAdmin.list_display" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.groups.admin.LogEntryAdmin.media">
+<tt class="descname">media</tt><a class="headerlink" href="#mousedb.groups.admin.LogEntryAdmin.media" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -3001,7 +3760,7 @@ If the contents of this installation are being made available using some licenci
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" size="18" />
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
@@ -3027,12 +3786,12 @@ If the contents of this installation are being made available using some licenci
         <li class="right" >
           <a href="usage.html" title="Users and Restriction"
              >previous</a> |</li>
-        <li><a href="index.html">MouseDB v0.2.1dev documentation</a> &raquo;</li> 
+        <li><a href="index.html">MouseDB 1.0.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
         &copy; Copyright 2009-2011, Dave Bridges, Ph.D..
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
     </div>
   </body>
 </html>
