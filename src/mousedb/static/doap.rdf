@@ -1,0 +1,90 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	xmlns:foaf="http://xmlns.com/foaf/0.1/"
+	xmlns:doap="http://usefulinc.com/ns/doap#">
+<doap:Project>
+	<doap:name>mousedb</doap:name>
+	<doap:homepage rdf:resource="http://github.com/davebridges/mousedb" />
+	<doap:created>2009-03-16</doap:created>
+	<doap:shortdesc xml:lang="en">
+		A web based application for storage and organization of data regarding experimental animals
+	</doap:shortdesc>
+
+	<doap:description xml:lang="en">
+		The mousedb is a web-based application for the storage, organization and communication of data regarding experimental animals.
+	</doap:description>
+
+	<doap:release>
+		<doap:Version>
+			<doap:name>MouseDB v0.1</doap:name>
+			<doap:created>2009-10-24</doap:created>
+			<doap:revision>0.1</doap:revision>
+			<doap:file-release rdf:resource="http://github.com/downloads/davebridges/mousedb/mousedb-0.1.tar.gz"/>
+		</doap:Version>
+	</doap:release>
+	
+	<doap:release>
+		<doap:Version>
+			<doap:name>MouseDB v0.2</doap:name>
+			<doap:created>2010-05-22</doap:created>
+			<doap:revision>0.2</doap:revision>
+			<doap:file-release rdf:resource="http://github.com/downloads/davebridges/mousedb/mousedb-0.2.tar.gz"/>
+		</doap:Version>
+	</doap:release>
+
+	<doap:download-page rdf:resource="http://github.com/davebridges/mousedb/downloads" />
+	
+	<doap:wiki rdf:resource="http://code.google.com/p/mousedb/w/list" />
+	<doap:wiki rdf:resource="http://wiki.github.com/davebridges/mousedb/" />
+
+	<doap:bug-database rdf:resource="http://code.google.com/p/mousedb/issues/list" />
+
+	<doap:programming-language rdf:resource="http://www.djangoproject.com/" />
+	<doap:programming-language rdf:resource="http://www.python.org/" />
+
+	<doap:license rdf:resource="http://www.opensource.org/licenses/bsd-license.php" />
+
+	<doap:repository rdf:resource="http://github.com/davebridges/mousedb" />
+
+	<doap:maintainer>
+		<foaf:Person>
+			<foaf:name>Dave Bridges</foaf:name>
+			<foaf:mbox_sha1sum>1abc45397d951b25631087bc14cd2afbd525b96f</foaf:mbox_sha1sum>
+		</foaf:Person>
+	</doap:maintainer>
+
+	<doap:developer>
+		<foaf:Person>
+			<foaf:name>Dave Bridges</foaf:name>
+			<foaf:mbox_sha1sum>1abc45397d951b25631087bc14cd2afbd525b96f</foaf:mbox_sha1sum>
+		</foaf:Person>
+	</doap:developer>
+
+	<doap:documenter>
+		<foaf:Person>
+			<foaf:name>Dave Bridges</foaf:name>
+			<foaf:mbox_sha1sum>1abc45397d951b25631087bc14cd2afbd525b96f</foaf:mbox_sha1sum>
+		</foaf:Person>
+	</doap:documenter>
+
+	<doap:repository>
+		<doap:GitRepository>
+			<doap:location rdf:resource="http://github.com/davebridges/mousedb" />
+			<doap:browse rdf:resource="http://github.com/davebridges/mousedb" />
+		</doap:GitRepository>
+	</doap:repository>
+
+</doap:Project>
+
+
+<rdf:Description rdf:about="">
+	<foaf:maker>
+		<foaf:Person>
+			<foaf:name>Dave Bridges</foaf:name>
+			<foaf:mbox_sha1sum>1abc45397d951b25631087bc14cd2afbd525b96f</foaf:mbox_sha1sum>
+		</foaf:Person>
+	</foaf:maker>
+</rdf:Description>
+
+
+</rdf:RDF>

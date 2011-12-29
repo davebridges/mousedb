@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block header %}{% if object %}Update Treatment - {{ object }}{% else %}New Treatment{% endif %}{% endblock %}
+{% block title %}{% if object %}Update Treatment - {{ object }}{% else %}New Treatment{% endif %}{% endblock %}
+{% block scripts %}
+{{ form.media }}
+{% endblock %}
+
+{% block content %}
+<form method="POST" {% if object %} action="{% url treatment-edit object.id %}" {% else %} action="{% url treatment-new %}"{% endif %}>{% csrf_token %}
+<table>{{ form }}</table>
+<input type="submit" value="Submit" />
+</form>
+{% endblock %}

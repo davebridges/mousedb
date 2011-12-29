@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block title %}Experiment Details - All{% endblock title%}
+
+{% block scripts %}
+{% include "sortable_table_script.html" %}
+		<script type="text/javascript">
+        $(document).ready(function() {
+                $(".sortable").dataTable( {
+                        "bPaginate": false,
+                        });
+                });
+    	</script>
+
+{% endblock scripts %}
+
+{% block header %}Experiment Details - All{% endblock header %}
+
+{% block content %}
+
+{% if measurement_bodyweight %}
+<h3>Body Weight</h3>
+<table class="sortable">
+<thead>
+	<tr>
+		<th>Animal</th>
+		<th>Strain</th>
+		<th>Background</th>
+		<th>Genotype</th>
+		<th>Age</th>
+		<th>Values</th>
+	</tr>
+</thead>
+<tbody>
+{% for measurement in measurement_bodyweight|dictsort:"animal.Genotype" %}
+	<tr>
+		<td><a href="{{ measurement.animal.get_absolute_url }}">{{ measurement.animal.MouseID }}</a></td>
+		<td><a href="{{ measurement.animal.Strain.get_absolute_url }}">{{ measurement.animal.Strain }}</a></td>
+		<td>{{ measurement.animal.Background }}</td>
+		<td>{{ measurement.animal.Genotype }}</td>
+		<td>{{ experiment.date|timeuntil:measurement.animal.Born }}</td>
+		<td>{{ measurement.values }}</td>
+	</tr>
+{% endfor %}
+</tbody>
+</table>
+{% endif %}
+
+{% if measurement_plasmaglucose %}
+<h3>Plasma Glucose</h3>
+<table class="sortable">
+<thead>
+	<tr>
+		<th>Animal</th>
+		<th>Strain</th>
+		<th>Background</th>
+		<th>Genotype</th>
+		<th>Age</th>
+		<th>Values</th>
+	</tr>
+</thead>
+{% for measurement in measurement_plasmaglucose|dictsort:"animal.Genotype" %}
+	<tr>
+		<td><a href="{{ measurement.animal.get_absolute_url }}">{{ measurement.animal.MouseID }}</a></td>
+		<td><a href="{{ measurement.animal.Strain.get_absolute_url }}">{{ measurement.animal.Strain }}</a></td>
+		<td>{{ measurement.animal.Background }}</td>
+		<td>{{ measurement.animal.Genotype }}</td>
+		<td>{{ experiment.date|timeuntil:measurement.animal.Born }}</td>
+		<td>{{ measurement.values }}</td>
+	</tr>
+{% endfor %}
+</tbody>
+</table>
+{% endif %}
+
+{% if measurement_seruminsulin %}
+<h3>Serum Insulin</h3>
+<table class="sortable">
+<thead>
+	<tr>
+		<th>Animal</th>
+		<th>Strain</th>
+		<th>Background</th>
+		<th>Genotype</th>
+		<th>Age</th>
+		<th>Values</th>
+	</tr>
+</thead>
+<tbody>
+{% for measurement in measurement_seruminsulin|dictsort:"animal.Genotype" %}
+	<tr>
+		<td><a href="{{ measurement.animal.get_absolute_url }}">{{ measurement.animal.MouseID }}</a></td>
+		<td><a href="{{ measurement.animal.Strain.get_absolute_url }}">{{ measurement.animal.Strain }}</a></td>
+		<td>{{ measurement.animal.MouseID }}</td>
+		<td>{{ measurement.animal.Strain }}</td>
+		<td>{{ measurement.animal.Background }}</td>
+		<td>{{ measurement.animal.Genotype }}</td>
+		<td>{{ experiment.date|timeuntil:measurement.animal.Born }}</td>
+		<td>{{ measurement.values }}</td>
+	</tr>
+{% endfor %}
+</tbody>
+</table>
+{% endif %}
+
+{% endblock content %}

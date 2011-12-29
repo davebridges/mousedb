@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load custom_filters %}
+
+{% block title %}Treatment Detail - {{ treatment }}{% endblock title%}
+
+{% block scripts %}
+{% include "sortable_table_script.html" %}
+{% endblock scripts %}
+
+{% block header %}Treatment Detail - {{ treatment }}{% endblock header%}
+
+{% block content %}
+{% with treatment.animals.all as animal_list %}
+{% include "animal_list_table.html" %}
+{% endwith %}
+{% endblock content %}

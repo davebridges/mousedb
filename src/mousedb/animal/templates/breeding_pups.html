@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}New Pups{% endblock title %}
+{% block scripts %}
+	<script type="text/javascript">
+	 $(document).ready(function() {	
+		$('#[id$=Born]').datepicker({dateFormat: 'yy-mm-dd'});
+		$('#[id$=Weaned]').datepicker({dateFormat: 'yy-mm-dd'});
+	});
+	</script>
+{% endblock %}
+
+{% block header %}New Pups:  Breeding Cage {{ breeding.Cage }}{% endblock header %}
+
+{% block content %}
+<p>Fill out one row per new pup.  If pups are not weaned enter breeding cage number.  If pups are weaned, enter new cage number and weaning date.</p>
+<p>For instructions please go <a href="http://code.google.com/p/mousedb/wiki/TimedMatings" title = "Timed matings Wiki page">here</a></p>
+<form method="POST" action=".">{% csrf_token %}
+    {{ formset.management_form }}
+    {% include "formsets_table.html" %}
+<input type="submit" value="Submit" />
+</form>
+
+{% endblock content %}

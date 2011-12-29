@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Update Animals{% endblock title %}
+{% block scripts %}
+	<script type="text/javascript">
+	 $(document).ready(function() {	
+		$('#[id$=Born]').datepicker({dateFormat: 'yy-mm-dd'});
+		$('#[id$=Weaned]').datepicker({dateFormat: 'yy-mm-dd'});
+		$('#[id$=Death]').datepicker({dateFormat: 'yy-mm-dd'});
+	});
+	</script>
+{% endblock %}
+
+{% block header %}Update:  Breeding Cage {{ breeding.Cage }}{% endblock header %}
+
+{% block content %}
+<p>Change fields as necessary.</p>
+<form method="POST" action="{% url breeding-pups-change breeding.id %}">{% csrf_token %}
+    {{ formset.management_form }}
+    {% include "formsets_table.html" %}
+<input type="submit" value="Submit" />
+</form>
+
+{% endblock content %}

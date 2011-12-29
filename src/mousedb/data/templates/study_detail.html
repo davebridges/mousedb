@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load custom_filters %}
+
+{% block title %}Study Detail - {{ study.description }}{% endblock title%}
+
+{% block scripts %}
+{% include "sortable_table_script.html" %}
+	
+{% endblock scripts %}
+
+{% block header %}Study Detail - {{ study.description }}{% endblock header%}
+
+{% block content %}
+	<ul>
+	<li><a href=#summary>Summary</a></li>
+	<li><a href=#experiments>Experiments</a></li>
+	<li><a href=#animals>Animals</a></li>
+	<li><a href=#data>Data</a></li>
+	</ul>
+<table>
+	<thead>
+	</thead>
+	<tbody>
+		<tr><th>Strain</th><td>{% for strain in study.strain.all %}<a href="{{ strain.get_absolute_url }}">{{ strain }}</a>{% endfor %}</td></tr>
+		<tr><th>Start Date</th><td>{{ study.start_date }}</td></tr>
+		<tr><th>End Date</th><td>{{ study.stop_date}}</td></tr>
+		<tr><th>Notes</th><td>{{ study.notes }}</td></tr>
+	</tbody>
+	</table>
+	
+<div id = "experiments">
+		<h2{{ study.experiment_set.all.count }} Experiments</h2>
+		{% with study.experiment_set.all as experiment_list %}
+		{% include "experiment_list_table.html" %}
+		{% endwith %}
+<p>Add new experiment <a href="{% url experiment-new %}">here</a></p>
+</div>
+<h3>{{ study.treatment_set.all.count }} Treatment(s):</h3>
+Add a new treatment group <a href="{% url treatment-new %}">here.
+<div id = "treatment_chart">
+<img src="http://chart.apis.google.com/chart?chs=1000x250
+&amp;chd=t:{% for treatment in study.treatment_set.all %}{{treatment.animals.all.count}}{% if not forloop.last %},{% endif %}{% endfor %}
+&amp;cht=p3
+&amp;chco=996666
+&amp;chl={% for treatment in study.treatment_set.all %}{{treatment}} ({{treatment.animals.all.count}} Animals)|{% endfor %}"
+title="Treatment Summary Chart"/>
+</div>
+{% for treatment in study.treatment_set.all %}
+<div id = "treatment_summary">
+	<h4>{{ treatment }}</h4>
+	<ul>
+	 <li>Diet: {{ treatment.diet }} - <a href="{{treatment.diet.get_absolute_url}}">Detail</a></li>
+	 <li>Location: {{ treatment.environment }}</li>
+	 {% if treatment.pharmaceutical.all %}<li>Drug: {% for drug in treatment.pharmaceutical.all %}{{drug}} - <a href="{{drug.get_absolute_url}}">Details</a>{% endfor %}</li>{% endif %}
+	 {% if treatment.implantation.all %}<li>Implantation: {{ treatment.implantation }}</li>{% endif %}
+	 {% if treatment.transplantation %}<li>Transplantation: {{ treatment.transplantation }}</li>{% endif %}
+	 {% if treatment.notes %}<li>Notes: {{ treatment.pharmaceutical.notes }}</li>{% endif %}
+	</ul>
+	<div id = "animals">
+		<h4>{{ treatment.animals.all.count }} Animals</h4>
+		{% with treatment.animals.all as animal_list %}
+		{% include "animal_list_table.html" %}
+		{% endwith %}
+	</div>
+</div>
+{% endfor %}
+	<div id="data">
+	<h3>Experiments ({{ study.experiment_set.count}})</h3>
+		{% with study.experiment_set.all as experiment_list %}
+		{% for experiment in experiment_list %}
+		{% with experiment.measurement_set.all as data_list %}
+		{% include "data_table.html" %}
+		{% endwith %}
+		{% endfor %}
+		{% endwith %}
+	</div>
+
+{% endblock content %}

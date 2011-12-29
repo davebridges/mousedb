@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Experiment List{% endblock title%}
+
+{% block scripts %}
+{% include "sortable_table_script.html" %}
+		<script type="text/javascript">
+        $(document).ready(function() {
+                $("#sortable").dataTable( {
+                        "bPaginate": false,
+                        });
+                });
+    	</script>
+
+{% endblock scripts %}
+
+{% block header %}Experiment List{% endblock header %}
+
+{% block content %}
+{% include "experiment_list_table.html" %}
+{% if perms.data.add_experiment %}
+<a href="{% url experiment-new %}"><button class="fg-button ui-state-default ui-corner-left"><span class="ui-icon ui-icon-pencil"></span>Add New Experiment</button></a>
+{% endif %}
+{% endblock content %}

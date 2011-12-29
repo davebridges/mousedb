@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block title %}Mouse Detail{% endblock title %}
+{% block scripts %}{% include "sortable_table_script.html" %}{% endblock scripts %}
+{% block header %}Mouse Detail - {{ animal }}{% endblock header %}
+
+{% block content %}
+{% if animal.Death %}
+This mouse died on {{ animal.Death }}.  Cause of death was {{ animal.Cause_of_Death }}
+{% else %}{% if animal.Born %}
+This mouse is {{ animal.Born|timesince }} old.
+{% else %}
+This mouse has an unknown age.
+{% endif %}{% endif %}
+{% load custom_filters %}
+<table>
+	<thead>
+		<tr>
+			<th>MouseID</th>
+			<th>Strain</th>
+			<th>Background</th>
+			<th>Genotype</th>
+			<th>Gender</th>
+			<th>Cage</th>
+			<th>Rack</th>
+			<th>Position</th>
+			<th>Backcross</th>
+			<th>Generation</th>
+			<th>Born</th>
+			<th>Age</th>
+			<th>Status</th>
+			<th>Markings</th>
+		</tr>
+	</thead>
+		
+	<tbody>
+  <tr
+	{% if not animal.Weaned %} class="unweaned" {% endif %}
+	{% if animal.breeding_males.all %} class="breeder" {% endif %}
+	{% if animal.breeding_females.all %} class="breeder" {% endif %}
+>
+			<td><a href = "{% url animal-detail animal.id %}">{{ animal.MouseID}}</a></td>
+			<td><a href="{% url strain-detail animal.Strain.Strain_slug %}">{{ animal.Strain }}</a></td>
+			<td>{{ animal.Background }}</td>
+			<td>{{ animal.Genotype }}</td>
+			<td>{{ animal.Gender }}</td>
+			<td>{% if animal.Cage %}<a href="{% url cage-detail animal.Cage %}">{{ animal.Cage}}{% endif %}</a></td>
+			<td>{{ animal.Rack|all_caps }}</td>
+			<td>{{ animal.Rack_Position|all_caps }}</td>
+			<td>{{ animal.Backcross }}</td>
+			<td>{{ animal.Generation }}</td>
+			<td>{{ animal.Born }}</td>
+			{% if animal.Death %}
+				<td class="dead">{{ animal.Death }}</td>
+			{% else %}
+				<td class="age">{{ animal.Born|timesince }}</td>
+			{% endif %}
+			{% if animal.Death %}
+			<td class="dead">Dead</td>
+			{% else %}
+			<td>Alive</td>
+			{% endif %}
+			<td>{{ animal.Markings }}</td>
+		</tr>
+	</tbody>
+</table>
+
+<div class="fg-buttonset">
+{% if perms.animal.change_animal %}
+	<a href="{% url animal-update animal.id %}"><button class="fg-button ui-state-default ui-corner-left"><span class="ui-icon ui-icon-pencil"></span>Edit Mouse</button></a>
+{% endif %}
+{% if perms.animal.add_animal %}
+	<a href="{% url animal-new %}"><button class="fg-button ui-state-default"><span class="ui-icon ui-icon-circle-plus"></span>Add New Mouse</button></a>
+{% endif %}
+{% if perms.animal.delete_animal %}
+	<a href="{% url animal-delete animal.id %}"><button class="fg-button ui-state-default  ui-corner-right"><span class="ui-icon ui-icon-trash"></span>Delete Mouse</button></a>
+{% endif %}
+</div>
+{% if animal.Breeding %}
+<div id="breeding">
+	<h2>Breeding Summary</h2>
+	{% with animal.Breeding as breeding %}
+	{% include "breeding_summary_table.html" %}
+	{% endwith %}
+{% else %}
+{% endif %}
+<div id="animal-measurements">
+	<h2>Measurement Summary</h2>
+    {% if animal.measurement_set.all.count > 0 %}
+	{% with animal.measurement_set.all as data_list %}
+	{% include "data_table.html" %}
+	{% endwith %}
+    {% else %}
+	<p>No measurements for this animal.</p>
+    {% endif %}
+</div>
+{% endblock content%}

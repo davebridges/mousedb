@@ -1,0 +1,48 @@
+<table class="sortable">
+	<thead>
+		<tr>
+			<th>Date</th>
+			<th>Strain</th>
+			<th>Cage</th>
+			<th>Animal</th>
+			<th>Genotype</th>
+			<th>Age (Days)</th>
+			<th>Assay</th>
+			<th>State</th>
+			<th>Values</th>
+			<th>Treatment Group</th>
+		</tr>
+	</thead>
+	<tbody>
+	{% for data in data_list %}
+		<tr>
+			<td><a href="{% url experiment-detail data.experiment.id %}">{{ data.experiment.date|date:"Y-m-d" }}</a></td>
+			<td><a href="{% url strain-detail data.animal.Strain.Strain_slug %}">{{ data.animal.Strain }}</a></td>
+			<td>{{ data.animal.Cage }}</td>
+			<td><a href="{% url animal-detail data.animal.id %}">{{ data.animal.MouseID }}</a></td>
+			<td>{{ data.animal.Genotype }}</td>
+			<td>{{ data.age }}</td>
+			<td>{{ data.assay }}</td>
+			<td>{{ data.experiment.feeding_state }}{% if data.experiment.fasting_time %} - {{ data.experiment.fasting_time }}h{% endif %}
+			<td>{{ data.values }}</td>
+			<td>{% for treatment in data.animal.treatment_set.all %}{{ treatment }}{% endfor %}
+			<td class="fg-buttonset fg-buttonset-multi">
+{% if perms.data.change_measurement %}
+  <a href="{% url measurement-edit data.id %}" title="Edit">
+   <button class="fg-button ui-state-default fg-button-icon-left ui-corner-all">
+    <span class="ui-icon ui-icon-pencil" style="float:left;"></span>Edit
+   </button>
+   </a>
+{% endif %}
+{% if perms.data.delete_measurement %}
+  <a href="{% url measurement-delete data.id %}" title="Delete">
+   <button class="fg-button ui-state-default fg-button-icon-left ui-corner-all">
+    <span class="ui-icon ui-icon-trash" style="float:left;"></span>Delete
+   </button>
+   </a>
+{% endif %}
+</td>
+		</tr>
+	{% endfor %}
+	</tbody>
+</table>

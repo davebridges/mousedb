@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Data Entry ({{ experiment }}){% endblock %}
+{% block scripts %}
+	<script type="text/javascript">
+	 $(document).ready(function() {	
+		$('#id_Born').datepicker({dateFormat: 'yy-mm-dd'});
+		$('#id_Weaned').datepicker({dateFormat: 'yy-mm-dd'});
+		$('#id_Death').datepicker({dateFormat: 'yy-mm-dd'});
+	});
+	</script>
+	{{ form.media }}
+{% endblock %}
+{% block header %}Data Entry ({{ experiment }}){% endblock %}
+{% block content %}
+<form action="{% url data-entry experiment.id %} " method="POST">{% csrf_token %}
+    <table>
+	{{ form }}
+    </table>
+<input type="submit" value="Submit" />
+</form>
+{% endblock %}
+

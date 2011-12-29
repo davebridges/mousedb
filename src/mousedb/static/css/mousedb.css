@@ -1,0 +1,190 @@
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, table, caption, tbody, tfoot, thead, tr, th, td ,hr{
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+}
+
+
+html {
+	font-family: sans-serif;
+}
+
+
+h1 {
+	color: #2779AA;
+	font-weight: bold;
+	font-size: 2em;
+	}
+
+h2 {
+	color: #2779AA; 
+	font-weight: bold;
+	font-size: 1.5em; 
+}
+
+h3 {
+	color: #2779AA; 
+	font-weight: bold;
+	font-size: 1.17em; 
+}
+
+a {
+	color: black;
+	text-decoration: none;
+}
+
+.ui-icon{
+	    display: inline-block !important;
+	}
+	
+div#user {
+}
+
+div#header {
+	height: 100px;
+	text-align: center;
+}
+
+div#main {
+	}
+
+div#footer {
+}
+
+table { 
+	table-layout:fixed;
+	text-align: center;
+}
+
+tr {  
+}
+
+th { 
+	padding-left: 5px;
+    padding-right: 5px;
+	font-weight: bold; 
+	border: 1px solid #aed0ea; 
+	background: #deedf7 url(../images/ui-bg_highlight-soft_100_deedf7_1x100.png) 50% 50% repeat-x; 
+	color: #2779AA; 
+	
+	}
+
+.left { text-align: left;}
+
+td { padding-left: 5px;
+    padding-right: 5px;
+	border: black solid 1px;
+}
+
+
+.no-border { border: none;}
+
+.resident-breeder { 	color: black;
+			background: yellow;
+            list-style-type: none;
+            margin-left: -40px;
+}
+
+.non-resident-breeder { 	color: black;
+			background: #669933;
+            list-style-type: none;
+            margin-left: -40px;
+}
+
+.unknown-breeder { 	color: black;
+			background: orange;
+            list-style-type: none;
+            margin-left: -40px;
+}
+
+.unweaned { 	color: #888888;
+			background: pink;
+}
+
+.dead { 	    color: white;
+			background: #880000;
+            margin-left: -40px;
+            list-style-type: none;            
+		}
+		
+.dead a { 	color: white;
+		}
+
+p {
+	/* if width = 30 X font size that gives about 65 characters per line */
+	font-size: 15px;
+	max-width: 450px;
+	/* suggested line height is 2-5px larger than font size*/
+	line-height: 19px;
+}
+
+input  {
+}
+
+select{
+}
+
+table.form {
+	border: 1px solid #404040; 
+	background: #888888 url(../images/ui-bg_highlight-hard_15_888888_1x100.png) 50% 50% repeat-x; 
+	color: #ffffff; 
+}
+
+.errorlist {
+	text-align: center;
+	list-style-type: none;
+	background: #fef1ec url(../images/ui-bg_glass_95_fef1ec_1x400.png) 50% 50% repeat-x; 
+	color: #cd0a0a;
+	border: 2px solid #cd0a0a;
+	text-align: center;
+}
+
+.debug {
+	text-align: center;
+	list-style-type: none;
+	background: #fef1ec url(../images/ui-bg_glass_95_fef1ec_1x400.png) 50% 50% repeat-x; 
+	color: #2A70E8;
+	border: 2px solid #2A70E8;
+	text-align: center;
+}
+
+.info {
+	text-align: center;
+	list-style-type: none;
+	background: #888888;
+	color: #ffffff;
+	border: 2px solid #ffffff;
+	text-align: center;
+	background: #fef1ec url(../images/ui-bg_glass_95_fef1ec_1x400.png) 50% 50% repeat-x; 
+
+}
+
+.success {
+	text-align: center;
+	list-style-type: none;
+	color: #4F8A10;
+	background-color: #DFF2BF;
+	border: 2px solid #4F8A10;
+	text-align: center;
+	background: #fef1ec url(../images/ui-bg_glass_95_fef1ec_1x400.png) 50% 50% repeat-x; 
+}
+
+.warning {
+	text-align: center;
+	list-style-type: none;
+	color: #FAB905;
+	border: 2px solid #FAB905;
+	text-align: center;
+	background: #fef1ec url(../images/ui-bg_glass_95_fef1ec_1x400.png) 50% 50% repeat-x; 
+}
+
+.error {
+	text-align: center;
+	list-style-type: none;
+	text-align: center;
+	border: 1px solid #cd0a0a; 
+	background: #cd0a0a url(../images/ui-bg_flat_15_cd0a0a_40x100.png) 50% 50% repeat-x; 
+	color: #ffffff; 	
+}
+

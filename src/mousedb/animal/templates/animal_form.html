@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}{% if object %}Update Animal - {{ object }}{% else %}New Animal{% endif %}{% endblock title %}
+{% block scripts %}
+{{ form.media }}
+	<script type="text/javascript">
+	 $(document).ready(function() {	
+		$('#id_Born').datepicker({dateFormat: 'yy-mm-dd'});
+		$('#id_Weaned').datepicker({dateFormat: 'yy-mm-dd'});
+		$('#id_Death').datepicker({dateFormat: 'yy-mm-dd'});
+	});
+	</script>
+{% endblock %}
+{% block header %}{% if object %}Update Animal - {{ object }}{% else %}New Animal{% endif %}{% endblock header %}
+
+{% block content %}
+<form method="POST" {% if object %} action="{% url animal-update object.id %}" {% else %}action="{% url animal-new %}"{% endif %}>{% csrf_token %}
+	<table>{{ form }}</table>
+<input type="submit" value="Submit" />
+</form>
+
+{% endblock content %}

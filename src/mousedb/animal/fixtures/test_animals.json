@@ -1,0 +1,37 @@
+[
+    {
+        "pk": 1, 
+        "model": "animal.animal", 
+        "fields": {
+            "Genotype": "-/-", 
+            "Background": "Mixed", 
+            "Strain": "1",
+			"Cage": "123456",
+			"Born": "2011-01-01"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "animal.animal", 
+        "fields": {
+            "Genotype": "-/-", 
+            "Background": "Mixed", 
+            "Strain": "1",
+			"Cage": "123456",
+			"Born": "2011-01-01",
+            "Weaned": "2011-01-22"
+        }
+    },
+    {
+        "pk": 1, 
+        "model": "animal.animal", 
+        "fields": {
+            "Genotype": "?", 
+            "Background": "Mixed", 
+            "Strain": "1",
+			"Cage": "123456",
+			"Born": "2011-01-01"
+        }
+    }    
+]
+

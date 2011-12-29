@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block header %}{% if plugevent %}Update {{plugevent}} {% else %}New Plug Event{% endif %}{% endblock %}
+{% block title %}{% if plugevent %}Update {{plugevent}} {% else %}New Plug Event{% endif %}{% endblock %}
+{% block scripts %}
+	<script type="text/javascript">
+	 $(document).ready(function() {	
+		$('#id_SacrificeDate').datepicker({dateFormat: 'yy-mm-dd'});
+		$('#id_PlugDate').datepicker({dateFormat: 'yy-mm-dd'});
+	});
+	</script>
+{% endblock %}
+{% block content %}
+<form method="POST" action=".">{% csrf_token %}
+<table>{{ form }}</table>
+<input type="submit" value="Submit" />
+</form>
+{% endblock %}

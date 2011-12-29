@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block header %}{% if object %}Change {{ object }}{% else %}New Breeding Cage{% endif %}{% endblock %}
+{% block title %}{% if object %}Change {{ object }}{% else %}New Breeding Cage{% endif %}{% endblock %}
+{% block scripts %}
+{{ form.media }}
+	<script type="text/javascript">
+	 $(document).ready(function() {	
+		$('#id_Start').datepicker({dateFormat: 'yy-mm-dd'});
+		$('#id_End').datepicker({dateFormat: 'yy-mm-dd'});
+	});
+	</script>
+{% endblock scripts %}
+{% block content %}
+<form method="POST" {% if object %} action="{% url breeding-edit object.id %}"{% else %} action="{% url breeding-new %}{% endif %}">{% csrf_token %}
+<table>{{ form }}</table>
+<input type="submit" value="Submit" />
+</form>
+{% endblock content %}

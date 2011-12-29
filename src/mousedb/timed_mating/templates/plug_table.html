@@ -1,0 +1,54 @@
+<table class="sortable">
+	<thead>	
+	<tr>
+	<th>Breeding Cage</th>
+	<th>Strain</th>
+	<th>Parents(M/F)</th>
+	<th>Plug Date</th>
+	<th>Sacrifice Date</th>
+	<th>Duration</th>
+	<th>WT</th>
+	<th>HET</th>
+	<th>KO</th>
+	</tr>
+	</thead>
+	<tbody>
+	{% for plugevent in plugevents_list %}
+	<tr>
+	<td><a href="{{plugevent.Breeding.get_absolute_url}}">{{plugevent.Breeding.Cage}}</a></td>
+	<td><a href="{{plugevent.Breeding.Strain.get_absolute_url}}">{{plugevent.Breeding.Strain}}</a></td>
+	<td><ul>
+		<li><a href="{{plugevent.PlugMale.get_absolute_url}}">{{plugevent.PlugMale}}</a></li>
+		<li><a href="{{plugevent.PlugFemale.get_absolute_url}}">{{plugevent.PlugFemale}}</a></li>
+	</ul></td>
+	<td>{{plugevent.PlugDate}}</td>
+	<td>{{plugevent.SacrificeDate}}</td>
+	<td>	{% if plugevent.SacrificeDate %}
+		{{plugevent.SacrificeDate|timeuntil:plugevent.PlugDate}}
+		{% else %}
+		{{plugevent.PlugDate|timesince}}
+		{% endif %}
+	</td>
+	<td>{{plugevent.WT_Alive}}/{{plugevent.WT_Dead}}</td>
+	<td>{{plugevent.HET_Alive}}/{{plugevent.HET_Dead}}</td>
+	<td>{{plugevent.KO_Alive}}/{{plugevent.KO_Dead}}</td>
+<td class="fg-buttonset fg-buttonset-multi">
+{% if perms.timed_mating.change_plugEvents %}
+  <a href="{% url plugevents-edit plugevent.id %}" title="Edit {{plugevent}}">
+   <button class="fg-button ui-state-default fg-button-icon-left ui-corner-all">
+    <span class="ui-icon ui-icon-pencil" style="float:left;">Edit</span>
+   </button>
+   </a>
+{% endif %}
+{% if perms.timed_mating.delete_plugEvents %}
+  <a href="{% url plugevents-delete plugevent.id %}" title="Delete {{plugevent}}">
+   <button class="fg-button ui-state-default fg-button-icon-left ui-corner-all">
+    <span class="ui-icon ui-icon-trash" style="float:left;">Delete</span>
+   </button>
+   </a>
+{% endif %}
+</td>
+	</tr>
+	{% endfor %}
+	</tbody>
+</table>

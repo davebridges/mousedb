@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load custom_filters %}
+
+{% block title %}Study List{% endblock title%}
+
+{% block scripts %}
+{% include "sortable_table_script.html" %}
+	<script type="text/javascript">
+        $(document).ready(function() {
+                $(".sortable").dataTable( {
+                        "bPaginate": false,
+                        });
+                });
+    	</script>
+		
+{% endblock scripts %}
+
+
+{% block header %}Study List{% endblock header %}
+
+{% block content %}
+<table id="sortable">
+ <thead>
+ <tr>
+  <th>Description</th>
+  <th>Strain</th>
+  <th>Start Date</th>
+  </thead>
+ </tr>
+ <tdata>
+{% for study in study_list %}
+ <tr>
+  <td><a href="{{study.get_absolute_url}}">{{study.description}}</td>
+  {% for strain in study.strain.all %}<td><a href="{{ strain.get_absolute_url }}"</a>{% endfor %}</td>
+  <td>{{study.start_date}}</td>
+ </tr>
+{% endfor %}
+ </tdata>
+</table>
+<p>To add a new study click <a href="{% url study-new %}">here</a>.</p>
+
+{% endblock content %}

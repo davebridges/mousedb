@@ -1,0 +1,24 @@
+<table class="sortable">
+ <thead>
+	<tr>
+		<th>Date</th>
+		<th>Injection</th>
+        <th>Measurements</th>
+		<th>State</th>
+		<th>Researchers</th>
+		<th>Study</th>
+	</tr>
+ </thead>
+ <tbody>
+{% for experiment in experiment_list %}
+	<tr>
+		<td><a href="{{ experiment.get_absolute_url }}">{{ experiment.date|date:"Y-m-d" }}</a></td>
+		<td>{{ experiment.injection }}</td>
+        <td>{{ experiment.measurement_set.all.count }}</td>
+		<td>{{ experiment.feeding_state }}</td>
+		<td>{% for researcher in experiment.researchers.all %}{{ researcher }} {% endfor %}</td>
+		<td>{% if experiment.study %}<a href="{% url study-detail experiment.study.id %}">{{ experiment.study}}</a>{% endif %}</td>
+	</tr>
+{% endfor %}
+</tbody>
+</table>

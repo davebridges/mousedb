@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block header %}{% if object %}Update Study - {{ object }}{% else %}New Study{% endif %}{% endblock %}
+{% block title %}{% if object %}Update Study - {{ object }}{% else %}New Study{% endif %}{% endblock %}
+{% block scripts %}
+
+{{ form.media }}
+	<script>
+	 $(document).ready(function() {	
+		$('#id_start_date').datepicker({dateFormat: 'yy-mm-dd'});
+		$('#id_stop_date').datepicker({dateFormat: 'yy-mm-dd'});
+	});
+	</script>
+{% endblock %}
+{% block content %}
+<form method="POST" action=".">{% csrf_token %}
+<table>{{ form }}</table>
+<input type="submit" value="Submit" />
+</form>
+{% endblock %}

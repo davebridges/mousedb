@@ -1,0 +1,237 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>MouseDB Installation &mdash; MouseDB 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="MouseDB 1.0.0 documentation" href="index.html" />
+    <link rel="next" title="Users and Restriction" href="usage.html" />
+    <link rel="prev" title="MouseDB Concepts" href="concepts.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="usage.html" title="Users and Restriction"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="concepts.html" title="MouseDB Concepts"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">MouseDB 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="mousedb-installation">
+<h1>MouseDB Installation<a class="headerlink" href="#mousedb-installation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>MouseDB requires both a database and a webserver to be set up.  Ideally, the database should be hosted separately from the webserver and MouseDB installation, but this is not necessary, as both can be used from the same server.  If you are using a remote server for the database, it is best to set up a user for this database that can only be accessed from the webserver.  If you want to set up several installations (ie for different users or different laboratories), you need separate databases and MouseDB installations for each.  You will also need to set up the webserver with different addresses for each installation.</p>
+</div>
+<div class="section" id="software-dependencies">
+<h2>Software Dependencies<a class="headerlink" href="#software-dependencies" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><strong>Python</strong>.  Requires Version 2.6, is not yet compatible with Python 3.0.  Download from <a class="reference external" href="http://www.python.org/download/">http://www.python.org/download/</a>.</li>
+<li><strong>MouseDB source code</strong>.  Download from one of the following:</li>
+</ol>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li>Using <strong>pip or easy_install</strong>.  If setuptools (available at <a class="reference external" href="http://pypi.python.org/pypi/setuptools">http://pypi.python.org/pypi/setuptools</a>) is installed type <strong>pip install mousedb</strong> at a command prompt.</li>
+<li><a class="reference external" href="http://github.com/davebridges/mousedb/downloads">http://github.com/davebridges/mousedb/downloads</a> for the current release.  If you will not be contributing to the code, download from here.</li>
+<li><a class="reference external" href="http://github.com/davebridges/mousedb">http://github.com/davebridges/mousedb</a> for the source code via Git.  If you might contribute code to the project use the source code.</li>
+</ol>
+</div></blockquote>
+<p>Downloading and/or unzipping will create a directory named mousedb.  You can update to the newest revision at any time either using git or downloading and re-installing the newer version.  Changing or updating software versions will not alter any saved data, but you will have to update the localsettings.py file (described below).</p>
+<ol class="arabic simple" start="3">
+<li><strong>Database software</strong>.  Recommended to use mysql, available at <a class="reference external" href="http://dev.mysql.com/downloads/mysql/">http://dev.mysql.com/downloads/mysql/</a> .  It is also possible to use SQLite, PostgreSQL, MySQL, or Oracle.  See <a class="reference external" href="http://docs.djangoproject.com/en/1.2/topics/install/#database-installation">http://docs.djangoproject.com/en/1.2/topics/install/#database-installation</a> for more information.  You will also need the python bindings for your database.  If using MySQL python-mysql will be installed below.</li>
+<li><strong>Webserver</strong>.  Apache is recommended, available at <a class="reference external" href="http://www.apache.org/dyn/closer.cgi">http://www.apache.org/dyn/closer.cgi</a> .  It is also possible to use FastCGI, SCGI, or AJP.  See <a class="reference external" href="http://docs.djangoproject.com/en/1.2/howto/deployment/">http://docs.djangoproject.com/en/1.2/howto/deployment/</a> for more details.  The recommended way to use Apache is to download and enable mod_wsgi.  See <a class="reference external" href="http://code.google.com/p/modwsgi/">http://code.google.com/p/modwsgi/</a> for more details.</li>
+</ol>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Navigate into mousedb folder</li>
+<li>Run <strong>python setup.py install</strong> to get dependencies.  If you installed via pip, this step is not necessary (but wont hurt).  This will install the dependencies South, mysql-python and django-ajax-selects.</li>
+<li>Run <strong>python bootstrap.py</strong> to get the correct version of Django and to set up an isolated environment.  This step may take a few minutes.</li>
+<li>Run <strong>bin\buildout</strong> to generate django, test and wsgi scripts.  This step may take a few minutes.</li>
+</ol>
+</div>
+<div class="section" id="database-setup">
+<h2>Database Setup<a class="headerlink" href="#database-setup" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Create a new database.  Check the documentation for your database software for the appropriate syntax for this step.  You need to record the user, password, host and database name.  If you are using SQLite this step is not required.</li>
+<li>Go to mousedbsrcmousedblocalsettings_empty.py and edit the settings:</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>ENGINE: Choose one of &#8216;django.db.backends.postgresql_psycopg2&#8217;,&#8217;django.db.backends.postgresql&#8217;, &#8216;django.db.backends.mysql&#8217;, &#8216;django.db.backends.sqlite3&#8217;, &#8216;django.db.backends.oracle&#8217; depending on the database software used.</li>
+<li>NAME: database name</li>
+<li>USER: database user</li>
+<li>PASSWORD: database password</li>
+<li>HOST: database host</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li>Save this file as <strong>localsettings.py</strong> in the same folder as localsettings_empty.py</li>
+<li>Migrate into first mousedb directory and enter <em>django syncdb</em>.  When prompted create a superuser (who will have all availabler permissions) and a password for this user.</li>
+</ol>
+</div>
+<div class="section" id="web-server-setup">
+<h2>Web Server Setup<a class="headerlink" href="#web-server-setup" title="Permalink to this headline">¶</a></h2>
+<p>You need to set up a server to serve both the django installation and saved files.  For the saved files.  I recommend using apache for both.  The preferred setup is to use Apache2 with mod_wsgi.  See <a class="reference external" href="http://code.google.com/p/modwsgi/wiki/InstallationInstructions">http://code.google.com/p/modwsgi/wiki/InstallationInstructions</a> for instructions on using mod_wsgi.  The following is a httpd.conf example where the code is placed in <strong>/usr/src/mousedb</strong>:</p>
+<div class="highlight-python"><pre>Alias /robots.txt /usr/src/mousedb/src/mousedb/media/robots.txt
+Alias /favicon.ico /usr/src/mousedb/src/mousedb/media/favicon.ico
+
+Alias /mousedb-media/ /usr/src/mousedb/src/mousedb/media/
+&lt;Directory /usr/src/mousedb/src/mousedb/media&gt;
+     Order deny,allow
+     Allow from all
+&lt;/Directory&gt;
+
+Alias /static/ /usr/src/mousedb/src/mousedb/static/
+&lt;Directory /usr/src/mousedb/src/mousedb/static&gt;
+     Order deny,allow
+     Allow from all
+&lt;/Directory&gt;
+
+&lt;Directory /usr/src/mousedb/bin&gt;
+     Order deny,allow
+     Allow from all
+&lt;/Directory&gt;
+WSGIScriptAlias /mousedb /usr/src/mousedb/bin/django.wsgi</pre>
+</div>
+<p>If you want to restrict access to these files, change the Allow from all directive to specific domains or ip addresses (for example Allow from 192.168.0.0/99 would allow from 192.168.0.0 to 192.168.0.99)</p>
+</div>
+<div class="section" id="enabling-of-south-for-future-migrations">
+<h2>Enabling of South for Future Migrations<a class="headerlink" href="#enabling-of-south-for-future-migrations" title="Permalink to this headline">¶</a></h2>
+<p>Schema updates will utilize south as a way to alter database tables.  This must be enabled initially by entering the following commands from /mousedb/bin:</p>
+<div class="highlight-python"><pre>django schemamigration animal --initial
+django schemamigration data --initial
+django schemamigration groups --initial
+django schemamigration timed_mating --initial
+django syncdb
+django migrate</pre>
+</div>
+<p>Future schema changes (se the UPGRADE_NOTES.rst file for whether this is necessary) are accomplished by entering:</p>
+<div class="highlight-python"><pre>django schemamigration &lt;INDICATED_APP&gt; --auto
+django migrate &lt;INDICATED_APP&gt;</pre>
+</div>
+</div>
+<div class="section" id="final-configuration-and-user-setup">
+<h2>Final Configuration and User Setup<a class="headerlink" href="#final-configuration-and-user-setup" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Go to <em>servername/mousedb/admin/groups/group/1</em> and name your research group and select a license if desired</li>
+<li>Go to <em>servername/mousedb/admin/auth/users/</em> and create users, selecting usernames, full names, password (or have the user set the password) and then choose group permissions.</li>
+</ul>
+</div>
+<div class="section" id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
+<p>From the mousedb directory run <strong>bin\test</strong> or <strong>bin\django test</strong> to run the test suite.  See <a class="reference external" href="https://github.com/davebridges/mousedb/wiki/Known-Issues---Test-Suite">https://github.com/davebridges/mousedb/wiki/Known-Issues&#8212;Test-Suite</a> for known issues.  Report any additional errors at the issue page at <a class="reference external" href="https://github.com/davebridges/mousedb/issues">https://github.com/davebridges/mousedb/issues</a>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">MouseDB Installation</a><ul>
+<li><a class="reference internal" href="#configuration">Configuration</a></li>
+<li><a class="reference internal" href="#software-dependencies">Software Dependencies</a></li>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#database-setup">Database Setup</a></li>
+<li><a class="reference internal" href="#web-server-setup">Web Server Setup</a></li>
+<li><a class="reference internal" href="#enabling-of-south-for-future-migrations">Enabling of South for Future Migrations</a></li>
+<li><a class="reference internal" href="#final-configuration-and-user-setup">Final Configuration and User Setup</a></li>
+<li><a class="reference internal" href="#testing">Testing</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="concepts.html"
+                        title="previous chapter">MouseDB Concepts</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="usage.html"
+                        title="next chapter">Users and Restriction</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/installation.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="usage.html" title="Users and Restriction"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="concepts.html" title="MouseDB Concepts"
+             >previous</a> |</li>
+        <li><a href="index.html">MouseDB 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2009-2011, Dave Bridges, Ph.D..
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>

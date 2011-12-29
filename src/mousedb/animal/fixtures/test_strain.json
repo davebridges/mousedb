@@ -1,0 +1,13 @@
+[
+    {
+        "pk": 1, 
+        "model": "animal.strain", 
+        "fields": {
+            "Strain_slug": "fixture-strain", 
+            "Strain": "Fixture Strain", 
+            "Comments": "", 
+            "Source": ""
+        }
+    }
+]
+

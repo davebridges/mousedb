@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Strain List{% endblock title%}
+
+{% block scripts %}{% include "sortable_table_script.html" %}{% endblock scripts %}
+
+{% block header %}Strain List{% endblock header %}
+
+{% block content %}
+<h2>Currently {{ strain_list_alive.count }} Strains of Mice in {{ cages.count }} Cages:</h2>
+<table>
+ <tr>
+  <th>Strain</th> {% for strain in strain_list_alive %}<th>{{strain}}</th>{% endfor %}
+ </tr>
+ <tr><th>Current</th>{% for strain in strain_list_alive %}<td><a href="{% url strain-detail strain.Strain_slug %}">{{ strain.alive }}</a></td>{% endfor %}</tr>
+ </table>
+<div id="chart">
+<img src="http://chart.apis.google.com/chart?
+chs=600x250
+&amp;chd=t:{% for strain in strain_list_alive %}{{ strain.alive}}{% if not forloop.last %},{% endif %}{%endfor %}
+&amp;chds=0,500
+&amp;cht=p3
+&amp;chco=996666
+&amp;chtt=Mouse Distribution (Current)
+&amp;chl={% for strain in strain_list_alive %}{{ strain }}{% if not forloop.last %}|{% endif %}{%endfor %}
+&amp;alt = "Chart of Mouse Distribution"
+border = 1 px/>
+<h2>In Total {{ strain_list.count }} Strains of Mice:</h2>
+<table>  
+ <th>Strain</th> {% for strain in strain_list %}<th>{{strain}}</th>{% endfor %}
+ <tr><th>All</th>{% for strain in strain_list %}<td><a href="{% url strain-detail-all strain.Strain_slug %}">{{ strain.animal_set.count }}</td></a>{% endfor %}</tr>
+</table>
+<div id="chart">
+<img src="http://chart.apis.google.com/chart?
+chs=600x250
+&amp;chd=t:{% for strain in strain_list %}{{ strain.animal_set.count}}{% if not forloop.last %},{% endif %}{%endfor %}
+&amp;chds=0,500
+&amp;cht=p3
+&amp;chco=996666
+&amp;chtt=Mouse Distribution (All Tracked Mice)
+&amp;chl={% for strain in strain_list %}{{ strain }}{% if not forloop.last %}|{% endif %}{%endfor %}
+&amp;alt = "Chart of Mouse Distribution"
+border = 1 px/>
+ </div>
+<div id="pups" class="fg-buttonset">
+{% if perms.animal.create_animal %}
+<a href="{% url strain-new %}"><button class="fg-button ui-state-default ui-corner-left"><span class="ui-icon ui-icon-circle-plus"></span>Add New Strain</button></a>
+{% endif %}
+{% if perms.animal.change_animal %}
+<a href="{% url animal-new %}"><button class="fg-button ui-state-default ui-corner-right"><span class="ui-icon ui-icon-circle-plus"></span>Add New Mouse</button></a>
+{% endif %}
+</div>
+{% endblock content %}

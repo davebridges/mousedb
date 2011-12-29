@@ -1,0 +1,14 @@
+[
+    {
+        "pk": 1, 
+        "model": "data.environment", 
+        "fields": {
+            "building": "test building", 
+            "room": "test room", 
+            "notes": "", 
+            "humidity": null, 
+            "contact": [], 
+            "temperature": 37
+        }
+    }
+]

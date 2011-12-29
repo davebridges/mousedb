@@ -1,0 +1,13 @@
+[
+    {
+        "pk": 1, 
+        "model": "data.vendor", 
+        "fields": {
+            "website": null, 
+            "ordering": "", 
+            "notes": "", 
+            "vendor": "", 
+            "email": null
+        }
+    }
+]

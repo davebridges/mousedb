@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Animal Archive{% endblock title %}
+{% block scripts %}{% include "sortable_table_script.html" %}{% endblock scripts %}
+{% block header %}Animal Archive{% endblock header %}
+
+{% block content %}
+<table class="sortable">
+	<thead>
+    <tr>
+        <th>Year</th>
+        <th>Animals Born</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for year,count in archive_dict.items %}
+    <tr>
+        <td>{{ year }}</td>
+        <td>{{ count }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock content%}
