@@ -26,7 +26,7 @@ from mousedb.data.models import Measurement
 from mousedb.animal.forms import MultipleAnimalForm, MultipleBreedingAnimalForm, BreedingForm, AnimalForm
 
 class AnimalList(ProtectedListView):
-    """This view generates a list of animals as animal-list
+    """This view generates a list of :class:`~mousedb.animal.models.Animal` objects as animal-list
     
     This view responds to a url in the form */animal*
     It sends a variable animal containing all animals to animal_list.html.
@@ -43,9 +43,9 @@ class AnimalList(ProtectedListView):
         return super(AnimalList, self).dispatch(*args, **kwargs)      
 
 class AnimalListAlive(AnimalList):
-    """This view generates a list of alive animals or animal-list-alive.
+    """This view generates a list of alive :class:`~mousedb.animal.models.Animal` objects.
     
-    The main use for this view is to take a url in the form */animal/all* and to return a list of all alive animals to animal_list.html in the context animal.  It also adds an extra context variable, "list type" as Alive.  
+    This view subclasses :class:`~mousedb.animal.views.AnimalList` The main use for this view is to take a url in the form */animal/all* and to return a list of all alive animals to animal_list.html in the context animal.  It also adds an extra context variable, "list type" as Alive.  
     This view is login protected."""
     
     queryset = Animal.objects.filter(Alive=True)
@@ -58,7 +58,7 @@ class AnimalListAlive(AnimalList):
         return context         
 
 class AnimalDetail(ProtectedDetailView):
-    """This view displays specific details about an animal as the animal-detail.
+    """This view displays specific details about an :class:`~mousedb.animal.models.Animal` object as animal-detail.
 	
     It takes a request in the form *animal/(id)*, *mice/(id)* or *mouse/(id)* and renders the detail page for that mouse.  The request is defined for id not MouseID (or barcode) because this allows for details to be displayed for mice without barcode identification.
     Therefore care must be taken that animal/4932 is id=4932 and not barcode=4932.  The animal name is defined at the top of the page.
@@ -70,7 +70,7 @@ class AnimalDetail(ProtectedDetailView):
     context_object_name = 'animal'
     
 class AnimalCreate(CreateView):
-    """This class generates the animal-new view.
+    """This class generates the new :class:`~mousedb.animal.models.Animal` view (animal-new).
 
     This permission restricted view takes a url in the form */animal/new* and generates an empty animal_form.html.
     This view is restricted to those with the animal.create_animal permission.    """
@@ -85,7 +85,7 @@ class AnimalCreate(CreateView):
         return super(AnimalCreate, self).dispatch(*args, **kwargs)   
     
 class AnimalUpdate(UpdateView):
-    """This class generates the animal-edit view.
+    """This class generates the update :class:`~mousedb.animal.models.Animal` view (animal-edit).
 
     This permission restricted view takes a url in the form */animal/#/edit* and generates a animal_form.html with that object.
     This view is restricted to those with the animal.update_animal permission."""
@@ -101,7 +101,7 @@ class AnimalUpdate(UpdateView):
         return super(AnimalUpdate, self).dispatch(*args, **kwargs)  
 
 class AnimalDelete(DeleteView):
-    """This class generates the animal-delete view.
+    """This class generates the delete :class:`~mousedb.animal.models.Animal` view (animal-delete).
 
     This permission restricted view takes a url in the form */animal/#/delete* and passes that object to the confirm_delete.html page.
     This view is restricted to those with the animal.delete_animal permission."""
@@ -118,9 +118,9 @@ class AnimalDelete(DeleteView):
     
     
 class StrainList(ProtectedListView):
-    """This class generates an object list for Strain objects.
+    """This class generates an object list for :class:`~mousedb.animal.models.Strain` objects.
     
-    This login protected view takes all Strain objects and sends them to strain_list.html as a strain_list dictionary.  It also passes a strain_list_alive and cages dictionary to show the numbers for total cages and total strains.
+    This login protected view takes all :class:`~mousedb.animal.models.Strain` objects and sends them to strain_list.html as a strain_list dictionary.  It also passes a strain_list_alive and cages dictionary to show the numbers for total cages and total strains.
     The url for this view is **/strain/**"""
     
     model = Strain
@@ -136,9 +136,9 @@ class StrainList(ProtectedListView):
         return context    
 
 class StrainDetail(ProtectedDetailView):
-    """This view displays specific details about a strain showing *only current* related objects.
+    """This view displays specific details about a :class:`~mousedb.animal.models.Strain` object showing *only current* related objects.
 	
-    It takes a request in the form *strain/(strain_slug)/* and renders the detail page for that strain.
+    It takes a request in the form *strain/(strain_slug)/* and renders the detail page for that :class:`~mousedb.animal.models.Strain`.
     This view also passes along a dictionary of alive animals belonging to that strain.
     This page is restricted to logged-in users.
     """
@@ -160,16 +160,16 @@ class StrainDetail(ProtectedDetailView):
         return context  
     
 class StrainDetailAll(StrainDetail):
-    """This view displays specific details about a strain showing *all* related objects.
+    """This view displays specific details about a :class:`~mousedb.animal.models.Strain` showing *all* related objects.
 	
-    This view subclasses StrainDetail and modifies the get_context_data to show associated active objects.
-    It takes a request in the form *strain/(strain_slug)/all* and renders the detail page for that strain.
-    This view also passes along a dictionary of alive animals belonging to that strain.
+    This view subclasses :class:`~mousedb.animal.views.StrainDetail` and modifies the get_context_data to show associated active objects.
+    It takes a request in the form *strain/(strain_slug)/all* and renders the detail page for that :class:`~mousedb.animal.models.Strain`.
+    This view also passes along a dictionary of alive animals belonging to that :class:`~mousedb.animal.models.Strain`.
     This page is restricted to logged-in users.
     """
 
     def get_context_data(self, **kwargs):
-        """This adds into the context of strain_list_all (which filters for all alive animals and active cages) and cages which filters for the number of current cages."""
+        """This adds into the context of strain_list_all (which filters for all alive :class:`~mousedb.animal.models.Animal` objects and active cages) and cages which filters for the number of current cages."""
         
         strain = super(StrainDetail, self).get_object()
         context = super(StrainDetail, self).get_context_data(**kwargs)
@@ -180,7 +180,7 @@ class StrainDetailAll(StrainDetail):
         return context      
  
 class StrainCreate(CreateView):
-    """This class generates the strain-new view.
+    """This class generates the new :class:`~mousedb.animal.models.Strain` view (strain-new).
 
     This permission restricted view takes a url in the form */strain/new* and generates an empty strain_form.html.
     This view is restricted to those with the animal.create_strain permission.    """
@@ -194,7 +194,7 @@ class StrainCreate(CreateView):
         return super(StrainCreate, self).dispatch(*args, **kwargs)   
     
 class StrainUpdate(UpdateView):
-    """This class generates the strain-edit view.
+    """This class generates the update :class:`~mousedb.animal.models.Strain` view (strain-edit).
 
     This permission restricted view takes a url in the form */strain/#/edit* and generates a strain_form.html with that object.
     This view is restricted to those with the animal.update_strain permission."""
@@ -209,7 +209,7 @@ class StrainUpdate(UpdateView):
         return super(StrainUpdate, self).dispatch(*args, **kwargs)  
 
 class StrainDelete(DeleteView):
-    """This class generates the strain-delete view.
+    """This class generates the delete :class:`~mousedb.animal.models.Strain` view (strain-delete).
 
     This permission restricted view takes a url in the form */strain/#/delete* and passes that object to the confirm_delete.html page.
     This view is restricted to those with the animal.delete_strain permission."""
@@ -225,10 +225,10 @@ class StrainDelete(DeleteView):
         return super(StrainDelete, self).dispatch(*args, **kwargs)  
 
 class BreedingDetail(ProtectedDetailView):
-    """This view displays specific details about a breeding set.
+    """This view displays specific details about a :class:`~mousedb.animal.models.Breeding` object.
 
     It takes a request in the form */breeding/(breeding_id)* and renders the detail page for that breeding set.
-    The breeding_id refers to the background id of the breeding set, and not the breeding cage barcode.
+    The breeding_id refers to the background id of the :class:`~mousedb.animal.models.Breeding` object, and not the breeding cage barcode.
     This page is restricted to logged-in users.
     """
     
@@ -237,9 +237,9 @@ class BreedingDetail(ProtectedDetailView):
     template_name = "breeding_detail.html"  
     
 class BreedingList(ProtectedListView):
-    """This class generates an object list for active Breeding objects.
+    """This class generates an object list for active :class:`~mousedb.animal.models.Breeding` objects.
     
-    This login protected view takes all Breeding objects and sends them to strain_list.html as a strain_list dictionary.  It also passes a strain_list_alive and cages dictionary to show the numbers for total cages and total strains.
+    This login protected view takes all :class:`~mousedb.animal.models.Breeding` objects and sends them to strain_list.html as a strain_list dictionary.  It also passes a strain_list_alive and cages dictionary to show the numbers for total cages and total strains.
     The url for this view is */strain/*"""
     
     queryset = Breeding.objects.filter(Active=True)
@@ -254,9 +254,9 @@ class BreedingList(ProtectedListView):
         return context    
 
 class BreedingListAll(BreedingList):
-    """This class generates a view for all breeding objects.
+    """This class generates a view for all :class:`~mousedb.animal.models.Breeding` objects.
     
-    This class is a subclass of BreedingList, changing the queryset and the  breeding_type context."""
+    This class is a subclass of :class:`~mousedb.animal.views.BreedingList`, changing the queryset and the  breeding_type context."""
 
     queryset = Breeding.objects.all()
 
@@ -268,9 +268,9 @@ class BreedingListAll(BreedingList):
         return context
         
 class BreedingListTimedMating(BreedingList):
-    """This class generates a view for breeding objects, showing only timed mating cages.
+    """This class generates a view for :class:`~mousedb.animal.models.Breeding` objects, showing only timed mating cages.
     
-    This class is a subclass of BreedingList, changing the queryset and the  breeding_type context."""
+    This class is a subclass of :class:`~mousedb.animal.views.BreedingList`, changing the queryset and the  breeding_type context."""
 
     queryset = Breeding.objects.filter(Timed_Mating=True)
 
@@ -284,7 +284,7 @@ class BreedingListTimedMating(BreedingList):
 class BreedingSearch(BreedingList):
     """This class generates a view for breeding objects, showing the results of a search query for cage number.
     
-    This class is a subclass of BreedingList, changing the queryset and the  breeding_type context as well as providing the search query and search results if available."""
+    This class is a subclass of :class:`~mousedb.animal.views.BreedingList, changing the queryset and the  breeding_type context as well as providing the search query and search results if available."""
 
     template_name = "breeding_search.html"
     def get_context_data(self, **kwargs):
@@ -532,6 +532,7 @@ def todo(request):
 class EarTagList(AnimalList):
     """This view is for showing animals which need to be eartagged.
     
+    This view is a subclass of :class:`~mousedb.animal.views.AnimalList`.  
     This list shows animals that do not have an eartag (MouseID) and are older than the age set by WEAN_AGE in localsettings.py (default is 14 days).
     It takes a view **/todo/eartag**.
     This view is login protected.
@@ -542,6 +543,7 @@ class EarTagList(AnimalList):
 class GenotypeList(AnimalList):
     """This view is for showing animals which need to be genotyped.
     
+    This view is a subclass of :class:`~mousedb.animal.views.AnimalList`.
     This list shows animals that do not have a genotype (ie N.D. or ?) and are older than GENOTYPE_AGE as designated in localsettings.py (default is 21 days).
     It takes a view **/todo/genotype**.
     This view is login protected.    
@@ -552,7 +554,8 @@ class GenotypeList(AnimalList):
 class WeanList(AnimalList):
     """This view is for showing animals which need to be weaned.
     
-    This list shows animals that need to be weaned.  They are animals that are older than the WEAN_AGE and are alive.
+    This list shows animals that need to be weaned.  
+    This view is a subclass of :class:`~mousedb.animal.views.AnimalList` filtering for animals that are older than the WEAN_AGE and are alive.
     It takes a view **/todo/wean**.
     This view is login protected.    
     """
@@ -563,6 +566,7 @@ class NoCageList(AnimalList):
     """This view is for showing animals which need to have a cage entered.
     
     This list shows animals that have no cage number and are alive.
+    This view is a subclass of :class:`~mousedb.animal.views.AnimalList`
     It takes a view **/todo/no_cage**.
     This view is login protected.    
     """
@@ -573,6 +577,7 @@ class NoRackList(AnimalList):
     """This view is for showing animals which need to have a cage entered.
     
     This list shows animals that have no cage number and are alive.
+    This view is a subclass of :class:`~mousedb.animal.views.AnimalList`
     It takes a view **/todo/no_rack**.
     This view is login protected.    
     """
