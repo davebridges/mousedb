@@ -121,7 +121,28 @@ class StrainViewTests(TestCase):
         self.assertEqual(test_response.context['strain'].Strain_slug, 'fixture-strain') 
 
         null_response = self.client.get('/strain/not-fixture-strain/')
-        self.assertEqual(null_response.status_code, 404)  
+        self.assertEqual(null_response.status_code, 404) 
+
+    def test_strain_crosstype(self):
+        """This tests the strain-crosstype view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        test_response = self.client.get('/strain/fixture-strain/Intercross')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTrue('strain' in test_response.context)        
+        self.assertTrue('strain' in test_response.context)          
+        self.assertTemplateUsed(test_response, 'base.html')
+        self.assertTemplateUsed(test_response, 'jquery_script.html')
+        self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(test_response, 'strain_detail.html')
+        self.assertTemplateUsed(test_response, 'sortable_table_script.html')        
+        self.assertTemplateUsed(test_response, 'animal_list_table.html')         
+        self.assertEqual(test_response.context['strain'].pk, 1)
+        self.assertEqual(test_response.context['strain'].Strain, u'Fixture Strain')
+        self.assertEqual(test_response.context['strain'].Strain_slug, 'fixture-strain') 
+
+        null_response = self.client.get('/strain/not-fixture-strain/')
+        self.assertEqual(null_response.status_code, 404)         
 
     def test_strain_detail_all(self):
         """This tests the strain-detail-all view, ensuring that templates are loaded correctly.  

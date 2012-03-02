@@ -578,3 +578,32 @@ class NoRackList(AnimalList):
     """
     
     queryset = Animal.objects.filter(Rack__iexact='').filter(Alive=True)
+    
+class CrossTypeAnimalList(AnimalList):
+    """This view filters animal objects for a particular strain showing only the results of a particular breeding type.
+    
+    This view takes a url in the form **/strain/<strain_slug>/<breeding_type>** and filters :class:`~mousedb.animal.models.Animal` objects on that basis, via both of those keyword arguments.
+    Notably breeding_type has to be the display value not the key value of CROSS_TYPE.
+    This view is a subclass of :class:`~mousedb.views.AnimalList`.
+    """
+    
+    def queryset(self):
+        """This function sets the queryset according to the keyword arguments.
+        For the crosstype, the input value is the the display value of CROSS_TYPE.
+        This is done because the spaces in HET vs HET are not recognized.  
+        Therefore the queryset must be matched exactly (ie by case so Intercross not intercross). 
+        The function also filters the strain by the strain_slug keyword argument.
+        """
+        
+        from mousedb.animal.models import CROSS_TYPE    
+        crosstype_reverse = dict((v, k) for k, v in CROSS_TYPE)
+        crosstype = crosstype_reverse[self.kwargs['breeding_type']]
+        strain = Strain.objects.get(Strain_slug=self.kwargs['strain_slug'])
+        return Animal.objects.filter(Strain=strain,Breeding__Crosstype=crosstype)
+        
+    def get_context_data(self, **kwargs):
+        """This add in the context of list_type and returns this as whatever the crosstype was."""
+        
+        context = super(CrossTypeAnimalList, self).get_context_data(**kwargs)
+        context['list_type'] = self.kwargs['breeding_type']
+        return context        

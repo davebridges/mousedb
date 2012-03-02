@@ -14,4 +14,5 @@ urlpatterns = patterns('',
 	url(r'^(?P<pk>\d*)/delete/?$', views.StrainDelete.as_view(), name="strain-delete"),
     url(r'^(?P<slug>[\w-]+)/all/?$', views.StrainDetailAll.as_view(), name="strain-detail-all"),
     url(r'^(?P<slug>[\w-]+)/?$', views.StrainDetail.as_view(), name="strain-detail"),
+    url(r'^(?P<strain_slug>[\w-]+)/(?P<breeding_type>[\w-]+)/?$', views.CrossTypeAnimalList.as_view(), name="strain-crosstype")
 )

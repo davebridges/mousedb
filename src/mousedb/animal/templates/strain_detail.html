@@ -28,6 +28,11 @@
 {% endif %}
 {% if strain.breeding_set.count > 0%}
 <button class="toggle-breeding fg-button ui-state-default fg-button-toggleable ui-corner-all">Breeding Cages Show/Hide</button>
+<p>Filter animals based on the type of breeding.</p>
+<ul>
+<li><a href="{{strain.Strain_slug}}/Intercross">Intercrosses</a></li>
+<li><a href="{{strain.Strain_slug}}/Backcross">Backcrosses</a></li>
+</ul>
 <div id ="breeding-cages" class="toggle-breeding grid_12">
 <h3>Breeding Cage Summary</h3>
 {% with breeding_cages as breeding_list %}
