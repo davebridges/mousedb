@@ -35,7 +35,7 @@
 			<td><a href="{% url strain-detail animal.Strain.Strain_slug %}">{{ animal.Strain }}</a></td>
 			<td>{{ animal.Background }}</td>
 			<td>{{ animal.Genotype }}</td>
-			<td>{{ animal.Gender }}</td>
+			<td>{{ animal.get_Gender_display }}</td>
 			<td>{% if animal.Cage %}<a href="{% url cage-detail animal.Cage %}">{{ animal.Cage }}</a>
                 {% else %}No Cage Number
                 {% endif %}
