@@ -1,0 +1,201 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Mousedb by davebridges</title>
+    
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Mousedb</h1>
+        <p>Django Based Database System for Experimental Subjects</p>
+        <p class="view"><a href="https://github.com/davebridges/mousedb">View the Project on GitHub <small>davebridges/mousedb</small></a></p>
+        <ul>
+          <li><a href="https://github.com/davebridges/mousedb/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/davebridges/mousedb/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/davebridges/mousedb">Fork On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1></h1>
+
+<h1>MouseDB</h1>
+
+<p>MouseDB is a data management and analysis system for experimental animals.  Source code is freely available via Github (through the BSD License please see LICENSE file or <a href="http://www.opensource.org/licenses/bsd-license.php">http://www.opensource.org/licenses/bsd-license.php</a>), and collaboration is encouraged.  For specific details please contact Dave Bridges via Github.  MouseDB uses a web interface and a database server to store information and a web interface to access and analyse this information.  The standard setup is to use MySQL as the database and Apache as the webserver, but this can be modified if necessary.  The software was written using Django, which itself is based on the Python programming language.  Please see <a href="http://www.djangoproject.com">www.djangoproject.com</a> and <a href="http://www.python.org">www.python.org</a> for more information.  Documentation for this project is available at <a href="http://packages.python.org/mousedb/">http://packages.python.org/mousedb/</a> or within this repository (in the Docs folder).</p>
+
+<p>MouseDB Installation
+''''''''''''''''''''</p>
+
+<h2>Configuration</h2>
+
+<p>MouseDB requires both a database and a webserver to be set up.  Ideally, the database should be hosted separately from the webserver and MouseDB installation, but this is not necessary, as both can be used from the same server.  If you are using a remote server for the database, it is best to set up a user for this database that can only be accessed from the webserver.  If you want to set up several installations (ie for different users or different laboratories), you need separate databases and MouseDB installations for each.  You will also need to set up the webserver with different addresses for each installation.</p>
+
+<h2>Software Dependencies</h2>
+
+<ol>
+<li>
+<strong>Python</strong>.  Requires Version 2.6, is not yet compatible with Python 3.0.  Download from <a href="http://www.python.org/download/">http://www.python.org/download/</a>.</li>
+<li>
+<strong>MouseDB source code</strong>.  Download from one of the following:<br>
+</li>
+</ol><p>a. Using <strong>pip or easy_install</strong>.  If setuptools (available at <a href="http://pypi.python.org/pypi/setuptools">http://pypi.python.org/pypi/setuptools</a>) is installed type <strong>pip install mousedb</strong> at a command prompt.
+  b. <a href="http://github.com/davebridges/mousedb/downloads">http://github.com/davebridges/mousedb/downloads</a> for the current release.  If you will not be contributing to the code, download from here.
+  c. <a href="http://github.com/davebridges/mousedb">http://github.com/davebridges/mousedb</a> for the source code via Git.  If you might contribute code to the project use the source code.</p>
+
+<p>Downloading and/or unzipping will create a directory named mousedb.  You can update to the newest revision at any time either using git or downloading and re-installing the newer version.  Changing or updating software versions will not alter any saved data, but you will have to update the localsettings.py file (described below).
+3. <strong>Database software</strong>.  Recommended to use mysql, available at <a href="http://dev.mysql.com/downloads/mysql/">http://dev.mysql.com/downloads/mysql/</a> .  It is also possible to use SQLite, PostgreSQL, MySQL, or Oracle.  See <a href="http://docs.djangoproject.com/en/1.2/topics/install/#database-installation">http://docs.djangoproject.com/en/1.2/topics/install/#database-installation</a> for more information.
+4. <strong>Webserver</strong>.  Apache is recommended, available at <a href="http://www.apache.org/dyn/closer.cgi">http://www.apache.org/dyn/closer.cgi</a> .  It is also possible to use FastCGI, SCGI, or AJP.  See <a href="http://docs.djangoproject.com/en/1.2/howto/deployment/">http://docs.djangoproject.com/en/1.2/howto/deployment/</a> for more details.  The recommended way to use Apache is to download and enable mod_wsgi.  See <a href="http://code.google.com/p/modwsgi/">http://code.google.com/p/modwsgi/</a> for more details.</p>
+
+<h2>Installation</h2>
+
+<ol>
+<li>Navigate into mousedb folder</li>
+<li>Run <strong>python setup.py install</strong> to get dependencies.  If you installed via pip, this step is not necessary (but wont hurt).  This will install the dependencies South, mysql-python and django-ajax-selects.</li>
+<li>Run <strong>python bootstrap.py</strong> to get the correct version of Django and to set up an isolated environment.  This step may take a few minutes.</li>
+<li>Run <strong>bin\buildout</strong> to generate django, test and wsgi scripts.  This step may take a few minutes.</li>
+</ol><h2>Database Setup</h2>
+
+<ol>
+<li>Create a new database.  Check the documentation for your database software for the appropriate syntax for this step.  You need to record the user, password, host and database name.  If you are using SQLite this step is not required.</li>
+<li>Go to localsettings_empty.py and edit the settings:</li>
+</ol><ul>
+<li>ENGINE: Choose one of 'django.db.backends.postgresql_psycopg2','django.db.backends.postgresql', 'django.db.backends.mysql', 'django.db.backends.sqlite3', 'django.db.backends.oracle' depending on the database software used.</li>
+<li>NAME: database name</li>
+<li>USER: database user</li>
+<li>PASSWORD: database password</li>
+<li>HOST: database host</li>
+</ul><ol>
+<li>Save this file as <strong>localsettings.py</strong> in the same folder as localsettings_empty.py</li>
+</ol><h2>Web Server Setup</h2>
+
+<p>You need to set up a server to serve both the django installation and saved files.  For the saved files.  I recommend using apache for both.  The preferred setup is to use Apache2 with mod_wsgi.  See <a href="http://code.google.com/p/modwsgi/wiki/InstallationInstructions">http://code.google.com/p/modwsgi/wiki/InstallationInstructions</a> for instructions on using mod_wsgi.  The following is a httpd.conf example where the code is placed in <strong>/usr/src/mousedb</strong>::</p>
+
+<p>Alias /robots.txt /usr/src/mousedb/src/mousedb/media/robots.txt 
+  Alias /favicon.ico /usr/src/mousedb/src/mousedb/media/favicon.ico</p>
+
+<p>Alias /mousedb-media/ /usr/src/mousedb/src/mousedb/media/<br>
+       Order deny,allow
+       Allow from all
+  </p>
+
+<p>Alias /static/ /usr/src/mousedb/src/mousedb/static/<br>
+       Order deny,allow
+       Allow from all
+  </p>
+
+<p>
+       Order deny,allow
+       Allow from all
+  
+  WSGIScriptAlias /mousedb /usr/src/mousedb/bin/django.wsgi</p>
+
+<p>If you want to restrict access to these files, change the Allow from all directive to specific domains or ip addresses (for example Allow from 192.168.0.0/99 would allow from 192.168.0.0 to 192.168.0.99)</p>
+
+<h2>Enabling of South for Future Migrations</h2>
+
+<p>Schema updates will utilize south as a way to alter database tables.  This must be enabled initially by entering the following commands from /mousedb/bin::</p>
+
+<pre><code>django schemamigration animal --initial
+django schemamigration data --initial
+django schemamigration groups --initial
+django schemamigration timed_mating --initial
+django syncdb
+django migrate
+</code></pre>
+
+<p>Future schema changes (se the UPGRADE_NOTES.rst file for whether this is necessary) are accomplished by entering::</p>
+
+<pre><code>django schemamigration &lt;INDICATED_APP&gt; --auto
+django migrate &lt;INDICATED_APP&gt;
+</code></pre>
+
+<h2>Final Configuration and User Setup</h2>
+
+<p>Go to a command prompt, navigate to inside the mousedb/src directory and enter the following to get to a python prompt::</p>
+
+<p>python manage.py shell</p>
+
+<p>Go to servername/mousedb/admin/groups/group/1 and name your research group and select a license if desired</p>
+
+<p>Go to servername/mousedb/admin/auth/users/ and create users, selecting usernames, full names, password (or have the user set the password) and then choose group permissions.</p>
+
+<h2>Testing</h2>
+
+<p>From the mousedb directory run <strong>bin\test</strong> to run the test suite.  See <a href="https://github.com/davebridges/mousedb/wiki/Known-Issues---Test-Suite">https://github.com/davebridges/mousedb/wiki/Known-Issues---Test-Suite</a> for known issues.  Report any additional errors at the issue page at <a href="https://github.com/davebridges/mousedb/issues">https://github.com/davebridges/mousedb/issues</a>.</p>
+
+<p>Concepts
+''''''''
+Data storage for MouseDB is separated into packages which contain information about animals, and information collected about animals.  There is also a separate module for timed matings of animals.  This document will describe the basics of how data is stored in each of these modules.</p>
+
+<h2>Animal Module</h2>
+
+<p>Animals are tracked as individual entities, and given associations to breeding cages to follow ancestry, and strains.</p>
+
+<p>Animal
+++++++
+Most parameters about an animal are set within the animal object.  Here is where the animals strain, breeding, parentage and many other parameters are included.  Animals have foreignkey relationships with both Strain and Breeding, so an animal may only belong to one of each of those.  As an example, a mouse cannot come from more than one Breeding set, and cannot belong to more than one strain.</p>
+
+<p>Backcrosses and Generations
+...........................
+For this software, optional tracking of backcrosses and generations is available and is stored as an attribute of an animal.  When an inbred cross is made against a pure background, the backcross increases by 1.  When a heterozygote cross is made, the generation increases by one.  As an example, for every time a mouse in a C57/BL6 background is crossed against a wildtype C57/B6 mouse, the backcross (but not the generation) increases by one.  For every time a mutant strain is crosses against itself (either vs a heterozygote or homozygote of that strain), the generation will increase by one.  Backcrosses should typically be performed against a separate colony of purebred mouse, rather than against wild-type alleles of the mutant strain.</p>
+
+<p>Breeding Cages
+++++++++++++++
+A breeding cage is defined as a set of one or more male and one or more female mice.  Because of this, it is not always clear who the precise parentage of an animal is.  If the parentage is known, then the Mother and Father fields can be set for a particular animal.</p>
+
+<p>Strains
++++++++
+A strain is a set of mice with a similar genetics.  Importantly strains are separated from Backgrounds.  For example, one might have mice with the genotype ob/ob but these mice may be in either a C57-Black6 or a mixed background.  This difference is set at the individual animal level.<br>
+The result of this is that a query for a particular strain may then need to be filtered to a specific background.</p>
+
+<h2>Data Module</h2>
+
+<p>Data (or measurements) can be stored for any type of measurement.  Conceptually, several pieces of data belong to an experiment (for example several mice are measured at some time) and several experiments belong to a study.  Measurements can be stored independent of experiments and experiments can be performed outside of the context of a study.  It is however, perfered that measurements are stored within an experiment and experiments are stored within studies as this will greatly facilitate the organization of the data.</p>
+
+<p>Studies
++++++++
+In general studies are a collection of experiments.  These can be grouped together on the basis of animals and/or treatment groups.  A study must have at least one treatment group, which defines the animals and their conditions.</p>
+
+<p>Experiments
++++++++++++
+An experiment is a collection of measurements for a given set of animals.  In general, an experiment is defined as a number of measurements take in a given day.</p>
+
+<p>Measurements
+++++++++++++
+A measurement is an animal, an assay and a measurement value.  It can be associated with an experiment, or can stand alone as an individual value.  Measurements can be viewed in the context of a study, an experiment, a treatment group or an animal by going to the appropriate page.</p>
+
+<h2>Timed Matings Module</h2>
+
+<p>Timed matings are a specific type of breeding set.  Generally, for these experiments a mating cage is set up and pregnancy is defined by a plug event.  Based on this information, the age of an embryo can be estimated.  When a breeding cage is defined, one option is to set this cage as a timed mating cage (ie Timed_Mating=True).  If this is the case, then a plug event can be registered and recorded for this mating set.  If the mother gives birth then this cage is implicitly set as a normal breeding cage.</p>
+
+<h2>Groups Module</h2>
+
+<p>This app defines generic Group and License information for a particular installation of MouseDB.  Because every page on this site identifies both the Group and data restrictions, at a minimum, group information must be provided upon installation (see installation instructions).</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/davebridges">davebridges</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-1446316-4");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
