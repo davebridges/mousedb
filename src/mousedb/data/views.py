@@ -105,7 +105,6 @@ def aging_csv(request):
             ])
     return response    
  
-@login_required 
 def litters_csv(request):
     """This view generates a csv output file of all animal data for use in litter analysis.
 	
