@@ -85,7 +85,6 @@ def experiment_details_csv(request, experiment_id):
     return response
     
     
-@login_required
 def aging_csv(request):
     """This view generates a csv output file of all animal data for use in aging analysis.
 	
@@ -101,7 +100,8 @@ def aging_csv(request):
             animal.Strain, 
             animal.Genotype, 
             animal.age(),
-            animal.Cause_of_Death   
+            animal.Cause_of_Death,
+            animal.Alive            
             ])
     return response    
  
