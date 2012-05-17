@@ -130,7 +130,8 @@ BACKGROUND_CHOICES = (
 CAUSE_OF_DEATH = (
 ('Unknown', 'Unknown'),
 ('Sacrificed', 'Sacrificed'),
-('Accidental', 'Accidental')
+('Accidental', 'Accidental'),
+('Estimated', 'Estimated Death')
 )
 
 class Strain(models.Model):
