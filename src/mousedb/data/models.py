@@ -25,22 +25,39 @@ DOSAGE_TYPE = (
 
 
 class Experiment(models.Model):
-	date = models.DateField()
-	notes = models.TextField(max_length = 500, blank=True)
-	researchers = models.ManyToManyField('Researcher')
-	experimentID = models.SlugField(max_length=50, help_text="ie DB-2008-11-11-A", blank=True)
-	feeding_state = models.CharField(max_length=20, default = 'fed', choices = FEEDING_TYPES)
-	fasting_time = models.IntegerField(help_text = "in hours", null = True, blank = True)
-	injection = models.CharField(max_length=20, choices=INJECTIONS, blank=True)
-	concentration = models.CharField(max_length=20, blank=True)
-	study = models.ForeignKey('Study', blank=True, null=True)
-	def __unicode__(self):
-		return u'%s-%s' % (self.date, self.feeding_state) 
-	@models.permalink
-	def get_absolute_url(self):
-		return ('experiment-detail', [str(self.id)])
-	class Meta:
-		ordering = ['-date']
+    
+    """This class describes Experiment objects.
+    
+    This object describes the aspects of an experiment done on several :class:`~mousedb.animal.models.Animal` objects.
+    This object describes the conditions under which the experiment ws done.
+    The results of the experiment are contained in :class:`~experimentdb.data.models.Measurement` objects and grouped together in :class:`~experimentdb.models.Treatment` objects.
+    Experiments may or may not be part of a :class:`~experimentdb.data.models.Study`.
+    The required fields for this object are date, :class:`~experimentdb.data.models.Researchers` and feeding state.
+    The optional fields are notes, time, experimentID, fasting_time, injection and concentration and the :class:`~experimentdb.data.models.Study`.    
+    """
+    
+    date = models.DateField()
+    notes = models.TextField(max_length = 500, blank=True)
+    time = models.TimeField(help_text="Time of the experiment in 24h format", blank=True, null=True)
+    researchers = models.ManyToManyField('Researcher')
+    experimentID = models.SlugField(max_length=50, help_text="ie DB-2008-11-11-A", blank=True)
+    feeding_state = models.CharField(max_length=20, default = 'fed', choices = FEEDING_TYPES)
+    fasting_time = models.IntegerField(help_text = "in hours", null = True, blank = True)
+    injection = models.CharField(max_length=20, choices=INJECTIONS, blank=True)
+    concentration = models.CharField(max_length=20, blank=True)
+    study = models.ForeignKey('Study', blank=True, null=True)
+    
+    def __unicode__(self):
+        """The unicode representation of an experiment is date-feeding_state, for example **2012-01-01-Fed**."""
+        return u'%s-%s' % (self.date, self.feeding_state) 
+	
+    @models.permalink
+    def get_absolute_url(self):
+        """The absolute url of an experiment is  `/mousedb/experiment/id </mousedb/experiment/id>`."""
+        return ('experiment-detail', [str(self.id)])
+
+    class Meta:
+        ordering = ['-date']
 
 
 class Assay(models.Model):
