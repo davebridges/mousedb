@@ -76,6 +76,10 @@ INSTALLED_APPS = (
     'south'
 )
 
+# magically include jqueryUI/js/css for ajax_select
+AJAX_SELECT_BOOTSTRAP = True
+AJAX_SELECT_INLINES = 'inline'
+
 SOUTH_TESTS_MIGRATE = False 
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.fallback.FallbackStorage'
