@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 
 from mousedb.data.forms import ExperimentForm, MeasurementForm
 from mousedb.data.models import Measurement, Experiment
+from mousedb.data.views import all_data_csv
 
 @login_required
 def limited_object_list(*args, **kwargs):
@@ -58,6 +59,7 @@ urlpatterns = patterns('',
 		'template_name': 'data.html',
 		'template_object_name': 'data',
 		}, name="measurement_list"),
+	url(r'^data/all.csv$', all_data_csv, name="measurement_list_csv"),        
 	url(r'^data/(?P<object_id>\d*)/edit/$', change_measurement, {
 		'form_class': MeasurementForm,
 		'template_name': 'measurement_form.html',
@@ -66,5 +68,5 @@ urlpatterns = patterns('',
 		'model': Measurement,
 		'post_delete_redirect': '/mousedb/data/',
 		'template_name' : 'confirm_delete.html',
-		}, name = "measurement-delete"),		
+		}, name = "measurement-delete"),
 )

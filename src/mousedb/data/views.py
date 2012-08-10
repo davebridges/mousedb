@@ -63,7 +63,6 @@ def study_experiment(request, study_id):
 		form.fields["animals"].queryset = Animal.objects.filter(treatment__in=treatments)
 	return render_to_response("study_experiment_form.html", {'form':form, 'study':study, 'treatments': treatments},context_instance=RequestContext(request))
 	
-@login_required
 def experiment_details_csv(request, experiment_id):
     """This view generates a csv output file of an experiment.
 	
@@ -120,6 +119,25 @@ def litters_csv(request):
             animal.Breeding,
             animal.Strain
             ])
-    return response    
-    
+    return response   
 
+def all_data_csv(request):
+    """This view generates a csv output of all data for a strain."""
+
+    measurement_list = Measurement.objects.filter(assay__assay="Body Weight")
+    response = HttpResponse(mimetype='text/csv')
+    response['Content-Disposition'] = 'attachment; filename=data.csv'
+    writer = csv.writer(response)
+    writer.writerow(["Animal", "Genotype", "Assay", "Value","Strain", "Age", "Cage", "Feeding"])
+    for measurement in measurement_list:
+        writer.writerow([
+            measurement.animal,
+            measurement.animal.Genotype,
+            measurement.assay,
+            measurement.values,
+            measurement.animal.Strain,
+            measurement.animal.age(),
+            measurement.animal.Cage,
+            measurement.experiment.feeding_state,
+            ])
+    return response
