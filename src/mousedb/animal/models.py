@@ -124,6 +124,7 @@ BACKGROUND_CHOICES = (
 ('C57BL/6J', 'C57BL/6J'),
 ('C57BL/6-BA', 'C57BL/6-BA'),
 ('C57BL/6-LY5.2', 'C57BL/S-LY5.2'),
+('BTBR','BTBR'),
 ('Mixed', 'Mixed')
 )
 
