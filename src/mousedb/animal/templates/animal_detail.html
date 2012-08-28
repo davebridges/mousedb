@@ -6,7 +6,7 @@
 
 {% block content %}
 {% if animal.Death %}
-This mouse died on {{ animal.Death }}.  Cause of death was {{ animal.Cause_of_Death }}
+This mouse died on {{ animal.Death }}.  Cause of death was {{ animal.Cause_of_Death }}.  This mouse was {{ animal.age }} days old.
 {% else %}{% if animal.Born %}
 This mouse is {{ animal.Born|timesince }} old.
 {% else %}
