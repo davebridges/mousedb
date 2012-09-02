@@ -1,8 +1,10 @@
 *DS_STORE
+*.db
 *.pyc
 *.pyo
 *.svn
 *.svn/*
+*migrations
 localsettings.py
 apache/django.wsgi
 *~
