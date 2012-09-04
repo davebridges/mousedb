@@ -18,11 +18,7 @@ USE_I18N = True
 # Example: "/home/media/media.lawrence.com/"
 MEDIA_ROOT = os.path.join(PROJECT_DIR, "media")
 STATIC_ROOT = os.path.join(PROJECT_DIR, "static")
-
-# URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
-# trailing slash.
-# Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = '/static/admin-media/'
+STATIC_FILES_DIRS = (os.path.join(PROJECT_DIR, "static"),)
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'ci%^08ig-0qu*&b(kz_=n6lvbx*puyx6=8!yxzm0+*z)w@7+%6'
