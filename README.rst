@@ -64,7 +64,12 @@ You need to set up a server to serve both the django installation and saved file
   </Directory>
   WSGIScriptAlias /mousedb /usr/src/mousedb/bin/django.wsgi
 
-If you want to restrict access to these files, change the Allow from all directive to specific domains or ip addresses (for example Allow from 192.168.0.0/99 would allow from 192.168.0.0 to 192.168.0.99)
+If you want to restrict access to these files, change the Allow from all directive to specific domains or ip addresses (for example Allow from 192.168.0.0/99 would allow from 192.168.0.0 to 192.168.0.99).
+
+To move all static files (css/javascript/images) to the directory from which static media will be served run the following command.  This will move the files to the directory defined in STATIC_ROOT::
+
+    python manage.py collectstatic
+
 
 Enabling of South for Future Migrations
 ---------------------------------------
