@@ -22,15 +22,9 @@ Software Dependencies
   c. http://github.com/davebridges/mousedb for the source code via Git.  If you might contribute code to the project use the source code.
 
 Downloading and/or unzipping will create a directory named mousedb.  You can update to the newest revision at any time either using git or downloading and re-installing the newer version.  Changing or updating software versions will not alter any saved data, but you will have to update the localsettings.py file (described below).
+
 3. **Database software**.  Recommended to use mysql, available at http://dev.mysql.com/downloads/mysql/ .  It is also possible to use SQLite, PostgreSQL, MySQL, or Oracle.  See http://docs.djangoproject.com/en/1.2/topics/install/#database-installation for more information.
 4. **Webserver**.  Apache is recommended, available at http://www.apache.org/dyn/closer.cgi .  It is also possible to use FastCGI, SCGI, or AJP.  See http://docs.djangoproject.com/en/1.2/howto/deployment/ for more details.  The recommended way to use Apache is to download and enable mod_wsgi.  See http://code.google.com/p/modwsgi/ for more details.
-
-Installation
-------------
-1. Navigate into mousedb folder
-2. Run **python setup.py install** to get dependencies.  If you installed via pip, this step is not necessary (but wont hurt).  This will install the dependencies South, mysql-python and django-ajax-selects.
-3. Run **python bootstrap.py** to get the correct version of Django and to set up an isolated environment.  This step may take a few minutes.
-4. Run **bin\buildout** to generate django, test and wsgi scripts.  This step may take a few minutes.
 
 Database Setup
 --------------
@@ -76,17 +70,17 @@ Enabling of South for Future Migrations
 ---------------------------------------
 Schema updates will utilize south as a way to alter database tables.  This must be enabled initially by entering the following commands from /mousedb/bin::
 
-    django schemamigration animal --initial
-    django schemamigration data --initial
-    django schemamigration groups --initial
-    django schemamigration timed_mating --initial
-    django syncdb
-    django migrate
+    python manage.py schemamigration schemamigration animal --initial
+    python manage.py schemamigration schemamigration data --initial
+    python manage.py schemamigration schemamigration groups --initial
+    python manage.py schemamigration schemamigration timed_mating --initial
+    python manage.py schemamigration syncdb
+    python manage.py schemamigration migrate
     
 Future schema changes (se the UPGRADE_NOTES.rst file for whether this is necessary) are accomplished by entering::
 
-    django schemamigration <INDICATED_APP> --auto
-    django migrate <INDICATED_APP>
+    python manage.py schemamigration schemamigration <INDICATED_APP> --auto
+    python manage.py schemamigration migrate <INDICATED_APP>
 
 Final Configuration and User Setup
 ----------------------------------

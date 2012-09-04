@@ -1,6 +1,5 @@
-Version 1.0.0
+Version 1.0.1
 =============
-* This upgrade is to follow the semantic versioning guidelines (see http://semver.org/), in which production triggers 1.0.0
 
 Stuff To Do
 +++++++++++
@@ -25,6 +24,9 @@ Stuff To Do
 * Update usage document.
 * Change version number in setup.py and Docs/source/conf.py Update Documentation and move to root directory
 
+Version 1.0.0
+=============
+* This upgrade is to follow the semantic versioning guidelines (see http://semver.org/), in which production triggers 1.0.0
 
 Version 0.2.1dev
 ================
