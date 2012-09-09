@@ -76,12 +76,12 @@ Enabling of South for Future Migrations
 ---------------------------------------
 Schema updates will utilize south as a way to alter database tables.  This must be enabled initially by entering the following commands from /mousedb/bin::
 
-    python manage.py schemamigration schemamigration animal --initial
-    python manage.py schemamigration schemamigration data --initial
-    python manage.py schemamigration schemamigration groups --initial
-    python manage.py schemamigration schemamigration timed_mating --initial
-    python manage.py schemamigration syncdb
-    python manage.py schemamigration migrate
+    python manage.py schemamigration animal --initial
+    python manage.py schemamigration data --initial
+    python manage.py schemamigration groups --initial
+    python manage.py schemamigration timed_mating --initial
+    python manage.py syncdb
+    python manage.py migrate
     
 Future schema changes (se the UPGRADE_NOTES.rst file for whether this is necessary) are accomplished by entering::
 
