@@ -72,10 +72,6 @@ INSTALLED_APPS = (
     'south'
 )
 
-# magically include jqueryUI/js/css for ajax_select
-AJAX_SELECT_BOOTSTRAP = True
-AJAX_SELECT_INLINES = 'inline'
-
 SOUTH_TESTS_MIGRATE = False 
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.fallback.FallbackStorage'
@@ -84,7 +80,13 @@ AJAX_LOOKUP_CHANNELS = {
     'animal' : ('mousedb.animal.lookups', 'AnimalLookup'),
     'animal-male' : ('mousedb.animal.lookups', 'AnimalLookupMale'),
 	'animal-female' : ('mousedb.animal.lookups', 'AnimalLookupFemale'),
+    'animal-select'  : {'model':'animal.Animal', 'search_field':'MouseID'}
 }
+
+
+# magically include jqueryUI/js/css for ajax_select
+AJAX_SELECT_BOOTSTRAP = False
+AJAX_SELECT_INLINES = 'staticfiles'
 
 try:
     from localsettings import *

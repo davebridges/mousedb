@@ -3,7 +3,8 @@
 from django.forms import ModelForm
 from django import forms
 
-from ajax_select.fields import AutoCompleteSelectMultipleField, AutoCompleteSelectField
+from ajax_select.fields import AutoCompleteSelectMultipleField, AutoCompleteSelectField, AutoCompleteField
+from ajax_select import make_ajax_field
 
 from mousedb.animal.models import Animal, Breeding
 	
@@ -44,15 +45,18 @@ class BreedingForm(ModelForm):
 	
     This form is used from the url /mousedb/breeding/new and is a generic create view.  This view includes a datepicker widget for Stat and End dates and autocomplete fields for the Females and Male fields
     """
-    Male = AutoCompleteSelectMultipleField('animal-male', required=False)
-    Females = AutoCompleteSelectMultipleField('animal-female', required=False)
+    
+    Male = AutoCompleteSelectMultipleField('animal', required=False)
+    Females = AutoCompleteSelectMultipleField('animal', required=False)
+
     class Meta:
         model = Breeding
+        
     class Media:
-		css = {
-			'all': ('javascript/jquery-autocomplete/jquery.autocomplete.css', 'css/autocomplete.css')
-				}
-		js = ('javascript/jquery-ui/js/jquery-ui-1.8.2.custom.min.js', 'javascript/jquery-autocomplete/jquery.autocomplete.js')
+        css = {
+            'all': ('css/ajax_select.css',)
+        }
+        js = ('js/ajax_select.js',)        
 
 
 

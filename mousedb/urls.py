@@ -6,9 +6,11 @@ from django.conf.urls.defaults import *
 from django.contrib import admin
 admin.autodiscover()
 
+from ajax_select import urls as ajax_select_urls
+
 urlpatterns = patterns('',
 	#(r'^', 'django.views.generic.simple.direct_to_template', {'template': 'maintenance.html'}),
-	(r'^ajax_select/', include('ajax_select.urls')),	
+	(r'^admin/lookups/', include(ajax_select_urls)),	
 	(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 	(r'^admin/', include(admin.site.urls)),
 	url(r'^accounts/login/', 'django.contrib.auth.views.login', name="login"),
