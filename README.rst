@@ -41,29 +41,33 @@ Database Setup
 
 Web Server Setup
 ----------------
-You need to set up a server to serve both the django installation and saved files.  For the saved files.  I recommend using apache for both.  The preferred setup is to use Apache2 with mod_wsgi.  See http://code.google.com/p/modwsgi/wiki/InstallationInstructions for instructions on using mod_wsgi.  The following is a httpd.conf example where the code is placed in **/usr/src/mousedb**::
+You need to set up a server to serve both the django installation and saved files.  The preferred setup is to use Apache2 with mod_wsgi to serve the project files and a separate webserver to serve media and static files.
+Static files are website files such as javascript, images and css files.  Media files are user-specific files such as images.  As of this version there are no media files in this project.  These can both be served from a separate webserver but below is an example where Apache is used for both.
+The default is to serve static files from **mousedb/static** to the url **/mousedb-static**.  These locations can be altered in the localsettings.py file using STATIC_ROOT and STATIC_URL respectively.
+The following is a httpd.conf example where the code is placed in **/usr/src/mousedb**::
 
-  Alias /robots.txt /usr/src/mousedb/src/mousedb/media/robots.txt 
-  Alias /favicon.ico /usr/src/mousedb/src/mousedb/media/favicon.ico
+  Alias /robots.txt /usr/src/mousedb/mousedb/static/robots.txt 
+  Alias /favicon.ico /usr/src/mousedb/mousedb/static/favicon.ico
 
-  Alias /mousedb-media/ /usr/src/mousedb/src/mousedb/media/  
-  <Directory /usr/src/mousedb/src/mousedb/media>
+  Alias /mousedb-media/ /usr/src/mousedb/mousedb/media/  
+  <Directory /usr/src/mousedb/mousedb/media>
        Order deny,allow
        Allow from all
   </Directory>
   
-  Alias /static/ /usr/src/mousedb/src/mousedb/static/  
-  <Directory /usr/src/mousedb/src/mousedb/static>
+  Alias /mousedb-static/ /usr/src/mousedb/mousedb/static/  
+  <Directory /usr/src/mousedb/mousedb/static>
        Order deny,allow
        Allow from all
   </Directory>    
 
-  <Directory /usr/src/mousedb/bin>
+  <Directory /usr/src/mousedb/mousedb/apache/django.wsgi>
        Order deny,allow
        Allow from all
   </Directory>
-  WSGIScriptAlias /mousedb /usr/src/mousedb/bin/django.wsgi
+  WSGIScriptAlias /mousedb /usr/src/mousedb/mousedb/apache/django.wsgi
 
+If you want to restrict access to these files, change the Allow from all directive to specific domains or ip addresses (for example Allow from 192.168.0.0/99 would allow from 192.168.0.0 to 192.168.0.99)
 If you want to restrict access to these files, change the Allow from all directive to specific domains or ip addresses (for example Allow from 192.168.0.0/99 would allow from 192.168.0.0 to 192.168.0.99).
 
 To move all static files (css/javascript/images) to the directory from which static media will be served run the following command.  This will move the files to the directory defined in STATIC_ROOT::
@@ -75,12 +79,12 @@ Enabling of South for Future Migrations
 ---------------------------------------
 Schema updates will utilize south as a way to alter database tables.  This must be enabled initially by entering the following commands from /mousedb/bin::
 
-    python manage.py schemamigration schemamigration animal --initial
-    python manage.py schemamigration schemamigration data --initial
-    python manage.py schemamigration schemamigration groups --initial
-    python manage.py schemamigration schemamigration timed_mating --initial
-    python manage.py schemamigration syncdb
-    python manage.py schemamigration migrate
+    python manage.py schemamigration animal --initial
+    python manage.py schemamigration data --initial
+    python manage.py schemamigration groups --initial
+    python manage.py schemamigration timed_mating --initial
+    python manage.py syncdb
+    python manage.py migrate
     
 Future schema changes (se the UPGRADE_NOTES.rst file for whether this is necessary) are accomplished by entering::
 

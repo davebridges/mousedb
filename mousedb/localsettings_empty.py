@@ -6,16 +6,18 @@ MANAGERS = ADMINS
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
-LOGIN_URL = '/mousedb/accounts/login/' #this presumes that apache is pointing at /mousedb and may need to be changed if a different root is being used
+LOGIN_URL = '/accounts/login/' #this presumes that apache is pointing at /mousedb and may need to be changed if a different root is being used
 
-# URL that handles the media served from MEDIA_ROOT. Make sure to use a
-# trailing slash if there is a path component (optional in other cases).
-# These are for user uploaded files.  Javascript, css and images are in static
-# Examples: "http://media.lawrence.com", "http://example.com/media/"
-# This presumes that media is being served at yourdomain.com/mousedb-media/.  If it is not then change this setting.
 MEDIA_URL = '/mousedb-media/'
-# This handles static media (ie files that are not user uploaded).  This presumes that media is being served at yourdomain.com/static/.  If it is not then change this setting
-STATIC_URL = '/static/'
+STATIC_URL = '/mousedb-static/'
+
+import os.path
+PROJECT_DIR = os.path.dirname(__file__)
+#these locations can be absolue paths or relative to the installation (as is shown here)
+MEDIA_ROOT = os.path.join(PROJECT_DIR, "served-media") #set to where pictures and files will be stored.  Default is media folder and this is where MEDIA_URL on your webserver should point
+STATIC_ROOT = os.path.join(PROJECT_DIR, "served-static") #this folder is populated by the collectstatic command and is where STATIC_URL on your webserver should point
+MEDIA_URL = '/mousedb-media/'
+STATIC_URL = '/mousedb-static/'
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
