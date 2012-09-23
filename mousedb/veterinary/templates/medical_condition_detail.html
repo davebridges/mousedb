@@ -11,6 +11,18 @@
 <tr><th>Updated</th><td>{{ medical_condition.updated }}</td></tr>
 </table>
 
+{% if perms.veterinary.update_medicalcondition %}
+    <a href="{% url medical-condition-edit medical_condition.slug %}"> 
+	<button class="update">Update</button>
+	</a>
+{% endif %}
+
+{% if perms.veterinary.delete_medicalcondition %}
+	<a href="{% url medical-condition-delete medical_condition.slug %}">
+	<button class="delete">Delete</button>
+	</a>
+{% endif %}
+
 {% with medical_condition.medicalissue_set.all as medical_issues %}
 {% include 'veterinary_summary_snippet.html' %}
 {% endwith %}
