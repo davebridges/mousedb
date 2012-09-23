@@ -5,6 +5,10 @@
 {% block content %}
 <table>
 <tr><th>Treatment</th><td>{{ medical_treatment }}</td></tr>
-<tr><th>Afflicted Mice</th><td>{{ medical_treatment.medicalissue_set.count }}</td></tr>
+<tr><th>Treated Mice</th><td>{{ medical_treatment.medicalissue_set.count }}</td></tr>
 </table>
+
+{% with medical_treatment.medicalissue_set.all as medical_issues %}
+{% include 'veterinary_summary_snippet.html' %}
+{% endwith %}
 {% endblock content %}

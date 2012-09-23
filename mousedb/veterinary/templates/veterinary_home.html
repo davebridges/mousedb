@@ -4,11 +4,9 @@
 
 {% block content %}
 <h2>Medical Issues</h2>
-<ul>
-{% for issue in medical_issues %}
-	<li><a href="{{ issue.get_absolute_url }}">{{ issue }}</a></li>
-{% endfor %}
-</ul>
+
+{% include 'veterinary_summary_snippet.html' %}
+
 
 <h2>Medical Conditions</h2>
 <ul>
@@ -20,7 +18,7 @@
 <h2>Medical Treatments</h2>
 <ul>
 {% for treatment in medical_treatments %}
-	<li><a href="{{ treatments.get_absolute_url }}">{{ treatment }}</a></li>
+	<li><a href="{{ treatment.get_absolute_url }}">{{ treatment }}</a></li>
 {% endfor %}
 </ul>
 {% endblock content %}

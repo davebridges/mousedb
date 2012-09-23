@@ -1,0 +1,17 @@
+<div id="animal-summary">
+<table>
+<tr>
+	<th>Date</th>
+	<th>Animal</th>
+	<th>Condition</th>
+	<th>Treatment</th>
+</tr>
+{% for issue in medical_issues %}
+<tr>
+	<td>{{ issue.diagnosis }}</td>
+	<td><a href="{{ issue.animal.get_absolute_url }}">{{ issue.animal }}</td>
+	<td><a href="{{ issue.condition.get_absolute_url }}">{{ issue.condition }}</td>
+	<td><a href="{{ issue.treatment.get_absolute_url }}">{{ issue.treatment }}</td>	
+</tr>
+{% endfor %}
+</table>

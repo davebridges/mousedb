@@ -10,4 +10,8 @@
 <tr><th>Created</th><td>{{ medical_condition.created }}</td></tr>
 <tr><th>Updated</th><td>{{ medical_condition.updated }}</td></tr>
 </table>
+
+{% with medical_condition.medicalissue_set.all as medical_issues %}
+{% include 'veterinary_summary_snippet.html' %}
+{% endwith %}
 {% endblock content %}
