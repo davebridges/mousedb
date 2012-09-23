@@ -6,7 +6,7 @@
 <h2>Medical Issues</h2>
 <ul>
 {% for issue in medical_issues %}
-	<li><a href="{{ issue.get_absolute_url }}"><{{ issue }}</a></li>
+	<li><a href="{{ issue.get_absolute_url }}">{{ issue }}</a></li>
 {% endfor %}
 </ul>
 

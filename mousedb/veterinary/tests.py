@@ -106,6 +106,44 @@ class MedicalIssueTests(TestCase):
         	condition = MedicalCondition.objects.get(pk=1)) 
         test_medical_issue.save()
         self.assertEqual(test_medical_issue.get_absolute_url(), "/veterinary/medical-issue/1") #where the url should be 
+        
+class MedicalIssueViewTests(TestCase):
+    '''This class tests the views for the :class:`~mousedb.veterinary.MedicalIssue` objects.'''
+
+    fixtures = ['test_medical_issue', 'test_medical_condition','test_animals', 'test_strain']
+
+    def setUp(self):
+        """Instantiate the test client.  Creates a test user."""
+        self.client = Client()
+        self.test_user = User.objects.create_user('testuser', 'blah@blah.com', 'testpassword')
+        self.test_user.is_superuser = True
+        self.test_user.is_active = True
+        self.test_user.save()
+        self.assertEqual(self.test_user.is_superuser, True)
+        login = self.client.login(username='testuser', password='testpassword')
+        self.failUnless(login, 'Could not log in')
+
+    def tearDown(self):
+        """Depopulate created model instances from test database."""
+        for model in MODELS:
+            for obj in model.objects.all():
+                obj.delete()
+                
+    def test_medical_issue_view(self):
+        """This tests the medical-issue-detail view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        
+        test_response = self.client.get('/veterinary/medical-issue/1')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTemplateUsed(test_response, 'medical_issue_detail.html')
+        self.assertTemplateUsed(test_response, 'base.html')     
+        self.assertTemplateUsed(test_response, 'jquery_script.html')
+        self.assertTemplateUsed(test_response, 'menu_script.html') 
+        self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')                
+        self.assertTrue('medical_issue' in test_response.context)
+        self.assertEqual(test_response.context['medical_issue'].pk, 1)
+        self.assertEqual(test_response.context['medical_issue'].__unicode__(), u'Fixture Strain (1) - Test Condition')              
 
 class MedicalConditionTests(TestCase):
     '''This class tests various aspects of the :class:`~mousedb.veterinary.models.MedicalCondition` model.'''
@@ -163,6 +201,44 @@ class MedicalConditionTests(TestCase):
         test_medical_condition.save()
         self.assertEqual(test_medical_condition.get_absolute_url(), "/veterinary/medical-condition/test-condition") #where the url should be 
         
+class MedicalConditionViewTests(TestCase):
+    '''This class tests the views for the :class:`~mousedb.veterinary.MedicalCondition` objects.'''
+
+    fixtures = ['test_medical_issue', 'test_medical_condition','test_animals', 'test_strain']
+
+    def setUp(self):
+        """Instantiate the test client.  Creates a test user."""
+        self.client = Client()
+        self.test_user = User.objects.create_user('testuser', 'blah@blah.com', 'testpassword')
+        self.test_user.is_superuser = True
+        self.test_user.is_active = True
+        self.test_user.save()
+        self.assertEqual(self.test_user.is_superuser, True)
+        login = self.client.login(username='testuser', password='testpassword')
+        self.failUnless(login, 'Could not log in')
+
+    def tearDown(self):
+        """Depopulate created model instances from test database."""
+        for model in MODELS:
+            for obj in model.objects.all():
+                obj.delete()
+                
+    def test_medical_condition_view(self):
+        """This tests the medical-condition-detail view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        
+        test_response = self.client.get('/veterinary/medical-condition/test-condition')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTemplateUsed(test_response, 'medical_condition_detail.html')
+        self.assertTemplateUsed(test_response, 'base.html')     
+        self.assertTemplateUsed(test_response, 'jquery_script.html')
+        self.assertTemplateUsed(test_response, 'menu_script.html') 
+        self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')                                             
+        self.assertTrue('medical_condition' in test_response.context)
+        self.assertEqual(test_response.context['medical_condition'].pk, 1)
+        self.assertEqual(test_response.context['medical_condition'].__unicode__(), u'Test Condition') 
+
 class MedicalTreatmentTests(TestCase):
     '''This class tests various aspects of the :class:`~mousedb.veterinary.models.MedicalTreatment` model.'''
 
@@ -216,4 +292,42 @@ class MedicalTreatmentTests(TestCase):
 
         test_medical_treatment = MedicalTreatment(name = "Test Treatment")  
         test_medical_treatment.save()
-        self.assertEqual(test_medical_treatment.get_absolute_url(), "/veterinary/medical-treatment/test-treatment") #where the url should be         
+        self.assertEqual(test_medical_treatment.get_absolute_url(), "/veterinary/medical-treatment/test-treatment") #where the url should be  
+        
+class MedicalTreatmentViewTests(TestCase):
+    '''This class tests the views for the :class:`~mousedb.veterinary.MedicalTreatment` objects.'''
+
+    fixtures = ['test_medical_issue', 'test_medical_condition','test_animals', 'test_medical_treatment', 'test_strain']
+
+    def setUp(self):
+        """Instantiate the test client.  Creates a test user."""
+        self.client = Client()
+        self.test_user = User.objects.create_user('testuser', 'blah@blah.com', 'testpassword')
+        self.test_user.is_superuser = True
+        self.test_user.is_active = True
+        self.test_user.save()
+        self.assertEqual(self.test_user.is_superuser, True)
+        login = self.client.login(username='testuser', password='testpassword')
+        self.failUnless(login, 'Could not log in')
+
+    def tearDown(self):
+        """Depopulate created model instances from test database."""
+        for model in MODELS:
+            for obj in model.objects.all():
+                obj.delete()
+                
+    def test_medical_treatment_view(self):
+        """This tests the medical-treatment-detail view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        
+        test_response = self.client.get('/veterinary/medical-treatment/test-treatment')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTemplateUsed(test_response, 'medical_treatment_detail.html') 
+        self.assertTemplateUsed(test_response, 'base.html')     
+        self.assertTemplateUsed(test_response, 'jquery_script.html')
+        self.assertTemplateUsed(test_response, 'menu_script.html') 
+        self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')               
+        self.assertTrue('medical_treatment' in test_response.context)
+        self.assertEqual(test_response.context['medical_treatment'].pk, 1)
+        self.assertEqual(test_response.context['medical_treatment'].__unicode__(), u'Test Treatment')                
