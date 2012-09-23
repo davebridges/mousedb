@@ -1,4 +1,5 @@
 <div id="animal-summary">
+
 <table>
 <tr>
 	<th>Date</th>
@@ -12,6 +13,24 @@
 	<td><a href="{{ issue.animal.get_absolute_url }}">{{ issue.animal }}</td>
 	<td><a href="{{ issue.condition.get_absolute_url }}">{{ issue.condition }}</td>
 	<td><a href="{{ issue.treatment.get_absolute_url }}">{{ issue.treatment }}</td>	
+	<td>
+	<a href="{% url medical-issue-detail issue.pk %}"> 
+    <button class="view">View</button>
+    </a>
+    	{% if perms.veterinary.update_medicalissue %}
+    <a href="{% url medical-issue-edit issue.pk %}"> 
+	<button class="update">Update</button>
+	</a>
+	    {% endif %}
+	    {% if perms.veterinary.delete_medicalissue %}
+	<a href="{% url medical-issue-delete issue.pk %}">
+	<button class="delete">Delete</button>
+	</a>
+		{% endif %}
+	</td>
 </tr>
 {% endfor %}
 </table>
+{% if perms.veterinary.create_medicalissue %}
+<a href="{% url medical-issue-new %}"><button class="new">Create New Medical Issue</button></a>
+{% endif %}
