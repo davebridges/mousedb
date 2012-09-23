@@ -49,7 +49,7 @@ class VeterinaryViewTests(TestCase):
         self.assertTrue('medical_conditions' in test_response.context) 
         self.assertTrue('medical_treatments' in test_response.context)                       
 
-class MedicalIssueTests(TestCase):
+class MedicalIssueModelTests(TestCase):
     '''This class tests various aspects of the :class:`~mousedb.veterinary.models.MedicalIssue` model.'''
 
     fixtures = ['test_medical_condition', 'test_medical_treatment', 'test_animals', 'test_strain']
@@ -143,7 +143,58 @@ class MedicalIssueViewTests(TestCase):
         self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')                
         self.assertTrue('medical_issue' in test_response.context)
         self.assertEqual(test_response.context['medical_issue'].pk, 1)
-        self.assertEqual(test_response.context['medical_issue'].__unicode__(), u'Fixture Strain (1) - Test Condition')              
+        self.assertEqual(test_response.context['medical_issue'].__unicode__(), u'Fixture Strain (1) - Test Condition')
+
+    def test_medical_issue_view_create(self):
+        """This tests the medical-issue-new view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        
+        test_response = self.client.get('/veterinary/medical-issue/new')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTemplateUsed(test_response, 'base.html')
+        self.assertTemplateUsed(test_response, 'medical_issue_form.html') 
+
+    def test_medical_issue_view_edit(self):
+        """This tests the medical-issue-edit view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        
+        test_response = self.client.get('/veterinary/medical-issue/1/edit')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTrue('medical_issue' in test_response.context)        
+        self.assertTemplateUsed(test_response, 'medical_issue_form.html')
+        self.assertTemplateUsed(test_response, 'base.html')     
+        self.assertTemplateUsed(test_response, 'jquery_script.html')
+        self.assertTemplateUsed(test_response, 'menu_script.html') 
+        self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')                
+        self.assertTrue('medical_issue' in test_response.context)
+        self.assertEqual(test_response.context['medical_issue'].pk, 1)
+        self.assertEqual(test_response.context['medical_issue'].__unicode__(), u'Fixture Strain (1) - Test Condition')
+
+        #verifies that a non-existent object returns a 404 error presuming there is no object with pk=2.
+        null_response = self.client.get('/veterinary/medical-issue/2/edit')
+        self.assertEqual(null_response.status_code, 404)   
+
+    def test_medical_issue_view_delete(self):
+        """This tests the medical-issue-delete view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        
+        test_response = self.client.get('/veterinary/medical-issue/1/delete')
+        self.assertEqual(test_response.status_code, 200)     
+        self.assertTemplateUsed(test_response, 'confirm_delete.html')
+        self.assertTemplateUsed(test_response, 'base.html')     
+        self.assertTemplateUsed(test_response, 'jquery_script.html')
+        self.assertTemplateUsed(test_response, 'menu_script.html') 
+        self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')                
+        self.assertTrue('object' in test_response.context)
+        self.assertEqual(test_response.context['object'].pk, 1)
+        self.assertEqual(test_response.context['object'].__unicode__(), u'Fixture Strain (1) - Test Condition')
+
+        #verifies that a non-existent object returns a 404 error.
+        null_response = self.client.get('/veterinary/medical-issue/2/delete')
+        self.assertEqual(null_response.status_code, 404)                       
 
 class MedicalConditionTests(TestCase):
     '''This class tests various aspects of the :class:`~mousedb.veterinary.models.MedicalCondition` model.'''

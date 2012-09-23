@@ -10,8 +10,10 @@ There is one generic home view for the entire app as well as detail views for th
 
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.core.urlresolvers import reverse_lazy
 
-from braces.views import LoginRequiredMixin
+from braces.views import LoginRequiredMixin, PermissionRequiredMixin
 
 from mousedb.veterinary.models import MedicalIssue,MedicalCondition,MedicalTreatment
 
@@ -34,12 +36,41 @@ class VeterinaryHome(LoginRequiredMixin, TemplateView):
 class MedicalIssueDetail(LoginRequiredMixin, DetailView):
     '''This view is for details of a particular :class:`~mousedb.veterinary.MedicalIssue`.
     
-    It passes an object **medical_issue** when the url **/veterinary/medical-issue/1** is requested.'''
+    It passes an object **medical_issue** when the url **/veterinary/medical-issue/<pk#>** is requested.'''
 
     model = MedicalIssue
     context_object_name = 'medical_issue'
     template_name = 'medical_issue_detail.html'
-        
+    
+class MedicalIssueCreate(PermissionRequiredMixin, CreateView):
+    '''This view is for creating a new :class:`~mousedb.veterinary.MedicalIssue`.
+    
+    It requires the permissions to create a new medical issue and is found at the url **/veterinary/medical-issue/new**.'''
+    
+    permission_required = 'veterinary.create_medicalissue'
+    model = MedicalIssue
+    template_name = 'medical_issue_form.html'
+    
+class MedicalIssueUpdate(PermissionRequiredMixin, UpdateView):
+    '''This view is for updating a :class:`~mousedb.veterinary.MedicalIssue`.
+    
+    It requires the permissions to update a medical issue and is found at the url **/veterinary/medical-issue/<pk$>/edit**.'''
+    
+    permission_required = 'veterinary.update_medicalissue'
+    model = MedicalIssue
+    context_object_name = 'medical_issue'
+    template_name = 'medical_issue_form.html'   
+    
+class MedicalIssueDelete(PermissionRequiredMixin, DeleteView):
+    '''This view is for deleting a :class:`~mousedb.veterinary.MedicalIssue`.
+    
+    It requires the permissions to delete a medical issue and is found at the url **/veterinary/medical-issue/<pk$>/delete**.'''
+    
+    permission_required = 'veterinary.delete_medicalissue'
+    model = MedicalIssue
+    template_name = 'confirm_delete.html' 
+    success_url = reverse_lazy('veterinary-home')        
+    
 class MedicalConditionDetail(LoginRequiredMixin, DetailView):
     '''This view is for details of a particular :class:`~mousedb.veterinary.MedicalCondition`.
     
