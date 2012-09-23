@@ -38,7 +38,7 @@ class MedicalCondition(models.Model):
     
     name = models.CharField(max_length = 100)
     slug = models.SlugField(max_length = 100, editable=False)
-    notes = models.TextField()
+    notes = models.TextField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     
