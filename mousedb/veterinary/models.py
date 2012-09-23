@@ -36,7 +36,7 @@ class MedicalCondition(models.Model):
     The slug field is not updated upon repeated saves, only on the first save for persistence.
     There is also an optional notes field for extra information.'''
     
-    name = models.CharField(max_length = 100)
+    name = models.CharField(max_length = 100, unique=True)
     slug = models.SlugField(max_length = 100, editable=False)
     notes = models.TextField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
@@ -62,7 +62,7 @@ class MedicalTreatment(models.Model):
     
     There is one required field (name), the treatment name and one auto-generated field (slug).'''   
     
-    name = models.CharField(max_length = 100)
+    name = models.CharField(max_length = 100, unique=True)
     slug = models.SlugField(max_length = 100, editable=False)
     
     def __unicode__(self):
