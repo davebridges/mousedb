@@ -1,0 +1,14 @@
+[
+    {
+        "pk": 1, 
+        "model": "veterinary.medicalissue", 
+        "fields": {
+            "animal": 1, 
+            "treatment_start": null, 
+            "treatment_end": null, 
+            "treatment": null, 
+            "diagnosis": null, 
+            "condition": 1
+        }
+    }
+]

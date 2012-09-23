@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Veterinary{% endblock title%}
+{% block header %}Veterinary{% endblock header%}
+
+{% block content %}
+<h2>Medical Issues</h2>
+<ul>
+{% for issue in medical_issues %}
+	<li><a href="{{ issue.get_absolute_url }}"><{{ issue }}</a></li>
+{% endfor %}
+</ul>
+
+<h2>Medical Conditions</h2>
+<ul>
+{% for condition in medical_conditions %}
+	<li><a href="{{ condition.get_absolute_url }}">{{ condition }}</a></li>
+{% endfor %}
+</ul>
+
+<h2>Medical Treatments</h2>
+<ul>
+{% for treatment in medical_treatments %}
+	<li><a href="{{ treatments.get_absolute_url }}">{{ treatment }}</a></li>
+{% endfor %}
+</ul>
+{% endblock content %}

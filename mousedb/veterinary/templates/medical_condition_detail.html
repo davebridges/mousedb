@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Medical Condition Details - {{ medical_condition }}{% endblock title%}
+{% block header %}Medical Condition Details{% endblock header%}
+
+{% block content %}
+<table>
+<tr><th>Condition</th><td>{{ medical_condition }}</td></tr>
+<tr><th>Afflicted Mice</th><td>{{ medical_condition.medicalissue_set.count }}</td></tr>
+<tr><th>Notes</th><td>{{ medical_condition.notes }}</td></tr>
+<tr><th>Created</th><td>{{ medical_condition.created }}</td></tr>
+<tr><th>Updated</th><td>{{ medical_condition.updated }}</td></tr>
+</table>
+{% endblock content %}

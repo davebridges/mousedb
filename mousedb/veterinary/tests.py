@@ -15,6 +15,40 @@ from mousedb.animal.models import Animal
 
 MODELS = [MedicalIssue, MedicalCondition, MedicalTreatment]
 
+class VeterinaryViewTests(TestCase):
+    '''This class tests the views for the base :mod:`~mousedb.veterinary` app.'''
+
+    fixtures = ['test_condition', 'test_treatment']
+
+    def setUp(self):
+        """Instantiate the test client.  Creates a test user."""
+        self.client = Client()
+        self.test_user = User.objects.create_user('testuser', 'blah@blah.com', 'testpassword')
+        self.test_user.is_superuser = True
+        self.test_user.is_active = True
+        self.test_user.save()
+        self.assertEqual(self.test_user.is_superuser, True)
+        login = self.client.login(username='testuser', password='testpassword')
+        self.failUnless(login, 'Could not log in')
+
+    def tearDown(self):
+        """Depopulate created model instances from test database."""
+        for model in MODELS:
+            for obj in model.objects.all():
+                obj.delete()
+                
+    def test_veterinary_home_view(self):
+        """This tests the veterinary-home view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        
+        test_response = self.client.get('/veterinary/')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTemplateUsed(test_response, 'veterinary_home.html')        
+        self.assertTrue('medical_issues' in test_response.context)        
+        self.assertTrue('medical_conditions' in test_response.context) 
+        self.assertTrue('medical_treatments' in test_response.context)                       
+
 class MedicalIssueTests(TestCase):
     '''This class tests various aspects of the :class:`~mousedb.veterinary.models.MedicalIssue` model.'''
 
