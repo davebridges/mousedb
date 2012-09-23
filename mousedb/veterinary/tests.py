@@ -71,7 +71,7 @@ class MedicalIssueTests(TestCase):
         test_medical_issue = MedicalIssue(animal= Animal.objects.get(pk=1),
         	condition = MedicalCondition.objects.get(pk=1)) 
         test_medical_issue.save()
-        self.assertEqual(test_medical_issue.get_absolute_url(), "/veterinary/medical-issue/2/") #where the url should be 
+        self.assertEqual(test_medical_issue.get_absolute_url(), "/veterinary/medical-issue/1") #where the url should be 
 
 class MedicalConditionTests(TestCase):
     '''This class tests various aspects of the :class:`~mousedb.veterinary.models.MedicalCondition` model.'''
@@ -127,7 +127,7 @@ class MedicalConditionTests(TestCase):
 
         test_medical_condition = MedicalCondition(name = "Test Condition")  
         test_medical_condition.save()
-        self.assertEqual(test_medical_condition.get_absolute_url(), "/veterinary/medical-condition/test-condition/") #where the url should be 
+        self.assertEqual(test_medical_condition.get_absolute_url(), "/veterinary/medical-condition/test-condition") #where the url should be 
         
 class MedicalTreatmentTests(TestCase):
     '''This class tests various aspects of the :class:`~mousedb.veterinary.models.MedicalTreatment` model.'''
@@ -182,4 +182,4 @@ class MedicalTreatmentTests(TestCase):
 
         test_medical_treatment = MedicalTreatment(name = "Test Treatment")  
         test_medical_treatment.save()
-        self.assertEqual(test_medical_treatment.get_absolute_url(), "/veterinary/medical-treatment/test-treatment/") #where the url should be         
+        self.assertEqual(test_medical_treatment.get_absolute_url(), "/veterinary/medical-treatment/test-treatment") #where the url should be         
