@@ -26,7 +26,7 @@ class MedicalIssue(models.Model):
     @models.permalink
     def get_absolute_url(self):
         '''The url of a medical issue is **/veterinary/medical-issue/<id#>/**.'''
-        return ('medical_issue_view', [str(self.id)])             
+        return ('medical-issue-detail', [str(self.id)])             
     
 class MedicalCondition(models.Model):
     '''This model contains details about different types of medical conditions.
@@ -49,7 +49,7 @@ class MedicalCondition(models.Model):
     @models.permalink
     def get_absolute_url(self):
         '''The url of a medical issue is **/veterinary/medical-condition/<slug>/**.'''    
-        return ('medical_condition_view', [str(self.slug)])            
+        return ('medical-condition-detail', [str(self.slug)])            
     
     def save(self, *args, **kwargs):
         '''The save method is over-ridden to generate and save the slug field.  This is only done with create, not update.'''
@@ -72,7 +72,7 @@ class MedicalTreatment(models.Model):
     @models.permalink
     def get_absolute_url(self):
         '''The url of a medical issue is **/veterinary/medical-treatment/<slug>/**.'''    
-        return ('medical_treatment_view', [str(self.slug)])             
+        return ('medical-treatment-detail', [str(self.slug)])             
             
     def save(self, *args, **kwargs):
         '''The save method is over-ridden to generate and save the slug field.  This is only done with create, not update.'''
