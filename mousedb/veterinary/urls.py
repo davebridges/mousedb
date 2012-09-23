@@ -19,6 +19,9 @@ urlpatterns = patterns('',
     url(r'^medical-condition/(?P<slug>[\w\-]+)/edit/?$', views.MedicalConditionUpdate.as_view(), name="medical-condition-edit"), 
     url(r'^medical-condition/(?P<slug>[\w\-]+)/delete/?$', views.MedicalConditionDelete.as_view(), name="medical-condition-delete"),         
 
+    url(r'^medical-treatment/new/?$', views.MedicalTreatmentCreate.as_view(), name="medical-treatment-new"),
     url(r'^medical-treatment/(?P<slug>[\w\-]+)/?$', views.MedicalTreatmentDetail.as_view(), name="medical-treatment-detail"),
+    url(r'^medical-treatment/(?P<slug>[\w\-]+)/edit/?$', views.MedicalTreatmentUpdate.as_view(), name="medical-treatment-edit"),
+    url(r'^medical-treatment/(?P<slug>[\w\-]+)/delete/?$', views.MedicalTreatmentDelete.as_view(), name="medical-treatment-delete"),        
 
 )

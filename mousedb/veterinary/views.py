@@ -1,6 +1,6 @@
 '''This module generates the views for the veterinary app.
 
-There is one generic home view for the entire app as well as detail views for these models:
+There is one generic home view for the entire app as well as detail, create update and delete views for these models:
 
 * :class:`~mousedb.veterinary.models.MedicalIssue`
 * :class:`~mousedb.veterinary.models.MedicalCondition`
@@ -116,4 +116,33 @@ class MedicalTreatmentDetail(LoginRequiredMixin, DetailView):
 
     model = MedicalTreatment
     context_object_name = 'medical_treatment'
-    template_name = 'medical_treatment_detail.html'            
+    template_name = 'medical_treatment_detail.html' 
+    
+class MedicalTreatmentCreate(PermissionRequiredMixin, CreateView):
+    '''This view is for creating a new :class:`~mousedb.veterinary.MedicalTreatment`.
+    
+    It requires the permissions to create a new medical issue and is found at the url **/veterinary/medical-treatment/new**.'''
+    
+    permission_required = 'veterinary.create_medicaltreatment'
+    model = MedicalTreatment
+    template_name = 'medical_treatment_form.html'
+    
+class MedicalTreatmentUpdate(PermissionRequiredMixin, UpdateView):
+    '''This view is for updating a :class:`~mousedb.veterinary.MedicalTreatment`.
+    
+    It requires the permissions to update a medical issue and is found at the url **/veterinary/medical-treatment/<slug>/edit**.'''
+    
+    permission_required = 'veterinary.update_medicaltreatment'
+    model = MedicalTreatment
+    context_object_name = 'medical_treatment'
+    template_name = 'medical_treatment_form.html'   
+    
+class MedicalTreatmentDelete(PermissionRequiredMixin, DeleteView):
+    '''This view is for deleting a :class:`~mousedb.veterinary.MedicalTreatment`.
+    
+    It requires the permissions to delete a medical issue and is found at the url **/veterinary/medical-treatment/<slug>/delete**.'''
+    
+    permission_required = 'veterinary.delete_medicaltreatment'
+    model = MedicalTreatment
+    template_name = 'confirm_delete.html' 
+    success_url = reverse_lazy('veterinary-home')               
