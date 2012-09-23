@@ -288,7 +288,57 @@ class MedicalConditionViewTests(TestCase):
         self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')                                             
         self.assertTrue('medical_condition' in test_response.context)
         self.assertEqual(test_response.context['medical_condition'].pk, 1)
-        self.assertEqual(test_response.context['medical_condition'].__unicode__(), u'Test Condition') 
+        self.assertEqual(test_response.context['medical_condition'].__unicode__(), u'Test Condition')
+
+    def test_medical_condition_view_create(self):
+        """This tests the medical-condition-new view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        
+        test_response = self.client.get('/veterinary/medical-condition/new')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTemplateUsed(test_response, 'base.html')
+        self.assertTemplateUsed(test_response, 'medical_condition_form.html') 
+
+    def test_medical_condition_view_edit(self):
+        """This tests the medical-condition-edit view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        
+        test_response = self.client.get('/veterinary/medical-condition/test-condition/edit')
+        self.assertEqual(test_response.status_code, 200)       
+        self.assertTemplateUsed(test_response, 'medical_condition_form.html')
+        self.assertTemplateUsed(test_response, 'base.html')     
+        self.assertTemplateUsed(test_response, 'jquery_script.html')
+        self.assertTemplateUsed(test_response, 'menu_script.html') 
+        self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')                
+        self.assertTrue('medical_condition' in test_response.context)
+        self.assertEqual(test_response.context['medical_condition'].pk, 1)
+        self.assertEqual(test_response.context['medical_condition'].__unicode__(), u'Test Condition')
+
+        #verifies that a non-existent object returns a 404 error presuming there is no object with pk=2.
+        null_response = self.client.get('/veterinary/medical-issue/wrong-test-condition/edit')
+        self.assertEqual(null_response.status_code, 404)   
+
+    def test_medical_condition_view_delete(self):
+        """This tests the medical-condition-delete view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        
+        test_response = self.client.get('/veterinary/medical-condition/test-condition/delete')
+        self.assertEqual(test_response.status_code, 200)     
+        self.assertTemplateUsed(test_response, 'confirm_delete.html')
+        self.assertTemplateUsed(test_response, 'base.html')     
+        self.assertTemplateUsed(test_response, 'jquery_script.html')
+        self.assertTemplateUsed(test_response, 'menu_script.html') 
+        self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')                
+        self.assertTrue('object' in test_response.context)
+        self.assertEqual(test_response.context['object'].pk, 1)
+        self.assertEqual(test_response.context['object'].__unicode__(), u'Test Condition')
+
+        #verifies that a non-existent object returns a 404 error.
+        null_response = self.client.get('/veterinary/medical-condition/wrong-test-condition/delete')
+        self.assertEqual(null_response.status_code, 404)          
 
 class MedicalTreatmentTests(TestCase):
     '''This class tests various aspects of the :class:`~mousedb.veterinary.models.MedicalTreatment` model.'''

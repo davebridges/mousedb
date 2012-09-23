@@ -80,6 +80,35 @@ class MedicalConditionDetail(LoginRequiredMixin, DetailView):
     context_object_name = 'medical_condition'
     template_name = 'medical_condition_detail.html'
     
+class MedicalConditionCreate(PermissionRequiredMixin, CreateView):
+    '''This view is for creating a new :class:`~mousedb.veterinary.MedicalCondition`.
+    
+    It requires the permissions to create a new medical issue and is found at the url **/veterinary/medical-condition/new**.'''
+    
+    permission_required = 'veterinary.create_medicalcondition'
+    model = MedicalCondition
+    template_name = 'medical_condition_form.html'
+    
+class MedicalConditionUpdate(PermissionRequiredMixin, UpdateView):
+    '''This view is for updating a :class:`~mousedb.veterinary.MedicalCondition`.
+    
+    It requires the permissions to update a medical issue and is found at the url **/veterinary/medical-condition/<slug>/edit**.'''
+    
+    permission_required = 'veterinary.update_medicalcondition'
+    model = MedicalCondition
+    context_object_name = 'medical_condition'
+    template_name = 'medical_condition_form.html'   
+    
+class MedicalConditionDelete(PermissionRequiredMixin, DeleteView):
+    '''This view is for deleting a :class:`~mousedb.veterinary.MedicalCondition`.
+    
+    It requires the permissions to delete a medical issue and is found at the url **/veterinary/medical-condition/<slug>/delete**.'''
+    
+    permission_required = 'veterinary.delete_medicalcondition'
+    model = MedicalCondition
+    template_name = 'confirm_delete.html' 
+    success_url = reverse_lazy('veterinary-home')     
+    
 class MedicalTreatmentDetail(LoginRequiredMixin, DetailView):
     '''This view is for details of a particular :class:`~mousedb.veterinary.MedicalTreatment`.
     
