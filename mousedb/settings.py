@@ -59,6 +59,7 @@ INSTALLED_APPS = (
     'mousedb.animal',
     'mousedb.timed_mating',
     'mousedb.groups',
+    'mousedb.veterinary',
     'django.contrib.admin',
     'ajax_select',
     'south'
