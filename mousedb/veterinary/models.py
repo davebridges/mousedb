@@ -10,12 +10,13 @@ class MedicalIssue(models.Model):
     
     There is links to the :class:`~mousedb.animal.models.Animal`, the :class:`~mousedb.veterinary.models.MedicalCondition` and the :class:`~mousedb.veterinary.models.MedicalTreatment` choice.
     The required fields are the animal and the condition.
-    There are also fields for the diagnosis date, treatment start and treatment end dates (not required).'''
+    There are also fields for the diagnosis date, veterinary code, treatment start and treatment end dates (not required).'''
     
     animal = models.ForeignKey(Animal)
     condition = models.ForeignKey('MedicalCondition', help_text = "The medical problem")
     treatment = models.ForeignKey('MedicalTreatment', blank=True, null=True, help_text = "The course of treatment")
     diagnosis = models.DateField(blank=True, null=True, help_text = "When this problem was noticed")
+    code = models.CharField(max_length=25,blank=True, null=True, help_text = "Veterinary Code")
     treatment_start = models.DateField(blank=True, null=True, help_text = "When treatment began")
     treatment_end = models.DateField(blank=True, null=True, help_text = "When treatment ceased")
     

@@ -5,6 +5,7 @@
 {% block content %}
 <table>
 <tr><th>Diagnosis Date</th><td>{{ medical_issue.diagnosis }}</td></tr>
+<tr><th>Veterinary Code</th><td>{{ medical_issue.code }}</td></tr>
 <tr><th>Animal Affected</th><td><a href="{{ medical_issue.animal.get_absolute_url }}">{{ medical_issue.animal }}</a></td></tr>
 <tr><th>Condition</th><td><a href="{{ medical_issue.condition.get_absolute_url }}">{{ medical_issue.condition }}</a></td></tr>
 <tr><th>Treatment</th><td><a href="{{ medical_issue.treatment.get_absolute_url }}">{{ medical_issue.treatment }}</a></td></tr>
