@@ -15,16 +15,16 @@
 	<td><a href="{{ issue.treatment.get_absolute_url }}">{{ issue.treatment }}</td>	
 	<td>
 	<a href="{% url medical-issue-detail issue.pk %}"> 
-    <button class="view">View</button>
+    <button class="fg-button ui-state-default  ui-corner-left view" name="Details"><span class="ui-icon ui-icon-zoomin"></span></button>
     </a>
     	{% if perms.veterinary.update_medicalissue %}
     <a href="{% url medical-issue-edit issue.pk %}"> 
-	<button class="update">Update</button>
+	<button class="fg-button ui-state-default update" name="Edit"><span class="ui-icon ui-icon-pencil"></span></button>
 	</a>
 	    {% endif %}
 	    {% if perms.veterinary.delete_medicalissue %}
 	<a href="{% url medical-issue-delete issue.pk %}">
-	<button class="delete">Delete</button>
+	<button class="fg-button ui-state-default  ui-corner-right delete" name="Delete"><span class="ui-icon ui-icon-trash"></span></button>
 	</a>
 		{% endif %}
 	</td>
@@ -32,5 +32,5 @@
 {% endfor %}
 </table>
 {% if perms.veterinary.create_medicalissue %}
-<a href="{% url medical-issue-new %}"><button class="new">Create New Medical Issue</button></a>
+<a href="{% url medical-issue-new %}"><button class="fg-button ui-state-default  ui-corner-right new" name="Add"><span class="ui-icon ui-icon-circle-plus"></span>Create New Medical Issue</button></a>
 {% endif %}
