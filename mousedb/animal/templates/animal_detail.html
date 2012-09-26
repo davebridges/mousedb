@@ -82,7 +82,7 @@ This mouse has an unknown age.
 	{% with animal.Breeding as breeding %}
 	{% include "breeding_summary_table.html" %}
 	{% endwith %}
-{% else %}
+</div>
 {% endif %}
 <div id="animal-measurements">
 	<h2>Measurement Summary</h2>
@@ -94,4 +94,14 @@ This mouse has an unknown age.
 	<p>No measurements for this animal.</p>
     {% endif %}
 </div>
+{% if animal.medicalissue_set.count > 0 %}
+<div id="veterinary">
+	<h2>Veterinary Summary</h2>
+    <p>This mouse has had {{ animal.medicalissue_set.count }} medical issues.</p>
+	{% with animal.medicalissue_set.all as medical_issues %}
+	{% include "veterinary_summary_snippet.html" %}
+	{% endwith %}
+</div>
+{% endif %}
+
 {% endblock content%}

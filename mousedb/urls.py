@@ -38,6 +38,8 @@ urlpatterns = patterns('',
 	url(r'^timedmatings?/', include('mousedb.timed_mating.urls')),
 	url(r'^timed_matings?/', include('mousedb.timed_mating.urls')),
 	
+	url(r'^veterinary/', include('mousedb.veterinary.urls')),
+	
 	url(r'^index/$', 'mousedb.views.home', name="home"),
 	url(r'^/?$', 'mousedb.views.home')
 )

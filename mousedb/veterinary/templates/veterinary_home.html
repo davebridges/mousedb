@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Veterinary{% endblock title%}
+{% block header %}Veterinary{% endblock header%}
+
+{% block content %}
+<h2>Medical Issues</h2>
+
+{% include 'veterinary_summary_snippet.html' %}
+
+
+<h2>Medical Conditions</h2>
+<ul>
+{% for condition in medical_conditions %}
+	<li><a href="{{ condition.get_absolute_url }}">{{ condition }}</a>
+	{% if perms.veterinary.update_medicalcondition %}
+    <a href="{% url medical-condition-edit condition.slug %}"> 
+	<button class="update">Update</button>
+	</a>
+{% endif %}
+
+{% if perms.veterinary.delete_medicalcondition %}
+	<a href="{% url medical-condition-delete condition.slug %}">
+	<button class="delete">Delete</button>
+	</a>
+{% endif %}
+</li>
+{% endfor %}
+</ul>
+{% if perms.veterinary.create_medicalcondition %}
+	<a href="{% url medical-condition-new %}">
+	<button class="create">New Medical Condition</button>
+	</a>
+{% endif %}
+
+<h2>Medical Treatments</h2>
+<ul>
+{% for treatment in medical_treatments %}
+	<li><a href="{{ treatment.get_absolute_url }}">{{ treatment }}</a>
+{% if perms.veterinary.update_medicalcondition %}
+    <a href="{% url medical-treatment-edit treatment.slug %}"> 
+	<button class="update">Update</button>
+	</a>
+{% endif %}
+{% if perms.veterinary.delete_medicalcondition %}
+	<a href="{% url medical-treatment-delete treatment.slug %}">
+	<button class="delete">Delete</button>
+	</a>
+{% endif %}
+</li>
+{% endfor %}
+</ul>
+{% if perms.veterinary.create_medicaltreatment %}
+	<a href="{% url medical-treatment-new %}">
+	<button class="create">New Medical Treatment</button>
+	</a>
+{% endif %}
+{% endblock content %}

@@ -36,6 +36,10 @@ TEMPLATE_DIRS = (
 	os.path.join(PROJECT_DIR, "templates"),
 )
 
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_DIR, "static"),
+)
+
 TEMPLATE_CONTEXT_PROCESSORS =(
 	"django.contrib.auth.context_processors.auth",
 	"django.core.context_processors.debug",
@@ -59,7 +63,8 @@ INSTALLED_APPS = (
     'mousedb.animal',
     'mousedb.timed_mating',
     'mousedb.groups',
-    'django.contrib.admin',
+    'mousedb.veterinary',
+    'braces',
     'ajax_select',
     'south'
 )

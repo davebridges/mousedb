@@ -25,6 +25,11 @@ Downloading and/or unzipping will create a directory named mousedb.  You can upd
 
 3. **Database software**.  Recommended to use mysql, available at http://dev.mysql.com/downloads/mysql/ .  It is also possible to use SQLite, PostgreSQL, MySQL, or Oracle.  See http://docs.djangoproject.com/en/1.2/topics/install/#database-installation for more information.
 4. **Webserver**.  Apache is recommended, available at http://www.apache.org/dyn/closer.cgi .  It is also possible to use FastCGI, SCGI, or AJP.  See http://docs.djangoproject.com/en/1.2/howto/deployment/ for more details.  The recommended way to use Apache is to download and enable mod_wsgi.  See http://code.google.com/p/modwsgi/ for more details.
+5. **Other Python Packages**.  The following can be imported using **pip install -U <package-name>** and are required:
+    
+    * South: Used for database migrations.  Only required for upgrades.
+    * django-braces: Used for login and permission settings in class based views.
+    * django-ajax-selects: For autocomplete functionality.
 
 Database Setup
 --------------
