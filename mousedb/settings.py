@@ -66,7 +66,8 @@ INSTALLED_APPS = (
     'mousedb.veterinary',
     'braces',
     'ajax_select',
-    'south'
+    'south',
+    'tastypie'
 )
 
 # magically include jqueryUI/js/css for ajax_select
