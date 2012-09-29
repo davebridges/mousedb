@@ -3,19 +3,24 @@
 Overview
 --------
 
-The API for the :mod:`~mousedb.models.data` application provides data on measurements. 
+The API for the :mod:`~mousedb.models.data` application provides data on measurements and their associated data types.
+A list of all endpoints and links to their schemas are available at **http://yourserver.org/api/v1/** where yourserver is specific to your installation.
 There are four access points, each of which is available using GET requests only:
 
-* measurements available at the endpoint **http://yourserver.org/api/v1/data/**
-* assays available at the endpoint **http://yourserver.org/api/v1/assay/**
-* experiments available at the endpoint **http://yourserver.org/api/v1/experiment/**
-* studies available at the endpoint **http://yourserver.org/api/v1/study/**
+* measurements are available at the endpoint **http://yourserver.org/api/v1/data/**
+* assays are available at the endpoint **http://yourserver.org/api/v1/assay/**
+* experiments are available at the endpoint **http://yourserver.org/api/v1/experiment/**
+* studies are available at the endpoint **http://yourserver.org/api/v1/study/**
 
 The data can be provided as either a group of objects or as a single object. 
-Currently for all requests, no authentication is required.  The entire API schema is available from each endpoint at::
+Currently for all requests, no authentication is required.  
+
+The entire API schema is available from each endpoint at::
 
     /schema/?format=xml
     /schema/?format=json
+
+For example **http://yourserver.org/api/v1/study/schema/?format=json**.
     
 
 Sample Code
@@ -32,18 +37,16 @@ For a collection of measurements you can request::
 
     http://yourserver.org/api/v1/data/?format=json 
     
-This would return all measurements in the database.  This would return the following json response with two JSON objects, meta and objects.
-The meta object contains fields for the limit, next, offset, previous and total_count for the series of objects requested.  
-The objects portion is an array of the returned measurements.  
-Note the id field of a measurement.  This is used for retrieving a single datum.  
-Collections can also be filtered based on assay or year::
+This would return all measurements in the database.  
+This would return the response with two JSON objects, **meta** and **objects**.
+The **format=json** parameter is default for curl and not required but is necessary for browser requests.
+The meta object contains fields for the **limit**, **next**, **offset**, **previous** and **total_count** for the series of objects requested.  
+The objects portion is an array of the returned object fields (see the details below for each API).  
+Note the id field of an object.  This is used for retrieving a single object.  
+Collections can also be filtered based on several request parameters (see below for details for each API)::
 
-    http://yourserver.org/api/v1/data/?format=json&year=2012     
-    http://yourserver.org/api/v1/data/?format=json&assay=body-weight 
-    http://yourserver.org/api/v1/data/?format=json&assay=body-weight&year=2012
-    http://yourserver.org/api/v1/data/set/1;3/?format=json 
-    
-The last example requests the measurements with id numbers 1 and 3.                    
+    http://yourserver.org/api/v1/data/ #returns all data in JSON format 
+    http://yourserver.org/api/v1/experiment/set/1;3/?format=json #returns the experiments with id numbers 1 and 3 in XML format.                    
 
 For a single object
 ```````````````````
@@ -66,7 +69,7 @@ Request Parameters
 ``````````````````
 
 The following are the potential request variables, all of which are optional.  
-The default format is json, but this can be set as xml if required.
+The default format is JSON, but this can be set as XML if required.
 If viewing by web browser ?format=json must be specified  
 By default 20 items are returned but you can increase this to all by setting limit=0.
 
@@ -81,7 +84,7 @@ By default 20 items are returned but you can increase this to all by setting lim
 Response Values
 ```````````````
 
-The response (in either json or xml) provides the following fields for each object (or for the only object in the case of a single object request).
+The response (in either JSON or XML) provides the following fields for each object (or for the only object in the case of a single object request).
 
 +--------------------+-----------------------------------------------------+-------------------------------------------------------------+
 |      Field         |              Explanation                            |                         Sample Value                        |
@@ -103,7 +106,7 @@ Request Parameters
 ``````````````````
 
 The following are the potential request variables, all of which are optional.  
-The default format is json, but this can be set as xml if required.
+The default format is JSON, but this can be set as XML if required.
 If viewing by web browser ?format=json must be specified  
 By default 20 items are returned but you can increase this to all by setting limit=0.
 
@@ -118,7 +121,7 @@ By default 20 items are returned but you can increase this to all by setting lim
 Response Values
 ```````````````
 
-The response (in either json or xml) provides the following fields for each object (or for the only object in the case of a single object request).
+The response (in either JSON or XML) provides the following fields for each object (or for the only object in the case of a single object request).
 
 +--------------------+-------------------------------------------------------------+-------------------------------------------------------------+
 |      Field         |              Explanation                                    |                         Sample Value                        |
@@ -145,7 +148,7 @@ Request Parameters
 ``````````````````
 
 The following are the potential request variables, all of which are optional.  
-The default format is json, but this can be set as xml if required.
+The default format is JSON, but this can be set as XML if required.
 If viewing by web browser ?format=json must be specified  
 By default 20 items are returned but you can increase this to all by setting limit=0.
 
@@ -160,7 +163,7 @@ By default 20 items are returned but you can increase this to all by setting lim
 Response Values
 ```````````````
 
-The response (in either json or xml) provides the following fields for each object (or for the only object in the case of a single object request).
+The response (in either JSON or XML) provides the following fields for each object (or for the only object in the case of a single object request).
 
 +--------------------+-------------------------------------------------------------+-------------------------------------------------------------+
 |      Field         |              Explanation                                    |                         Sample Value                        |
@@ -186,7 +189,47 @@ The response (in either json or xml) provides the following fields for each obje
 | time               | the time of day the assay was done (24h format)             | 16:00                                                       |
 +--------------------+-------------------------------------------------------------+-------------------------------------------------------------+
 
+Reference for the Study API
+---------------------------
 
+The study API is available at the endpoint **/api/v1/study/**
+
+Request Parameters
+``````````````````
+
+The following are the potential request variables, all of which are optional.  
+The default format is JSON but this can be set as XML if required.
+If viewing by web browser ?format=json must be specified  
+By default 20 items are returned but you can increase this to all by setting limit=0.
+
++------------------+-----------------------------------------+
+| Parameter        | Potential Values                        |
++==================+=========================================+
+| format           | **json** or **xml**                     |
++------------------+-----------------------------------------+
+| limit            | **0** for all, any other number         |
++------------------|-----------------------------------------+
+
+Response Values
+```````````````
+
+The response (in either JSON or XML) provides the following fields for each object (or for the only object in the case of a single object request).
+
++--------------------+-------------------------------------------------------------+-------------------------------------------------------------+
+|      Field         |              Explanation                                    |                         Sample Value                        |
++====================+=============================================================+=============================================================+
+| id                 | the id of the measurement                                   | 6                                                           |
++--------------------+-------------------------------------------------------------+-------------------------------------------------------------+ 
+| resource_uri       | the URI to request details about a measurement              | /api/v1/study/6/                                            |
++--------------------+-------------------------------------------------------------+-------------------------------------------------------------+ 
+| description        | the description of the study                                | some text                                                   |
++--------------------+-------------------------------------------------------------+-------------------------------------------------------------+ 
+| notes              | some notes about the study                                  | some text                                                   |
++--------------------+-------------------------------------------------------------+-------------------------------------------------------------+ 
+| start_date         | the optional starting date of the study                     | 2012-07-23                                                  |
++--------------------+-------------------------------------------------------------+-------------------------------------------------------------+ 
+| stop _date         | the optional end date of the study                          | 2012-09-27                                                  |
++--------------------+-------------------------------------------------------------+-------------------------------------------------------------+ 
 '''
 
 from tastypie.resources import ModelResource
@@ -232,5 +275,19 @@ class ExperimentResource(ModelResource):
 
         queryset = Experiment.objects.all()
         resource_name = 'experiment'
+        list_allowed_methods = ['get']
+        detail_allowed_methods = ['get']        
+        
+class StudyResource(ModelResource):
+    '''This generates the API resource for :class:`~mousedb.data.models.Study` objects.
+    
+    It returns all studies in the database.
+    '''
+    
+    class Meta:
+        '''The API serves all :class:`~mousedb.data.models.Study` objects in the database..'''
+
+        queryset = Study.objects.all()
+        resource_name = 'study'
         list_allowed_methods = ['get']
         detail_allowed_methods = ['get']        
