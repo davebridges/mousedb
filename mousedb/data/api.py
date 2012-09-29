@@ -60,11 +60,13 @@ In this case **2** is the primary key (or id field) of the assay in question.
 Reference for Measurement API
 -----------------------------
 
+The measurement API is available at the endpoint **/api/v1/data/**
+
 Request Parameters
 ``````````````````
 
 The following are the potential request variables, all of which are optional.  
-The default format is json, but this can be set as json if required.
+The default format is json, but this can be set as xml if required.
 If viewing by web browser ?format=json must be specified  
 By default 20 items are returned but you can increase this to all by setting limit=0.
 
@@ -86,7 +88,7 @@ The response (in either json or xml) provides the following fields for each obje
 +====================+=====================================================+=============================================================+
 | id                 | the id of the measurement                           | 1                                                           |
 +--------------------+-----------------------------------------------------+-------------------------------------------------------------+ 
-| resource_uri       | the URI to request details about a measurement      | /api/v1/data/3/                                             |
+| resource_uri       | the URI to request details about a measurement      | /api/v1/data/1/                                             |
 +--------------------+-----------------------------------------------------+-------------------------------------------------------------+ 
 | values             | the measurement, or measurement(s)                  | 423                                                         |
 +--------------------+-----------------------------------------------------+-------------------------------------------------------------+ 
@@ -95,11 +97,13 @@ The response (in either json or xml) provides the following fields for each obje
 Reference for the Assay API
 ---------------------------
 
+The assay API is available at the endpoint **/api/v1/assay/**
+
 Request Parameters
 ``````````````````
 
 The following are the potential request variables, all of which are optional.  
-The default format is json, but this can be set as json if required.
+The default format is json, but this can be set as xml if required.
 If viewing by web browser ?format=json must be specified  
 By default 20 items are returned but you can increase this to all by setting limit=0.
 
@@ -119,9 +123,9 @@ The response (in either json or xml) provides the following fields for each obje
 +--------------------+-------------------------------------------------------------+-------------------------------------------------------------+
 |      Field         |              Explanation                                    |                         Sample Value                        |
 +====================+=============================================================+=============================================================+
-| id                 | the id of the measurement                                   | 1                                                           |
+| id                 | the id of the measurement                                   | 3                                                           |
 +--------------------+-------------------------------------------------------------+-------------------------------------------------------------+ 
-| resource_uri       | the URI to request details about a measurement              | /api/v1/data/3/                                             |
+| resource_uri       | the URI to request details about a measurement              | /api/v1/assay/3/                                            |
 +--------------------+-------------------------------------------------------------+-------------------------------------------------------------+ 
 | assay              | the name of the assay                                       | Body Weight                                                 |
 +--------------------+-------------------------------------------------------------+-------------------------------------------------------------+ 
@@ -132,11 +136,62 @@ The response (in either json or xml) provides the following fields for each obje
 | notes              | notes regarding this assay                                  | Some text values                                            |
 +--------------------+-------------------------------------------------------------+-------------------------------------------------------------+
 
+Reference for the Experiment API
+--------------------------------
+
+The experiment API is available at the endpoint **/api/v1/experiment/**
+
+Request Parameters
+``````````````````
+
+The following are the potential request variables, all of which are optional.  
+The default format is json, but this can be set as xml if required.
+If viewing by web browser ?format=json must be specified  
+By default 20 items are returned but you can increase this to all by setting limit=0.
+
++------------------+-----------------------------------------+
+| Parameter        | Potential Values                        |
++==================+=========================================+
+| format           | **json** or **xml**                     |
++------------------+-----------------------------------------+
+| limit            | **0** for all, any other number         |
++------------------|-----------------------------------------+
+
+Response Values
+```````````````
+
+The response (in either json or xml) provides the following fields for each object (or for the only object in the case of a single object request).
+
++--------------------+-------------------------------------------------------------+-------------------------------------------------------------+
+|      Field         |              Explanation                                    |                         Sample Value                        |
++====================+=============================================================+=============================================================+
+| id                 | the id of the measurement                                   | 5                                                           |
++--------------------+-------------------------------------------------------------+-------------------------------------------------------------+ 
+| resource_uri       | the URI to request details about a measurement              | /api/v1/experiment/5/                                       |
++--------------------+-------------------------------------------------------------+-------------------------------------------------------------+ 
+| concentration      | the concentration of the injection (if done)                | 1mU/kg                                                      |
++--------------------+-------------------------------------------------------------+-------------------------------------------------------------+ 
+| date               | the date of the experiment                                  | 2012-09-28                                                  |
++--------------------+-------------------------------------------------------------+-------------------------------------------------------------+ 
+| experimentID       | the optional experimentID number                            | DB-2012-09-28                                               |
++--------------------+-------------------------------------------------------------+-------------------------------------------------------------+ 
+| fasting_time       | the duration of the animal fast (if done) in hours          | 16                                                          |
++--------------------+-------------------------------------------------------------+-------------------------------------------------------------+ 
+| feeding_state      | whether the animals were fed or fasted                      | fed OR fasted                                               |
++--------------------+-------------------------------------------------------------+-------------------------------------------------------------+ 
+| injection          | the injection (if done)                                     | Insulin, Glucose, Pyruvate or Glucagon                      |
++--------------------+-------------------------------------------------------------+-------------------------------------------------------------+
+| notes              | notes regarding this experiment                             | Some text values                                            |
++--------------------+-------------------------------------------------------------+-------------------------------------------------------------+
+| time               | the time of day the assay was done (24h format)             | 16:00                                                       |
++--------------------+-------------------------------------------------------------+-------------------------------------------------------------+
+
+
 '''
 
 from tastypie.resources import ModelResource
 
-from mousedb.data.models import Measurement, Assay
+from mousedb.data.models import Measurement, Assay, Experiment, Study
 
 class MeasurementResource(ModelResource):
     '''This generates the API resource for :class:`~mousedb.data.models.Measurement` objects.
@@ -159,11 +214,23 @@ class AssayResource(ModelResource):
     '''
     
     class Meta:
-        '''The API serves all :class:`~mousedb.data.models.Assat` objects in the database..'''
+        '''The API serves all :class:`~mousedb.data.models.Assay` objects in the database..'''
 
         queryset = Assay.objects.all()
         resource_name = 'assay'
         list_allowed_methods = ['get']
         detail_allowed_methods = ['get']         
         
-        
+class ExperimentResource(ModelResource):
+    '''This generates the API resource for :class:`~mousedb.data.models.Experiment` objects.
+    
+    It returns all experiments in the database.
+    '''
+    
+    class Meta:
+        '''The API serves all :class:`~mousedb.data.models.Experiment` objects in the database..'''
+
+        queryset = Experiment.objects.all()
+        resource_name = 'experiment'
+        list_allowed_methods = ['get']
+        detail_allowed_methods = ['get']        
