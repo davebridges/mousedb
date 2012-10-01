@@ -233,6 +233,7 @@ The response (in either JSON or XML) provides the following fields for each obje
 '''
 
 from tastypie.resources import ModelResource
+from tastypie.authentication import ApiKeyAuthentication
 
 from mousedb.data.models import Measurement, Assay, Experiment, Study
 
@@ -248,7 +249,8 @@ class MeasurementResource(ModelResource):
         queryset = Measurement.objects.all()
         resource_name = 'data'
         list_allowed_methods = ['get']
-        detail_allowed_methods = ['get']   
+        detail_allowed_methods = ['get']
+        authentication = ApiKeyAuthentication()  
                
 class AssayResource(ModelResource):
     '''This generates the API resource for :class:`~mousedb.data.models.Assay` objects.
@@ -262,7 +264,8 @@ class AssayResource(ModelResource):
         queryset = Assay.objects.all()
         resource_name = 'assay'
         list_allowed_methods = ['get']
-        detail_allowed_methods = ['get']         
+        detail_allowed_methods = ['get']
+        authentication = ApiKeyAuthentication()        
         
 class ExperimentResource(ModelResource):
     '''This generates the API resource for :class:`~mousedb.data.models.Experiment` objects.
@@ -276,7 +279,8 @@ class ExperimentResource(ModelResource):
         queryset = Experiment.objects.all()
         resource_name = 'experiment'
         list_allowed_methods = ['get']
-        detail_allowed_methods = ['get']        
+        detail_allowed_methods = ['get']
+        authentication = ApiKeyAuthentication()         
         
 class StudyResource(ModelResource):
     '''This generates the API resource for :class:`~mousedb.data.models.Study` objects.
@@ -290,4 +294,5 @@ class StudyResource(ModelResource):
         queryset = Study.objects.all()
         resource_name = 'study'
         list_allowed_methods = ['get']
-        detail_allowed_methods = ['get']        
+        detail_allowed_methods = ['get']
+        authentication = ApiKeyAuthentication()         
