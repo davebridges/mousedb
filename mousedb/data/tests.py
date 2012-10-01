@@ -149,6 +149,7 @@ class TreatmentViewTests(TestCase):
         self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
         self.assertTemplateUsed(test_response, 'treatment_detail.html')
         self.assertTemplateUsed(test_response, 'sortable_table_script.html')
+        self.assertTemplateUsed(test_response, 'menu_script.html')              
         
         #test object attributes
         self.assertEqual(test_response.context['treatment'].pk, 1)
@@ -159,3 +160,25 @@ class TreatmentViewTests(TestCase):
         #test that an incorrect id gives a 404
         wrong_test_response = self.client.get('/treatment/101/')
         self.assertEqual(wrong_test_response.status_code, 404)
+        
+    def test_treatment_list(self):
+        """This tests the treatment-list view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        
+        test_response = self.client.get('/treatment/')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTrue('treatment_list' in test_response.context) 
+
+        #test templates
+        self.assertTemplateUsed(test_response, 'base.html')
+        self.assertTemplateUsed(test_response, 'jquery_script.html')
+        self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(test_response, 'treatment_list.html')
+        self.assertTemplateUsed(test_response, 'menu_script.html')        
+
+        #test object attributes
+        self.assertEqual(test_response.context['treatment_list'][0].pk, 1)
+        self.assertEqual(test_response.context['treatment_list'][0].treatment, u'Test Treatment')
+        self.assertEqual(test_response.context['treatment_list'][0].notes, u'Some Notes')
+        self.assertEqual(test_response.context['treatment_list'][0].diet.__unicode__(), u'Test Diet')

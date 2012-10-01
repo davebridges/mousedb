@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
 from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
 
 from braces.views import LoginRequiredMixin, PermissionRequiredMixin
 
@@ -20,7 +21,17 @@ class TreatmentDetail(LoginRequiredMixin, DetailView):
     
     model = Treatment
     template_name = 'treatment_detail.html'
-    context_object_name = 'treatment'    
+    context_object_name = 'treatment'  
+
+class TreatmentList(LoginRequiredMixin, ListView):
+    '''This view generatea list of a :class:`~mousedb.data.models.Treatment` objects.
+    
+    This view is restricted to logged in users.
+    It passes an object **treatment_list** when the url **/treatment** is requested.'''
+    
+    model = Treatment
+    template_name = 'treatment_list.html'
+    context_object_name = 'treatment_list'      
 
 @login_required
 def experiment_list(request):

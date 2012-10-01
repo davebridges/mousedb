@@ -34,11 +34,7 @@ def delete_treatment(*args, **kwargs):
 	return delete_object(*args, **kwargs)
 
 urlpatterns = patterns('',
-	url(r'^$', limited_object_list, {
-		'queryset': Treatment.objects.all(),
-		'template_name': 'treatment_list.html',
-		'template_object_name': 'treatment',
-		}, name="treatment-list"),
+	url(r'^$', views.TreatmentList.as_view(), name="treatment-list"),
 	url(r'^new/$', create_treatment, {
 		'form_class': TreatmentForm,
 		'template_name': 'treatment_form.html',
