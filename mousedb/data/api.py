@@ -234,6 +234,7 @@ The response (in either JSON or XML) provides the following fields for each obje
 
 from tastypie.resources import ModelResource
 from tastypie.authentication import ApiKeyAuthentication
+from tastypie import fields
 
 from mousedb.data.models import Measurement, Assay, Experiment, Study
 
@@ -242,6 +243,8 @@ class MeasurementResource(ModelResource):
     
     It returns all measurements in the database.
     '''
+    assay = fields.ForeignKey('mousedb.data.api.MeasurementAssayResource', 'assay', full=True)
+    experiment = fields.ForeignKey('mousedb.data.api.MeasurementExperimentResource', 'experiment', full=True)
     
     class Meta:
         '''The API serves all :class:`~mousedb.data.models.Measurement` objects in the database..'''
@@ -250,6 +253,7 @@ class MeasurementResource(ModelResource):
         resource_name = 'data'
         list_allowed_methods = ['get']
         detail_allowed_methods = ['get']
+        include_resource_uri = False
         authentication = ApiKeyAuthentication()  
                
 class AssayResource(ModelResource):
@@ -265,7 +269,19 @@ class AssayResource(ModelResource):
         resource_name = 'assay'
         list_allowed_methods = ['get']
         detail_allowed_methods = ['get']
-        authentication = ApiKeyAuthentication()        
+        authentication = ApiKeyAuthentication()
+
+class MeasurementAssayResource(AssayResource):
+    '''This generates serves :class:`~mousedb.data.models.Assay` objects.
+    
+    This is a limited dataset for use in MeasurementResource calls.
+    '''
+    
+    class Meta:
+        '''The API serves all :class:`~mousedb.data.models.Assay` objects in the database..'''
+
+        include_resource_uri = False
+        fields = ['assay',]         
         
 class ExperimentResource(ModelResource):
     '''This generates the API resource for :class:`~mousedb.data.models.Experiment` objects.
@@ -280,7 +296,18 @@ class ExperimentResource(ModelResource):
         resource_name = 'experiment'
         list_allowed_methods = ['get']
         detail_allowed_methods = ['get']
-        authentication = ApiKeyAuthentication()         
+        authentication = ApiKeyAuthentication()
+
+class MeasurementExperimentResource(ExperimentResource): 
+
+    class Meta:
+        '''The API serves :class:`~mousedb.data.models.Experiment` objects.
+        
+        This is a limited dataset for use in MeasurementResource calls.
+        '''
+
+        fields = ['date',]
+        include_resource_uri = False           
         
 class StudyResource(ModelResource):
     '''This generates the API resource for :class:`~mousedb.data.models.Study` objects.
@@ -295,4 +322,4 @@ class StudyResource(ModelResource):
         resource_name = 'study'
         list_allowed_methods = ['get']
         detail_allowed_methods = ['get']
-        authentication = ApiKeyAuthentication()         
+        authentication = ApiKeyAuthentication()        
