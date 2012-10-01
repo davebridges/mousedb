@@ -111,21 +111,52 @@ class Study(models.Model):
 		return ('study-detail', [str(self.id)])
 	
 class Treatment(models.Model):
-	treatment = models.CharField(max_length=50)
-	study = models.ForeignKey('Study')
-	animals = models.ManyToManyField(Animal, help_text="In the case of transplants this is the recipient")
-	diet = models.ForeignKey('Diet')
-	environment = models.ForeignKey('Environment', default = 1)
-	implantation  = models.ManyToManyField('Implantation', blank=True, null=True)
-	transplantation  = models.ForeignKey('Transplantation', blank=True, null=True)
-	pharmaceutical = models.ManyToManyField('Pharmaceutical', blank=True, null=True)
-	researchers = models.ManyToManyField('Researcher')
-	notes = models.TextField(max_length=500, blank=True)
-	def __unicode__(self):
-		return u'%s' %(self.treatment)
-	@models.permalink
-	def get_absolute_url(self):
-		return ('treatment-detail', [str(self.id)])
+    '''This model defines the groupings of mice for an experiment.
+    
+    The purpose of treatment groups is to associate together animals which are treated similarly in a study.
+    A treatment group is generally defined by its specific conditions, including:
+    
+    * :class:`~mousedb.data.models.Diet` 
+    * :class:`~mousedb.data.models.Environment`
+    * :class:`~mousedb.data.models.Implantation` (optional)
+    * :class:`~mousedb.data.models.Transplantation` (optional)   
+    * :class:`~mousedb.data.models.Pharmaceutical` (optional)
+
+    The required fields are the associated :class:`~mousedb.data.models.Study`, the name (treatment), the     * :class:`~mousedb.data.models.Animal` objects in this group and the  :class:`~mousedb.data.models.Researcher` objects in the group.
+    There is also an optional notes field.    
+    '''
+    
+    treatment = models.CharField(max_length=50, 
+        help_text="The name of the treatment group.")
+    study = models.ForeignKey('Study', 
+        help_text="The associated study in which these groups belong.")
+    animals = models.ManyToManyField(Animal, 
+        help_text="In the case of transplants this is the recipient.")
+    diet = models.ForeignKey('Diet', 
+        help_text="The food in this group.")
+    environment = models.ForeignKey('Environment', default = 1, 
+        help_text="The physical environment for this group.")
+    implantation  = models.ManyToManyField('Implantation', 
+        blank=True, null=True,
+        help_text="Whether something is implanted for this group.")
+    transplantation  = models.ForeignKey('Transplantation', 
+        blank=True, null=True,
+        help_text="Whether this group is tranplanted with something.")
+    pharmaceutical = models.ManyToManyField('Pharmaceutical', 
+        blank=True, null=True,
+        help_text="Whether this group is treated with some pharmaceutical.")
+    researchers = models.ManyToManyField('Researcher',
+        help_text="Which researchers are responsible for this group.")
+    notes = models.TextField(max_length=500, blank=True)
+    
+    def __unicode__(self):
+        '''The unicode representation of a :class:`~mousedb.data.models.Treatment` is the treatment field.'''
+        return u'%s' %(self.treatment)
+
+    @models.permalink
+    def get_absolute_url(self):
+        '''The url for a treatment-detail is **/treatment/<id>**.'''
+        return ('treatment-detail', [str(self.id)])
 
 class Vendor(models.Model):
 	vendor = models.CharField(max_length=100)
