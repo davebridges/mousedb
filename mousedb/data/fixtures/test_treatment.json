@@ -10,8 +10,8 @@
             "diet": 1, 
             "environment": 1, 
             "transplantation": null, 
-            "treatment": "", 
-            "notes": "", 
+            "treatment": "Test Treatment", 
+            "notes": "Some Notes", 
             "researchers": []
         }
     }

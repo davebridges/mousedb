@@ -116,12 +116,11 @@ class StudyViewTests(TestCase):
         self.assertTemplateUsed(response, 'jquery_script.html')
         self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
         self.assertTemplateUsed(response, 'confirm_delete.html')
-		
-		
+				
 class TreatmentViewTests(TestCase):
     """These tests test the views associated with Treatment objects."""
 
-    fixtures = ['test_treatment',]
+    fixtures = ['test_treatment','test_diet', 'test_vendor', 'test_environment', 'test_study']
     
     def setUp(self):
         self.client = Client()
@@ -136,12 +135,27 @@ class TreatmentViewTests(TestCase):
         self.test_user.delete()
 
     def test_treatment_detail(self):
-        """This test checks the view which displays a treatment-detail page.  It checks for the correct templates and status code."""        
+        """This test checks the view which displays a treatment-detail page.  
+        
+        It checks for the correct templates and status code."""        
 
-        response = self.client.get('/treatment/1/')
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'base.html')
-        self.assertTemplateUsed(response, 'jquery_script.html')
-        self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
-        self.assertTemplateUsed(response, 'treatment_detail.html')
-        self.assertTemplateUsed(response, 'sortable_table_script.html')
+        test_response = self.client.get('/treatment/1/')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTrue('treatment' in test_response.context)            
+        
+        #test templates
+        self.assertTemplateUsed(test_response, 'base.html')
+        self.assertTemplateUsed(test_response, 'jquery_script.html')
+        self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(test_response, 'treatment_detail.html')
+        self.assertTemplateUsed(test_response, 'sortable_table_script.html')
+        
+        #test object attributes
+        self.assertEqual(test_response.context['treatment'].pk, 1)
+        self.assertEqual(test_response.context['treatment'].treatment, u'Test Treatment')
+        self.assertEqual(test_response.context['treatment'].notes, u'Some Notes')
+        self.assertEqual(test_response.context['treatment'].diet.__unicode__(), u'Test Diet')
+        
+        #test that an incorrect id gives a 404
+        wrong_test_response = self.client.get('/treatment/101/')
+        self.assertEqual(wrong_test_response.status_code, 404)
