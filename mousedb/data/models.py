@@ -9,7 +9,9 @@ FEEDING_TYPES = (
 
 INJECTIONS = (
 	('Insulin', 'Insulin'),
-	('Glucose', 'Glucose')
+	('Glucose', 'Glucose'),
+	('Pyruvate', 'Pyruvate'),
+	('Glucagon', 'Glucagon')
 )
 
 ORDERING = (
