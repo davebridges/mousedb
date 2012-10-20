@@ -113,31 +113,51 @@ class Study(models.Model):
 		return ('study-detail', [str(self.id)])
 	
 class Treatment(models.Model):
-    '''A Treatment is a group of animals which are being treated similarly
+    '''This model defines the groupings of mice for an experiment.
     
-    This model incorporates who, where and how animals are treated.
-    Several cohorts of a treatment are described using the :class:`~mousedb.data.models.Cohort` objects.
-    The required fields are **treatment**, **diet**,**animals**, **environment** and **researchers**. 
+    The purpose of treatment groups is to associate together animals which are treated similarly in a study.
+    A treatment group is generally defined by its specific conditions, including:
+    
+    * :class:`~mousedb.data.models.Diet` 
+    * :class:`~mousedb.data.models.Environment`
+    * :class:`~mousedb.data.models.Implantation` (optional)
+    * :class:`~mousedb.data.models.Transplantation` (optional)   
+    * :class:`~mousedb.data.models.Pharmaceutical` (optional)
+
+    The required fields are the associated :class:`~mousedb.data.models.Study`, the name (treatment), the :class:`~mousedb.data.models.Animal` objects in this group and the  :class:`~mousedb.data.models.Researcher` objects in the group.
+    There is also an optional notes field.    
     '''
     
-    treatment = models.CharField(max_length=50, help_text='The name of the treatment')
-    study = models.ForeignKey('Study', blank=True, null=True)
-    animals = models.ManyToManyField(Animal, help_text="Which mice are treated.  In the case of transplants this is the recipient")
-    diet = models.ForeignKey('Diet', help_text="What diet is associated with this treatment")
-    environment = models.ForeignKey('Environment', default = 1, help_text='Where and how are these mice housed.')
-    implantation  = models.ManyToManyField('Implantation', blank=True, null=True, help_text='Where there any implantations?')
-    transplantation  = models.ForeignKey('Transplantation', blank=True, null=True, help_text='Was anything transplanted')
-    pharmaceutical = models.ManyToManyField('Pharmaceutical', blank=True, null=True, help_text='Is this part of a drug treatment')
-    researchers = models.ManyToManyField('Researcher', help_text='Who is responsible for this treatment.')
-    notes = models.TextField(max_length=500, blank=True, help_text='Additional notes about this treatment.')
-	
+    treatment = models.CharField(max_length=50, 
+        help_text="The name of the treatment group.")
+    study = models.ForeignKey('Study', blank=True, null=True, 
+        help_text="The associated study in which these groups belong.")
+    animals = models.ManyToManyField(Animal, 
+        help_text="In the case of transplants this is the recipient.")
+    diet = models.ForeignKey('Diet', 
+        help_text="The food in this group.")
+    environment = models.ForeignKey('Environment', default = 1, 
+        help_text="The physical environment for this group.")
+    implantation  = models.ManyToManyField('Implantation', 
+        blank=True, null=True,
+        help_text="Whether something is implanted for this group.")
+    transplantation  = models.ForeignKey('Transplantation', 
+        blank=True, null=True,
+        help_text="Whether this group is tranplanted with something.")
+    pharmaceutical = models.ManyToManyField('Pharmaceutical', 
+        blank=True, null=True,
+        help_text="Whether this group is treated with some pharmaceutical.")
+    researchers = models.ManyToManyField('Researcher',
+        help_text="Which researchers are responsible for this group.")
+    notes = models.TextField(max_length=500, blank=True)
+    
     def __unicode__(self):
         '''The unicode representation of a :class:`~mousedb.data.models.Treatment` is the treatment field.'''
         return u'%s' %(self.treatment)
-		
+
     @models.permalink
     def get_absolute_url(self):
-        '''The url for a treatment is **/treatment/<id>**.'''
+        '''The url for a treatment-detail is **/treatment/<id>**.'''
         return ('treatment-detail', [str(self.id)])
 
 class Vendor(models.Model):

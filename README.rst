@@ -30,7 +30,7 @@ Downloading and/or unzipping will create a directory named mousedb.  You can upd
     * South: Used for database migrations.  Only required for upgrades.
     * django-braces: Used for login and permission settings in class based views.
     * django-ajax-selects: For autocomplete functionality.
-    * tastypie: For API functionality.
+    * django-tastypie: For API functionality.
 
 Database Setup
 --------------
