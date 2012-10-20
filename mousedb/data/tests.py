@@ -8,7 +8,7 @@ from django.test import TestCase
 from django.test.client import Client
 from django.contrib.auth.models import User
 
-from mousedb.data.models import Study, Diet, Environment, Researcher, Treatment, Transplantation, Pharmaceutical, Implantation
+from mousedb.data.models import Study, Diet, Environment, Researcher, Treatment, Transplantation, Pharmaceutical, Implantation, Vendor
 from mousedb.animal.models import Strain, Animal
 
 MODELS = [Study]
@@ -220,3 +220,41 @@ class TreatmentViewTests(BasicTestCase):
         self.assertEqual(test_response.context['treatment_list'][0].treatment, u'Test Treatment')
         self.assertEqual(test_response.context['treatment_list'][0].notes, u'Some Notes')
         self.assertEqual(test_response.context['treatment_list'][0].diet.__unicode__(), u'Test Diet')
+        
+class PharmaceuticalModelTests(BasicTestCase):
+    '''These tests test the functionality of :class:`~mousedb.data.models.Pharmaceutical` objects.'''
+    
+    fixtures = ['test_vendor',]
+    
+    def test_create_pharmaceutical_minimum(self):
+        '''This test creates a :class:`~mousedb.data.models.Pharmaceutical` with the required information only.'''
+
+        test_pharmaceutical = Pharmaceutical(drug = 'Test Drug', 
+            dose = '1 mg/kg',
+            mode = 'Oral',
+            recurrance = 'Daily',
+            vendor = Vendor.objects.get(pk=1))
+        test_pharmaceutical.save()
+        self.assertEqual(test_pharmaceutical.pk, 1) #presumes no models loaded in fixture data
+        
+    def test_create_pharmaceutical_all(self):
+        '''This test creates a :class:`~mousedb.data.models.Pharmaceutical` with all information entered.'''
+
+        test_pharmaceutical = Pharmaceutical(drug = 'Test Drug', 
+            dose = '1 mg/kg',
+            mode = 'Oral',
+            recurrance = 'Daily',
+            vendor = Vendor.objects.get(pk=1))
+        test_pharmaceutical.save()
+        self.assertEqual(test_pharmaceutical.pk, 1) #presumes no models loaded in fixture data      
+        
+    def test_pharmaceutical_unicode(self):
+        '''This tests the unicode representation of a :class:`~mousedb.data.models.Pharmaceutical`.'''
+
+        test_pharmaceutical = Pharmaceutical(drug = 'Test Drug', 
+            dose = '1 mg/kg',
+            mode = 'Oral',
+            recurrance = 'Daily',
+            vendor = Vendor.objects.get(pk=1))
+        test_pharmaceutical.save()
+        self.assertEqual(test_pharmaceutical.__unicode__(), "Test Drug at 1 mg/kg, Daily")       
