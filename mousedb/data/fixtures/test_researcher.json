@@ -1,0 +1,13 @@
+[
+    {
+        "pk": 1, 
+        "model": "data.researcher", 
+        "fields": {
+            "active": true, 
+            "first_name": "Joe", 
+            "last_name": "Blow", 
+            "name_slug": "blow-joe", 
+            "email": "joeblow@email.com"
+        }
+    }
+]

@@ -1,0 +1,14 @@
+[
+    {
+        "pk": 1, 
+        "model": "data.pharmaceutical", 
+        "fields": {
+            "vendor": 1, 
+            "notes": "", 
+            "drug": "Test Drug", 
+            "dose": "1 mg/kg", 
+            "mode": "Tail Vein", 
+            "recurrance": "daily"
+        }
+    }
+]

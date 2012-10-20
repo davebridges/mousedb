@@ -8,8 +8,8 @@ from django.test import TestCase
 from django.test.client import Client
 from django.contrib.auth.models import User
 
-from mousedb.data.models import Study
-from mousedb.animal.models import Strain
+from mousedb.data.models import Study, Diet, Environment, Researcher, Treatment, Transplantation, Pharmaceutical, Implantation
+from mousedb.animal.models import Strain, Animal
 
 MODELS = [Study]
 
@@ -110,6 +110,63 @@ class StudyViewTests(BasicTestCase):
         self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
         self.assertTemplateUsed(response, 'confirm_delete.html')
 				
+class TreatmentModelTests(BasicTestCase):
+    '''These tests test the functionality of :class:`~mousedb.data.models.Treatment` objects.'''
+    
+    fixtures = ['test_diet', 'test_environment', 'test_researcher', 
+    'test_animals', 'test_strain', 'test_vendor', 'test_study', 'test_transplantation',
+    'test_pharmaceutical','test_implantation']
+    
+    def test_create_treatment_minimum(self):
+        '''This test creates a :class:`~mousedb.data.models.Treatment` with the required information only.'''
+
+        test_treatment = Treatment(treatment = 'Test Treatment', 
+            diet = Diet.objects.get(pk=1),
+            environment = Environment.objects.get(pk=1))
+        test_treatment.save()
+        test_treatment.animals.add(Animal.objects.get(pk=1))
+        test_treatment.researchers.add(Researcher.objects.get(pk=1))
+        self.assertEqual(test_treatment.pk, 1) #presumes no models loaded in fixture data
+        
+    def test_create_treatment_all(self):
+        '''This test creates a :class:`~mousedb.data.models.Treatment` with all information entered.'''
+
+        test_treatment = Treatment(treatment = 'Test Treatment', 
+            diet = Diet.objects.get(pk=1),
+            environment = Environment.objects.get(pk=1),
+            study = Study.objects.get(pk=1),
+            transplantation = Transplantation.objects.get(pk=1),
+            notes = "Some notes about this test treatment."
+            )
+        test_treatment.save()
+        test_treatment.animals.add(Animal.objects.get(pk=1))
+        test_treatment.researchers.add(Researcher.objects.get(pk=1))
+        test_treatment.pharmaceutical.add(Pharmaceutical.objects.get(pk=1))  
+        test_treatment.implantation.add(Implantation.objects.get(pk=1))                
+        self.assertEqual(test_treatment.pk, 1) #presumes no models loaded in fixture data       
+        
+    def test_treatment_unicode(self):
+        '''This tests the unicode representation of a :class:`~mousedb.data.models.Treatment`.'''
+
+        test_treatment = Treatment(treatment = 'Test Treatment', 
+            diet = Diet.objects.get(pk=1),
+            environment = Environment.objects.get(pk=1))
+        test_treatment.save()
+        test_treatment.animals.add(Animal.objects.get(pk=1))
+        test_treatment.researchers.add(Researcher.objects.get(pk=1))
+        self.assertEqual(test_treatment.__unicode__(), "Test Treatment")  
+        
+    def test_treatment_absolute_url(self):
+        '''This tests the absolute_url generation of a :class:`~mousedb.data.models.Treatment`.'''
+
+        test_treatment = Treatment(treatment = 'Test Treatment', 
+            diet = Diet.objects.get(pk=1),
+            environment = Environment.objects.get(pk=1))
+        test_treatment.save()
+        test_treatment.animals.add(Animal.objects.get(pk=1))
+        test_treatment.researchers.add(Researcher.objects.get(pk=1))
+        self.assertEqual(test_treatment.get_absolute_url(), "/treatment/1/")
+
 class TreatmentViewTests(BasicTestCase):
     """These tests test the views associated with Treatment objects."""
 
