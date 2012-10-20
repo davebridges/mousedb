@@ -13,19 +13,26 @@ from mousedb.animal.models import Strain
 
 MODELS = [Study]
 
-
-class StudyModelTests(TestCase):
-    """Test the creation and modification of Study objects."""
+class BasicTestCase(TestCase):
+    '''This class factors out the TestcCase setup and Teardown code.'''
 
     def setUp(self):
         """Instantiate the test client."""
         self.client = Client()
+        self.test_user = User.objects.create_user('blah', 'blah@blah.com', 'blah')
+        self.test_user.is_superuser = True
+        self.test_user.is_active = True
+        self.test_user.save()
+        self.client.login(username='blah', password='blah')
 
     def tearDown(self):
         """Depopulate created model instances from test database."""
         for model in MODELS:
             for obj in model.objects.all():
                 obj.delete()
+
+class StudyModelTests(BasicTestCase):
+    """Test the creation and modification of Study objects."""
 
     def test_create_study_minimal(self):
         """This is a test for creating a new study object, with only the minimum being entered.  It also verifies that unicode is set correctly."""
@@ -51,24 +58,10 @@ class StudyModelTests(TestCase):
         test_study.save()
         self.assertEquals(test_study.get_absolute_url(), '/studies/1/')
 
-class StudyViewTests(TestCase):
+class StudyViewTests(BasicTestCase):
     """These tests test the views associated with Study objects."""
 
-    def setUp(self):
-        """This function sets up the test client, and creates a test study."""
-        self.client = Client()
-        self.test_user = User.objects.create_user('blah', 'blah@blah.com', 'blah')
-        self.test_user.is_superuser = True
-        self.test_user.save()
-        self.client.login(username='blah', password='blah')
-        self.test_study = Study(description = "Effects of x on y")
-        self.test_study.save()
-
-    def tearDown(self):
-        """Depopulate created model instances from test database."""
-        for model in MODELS:
-            for obj in model.objects.all():
-                obj.delete()
+    fixtures = ['test_study',]
 
     def test_study_list(self):
         """This test checks the status code, and templates for study lists."""
@@ -116,24 +109,11 @@ class StudyViewTests(TestCase):
         self.assertTemplateUsed(response, 'jquery_script.html')
         self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
         self.assertTemplateUsed(response, 'confirm_delete.html')
-		
-		
-class TreatmentViewTests(TestCase):
+				
+class TreatmentViewTests(BasicTestCase):
     """These tests test the views associated with Treatment objects."""
 
-    fixtures = ['test_treatment',]
-    
-    def setUp(self):
-        self.client = Client()
-        self.test_user = User.objects.create_user('blah', 'blah@blah.com', 'blah')
-        self.test_user.is_superuser = True
-        self.test_user.is_active = True
-        self.test_user.save()
-        self.client.login(username='blah', password='blah')
-
-    def tearDown(self):
-        self.client.logout()
-        self.test_user.delete()
+    fixtures = ['test_treatment','test_study']
 
     def test_treatment_detail(self):
         """This test checks the view which displays a treatment-detail page.  It checks for the correct templates and status code."""        
