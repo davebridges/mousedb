@@ -11,6 +11,8 @@ from django.contrib.auth.decorators import login_required, permission_required
 from mousedb.data.models import Treatment
 from mousedb.data.forms import TreatmentForm
 
+from mousedb.data import views
+
 @login_required
 def limited_object_list(*args, **kwargs):
 	return object_list(*args, **kwargs)
@@ -32,20 +34,12 @@ def delete_treatment(*args, **kwargs):
 	return delete_object(*args, **kwargs)
 
 urlpatterns = patterns('',
-	url(r'^$', limited_object_list, {
-		'queryset': Treatment.objects.all(),
-		'template_name': 'treatment_list.html',
-		'template_object_name': 'treatment',
-		}, name="treatment-list"),
+	url(r'^$', views.TreatmentList.as_view(), name="treatment-list"),
 	url(r'^new/$', create_treatment, {
 		'form_class': TreatmentForm,
 		'template_name': 'treatment_form.html',
 		}, name="treatment-new"),
-	url(r'^(?P<object_id>\d*)/$', limited_object_detail, {
-		'queryset': Treatment.objects.all(),
-		'template_name': 'treatment_detail.html',
-		'template_object_name': 'treatment',
-		}, name="treatment-detail"),
+    url(r'^(?P<pk>\d*)/?$', views.TreatmentDetail.as_view(), name="treatment-detail"),    
 	url(r'^(?P<object_id>\d*)/edit/$', change_treatment, {
 		'model': Treatment,
 		'template_name': 'treatment_form.html',

@@ -25,7 +25,7 @@
 			<td>{{ data.assay }}</td>
 			<td>{{ data.experiment.feeding_state }}{% if data.experiment.fasting_time %} - {{ data.experiment.fasting_time }}h{% endif %}
 			<td>{{ data.values }}</td>
-			<td>{% for treatment in data.animal.treatment_set.all %}{{ treatment }}{% endfor %}
+			<td>{% for treatment in data.animal.treatment_set.all %}<a href="{% url treatment-detail treatment.id %}">{{ treatment }}</a>{% endfor %}</td>
 			<td class="fg-buttonset fg-buttonset-multi">
 {% if perms.data.change_measurement %}
   <a href="{% url measurement-edit data.id %}" title="Edit">

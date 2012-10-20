@@ -4,7 +4,7 @@
         "model": "data.diet", 
         "fields": {
             "fat_content": null, 
-            "description": "", 
+            "description": "Test Diet", 
             "irradiated": false, 
             "notes": "", 
             "protein_content": null, 

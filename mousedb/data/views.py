@@ -4,12 +4,34 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.contrib.auth.decorators import login_required, permission_required
 from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
+from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
+
+from braces.views import LoginRequiredMixin, PermissionRequiredMixin
 
 from mousedb.animal.models import Animal
 from mousedb.data.models import Experiment, Measurement, Study, Treatment
 from mousedb.data.forms import MeasurementForm, MeasurementFormSet, StudyExperimentForm
 
+class TreatmentDetail(LoginRequiredMixin, DetailView):
+    '''This view generates details about a :class:`~mousedb.data.models.Treatment` object.
+    
+    This view is restricted to logged in users.
+    It passes an object **treatment** when the url **/treatment/<pk#>** is requested.'''
+    
+    model = Treatment
+    template_name = 'treatment_detail.html'
+    context_object_name = 'treatment'  
 
+class TreatmentList(LoginRequiredMixin, ListView):
+    '''This view generatea list of a :class:`~mousedb.data.models.Treatment` objects.
+    
+    This view is restricted to logged in users.
+    It passes an object **treatment_list** when the url **/treatment** is requested.'''
+    
+    model = Treatment
+    template_name = 'treatment_list.html'
+    context_object_name = 'treatment_list'      
 
 @login_required
 def experiment_list(request):

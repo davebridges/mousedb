@@ -10,4 +10,18 @@
 {% block header %}Treatment List{% endblock header %}
 
 {% block content %}
+<table id="treatment-list">
+<tr>
+    <th>Study</th>
+    <th>Treatment Group</th>
+    <th>Animals</th>
+</tr>
+{% for treatment in treatment_list %}
+<tr>
+    <td><a href="{{ treatment.study.get_absolute_url }}">{{ treatment.study }}</a></td>
+    <td><a href="{{  treatment.get_absolute_url }}">{{ treatment }}</a></td>
+    <td>{{ treatment.animals.count }}</td>
+</tr>
+{% endfor %}
+
 {% endblock content %}
