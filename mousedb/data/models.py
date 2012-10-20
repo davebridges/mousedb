@@ -217,10 +217,10 @@ class Pharmaceutical(models.Model):
         '''The unicode representation is for example "Drug at 1mg/kg, daily.'''
         return u'%s at %s, %s' % (self.drug, self.dose, self.recurrance)
         
-    #@models.permalink
-    #def get_absolute_url(self):
-        #"""The absolute url of a :class:`~mousedb.drug.models.Pharmaceutical` is  **/pharmaceutical/<id>**."""
-        #return ('pharmaceutical-detail', [str(self.id)])        
+    @models.permalink
+    def get_absolute_url(self):
+        """The absolute url of a :class:`~mousedb.drug.models.Pharmaceutical` is  **/parameter/pharmaceutical/<id>**."""
+        return ('pharmaceutical-detail', [str(self.id)])        
 
 class Transplantation(models.Model):
 	tissue = models.CharField(max_length=100)

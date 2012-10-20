@@ -257,4 +257,15 @@ class PharmaceuticalModelTests(BasicTestCase):
             recurrance = 'Daily',
             vendor = Vendor.objects.get(pk=1))
         test_pharmaceutical.save()
-        self.assertEqual(test_pharmaceutical.__unicode__(), "Test Drug at 1 mg/kg, Daily")       
+        self.assertEqual(test_pharmaceutical.__unicode__(), "Test Drug at 1 mg/kg, Daily")  
+        
+    def test_pharmaceutical_absolute_url(self):
+        '''This tests the absolute_url generation of a :class:`~mousedb.data.models.Pharmaceutical`.'''
+
+        test_pharmaceutical = Pharmaceutical(drug = 'Test Drug', 
+            dose = '1 mg/kg',
+            mode = 'Oral',
+            recurrance = 'Daily',
+            vendor = Vendor.objects.get(pk=1))
+        test_pharmaceutical.save()
+        self.assertEqual(test_pharmaceutical.get_absolute_url(), "/parameter/pharmaceutical/1")        

@@ -10,8 +10,18 @@ from django.views.generic.list import ListView
 from braces.views import LoginRequiredMixin, PermissionRequiredMixin
 
 from mousedb.animal.models import Animal
-from mousedb.data.models import Experiment, Measurement, Study, Treatment
+from mousedb.data.models import Experiment, Measurement, Study, Treatment, Pharmaceutical
 from mousedb.data.forms import MeasurementForm, MeasurementFormSet, StudyExperimentForm
+
+class PharmaceuticalDetail(LoginRequiredMixin,DetailView):
+    '''This view generates details about a :class:`~mousedb.data.models.Treatment` object.
+    
+    This view is restricted to logged in users.
+    It passes an object **treatment** when the url **/treatment/<pk#>** is requested.'''
+    
+    model = Pharmaceutical
+    template_name = 'pharmaceutical_detail.html'
+    context_object_name = 'pharmaceutical'
 
 class TreatmentDetail(LoginRequiredMixin, DetailView):
     '''This view generates details about a :class:`~mousedb.data.models.Treatment` object.
