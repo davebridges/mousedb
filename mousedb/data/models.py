@@ -113,21 +113,32 @@ class Study(models.Model):
 		return ('study-detail', [str(self.id)])
 	
 class Treatment(models.Model):
-	treatment = models.CharField(max_length=50)
-	study = models.ForeignKey('Study')
-	animals = models.ManyToManyField(Animal, help_text="In the case of transplants this is the recipient")
-	diet = models.ForeignKey('Diet')
-	environment = models.ForeignKey('Environment', default = 1)
-	implantation  = models.ManyToManyField('Implantation', blank=True, null=True)
-	transplantation  = models.ForeignKey('Transplantation', blank=True, null=True)
-	pharmaceutical = models.ManyToManyField('Pharmaceutical', blank=True, null=True)
-	researchers = models.ManyToManyField('Researcher')
-	notes = models.TextField(max_length=500, blank=True)
-	def __unicode__(self):
-		return u'%s' %(self.treatment)
-	@models.permalink
-	def get_absolute_url(self):
-		return ('treatment-detail', [str(self.id)])
+    '''A Treatment is a group of animals which are being treated similarly
+    
+    This model incorporates who, where and how animals are treated.
+    Several cohorts of a treatment are described using the :class:`~mousedb.data.models.Cohort` objects.
+    The required fields are **treatment**, **diet**,**animals**, **environment** and **researchers**. 
+    '''
+    
+    treatment = models.CharField(max_length=50, help_text='The name of the treatment')
+    study = models.ForeignKey('Study', blank=True, null=True)
+    animals = models.ManyToManyField(Animal, help_text="Which mice are treated.  In the case of transplants this is the recipient")
+    diet = models.ForeignKey('Diet', help_text="What diet is associated with this treatment")
+    environment = models.ForeignKey('Environment', default = 1, help_text='Where and how are these mice housed.')
+    implantation  = models.ManyToManyField('Implantation', blank=True, null=True, help_text='Where there any implantations?')
+    transplantation  = models.ForeignKey('Transplantation', blank=True, null=True, help_text='Was anything transplanted')
+    pharmaceutical = models.ManyToManyField('Pharmaceutical', blank=True, null=True, help_text='Is this part of a drug treatment')
+    researchers = models.ManyToManyField('Researcher', help_text='Who is responsible for this treatment.')
+    notes = models.TextField(max_length=500, blank=True, help_text='Additional notes about this treatment.')
+	
+    def __unicode__(self):
+        '''The unicode representation of a :class:`~mousedb.data.models.Treatment` is the treatment field.'''
+        return u'%s' %(self.treatment)
+		
+    @models.permalink
+    def get_absolute_url(self):
+        '''The url for a treatment is **/treatment/<id>**.'''
+        return ('treatment-detail', [str(self.id)])
 
 class Vendor(models.Model):
 	vendor = models.CharField(max_length=100)
@@ -181,11 +192,11 @@ class Pharmaceutical(models.Model):
 
 class Transplantation(models.Model):
 	tissue = models.CharField(max_length=100)
-	transplant_date = models.DateField()
+	transplant_date = models.DateField(blank=True, null=True)
 	donor = models.ManyToManyField(Animal)
 	surgeon = models.ManyToManyField('Researcher', blank=True, null=True)
 	notes = models.TextField(max_length=500, blank=True)
 	def __unicode__(self):
-		return u'%s on %d' % (self.tissue, self.transplant_date)
+		return u'%s' % self.tissue
 
 
