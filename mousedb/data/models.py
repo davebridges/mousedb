@@ -19,13 +19,6 @@ ORDERING = (
 	('M-Marketsite', 'M-Marketsite')
 )
 
-DOSAGE_TYPE = (
-	('Tail Vein', 'Tail Vein'),
-	('Interperitoneal', 'Interperitoneal'),
-	('Oral', 'Oral')
-)
-
-
 class Experiment(models.Model):
     
     """This class describes Experiment objects.
@@ -201,14 +194,33 @@ class Implantation(models.Model):
 		return u'%s' % self.implant
 
 class Pharmaceutical(models.Model):
-	drug = models.CharField(max_length=100)
-	dose = models.CharField(max_length=100, help_text="include units")
-	recurrance = models.CharField(max_length=100)
-	mode = models.CharField(max_length=100, choices=DOSAGE_TYPE)
-	vendor = models.ForeignKey('Vendor')
-	notes = models.TextField(max_length=500, blank=True)
-	def __unicode__(self):
-		return u'%s at %s, %s' % (self.drug, self.dose, self.recurrance)
+    '''This class defines a drug treatment.
+    
+    Each object is specific to a particular vendor, dose and mode of delivery.
+    For other doses, generate additional Pharmaceutical objects.    
+    The required fields are **drug**, **dose**, **recurrance**, **mode** and **vendor**.
+    '''
+    
+    DOSAGE_TYPE = (
+	('Tail Vein', 'Tail Vein'),
+	('Interperitoneal', 'Interperitoneal'),
+	('Oral', 'Oral'))
+
+    drug = models.CharField(max_length=100, help_text="Name of drug")
+    dose = models.CharField(max_length=100, help_text="Dose per animal (include units)")
+    recurrance = models.CharField(max_length=100, help_text="How often is the drug delivered")
+    mode = models.CharField(max_length=100, choices=DOSAGE_TYPE, help_text="How is the drug delivered.")
+    vendor = models.ForeignKey('Vendor', help_text="From whom is the drug obtained.")
+    notes = models.TextField(max_length=500, blank=True, null=True, help_text="Notes about this drug regimen.")
+	
+    def __unicode__(self):
+        '''The unicode representation is for example "Drug at 1mg/kg, daily.'''
+        return u'%s at %s, %s' % (self.drug, self.dose, self.recurrance)
+        
+    #@models.permalink
+    #def get_absolute_url(self):
+        #"""The absolute url of a :class:`~mousedb.drug.models.Pharmaceutical` is  **/pharmaceutical/<id>**."""
+        #return ('pharmaceutical-detail', [str(self.id)])        
 
 class Transplantation(models.Model):
 	tissue = models.CharField(max_length=100)
