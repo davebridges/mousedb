@@ -268,4 +268,77 @@ class PharmaceuticalModelTests(BasicTestCase):
             recurrance = 'Daily',
             vendor = Vendor.objects.get(pk=1))
         test_pharmaceutical.save()
-        self.assertEqual(test_pharmaceutical.get_absolute_url(), "/parameter/pharmaceutical/1")        
+        self.assertEqual(test_pharmaceutical.get_absolute_url(), "/parameter/pharmaceutical/1")
+                
+class PharmaceuticalViewTests(BasicTestCase):
+    '''This class tests the views for :class:`~mousedb.data.models.Pharmaceutical` objects.'''
+
+    fixtures = ['test_pharmaceutical', 'test_vendor']
+
+    def test_pharmaceutical_list(self):
+        """This tests the pharmaceutical-list view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        
+        test_response = self.client.get('/parameter/pharmaceutical')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTrue('pharmaceutical_list' in test_response.context)      
+        self.assertTemplateUsed(test_response, 'pharmaceutical_list.html')
+        self.assertEqual(test_response.context['pharmaceutical_list'][0].pk, 1)
+        self.assertEqual(test_response.context['pharmaceutical_list'][0].__unicode__(), u'Test Drug at 1 mg/kg, daily')
+
+
+    def test_pharmaceutical_view(self):
+        """This tests the pharmaceutical-view view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        
+        test_response = self.client.get('/parameter/pharmaceutical/1/')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTrue('pharmaceutical' in test_response.context)        
+        self.assertTemplateUsed(test_response, 'pharmaceutical_detail.html')
+        self.assertEqual(test_response.context['pharmaceutical'].pk, 1)
+        self.assertEqual(test_response.context['pharmaceutical'].__unicode__(), u'Test Drug at 1 mg/kg, daily')
+
+
+    def test_pharmaceutical_view_create(self):
+        """This tests the pharmaceutical-new view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        
+        test_response = self.client.get('/parameter/pharmaceutical/new/')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTemplateUsed(test_response, 'base.html')
+        self.assertTemplateUsed(test_response, 'pharmaceutical_form.html') 
+
+    def test_pharmaceutical_view_edit(self):
+        """This tests the pharmaceutical-edit view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        
+        test_response = self.client.get('/parameter/pharmaceutical/1/edit/')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTrue('pharmaceutical' in test_response.context)        
+        self.assertTemplateUsed(test_response, 'pharmaceutical_form.html')
+        self.assertEqual(test_response.context['pharmaceutical'].pk, 1)
+        self.assertEqual(test_response.context['pharmaceutical'].__unicode__(), u'Test Drug at 1 mg/kg, daily')
+
+        #verifies that a non-existent object returns a 404 error presuming there is no object with pk=2.
+        null_response = self.client.get('/parameter/pharmaceutical/2/edit/')
+        self.assertEqual(null_response.status_code, 404)   
+
+    def test_pharmaceutical_view_delete(self):
+        """This tests the pharmaceutical-delete view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        
+        test_response = self.client.get('/parameter/pharmaceutical/1/delete/')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTrue('pharmaceutical' in test_response.context)        
+        self.assertTemplateUsed(test_response, 'confirm_delete.html')
+        self.assertEqual(test_response.context['object'].pk, 1)
+        self.assertEqual(test_response.context['object'].__unicode__(), u'Test Drug at 1 mg/kg, daily')
+
+        #verifies that a non-existent object returns a 404 error.
+        null_response = self.client.get('/parameter/pharmaceutical/2/delete/')
+        self.assertEqual(null_response.status_code, 404) 
