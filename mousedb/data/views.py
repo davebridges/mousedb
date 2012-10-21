@@ -14,10 +14,10 @@ from mousedb.data.models import Experiment, Measurement, Study, Treatment, Pharm
 from mousedb.data.forms import MeasurementForm, MeasurementFormSet, StudyExperimentForm
 
 class PharmaceuticalDetail(LoginRequiredMixin,DetailView):
-    '''This view generates details about a :class:`~mousedb.data.models.Treatment` object.
+    '''This view generates details about a :class:`~mousedb.data.models.Pharmaceutical` object.
     
     This view is restricted to logged in users.
-    It passes an object **treatment** when the url **/treatment/<pk#>** is requested.'''
+    It passes an object **pharmaceutical** when the url **/parameter/pharmaceutical/<id>** is requested.'''
     
     model = Pharmaceutical
     template_name = 'pharmaceutical_detail.html'
