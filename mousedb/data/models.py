@@ -202,9 +202,12 @@ class Pharmaceutical(models.Model):
     '''
     
     DOSAGE_TYPE = (
-	('Tail Vein', 'Tail Vein'),
-	('Interperitoneal', 'Interperitoneal'),
-	('Oral', 'Oral'))
+	('Tail Vein', 'Tail Vein Injection'),
+	('Interperitoneal', 'Interperitoneal Injection'),
+	('Oral', 'Oral Gavage'),
+    ('Water', 'Drug in Water'),
+    ('Food', 'Drug in Food'))
+    
 
     drug = models.CharField(max_length=100, help_text="Name of drug")
     dose = models.CharField(max_length=100, help_text="Dose per animal (include units)")
