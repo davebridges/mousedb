@@ -54,7 +54,7 @@ class StudyAdmin(admin.ModelAdmin):
 admin.site.register(Study, StudyAdmin)
 
 class TreatmentAdmin(admin.ModelAdmin):
-	pass
+	raw_id_fields = ('animals',)
 admin.site.register(Treatment, TreatmentAdmin)
 
 class VendorAdmin(admin.ModelAdmin):
