@@ -35,33 +35,36 @@ class PharmaceuticalList(LoginRequiredMixin,ListView):
     template_name = 'pharmaceutical_list.html'
     context_object_name = 'pharmaceutical_list'
     
-class PharmaceuticalCreate(LoginRequiredMixin,CreateView):
+class PharmaceuticalCreate(PermissionRequiredMixin,CreateView):
     '''This view generates a form for creating a :class:`~mousedb.data.models.Pharmaceutical` object.
     
     This view is restricted to logged in users with the create-pharmaceutical permission.
     It is generated when the url **/parameter/pharmaceutical/new** is requested.'''
     
     model = Pharmaceutical
+    permission_required = "data.add_pharmaceutical"    
     template_name = 'pharmaceutical_form.html'
     context_object_name = 'pharmaceutical'
     
-class PharmaceuticalUpdate(LoginRequiredMixin,UpdateView):
+class PharmaceuticalUpdate(PermissionRequiredMixin,UpdateView):
     '''This view generates a form for updating :class:`~mousedb.data.models.Pharmaceutical` objects.
     
     This view is restricted to logged in users with the update-pharmaceutical permision. 
     It passes an object **pharmaceutical** when the url **/parameter/pharmaceutical/<id>/edit** is requested.'''
     
     model = Pharmaceutical
+    permission_required = "data.update_pharmaceutical"    
     template_name = 'pharmaceutical_form.html'
     context_object_name = 'pharmaceutical'        
 
-class PharmaceuticalDelete(LoginRequiredMixin,DeleteView):
+class PharmaceuticalDelete(PermissionRequiredMixin,DeleteView):
     '''This view generates a view for deleting :class:`~mousedb.data.models.Pharmaceutical` objects.
     
     This view is restricted to logged in users with the delete-pharmaceutical permision. 
     It passes an object **pharmaceutical** when the url **/parameter/pharmaceutical/<id>/delete** is requested.'''
     
     model = Pharmaceutical
+    permission_required = "data.delete_pharmaceutical"
     template_name = 'confirm_delete.html'
     success_url = reverse_lazy('pharmaceutical-list')
 
