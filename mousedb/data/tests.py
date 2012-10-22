@@ -8,24 +8,31 @@ from django.test import TestCase
 from django.test.client import Client
 from django.contrib.auth.models import User
 
-from mousedb.data.models import Study
-from mousedb.animal.models import Strain
+from mousedb.data.models import Study, Diet, Environment, Researcher, Treatment, Transplantation, Pharmaceutical, Implantation, Vendor
+from mousedb.animal.models import Strain, Animal
 
 MODELS = [Study]
 
-
-class StudyModelTests(TestCase):
-    """Test the creation and modification of Study objects."""
+class BasicTestCase(TestCase):
+    '''This class factors out the TestcCase setup and Teardown code.'''
 
     def setUp(self):
         """Instantiate the test client."""
         self.client = Client()
+        self.test_user = User.objects.create_user('blah', 'blah@blah.com', 'blah')
+        self.test_user.is_superuser = True
+        self.test_user.is_active = True
+        self.test_user.save()
+        self.client.login(username='blah', password='blah')
 
     def tearDown(self):
         """Depopulate created model instances from test database."""
         for model in MODELS:
             for obj in model.objects.all():
                 obj.delete()
+
+class StudyModelTests(BasicTestCase):
+    """Test the creation and modification of Study objects."""
 
     def test_create_study_minimal(self):
         """This is a test for creating a new study object, with only the minimum being entered.  It also verifies that unicode is set correctly."""
@@ -51,24 +58,10 @@ class StudyModelTests(TestCase):
         test_study.save()
         self.assertEquals(test_study.get_absolute_url(), '/studies/1/')
 
-class StudyViewTests(TestCase):
+class StudyViewTests(BasicTestCase):
     """These tests test the views associated with Study objects."""
 
-    def setUp(self):
-        """This function sets up the test client, and creates a test study."""
-        self.client = Client()
-        self.test_user = User.objects.create_user('blah', 'blah@blah.com', 'blah')
-        self.test_user.is_superuser = True
-        self.test_user.save()
-        self.client.login(username='blah', password='blah')
-        self.test_study = Study(description = "Effects of x on y")
-        self.test_study.save()
-
-    def tearDown(self):
-        """Depopulate created model instances from test database."""
-        for model in MODELS:
-            for obj in model.objects.all():
-                obj.delete()
+    fixtures = ['test_study',]
 
     def test_study_list(self):
         """This test checks the status code, and templates for study lists."""
@@ -117,22 +110,67 @@ class StudyViewTests(TestCase):
         self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
         self.assertTemplateUsed(response, 'confirm_delete.html')
 				
-class TreatmentViewTests(TestCase):
+class TreatmentModelTests(BasicTestCase):
+    '''These tests test the functionality of :class:`~mousedb.data.models.Treatment` objects.'''
+    
+    fixtures = ['test_diet', 'test_environment', 'test_researcher', 
+    'test_animals', 'test_strain', 'test_vendor', 'test_study', 'test_transplantation',
+    'test_pharmaceutical','test_implantation']
+    
+    def test_create_treatment_minimum(self):
+        '''This test creates a :class:`~mousedb.data.models.Treatment` with the required information only.'''
+
+        test_treatment = Treatment(treatment = 'Test Treatment', 
+            diet = Diet.objects.get(pk=1),
+            environment = Environment.objects.get(pk=1))
+        test_treatment.save()
+        test_treatment.animals.add(Animal.objects.get(pk=1))
+        test_treatment.researchers.add(Researcher.objects.get(pk=1))
+        self.assertEqual(test_treatment.pk, 1) #presumes no models loaded in fixture data
+        
+    def test_create_treatment_all(self):
+        '''This test creates a :class:`~mousedb.data.models.Treatment` with all information entered.'''
+
+        test_treatment = Treatment(treatment = 'Test Treatment', 
+            diet = Diet.objects.get(pk=1),
+            environment = Environment.objects.get(pk=1),
+            study = Study.objects.get(pk=1),
+            transplantation = Transplantation.objects.get(pk=1),
+            notes = "Some notes about this test treatment."
+            )
+        test_treatment.save()
+        test_treatment.animals.add(Animal.objects.get(pk=1))
+        test_treatment.researchers.add(Researcher.objects.get(pk=1))
+        test_treatment.pharmaceutical.add(Pharmaceutical.objects.get(pk=1))  
+        test_treatment.implantation.add(Implantation.objects.get(pk=1))                
+        self.assertEqual(test_treatment.pk, 1) #presumes no models loaded in fixture data       
+        
+    def test_treatment_unicode(self):
+        '''This tests the unicode representation of a :class:`~mousedb.data.models.Treatment`.'''
+
+        test_treatment = Treatment(treatment = 'Test Treatment', 
+            diet = Diet.objects.get(pk=1),
+            environment = Environment.objects.get(pk=1))
+        test_treatment.save()
+        test_treatment.animals.add(Animal.objects.get(pk=1))
+        test_treatment.researchers.add(Researcher.objects.get(pk=1))
+        self.assertEqual(test_treatment.__unicode__(), "Test Treatment")  
+        
+    def test_treatment_absolute_url(self):
+        '''This tests the absolute_url generation of a :class:`~mousedb.data.models.Treatment`.'''
+
+        test_treatment = Treatment(treatment = 'Test Treatment', 
+            diet = Diet.objects.get(pk=1),
+            environment = Environment.objects.get(pk=1))
+        test_treatment.save()
+        test_treatment.animals.add(Animal.objects.get(pk=1))
+        test_treatment.researchers.add(Researcher.objects.get(pk=1))
+        self.assertEqual(test_treatment.get_absolute_url(), "/treatment/1")
+
+class TreatmentViewTests(BasicTestCase):
     """These tests test the views associated with Treatment objects."""
 
-    fixtures = ['test_treatment','test_diet', 'test_vendor', 'test_environment', 'test_study']
-    
-    def setUp(self):
-        self.client = Client()
-        self.test_user = User.objects.create_user('blah', 'blah@blah.com', 'blah')
-        self.test_user.is_superuser = True
-        self.test_user.is_active = True
-        self.test_user.save()
-        self.client.login(username='blah', password='blah')
-
-    def tearDown(self):
-        self.client.logout()
-        self.test_user.delete()
+    fixtures = ['test_treatment','test_study', 'test_diet', 'test_environment', 'test_vendor']
 
     def test_treatment_detail(self):
         """This test checks the view which displays a treatment-detail page.  
@@ -182,3 +220,125 @@ class TreatmentViewTests(TestCase):
         self.assertEqual(test_response.context['treatment_list'][0].treatment, u'Test Treatment')
         self.assertEqual(test_response.context['treatment_list'][0].notes, u'Some Notes')
         self.assertEqual(test_response.context['treatment_list'][0].diet.__unicode__(), u'Test Diet')
+        
+class PharmaceuticalModelTests(BasicTestCase):
+    '''These tests test the functionality of :class:`~mousedb.data.models.Pharmaceutical` objects.'''
+    
+    fixtures = ['test_vendor',]
+    
+    def test_create_pharmaceutical_minimum(self):
+        '''This test creates a :class:`~mousedb.data.models.Pharmaceutical` with the required information only.'''
+
+        test_pharmaceutical = Pharmaceutical(drug = 'Test Drug', 
+            dose = '1 mg/kg',
+            mode = 'Oral',
+            recurrance = 'Daily',
+            vendor = Vendor.objects.get(pk=1))
+        test_pharmaceutical.save()
+        self.assertEqual(test_pharmaceutical.pk, 1) #presumes no models loaded in fixture data
+        
+    def test_create_pharmaceutical_all(self):
+        '''This test creates a :class:`~mousedb.data.models.Pharmaceutical` with all information entered.'''
+
+        test_pharmaceutical = Pharmaceutical(drug = 'Test Drug', 
+            dose = '1 mg/kg',
+            mode = 'Oral',
+            recurrance = 'Daily',
+            vendor = Vendor.objects.get(pk=1))
+        test_pharmaceutical.save()
+        self.assertEqual(test_pharmaceutical.pk, 1) #presumes no models loaded in fixture data      
+        
+    def test_pharmaceutical_unicode(self):
+        '''This tests the unicode representation of a :class:`~mousedb.data.models.Pharmaceutical`.'''
+
+        test_pharmaceutical = Pharmaceutical(drug = 'Test Drug', 
+            dose = '1 mg/kg',
+            mode = 'Oral',
+            recurrance = 'Daily',
+            vendor = Vendor.objects.get(pk=1))
+        test_pharmaceutical.save()
+        self.assertEqual(test_pharmaceutical.__unicode__(), "Test Drug at 1 mg/kg, Daily")  
+        
+    def test_pharmaceutical_absolute_url(self):
+        '''This tests the absolute_url generation of a :class:`~mousedb.data.models.Pharmaceutical`.'''
+
+        test_pharmaceutical = Pharmaceutical(drug = 'Test Drug', 
+            dose = '1 mg/kg',
+            mode = 'Oral',
+            recurrance = 'Daily',
+            vendor = Vendor.objects.get(pk=1))
+        test_pharmaceutical.save()
+        self.assertEqual(test_pharmaceutical.get_absolute_url(), "/parameter/pharmaceutical/1")
+                
+class PharmaceuticalViewTests(BasicTestCase):
+    '''This class tests the views for :class:`~mousedb.data.models.Pharmaceutical` objects.'''
+
+    fixtures = ['test_pharmaceutical', 'test_vendor']
+
+    def test_pharmaceutical_list(self):
+        """This tests the pharmaceutical-list view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        
+        test_response = self.client.get('/parameter/pharmaceutical')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTrue('pharmaceutical_list' in test_response.context)      
+        self.assertTemplateUsed(test_response, 'pharmaceutical_list.html')
+        self.assertEqual(test_response.context['pharmaceutical_list'][0].pk, 1)
+        self.assertEqual(test_response.context['pharmaceutical_list'][0].__unicode__(), u'Test Drug at 1 mg/kg, daily')
+
+
+    def test_pharmaceutical_view(self):
+        """This tests the pharmaceutical-view view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        
+        test_response = self.client.get('/parameter/pharmaceutical/1/')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTrue('pharmaceutical' in test_response.context)        
+        self.assertTemplateUsed(test_response, 'pharmaceutical_detail.html')
+        self.assertEqual(test_response.context['pharmaceutical'].pk, 1)
+        self.assertEqual(test_response.context['pharmaceutical'].__unicode__(), u'Test Drug at 1 mg/kg, daily')
+
+
+    def test_pharmaceutical_view_create(self):
+        """This tests the pharmaceutical-new view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        
+        test_response = self.client.get('/parameter/pharmaceutical/new/')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTemplateUsed(test_response, 'base.html')
+        self.assertTemplateUsed(test_response, 'pharmaceutical_form.html') 
+
+    def test_pharmaceutical_view_edit(self):
+        """This tests the pharmaceutical-edit view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        
+        test_response = self.client.get('/parameter/pharmaceutical/1/edit/')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTrue('pharmaceutical' in test_response.context)        
+        self.assertTemplateUsed(test_response, 'pharmaceutical_form.html')
+        self.assertEqual(test_response.context['pharmaceutical'].pk, 1)
+        self.assertEqual(test_response.context['pharmaceutical'].__unicode__(), u'Test Drug at 1 mg/kg, daily')
+
+        #verifies that a non-existent object returns a 404 error presuming there is no object with pk=2.
+        null_response = self.client.get('/parameter/pharmaceutical/2/edit/')
+        self.assertEqual(null_response.status_code, 404)   
+
+    def test_pharmaceutical_view_delete(self):
+        """This tests the pharmaceutical-delete view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        
+        test_response = self.client.get('/parameter/pharmaceutical/1/delete/')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTrue('pharmaceutical' in test_response.context)        
+        self.assertTemplateUsed(test_response, 'confirm_delete.html')
+        self.assertEqual(test_response.context['object'].pk, 1)
+        self.assertEqual(test_response.context['object'].__unicode__(), u'Test Drug at 1 mg/kg, daily')
+
+        #verifies that a non-existent object returns a 404 error.
+        null_response = self.client.get('/parameter/pharmaceutical/2/delete/')
+        self.assertEqual(null_response.status_code, 404) 

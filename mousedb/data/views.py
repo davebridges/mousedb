@@ -6,12 +6,64 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.core.urlresolvers import reverse_lazy
 
 from braces.views import LoginRequiredMixin, PermissionRequiredMixin
 
 from mousedb.animal.models import Animal
-from mousedb.data.models import Experiment, Measurement, Study, Treatment
+from mousedb.data.models import Experiment, Measurement, Study, Treatment, Pharmaceutical
 from mousedb.data.forms import MeasurementForm, MeasurementFormSet, StudyExperimentForm
+
+class PharmaceuticalDetail(LoginRequiredMixin,DetailView):
+    '''This view generates details about a :class:`~mousedb.data.models.Pharmaceutical` object.
+    
+    This view is restricted to logged in users.
+    It passes an object **pharmaceutical** when the url **/parameter/pharmaceutical/<id>** is requested.'''
+    
+    model = Pharmaceutical
+    template_name = 'pharmaceutical_detail.html'
+    context_object_name = 'pharmaceutical'
+
+class PharmaceuticalList(LoginRequiredMixin,ListView):
+    '''This view generates list of :class:`~mousedb.data.models.Pharmaceutical` objects.
+    
+    This view is restricted to logged in users.
+    It passes an object **pharmaceutical** when the url **/parameter/pharmaceutical** is requested.'''
+    
+    model = Pharmaceutical
+    template_name = 'pharmaceutical_list.html'
+    context_object_name = 'pharmaceutical_list'
+    
+class PharmaceuticalCreate(LoginRequiredMixin,CreateView):
+    '''This view generates a form for creating a :class:`~mousedb.data.models.Pharmaceutical` object.
+    
+    This view is restricted to logged in users with the create-pharmaceutical permission.
+    It is generated when the url **/parameter/pharmaceutical/new** is requested.'''
+    
+    model = Pharmaceutical
+    template_name = 'pharmaceutical_form.html'
+    context_object_name = 'pharmaceutical'
+    
+class PharmaceuticalUpdate(LoginRequiredMixin,UpdateView):
+    '''This view generates a form for updating :class:`~mousedb.data.models.Pharmaceutical` objects.
+    
+    This view is restricted to logged in users with the update-pharmaceutical permision. 
+    It passes an object **pharmaceutical** when the url **/parameter/pharmaceutical/<id>/edit** is requested.'''
+    
+    model = Pharmaceutical
+    template_name = 'pharmaceutical_form.html'
+    context_object_name = 'pharmaceutical'        
+
+class PharmaceuticalDelete(LoginRequiredMixin,DeleteView):
+    '''This view generates a view for deleting :class:`~mousedb.data.models.Pharmaceutical` objects.
+    
+    This view is restricted to logged in users with the delete-pharmaceutical permision. 
+    It passes an object **pharmaceutical** when the url **/parameter/pharmaceutical/<id>/delete** is requested.'''
+    
+    model = Pharmaceutical
+    template_name = 'confirm_delete.html'
+    success_url = reverse_lazy('pharmaceutical-list')
 
 class TreatmentDetail(LoginRequiredMixin, DetailView):
     '''This view generates details about a :class:`~mousedb.data.models.Treatment` object.

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block header %}{% if pharmaceutical %}Update Pharmaceutical Treatment - {{ pharmaceutical }}{% else %}New Pharmaceutical Treatment{% endif %}{% endblock %}
+{% block title %}{% if pharmaceutical %}Update Pharmaceutical Treatment - {{ pharmaceutical }}{% else %}New Pharmaceutical Treatment{% endif %}{% endblock %}
+
+{% block content %}
+
+<form method="POST" action="{% if pharmaceutical %}{% url pharmaceutical-edit pharmaceutical.id %}{% else %}{% url pharmaceutical-new %}{% endif %}">{% csrf_token %}
+<table>{{ form }}</table>
+<input type="submit" value="Submit" />
+</form>
+
+{% endblock %}
