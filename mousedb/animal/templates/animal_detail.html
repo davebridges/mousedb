@@ -84,6 +84,18 @@ This mouse has an unknown age.
 	{% endwith %}
 </div>
 {% endif %}
+{% if animal.treatment_set.count > 0 %}
+
+<div id="treatments">
+	<h2>Treatment Summary</h2>
+    <ul>
+	{% for treatment in animal.treatment_set.all %}
+    <li><a href="{{ treatment.get_absolute_url }}">{{ treatment }}</a></li>
+    {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
 <div id="animal-measurements">
 	<h2>Measurement Summary</h2>
     {% if animal.measurement_set.all.count > 0 %}
