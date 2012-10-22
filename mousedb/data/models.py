@@ -54,7 +54,6 @@ class Experiment(models.Model):
     class Meta:
         ordering = ['-date']
 
-
 class Assay(models.Model):
 	assay = models.CharField(max_length = 100)
 	assay_slug = models.SlugField(max_length=25)
@@ -62,7 +61,6 @@ class Assay(models.Model):
 	measurement_units = models.CharField(max_length = 100)
 	def __unicode__(self):
 		return u'%s' % self.assay		
-
 
 class Measurement(models.Model):
     animal = models.ForeignKey(Animal)
@@ -79,7 +77,6 @@ class Measurement(models.Model):
     
     def get_absolute_url(self):
         return self.animal.get_absolute_url()
-
 	
 class Researcher(models.Model):
 	first_name = models.CharField(max_length = 50)
@@ -89,7 +86,6 @@ class Researcher(models.Model):
 	active = models.BooleanField(default = True)
 	def __unicode__(self):
 		return u'%s %s' % (self.first_name, self.last_name)
-
 
 class Study(models.Model): 
 	description = models.CharField(max_length=200)
