@@ -148,10 +148,11 @@ def experiment_details_csv(request, experiment_id):
     response = HttpResponse(mimetype='text/csv')
     response['Content-Disposition'] = 'attachment; filename=experiment.csv'
     writer = csv.writer(response)
-    writer.writerow(["Animal", "Strain", "Genotype", "Age", "Assay", "Values", "Feeding", "Treatment"])
+    writer.writerow(["Animal","Cage", "Strain", "Genotype", "Age", "Assay", "Values", "Feeding", "Treatment"])
     for measurement in experiment.measurement_set.iterator():
         writer.writerow([
 			measurement.animal,
+            measurement.animal.Cage,
             measurement.animal.Strain,
 			measurement.animal.Genotype, 
 			measurement.age(), 
