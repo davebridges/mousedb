@@ -383,3 +383,80 @@ class CohortModelTests(BasicTestCase):
         test_cohort.save() 
         test_cohort.animals.add = Animal.objects.all()
         self.assertEqual(test_cohort.get_absolute_url(), "/cohort/test-cohort")        
+        
+class CohortViewTests(BasicTestCase):
+    '''This class tests the views for :class:`~mousedb.data.models.Cohort` objects.'''
+
+    fixtures = ['test_cohort', 'test_animals', 'test_strain']
+
+    def test_cohort_list(self):
+        """This tests the cohort-list view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        
+        test_response = self.client.get('/cohort/')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTrue('cohort_list' in test_response.context)      
+        self.assertTemplateUsed(test_response, 'cohort_list.html')
+        self.assertEqual(test_response.context['cohort_list'][0].pk, 1)
+        self.assertEqual(test_response.context['cohort_list'][0].__unicode__(), u'Fixture Cohort')
+
+
+    def test_cohort_view(self):
+        """This tests the cohort-view view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        
+        test_response = self.client.get('/cohort/fixture-cohort')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTrue('cohort' in test_response.context)        
+        self.assertTemplateUsed(test_response, 'cohort_detail.html')
+        self.assertEqual(test_response.context['cohort'].pk, 1)
+        self.assertEqual(test_response.context['cohort'].__unicode__(), u'Fixture Cohort')
+        
+        #verifies that a non-existent object returns a 404 error presuming there is no object with slug=wrong-cohort-name.
+        null_response = self.client.get('/cohort/wrong-cohort-name')
+        self.assertEqual(null_response.status_code, 404) 
+
+
+    def test_cohort_view_create(self):
+        """This tests the cohort-new view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        
+        test_response = self.client.get('/cohort/new/')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTemplateUsed(test_response, 'base.html')
+        self.assertTemplateUsed(test_response, 'cohort_form.html') 
+
+    def test_cohort_view_edit(self):
+        """This tests the cohort-edit view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        
+        test_response = self.client.get('/cohort/fixture-cohort/edit')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTrue('cohort' in test_response.context)        
+        self.assertTemplateUsed(test_response, 'cohort_form.html')
+        self.assertEqual(test_response.context['cohort'].pk, 1)
+        self.assertEqual(test_response.context['cohort'].__unicode__(), u'Fixture Cohort')
+
+        #verifies that a non-existent object returns a 404 error presuming there is no object with slug=wrong-cohort-name.
+        null_response = self.client.get('/cohort/wrong-cohort-name')
+        self.assertEqual(null_response.status_code, 404)   
+
+    def test_cohort_view_delete(self):
+        """This tests the cohort-delete view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        
+        test_response = self.client.get('/cohort/fixture-cohort/delete')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTrue('object' in test_response.context)        
+        self.assertTemplateUsed(test_response, 'confirm_delete.html')
+        self.assertEqual(test_response.context['object'].pk, 1)
+        self.assertEqual(test_response.context['object'].__unicode__(), u'Fixture Cohort')
+
+        #verifies that a non-existent object returns a 404 error.
+        null_response = self.client.get('/cohort/wrong-cohort-name/delete/')
+        self.assertEqual(null_response.status_code, 404)         

@@ -1,0 +1,17 @@
+[
+    {
+        "pk": 1, 
+        "model": "data.cohort", 
+        "fields": {
+            "animals": [
+                1
+            ], 
+            "name": "Fixture Cohort", 
+            "end_date": null, 
+            "notes": "", 
+            "treatment_groups": [], 
+            "start_date": null, 
+            "slug": "fixture-cohort"
+        }
+    }
+]
