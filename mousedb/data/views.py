@@ -22,10 +22,51 @@ class CohortDetail(LoginRequiredMixin,DetailView):
     It passes an object **cohort** when the url **/cohort/<slug>** is requested.'''
     
     model = Cohort
-    slug_field = "slug"
-    slug_url_kwarg = "slug"
     template_name = 'cohort_detail.html'
     context_object_name = 'cohort'
+    
+class CohortList(LoginRequiredMixin,ListView):
+    '''This view generates list of :class:`~mousedb.data.models.Cohort` objects.
+    
+    This view is restricted to logged in users.
+    It passes an object **cohort_list** when the url **/cohort** is requested.'''
+    
+    model = Cohort
+    template_name = 'cohort_list.html'
+    context_object_name = 'cohort_list'
+    
+class CohortCreate(PermissionRequiredMixin,CreateView):
+    '''This view generates a form for creating a :class:`~mousedb.data.models.Cohort` object.
+    
+    This view is restricted to logged in users with the create-cohort permission.
+    It is generated when the url **/cohort/new** is requested.'''
+    
+    model = Cohort
+    permission_required = "data.add_cohort"    
+    template_name = 'cohort_form.html'
+    context_object_name = 'cohort'
+    
+class CohortUpdate(PermissionRequiredMixin,UpdateView):
+    '''This view generates a form for updating :class:`~mousedb.data.models.Cohort` objects.
+    
+    This view is restricted to logged in users with the update-cohort permision. 
+    It passes an object **object** when the url **/cohort/<slug>/edit** is requested.'''
+    
+    model = Cohort
+    permission_required = "data.update_cohort"    
+    template_name = 'cohort_form.html'
+    context_object_name = 'cohort'        
+
+class CohortDelete(PermissionRequiredMixin,DeleteView):
+    '''This view generates a view for deleting :class:`~mousedb.data.models.Cohort` objects.
+    
+    This view is restricted to logged in users with the delete-cohort permision. 
+    It passes an object **cohort** when the url **/cohort/<slug>/delete** is requested.'''
+    
+    model = Cohort
+    permission_required = "data.delete_cohort"
+    template_name = 'confirm_delete.html'
+    success_url = reverse_lazy('cohort-list')    
 
 class PharmaceuticalDetail(LoginRequiredMixin,DetailView):
     '''This view generates details about a :class:`~mousedb.data.models.Pharmaceutical` object.
