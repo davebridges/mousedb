@@ -8,7 +8,7 @@ from django.test import TestCase
 from django.test.client import Client
 from django.contrib.auth.models import User
 
-from mousedb.data.models import Study, Diet, Environment, Researcher, Treatment, Transplantation, Pharmaceutical, Implantation, Vendor
+from mousedb.data.models import Study, Diet, Environment, Researcher, Treatment, Transplantation, Pharmaceutical, Implantation, Vendor, Cohort
 from mousedb.animal.models import Strain, Animal
 
 MODELS = [Study]
@@ -342,3 +342,44 @@ class PharmaceuticalViewTests(BasicTestCase):
         #verifies that a non-existent object returns a 404 error.
         null_response = self.client.get('/parameter/pharmaceutical/2/delete/')
         self.assertEqual(null_response.status_code, 404) 
+        
+class CohortModelTests(BasicTestCase):
+    '''These tests test the functionality of :class:`~mousedb.data.models.Cohort` objects.'''
+    
+    fixtures = ['test_animals','test_strain', 'test_treatment', 'test_study']
+    
+    def test_create_cohort_minimum(self):
+        '''This test creates a :class:`~mousedb.data.models.Cohort` with the required information only.'''
+
+        test_cohort = Cohort(name = 'Test Cohort')
+        test_cohort.save() 
+        test_cohort.animals.add = Animal.objects.all()
+        self.assertEqual(test_cohort.pk, 1) #presumes no models loaded in fixture data
+        
+    def test_create_cohort_all(self):
+        '''This test creates a :class:`~mousedb.data.models.Cohort` with all information entered.'''
+
+        test_cohort = Cohort(name = 'Test Cohort',
+                             start_date = '2012-01-01',
+                             end_date = '2012-08-01',
+                             notes = "Some notes about this cohort")
+        test_cohort.save() 
+        test_cohort.animals.add = Animal.objects.all()
+        test_cohort.treatment_groups.all = Treatment.objects.get(pk=1)
+        self.assertEqual(test_cohort.pk, 1) #presumes no models loaded in fixture data      
+        
+    def test_cohort_unicode(self):
+        '''This tests the unicode representation of a :class:`~mousedb.data.models.Cohort`.'''
+
+        test_cohort = Cohort(name = 'Test Cohort')
+        test_cohort.save() 
+        test_cohort.animals.add = Animal.objects.all()
+        self.assertEqual(test_cohort.__unicode__(), "Test Cohort") 
+        
+    def test_cohort_slug_field(self):
+        '''This tests that the slug field is automatically generated on saving for a :class:`~mousedb.data.models.Cohort`.'''
+             
+        test_cohort = Cohort(name = 'Test Cohort')
+        test_cohort.save() 
+        test_cohort.animals.add = Animal.objects.all()
+        self.assertEqual(test_cohort.slug, "test-cohort")     
