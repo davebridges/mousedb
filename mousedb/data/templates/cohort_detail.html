@@ -8,6 +8,11 @@
 
 {% block header %}Cohort Detail - {{ cohort }}{% endblock header%}
 
+    <ul>{% for treatment in cohort.treatment_groups.all %}
+    	<li><a href="{{ treatment.get_absolute_url }}">{{ treatment }}</a></li>
+    	{% endfor %}
+    </ul>
+
 {% block content %}
 {% with cohort.animals.all as animal_list %}
 {% include "animal_list_table.html" %}

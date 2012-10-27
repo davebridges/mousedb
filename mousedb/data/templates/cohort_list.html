@@ -15,11 +15,11 @@
     <th>Treatment Groups</th>
     <th>Animals</th>
 </tr>
-{% for treatment in treatment_list %}
+{% for cohort in cohort_list %}
 <tr>
-    <td><a href="{{ cohort.study.get_absolute_url }}">{{ cohort }}</a></td>
+    <td><a href="{{ cohort.get_absolute_url }}">{{ cohort }}</a></td>
     <td>
-    <ul>{% for treatment in cohort.treatment_groups %}
+    <ul>{% for treatment in cohort.treatment_groups.all %}
     	<li><a href="{{ treatment.get_absolute_url }}">{{ treatment }}</a></li>
     	{% endfor %}
     </ul>
