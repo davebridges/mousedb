@@ -115,8 +115,7 @@ class AnimalDelete(DeleteView):
     def dispatch(self, *args, **kwargs):
         """This decorator sets this view to have restricted permissions."""
         return super(AnimalDelete, self).dispatch(*args, **kwargs)    
-    
-    
+        
 class StrainList(ProtectedListView):
     """This class generates an object list for :class:`~mousedb.animal.models.Strain` objects.
     
@@ -284,7 +283,7 @@ class BreedingListTimedMating(BreedingList):
 class BreedingSearch(BreedingList):
     """This class generates a view for breeding objects, showing the results of a search query for cage number.
     
-    This class is a subclass of :class:`~mousedb.animal.views.BreedingList, changing the queryset and the  breeding_type context as well as providing the search query and search results if available."""
+    This class is a subclass of :class:`~mousedb.animal.views.BreedingList`, changing the queryset and the  breeding_type context as well as providing the search query and search results if available."""
 
     template_name = "breeding_search.html"
     def get_context_data(self, **kwargs):
@@ -342,8 +341,7 @@ class BreedingDelete(DeleteView):
     def dispatch(self, *args, **kwargs):
         """This decorator sets this view to have restricted permissions."""
         return super(BreedingDelete, self).dispatch(*args, **kwargs)      
-        
-        
+                
 @permission_required('animal.add_animal')
 def breeding_pups(request, breeding_id):
     """This view is used to generate a form by which to add pups which belong to a particular breeding set.
