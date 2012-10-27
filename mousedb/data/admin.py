@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from mousedb.data.models import Experiment, Assay, Measurement, Researcher, Study, Treatment, Vendor, Diet, Environment, Implantation, Transplantation, Pharmaceutical
+from mousedb.data.models import Experiment, Assay, Measurement, Researcher, Study, Treatment, Cohort, Vendor, Diet, Environment, Implantation, Transplantation, Pharmaceutical
 
 
 class MeasurementInline(admin.TabularInline):
@@ -80,3 +80,7 @@ admin.site.register(Transplantation, TransplantationAdmin)
 class PharmaceuticalAdmin(admin.ModelAdmin):
 	pass
 admin.site.register(Pharmaceutical, PharmaceuticalAdmin)
+
+class CohortAdmin(admin.ModelAdmin):
+	pass
+admin.site.register(Cohort, CohortAdmin)
