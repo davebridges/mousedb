@@ -79,7 +79,8 @@ By default 20 items are returned but you can increase this to all by setting lim
 | format           | **json** or **xml**                     |
 +------------------+-----------------------------------------+
 | limit            | **0** for all, any other number         |
-+------------------|-----------------------------------------+
++------------------+-----------------------------------------+
+
 
 Response Values
 ```````````````
@@ -116,7 +117,7 @@ By default 20 items are returned but you can increase this to all by setting lim
 | format           | **json** or **xml**                     |
 +------------------+-----------------------------------------+
 | limit            | **0** for all, any other number         |
-+------------------|-----------------------------------------+
++------------------+-----------------------------------------+
 
 Response Values
 ```````````````
@@ -158,7 +159,8 @@ By default 20 items are returned but you can increase this to all by setting lim
 | format           | **json** or **xml**                     |
 +------------------+-----------------------------------------+
 | limit            | **0** for all, any other number         |
-+------------------|-----------------------------------------+
++------------------+-----------------------------------------+
+
 
 Response Values
 ```````````````
@@ -208,7 +210,7 @@ By default 20 items are returned but you can increase this to all by setting lim
 | format           | **json** or **xml**                     |
 +------------------+-----------------------------------------+
 | limit            | **0** for all, any other number         |
-+------------------|-----------------------------------------+
++------------------+-----------------------------------------+
 
 Response Values
 ```````````````
@@ -230,6 +232,7 @@ The response (in either JSON or XML) provides the following fields for each obje
 +--------------------+-------------------------------------------------------------+-------------------------------------------------------------+ 
 | stop _date         | the optional end date of the study                          | 2012-09-27                                                  |
 +--------------------+-------------------------------------------------------------+-------------------------------------------------------------+ 
+
 '''
 
 from tastypie.resources import ModelResource
