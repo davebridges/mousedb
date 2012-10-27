@@ -1,0 +1,13 @@
+[
+    {
+        "pk": 1, 
+        "model": "data.implantation", 
+        "fields": {
+            "notes": "", 
+            "implant": "Sensor", 
+            "surgeon": [], 
+            "vendor": 1, 
+            "product_id": "1234"
+        }
+    }
+]

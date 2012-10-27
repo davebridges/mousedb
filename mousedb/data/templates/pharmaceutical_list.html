@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<ul>
+{% for pharmaceutical in pharmaceutical_list %}
+<li><a href = "{{ pharmaceutical.get_absolute_url }}">{{ pharmaceutical }}</a></li>
+{% endfor %}
+</ul>
+{% endblock %}

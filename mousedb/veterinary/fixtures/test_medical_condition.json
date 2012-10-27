@@ -1,0 +1,13 @@
+[
+    {
+        "pk": 1, 
+        "model": "veterinary.medicalcondition", 
+        "fields": {
+            "notes": "", 
+            "created": "2012-09-23T14:48:59.323Z", 
+            "updated": "2012-09-23T14:48:59.323Z", 
+            "name": "Test Condition", 
+            "slug": "test-condition"
+        }
+    }
+]

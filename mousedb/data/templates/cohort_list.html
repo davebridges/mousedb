@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Cohort List{% endblock title%}
+
+{% block scripts %}
+{% endblock scripts %}
+
+
+{% block header %}Cohort List{% endblock header %}
+
+{% block content %}
+<table id="cohort-list">
+<tr>
+    <th>Cohort</th>
+    <th>Treatment Groups</th>
+    <th>Animals</th>
+</tr>
+{% for cohort in cohort_list %}
+<tr>
+    <td><a href="{{ cohort.get_absolute_url }}">{{ cohort }}</a></td>
+    <td>
+    <ul>{% for treatment in cohort.treatment_groups.all %}
+    	<li><a href="{{ treatment.get_absolute_url }}">{{ treatment }}</a></li>
+    	{% endfor %}
+    </ul>
+    </td>
+    <td>{{ cohort.animals.count }}</td>
+</tr>
+{% endfor %}
+
+{% endblock content %}

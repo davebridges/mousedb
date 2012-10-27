@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block header %}{% if medical_issue %}Update {{ medical_issue }} {% else %}New Medical Issue{% endif %}{% endblock %}
+{% block title %}{% if medical_issue %}Update {{ medical_issue }} {% else %}New Medical Issue{% endif %}{% endblock %}
+{% block scripts %}
+	<script type="text/javascript">
+	 $(document).ready(function() {	
+		$('#id_diagnosis').datepicker({dateFormat: 'yy-mm-dd'});
+		$('#id_treatment_start').datepicker({dateFormat: 'yy-mm-dd'});
+		$('#id_treatment_end').datepicker({dateFormat: 'yy-mm-dd'});		
+	});
+	</script>
+{% endblock %}
+{% block content %}
+<form method="POST" action="{% if medical_issue %}{% url medical-issue-edit medical_issue.id %} {% else %} {% url medical-issue-new %}{% endif %}">{% csrf_token %}
+<table>{{ form }}</table>
+<input type="submit" value="Submit" />
+</form>
+{% endblock %}

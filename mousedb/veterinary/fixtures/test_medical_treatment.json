@@ -1,0 +1,10 @@
+[
+    {
+        "pk": 1, 
+        "model": "veterinary.medicaltreatment", 
+        "fields": {
+            "name": "Test Treatment", 
+            "slug": "test-treatment"
+        }
+    }
+]

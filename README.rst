@@ -22,15 +22,15 @@ Software Dependencies
   c. http://github.com/davebridges/mousedb for the source code via Git.  If you might contribute code to the project use the source code.
 
 Downloading and/or unzipping will create a directory named mousedb.  You can update to the newest revision at any time either using git or downloading and re-installing the newer version.  Changing or updating software versions will not alter any saved data, but you will have to update the localsettings.py file (described below).
+
 3. **Database software**.  Recommended to use mysql, available at http://dev.mysql.com/downloads/mysql/ .  It is also possible to use SQLite, PostgreSQL, MySQL, or Oracle.  See http://docs.djangoproject.com/en/1.2/topics/install/#database-installation for more information.
 4. **Webserver**.  Apache is recommended, available at http://www.apache.org/dyn/closer.cgi .  It is also possible to use FastCGI, SCGI, or AJP.  See http://docs.djangoproject.com/en/1.2/howto/deployment/ for more details.  The recommended way to use Apache is to download and enable mod_wsgi.  See http://code.google.com/p/modwsgi/ for more details.
-
-Installation
-------------
-1. Navigate into mousedb folder
-2. Run **python setup.py install** to get dependencies.  If you installed via pip, this step is not necessary (but wont hurt).  This will install the dependencies South, mysql-python and django-ajax-selects.
-3. Run **python bootstrap.py** to get the correct version of Django and to set up an isolated environment.  This step may take a few minutes.
-4. Run **bin\buildout** to generate django, test and wsgi scripts.  This step may take a few minutes.
+5. **Other Python Packages**.  The following can be imported using **pip install -U <package-name>** and are required:
+    
+    * South: Used for database migrations.  Only required for upgrades.
+    * django-braces: Used for login and permission settings in class based views.
+    * django-ajax-selects: For autocomplete functionality.
+    * django-tastypie: For API functionality.
 
 Database Setup
 --------------
@@ -47,46 +47,55 @@ Database Setup
 
 Web Server Setup
 ----------------
-You need to set up a server to serve both the django installation and saved files.  For the saved files.  I recommend using apache for both.  The preferred setup is to use Apache2 with mod_wsgi.  See http://code.google.com/p/modwsgi/wiki/InstallationInstructions for instructions on using mod_wsgi.  The following is a httpd.conf example where the code is placed in **/usr/src/mousedb**::
+You need to set up a server to serve both the django installation and saved files.  The preferred setup is to use Apache2 with mod_wsgi to serve the project files and a separate webserver to serve media and static files.
+Static files are website files such as javascript, images and css files.  Media files are user-specific files such as images.  As of this version there are no media files in this project.  These can both be served from a separate webserver but below is an example where Apache is used for both.
+The default is to serve static files from **mousedb/static** to the url **/mousedb-static**.  These locations can be altered in the localsettings.py file using STATIC_ROOT and STATIC_URL respectively.
+The following is a httpd.conf example where the code is placed in **/usr/src/mousedb**::
 
-  Alias /robots.txt /usr/src/mousedb/src/mousedb/media/robots.txt 
-  Alias /favicon.ico /usr/src/mousedb/src/mousedb/media/favicon.ico
+  Alias /robots.txt /usr/src/mousedb/mousedb/static/robots.txt 
+  Alias /favicon.ico /usr/src/mousedb/mousedb/static/favicon.ico
 
-  Alias /mousedb-media/ /usr/src/mousedb/src/mousedb/media/  
-  <Directory /usr/src/mousedb/src/mousedb/media>
+  Alias /mousedb-media/ /usr/src/mousedb/mousedb/media/  
+  <Directory /usr/src/mousedb/mousedb/media>
        Order deny,allow
        Allow from all
   </Directory>
   
-  Alias /static/ /usr/src/mousedb/src/mousedb/static/  
-  <Directory /usr/src/mousedb/src/mousedb/static>
+  Alias /mousedb-static/ /usr/src/mousedb/mousedb/static/  
+  <Directory /usr/src/mousedb/mousedb/static>
        Order deny,allow
        Allow from all
   </Directory>    
 
-  <Directory /usr/src/mousedb/bin>
+  <Directory /usr/src/mousedb/mousedb/apache/django.wsgi>
        Order deny,allow
        Allow from all
   </Directory>
-  WSGIScriptAlias /mousedb /usr/src/mousedb/bin/django.wsgi
+  WSGIScriptAlias /mousedb /usr/src/mousedb/mousedb/apache/django.wsgi
 
 If you want to restrict access to these files, change the Allow from all directive to specific domains or ip addresses (for example Allow from 192.168.0.0/99 would allow from 192.168.0.0 to 192.168.0.99)
+If you want to restrict access to these files, change the Allow from all directive to specific domains or ip addresses (for example Allow from 192.168.0.0/99 would allow from 192.168.0.0 to 192.168.0.99).
+
+To move all static files (css/javascript/images) to the directory from which static media will be served run the following command.  This will move the files to the directory defined in STATIC_ROOT::
+
+    python manage.py collectstatic
+
 
 Enabling of South for Future Migrations
 ---------------------------------------
 Schema updates will utilize south as a way to alter database tables.  This must be enabled initially by entering the following commands from /mousedb/bin::
 
-    django schemamigration animal --initial
-    django schemamigration data --initial
-    django schemamigration groups --initial
-    django schemamigration timed_mating --initial
-    django syncdb
-    django migrate
+    python manage.py schemamigration animal --initial
+    python manage.py schemamigration data --initial
+    python manage.py schemamigration groups --initial
+    python manage.py schemamigration timed_mating --initial
+    python manage.py syncdb
+    python manage.py migrate
     
 Future schema changes (se the UPGRADE_NOTES.rst file for whether this is necessary) are accomplished by entering::
 
-    django schemamigration <INDICATED_APP> --auto
-    django migrate <INDICATED_APP>
+    python manage.py schemamigration schemamigration <INDICATED_APP> --auto
+    python manage.py schemamigration migrate <INDICATED_APP>
 
 Final Configuration and User Setup
 ----------------------------------

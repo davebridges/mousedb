@@ -1,0 +1,63 @@
+{% load custom_filters %}
+
+<table class="sortable">
+	<thead>
+		<tr>
+			<th>MouseID</th>
+			<th>Strain</th>
+			<th>Background</th>
+			<th>Genotype</th>
+			<th>Gender</th>
+			<th>Cage</th>
+			<th>Rack</th>
+			<th>Position</th>
+			<th>Backcross</th>
+			<th>Generation</th>
+			<th>Born</th>
+			<th>Age (Days)</th>
+			<th>Markings</th>
+		</tr>
+	</thead>
+		
+	<tbody>
+{% for animal in animal_list %}
+  <tr 
+  {% if animal.breeding_male_location_type != "unknown-breeder" %}
+    class="{{animal.breeding_male_location_type}}"
+  {% endif %} 
+  {% if animal.breeding_female_location_type != "unknown-breeder" %}
+    class="{{animal.breeding_female_location_type}}"
+  {% endif %}
+  {% if not animal.Weaned %}
+    class="unweaned"
+  {% endif %}>
+			<td><a href = "{% url animal-detail animal.id %}">{{ animal.MouseID}}</a></td>
+			<td><a href="{% url strain-detail animal.Strain.Strain_slug %}">{{ animal.Strain }}</a></td>
+			<td>{{ animal.Background }}</td>
+			<td>{{ animal.Genotype }}</td>
+			<td>{{ animal.get_Gender_display }}</td>
+			<td>{% if animal.Cage %}<a href="{% url cage-detail animal.Cage %}">{{ animal.Cage }}</a>
+                {% else %}No Cage Number
+                {% endif %}
+            </td>
+			<td>{{ animal.Rack|all_caps }}</td>
+			<td>{{ animal.Rack_Position|all_caps }}</td>
+			<td>{{ animal.Backcross }}</td>
+			<td>{{ animal.Generation }}</td>
+			<td>{{ animal.Born|date:"Y-m-d" }}</td>
+			{% if animal.Death %}
+				<td class="dead">{{ animal.age }}</td>
+			{% else %}
+				<td class="age">{{ animal.age }}</td>
+			{% endif %}
+			<td>{{ animal.Markings }}</td>
+			{% if perms.animal.add_animal %}
+			<td>
+			<a href="{% url animal-update animal.id %}" title="Edit {{animal}}" <button class="fg-button ui-state-default ui-corner-all"><span class="ui-icon ui-icon-pencil"></span>Edit</button>
+			</a>
+			</td>
+			{% endif %}			
+		</tr>
+{% endfor%}
+	</tbody>
+</table>
