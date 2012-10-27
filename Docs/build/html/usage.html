@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Users and Restriction &mdash; MouseDB 1.0.0 documentation</title>
+    <title>Users and Restriction &mdash; MouseDB 1.1.1 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '1.0.0',
+        VERSION:     '1.1.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="MouseDB 1.0.0 documentation" href="index.html" />
+    <link rel="top" title="MouseDB 1.1.1 documentation" href="index.html" />
     <link rel="next" title="Automated Documentation" href="api.html" />
     <link rel="prev" title="MouseDB Installation" href="installation.html" /> 
   </head>
@@ -45,7 +45,7 @@
         <li class="right" >
           <a href="installation.html" title="MouseDB Installation"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">MouseDB 1.0.0 documentation</a> &raquo;</li> 
+        <li><a href="index.html">MouseDB 1.1.1 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -56,7 +56,7 @@
             
   <div class="section" id="users-and-restriction">
 <h1>Users and Restriction<a class="headerlink" href="#users-and-restriction" title="Permalink to this headline">¶</a></h1>
-<p>All pages in this database are restricted to logged-in users.  Users are defined using the standard Django <a class="reference external" href="http://docs.djangoproject.com/en/dev/topics/auth/#django.contrib.auth.models.User" title="(in Django v1.4)"><tt class="xref py py-class docutils literal"><span class="pre">User</span></tt></a> objects.  It is also recommended that data is secured by only allowing access of specific IP addresses.  For more details on this see the documentation for your webserver software (for example, for Apache see here <a class="reference external" href="http://httpd.apache.org/docs/2.2/howto/access.html">http://httpd.apache.org/docs/2.2/howto/access.html</a>).  Each database should have at least one superuser, and that user can create and designate permissions for other users.  When a user does not have the permissions to view a page or to edit something, the link to that page will not be visible and if they enter the address, they will be redirected to a login page.</p>
+<p>All pages in this database are restricted to logged-in users.  Users are defined using the standard Django <a class="reference external" href="http://docs.djangoproject.com/en/dev/topics/auth/#django.contrib.auth.models.User" title="(in Django v1.6)"><tt class="xref py py-class docutils literal"><span class="pre">User</span></tt></a> objects.  It is also recommended that data is secured by only allowing access of specific IP addresses.  For more details on this see the documentation for your webserver software (for example, for Apache see here <a class="reference external" href="http://httpd.apache.org/docs/2.2/howto/access.html">http://httpd.apache.org/docs/2.2/howto/access.html</a>).  Each database should have at least one superuser, and that user can create and designate permissions for other users.  When a user does not have the permissions to view a page or to edit something, the link to that page will not be visible and if they enter the address, they will be redirected to a login page.</p>
 <div class="section" id="creating-new-users">
 <h2>Creating New Users<a class="headerlink" href="#creating-new-users" title="Permalink to this headline">¶</a></h2>
 <p>Create users by going to <strong>../mousedb/admin/auth/user/add/</strong> and filling in both pages of the form.  Permissions are set by going to <strong>../mousedb/admin/auth/user/</strong> selecting the user and manually moving the permissions from the box on the left to the box on the right.  If you want the user to have access to the admin site, select staff.  Only select superuser if you want that user to have all permissions.  Users can change passwords on the administration site as well.</p>
@@ -244,12 +244,12 @@
         <li class="right" >
           <a href="installation.html" title="MouseDB Installation"
              >previous</a> |</li>
-        <li><a href="index.html">MouseDB 1.0.0 documentation</a> &raquo;</li> 
+        <li><a href="index.html">MouseDB 1.1.1 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2009-2011, Dave Bridges, Ph.D..
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+        &copy; Copyright 2009-2012, Dave Bridges.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
 </html>
