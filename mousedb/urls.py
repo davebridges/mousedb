@@ -41,6 +41,7 @@ urlpatterns = patterns('',
 	url(r'^studies/', include('mousedb.data.urls.study')),
 	url(r'^treatments?/', include('mousedb.data.urls.treatment')),
 	url(r'^parameters?/', include('mousedb.data.urls.parameter')),
+    url(r'^cohorts?/', include('mousedb.data.urls.cohort')),
 
 	url(r'^plugs?/', include('mousedb.timed_mating.urls')),
 	url(r'^plugevents?/', include('mousedb.timed_mating.urls')),

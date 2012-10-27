@@ -12,8 +12,20 @@ from django.core.urlresolvers import reverse_lazy
 from braces.views import LoginRequiredMixin, PermissionRequiredMixin
 
 from mousedb.animal.models import Animal
-from mousedb.data.models import Experiment, Measurement, Study, Treatment, Pharmaceutical
+from mousedb.data.models import Experiment, Measurement, Study, Treatment, Pharmaceutical, Cohort
 from mousedb.data.forms import MeasurementForm, MeasurementFormSet, StudyExperimentForm
+
+class CohortDetail(LoginRequiredMixin,DetailView):
+    '''This view generates details about a :class:`~mousedb.data.models.Cohort` object.
+    
+    This view is restricted to logged in users.
+    It passes an object **cohort** when the url **/cohort/<slug>** is requested.'''
+    
+    model = Cohort
+    slug_field = "slug"
+    slug_url_kwarg = "slug"
+    template_name = 'cohort_detail.html'
+    context_object_name = 'cohort'
 
 class PharmaceuticalDetail(LoginRequiredMixin,DetailView):
     '''This view generates details about a :class:`~mousedb.data.models.Pharmaceutical` object.

@@ -254,13 +254,13 @@ class Cohort(models.Model):
         return u'%s' % self.name
         
     def save(self, *args, **kwargs):
-        '''The slug field is autopopulated during the save from the name field.'''
+        '''The slug field is auto-populated during the save from the name field.'''
         if not self.id:
             self.slug = slugify(self.name)
         super(Cohort, self).save(*args, **kwargs)        
 
-   # @models.permalink
-    #def get_absolute_url(self):
-        #'''The url for a treatment-detail is **/cohort/<slug>**.'''
-        #return ('treatment-detail', [str(self.slug)])
+    @models.permalink
+    def get_absolute_url(self):
+        '''The url for a treatment-detail is **/cohort/<id>**.'''
+        return ('cohort-detail', [str(self.slug)])
 

@@ -376,10 +376,10 @@ class CohortModelTests(BasicTestCase):
         test_cohort.animals.add = Animal.objects.all()
         self.assertEqual(test_cohort.__unicode__(), "Test Cohort") 
         
-    def test_cohort_slug_field(self):
-        '''This tests that the slug field is automatically generated on saving for a :class:`~mousedb.data.models.Cohort`.'''
-             
+    def test_cohort_absolute_url(self):
+        '''This tests the absolute_url generation of a :class:`~mousedb.data.models.Cohort`.'''
+
         test_cohort = Cohort(name = 'Test Cohort')
         test_cohort.save() 
         test_cohort.animals.add = Animal.objects.all()
-        self.assertEqual(test_cohort.slug, "test-cohort")     
+        self.assertEqual(test_cohort.get_absolute_url(), "/cohort/test-cohort")        
