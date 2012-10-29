@@ -84,8 +84,19 @@ This mouse has an unknown age.
 	{% endwith %}
 </div>
 {% endif %}
-{% if animal.treatment_set.count > 0 %}
 
+{% if animal.cohort_set.count > 0 %}
+<div id="cohorts">
+	<h2>Cohort Summary</h2>
+    <ul>
+	{% for cohort in animal.cohort_set.all %}
+    <li><a href="{{ cohort.get_absolute_url }}">{{ cohort }}</a></li>
+    {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+{% if animal.treatment_set.count > 0 %}
 <div id="treatments">
 	<h2>Treatment Summary</h2>
     <ul>
