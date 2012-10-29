@@ -238,6 +238,7 @@ class Cohort(models.Model):
     Generally a cohort is an experimental replicate of a :class:`~mousedb.data.models.Treatment` as part of a :class:`~mousedb.data.models.Study`.
     Cohorts are also generally defined by starting and ending dates.
     A cohort would generally comprise both :class:`~mousedb.data.models.Treatment` groups being compared.
+    A cohort may also be associated with one or more :class:`~mousedb.data.models.Study` objects.
     The required fields are **name** (which must be unique to this cohort) and **animals**.
     '''
     
@@ -245,6 +246,7 @@ class Cohort(models.Model):
     animals = models.ManyToManyField(Animal, help_text="Which animals comprise this cohort.")
     start_date = models.DateField(blank=True, null=True, help_text="What date did the treatments/comparason start")
     end_date = models.DateField(blank=True, null=True, help_text="What date did the treatments/comparason end")
+    studies = models.ManyToManyField(Study, blank=True, null=True, help_text="Which studies is this cohort associated with?")
     treatment_groups = models.ManyToManyField('Treatment', blank=True, null=True, help_text="Which treatment groups are involved?")
     notes = models.TextField(blank=True, null=True, help_text="Extra notes about this cohort.")
     slug = models.SlugField(editable=False)

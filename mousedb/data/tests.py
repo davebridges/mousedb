@@ -366,6 +366,7 @@ class CohortModelTests(BasicTestCase):
         test_cohort.save() 
         test_cohort.animals.add = Animal.objects.all()
         test_cohort.treatment_groups.all = Treatment.objects.get(pk=1)
+        test_cohort.studies.all = Study.objects.get(pk=1)
         self.assertEqual(test_cohort.pk, 1) #presumes no models loaded in fixture data      
         
     def test_cohort_unicode(self):
