@@ -27,7 +27,8 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="MouseDB 1.1.1 documentation" href="index.html" />
     <link rel="up" title="Automated Documentation" href="api.html" />
-    <link rel="prev" title="Automated Documentation" href="api.html" /> 
+    <link rel="next" title="Groups Application" href="groups.html" />
+    <link rel="prev" title="Animals Application" href="animals.html" /> 
   </head>
   <body>
     <div class="related">
@@ -40,7 +41,10 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="api.html" title="Automated Documentation"
+          <a href="groups.html" title="Groups Application"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="animals.html" title="Animals Application"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">MouseDB 1.1.1 documentation</a> &raquo;</li>
           <li><a href="api.html" accesskey="U">Automated Documentation</a> &raquo;</li> 
@@ -55,7 +59,7 @@
   <div class="section" id="module-mousedb.data">
 <span id="data-application"></span><h1>Data Application<a class="headerlink" href="#module-mousedb.data" title="Permalink to this headline">¶</a></h1>
 <p>The data module describes the conditions and collection of data regarding experimental animals.</p>
-<p>Data (or <a class="reference internal" href="#mousedb.data.models.Measurement" title="mousedb.data.models.Measurement"><tt class="xref py py-class docutils literal"><span class="pre">Measurement</span></tt></a>) can be stored for any type of <a class="reference internal" href="#mousedb.data.models.Experiment" title="mousedb.data.models.Experiment"><tt class="xref py py-class docutils literal"><span class="pre">Experiment</span></tt></a>.  Conceptually, several pieces of data belong to an experiment (for example several <tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt> are measured at some time) and several <a class="reference internal" href="#mousedb.data.models.Experiment" title="mousedb.data.models.Experiment"><tt class="xref py py-class docutils literal"><span class="pre">Experiment</span></tt></a> belong to a <a class="reference internal" href="#mousedb.data.models.Study" title="mousedb.data.models.Study"><tt class="xref py py-class docutils literal"><span class="pre">Study</span></tt></a>.</p>
+<p>Data (or <a class="reference internal" href="#mousedb.data.models.Measurement" title="mousedb.data.models.Measurement"><tt class="xref py py-class docutils literal"><span class="pre">Measurement</span></tt></a>) can be stored for any type of <a class="reference internal" href="#mousedb.data.models.Experiment" title="mousedb.data.models.Experiment"><tt class="xref py py-class docutils literal"><span class="pre">Experiment</span></tt></a>.  Conceptually, several pieces of data belong to an experiment (for example several <a class="reference internal" href="animals.html#mousedb.animal.models.Animal" title="mousedb.animal.models.Animal"><tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt></a> are measured at some time) and several <a class="reference internal" href="#mousedb.data.models.Experiment" title="mousedb.data.models.Experiment"><tt class="xref py py-class docutils literal"><span class="pre">Experiment</span></tt></a> belong to a <a class="reference internal" href="#mousedb.data.models.Study" title="mousedb.data.models.Study"><tt class="xref py py-class docutils literal"><span class="pre">Study</span></tt></a>.</p>
 <p>Measurements can be stored independent of experiments and experiments can be performed outside of the context of a study.  It is however, perfered that measurements are stored within an experiment and experiments are stored within studies as this will greatly facilitate the organization of the data.</p>
 <div class="section" id="studies">
 <h2>Studies<a class="headerlink" href="#studies" title="Permalink to this headline">¶</a></h2>
@@ -67,7 +71,7 @@
 </div>
 <div class="section" id="cohorts">
 <h2>Cohorts<a class="headerlink" href="#cohorts" title="Permalink to this headline">¶</a></h2>
-<p>For the same <a class="reference internal" href="#mousedb.data.models.Treatment" title="mousedb.data.models.Treatment"><tt class="xref py py-class docutils literal"><span class="pre">Treatment</span></tt></a> groups, within a <a class="reference internal" href="#mousedb.data.models.Study" title="mousedb.data.models.Study"><tt class="xref py py-class docutils literal"><span class="pre">Study</span></tt></a>, there may be several independent replicates of those treatment.  A replicate are called <a class="reference internal" href="#mousedb.data.models.Cohort" title="mousedb.data.models.Cohort"><tt class="xref py py-class docutils literal"><span class="pre">Cohort</span></tt></a>.  For example, there could be a <a class="reference internal" href="#mousedb.data.models.Treatment" title="mousedb.data.models.Treatment"><tt class="xref py py-class docutils literal"><span class="pre">Treatment</span></tt></a> in which some mice get a particular <a class="reference internal" href="#mousedb.data.models.Diet" title="mousedb.data.models.Diet"><tt class="xref py py-class docutils literal"><span class="pre">Diet</span></tt></a>, while other mice get a diffferent <a class="reference internal" href="#mousedb.data.models.Diet" title="mousedb.data.models.Diet"><tt class="xref py py-class docutils literal"><span class="pre">Diet</span></tt></a>.  These two <a class="reference internal" href="#mousedb.data.models.Treatment" title="mousedb.data.models.Treatment"><tt class="xref py py-class docutils literal"><span class="pre">Treatment</span></tt></a> groups are designated within a cohort.  Later on, using different <tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt> sets, this <a class="reference internal" href="#mousedb.data.models.Study" title="mousedb.data.models.Study"><tt class="xref py py-class docutils literal"><span class="pre">Study</span></tt></a> will be repeated.  While the <a class="reference internal" href="#mousedb.data.models.Treatment" title="mousedb.data.models.Treatment"><tt class="xref py py-class docutils literal"><span class="pre">Treatment</span></tt></a> groupings are the same, the different series&#8217; of <a class="reference internal" href="#mousedb.data.models.Experiment" title="mousedb.data.models.Experiment"><tt class="xref py py-class docutils literal"><span class="pre">Experiment</span></tt></a> will be separated by being part of a different <a class="reference internal" href="#mousedb.data.models.Cohort" title="mousedb.data.models.Cohort"><tt class="xref py py-class docutils literal"><span class="pre">Cohort</span></tt></a>.</p>
+<p>For the same <a class="reference internal" href="#mousedb.data.models.Treatment" title="mousedb.data.models.Treatment"><tt class="xref py py-class docutils literal"><span class="pre">Treatment</span></tt></a> groups, within a <a class="reference internal" href="#mousedb.data.models.Study" title="mousedb.data.models.Study"><tt class="xref py py-class docutils literal"><span class="pre">Study</span></tt></a>, there may be several independent replicates of those treatment.  A replicate are called <a class="reference internal" href="#mousedb.data.models.Cohort" title="mousedb.data.models.Cohort"><tt class="xref py py-class docutils literal"><span class="pre">Cohort</span></tt></a>.  For example, there could be a <a class="reference internal" href="#mousedb.data.models.Treatment" title="mousedb.data.models.Treatment"><tt class="xref py py-class docutils literal"><span class="pre">Treatment</span></tt></a> in which some mice get a particular <a class="reference internal" href="#mousedb.data.models.Diet" title="mousedb.data.models.Diet"><tt class="xref py py-class docutils literal"><span class="pre">Diet</span></tt></a>, while other mice get a diffferent <a class="reference internal" href="#mousedb.data.models.Diet" title="mousedb.data.models.Diet"><tt class="xref py py-class docutils literal"><span class="pre">Diet</span></tt></a>.  These two <a class="reference internal" href="#mousedb.data.models.Treatment" title="mousedb.data.models.Treatment"><tt class="xref py py-class docutils literal"><span class="pre">Treatment</span></tt></a> groups are designated within a cohort.  Later on, using different <a class="reference internal" href="animals.html#mousedb.animal.models.Animal" title="mousedb.animal.models.Animal"><tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt></a> sets, this <a class="reference internal" href="#mousedb.data.models.Study" title="mousedb.data.models.Study"><tt class="xref py py-class docutils literal"><span class="pre">Study</span></tt></a> will be repeated.  While the <a class="reference internal" href="#mousedb.data.models.Treatment" title="mousedb.data.models.Treatment"><tt class="xref py py-class docutils literal"><span class="pre">Treatment</span></tt></a> groupings are the same, the different series&#8217; of <a class="reference internal" href="#mousedb.data.models.Experiment" title="mousedb.data.models.Experiment"><tt class="xref py py-class docutils literal"><span class="pre">Experiment</span></tt></a> will be separated by being part of a different <a class="reference internal" href="#mousedb.data.models.Cohort" title="mousedb.data.models.Cohort"><tt class="xref py py-class docutils literal"><span class="pre">Cohort</span></tt></a>.</p>
 </div>
 <div class="section" id="experiments">
 <h2>Experiments<a class="headerlink" href="#experiments" title="Permalink to this headline">¶</a></h2>
@@ -562,7 +566,7 @@ The required fields are <strong>name</strong> (which must be unique to this coho
 <dt id="mousedb.data.models.Experiment">
 <em class="property">class </em><tt class="descclassname">mousedb.data.models.</tt><tt class="descname">Experiment</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.data.models.Experiment" title="Permalink to this definition">¶</a></dt>
 <dd><p>This class describes Experiment objects.</p>
-<p>This object describes the aspects of an experiment done on several <tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt> objects.
+<p>This object describes the aspects of an experiment done on several <a class="reference internal" href="animals.html#mousedb.animal.models.Animal" title="mousedb.animal.models.Animal"><tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt></a> objects.
 This object describes the conditions under which the experiment ws done.
 The results of the experiment are contained in <tt class="xref py py-class docutils literal"><span class="pre">Measurement</span></tt> objects and grouped together in <tt class="xref py py-class docutils literal"><span class="pre">Treatment</span></tt> objects.
 Experiments may or may not be part of a <tt class="xref py py-class docutils literal"><span class="pre">Study</span></tt>.
@@ -730,6 +734,26 @@ It passes an object <strong>cohort_list</strong> when the url <strong>/cohort</s
 <dt id="mousedb.data.views.CohortList.model">
 <tt class="descname">model</tt><a class="headerlink" href="#mousedb.data.views.CohortList.model" title="Permalink to this definition">¶</a></dt>
 <dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Cohort</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.data.views.CohortMeasurementCreate">
+<em class="property">class </em><tt class="descclassname">mousedb.data.views.</tt><tt class="descname">CohortMeasurementCreate</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.data.views.CohortMeasurementCreate" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view is for adding measurements for each animal in a cohort.</p>
+<p>This view is restricted to logged in users with the add-measurement permision.
+It passes two objects, <strong>cohort</strong> and <strong>form</strong> when the url <strong>/cohort/&lt;slug&gt;/measurements</strong> is requested.</p>
+<dl class="attribute">
+<dt id="mousedb.data.views.CohortMeasurementCreate.form_class">
+<tt class="descname">form_class</tt><a class="headerlink" href="#mousedb.data.views.CohortMeasurementCreate.form_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">MeasurementForm</span></tt></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.data.views.CohortMeasurementCreate.model">
+<tt class="descname">model</tt><a class="headerlink" href="#mousedb.data.views.CohortMeasurementCreate.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Measurement</span></tt></p>
 </dd></dl>
 
 </dd></dl>
@@ -1262,8 +1286,11 @@ It has an autocomplete field for animal.</p>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="api.html"
-                        title="previous chapter">Automated Documentation</a></p>
+  <p class="topless"><a href="animals.html"
+                        title="previous chapter">Animals Application</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="groups.html"
+                        title="next chapter">Groups Application</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/data.txt"
@@ -1296,7 +1323,10 @@ It has an autocomplete field for animal.</p>
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="api.html" title="Automated Documentation"
+          <a href="groups.html" title="Groups Application"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="animals.html" title="Animals Application"
              >previous</a> |</li>
         <li><a href="index.html">MouseDB 1.1.1 documentation</a> &raquo;</li>
           <li><a href="api.html" >Automated Documentation</a> &raquo;</li> 
