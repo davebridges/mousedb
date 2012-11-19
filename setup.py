@@ -7,7 +7,7 @@ setup(name='mousedb',
       author='Dave Bridges',
       author_email='dave.bridges@gmail.com',
       license='BSD 2-Clause License',
-      packages=['mousedb'],
+      packages=['mousedb', 'data', 'animal','groups','timed_mating'],
       zip_safe=False,
       install_requires=[
           'Django',
