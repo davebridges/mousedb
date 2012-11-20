@@ -18,7 +18,10 @@
 
 import sys, os
 
-sys.path.append('/Users/davebrid/Documents/SRC/mousedb') # The directory that contains settings.py
+sys.path.insert(0, os.path.abspath('animals'))
+sys.path.insert(0, os.path.abspath('data'))
+sys.path.insert(0, os.path.abspath('groups'))
+sys.path.insert(0, os.path.abspath('timed_mating'))
 
 # Set up the Django settings/environment
 from django.core.management import setup_environ
