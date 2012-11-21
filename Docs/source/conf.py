@@ -18,6 +18,7 @@
 
 import sys, os
 
+sys.path.insert(0, os.path.abspath('mousedb'))
 sys.path.insert(0, os.path.abspath('animals'))
 sys.path.insert(0, os.path.abspath('data'))
 sys.path.insert(0, os.path.abspath('groups'))
