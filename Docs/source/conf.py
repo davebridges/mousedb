@@ -27,11 +27,11 @@ from django.core.management import setup_environ
 import mousedb.settings
 
 import django 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mousedb.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 if django.VERSION < (1, 4):
     from django.core.management import setup_environ
     settings = __import__(os.environ["DJANGO_SETTINGS_MODULE"])
-    setup_environ(mousedb.settings)
+    setup_environ(settings)
 
 # -- General configuration -----------------------------------------------------
 
