@@ -7,12 +7,9 @@ setup(name='mousedb',
       author='Dave Bridges',
       author_email='dave.bridges@gmail.com',
       license='BSD 2-Clause License',
-      packages=[,],
+      packages=[mousedb,],
       zip_safe=False,
       install_requires=[
           'Django',
-          # 'Sphinx',
-          # ^^^ Not sure if this is needed on readthedocs.org
-          # 'something else?',
-          ],
+          'Sphinx',],
       )
