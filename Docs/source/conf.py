@@ -24,11 +24,11 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../../mousedb/gro
 
 # Set up the Django settings/environment
 from django.core.management import setup_environ
-import settings
+import mousedb.settings
 
 setup_environ(settings)
 
-os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'mousedb.settings'
 
 # -- General configuration -----------------------------------------------------
 
