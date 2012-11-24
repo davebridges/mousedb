@@ -17,6 +17,10 @@
 import sys, os
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../../../mousedb' )
+sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../../../mousedb/animals' )
+sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../../../mousedb/data' )
+sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../../../mousedb/timed_mating' )
+sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../../../mousedb/groups' )
 
 # Set up the Django settings/environment
 from django.core.management import setup_environ
@@ -24,7 +28,7 @@ from mousedb import settings
 
 setup_environ(settings)
 
-os.environ['DJANGO_SETTINGS_MODULE'] = 'mousedb.settings'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 
 # -- General configuration -----------------------------------------------------
 
