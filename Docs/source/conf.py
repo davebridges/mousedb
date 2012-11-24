@@ -14,12 +14,9 @@
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
-#sys.path.append(os.path.abspath('/Users/davebrid/Documents/SRC/mousedb'))
-
 import sys, os
 
-sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../..' )
-sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/..')
+sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../../../mousedb' )
 
 # Set up the Django settings/environment
 from django.core.management import setup_environ
