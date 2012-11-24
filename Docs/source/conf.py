@@ -18,14 +18,8 @@
 
 import sys, os
 
-sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/..' )
-sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../mousedb')
-
-sys.path.insert(0, os.path.abspath('mousedb'))
-sys.path.insert(0, os.path.abspath('animals'))
-sys.path.insert(0, os.path.abspath('data'))
-sys.path.insert(0, os.path.abspath('groups'))
-sys.path.insert(0, os.path.abspath('timed_mating'))
+sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../..' )
+sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../../mousedb')
 
 # Set up the Django settings/environment
 from django.core.management import setup_environ
