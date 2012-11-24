@@ -7,7 +7,7 @@ setup(name='mousedb',
       author='Dave Bridges',
       author_email='dave.bridges@gmail.com',
       license='BSD 2-Clause License',
-      packages=[mousedb,],
+      packages=['mousedb',],
       zip_safe=False,
       install_requires=[
           'Django',
