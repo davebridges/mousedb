@@ -22,7 +22,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../../../mousedb'
 from django.core.management import setup_environ
 from mousedb import settings
 
-from mousedb import data, animals, timed_mating, groups
+import data, animals, timed_mating, groups
 
 setup_environ(settings)
 
