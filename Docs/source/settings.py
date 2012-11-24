@@ -22,8 +22,8 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
-    'mousedb.data',
-    'mousedb.animal',
-    'mousedb.timed_mating',
-    'mousedb.groups' # This is where you put your app
+    'data',
+    'animal',
+    'timed_mating',
+    'groups' # This is where you put your app
 )
