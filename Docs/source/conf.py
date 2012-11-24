@@ -24,7 +24,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../../../mousedb/
 
 # Set up the Django settings/environment
 from django.core.management import setup_environ
-from mousedb import settings
+import settings
 
 setup_environ(settings)
 
