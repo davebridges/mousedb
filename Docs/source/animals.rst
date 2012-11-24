@@ -1,72 +1,72 @@
 Animals Application
 -------------------
 
-.. automodule:: animal
+.. automodule:: mousedb.mousedb.animal
 
 Animal Data Models
 ++++++++++++++++++
 
-.. automodule:: animal.models
+.. automodule:: mousedb.animal.models
     :members:
 
 Animal App Views and URLs
 +++++++++++++++++++++++++
 
-.. automodule:: animal.urls
+.. automodule:: mousedb.animal.urls
 
 Breeding URLS
 #############
 
-.. automodule:: animal.urls.breeding
+.. automodule:: mousedb.animal.urls.breeding
 
 Cage URLS
 #########
 
-.. automodule:: animal.urls.cage
+.. automodule:: mousedb.animal.urls.cage
 
 Date URLS
 ##############
 
-.. automodule:: animal.urls.date
+.. automodule:: mousedb.animal.urls.date
 
 Mouse URLS
 ##########
 
-.. automodule:: animal.urls.mouse
+.. automodule:: mousedb.animal.urls.mouse
 
 Strain URLS
 ##############
 
-.. automodule:: animal.urls.strain
+.. automodule:: mousedb.animal.urls.strain
 
 ToDo List URLS
 ##############
 
-.. automodule:: animal.urls.todo
+.. automodule:: mousedb.animal.urls.todo
 
 Views
 #####
 
-.. automodule:: animal.views
+.. automodule:: mousedb.animal.views
     :members:
     
 Administrative Interface
 ########################
     
-.. automodule:: animal.admin
+.. automodule:: mousedb.animal.admin
     :members:
     
 Animal App Unit Tests
 +++++++++++++++++++++
 
-.. automodule:: animal.tests
+.. automodule:: mousedb.animal.tests
     :members:
     
 Animal App Utilities
 ++++++++++++++++++++
 
-.. automodule:: animal.forms
+.. automodule:: mousedb.animal.forms
     :members:
     
-.. automodule:: animal.lookups
+.. automodule:: mousedb.animal.lookups
     :members:
