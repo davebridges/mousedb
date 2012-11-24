@@ -24,6 +24,8 @@ from mousedb import settings
 
 setup_environ(settings)
 
+os.environ['DJANGO_SETTINGS_MODULE'] = 'mousedb.settings'
+
 # -- General configuration -----------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
