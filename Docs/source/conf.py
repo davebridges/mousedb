@@ -19,7 +19,7 @@
 import sys, os
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../..' )
-sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../../mousedb')
+sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/..')
 
 # Set up the Django settings/environment
 from django.core.management import setup_environ
