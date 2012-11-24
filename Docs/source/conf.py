@@ -16,7 +16,7 @@
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 import sys, os
 
-sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../../mousedb' )
+sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../../' )
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../../mousedb/animals' )
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../../mousedb/data' )
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../../mousedb/timed_mating' )
