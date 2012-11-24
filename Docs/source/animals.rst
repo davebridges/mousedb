@@ -1,12 +1,12 @@
 Animals Application
 -------------------
 
-.. automodule:: mousedb.animal
+.. automodule:: animal
 
 Animal Data Models
 ++++++++++++++++++
 
-.. automodule:: mousedb.animal.models
+.. automodule:: animal.models
     :members:
 
 Animal App Views and URLs
