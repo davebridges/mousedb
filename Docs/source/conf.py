@@ -24,9 +24,6 @@ from mousedb import settings
 
 setup_environ(settings)
 
-
-from mousedb import data, animals, timed_mating, groups
-
 # -- General configuration -----------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
