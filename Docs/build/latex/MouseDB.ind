@@ -1,0 +1,469 @@
+\begin{theindex}
+\def\bigletter#1{{\Large\sffamily#1}\nopagebreak\vspace{1mm}}
+
+  \bigletter A
+  \item add\_measurement() (in module mousedb.data.views), \hyperpage{41}
+  \item age() (mousedb.animal.models.Animal method), \hyperpage{18}
+  \item aging\_csv() (in module mousedb.data.views), \hyperpage{41}
+  \item all\_data\_csv() (in module mousedb.data.views), \hyperpage{41}
+  \item Animal (class in mousedb.animal.models), \hyperpage{18}
+  \item AnimalAdmin (class in mousedb.animal.admin), \hyperpage{25}
+  \item AnimalCreate (class in mousedb.animal.views), \hyperpage{20}
+  \item AnimalDelete (class in mousedb.animal.views), \hyperpage{20}
+  \item AnimalDetail (class in mousedb.animal.views), \hyperpage{20}
+  \item AnimalForm (class in mousedb.animal.forms), \hyperpage{30}
+  \item AnimalInline (class in mousedb.animal.admin), \hyperpage{26}
+  \item AnimalList (class in mousedb.animal.views), \hyperpage{20}
+  \item AnimalListAlive (class in mousedb.animal.views), \hyperpage{20}
+  \item AnimalLookup (class in mousedb.animal.lookups), \hyperpage{31}
+  \item AnimalLookupFemale (class in mousedb.animal.lookups), \hyperpage{31}
+  \item AnimalLookupMale (class in mousedb.animal.lookups), \hyperpage{31}
+  \item AnimalModelTests (class in mousedb.animal.tests), \hyperpage{26}
+  \item AnimalMonthArchive (class in mousedb.animal.views), \hyperpage{21}
+  \item AnimalUpdate (class in mousedb.animal.views), \hyperpage{21}
+  \item AnimalViewTests (class in mousedb.animal.tests), \hyperpage{26}
+  \item AnimalYearArchive (class in mousedb.animal.views), \hyperpage{21}
+  \item Assay (class in mousedb.data.models), \hyperpage{37}
+  \item AssayResource (class in mousedb.data.api), \hyperpage{36}
+  \item AssayResource.Meta (class in mousedb.data.api), \hyperpage{36}
+
+  \indexspace
+  \bigletter B
+  \item BasicTestCase (class in mousedb.data.tests), \hyperpage{41}
+  \item Breeding (class in mousedb.animal.models), \hyperpage{18}
+  \item breeding\_change() (in module mousedb.animal.views), \hyperpage{25}
+  \item breeding\_female\_location\_type() (mousedb.animal.models.Animal method), \hyperpage{18}
+  \item breeding\_male\_location\_type() (mousedb.animal.models.Animal method), \hyperpage{18}
+  \item breeding\_plugevent() (in module mousedb.timed\_mating.views), \hyperpage{47}
+  \item breeding\_pups() (in module mousedb.animal.views), \hyperpage{25}
+  \item breeding\_wean() (in module mousedb.animal.views), \hyperpage{25}
+  \item BreedingAdmin (class in mousedb.animal.admin), \hyperpage{26}
+  \item BreedingCreate (class in mousedb.animal.views), \hyperpage{21}
+  \item BreedingDelete (class in mousedb.animal.views), \hyperpage{21}
+  \item BreedingDetail (class in mousedb.animal.views), \hyperpage{22}
+  \item BreedingForm (class in mousedb.animal.forms), \hyperpage{30}
+  \item BreedingList (class in mousedb.animal.views), \hyperpage{22}
+  \item BreedingListAll (class in mousedb.animal.views), \hyperpage{22}
+  \item BreedingListTimedMating (class in mousedb.animal.views), \hyperpage{22}
+  \item BreedingModelTests (class in mousedb.animal.tests), \hyperpage{27}
+  \item BreedingPlugForm (class in mousedb.timed\_mating.forms), \hyperpage{49}
+  \item BreedingSearch (class in mousedb.animal.views), \hyperpage{22}
+  \item BreedingUpdate (class in mousedb.animal.views), \hyperpage{22}
+  \item BreedingViewTests (class in mousedb.animal.tests), \hyperpage{27}
+
+  \indexspace
+  \bigletter C
+  \item CageViewTests (class in mousedb.animal.tests), \hyperpage{28}
+  \item Cohort (class in mousedb.data.models), \hyperpage{37}
+  \item CohortCreate (class in mousedb.data.views), \hyperpage{39}
+  \item CohortDelete (class in mousedb.data.views), \hyperpage{39}
+  \item CohortDetail (class in mousedb.data.views), \hyperpage{39}
+  \item CohortList (class in mousedb.data.views), \hyperpage{39}
+  \item CohortModelTests (class in mousedb.data.tests), \hyperpage{41}
+  \item CohortUpdate (class in mousedb.data.views), \hyperpage{40}
+  \item CohortViewTests (class in mousedb.data.tests), \hyperpage{42}
+  \item CrossTypeAnimalList (class in mousedb.animal.views), \hyperpage{23}
+
+  \indexspace
+  \bigletter D
+  \item date\_archive\_year() (in module mousedb.animal.views), \hyperpage{25}
+  \item DateViewTests (class in mousedb.animal.tests), \hyperpage{28}
+  \item Diet (class in mousedb.data.models), \hyperpage{37}
+  \item dispatch() (mousedb.animal.views.AnimalCreate method), \hyperpage{20}
+  \item dispatch() (mousedb.animal.views.AnimalDelete method), \hyperpage{20}
+  \item dispatch() (mousedb.animal.views.AnimalList method), \hyperpage{20}
+  \item dispatch() (mousedb.animal.views.AnimalMonthArchive method), \hyperpage{21}
+  \item dispatch() (mousedb.animal.views.AnimalUpdate method), \hyperpage{21}
+  \item dispatch() (mousedb.animal.views.AnimalYearArchive method), \hyperpage{21}
+  \item dispatch() (mousedb.animal.views.BreedingCreate method), \hyperpage{21}
+  \item dispatch() (mousedb.animal.views.BreedingDelete method), \hyperpage{22}
+  \item dispatch() (mousedb.animal.views.BreedingUpdate method), \hyperpage{22}
+  \item dispatch() (mousedb.animal.views.StrainCreate method), \hyperpage{23}
+  \item dispatch() (mousedb.animal.views.StrainDelete method), \hyperpage{24}
+  \item dispatch() (mousedb.animal.views.StrainUpdate method), \hyperpage{24}
+  \item duration() (mousedb.animal.models.Breeding method), \hyperpage{18}
+
+  \indexspace
+  \bigletter E
+  \item EarTagList (class in mousedb.animal.views), \hyperpage{23}
+  \item Environment (class in mousedb.data.models), \hyperpage{37}
+  \item Experiment (class in mousedb.data.models), \hyperpage{37}
+  \item experiment\_details\_csv() (in module mousedb.data.views), \hyperpage{41}
+  \item ExperimentForm (class in mousedb.data.forms), \hyperpage{44}
+  \item ExperimentResource (class in mousedb.data.api), \hyperpage{36}
+  \item ExperimentResource.Meta (class in mousedb.data.api), \hyperpage{36}
+
+  \indexspace
+  \bigletter F
+  \item form\_class (mousedb.animal.views.AnimalCreate attribute), \hyperpage{20}
+  \item form\_class (mousedb.animal.views.AnimalUpdate attribute), \hyperpage{21}
+  \item form\_class (mousedb.animal.views.BreedingCreate attribute), \hyperpage{21}
+  \item form\_class (mousedb.animal.views.BreedingUpdate attribute), \hyperpage{23}
+  \item format\_item() (mousedb.animal.lookups.AnimalLookup method), \hyperpage{31}
+  \item format\_item() (mousedb.animal.lookups.AnimalLookupFemale method), \hyperpage{31}
+  \item format\_item() (mousedb.animal.lookups.AnimalLookupMale method), \hyperpage{32}
+  \item format\_result() (mousedb.animal.lookups.AnimalLookup method), \hyperpage{31}
+  \item format\_result() (mousedb.animal.lookups.AnimalLookupFemale method), \hyperpage{31}
+  \item format\_result() (mousedb.animal.lookups.AnimalLookupMale method), \hyperpage{32}
+
+  \indexspace
+  \bigletter G
+  \item GenotypeList (class in mousedb.animal.views), \hyperpage{23}
+  \item get\_absolute\_url() (mousedb.animal.models.Strain method), \hyperpage{19}
+  \item get\_absolute\_url() (mousedb.data.models.Cohort method), \hyperpage{37}
+  \item get\_absolute\_url() (mousedb.data.models.Experiment method), \hyperpage{38}
+  \item get\_absolute\_url() (mousedb.data.models.Pharmaceutical method), \hyperpage{38}
+  \item get\_absolute\_url() (mousedb.data.models.Treatment method), \hyperpage{38}
+  \item get\_absolute\_url() (mousedb.timed\_mating.models.PlugEvents method), \hyperpage{46}
+  \item get\_context\_data() (mousedb.animal.views.AnimalListAlive method), \hyperpage{21}
+  \item get\_context\_data() (mousedb.animal.views.BreedingList method), \hyperpage{22}
+  \item get\_context\_data() (mousedb.animal.views.BreedingListAll method), \hyperpage{22}
+  \item get\_context\_data() (mousedb.animal.views.BreedingListTimedMating method), \hyperpage{22}
+  \item get\_context\_data() (mousedb.animal.views.BreedingSearch method), \hyperpage{22}
+  \item get\_context\_data() (mousedb.animal.views.CrossTypeAnimalList method), \hyperpage{23}
+  \item get\_context\_data() (mousedb.animal.views.StrainDetail method), \hyperpage{24}
+  \item get\_context\_data() (mousedb.animal.views.StrainDetailAll method), \hyperpage{24}
+  \item get\_context\_data() (mousedb.animal.views.StrainList method), \hyperpage{24}
+  \item get\_objects() (mousedb.animal.lookups.AnimalLookup method), \hyperpage{31}
+  \item get\_objects() (mousedb.animal.lookups.AnimalLookupFemale method), \hyperpage{31}
+  \item get\_objects() (mousedb.animal.lookups.AnimalLookupMale method), \hyperpage{32}
+  \item get\_query() (mousedb.animal.lookups.AnimalLookup method), \hyperpage{31}
+  \item get\_query() (mousedb.animal.lookups.AnimalLookupFemale method), \hyperpage{31}
+  \item get\_query() (mousedb.animal.lookups.AnimalLookupMale method), \hyperpage{32}
+  \item get\_queryset() (mousedb.timed\_mating.views.PlugEventsListStrain method), \hyperpage{47}
+  \item Group (class in mousedb.groups.models), \hyperpage{45}
+  \item GroupAdmin (class in mousedb.groups.admin), \hyperpage{45}
+  \item GroupsModelTests (class in mousedb.groups.tests), \hyperpage{45}
+
+  \indexspace
+  \bigletter I
+  \item Implantation (class in mousedb.data.models), \hyperpage{38}
+
+  \indexspace
+  \bigletter L
+  \item License (class in mousedb.groups.models), \hyperpage{45}
+  \item LicenseAdmin (class in mousedb.groups.admin), \hyperpage{45}
+  \item litters\_csv() (in module mousedb.data.views), \hyperpage{41}
+  \item LogEntryAdmin (class in mousedb.groups.admin), \hyperpage{45}
+
+  \indexspace
+  \bigletter M
+  \item male\_breeding\_location\_type() (mousedb.animal.models.Breeding method), \hyperpage{18}
+  \item mark\_deactivated() (mousedb.animal.admin.BreedingAdmin method), \hyperpage{26}
+  \item mark\_estimated\_death() (mousedb.animal.admin.AnimalAdmin method), \hyperpage{26}
+  \item mark\_sacrificed() (mousedb.animal.admin.AnimalAdmin method), \hyperpage{26}
+  \item Measurement (class in mousedb.data.models), \hyperpage{38}
+  \item MeasurementAssayResource (class in mousedb.data.api), \hyperpage{37}
+  \item MeasurementAssayResource.Meta (class in mousedb.data.api), \hyperpage{37}
+  \item MeasurementForm (class in mousedb.data.forms), \hyperpage{44}
+  \item MeasurementResource (class in mousedb.data.api), \hyperpage{37}
+  \item MeasurementResource.Meta (class in mousedb.data.api), \hyperpage{37}
+  \item model (mousedb.animal.admin.AnimalInline attribute), \hyperpage{26}
+  \item model (mousedb.animal.views.AnimalCreate attribute), \hyperpage{20}
+  \item model (mousedb.animal.views.AnimalDelete attribute), \hyperpage{20}
+  \item model (mousedb.animal.views.AnimalDetail attribute), \hyperpage{20}
+  \item model (mousedb.animal.views.AnimalList attribute), \hyperpage{20}
+  \item model (mousedb.animal.views.AnimalMonthArchive attribute), \hyperpage{21}
+  \item model (mousedb.animal.views.AnimalUpdate attribute), \hyperpage{21}
+  \item model (mousedb.animal.views.AnimalYearArchive attribute), \hyperpage{21}
+  \item model (mousedb.animal.views.BreedingCreate attribute), \hyperpage{21}
+  \item model (mousedb.animal.views.BreedingDelete attribute), \hyperpage{22}
+  \item model (mousedb.animal.views.BreedingDetail attribute), \hyperpage{22}
+  \item model (mousedb.animal.views.BreedingUpdate attribute), \hyperpage{23}
+  \item model (mousedb.animal.views.StrainCreate attribute), \hyperpage{23}
+  \item model (mousedb.animal.views.StrainDelete attribute), \hyperpage{24}
+  \item model (mousedb.animal.views.StrainList attribute), \hyperpage{24}
+  \item model (mousedb.animal.views.StrainUpdate attribute), \hyperpage{24}
+  \item model (mousedb.data.views.CohortCreate attribute), \hyperpage{39}
+  \item model (mousedb.data.views.CohortDelete attribute), \hyperpage{39}
+  \item model (mousedb.data.views.CohortDetail attribute), \hyperpage{39}
+  \item model (mousedb.data.views.CohortList attribute), \hyperpage{39}
+  \item model (mousedb.data.views.CohortUpdate attribute), \hyperpage{40}
+  \item model (mousedb.data.views.PharmaceuticalCreate attribute), \hyperpage{40}
+  \item model (mousedb.data.views.PharmaceuticalDelete attribute), \hyperpage{40}
+  \item model (mousedb.data.views.PharmaceuticalDetail attribute), \hyperpage{40}
+  \item model (mousedb.data.views.PharmaceuticalList attribute), \hyperpage{40}
+  \item model (mousedb.data.views.PharmaceuticalUpdate attribute), \hyperpage{40}
+  \item model (mousedb.data.views.TreatmentDetail attribute), \hyperpage{40}
+  \item model (mousedb.data.views.TreatmentList attribute), \hyperpage{41}
+  \item model (mousedb.timed\_mating.views.PlugEventsCreate attribute), \hyperpage{47}
+  \item model (mousedb.timed\_mating.views.PlugEventsDelete attribute), \hyperpage{47}
+  \item model (mousedb.timed\_mating.views.PlugEventsDetail attribute), \hyperpage{47}
+  \item model (mousedb.timed\_mating.views.PlugEventsList attribute), \hyperpage{47}
+  \item model (mousedb.timed\_mating.views.PlugEventsUpdate attribute), \hyperpage{47}
+  \item mousedb.animal (module), \hyperpage{17}
+  \item mousedb.animal.admin (module), \hyperpage{25}
+  \item mousedb.animal.forms (module), \hyperpage{30}
+  \item mousedb.animal.lookups (module), \hyperpage{31}
+  \item mousedb.animal.models (module), \hyperpage{18}
+  \item mousedb.animal.tests (module), \hyperpage{26}
+  \item mousedb.animal.urls (module), \hyperpage{19}
+  \item mousedb.animal.urls.breeding (module), \hyperpage{19}
+  \item mousedb.animal.urls.cage (module), \hyperpage{19}
+  \item mousedb.animal.urls.date (module), \hyperpage{19}
+  \item mousedb.animal.urls.mouse (module), \hyperpage{19}
+  \item mousedb.animal.urls.strain (module), \hyperpage{19}
+  \item mousedb.animal.urls.todo (module), \hyperpage{20}
+  \item mousedb.animal.views (module), \hyperpage{20}
+  \item mousedb.data (module), \hyperpage{32}
+  \item mousedb.data.admin (module), \hyperpage{41}
+  \item mousedb.data.api (module), \hyperpage{33}
+  \item mousedb.data.forms (module), \hyperpage{44}
+  \item mousedb.data.models (module), \hyperpage{37}
+  \item mousedb.data.tests (module), \hyperpage{41}
+  \item mousedb.data.urls (module), \hyperpage{39}
+  \item mousedb.data.urls.cohort (module), \hyperpage{39}
+  \item mousedb.data.urls.experiment (module), \hyperpage{39}
+  \item mousedb.data.urls.parameter (module), \hyperpage{39}
+  \item mousedb.data.urls.study (module), \hyperpage{39}
+  \item mousedb.data.urls.treatment (module), \hyperpage{39}
+  \item mousedb.data.views (module), \hyperpage{39}
+  \item mousedb.groups (module), \hyperpage{45}
+  \item mousedb.groups.admin (module), \hyperpage{45}
+  \item mousedb.groups.models (module), \hyperpage{45}
+  \item mousedb.groups.tests (module), \hyperpage{45}
+  \item mousedb.groups.views (module), \hyperpage{45}
+  \item mousedb.timed\_mating (module), \hyperpage{46}
+  \item mousedb.timed\_mating.admin (module), \hyperpage{48}
+  \item mousedb.timed\_mating.forms (module), \hyperpage{49}
+  \item mousedb.timed\_mating.models (module), \hyperpage{46}
+  \item mousedb.timed\_mating.tests (module), \hyperpage{48}
+  \item mousedb.timed\_mating.urls (module), \hyperpage{46}
+  \item mousedb.timed\_mating.views (module), \hyperpage{46}
+  \item multiple\_breeding\_pups() (in module mousedb.animal.views), \hyperpage{25}
+  \item multiple\_pups() (in module mousedb.animal.views), \hyperpage{25}
+  \item MultipleAnimalForm (class in mousedb.animal.forms), \hyperpage{30}
+  \item MultipleBreedingAnimalForm (class in mousedb.animal.forms), \hyperpage{30}
+
+  \indexspace
+  \bigletter N
+  \item NoCageList (class in mousedb.animal.views), \hyperpage{23}
+  \item NoRackList (class in mousedb.animal.views), \hyperpage{23}
+
+  \indexspace
+  \bigletter O
+  \item object\_class (mousedb.data.api.AssayResource.Meta attribute), \hyperpage{36}
+  \item object\_class (mousedb.data.api.ExperimentResource.Meta attribute), \hyperpage{37}
+  \item object\_class (mousedb.data.api.MeasurementResource.Meta attribute), \hyperpage{37}
+  \item object\_class (mousedb.data.api.StudyResource.Meta attribute), \hyperpage{37}
+
+  \indexspace
+  \bigletter P
+  \item Pharmaceutical (class in mousedb.data.models), \hyperpage{38}
+  \item PharmaceuticalCreate (class in mousedb.data.views), \hyperpage{40}
+  \item PharmaceuticalDelete (class in mousedb.data.views), \hyperpage{40}
+  \item PharmaceuticalDetail (class in mousedb.data.views), \hyperpage{40}
+  \item PharmaceuticalList (class in mousedb.data.views), \hyperpage{40}
+  \item PharmaceuticalModelTests (class in mousedb.data.tests), \hyperpage{42}
+  \item PharmaceuticalUpdate (class in mousedb.data.views), \hyperpage{40}
+  \item PharmaceuticalViewTests (class in mousedb.data.tests), \hyperpage{42}
+  \item PlugEvents (class in mousedb.timed\_mating.models), \hyperpage{46}
+  \item PlugEventsAdmin (class in mousedb.timed\_mating.admin), \hyperpage{48}
+  \item PlugEventsCreate (class in mousedb.timed\_mating.views), \hyperpage{46}
+  \item PlugEventsDelete (class in mousedb.timed\_mating.views), \hyperpage{47}
+  \item PlugEventsDetail (class in mousedb.timed\_mating.views), \hyperpage{47}
+  \item PlugEventsList (class in mousedb.timed\_mating.views), \hyperpage{47}
+  \item PlugEventsListStrain (class in mousedb.timed\_mating.views), \hyperpage{47}
+  \item PlugEventsUpdate (class in mousedb.timed\_mating.views), \hyperpage{47}
+
+  \indexspace
+  \bigletter Q
+  \item queryset() (mousedb.animal.views.CrossTypeAnimalList method), \hyperpage{23}
+
+  \indexspace
+  \bigletter R
+  \item Researcher (class in mousedb.data.models), \hyperpage{38}
+
+  \indexspace
+  \bigletter S
+  \item save() (mousedb.animal.models.Animal method), \hyperpage{18}
+  \item save() (mousedb.animal.models.Breeding method), \hyperpage{18}
+  \item save() (mousedb.data.models.Cohort method), \hyperpage{37}
+  \item save() (mousedb.timed\_mating.models.PlugEvents method), \hyperpage{46}
+  \item setUp() (mousedb.animal.tests.AnimalModelTests method), \hyperpage{26}
+  \item setUp() (mousedb.animal.tests.AnimalViewTests method), \hyperpage{26}
+  \item setUp() (mousedb.animal.tests.BreedingModelTests method), \hyperpage{27}
+  \item setUp() (mousedb.animal.tests.StrainModelTests method), \hyperpage{28}
+  \item setUp() (mousedb.animal.tests.StrainViewTests method), \hyperpage{29}
+  \item setUp() (mousedb.animal.tests.ToDoViewTests method), \hyperpage{29}
+  \item setUp() (mousedb.data.tests.BasicTestCase method), \hyperpage{41}
+  \item setUp() (mousedb.groups.tests.GroupsModelTests method), \hyperpage{45}
+  \item setUp() (mousedb.timed\_mating.tests.Timed\_MatingModelTests method), \hyperpage{48}
+  \item setUp() (mousedb.timed\_mating.tests.Timed\_MatingViewTests method), \hyperpage{48}
+  \item Strain (class in mousedb.animal.models), \hyperpage{19}
+  \item StrainAdmin (class in mousedb.animal.admin), \hyperpage{26}
+  \item StrainCreate (class in mousedb.animal.views), \hyperpage{23}
+  \item StrainDelete (class in mousedb.animal.views), \hyperpage{23}
+  \item StrainDetail (class in mousedb.animal.views), \hyperpage{24}
+  \item StrainDetailAll (class in mousedb.animal.views), \hyperpage{24}
+  \item StrainList (class in mousedb.animal.views), \hyperpage{24}
+  \item StrainModelTests (class in mousedb.animal.tests), \hyperpage{28}
+  \item StrainUpdate (class in mousedb.animal.views), \hyperpage{24}
+  \item StrainViewTests (class in mousedb.animal.tests), \hyperpage{29}
+  \item Study (class in mousedb.data.models), \hyperpage{38}
+  \item StudyExperimentForm (class in mousedb.data.forms), \hyperpage{44}
+  \item StudyForm (class in mousedb.data.forms), \hyperpage{44}
+  \item StudyModelTests (class in mousedb.data.tests), \hyperpage{43}
+  \item StudyResource (class in mousedb.data.api), \hyperpage{37}
+  \item StudyResource.Meta (class in mousedb.data.api), \hyperpage{37}
+  \item StudyViewTests (class in mousedb.data.tests), \hyperpage{43}
+
+  \indexspace
+  \bigletter T
+  \item tearDown() (mousedb.animal.tests.AnimalModelTests method), \hyperpage{26}
+  \item tearDown() (mousedb.animal.tests.AnimalViewTests method), \hyperpage{27}
+  \item tearDown() (mousedb.animal.tests.BreedingModelTests method), \hyperpage{27}
+  \item tearDown() (mousedb.animal.tests.StrainModelTests method), \hyperpage{28}
+  \item tearDown() (mousedb.animal.tests.StrainViewTests method), \hyperpage{29}
+  \item tearDown() (mousedb.animal.tests.ToDoViewTests method), \hyperpage{29}
+  \item tearDown() (mousedb.data.tests.BasicTestCase method), \hyperpage{41}
+  \item tearDown() (mousedb.groups.tests.GroupsModelTests method), \hyperpage{45}
+  \item tearDown() (mousedb.timed\_mating.tests.Timed\_MatingModelTests method), \hyperpage{48}
+  \item tearDown() (mousedb.timed\_mating.tests.Timed\_MatingViewTests method), \hyperpage{48}
+  \item test\_animal\_delete() (mousedb.animal.tests.AnimalViewTests method), \hyperpage{27}
+  \item test\_animal\_detail() (mousedb.animal.tests.AnimalViewTests method), \hyperpage{27}
+  \item test\_animal\_edit() (mousedb.animal.tests.AnimalViewTests method), \hyperpage{27}
+  \item test\_animal\_list() (mousedb.animal.tests.AnimalViewTests method), \hyperpage{27}
+  \item test\_animal\_list\_all() (mousedb.animal.tests.AnimalViewTests method), \hyperpage{27}
+  \item test\_animal\_new() (mousedb.animal.tests.AnimalViewTests method), \hyperpage{27}
+  \item test\_animal\_unicode() (mousedb.animal.tests.AnimalModelTests method), \hyperpage{26}
+  \item test\_archive\_home() (mousedb.animal.tests.DateViewTests method), \hyperpage{28}
+  \item test\_archive\_month() (mousedb.animal.tests.DateViewTests method), \hyperpage{28}
+  \item test\_archive\_year() (mousedb.animal.tests.DateViewTests method), \hyperpage{28}
+  \item test\_autoset\_active\_state() (mousedb.animal.tests.BreedingModelTests method), 
+		\hyperpage{27}
+  \item test\_breeding\_delete() (mousedb.animal.tests.BreedingViewTests method), \hyperpage{27}
+  \item test\_breeding\_detail() (mousedb.animal.tests.BreedingViewTests method), \hyperpage{28}
+  \item test\_breeding\_edit() (mousedb.animal.tests.BreedingViewTests method), \hyperpage{28}
+  \item test\_breeding\_list() (mousedb.animal.tests.BreedingViewTests method), \hyperpage{28}
+  \item test\_breeding\_list\_all() (mousedb.animal.tests.BreedingViewTests method), \hyperpage{28}
+  \item test\_breeding\_new() (mousedb.animal.tests.BreedingViewTests method), \hyperpage{28}
+  \item test\_breeding\_plugevent\_new() (mousedb.timed\_mating.tests.Timed\_MatingViewTests method), 
+		\hyperpage{48}
+  \item test\_cage\_detail() (mousedb.animal.tests.CageViewTests method), \hyperpage{28}
+  \item test\_cage\_list() (mousedb.animal.tests.CageViewTests method), \hyperpage{28}
+  \item test\_cohort\_absolute\_url() (mousedb.data.tests.CohortModelTests method), \hyperpage{41}
+  \item test\_cohort\_list() (mousedb.data.tests.CohortViewTests method), \hyperpage{42}
+  \item test\_cohort\_unicode() (mousedb.data.tests.CohortModelTests method), \hyperpage{41}
+  \item test\_cohort\_view() (mousedb.data.tests.CohortViewTests method), \hyperpage{42}
+  \item test\_cohort\_view\_create() (mousedb.data.tests.CohortViewTests method), \hyperpage{42}
+  \item test\_cohort\_view\_delete() (mousedb.data.tests.CohortViewTests method), \hyperpage{42}
+  \item test\_cohort\_view\_edit() (mousedb.data.tests.CohortViewTests method), \hyperpage{42}
+  \item test\_create\_animal\_minimal() (mousedb.animal.tests.AnimalModelTests method), 
+		\hyperpage{26}
+  \item test\_create\_breeding\_minimal() (mousedb.animal.tests.BreedingModelTests method), 
+		\hyperpage{27}
+  \item test\_create\_cohort\_all() (mousedb.data.tests.CohortModelTests method), \hyperpage{41}
+  \item test\_create\_cohort\_minimum() (mousedb.data.tests.CohortModelTests method), 
+		\hyperpage{42}
+  \item test\_create\_group\_all\_fields() (mousedb.groups.tests.GroupsModelTests method), 
+		\hyperpage{45}
+  \item test\_create\_group\_minimal() (mousedb.groups.tests.GroupsModelTests method), 
+		\hyperpage{45}
+  \item test\_create\_license\_all\_fields() (mousedb.groups.tests.GroupsModelTests method), 
+		\hyperpage{46}
+  \item test\_create\_license\_minimal() (mousedb.groups.tests.GroupsModelTests method), 
+		\hyperpage{46}
+  \item test\_create\_pharmaceutical\_all() (mousedb.data.tests.PharmaceuticalModelTests method), 
+		\hyperpage{42}
+  \item test\_create\_pharmaceutical\_minimum() (mousedb.data.tests.PharmaceuticalModelTests method), 
+		\hyperpage{42}
+  \item test\_create\_plugevent\_minimal() (mousedb.timed\_mating.tests.Timed\_MatingModelTests method), 
+		\hyperpage{48}
+  \item test\_create\_plugevent\_most\_fields() (mousedb.timed\_mating.tests.Timed\_MatingModelTests method), 
+		\hyperpage{48}
+  \item test\_create\_strain\_all() (mousedb.animal.tests.StrainModelTests method), \hyperpage{29}
+  \item test\_create\_strain\_minimal() (mousedb.animal.tests.StrainModelTests method), 
+		\hyperpage{29}
+  \item test\_create\_studey\_detailed() (mousedb.data.tests.StudyModelTests method), 
+		\hyperpage{43}
+  \item test\_create\_study\_minimal() (mousedb.data.tests.StudyModelTests method), \hyperpage{43}
+  \item test\_create\_treatment\_all() (mousedb.data.tests.TreatmentModelTests method), 
+		\hyperpage{43}
+  \item test\_create\_treatment\_minimum() (mousedb.data.tests.TreatmentModelTests method), 
+		\hyperpage{43}
+  \item test\_duration() (mousedb.animal.tests.BreedingModelTests method), \hyperpage{27}
+  \item test\_eartag\_list() (mousedb.animal.tests.ToDoViewTests method), \hyperpage{30}
+  \item test\_genotype\_list() (mousedb.animal.tests.ToDoViewTests method), \hyperpage{30}
+  \item test\_no\_cage\_list() (mousedb.animal.tests.ToDoViewTests method), \hyperpage{30}
+  \item test\_no\_rack\_list() (mousedb.animal.tests.ToDoViewTests method), \hyperpage{30}
+  \item test\_pharmaceutical\_absolute\_url() (mousedb.data.tests.PharmaceuticalModelTests method), 
+		\hyperpage{42}
+  \item test\_pharmaceutical\_list() (mousedb.data.tests.PharmaceuticalViewTests method), 
+		\hyperpage{42}
+  \item test\_pharmaceutical\_unicode() (mousedb.data.tests.PharmaceuticalModelTests method), 
+		\hyperpage{42}
+  \item test\_pharmaceutical\_view() (mousedb.data.tests.PharmaceuticalViewTests method), 
+		\hyperpage{42}
+  \item test\_pharmaceutical\_view\_create() (mousedb.data.tests.PharmaceuticalViewTests method), 
+		\hyperpage{42}
+  \item test\_pharmaceutical\_view\_delete() (mousedb.data.tests.PharmaceuticalViewTests method), 
+		\hyperpage{42}
+  \item test\_pharmaceutical\_view\_edit() (mousedb.data.tests.PharmaceuticalViewTests method), 
+		\hyperpage{43}
+  \item test\_plugevent\_delete() (mousedb.timed\_mating.tests.Timed\_MatingViewTests method), 
+		\hyperpage{48}
+  \item test\_plugevent\_detail() (mousedb.timed\_mating.tests.Timed\_MatingViewTests method), 
+		\hyperpage{48}
+  \item test\_plugevent\_edit() (mousedb.timed\_mating.tests.Timed\_MatingViewTests method), 
+		\hyperpage{48}
+  \item test\_plugevent\_list() (mousedb.timed\_mating.tests.Timed\_MatingViewTests method), 
+		\hyperpage{48}
+  \item test\_plugevent\_list\_strain() (mousedb.timed\_mating.tests.Timed\_MatingViewTests method), 
+		\hyperpage{49}
+  \item test\_plugevent\_new() (mousedb.timed\_mating.tests.Timed\_MatingViewTests method), 
+		\hyperpage{49}
+  \item test\_set\_plugevent\_inactive() (mousedb.timed\_mating.tests.Timed\_MatingModelTests method), 
+		\hyperpage{48}
+  \item test\_strain\_absolute\_url() (mousedb.animal.tests.StrainModelTests method), 
+		\hyperpage{29}
+  \item test\_strain\_crosstype() (mousedb.animal.tests.StrainViewTests method), \hyperpage{29}
+  \item test\_strain\_delete() (mousedb.animal.tests.StrainViewTests method), \hyperpage{29}
+  \item test\_strain\_detail() (mousedb.animal.tests.StrainViewTests method), \hyperpage{29}
+  \item test\_strain\_detail\_all() (mousedb.animal.tests.StrainViewTests method), \hyperpage{29}
+  \item test\_strain\_edit() (mousedb.animal.tests.StrainViewTests method), \hyperpage{29}
+  \item test\_strain\_list() (mousedb.animal.tests.StrainViewTests method), \hyperpage{29}
+  \item test\_strain\_new() (mousedb.animal.tests.StrainViewTests method), \hyperpage{29}
+  \item test\_strain\_unicode() (mousedb.animal.tests.StrainModelTests method), \hyperpage{29}
+  \item test\_study\_absolute\_url() (mousedb.animal.tests.BreedingModelTests method), 
+		\hyperpage{27}
+  \item test\_study\_absolute\_url() (mousedb.data.tests.StudyModelTests method), \hyperpage{43}
+  \item test\_study\_delete() (mousedb.data.tests.StudyViewTests method), \hyperpage{43}
+  \item test\_study\_detail() (mousedb.data.tests.StudyViewTests method), \hyperpage{43}
+  \item test\_study\_edit() (mousedb.data.tests.StudyViewTests method), \hyperpage{43}
+  \item test\_study\_list() (mousedb.data.tests.StudyViewTests method), \hyperpage{43}
+  \item test\_study\_new() (mousedb.data.tests.StudyViewTests method), \hyperpage{43}
+  \item test\_timed\_mating\_list() (mousedb.animal.tests.BreedingViewTests method), \hyperpage{28}
+  \item test\_todo\_home() (mousedb.animal.tests.ToDoViewTests method), \hyperpage{30}
+  \item test\_treatment\_absolute\_url() (mousedb.data.tests.TreatmentModelTests method), 
+		\hyperpage{43}
+  \item test\_treatment\_detail() (mousedb.data.tests.TreatmentViewTests method), \hyperpage{44}
+  \item test\_treatment\_list() (mousedb.data.tests.TreatmentViewTests method), \hyperpage{44}
+  \item test\_treatment\_unicode() (mousedb.data.tests.TreatmentModelTests method), \hyperpage{43}
+  \item test\_unweaned() (mousedb.animal.tests.BreedingModelTests method), \hyperpage{27}
+  \item test\_wean\_list() (mousedb.animal.tests.ToDoViewTests method), \hyperpage{30}
+  \item Timed\_MatingModelTests (class in mousedb.timed\_mating.tests), \hyperpage{48}
+  \item Timed\_MatingViewTests (class in mousedb.timed\_mating.tests), \hyperpage{48}
+  \item todo() (in module mousedb.animal.views), \hyperpage{25}
+  \item ToDoViewTests (class in mousedb.animal.tests), \hyperpage{29}
+  \item Transplantation (class in mousedb.data.models), \hyperpage{38}
+  \item Treatment (class in mousedb.data.models), \hyperpage{38}
+  \item TreatmentDetail (class in mousedb.data.views), \hyperpage{40}
+  \item TreatmentForm (class in mousedb.data.forms), \hyperpage{44}
+  \item TreatmentList (class in mousedb.data.views), \hyperpage{41}
+  \item TreatmentModelTests (class in mousedb.data.tests), \hyperpage{43}
+  \item TreatmentViewTests (class in mousedb.data.tests), \hyperpage{43}
+
+  \indexspace
+  \bigletter U
+  \item unweaned() (mousedb.animal.models.Breeding method), \hyperpage{19}
+
+  \indexspace
+  \bigletter V
+  \item Vendor (class in mousedb.data.models), \hyperpage{38}
+
+  \indexspace
+  \bigletter W
+  \item WeanList (class in mousedb.animal.views), \hyperpage{24}
+
+\end{theindex}

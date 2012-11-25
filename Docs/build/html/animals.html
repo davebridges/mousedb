@@ -1,0 +1,1431 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Animals Application &mdash; MouseDB 1.1.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.1.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="MouseDB 1.1.1 documentation" href="index.html" />
+    <link rel="up" title="Automated Documentation" href="api.html" />
+    <link rel="next" title="Data Application" href="data.html" />
+    <link rel="prev" title="Automated Documentation" href="api.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="data.html" title="Data Application"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="api.html" title="Automated Documentation"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">MouseDB 1.1.1 documentation</a> &raquo;</li>
+          <li><a href="api.html" accesskey="U">Automated Documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-mousedb.animal">
+<span id="animals-application"></span><h1>Animals Application<a class="headerlink" href="#module-mousedb.animal" title="Permalink to this headline">¶</a></h1>
+<p>The animal app contains and controls the display of data about animals.</p>
+<p>Animals are tracked as individual entities, and given associations to breeding cages to follow ancestry, and strains.</p>
+<div class="section" id="animal">
+<h2>Animal<a class="headerlink" href="#animal" title="Permalink to this headline">¶</a></h2>
+<p>Most parameters about an animal are set within the animal object.  Here is where the animals strain, breeding, parentage and many other parameters are included.  Animals have foreignkey relationships with both Strain and Breeding, so an animal may only belong to one of each of those.  As an example, a mouse cannot come from more than one Breeding set, and cannot belong to more than one strain.</p>
+<div class="section" id="backcrosses-and-generations">
+<h3>Backcrosses and Generations<a class="headerlink" href="#backcrosses-and-generations" title="Permalink to this headline">¶</a></h3>
+<p>For this software, optional tracking of backcrosses and generations is available and is stored as an attribute of an animal.  When an inbred cross is made against a pure background, the backcross increases by 1.  When a heterozygote cross is made, the generation increases by one.  As an example, for every time a mouse in a C57/BL6 background is crossed against a wildtype C57/B6 mouse, the backcross (but not the generation) increases by one.  For every time a mutant strain is crosses against itself (either vs a heterozygote or homozygote of that strain), the generation will increase by one.  Backcrosses should typically be performed against a separate colony of purebred mouse, rather than against wild-type alleles of the mutant strain.</p>
+</div>
+</div>
+<div class="section" id="breeding-cages">
+<h2>Breeding Cages<a class="headerlink" href="#breeding-cages" title="Permalink to this headline">¶</a></h2>
+<p>A breeding cage is defined as a set of one or more male and one or more female mice.  Because of this, it is not always clear who the precise parentage of an animal is.  If the parentage is known, then the Mother and Father fields can be set for a particular animal.</p>
+</div>
+<div class="section" id="strains">
+<h2>Strains<a class="headerlink" href="#strains" title="Permalink to this headline">¶</a></h2>
+<p>A strain is a set of mice with a similar genetics.  Importantly strains are separated from Backgrounds.  For example, one might have mice with the genotype ob/ob but these mice may be in either a C57-Black6 or a mixed background.  This difference is set at the individual animal level.  
+The result of this is that a query for a particular strain may then need to be filtered to a specific background.</p>
+</div>
+<div class="section" id="module-mousedb.animal.models">
+<span id="animal-data-models"></span><h2>Animal Data Models<a class="headerlink" href="#module-mousedb.animal.models" title="Permalink to this headline">¶</a></h2>
+<p>This module describes the Strain, Animal, Breeding and Cage data models.</p>
+<p>This module stores all data regarding a particular laboratory animal.  Information about experimental data and timed matings are stored in the data and timed_matings packages.  This module describes the database structure for each data model.</p>
+<dl class="class">
+<dt id="mousedb.animal.models.Animal">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.models.</tt><tt class="descname">Animal</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.models.Animal" title="Permalink to this definition">¶</a></dt>
+<dd><p>A data model describing an animal.</p>
+<p>This data model describes a wide variety of parameters of an experimental animal.  This model is linked to the Strain.  If the parentage of a mouse is known, this can be identified (the breeding set may not be clear on this matter). Mice are automatically marked as not alive when a Death date is provided and the object is saved.  Strain, Background and Genotype are required fields.  By default, querysets are ordered first by strain then by MouseID.</p>
+<dl class="method">
+<dt id="mousedb.animal.models.Animal.age">
+<tt class="descname">age</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.models.Animal.age" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the animals age, relative to the current date (if alive) or the date of death (if not).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.models.Animal.breeding_female_location_type">
+<tt class="descname">breeding_female_location_type</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.models.Animal.breeding_female_location_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>This attribute defines whether a female&#8217;s current location is the same as the breeding cage to which it belongs.</p>
+<p>This attribute is used to color breeding table entries such that male mice which are currently in a different cage can quickly be identified.
+The location is relative to the first breeding cage an animal is assigned to.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.models.Animal.breeding_male_location_type">
+<tt class="descname">breeding_male_location_type</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.models.Animal.breeding_male_location_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>This attribute defines whether a male&#8217;s current location is the same as the breeding cage to which it belongs.</p>
+<p>This attribute is used to color breeding table entries such that male mice which are currently in a different cage can quickly be identified.
+The location is relative to the first breeding cage an animal is assigned to.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.models.Animal.save">
+<tt class="descname">save</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.models.Animal.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>The save method for Animal class is over-ridden to set Alive=False when a Death date is entered.  This is not the case for a cause of death.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.models.Breeding">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.models.</tt><tt class="descname">Breeding</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.models.Breeding" title="Permalink to this definition">¶</a></dt>
+<dd><p>This data model stores information about a particular breeding set</p>
+<p>A breeding set may contain one ore more males and females and must be defined via the progeny strain.  For example, in the case of generating a new strain, the strain indicates the new strain not the parental strains.  A breeding cage is defined as one male with one or more females.  If the breeding set is part of a timed mating experiment, then Timed_Mating must be selected.  Breeding cages are automatically inactivated upon saving when a End date is provided.  The only required field is Strain.  By default, querysets are ordered by Strain, then Start.</p>
+<dl class="method">
+<dt id="mousedb.animal.models.Breeding.duration">
+<tt class="descname">duration</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.models.Breeding.duration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the breeding cage&#8217;s duration.</p>
+<p>This is relative to the current date (if alive) or the date of inactivation (if not).
+The duration is formatted in days.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.models.Breeding.male_breeding_location_type">
+<tt class="descname">male_breeding_location_type</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.models.Breeding.male_breeding_location_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>This attribute defines whether a breeding male&#8217;s current location is the same as the breeding cage.</p>
+<p>This attribute is used to color breeding table entries such that male mice which are currently in a different cage can quickly be identified.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.models.Breeding.save">
+<tt class="descname">save</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.models.Breeding.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>The save function for a breeding cage has to automatic over-rides, Active and the Cage for the Breeder.</p>
+<p>In the case of Active, if an End field is specified, then the Active field is set to False.
+In the case of Cage, if a Cage is provided, and animals are specified under Male or Females for a Breeding object, then the Cage field for those animals is set to that of the breeding cage.  The same is true for both Rack and Rack Position.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.models.Breeding.unweaned">
+<tt class="descname">unweaned</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.models.Breeding.unweaned" title="Permalink to this definition">¶</a></dt>
+<dd><p>This attribute generates a queryset of unweaned animals for this breeding cage.  It is filtered for only Alive animals.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.models.Strain">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.models.</tt><tt class="descname">Strain</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.models.Strain" title="Permalink to this definition">¶</a></dt>
+<dd><p>A data model describing a mouse strain.</p>
+<p>This is separate from the background of a mouse.  For example a ob/ob mouse on a mixed or a black-6 background still have the same strain.  The background is defined in the animal and breeding cages.  Strain and Strain_slug are required.</p>
+<dl class="method">
+<dt id="mousedb.animal.models.Strain.get_absolute_url">
+<tt class="descname">get_absolute_url</tt><big>(</big><em>*moreargs</em>, <em>**morekwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.models.Strain.get_absolute_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>For a Strain object, the permalinked absolute url is <em>/strain/strain-slug</em>.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-mousedb.animal.urls">
+<span id="animal-app-views-and-urls"></span><h2>Animal App Views and URLs<a class="headerlink" href="#module-mousedb.animal.urls" title="Permalink to this headline">¶</a></h2>
+<p>This package contains all url dispatchers for the animal app.</p>
+<p>It is broken down into animal, strain, breeding, cage and date url dispatchers for clarity.
+Each of these takes a different subfolder directive (ie the animal module is for <em>/animal...</em> requests.</p>
+<div class="section" id="module-mousedb.animal.urls.breeding">
+<span id="breeding-urls"></span><h3>Breeding URLS<a class="headerlink" href="#module-mousedb.animal.urls.breeding" title="Permalink to this headline">¶</a></h3>
+<p>This URLconf defines the routing of pages for breeding objects.</p>
+<p>This includes generic views for breeding, breeding details and create, change, search and delete breeding cages.</p>
+</div>
+<div class="section" id="module-mousedb.animal.urls.cage">
+<span id="cage-urls"></span><h3>Cage URLS<a class="headerlink" href="#module-mousedb.animal.urls.cage" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="module-mousedb.animal.urls.date">
+<span id="date-urls"></span><h3>Date URLS<a class="headerlink" href="#module-mousedb.animal.urls.date" title="Permalink to this headline">¶</a></h3>
+<p>This package is the url dispatcher for date views.</p>
+<p>This urlconf takes a url in the form <strong>/date/...</strong> and can generate a general archive, yearly archive or monthly archive.</p>
+</div>
+<div class="section" id="module-mousedb.animal.urls.mouse">
+<span id="mouse-urls"></span><h3>Mouse URLS<a class="headerlink" href="#module-mousedb.animal.urls.mouse" title="Permalink to this headline">¶</a></h3>
+<p>This url dispatcher for animal objects</p>
+<p>controls views in the form <em>/mouse...</em>, <em>/mice...</em> or <em>/animal...</em></p>
+<p>This includes create, update, delete views as well as animal-list, and animal-list all and animal-multiple-new.</p>
+</div>
+<div class="section" id="module-mousedb.animal.urls.strain">
+<span id="strain-urls"></span><h3>Strain URLS<a class="headerlink" href="#module-mousedb.animal.urls.strain" title="Permalink to this headline">¶</a></h3>
+<p>This module is the url dispatcher for strain related views.</p>
+<p>It takes the root <em>/strain...</em> and generates strain-list, strain-new, strain-edit, strain-delete, strain-detail and strain-detail-all views from animal.views.</p>
+</div>
+<div class="section" id="module-mousedb.animal.urls.todo">
+<span id="todo-list-urls"></span><h3>ToDo List URLS<a class="headerlink" href="#module-mousedb.animal.urls.todo" title="Permalink to this headline">¶</a></h3>
+<p>URL configuration file for todo subpages.</p>
+<p>This controls any page <strong>/mousedb/todo/...</strong> and sends it to the appropriate views.</p>
+</div>
+<div class="section" id="module-mousedb.animal.views">
+<span id="views"></span><h3>Views<a class="headerlink" href="#module-mousedb.animal.views" title="Permalink to this headline">¶</a></h3>
+<p>These views define template redirects for the animal app.</p>
+<p>This module contains all views for this app as class based views.</p>
+<dl class="class">
+<dt id="mousedb.animal.views.AnimalCreate">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">AnimalCreate</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.AnimalCreate" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class generates the new <a class="reference internal" href="#mousedb.animal.models.Animal" title="mousedb.animal.models.Animal"><tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt></a> view (animal-new).</p>
+<p>This permission restricted view takes a url in the form <em>/animal/new</em> and generates an empty animal_form.html.
+This view is restricted to those with the animal.create_animal permission.</p>
+<dl class="method">
+<dt id="mousedb.animal.views.AnimalCreate.dispatch">
+<tt class="descname">dispatch</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.AnimalCreate.dispatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>This decorator sets this view to have restricted permissions.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.views.AnimalCreate.form_class">
+<tt class="descname">form_class</tt><a class="headerlink" href="#mousedb.animal.views.AnimalCreate.form_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">AnimalForm</span></tt></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.views.AnimalCreate.model">
+<tt class="descname">model</tt><a class="headerlink" href="#mousedb.animal.views.AnimalCreate.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.views.AnimalDelete">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">AnimalDelete</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.AnimalDelete" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class generates the delete <a class="reference internal" href="#mousedb.animal.models.Animal" title="mousedb.animal.models.Animal"><tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt></a> view (animal-delete).</p>
+<p>This permission restricted view takes a url in the form <em>/animal/#/delete</em> and passes that object to the confirm_delete.html page.
+This view is restricted to those with the animal.delete_animal permission.</p>
+<dl class="method">
+<dt id="mousedb.animal.views.AnimalDelete.dispatch">
+<tt class="descname">dispatch</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.AnimalDelete.dispatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>This decorator sets this view to have restricted permissions.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.views.AnimalDelete.model">
+<tt class="descname">model</tt><a class="headerlink" href="#mousedb.animal.views.AnimalDelete.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.views.AnimalDetail">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">AnimalDetail</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.AnimalDetail" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view displays specific details about an <a class="reference internal" href="#mousedb.animal.models.Animal" title="mousedb.animal.models.Animal"><tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt></a> object as animal-detail.</p>
+<p>It takes a request in the form <em>animal/(id)</em>, <em>mice/(id)</em> or <em>mouse/(id)</em> and renders the detail page for that mouse.  The request is defined for id not MouseID (or barcode) because this allows for details to be displayed for mice without barcode identification.
+Therefore care must be taken that animal/4932 is id=4932 and not barcode=4932.  The animal name is defined at the top of the page.
+This page is restricted to logged-in users.</p>
+<dl class="attribute">
+<dt id="mousedb.animal.views.AnimalDetail.model">
+<tt class="descname">model</tt><a class="headerlink" href="#mousedb.animal.views.AnimalDetail.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.views.AnimalList">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">AnimalList</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.AnimalList" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view generates a list of <a class="reference internal" href="#mousedb.animal.models.Animal" title="mousedb.animal.models.Animal"><tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt></a> objects as animal-list</p>
+<p>This view responds to a url in the form <em>/animal</em>
+It sends a variable animal containing all animals to animal_list.html.
+This view is login protected.</p>
+<dl class="method">
+<dt id="mousedb.animal.views.AnimalList.dispatch">
+<tt class="descname">dispatch</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.AnimalList.dispatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>This decorator sets this view to have restricted permissions.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.views.AnimalList.model">
+<tt class="descname">model</tt><a class="headerlink" href="#mousedb.animal.views.AnimalList.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.views.AnimalListAlive">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">AnimalListAlive</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.AnimalListAlive" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view generates a list of alive <a class="reference internal" href="#mousedb.animal.models.Animal" title="mousedb.animal.models.Animal"><tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt></a> objects.</p>
+<p>This view subclasses <a class="reference internal" href="#mousedb.animal.views.AnimalList" title="mousedb.animal.views.AnimalList"><tt class="xref py py-class docutils literal"><span class="pre">AnimalList</span></tt></a> The main use for this view is to take a url in the form <em>/animal/all</em> and to return a list of all alive animals to animal_list.html in the context animal.  It also adds an extra context variable, &#8220;list type&#8221; as Alive.  
+This view is login protected.</p>
+<dl class="method">
+<dt id="mousedb.animal.views.AnimalListAlive.get_context_data">
+<tt class="descname">get_context_data</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.AnimalListAlive.get_context_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>This add in the context of list_type and returns this as Alive.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.views.AnimalMonthArchive">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">AnimalMonthArchive</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.AnimalMonthArchive" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view generates a list of animals born within the specified year.</p>
+<p>It takes a url in the form of <strong>/date/####</strong> where #### is the four digit code of the year.
+This view is restricted to logged in users.</p>
+<dl class="method">
+<dt id="mousedb.animal.views.AnimalMonthArchive.dispatch">
+<tt class="descname">dispatch</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.AnimalMonthArchive.dispatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>This decorator sets this view to have restricted permissions.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.views.AnimalMonthArchive.model">
+<tt class="descname">model</tt><a class="headerlink" href="#mousedb.animal.views.AnimalMonthArchive.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.views.AnimalUpdate">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">AnimalUpdate</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.AnimalUpdate" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class generates the update <a class="reference internal" href="#mousedb.animal.models.Animal" title="mousedb.animal.models.Animal"><tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt></a> view (animal-edit).</p>
+<p>This permission restricted view takes a url in the form <em>/animal/#/edit</em> and generates a animal_form.html with that object.
+This view is restricted to those with the animal.update_animal permission.</p>
+<dl class="method">
+<dt id="mousedb.animal.views.AnimalUpdate.dispatch">
+<tt class="descname">dispatch</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.AnimalUpdate.dispatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>This decorator sets this view to have restricted permissions.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.views.AnimalUpdate.form_class">
+<tt class="descname">form_class</tt><a class="headerlink" href="#mousedb.animal.views.AnimalUpdate.form_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">AnimalForm</span></tt></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.views.AnimalUpdate.model">
+<tt class="descname">model</tt><a class="headerlink" href="#mousedb.animal.views.AnimalUpdate.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.views.AnimalYearArchive">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">AnimalYearArchive</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.AnimalYearArchive" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view generates a list of animals born within the specified year.</p>
+<p>It takes a url in the form of <strong>/date/####</strong> where #### is the four digit code of the year.
+This view is restricted to logged in users.</p>
+<dl class="method">
+<dt id="mousedb.animal.views.AnimalYearArchive.dispatch">
+<tt class="descname">dispatch</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.AnimalYearArchive.dispatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>This decorator sets this view to have restricted permissions.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.views.AnimalYearArchive.model">
+<tt class="descname">model</tt><a class="headerlink" href="#mousedb.animal.views.AnimalYearArchive.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.views.BreedingCreate">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">BreedingCreate</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.BreedingCreate" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class generates the breeding-new view.</p>
+<p>This permission restricted view takes a url in the form <em>/breeding/new</em> and generates an empty plugevents_form.html.</p>
+<dl class="method">
+<dt id="mousedb.animal.views.BreedingCreate.dispatch">
+<tt class="descname">dispatch</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.BreedingCreate.dispatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>This decorator sets this view to have restricted permissions.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.views.BreedingCreate.form_class">
+<tt class="descname">form_class</tt><a class="headerlink" href="#mousedb.animal.views.BreedingCreate.form_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">BreedingForm</span></tt></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.views.BreedingCreate.model">
+<tt class="descname">model</tt><a class="headerlink" href="#mousedb.animal.views.BreedingCreate.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Breeding</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.views.BreedingDelete">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">BreedingDelete</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.BreedingDelete" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class generates the breeding-delete view.</p>
+<p>This permission restricted view takes a url in the form <em>/breeding/#/delete</em> and passes that object to the confirm_delete.html page.</p>
+<dl class="method">
+<dt id="mousedb.animal.views.BreedingDelete.dispatch">
+<tt class="descname">dispatch</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.BreedingDelete.dispatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>This decorator sets this view to have restricted permissions.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.views.BreedingDelete.model">
+<tt class="descname">model</tt><a class="headerlink" href="#mousedb.animal.views.BreedingDelete.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Breeding</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.views.BreedingDetail">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">BreedingDetail</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.BreedingDetail" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view displays specific details about a <a class="reference internal" href="#mousedb.animal.models.Breeding" title="mousedb.animal.models.Breeding"><tt class="xref py py-class docutils literal"><span class="pre">Breeding</span></tt></a> object.</p>
+<p>It takes a request in the form <em>/breeding/(breeding_id)</em> and renders the detail page for that breeding set.
+The breeding_id refers to the background id of the <a class="reference internal" href="#mousedb.animal.models.Breeding" title="mousedb.animal.models.Breeding"><tt class="xref py py-class docutils literal"><span class="pre">Breeding</span></tt></a> object, and not the breeding cage barcode.
+This page is restricted to logged-in users.</p>
+<dl class="attribute">
+<dt id="mousedb.animal.views.BreedingDetail.model">
+<tt class="descname">model</tt><a class="headerlink" href="#mousedb.animal.views.BreedingDetail.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Breeding</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.views.BreedingList">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">BreedingList</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.BreedingList" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class generates an object list for active <a class="reference internal" href="#mousedb.animal.models.Breeding" title="mousedb.animal.models.Breeding"><tt class="xref py py-class docutils literal"><span class="pre">Breeding</span></tt></a> objects.</p>
+<p>This login protected view takes all <a class="reference internal" href="#mousedb.animal.models.Breeding" title="mousedb.animal.models.Breeding"><tt class="xref py py-class docutils literal"><span class="pre">Breeding</span></tt></a> objects and sends them to strain_list.html as a strain_list dictionary.  It also passes a strain_list_alive and cages dictionary to show the numbers for total cages and total strains.
+The url for this view is <em>/strain/</em></p>
+<dl class="method">
+<dt id="mousedb.animal.views.BreedingList.get_context_data">
+<tt class="descname">get_context_data</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.BreedingList.get_context_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>This adds into the context of breeding_type and sets it to Active.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.views.BreedingListAll">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">BreedingListAll</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.BreedingListAll" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class generates a view for all <a class="reference internal" href="#mousedb.animal.models.Breeding" title="mousedb.animal.models.Breeding"><tt class="xref py py-class docutils literal"><span class="pre">Breeding</span></tt></a> objects.</p>
+<p>This class is a subclass of <a class="reference internal" href="#mousedb.animal.views.BreedingList" title="mousedb.animal.views.BreedingList"><tt class="xref py py-class docutils literal"><span class="pre">BreedingList</span></tt></a>, changing the queryset and the  breeding_type context.</p>
+<dl class="method">
+<dt id="mousedb.animal.views.BreedingListAll.get_context_data">
+<tt class="descname">get_context_data</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.BreedingListAll.get_context_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>This add in the context of breeding_type and sets it to All.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.views.BreedingListTimedMating">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">BreedingListTimedMating</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.BreedingListTimedMating" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class generates a view for <a class="reference internal" href="#mousedb.animal.models.Breeding" title="mousedb.animal.models.Breeding"><tt class="xref py py-class docutils literal"><span class="pre">Breeding</span></tt></a> objects, showing only timed mating cages.</p>
+<p>This class is a subclass of <a class="reference internal" href="#mousedb.animal.views.BreedingList" title="mousedb.animal.views.BreedingList"><tt class="xref py py-class docutils literal"><span class="pre">BreedingList</span></tt></a>, changing the queryset and the  breeding_type context.</p>
+<dl class="method">
+<dt id="mousedb.animal.views.BreedingListTimedMating.get_context_data">
+<tt class="descname">get_context_data</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.BreedingListTimedMating.get_context_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>This add in the context of breeding_type and sets it to Timed_Matings.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.views.BreedingSearch">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">BreedingSearch</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.BreedingSearch" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class generates a view for breeding objects, showing the results of a search query for cage number.</p>
+<p>This class is a subclass of <a class="reference internal" href="#mousedb.animal.views.BreedingList" title="mousedb.animal.views.BreedingList"><tt class="xref py py-class docutils literal"><span class="pre">BreedingList</span></tt></a>, changing the queryset and the  breeding_type context as well as providing the search query and search results if available.</p>
+<dl class="method">
+<dt id="mousedb.animal.views.BreedingSearch.get_context_data">
+<tt class="descname">get_context_data</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.BreedingSearch.get_context_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>This add in the context of breeding_type and sets it to Search it also returns the query and the queryset.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.views.BreedingUpdate">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">BreedingUpdate</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.BreedingUpdate" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class generates the breeding-edit view.</p>
+<p>This permission restricted view takes a url in the form <em>/breeding/#/edit</em> and generates a breeding_form.html with that object.</p>
+<dl class="method">
+<dt id="mousedb.animal.views.BreedingUpdate.dispatch">
+<tt class="descname">dispatch</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.BreedingUpdate.dispatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>This decorator sets this view to have restricted permissions.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.views.BreedingUpdate.form_class">
+<tt class="descname">form_class</tt><a class="headerlink" href="#mousedb.animal.views.BreedingUpdate.form_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">BreedingForm</span></tt></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.views.BreedingUpdate.model">
+<tt class="descname">model</tt><a class="headerlink" href="#mousedb.animal.views.BreedingUpdate.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Breeding</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.views.CrossTypeAnimalList">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">CrossTypeAnimalList</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.CrossTypeAnimalList" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view filters animal objects for a particular strain showing only the results of a particular breeding type.</p>
+<p>This view takes a url in the form <strong>/strain/&lt;strain_slug&gt;/&lt;breeding_type&gt;</strong> and filters <a class="reference internal" href="#mousedb.animal.models.Animal" title="mousedb.animal.models.Animal"><tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt></a> objects on that basis, via both of those keyword arguments.
+Notably breeding_type has to be the display value not the key value of CROSS_TYPE.
+This view is a subclass of <tt class="xref py py-class docutils literal"><span class="pre">AnimalList</span></tt>.</p>
+<dl class="method">
+<dt id="mousedb.animal.views.CrossTypeAnimalList.get_context_data">
+<tt class="descname">get_context_data</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.CrossTypeAnimalList.get_context_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>This add in the context of list_type and returns this as whatever the crosstype was.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.views.CrossTypeAnimalList.queryset">
+<tt class="descname">queryset</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.views.CrossTypeAnimalList.queryset" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function sets the queryset according to the keyword arguments.
+For the crosstype, the input value is the the display value of CROSS_TYPE.
+This is done because the spaces in HET vs HET are not recognized.  
+Therefore the queryset must be matched exactly (ie by case so Intercross not intercross). 
+The function also filters the strain by the strain_slug keyword argument.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.views.EarTagList">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">EarTagList</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.EarTagList" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view is for showing animals which need to be eartagged.</p>
+<p>This view is a subclass of <a class="reference internal" href="#mousedb.animal.views.AnimalList" title="mousedb.animal.views.AnimalList"><tt class="xref py py-class docutils literal"><span class="pre">AnimalList</span></tt></a>.  
+This list shows animals that do not have an eartag (MouseID) and are older than the age set by WEAN_AGE in localsettings.py (default is 14 days).
+It takes a view <strong>/todo/eartag</strong>.
+This view is login protected.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.views.GenotypeList">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">GenotypeList</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.GenotypeList" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view is for showing animals which need to be genotyped.</p>
+<p>This view is a subclass of <a class="reference internal" href="#mousedb.animal.views.AnimalList" title="mousedb.animal.views.AnimalList"><tt class="xref py py-class docutils literal"><span class="pre">AnimalList</span></tt></a>.
+This list shows animals that do not have a genotype (ie N.D. or ?) and are older than GENOTYPE_AGE as designated in localsettings.py (default is 21 days).
+It takes a view <strong>/todo/genotype</strong>.
+This view is login protected.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.views.NoCageList">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">NoCageList</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.NoCageList" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view is for showing animals which need to have a cage entered.</p>
+<p>This list shows animals that have no cage number and are alive.
+This view is a subclass of <a class="reference internal" href="#mousedb.animal.views.AnimalList" title="mousedb.animal.views.AnimalList"><tt class="xref py py-class docutils literal"><span class="pre">AnimalList</span></tt></a>
+It takes a view <strong>/todo/no_cage</strong>.
+This view is login protected.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.views.NoRackList">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">NoRackList</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.NoRackList" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view is for showing animals which need to have a cage entered.</p>
+<p>This list shows animals that have no cage number and are alive.
+This view is a subclass of <a class="reference internal" href="#mousedb.animal.views.AnimalList" title="mousedb.animal.views.AnimalList"><tt class="xref py py-class docutils literal"><span class="pre">AnimalList</span></tt></a>
+It takes a view <strong>/todo/no_rack</strong>.
+This view is login protected.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.views.StrainCreate">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">StrainCreate</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.StrainCreate" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class generates the new <a class="reference internal" href="#mousedb.animal.models.Strain" title="mousedb.animal.models.Strain"><tt class="xref py py-class docutils literal"><span class="pre">Strain</span></tt></a> view (strain-new).</p>
+<p>This permission restricted view takes a url in the form <em>/strain/new</em> and generates an empty strain_form.html.
+This view is restricted to those with the animal.create_strain permission.</p>
+<dl class="method">
+<dt id="mousedb.animal.views.StrainCreate.dispatch">
+<tt class="descname">dispatch</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.StrainCreate.dispatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>This decorator sets this view to have restricted permissions.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.views.StrainCreate.model">
+<tt class="descname">model</tt><a class="headerlink" href="#mousedb.animal.views.StrainCreate.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Strain</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.views.StrainDelete">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">StrainDelete</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.StrainDelete" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class generates the delete <a class="reference internal" href="#mousedb.animal.models.Strain" title="mousedb.animal.models.Strain"><tt class="xref py py-class docutils literal"><span class="pre">Strain</span></tt></a> view (strain-delete).</p>
+<p>This permission restricted view takes a url in the form <em>/strain/#/delete</em> and passes that object to the confirm_delete.html page.
+This view is restricted to those with the animal.delete_strain permission.</p>
+<dl class="method">
+<dt id="mousedb.animal.views.StrainDelete.dispatch">
+<tt class="descname">dispatch</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.StrainDelete.dispatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>This decorator sets this view to have restricted permissions.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.views.StrainDelete.model">
+<tt class="descname">model</tt><a class="headerlink" href="#mousedb.animal.views.StrainDelete.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Strain</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.views.StrainDetail">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">StrainDetail</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.StrainDetail" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view displays specific details about a <a class="reference internal" href="#mousedb.animal.models.Strain" title="mousedb.animal.models.Strain"><tt class="xref py py-class docutils literal"><span class="pre">Strain</span></tt></a> object showing <em>only current</em> related objects.</p>
+<p>It takes a request in the form <em>strain/(strain_slug)/</em> and renders the detail page for that <a class="reference internal" href="#mousedb.animal.models.Strain" title="mousedb.animal.models.Strain"><tt class="xref py py-class docutils literal"><span class="pre">Strain</span></tt></a>.
+This view also passes along a dictionary of alive animals belonging to that strain.
+This page is restricted to logged-in users.</p>
+<dl class="method">
+<dt id="mousedb.animal.views.StrainDetail.get_context_data">
+<tt class="descname">get_context_data</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.StrainDetail.get_context_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>This add in the context of strain_list_alive (which filters for only alive animals and active) and cages which filters for the number of current cages.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.views.StrainDetailAll">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">StrainDetailAll</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.StrainDetailAll" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view displays specific details about a <a class="reference internal" href="#mousedb.animal.models.Strain" title="mousedb.animal.models.Strain"><tt class="xref py py-class docutils literal"><span class="pre">Strain</span></tt></a> showing <em>all</em> related objects.</p>
+<p>This view subclasses <a class="reference internal" href="#mousedb.animal.views.StrainDetail" title="mousedb.animal.views.StrainDetail"><tt class="xref py py-class docutils literal"><span class="pre">StrainDetail</span></tt></a> and modifies the get_context_data to show associated active objects.
+It takes a request in the form <em>strain/(strain_slug)/all</em> and renders the detail page for that <a class="reference internal" href="#mousedb.animal.models.Strain" title="mousedb.animal.models.Strain"><tt class="xref py py-class docutils literal"><span class="pre">Strain</span></tt></a>.
+This view also passes along a dictionary of alive animals belonging to that <a class="reference internal" href="#mousedb.animal.models.Strain" title="mousedb.animal.models.Strain"><tt class="xref py py-class docutils literal"><span class="pre">Strain</span></tt></a>.
+This page is restricted to logged-in users.</p>
+<dl class="method">
+<dt id="mousedb.animal.views.StrainDetailAll.get_context_data">
+<tt class="descname">get_context_data</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.StrainDetailAll.get_context_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>This adds into the context of strain_list_all (which filters for all alive <a class="reference internal" href="#mousedb.animal.models.Animal" title="mousedb.animal.models.Animal"><tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt></a> objects and active cages) and cages which filters for the number of current cages.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.views.StrainList">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">StrainList</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.StrainList" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class generates an object list for <a class="reference internal" href="#mousedb.animal.models.Strain" title="mousedb.animal.models.Strain"><tt class="xref py py-class docutils literal"><span class="pre">Strain</span></tt></a> objects.</p>
+<p>This login protected view takes all <a class="reference internal" href="#mousedb.animal.models.Strain" title="mousedb.animal.models.Strain"><tt class="xref py py-class docutils literal"><span class="pre">Strain</span></tt></a> objects and sends them to strain_list.html as a strain_list dictionary.  It also passes a strain_list_alive and cages dictionary to show the numbers for total cages and total strains.
+The url for this view is <strong>/strain/</strong></p>
+<dl class="method">
+<dt id="mousedb.animal.views.StrainList.get_context_data">
+<tt class="descname">get_context_data</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.StrainList.get_context_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>This add in the context of strain_list_alive (which filters for all alive animals) and cages which filters for the number of current cages.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.views.StrainList.model">
+<tt class="descname">model</tt><a class="headerlink" href="#mousedb.animal.views.StrainList.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Strain</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.views.StrainUpdate">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">StrainUpdate</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.StrainUpdate" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class generates the update <a class="reference internal" href="#mousedb.animal.models.Strain" title="mousedb.animal.models.Strain"><tt class="xref py py-class docutils literal"><span class="pre">Strain</span></tt></a> view (strain-edit).</p>
+<p>This permission restricted view takes a url in the form <em>/strain/#/edit</em> and generates a strain_form.html with that object.
+This view is restricted to those with the animal.update_strain permission.</p>
+<dl class="method">
+<dt id="mousedb.animal.views.StrainUpdate.dispatch">
+<tt class="descname">dispatch</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.StrainUpdate.dispatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>This decorator sets this view to have restricted permissions.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.animal.views.StrainUpdate.model">
+<tt class="descname">model</tt><a class="headerlink" href="#mousedb.animal.views.StrainUpdate.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Strain</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.views.WeanList">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">WeanList</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.WeanList" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view is for showing animals which need to be weaned.</p>
+<p>This list shows animals that need to be weaned.  
+This view is a subclass of <a class="reference internal" href="#mousedb.animal.views.AnimalList" title="mousedb.animal.views.AnimalList"><tt class="xref py py-class docutils literal"><span class="pre">AnimalList</span></tt></a> filtering for animals that are older than the WEAN_AGE and are alive.
+It takes a view <strong>/todo/wean</strong>.
+This view is login protected.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mousedb.animal.views.breeding_change">
+<tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">breeding_change</tt><big>(</big><em>request</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.breeding_change" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view is used to generate a form by which to change pups which belong to a particular breeding set.</p>
+<p>This view typically is used to modify existing pups.  This might include marking animals as sacrificed, entering genotype or marking information or entering movement of mice to another cage.  It is used to show and modify several animals at once.
+It takes a request in the form /breeding/(breeding_id)/change/ and returns a form specific to the breeding set defined in breeding_id.  breeding_id is the background identification number of the breeding set and does not refer to the barcode of any breeding cage.
+This view returns a formset in which one row represents one animal.  To add extra animals to a breeding set use /breeding/(breeding_id)/pups/.
+This view is restricted to those with the permission animal.change_animal.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mousedb.animal.views.breeding_pups">
+<tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">breeding_pups</tt><big>(</big><em>request</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.breeding_pups" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view is used to generate a form by which to add pups which belong to a particular breeding set.</p>
+<p>This view is intended to be used to add initial information about pups, including eartag, genotype, gender and birth or weaning information.
+It takes a request in the form /breeding/(breeding_id)/pups/ and returns a form specific to the breeding set defined in breeding_id.  breeding_id is the background identification number of the breeding set and does not refer to the barcode of any breeding cage.
+This view is restricted to those with the permission animal.add_animal.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mousedb.animal.views.breeding_wean">
+<tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">breeding_wean</tt><big>(</big><em>request</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.breeding_wean" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view is used to generate a form by which to wean pups which belong to a particular breeding set.</p>
+<p>This view typically is used to wean existing pups.  This includes the MouseID, Cage, Markings, Gender and Wean Date fields.  For other fields use the breeding-change page.
+It takes a request in the form /breeding/(breeding_id)/wean/ and returns a form specific to the breeding set defined in breeding_id.  breeding_id is the background identification number of the breeding set and does not refer to the barcode of any breeding cage.
+This view returns a formset in which one row represents one animal.  To add extra animals to a breeding set use /breeding/(breeding_id)/pups/.
+This view is restricted to those with the permission animal.change_animal.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mousedb.animal.views.date_archive_year">
+<tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">date_archive_year</tt><big>(</big><em>request</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.date_archive_year" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view will generate a table of the number of mice born on an annual basis.</p>
+<p>This view is associated with the url name archive-home, and returns an dictionary of a date and a animal count.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mousedb.animal.views.multiple_breeding_pups">
+<tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">multiple_breeding_pups</tt><big>(</big><em>request</em>, <em>breeding_id</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.multiple_breeding_pups" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view is used to enter multiple animals at the same time from a breeding cage.</p>
+<dl class="docutils">
+<dt>It will generate a form containing animal information and a number of mice.  It is intended to create several identical animals with the same attributes.</dt>
+<dd>This view requres an input of a breeding_id to generate the correct form.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mousedb.animal.views.multiple_pups">
+<tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">multiple_pups</tt><big>(</big><em>request</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.multiple_pups" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view is used to enter multiple animals at the same time.</p>
+<p>It will generate a form containing animal information and a number of mice.  It is intended to create several identical animals with the same attributes.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mousedb.animal.views.todo">
+<tt class="descclassname">mousedb.animal.views.</tt><tt class="descname">todo</tt><big>(</big><em>request</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.animal.views.todo" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view generates a summary of the todo lists.</p>
+<p>The login restricted view passes lists for ear tagging, genotyping and weaning and passes them to the template todo.html.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-mousedb.animal.admin">
+<span id="administrative-interface"></span><h3>Administrative Interface<a class="headerlink" href="#module-mousedb.animal.admin" title="Permalink to this headline">¶</a></h3>
+<p>Admin site settings for the animal app.</p>
+<dl class="class">
+<dt id="mousedb.animal.admin.AnimalAdmin">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.admin.</tt><tt class="descname">AnimalAdmin</tt><big>(</big><em>model</em>, <em>admin_site</em><big>)</big><a class="headerlink" href="#mousedb.animal.admin.AnimalAdmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides parameters for animal objects within the admin interface.</p>
+<dl class="method">
+<dt id="mousedb.animal.admin.AnimalAdmin.mark_estimated_death">
+<tt class="descname">mark_estimated_death</tt><big>(</big><em>request</em>, <em>queryset</em><big>)</big><a class="headerlink" href="#mousedb.animal.admin.AnimalAdmin.mark_estimated_death" title="Permalink to this definition">¶</a></dt>
+<dd><p>An admin action for marking several animals as sacrificed.</p>
+<p>This action sets the selected animals as Alive=False, Death=today and Cause_of_Death as Estimated.  To use other paramters, mice muse be individually marked as sacrificed.
+This admin action also shows as the output the number of mice sacrificed.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.admin.AnimalAdmin.mark_sacrificed">
+<tt class="descname">mark_sacrificed</tt><big>(</big><em>request</em>, <em>queryset</em><big>)</big><a class="headerlink" href="#mousedb.animal.admin.AnimalAdmin.mark_sacrificed" title="Permalink to this definition">¶</a></dt>
+<dd><p>An admin action for marking several animals as sacrificed.</p>
+<p>This action sets the selected animals as Alive=False, Death=today and Cause_of_Death as sacrificed.  To use other paramters, mice muse be individually marked as sacrificed.
+This admin action also shows as the output the number of mice sacrificed.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.admin.AnimalInline">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.admin.</tt><tt class="descname">AnimalInline</tt><big>(</big><em>parent_model</em>, <em>admin_site</em><big>)</big><a class="headerlink" href="#mousedb.animal.admin.AnimalInline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides an inline tabular formset for animal objects.</p>
+<p>Currently used with the breeding admin page.</p>
+<dl class="attribute">
+<dt id="mousedb.animal.admin.AnimalInline.model">
+<tt class="descname">model</tt><a class="headerlink" href="#mousedb.animal.admin.AnimalInline.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.admin.BreedingAdmin">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.admin.</tt><tt class="descname">BreedingAdmin</tt><big>(</big><em>model</em>, <em>admin_site</em><big>)</big><a class="headerlink" href="#mousedb.animal.admin.BreedingAdmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Settings in the admin interface for dealing with Breeding objects.</p>
+<p>This interface also includes an form for adding objects associated with this breeding cage.</p>
+<dl class="method">
+<dt id="mousedb.animal.admin.BreedingAdmin.mark_deactivated">
+<tt class="descname">mark_deactivated</tt><big>(</big><em>request</em>, <em>queryset</em><big>)</big><a class="headerlink" href="#mousedb.animal.admin.BreedingAdmin.mark_deactivated" title="Permalink to this definition">¶</a></dt>
+<dd><p>An admin action for marking several cages as inactive.</p>
+<p>This action sets the selected cages as Active=False and Death=today.
+This admin action also shows as the output the number of mice sacrificed.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.admin.StrainAdmin">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.admin.</tt><tt class="descname">StrainAdmin</tt><big>(</big><em>model</em>, <em>admin_site</em><big>)</big><a class="headerlink" href="#mousedb.animal.admin.StrainAdmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Settings in the admin interface for dealing with Strain objects.</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-mousedb.animal.tests">
+<span id="animal-app-unit-tests"></span><h2>Animal App Unit Tests<a class="headerlink" href="#module-mousedb.animal.tests" title="Permalink to this headline">¶</a></h2>
+<p>This file contains tests for the animal application.</p>
+<p>These tests will verify generation and function of a new breeding, strain and animal object.</p>
+<dl class="class">
+<dt id="mousedb.animal.tests.AnimalModelTests">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.tests.</tt><tt class="descname">AnimalModelTests</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#mousedb.animal.tests.AnimalModelTests" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests the model attributes of Animal objects contained in the animal app.</p>
+<dl class="method">
+<dt id="mousedb.animal.tests.AnimalModelTests.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.AnimalModelTests.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiate the test client.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.AnimalModelTests.tearDown">
+<tt class="descname">tearDown</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.AnimalModelTests.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Depopulate created model instances from test database.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.AnimalModelTests.test_animal_unicode">
+<tt class="descname">test_animal_unicode</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.AnimalModelTests.test_animal_unicode" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a test for creating a new animal object, with only the minimum fields being entered.  It then tests that the correct unicode representation is being generated.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.AnimalModelTests.test_create_animal_minimal">
+<tt class="descname">test_create_animal_minimal</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.AnimalModelTests.test_create_animal_minimal" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a test for creating a new animal object, with only the minimum fields being entered</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.tests.AnimalViewTests">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.tests.</tt><tt class="descname">AnimalViewTests</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#mousedb.animal.tests.AnimalViewTests" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests the views associated with animal objects.</p>
+<dl class="method">
+<dt id="mousedb.animal.tests.AnimalViewTests.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.AnimalViewTests.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiate the test client.  Creates a test user.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.AnimalViewTests.tearDown">
+<tt class="descname">tearDown</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.AnimalViewTests.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Depopulate created model instances from test database.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.AnimalViewTests.test_animal_delete">
+<tt class="descname">test_animal_delete</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.AnimalViewTests.test_animal_delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test checks the view which displays an animal deletion page.</p>
+<p>It checks for the correct templates and status code and that the animal is passed correctly to the context.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.AnimalViewTests.test_animal_detail">
+<tt class="descname">test_animal_detail</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.AnimalViewTests.test_animal_detail" title="Permalink to this definition">¶</a></dt>
+<dd><p>This tests the animal-detail view, ensuring that templates are loaded correctly.</p>
+<p>This view uses a user with superuser permissions so does not test the permission levels for this view.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.AnimalViewTests.test_animal_edit">
+<tt class="descname">test_animal_edit</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.AnimalViewTests.test_animal_edit" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test checks the view which displays a animal edit page.</p>
+<p>It checks for the correct templates and status code and that the animal is passed correctly to the context.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.AnimalViewTests.test_animal_list">
+<tt class="descname">test_animal_list</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.AnimalViewTests.test_animal_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test checks the view which displays a breeding list page showing active animals.  It checks for the correct templates and status code.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.AnimalViewTests.test_animal_list_all">
+<tt class="descname">test_animal_list_all</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.AnimalViewTests.test_animal_list_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test checks the view which displays a breeding list page showing all animals.  It checks for the correct templates and status code.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.AnimalViewTests.test_animal_new">
+<tt class="descname">test_animal_new</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.AnimalViewTests.test_animal_new" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test checks the view which displays a new animal.</p>
+<p>It checks for the correct templates and status code.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.tests.BreedingModelTests">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.tests.</tt><tt class="descname">BreedingModelTests</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#mousedb.animal.tests.BreedingModelTests" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests the model attributes of Breeding objects contained in the animal app.</p>
+<dl class="method">
+<dt id="mousedb.animal.tests.BreedingModelTests.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.BreedingModelTests.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiate the test client.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.BreedingModelTests.tearDown">
+<tt class="descname">tearDown</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.BreedingModelTests.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Depopulate created model instances from test database.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.BreedingModelTests.test_autoset_active_state">
+<tt class="descname">test_autoset_active_state</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.BreedingModelTests.test_autoset_active_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a test for creating a new breeding object, with only the minimum being entered.  That object is then tested for the active state being automatically set when a End date is specified.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.BreedingModelTests.test_create_breeding_minimal">
+<tt class="descname">test_create_breeding_minimal</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.BreedingModelTests.test_create_breeding_minimal" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a test for creating a new breeding object, with only the minimum being entered.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.BreedingModelTests.test_duration">
+<tt class="descname">test_duration</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.BreedingModelTests.test_duration" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test verifies that the duration is set correctly.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.BreedingModelTests.test_study_absolute_url">
+<tt class="descname">test_study_absolute_url</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.BreedingModelTests.test_study_absolute_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test verifies that the absolute url of a breeding object is set correctly.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.BreedingModelTests.test_unweaned">
+<tt class="descname">test_unweaned</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.BreedingModelTests.test_unweaned" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a test for the unweaned animal list.  It creates several animals for a breeding object and tests that they are tagged as unweaned.  They are then weaned and retested to be tagged as not unweaned.  This test is incomplete.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.tests.BreedingViewTests">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.tests.</tt><tt class="descname">BreedingViewTests</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#mousedb.animal.tests.BreedingViewTests" title="Permalink to this definition">¶</a></dt>
+<dd><p>These are tests for views based on Breeding objects.  Included are tests for breeding list (active and all), details, create, update and delete pages as well as for the timed mating lists.</p>
+<dl class="method">
+<dt id="mousedb.animal.tests.BreedingViewTests.test_breeding_delete">
+<tt class="descname">test_breeding_delete</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.BreedingViewTests.test_breeding_delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test checks the view which displays a breeding detail page.  It checks for the correct templates and status code.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.BreedingViewTests.test_breeding_detail">
+<tt class="descname">test_breeding_detail</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.BreedingViewTests.test_breeding_detail" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test checks the view which displays a breeding detail page.  It checks for the correct templates and status code.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.BreedingViewTests.test_breeding_edit">
+<tt class="descname">test_breeding_edit</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.BreedingViewTests.test_breeding_edit" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test checks the view which displays a breeding edit page.  It checks for the correct templates and status code.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.BreedingViewTests.test_breeding_list">
+<tt class="descname">test_breeding_list</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.BreedingViewTests.test_breeding_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test checks the view which displays a breeding list page showing active breeding cages.  It checks for the correct templates and status code.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.BreedingViewTests.test_breeding_list_all">
+<tt class="descname">test_breeding_list_all</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.BreedingViewTests.test_breeding_list_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test checks the view which displays a breeding list page, for all the cages.  It checks for the correct templates and status code.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.BreedingViewTests.test_breeding_new">
+<tt class="descname">test_breeding_new</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.BreedingViewTests.test_breeding_new" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test checks the view which displays a new breeding page.  It checks for the correct templates and status code.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.BreedingViewTests.test_timed_mating_list">
+<tt class="descname">test_timed_mating_list</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.BreedingViewTests.test_timed_mating_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test checks the view which displays a breeding list page, for all the cages.  It checks for the correct templates and status code.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.tests.CageViewTests">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.tests.</tt><tt class="descname">CageViewTests</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#mousedb.animal.tests.CageViewTests" title="Permalink to this definition">¶</a></dt>
+<dd><p>These are tests for views based on animal objects as directed by cage urls.  Included are tests for cage-list, cage-list-all and cage-detail</p>
+<dl class="method">
+<dt id="mousedb.animal.tests.CageViewTests.test_cage_detail">
+<tt class="descname">test_cage_detail</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.CageViewTests.test_cage_detail" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test checks the view which displays a animal list page showing all animals with a specified cage number.  It checks for the correct templates and status code.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.CageViewTests.test_cage_list">
+<tt class="descname">test_cage_list</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.CageViewTests.test_cage_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test checks the view which displays a cage list page showing all animals.  It checks for the correct templates and status code.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.tests.DateViewTests">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.tests.</tt><tt class="descname">DateViewTests</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#mousedb.animal.tests.DateViewTests" title="Permalink to this definition">¶</a></dt>
+<dd><p>These are tests for views based on animal objects as directed by date based urls.  Included are tests for archive-home, archive-month and archive-year</p>
+<dl class="method">
+<dt id="mousedb.animal.tests.DateViewTests.test_archive_home">
+<tt class="descname">test_archive_home</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.DateViewTests.test_archive_home" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test checks the view which displays a summary of the birthdates of animals.  It checks for the correct templates and status code.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.DateViewTests.test_archive_month">
+<tt class="descname">test_archive_month</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.DateViewTests.test_archive_month" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test checks the view which displays a list of the animals, filtered by month.  It checks for the correct templates and status code.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.DateViewTests.test_archive_year">
+<tt class="descname">test_archive_year</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.DateViewTests.test_archive_year" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test checks the view which displays a list of the animals, filtered by year.  It checks for the correct templates and status code.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.tests.StrainModelTests">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.tests.</tt><tt class="descname">StrainModelTests</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#mousedb.animal.tests.StrainModelTests" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests the model attributes of Strain objects contained in the animal app.</p>
+<dl class="method">
+<dt id="mousedb.animal.tests.StrainModelTests.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.StrainModelTests.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiate the test client.  Creates a test user.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.StrainModelTests.tearDown">
+<tt class="descname">tearDown</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.StrainModelTests.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Depopulate created model instances from test database.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.StrainModelTests.test_create_strain_all">
+<tt class="descname">test_create_strain_all</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.StrainModelTests.test_create_strain_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a test for creating a new strain object, with only all fields being entered</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.StrainModelTests.test_create_strain_minimal">
+<tt class="descname">test_create_strain_minimal</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.StrainModelTests.test_create_strain_minimal" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a test for creating a new strain object, with only the minimum fields being entered</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.StrainModelTests.test_strain_absolute_url">
+<tt class="descname">test_strain_absolute_url</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.StrainModelTests.test_strain_absolute_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a test for creating a new strain object, then testing absolute url.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.StrainModelTests.test_strain_unicode">
+<tt class="descname">test_strain_unicode</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.StrainModelTests.test_strain_unicode" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a test for creating a new strain object, then testing the unicode representation of the strain.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.tests.StrainViewTests">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.tests.</tt><tt class="descname">StrainViewTests</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#mousedb.animal.tests.StrainViewTests" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test the views contained in the animal app relating to Strain objects.</p>
+<dl class="method">
+<dt id="mousedb.animal.tests.StrainViewTests.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.StrainViewTests.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiate the test client.  Creates a test user.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.StrainViewTests.tearDown">
+<tt class="descname">tearDown</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.StrainViewTests.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Depopulate created model instances from test database.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.StrainViewTests.test_strain_crosstype">
+<tt class="descname">test_strain_crosstype</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.StrainViewTests.test_strain_crosstype" title="Permalink to this definition">¶</a></dt>
+<dd><p>This tests the strain-crosstype view, ensuring that templates are loaded correctly.</p>
+<p>This view uses a user with superuser permissions so does not test the permission levels for this view.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.StrainViewTests.test_strain_delete">
+<tt class="descname">test_strain_delete</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.StrainViewTests.test_strain_delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>This tests the strain-delete view, ensuring that templates are loaded correctly.</p>
+<p>This view uses a user with superuser permissions so does not test the permission levels for this view.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.StrainViewTests.test_strain_detail">
+<tt class="descname">test_strain_detail</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.StrainViewTests.test_strain_detail" title="Permalink to this definition">¶</a></dt>
+<dd><p>This tests the strain-detail view, ensuring that templates are loaded correctly.</p>
+<p>This view uses a user with superuser permissions so does not test the permission levels for this view.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.StrainViewTests.test_strain_detail_all">
+<tt class="descname">test_strain_detail_all</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.StrainViewTests.test_strain_detail_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>This tests the strain-detail-all view, ensuring that templates are loaded correctly.</p>
+<p>This view uses a user with superuser permissions so does not test the permission levels for this view.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.StrainViewTests.test_strain_edit">
+<tt class="descname">test_strain_edit</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.StrainViewTests.test_strain_edit" title="Permalink to this definition">¶</a></dt>
+<dd><p>This tests the strain-edit view, ensuring that templates are loaded correctly.</p>
+<p>This view uses a user with superuser permissions so does not test the permission levels for this view.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.StrainViewTests.test_strain_list">
+<tt class="descname">test_strain_list</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.StrainViewTests.test_strain_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>This tests the strain-list view, ensuring that templates are loaded correctly.</p>
+<p>This view uses a user with superuser permissions so does not test the permission levels for this view.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.StrainViewTests.test_strain_new">
+<tt class="descname">test_strain_new</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.StrainViewTests.test_strain_new" title="Permalink to this definition">¶</a></dt>
+<dd><p>This tests the strain-new view, ensuring that templates are loaded correctly.</p>
+<p>This view uses a user with superuser permissions so does not test the permission levels for this view.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.tests.ToDoViewTests">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.tests.</tt><tt class="descname">ToDoViewTests</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#mousedb.animal.tests.ToDoViewTests" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests the views associated with animal objects for the three todo lists.</p>
+<dl class="method">
+<dt id="mousedb.animal.tests.ToDoViewTests.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.ToDoViewTests.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiate the test client.  Creates a test user.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.ToDoViewTests.tearDown">
+<tt class="descname">tearDown</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.ToDoViewTests.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Depopulate created model instances from test database.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.ToDoViewTests.test_eartag_list">
+<tt class="descname">test_eartag_list</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.ToDoViewTests.test_eartag_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test checks the view which displays an animal list page showing animals which need to be eartagged.  It checks for the correct templates and status code.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.ToDoViewTests.test_genotype_list">
+<tt class="descname">test_genotype_list</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.ToDoViewTests.test_genotype_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test checks the view which displays an animal list page showing animals which need to be genotyped.  It checks for the correct templates and status code.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.ToDoViewTests.test_no_cage_list">
+<tt class="descname">test_no_cage_list</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.ToDoViewTests.test_no_cage_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test checks the view which displays an animal list page showing animals which need to have a cage entered.  It checks for the correct templates and status code.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.ToDoViewTests.test_no_rack_list">
+<tt class="descname">test_no_rack_list</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.ToDoViewTests.test_no_rack_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test checks the view which displays an animal list page showing animals which need to have a rack entered.  It checks for the correct templates and status code.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.ToDoViewTests.test_todo_home">
+<tt class="descname">test_todo_home</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.ToDoViewTests.test_todo_home" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test checks the view which displays a summary of the todo lists.  It checks for the correct templates and status code.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.tests.ToDoViewTests.test_wean_list">
+<tt class="descname">test_wean_list</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.animal.tests.ToDoViewTests.test_wean_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test checks the view which displays an animal list page showing animals which need to be weaned.  It checks for the correct templates and status code.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-mousedb.animal.forms">
+<span id="animal-app-utilities"></span><h2>Animal App Utilities<a class="headerlink" href="#module-mousedb.animal.forms" title="Permalink to this headline">¶</a></h2>
+<p>Forms for use in manipulating objects in the animal app.</p>
+<dl class="class">
+<dt id="mousedb.animal.forms.AnimalForm">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.forms.</tt><tt class="descname">AnimalForm</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=':'</em>, <em>empty_permitted=False</em>, <em>instance=None</em><big>)</big><a class="headerlink" href="#mousedb.animal.forms.AnimalForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>This modelform provides fields for modifying animal data.</p>
+<p>This form also automatically loads javascript and css for the datepicker jquery-ui widget.  It also includes auto</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.forms.BreedingForm">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.forms.</tt><tt class="descname">BreedingForm</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=':'</em>, <em>empty_permitted=False</em>, <em>instance=None</em><big>)</big><a class="headerlink" href="#mousedb.animal.forms.BreedingForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>This form provides most fields for creating and entring breeding cage data.</p>
+<p>This form is used from the url /mousedb/breeding/new and is a generic create view.  This view includes a datepicker widget for Stat and End dates and autocomplete fields for the Females and Male fields</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.forms.MultipleAnimalForm">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.forms.</tt><tt class="descname">MultipleAnimalForm</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=':'</em>, <em>empty_permitted=False</em>, <em>instance=None</em><big>)</big><a class="headerlink" href="#mousedb.animal.forms.MultipleAnimalForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>This modelform provides fields for entering multiple identical copies of a set of mice.</p>
+<p>This form only includes the required fields Background and Strain.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.forms.MultipleBreedingAnimalForm">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.forms.</tt><tt class="descname">MultipleBreedingAnimalForm</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=':'</em>, <em>empty_permitted=False</em>, <em>instance=None</em><big>)</big><a class="headerlink" href="#mousedb.animal.forms.MultipleBreedingAnimalForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>This modelform provides fields for entering multiple pups within a breeding set.</p>
+<p>The only fields presented are Born, Weaned, Gender and Count.  Several other fields will be automatically entered based on the Breeding Set entries.</p>
+</dd></dl>
+
+<span class="target" id="module-mousedb.animal.lookups"></span><p>This is a configuration file for the ajax lookups for the animal app.</p>
+<p>See <a class="reference external" href="http://code.google.com/p/django-ajax-selects/">http://code.google.com/p/django-ajax-selects/</a> for information about configuring the ajax lookups.</p>
+<dl class="class">
+<dt id="mousedb.animal.lookups.AnimalLookup">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.lookups.</tt><tt class="descname">AnimalLookup</tt><a class="headerlink" href="#mousedb.animal.lookups.AnimalLookup" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the generic lookup for animals.</p>
+<p>It is to be used for all animal requests and directs to the &#8216;animal&#8217; channel.</p>
+<dl class="method">
+<dt id="mousedb.animal.lookups.AnimalLookup.format_item">
+<tt class="descname">format_item</tt><big>(</big><em>animal</em><big>)</big><a class="headerlink" href="#mousedb.animal.lookups.AnimalLookup.format_item" title="Permalink to this definition">¶</a></dt>
+<dd><p>the display of a currently selected object in the area below the search box. html is OK</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.lookups.AnimalLookup.format_result">
+<tt class="descname">format_result</tt><big>(</big><em>animal</em><big>)</big><a class="headerlink" href="#mousedb.animal.lookups.AnimalLookup.format_result" title="Permalink to this definition">¶</a></dt>
+<dd><p>This controls the display of the dropdown menu.</p>
+<p>This is set to show the unicode name of the animal, as well as its Cage and its Markings.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.lookups.AnimalLookup.get_objects">
+<tt class="descname">get_objects</tt><big>(</big><em>ids</em><big>)</big><a class="headerlink" href="#mousedb.animal.lookups.AnimalLookup.get_objects" title="Permalink to this definition">¶</a></dt>
+<dd><p>given a list of ids, return the objects ordered as you would like them on the admin page.
+this is for displaying the currently selected items (in the case of a ManyToMany field)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.lookups.AnimalLookup.get_query">
+<tt class="descname">get_query</tt><big>(</big><em>q</em>, <em>request</em><big>)</big><a class="headerlink" href="#mousedb.animal.lookups.AnimalLookup.get_query" title="Permalink to this definition">¶</a></dt>
+<dd><p>This sets up the query for the lookup.</p>
+<p>The lookup searches the MouseID or the id (database identifier) for the mouse.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.lookups.AnimalLookupFemale">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.lookups.</tt><tt class="descname">AnimalLookupFemale</tt><a class="headerlink" href="#mousedb.animal.lookups.AnimalLookupFemale" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the generic lookup for animals.</p>
+<p>It is to be used for all animal requests and directs to the &#8216;animal-female&#8217; channel.</p>
+<dl class="method">
+<dt id="mousedb.animal.lookups.AnimalLookupFemale.format_item">
+<tt class="descname">format_item</tt><big>(</big><em>animal</em><big>)</big><a class="headerlink" href="#mousedb.animal.lookups.AnimalLookupFemale.format_item" title="Permalink to this definition">¶</a></dt>
+<dd><p>the display of a currently selected object in the area below the search box. html is OK</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.lookups.AnimalLookupFemale.format_result">
+<tt class="descname">format_result</tt><big>(</big><em>animal</em><big>)</big><a class="headerlink" href="#mousedb.animal.lookups.AnimalLookupFemale.format_result" title="Permalink to this definition">¶</a></dt>
+<dd><p>This controls the display of the dropdown menu.</p>
+<p>This is set to show the unicode name of the animal, as well as its Cage and its Markings.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.lookups.AnimalLookupFemale.get_objects">
+<tt class="descname">get_objects</tt><big>(</big><em>ids</em><big>)</big><a class="headerlink" href="#mousedb.animal.lookups.AnimalLookupFemale.get_objects" title="Permalink to this definition">¶</a></dt>
+<dd><p>given a list of ids, return the objects ordered as you would like them on the admin page.
+this is for displaying the currently selected items (in the case of a ManyToMany field)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.lookups.AnimalLookupFemale.get_query">
+<tt class="descname">get_query</tt><big>(</big><em>q</em>, <em>request</em><big>)</big><a class="headerlink" href="#mousedb.animal.lookups.AnimalLookupFemale.get_query" title="Permalink to this definition">¶</a></dt>
+<dd><p>This sets up the query for the lookup.</p>
+<p>The lookup searches the MouseID or the id (database identifier) for the mouse.  It then filters this set for only females.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.animal.lookups.AnimalLookupMale">
+<em class="property">class </em><tt class="descclassname">mousedb.animal.lookups.</tt><tt class="descname">AnimalLookupMale</tt><a class="headerlink" href="#mousedb.animal.lookups.AnimalLookupMale" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the generic lookup for animals.</p>
+<p>It is to be used for all animal requests and directs to the &#8216;animal-male&#8217; channel.</p>
+<dl class="method">
+<dt id="mousedb.animal.lookups.AnimalLookupMale.format_item">
+<tt class="descname">format_item</tt><big>(</big><em>animal</em><big>)</big><a class="headerlink" href="#mousedb.animal.lookups.AnimalLookupMale.format_item" title="Permalink to this definition">¶</a></dt>
+<dd><p>the display of a currently selected object in the area below the search box. html is OK</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.lookups.AnimalLookupMale.format_result">
+<tt class="descname">format_result</tt><big>(</big><em>animal</em><big>)</big><a class="headerlink" href="#mousedb.animal.lookups.AnimalLookupMale.format_result" title="Permalink to this definition">¶</a></dt>
+<dd><p>This controls the display of the dropdown menu.</p>
+<p>This is set to show the unicode name of the animal, as well as its Cage and its Markings.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.lookups.AnimalLookupMale.get_objects">
+<tt class="descname">get_objects</tt><big>(</big><em>ids</em><big>)</big><a class="headerlink" href="#mousedb.animal.lookups.AnimalLookupMale.get_objects" title="Permalink to this definition">¶</a></dt>
+<dd><p>given a list of ids, return the objects ordered as you would like them on the admin page.
+this is for displaying the currently selected items (in the case of a ManyToMany field)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.animal.lookups.AnimalLookupMale.get_query">
+<tt class="descname">get_query</tt><big>(</big><em>q</em>, <em>request</em><big>)</big><a class="headerlink" href="#mousedb.animal.lookups.AnimalLookupMale.get_query" title="Permalink to this definition">¶</a></dt>
+<dd><p>This sets up the query for the lookup.</p>
+<p>The lookup searches the MouseID or the id (database identifier) for the mouse.  It then filters this set for only males.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Animals Application</a><ul>
+<li><a class="reference internal" href="#animal">Animal</a><ul>
+<li><a class="reference internal" href="#backcrosses-and-generations">Backcrosses and Generations</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#breeding-cages">Breeding Cages</a></li>
+<li><a class="reference internal" href="#strains">Strains</a></li>
+<li><a class="reference internal" href="#module-mousedb.animal.models">Animal Data Models</a></li>
+<li><a class="reference internal" href="#module-mousedb.animal.urls">Animal App Views and URLs</a><ul>
+<li><a class="reference internal" href="#module-mousedb.animal.urls.breeding">Breeding URLS</a></li>
+<li><a class="reference internal" href="#module-mousedb.animal.urls.cage">Cage URLS</a></li>
+<li><a class="reference internal" href="#module-mousedb.animal.urls.date">Date URLS</a></li>
+<li><a class="reference internal" href="#module-mousedb.animal.urls.mouse">Mouse URLS</a></li>
+<li><a class="reference internal" href="#module-mousedb.animal.urls.strain">Strain URLS</a></li>
+<li><a class="reference internal" href="#module-mousedb.animal.urls.todo">ToDo List URLS</a></li>
+<li><a class="reference internal" href="#module-mousedb.animal.views">Views</a></li>
+<li><a class="reference internal" href="#module-mousedb.animal.admin">Administrative Interface</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-mousedb.animal.tests">Animal App Unit Tests</a></li>
+<li><a class="reference internal" href="#module-mousedb.animal.forms">Animal App Utilities</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="api.html"
+                        title="previous chapter">Automated Documentation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="data.html"
+                        title="next chapter">Data Application</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/animals.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="data.html" title="Data Application"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="api.html" title="Automated Documentation"
+             >previous</a> |</li>
+        <li><a href="index.html">MouseDB 1.1.1 documentation</a> &raquo;</li>
+          <li><a href="api.html" >Automated Documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2009-2012, Dave Bridges.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

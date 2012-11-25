@@ -7,9 +7,12 @@ setup(name='mousedb',
       author='Dave Bridges',
       author_email='dave.bridges@gmail.com',
       license='BSD 2-Clause License',
-      packages=['animal','data',],
+      packages=[,],
       zip_safe=False,
       install_requires=[
           'Django',
-          'Sphinx',],
+          # 'Sphinx',
+          # ^^^ Not sure if this is needed on readthedocs.org
+          # 'something else?',
+          ],
       )

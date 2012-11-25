@@ -1,0 +1,387 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Timed Mating Application &mdash; MouseDB 1.1.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.1.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="MouseDB 1.1.1 documentation" href="index.html" />
+    <link rel="up" title="Automated Documentation" href="api.html" />
+    <link rel="prev" title="Groups Application" href="groups.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="groups.html" title="Groups Application"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">MouseDB 1.1.1 documentation</a> &raquo;</li>
+          <li><a href="api.html" accesskey="U">Automated Documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-mousedb.timed_mating">
+<span id="timed-mating-application"></span><h1>Timed Mating Application<a class="headerlink" href="#module-mousedb.timed_mating" title="Permalink to this headline">¶</a></h1>
+<p>This package defines the timed_mating app.</p>
+<p>Timed matings are a specific type of breeding set.  
+Generally, for these experiments a mating cage is set up and pregnancy is defined by a plug event.  
+Based on this information, the age of an embryo can be estimated.  
+When a breeding cage is defined, one option is to set this cage as a timed mating cage (ie Timed_Mating=True).  
+If this is the case, then a plug event can be registered and recorded for this mating set.  
+If the mother gives birth then this cage is implicitly set as a normal breeding cage.</p>
+<div class="section" id="module-mousedb.timed_mating.models">
+<span id="timed-mating-data-models"></span><h2>Timed Mating Data Models<a class="headerlink" href="#module-mousedb.timed_mating.models" title="Permalink to this headline">¶</a></h2>
+<p>This defines the data model for the timed_mating app.</p>
+<p>Currently the only data model is for PlugEvents.</p>
+<dl class="class">
+<dt id="mousedb.timed_mating.models.PlugEvents">
+<em class="property">class </em><tt class="descclassname">mousedb.timed_mating.models.</tt><tt class="descname">PlugEvents</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.timed_mating.models.PlugEvents" title="Permalink to this definition">¶</a></dt>
+<dd><p>This defines the model for PlugEvents.</p>
+<p>A PlugEvent requires a date.  All other fields are optional.
+Upon observation of a plug event, the PlugDate, Breeding Cage, Femalem, Male, Researcher and Notes can be set.
+Upon sacrifice of the mother, then genotyped alive and dead embryos can be entered, along with the SacrificeDate, Researcher and Notes.</p>
+<dl class="method">
+<dt id="mousedb.timed_mating.models.PlugEvents.get_absolute_url">
+<tt class="descname">get_absolute_url</tt><big>(</big><em>*moreargs</em>, <em>**morekwargs</em><big>)</big><a class="headerlink" href="#mousedb.timed_mating.models.PlugEvents.get_absolute_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>The permalink for a plugevent is /mousedb/timed_mating/plugs/<strong>id</strong>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.timed_mating.models.PlugEvents.save">
+<tt class="descname">save</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.timed_mating.models.PlugEvents.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Over-rides the default save function for PlugEvents.</p>
+<p>If a sacrifice date is set for an object in this model, then Active is set to False.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-mousedb.timed_mating.urls">
+<span id="timed-mating-app-views-and-urls"></span><h2>Timed Mating App Views and URLs<a class="headerlink" href="#module-mousedb.timed_mating.urls" title="Permalink to this headline">¶</a></h2>
+<p>This urlconf sets the directions for the timed_mating app.</p>
+<p>It takes a url in the form of /plug/something and sends it to the appropriate view class or function.</p>
+<div class="section" id="module-mousedb.timed_mating.views">
+<span id="views"></span><h3>Views<a class="headerlink" href="#module-mousedb.timed_mating.views" title="Permalink to this headline">¶</a></h3>
+<p>This package defines custom views for the timed_mating application.</p>
+<p>Currently all views are generic CRUD views except for the view in which a plug event is defined from a breeding cage.</p>
+<dl class="class">
+<dt id="mousedb.timed_mating.views.PlugEventsCreate">
+<em class="property">class </em><tt class="descclassname">mousedb.timed_mating.views.</tt><tt class="descname">PlugEventsCreate</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.timed_mating.views.PlugEventsCreate" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class generates the plugevents-new view.</p>
+<p>This permission restricted view takes a url in the form <strong>/plugs/new</strong> and generates an empty plugevents_form.html.</p>
+<dl class="attribute">
+<dt id="mousedb.timed_mating.views.PlugEventsCreate.model">
+<tt class="descname">model</tt><a class="headerlink" href="#mousedb.timed_mating.views.PlugEventsCreate.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">PlugEvents</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.timed_mating.views.PlugEventsDelete">
+<em class="property">class </em><tt class="descclassname">mousedb.timed_mating.views.</tt><tt class="descname">PlugEventsDelete</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.timed_mating.views.PlugEventsDelete" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class generates the plugevents-delete view.</p>
+<p>This permission restricted view takes a url in the form <strong>/plugs/#/delete</strong> and passes that object to the confirm_delete.html page.</p>
+<dl class="attribute">
+<dt id="mousedb.timed_mating.views.PlugEventsDelete.model">
+<tt class="descname">model</tt><a class="headerlink" href="#mousedb.timed_mating.views.PlugEventsDelete.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">PlugEvents</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.timed_mating.views.PlugEventsDetail">
+<em class="property">class </em><tt class="descclassname">mousedb.timed_mating.views.</tt><tt class="descname">PlugEventsDetail</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.timed_mating.views.PlugEventsDetail" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class generates the plugevents-detail view.</p>
+<p>This login protected takes a url in the form <strong>/plugs/1</strong> for plug event id=1 and passes a <strong>plug</strong> object to plugevents_detail.html</p>
+<dl class="attribute">
+<dt id="mousedb.timed_mating.views.PlugEventsDetail.model">
+<tt class="descname">model</tt><a class="headerlink" href="#mousedb.timed_mating.views.PlugEventsDetail.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">PlugEvents</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.timed_mating.views.PlugEventsList">
+<em class="property">class </em><tt class="descclassname">mousedb.timed_mating.views.</tt><tt class="descname">PlugEventsList</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.timed_mating.views.PlugEventsList" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class generates an object list for PlugEvent objects.</p>
+<p>This login protected view takes all PlugEvents objects and sends them to plugevents_list.html as a plug_list dictionary.
+The url for this view is <strong>/plugs/</strong></p>
+<dl class="attribute">
+<dt id="mousedb.timed_mating.views.PlugEventsList.model">
+<tt class="descname">model</tt><a class="headerlink" href="#mousedb.timed_mating.views.PlugEventsList.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">PlugEvents</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.timed_mating.views.PlugEventsListStrain">
+<em class="property">class </em><tt class="descclassname">mousedb.timed_mating.views.</tt><tt class="descname">PlugEventsListStrain</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.timed_mating.views.PlugEventsListStrain" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class generates a strain filtered list for Plug Event objects.</p>
+<p>This is a subclass of PlugEventsList and returns as context_object_name plug_events_list to plugevents_list.html.
+It takes a named argument (strain) which is a Strain_slug and filters based on that strain.</p>
+<dl class="method">
+<dt id="mousedb.timed_mating.views.PlugEventsListStrain.get_queryset">
+<tt class="descname">get_queryset</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.timed_mating.views.PlugEventsListStrain.get_queryset" title="Permalink to this definition">¶</a></dt>
+<dd><p>The queryset is over-ridden to show only plug events in which the strain matches the breeding strain.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.timed_mating.views.PlugEventsUpdate">
+<em class="property">class </em><tt class="descclassname">mousedb.timed_mating.views.</tt><tt class="descname">PlugEventsUpdate</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.timed_mating.views.PlugEventsUpdate" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class generates the plugevents-edit view.</p>
+<p>This permission restricted view takes a url in the form <strong>/plugs/#/edit</strong> and generates a plugevents_form.html with that object.</p>
+<dl class="attribute">
+<dt id="mousedb.timed_mating.views.PlugEventsUpdate.model">
+<tt class="descname">model</tt><a class="headerlink" href="#mousedb.timed_mating.views.PlugEventsUpdate.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">PlugEvents</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="mousedb.timed_mating.views.breeding_plugevent">
+<tt class="descclassname">mousedb.timed_mating.views.</tt><tt class="descname">breeding_plugevent</tt><big>(</big><em>request</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.timed_mating.views.breeding_plugevent" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view defines a form for adding new plug events from a breeding cage.</p>
+<p>This form requires a breeding_id from a breeding set and restricts the PlugFemale and PlugMale to animals that are defined in that breeding cage.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-mousedb.timed_mating.admin">
+<span id="administrative-interface"></span><h3>Administrative Interface<a class="headerlink" href="#module-mousedb.timed_mating.admin" title="Permalink to this headline">¶</a></h3>
+<p>Settings to control the admin interface for the timed_mating app.</p>
+<p>This file defines a PlugEventsAdmin object to enter parameters about individual plug events/</p>
+<dl class="class">
+<dt id="mousedb.timed_mating.admin.PlugEventsAdmin">
+<em class="property">class </em><tt class="descclassname">mousedb.timed_mating.admin.</tt><tt class="descname">PlugEventsAdmin</tt><big>(</big><em>model</em>, <em>admin_site</em><big>)</big><a class="headerlink" href="#mousedb.timed_mating.admin.PlugEventsAdmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class defines the admin interface for the PlugEvents model.</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-mousedb.timed_mating.tests">
+<span id="timed-mating-app-unit-tests"></span><h2>Timed Mating App Unit Tests<a class="headerlink" href="#module-mousedb.timed_mating.tests" title="Permalink to this headline">¶</a></h2>
+<p>This file contains tests for the timed_mating application.</p>
+<p>These tests will verify generation of a new PlugEvent object.</p>
+<dl class="class">
+<dt id="mousedb.timed_mating.tests.Timed_MatingModelTests">
+<em class="property">class </em><tt class="descclassname">mousedb.timed_mating.tests.</tt><tt class="descname">Timed_MatingModelTests</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#mousedb.timed_mating.tests.Timed_MatingModelTests" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test the models contained in the &#8216;timed_mating&#8217; app.</p>
+<dl class="method">
+<dt id="mousedb.timed_mating.tests.Timed_MatingModelTests.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.timed_mating.tests.Timed_MatingModelTests.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiate the test client.  Creates a test user.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.timed_mating.tests.Timed_MatingModelTests.tearDown">
+<tt class="descname">tearDown</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.timed_mating.tests.Timed_MatingModelTests.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Depopulate created model instances from test database.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.timed_mating.tests.Timed_MatingModelTests.test_create_plugevent_minimal">
+<tt class="descname">test_create_plugevent_minimal</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.timed_mating.tests.Timed_MatingModelTests.test_create_plugevent_minimal" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a test for creating a new PlugEvent object, with only the minimum being entered.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.timed_mating.tests.Timed_MatingModelTests.test_create_plugevent_most_fields">
+<tt class="descname">test_create_plugevent_most_fields</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.timed_mating.tests.Timed_MatingModelTests.test_create_plugevent_most_fields" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a test for creating a new PlugEvent object.</p>
+<p>This test uses a Breeding, PlugDate, PlugMale and PlugFemale field.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.timed_mating.tests.Timed_MatingModelTests.test_set_plugevent_inactive">
+<tt class="descname">test_set_plugevent_inactive</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.timed_mating.tests.Timed_MatingModelTests.test_set_plugevent_inactive" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a test for the automatic inactivation of a cage when the SacrificeDate is entered.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.timed_mating.tests.Timed_MatingViewTests">
+<em class="property">class </em><tt class="descclassname">mousedb.timed_mating.tests.</tt><tt class="descname">Timed_MatingViewTests</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#mousedb.timed_mating.tests.Timed_MatingViewTests" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test the views contained in the &#8216;timed_mating&#8217; app.</p>
+<dl class="method">
+<dt id="mousedb.timed_mating.tests.Timed_MatingViewTests.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.timed_mating.tests.Timed_MatingViewTests.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiate the test client.  Creates a test user.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.timed_mating.tests.Timed_MatingViewTests.tearDown">
+<tt class="descname">tearDown</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.timed_mating.tests.Timed_MatingViewTests.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Depopulate created model instances from test database.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.timed_mating.tests.Timed_MatingViewTests.test_breeding_plugevent_new">
+<tt class="descname">test_breeding_plugevent_new</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.timed_mating.tests.Timed_MatingViewTests.test_breeding_plugevent_new" title="Permalink to this definition">¶</a></dt>
+<dd><p>This tests the breeding-plugevent-new view, ensuring that templates are loaded correctly.</p>
+<p>This view uses a user with superuser permissions so does not test the permission levels for this view.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.timed_mating.tests.Timed_MatingViewTests.test_plugevent_delete">
+<tt class="descname">test_plugevent_delete</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.timed_mating.tests.Timed_MatingViewTests.test_plugevent_delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>This tests the plugevent-delete view, ensuring that templates are loaded correctly.</p>
+<p>This view uses a user with superuser permissions so does not test the permission levels for this view.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.timed_mating.tests.Timed_MatingViewTests.test_plugevent_detail">
+<tt class="descname">test_plugevent_detail</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.timed_mating.tests.Timed_MatingViewTests.test_plugevent_detail" title="Permalink to this definition">¶</a></dt>
+<dd><p>This tests the plugevent-detail view, ensuring that templates are loaded correctly.</p>
+<p>This view uses a user with superuser permissions so does not test the permission levels for this view.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.timed_mating.tests.Timed_MatingViewTests.test_plugevent_edit">
+<tt class="descname">test_plugevent_edit</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.timed_mating.tests.Timed_MatingViewTests.test_plugevent_edit" title="Permalink to this definition">¶</a></dt>
+<dd><p>This tests the plugevent-edit view, ensuring that templates are loaded correctly.</p>
+<p>This view uses a user with superuser permissions so does not test the permission levels for this view.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.timed_mating.tests.Timed_MatingViewTests.test_plugevent_list">
+<tt class="descname">test_plugevent_list</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.timed_mating.tests.Timed_MatingViewTests.test_plugevent_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>This tests the plugevent-list view, ensuring that templates are loaded correctly.</p>
+<p>This view uses a user with superuser permissions so does not test the permission levels for this view.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.timed_mating.tests.Timed_MatingViewTests.test_plugevent_list_strain">
+<tt class="descname">test_plugevent_list_strain</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.timed_mating.tests.Timed_MatingViewTests.test_plugevent_list_strain" title="Permalink to this definition">¶</a></dt>
+<dd><p>This tests the plugevent-list-strain view, ensuring that templates are loaded correctly.</p>
+<p>This view uses a user with superuser permissions so does not test the permission levels for this view.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.timed_mating.tests.Timed_MatingViewTests.test_plugevent_new">
+<tt class="descname">test_plugevent_new</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.timed_mating.tests.Timed_MatingViewTests.test_plugevent_new" title="Permalink to this definition">¶</a></dt>
+<dd><p>This tests the plugevent-new view, ensuring that templates are loaded correctly.</p>
+<p>This view uses a user with superuser permissions so does not test the permission levels for this view.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-mousedb.timed_mating.forms">
+<span id="timed-mating-utilities"></span><h2>Timed Mating Utilities<a class="headerlink" href="#module-mousedb.timed_mating.forms" title="Permalink to this headline">¶</a></h2>
+<p>This package describes forms used by the Timed Mating app.</p>
+<dl class="class">
+<dt id="mousedb.timed_mating.forms.BreedingPlugForm">
+<em class="property">class </em><tt class="descclassname">mousedb.timed_mating.forms.</tt><tt class="descname">BreedingPlugForm</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=':'</em>, <em>empty_permitted=False</em>, <em>instance=None</em><big>)</big><a class="headerlink" href="#mousedb.timed_mating.forms.BreedingPlugForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>This form is used to enter Plug Events from a specific breeding cage.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Timed Mating Application</a><ul>
+<li><a class="reference internal" href="#module-mousedb.timed_mating.models">Timed Mating Data Models</a></li>
+<li><a class="reference internal" href="#module-mousedb.timed_mating.urls">Timed Mating App Views and URLs</a><ul>
+<li><a class="reference internal" href="#module-mousedb.timed_mating.views">Views</a></li>
+<li><a class="reference internal" href="#module-mousedb.timed_mating.admin">Administrative Interface</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-mousedb.timed_mating.tests">Timed Mating App Unit Tests</a></li>
+<li><a class="reference internal" href="#module-mousedb.timed_mating.forms">Timed Mating Utilities</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="groups.html"
+                        title="previous chapter">Groups Application</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/timed_mating.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="groups.html" title="Groups Application"
+             >previous</a> |</li>
+        <li><a href="index.html">MouseDB 1.1.1 documentation</a> &raquo;</li>
+          <li><a href="api.html" >Automated Documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2009-2012, Dave Bridges.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

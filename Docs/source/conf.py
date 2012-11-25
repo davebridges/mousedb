@@ -14,24 +14,20 @@
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
+#sys.path.append(os.path.abspath('/Users/davebrid/Documents/SRC/mousedb'))
+
 import sys, os
 
-sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../../' )
-sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../../mousedb/animals' )
-sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../../mousedb/data' )
-sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../../mousedb/timed_mating' )
-sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../../mousedb/groups' )
+sys.path.insert(0, os.path.abspath('animals'))
+sys.path.insert(0, os.path.abspath('data'))
+sys.path.insert(0, os.path.abspath('groups'))
+sys.path.insert(0, os.path.abspath('timed_mating'))
 
 # Set up the Django settings/environment
 from django.core.management import setup_environ
-import mousedb.settings
+from mousedb import settings
 
-import django 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
-if django.VERSION < (1, 4):
-    from django.core.management import setup_environ
-    settings = __import__(os.environ["DJANGO_SETTINGS_MODULE"])
-    setup_environ(settings)
+setup_environ(settings)
 
 # -- General configuration -----------------------------------------------------
 
