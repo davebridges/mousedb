@@ -1,0 +1,1340 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Data Application &mdash; MouseDB 1.1.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.1.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="MouseDB 1.1.1 documentation" href="index.html" />
+    <link rel="up" title="Automated Documentation" href="api.html" />
+    <link rel="next" title="Groups Application" href="groups.html" />
+    <link rel="prev" title="Animals Application" href="animals.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="groups.html" title="Groups Application"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="animals.html" title="Animals Application"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">MouseDB 1.1.1 documentation</a> &raquo;</li>
+          <li><a href="api.html" accesskey="U">Automated Documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-mousedb.data">
+<span id="data-application"></span><h1>Data Application<a class="headerlink" href="#module-mousedb.data" title="Permalink to this headline">¶</a></h1>
+<p>The data module describes the conditions and collection of data regarding experimental animals.</p>
+<p>Data (or <a class="reference internal" href="#mousedb.data.models.Measurement" title="mousedb.data.models.Measurement"><tt class="xref py py-class docutils literal"><span class="pre">Measurement</span></tt></a>) can be stored for any type of <a class="reference internal" href="#mousedb.data.models.Experiment" title="mousedb.data.models.Experiment"><tt class="xref py py-class docutils literal"><span class="pre">Experiment</span></tt></a>.  Conceptually, several pieces of data belong to an experiment (for example several <a class="reference internal" href="animals.html#mousedb.animal.models.Animal" title="mousedb.animal.models.Animal"><tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt></a> are measured at some time) and several <a class="reference internal" href="#mousedb.data.models.Experiment" title="mousedb.data.models.Experiment"><tt class="xref py py-class docutils literal"><span class="pre">Experiment</span></tt></a> belong to a <a class="reference internal" href="#mousedb.data.models.Study" title="mousedb.data.models.Study"><tt class="xref py py-class docutils literal"><span class="pre">Study</span></tt></a>.</p>
+<p>Measurements can be stored independent of experiments and experiments can be performed outside of the context of a study.  It is however, perfered that measurements are stored within an experiment and experiments are stored within studies as this will greatly facilitate the organization of the data.</p>
+<div class="section" id="studies">
+<h2>Studies<a class="headerlink" href="#studies" title="Permalink to this headline">¶</a></h2>
+<p>In general studies are a collection of experiments.  This is a large class which can contain several <a class="reference internal" href="#mousedb.data.models.Experiment" title="mousedb.data.models.Experiment"><tt class="xref py py-class docutils literal"><span class="pre">Experiment</span></tt></a> objects.  Within a study two classes control how data is stored, <a class="reference internal" href="#mousedb.data.models.Treatment" title="mousedb.data.models.Treatment"><tt class="xref py py-class docutils literal"><span class="pre">Treatment</span></tt></a> and <a class="reference internal" href="#mousedb.data.models.Cohort" title="mousedb.data.models.Cohort"><tt class="xref py py-class docutils literal"><span class="pre">Cohort</span></tt></a>.</p>
+</div>
+<div class="section" id="treatments">
+<h2>Treatments<a class="headerlink" href="#treatments" title="Permalink to this headline">¶</a></h2>
+<p>A <a class="reference internal" href="#mousedb.data.models.Treatment" title="mousedb.data.models.Treatment"><tt class="xref py py-class docutils literal"><span class="pre">Treatment</span></tt></a> is a group of <tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt> that are grouped together based on some manipulation, which could be a <a class="reference internal" href="#mousedb.data.models.Pharmaceutical" title="mousedb.data.models.Pharmaceutical"><tt class="xref py py-class docutils literal"><span class="pre">Pharmaceutical</span></tt></a>, <a class="reference internal" href="#mousedb.data.models.Diet" title="mousedb.data.models.Diet"><tt class="xref py py-class docutils literal"><span class="pre">Diet</span></tt></a>, <a class="reference internal" href="#mousedb.data.models.Implantation" title="mousedb.data.models.Implantation"><tt class="xref py py-class docutils literal"><span class="pre">Implantation</span></tt></a> or some other manipulation.  Generally a <a class="reference internal" href="#mousedb.data.models.Study" title="mousedb.data.models.Study"><tt class="xref py py-class docutils literal"><span class="pre">Study</span></tt></a> will have two or more <a class="reference internal" href="#mousedb.data.models.Treatment" title="mousedb.data.models.Treatment"><tt class="xref py py-class docutils literal"><span class="pre">Treatment</span></tt></a> groups.</p>
+</div>
+<div class="section" id="cohorts">
+<h2>Cohorts<a class="headerlink" href="#cohorts" title="Permalink to this headline">¶</a></h2>
+<p>For the same <a class="reference internal" href="#mousedb.data.models.Treatment" title="mousedb.data.models.Treatment"><tt class="xref py py-class docutils literal"><span class="pre">Treatment</span></tt></a> groups, within a <a class="reference internal" href="#mousedb.data.models.Study" title="mousedb.data.models.Study"><tt class="xref py py-class docutils literal"><span class="pre">Study</span></tt></a>, there may be several independent replicates of those treatment.  A replicate are called <a class="reference internal" href="#mousedb.data.models.Cohort" title="mousedb.data.models.Cohort"><tt class="xref py py-class docutils literal"><span class="pre">Cohort</span></tt></a>.  For example, there could be a <a class="reference internal" href="#mousedb.data.models.Treatment" title="mousedb.data.models.Treatment"><tt class="xref py py-class docutils literal"><span class="pre">Treatment</span></tt></a> in which some mice get a particular <a class="reference internal" href="#mousedb.data.models.Diet" title="mousedb.data.models.Diet"><tt class="xref py py-class docutils literal"><span class="pre">Diet</span></tt></a>, while other mice get a diffferent <a class="reference internal" href="#mousedb.data.models.Diet" title="mousedb.data.models.Diet"><tt class="xref py py-class docutils literal"><span class="pre">Diet</span></tt></a>.  These two <a class="reference internal" href="#mousedb.data.models.Treatment" title="mousedb.data.models.Treatment"><tt class="xref py py-class docutils literal"><span class="pre">Treatment</span></tt></a> groups are designated within a cohort.  Later on, using different <a class="reference internal" href="animals.html#mousedb.animal.models.Animal" title="mousedb.animal.models.Animal"><tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt></a> sets, this <a class="reference internal" href="#mousedb.data.models.Study" title="mousedb.data.models.Study"><tt class="xref py py-class docutils literal"><span class="pre">Study</span></tt></a> will be repeated.  While the <a class="reference internal" href="#mousedb.data.models.Treatment" title="mousedb.data.models.Treatment"><tt class="xref py py-class docutils literal"><span class="pre">Treatment</span></tt></a> groupings are the same, the different series&#8217; of <a class="reference internal" href="#mousedb.data.models.Experiment" title="mousedb.data.models.Experiment"><tt class="xref py py-class docutils literal"><span class="pre">Experiment</span></tt></a> will be separated by being part of a different <a class="reference internal" href="#mousedb.data.models.Cohort" title="mousedb.data.models.Cohort"><tt class="xref py py-class docutils literal"><span class="pre">Cohort</span></tt></a>.</p>
+</div>
+<div class="section" id="experiments">
+<h2>Experiments<a class="headerlink" href="#experiments" title="Permalink to this headline">¶</a></h2>
+<p>An experiment is a collection of measurements for a given set of animals.  In general, an experiment is defined as a number of measurements take in a given day.</p>
+</div>
+<div class="section" id="measurements">
+<h2>Measurements<a class="headerlink" href="#measurements" title="Permalink to this headline">¶</a></h2>
+<p>A measurement is an animal, an assay and a measurement value.  It can be associated with an experiment, or can stand alone as an individual value.  Measurements can be viewed in the context of a study, an experiment, a treatment group or an animal by going to the appropriate page.</p>
+</div>
+<div class="section" id="module-mousedb.data.api">
+<span id="data-api-access"></span><h2>Data API Access<a class="headerlink" href="#module-mousedb.data.api" title="Permalink to this headline">¶</a></h2>
+<p>This package controls API access to the <a class="reference internal" href="#module-mousedb.data" title="mousedb.data"><tt class="xref py py-mod docutils literal"><span class="pre">data</span></tt></a> app.</p>
+<div class="section" id="overview">
+<h3>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h3>
+<p>The API for the <tt class="xref py py-mod docutils literal"><span class="pre">data</span></tt> application provides data on measurements and their associated data types.
+A list of all endpoints and links to their schemas are available at <strong>http://yourserver.org/api/v1/</strong> where yourserver is specific to your installation.
+There are four access points, each of which is available using GET requests only:</p>
+<ul class="simple">
+<li>measurements are available at the endpoint <strong>http://yourserver.org/api/v1/data/</strong></li>
+<li>assays are available at the endpoint <strong>http://yourserver.org/api/v1/assay/</strong></li>
+<li>experiments are available at the endpoint <strong>http://yourserver.org/api/v1/experiment/</strong></li>
+<li>studies are available at the endpoint <strong>http://yourserver.org/api/v1/study/</strong></li>
+</ul>
+<p>The data can be provided as either a group of objects or as a single object. 
+Currently for all requests, no authentication is required.</p>
+<p>The entire API schema is available from each endpoint at:</p>
+<div class="highlight-python"><pre>/schema/?format=xml
+/schema/?format=json</pre>
+</div>
+<p>For example <strong>http://yourserver.org/api/v1/study/schema/?format=json</strong>.</p>
+</div>
+<div class="section" id="sample-code">
+<h3>Sample Code<a class="headerlink" href="#sample-code" title="Permalink to this headline">¶</a></h3>
+<p>Either group requests or single object requests can be served depending on if the primary key is provided.  
+The request URI has several parts including the servername, the api version (currently v1) then the item type (data, assay, experiment or study).  
+There must be a trailing slash before the request parameters (which are after a <strong>?</strong> sign and separated by a <strong>&amp;</strong> sign).</p>
+<div class="section" id="for-a-collection-of-objects">
+<h4>For a collection of objects<a class="headerlink" href="#for-a-collection-of-objects" title="Permalink to this headline">¶</a></h4>
+<p>For a collection of measurements you can request:</p>
+<div class="highlight-python"><pre>http://yourserver.org/api/v1/data/?format=json </pre>
+</div>
+<p>This would return all measurements in the database.  
+This would return the response with two JSON objects, <strong>meta</strong> and <strong>objects</strong>.
+The <strong>format=json</strong> parameter is default for curl and not required but is necessary for browser requests.
+The meta object contains fields for the <strong>limit</strong>, <strong>next</strong>, <strong>offset</strong>, <strong>previous</strong> and <strong>total_count</strong> for the series of objects requested.  
+The objects portion is an array of the returned object fields (see the details below for each API).  
+Note the id field of an object.  This is used for retrieving a single object.  
+Collections can also be filtered based on several request parameters (see below for details for each API):</p>
+<div class="highlight-python"><pre>http://yourserver.org/api/v1/data/ #returns all data in JSON format 
+http://yourserver.org/api/v1/experiment/set/1;3/?format=json #returns the experiments with id numbers 1 and 3 in XML format.                    </pre>
+</div>
+</div>
+<div class="section" id="for-a-single-object">
+<h4>For a single object<a class="headerlink" href="#for-a-single-object" title="Permalink to this headline">¶</a></h4>
+<p>To retrieve a single item you need to know the primary key of the object.  
+This can be found from the id parameter of a collection (see above) or from the actual object page.  
+You can retrieve details about a single assay with a call such as:</p>
+<div class="highlight-python"><pre>http://yourserver.org/api/v1/assay/2/?format=json  </pre>
+</div>
+<p>In this case <strong>2</strong> is the primary key (or id field) of the assay in question.</p>
+</div>
+</div>
+<div class="section" id="reference-for-measurement-api">
+<h3>Reference for Measurement API<a class="headerlink" href="#reference-for-measurement-api" title="Permalink to this headline">¶</a></h3>
+<p>The measurement API is available at the endpoint <strong>/api/v1/data/</strong></p>
+<div class="section" id="request-parameters">
+<h4>Request Parameters<a class="headerlink" href="#request-parameters" title="Permalink to this headline">¶</a></h4>
+<p>The following are the potential request variables, all of which are optional.  
+The default format is JSON, but this can be set as XML if required.
+If viewing by web browser ?format=json must be specified  
+By default 20 items are returned but you can increase this to all by setting limit=0.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="69%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Parameter</th>
+<th class="head">Potential Values</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>format</td>
+<td><strong>json</strong> or <strong>xml</strong></td>
+</tr>
+<tr class="row-odd"><td>limit</td>
+<td><strong>0</strong> for all, any other number</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="response-values">
+<h4>Response Values<a class="headerlink" href="#response-values" title="Permalink to this headline">¶</a></h4>
+<p>The response (in either JSON or XML) provides the following fields for each object (or for the only object in the case of a single object request).</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="40%" />
+<col width="46%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Explanation</th>
+<th class="head">Sample Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>id</td>
+<td>the id of the measurement</td>
+<td>1</td>
+</tr>
+<tr class="row-odd"><td>resource_uri</td>
+<td>the URI to request details about a measurement</td>
+<td>/api/v1/data/1/</td>
+</tr>
+<tr class="row-even"><td>values</td>
+<td>the measurement, or measurement(s)</td>
+<td>423</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="reference-for-the-assay-api">
+<h3>Reference for the Assay API<a class="headerlink" href="#reference-for-the-assay-api" title="Permalink to this headline">¶</a></h3>
+<p>The assay API is available at the endpoint <strong>/api/v1/assay/</strong></p>
+<div class="section" id="id1">
+<h4>Request Parameters<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<p>The following are the potential request variables, all of which are optional.  
+The default format is JSON, but this can be set as XML if required.
+If viewing by web browser ?format=json must be specified  
+By default 20 items are returned but you can increase this to all by setting limit=0.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="69%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Parameter</th>
+<th class="head">Potential Values</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>format</td>
+<td><strong>json</strong> or <strong>xml</strong></td>
+</tr>
+<tr class="row-odd"><td>limit</td>
+<td><strong>0</strong> for all, any other number</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id2">
+<h4>Response Values<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<p>The response (in either JSON or XML) provides the following fields for each object (or for the only object in the case of a single object request).</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="43%" />
+<col width="43%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Explanation</th>
+<th class="head">Sample Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>id</td>
+<td>the id of the measurement</td>
+<td>3</td>
+</tr>
+<tr class="row-odd"><td>resource_uri</td>
+<td>the URI to request details about a measurement</td>
+<td>/api/v1/assay/3/</td>
+</tr>
+<tr class="row-even"><td>assay</td>
+<td>the name of the assay</td>
+<td>Body Weight</td>
+</tr>
+<tr class="row-odd"><td>assay_slug</td>
+<td>the slugified name of the assay (can be used for filtering)</td>
+<td>body_weight</td>
+</tr>
+<tr class="row-even"><td>measurement_units</td>
+<td>the units for the measurment</td>
+<td>mg/dL</td>
+</tr>
+<tr class="row-odd"><td>notes</td>
+<td>notes regarding this assay</td>
+<td>Some text values</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="reference-for-the-experiment-api">
+<h3>Reference for the Experiment API<a class="headerlink" href="#reference-for-the-experiment-api" title="Permalink to this headline">¶</a></h3>
+<p>The experiment API is available at the endpoint <strong>/api/v1/experiment/</strong></p>
+<div class="section" id="id3">
+<h4>Request Parameters<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<p>The following are the potential request variables, all of which are optional.  
+The default format is JSON, but this can be set as XML if required.
+If viewing by web browser ?format=json must be specified  
+By default 20 items are returned but you can increase this to all by setting limit=0.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="69%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Parameter</th>
+<th class="head">Potential Values</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>format</td>
+<td><strong>json</strong> or <strong>xml</strong></td>
+</tr>
+<tr class="row-odd"><td>limit</td>
+<td><strong>0</strong> for all, any other number</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id4">
+<h4>Response Values<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<p>The response (in either JSON or XML) provides the following fields for each object (or for the only object in the case of a single object request).</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="43%" />
+<col width="43%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Explanation</th>
+<th class="head">Sample Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>id</td>
+<td>the id of the measurement</td>
+<td>5</td>
+</tr>
+<tr class="row-odd"><td>resource_uri</td>
+<td>the URI to request details about a measurement</td>
+<td>/api/v1/experiment/5/</td>
+</tr>
+<tr class="row-even"><td>concentration</td>
+<td>the concentration of the injection (if done)</td>
+<td>1mU/kg</td>
+</tr>
+<tr class="row-odd"><td>date</td>
+<td>the date of the experiment</td>
+<td>2012-09-28</td>
+</tr>
+<tr class="row-even"><td>experimentID</td>
+<td>the optional experimentID number</td>
+<td>DB-2012-09-28</td>
+</tr>
+<tr class="row-odd"><td>fasting_time</td>
+<td>the duration of the animal fast (if done) in hours</td>
+<td>16</td>
+</tr>
+<tr class="row-even"><td>feeding_state</td>
+<td>whether the animals were fed or fasted</td>
+<td>fed OR fasted</td>
+</tr>
+<tr class="row-odd"><td>injection</td>
+<td>the injection (if done)</td>
+<td>Insulin, Glucose, Pyruvate or Glucagon</td>
+</tr>
+<tr class="row-even"><td>notes</td>
+<td>notes regarding this experiment</td>
+<td>Some text values</td>
+</tr>
+<tr class="row-odd"><td>time</td>
+<td>the time of day the assay was done (24h format)</td>
+<td>16:00</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="reference-for-the-study-api">
+<h3>Reference for the Study API<a class="headerlink" href="#reference-for-the-study-api" title="Permalink to this headline">¶</a></h3>
+<p>The study API is available at the endpoint <strong>/api/v1/study/</strong></p>
+<div class="section" id="id5">
+<h4>Request Parameters<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<p>The following are the potential request variables, all of which are optional.  
+The default format is JSON but this can be set as XML if required.
+If viewing by web browser ?format=json must be specified  
+By default 20 items are returned but you can increase this to all by setting limit=0.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="69%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Parameter</th>
+<th class="head">Potential Values</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>format</td>
+<td><strong>json</strong> or <strong>xml</strong></td>
+</tr>
+<tr class="row-odd"><td>limit</td>
+<td><strong>0</strong> for all, any other number</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id6">
+<h4>Response Values<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
+<p>The response (in either JSON or XML) provides the following fields for each object (or for the only object in the case of a single object request).</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="43%" />
+<col width="43%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Explanation</th>
+<th class="head">Sample Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>id</td>
+<td>the id of the measurement</td>
+<td>6</td>
+</tr>
+<tr class="row-odd"><td>resource_uri</td>
+<td>the URI to request details about a measurement</td>
+<td>/api/v1/study/6/</td>
+</tr>
+<tr class="row-even"><td>description</td>
+<td>the description of the study</td>
+<td>some text</td>
+</tr>
+<tr class="row-odd"><td>notes</td>
+<td>some notes about the study</td>
+<td>some text</td>
+</tr>
+<tr class="row-even"><td>start_date</td>
+<td>the optional starting date of the study</td>
+<td>2012-07-23</td>
+</tr>
+<tr class="row-odd"><td>stop _date</td>
+<td>the optional end date of the study</td>
+<td>2012-09-27</td>
+</tr>
+</tbody>
+</table>
+<dl class="class">
+<dt id="mousedb.data.api.AssayResource">
+<em class="property">class </em><tt class="descclassname">mousedb.data.api.</tt><tt class="descname">AssayResource</tt><big>(</big><em>api_name=None</em><big>)</big><a class="headerlink" href="#mousedb.data.api.AssayResource" title="Permalink to this definition">¶</a></dt>
+<dd><p>This generates the API resource for <a class="reference internal" href="#mousedb.data.models.Assay" title="mousedb.data.models.Assay"><tt class="xref py py-class docutils literal"><span class="pre">Assay</span></tt></a> objects.</p>
+<p>It returns all assays in the database.</p>
+<dl class="class">
+<dt id="mousedb.data.api.AssayResource.Meta">
+<em class="property">class </em><tt class="descname">Meta</tt><a class="headerlink" href="#mousedb.data.api.AssayResource.Meta" title="Permalink to this definition">¶</a></dt>
+<dd><p>The API serves all <a class="reference internal" href="#mousedb.data.models.Assay" title="mousedb.data.models.Assay"><tt class="xref py py-class docutils literal"><span class="pre">Assay</span></tt></a> objects in the database..</p>
+<dl class="attribute">
+<dt id="mousedb.data.api.AssayResource.Meta.object_class">
+<tt class="descname">object_class</tt><a class="headerlink" href="#mousedb.data.api.AssayResource.Meta.object_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Assay</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.data.api.ExperimentResource">
+<em class="property">class </em><tt class="descclassname">mousedb.data.api.</tt><tt class="descname">ExperimentResource</tt><big>(</big><em>api_name=None</em><big>)</big><a class="headerlink" href="#mousedb.data.api.ExperimentResource" title="Permalink to this definition">¶</a></dt>
+<dd><p>This generates the API resource for <a class="reference internal" href="#mousedb.data.models.Experiment" title="mousedb.data.models.Experiment"><tt class="xref py py-class docutils literal"><span class="pre">Experiment</span></tt></a> objects.</p>
+<p>It returns all experiments in the database.</p>
+<dl class="class">
+<dt id="mousedb.data.api.ExperimentResource.Meta">
+<em class="property">class </em><tt class="descname">Meta</tt><a class="headerlink" href="#mousedb.data.api.ExperimentResource.Meta" title="Permalink to this definition">¶</a></dt>
+<dd><p>The API serves all <a class="reference internal" href="#mousedb.data.models.Experiment" title="mousedb.data.models.Experiment"><tt class="xref py py-class docutils literal"><span class="pre">Experiment</span></tt></a> objects in the database..</p>
+<dl class="attribute">
+<dt id="mousedb.data.api.ExperimentResource.Meta.object_class">
+<tt class="descname">object_class</tt><a class="headerlink" href="#mousedb.data.api.ExperimentResource.Meta.object_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Experiment</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.data.api.MeasurementAssayResource">
+<em class="property">class </em><tt class="descclassname">mousedb.data.api.</tt><tt class="descname">MeasurementAssayResource</tt><big>(</big><em>api_name=None</em><big>)</big><a class="headerlink" href="#mousedb.data.api.MeasurementAssayResource" title="Permalink to this definition">¶</a></dt>
+<dd><p>This generates serves <a class="reference internal" href="#mousedb.data.models.Assay" title="mousedb.data.models.Assay"><tt class="xref py py-class docutils literal"><span class="pre">Assay</span></tt></a> objects.</p>
+<p>This is a limited dataset for use in MeasurementResource calls.</p>
+<dl class="class">
+<dt id="mousedb.data.api.MeasurementAssayResource.Meta">
+<em class="property">class </em><tt class="descname">Meta</tt><a class="headerlink" href="#mousedb.data.api.MeasurementAssayResource.Meta" title="Permalink to this definition">¶</a></dt>
+<dd><p>The API serves all <a class="reference internal" href="#mousedb.data.models.Assay" title="mousedb.data.models.Assay"><tt class="xref py py-class docutils literal"><span class="pre">Assay</span></tt></a> objects in the database..</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.data.api.MeasurementResource">
+<em class="property">class </em><tt class="descclassname">mousedb.data.api.</tt><tt class="descname">MeasurementResource</tt><big>(</big><em>api_name=None</em><big>)</big><a class="headerlink" href="#mousedb.data.api.MeasurementResource" title="Permalink to this definition">¶</a></dt>
+<dd><p>This generates the API resource for <a class="reference internal" href="#mousedb.data.models.Measurement" title="mousedb.data.models.Measurement"><tt class="xref py py-class docutils literal"><span class="pre">Measurement</span></tt></a> objects.</p>
+<p>It returns all measurements in the database.</p>
+<dl class="class">
+<dt id="mousedb.data.api.MeasurementResource.Meta">
+<em class="property">class </em><tt class="descname">Meta</tt><a class="headerlink" href="#mousedb.data.api.MeasurementResource.Meta" title="Permalink to this definition">¶</a></dt>
+<dd><p>The API serves all <a class="reference internal" href="#mousedb.data.models.Measurement" title="mousedb.data.models.Measurement"><tt class="xref py py-class docutils literal"><span class="pre">Measurement</span></tt></a> objects in the database..</p>
+<dl class="attribute">
+<dt id="mousedb.data.api.MeasurementResource.Meta.object_class">
+<tt class="descname">object_class</tt><a class="headerlink" href="#mousedb.data.api.MeasurementResource.Meta.object_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Measurement</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.data.api.StudyResource">
+<em class="property">class </em><tt class="descclassname">mousedb.data.api.</tt><tt class="descname">StudyResource</tt><big>(</big><em>api_name=None</em><big>)</big><a class="headerlink" href="#mousedb.data.api.StudyResource" title="Permalink to this definition">¶</a></dt>
+<dd><p>This generates the API resource for <a class="reference internal" href="#mousedb.data.models.Study" title="mousedb.data.models.Study"><tt class="xref py py-class docutils literal"><span class="pre">Study</span></tt></a> objects.</p>
+<p>It returns all studies in the database.</p>
+<dl class="class">
+<dt id="mousedb.data.api.StudyResource.Meta">
+<em class="property">class </em><tt class="descname">Meta</tt><a class="headerlink" href="#mousedb.data.api.StudyResource.Meta" title="Permalink to this definition">¶</a></dt>
+<dd><p>The API serves all <a class="reference internal" href="#mousedb.data.models.Study" title="mousedb.data.models.Study"><tt class="xref py py-class docutils literal"><span class="pre">Study</span></tt></a> objects in the database..</p>
+<dl class="attribute">
+<dt id="mousedb.data.api.StudyResource.Meta.object_class">
+<tt class="descname">object_class</tt><a class="headerlink" href="#mousedb.data.api.StudyResource.Meta.object_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Study</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+<div class="section" id="module-mousedb.data.models">
+<span id="data-models"></span><h2>Data Models<a class="headerlink" href="#module-mousedb.data.models" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="mousedb.data.models.Assay">
+<em class="property">class </em><tt class="descclassname">mousedb.data.models.</tt><tt class="descname">Assay</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.data.models.Assay" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assay(id, assay, assay_slug, notes, measurement_units)</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.data.models.Cohort">
+<em class="property">class </em><tt class="descclassname">mousedb.data.models.</tt><tt class="descname">Cohort</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.data.models.Cohort" title="Permalink to this definition">¶</a></dt>
+<dd><p>A Cohort is a group of <tt class="xref py py-class docutils literal"><span class="pre">Animals</span></tt>.</p>
+<p>Generally a cohort is an experimental replicate of a <a class="reference internal" href="#mousedb.data.models.Treatment" title="mousedb.data.models.Treatment"><tt class="xref py py-class docutils literal"><span class="pre">Treatment</span></tt></a> as part of a <a class="reference internal" href="#mousedb.data.models.Study" title="mousedb.data.models.Study"><tt class="xref py py-class docutils literal"><span class="pre">Study</span></tt></a>.
+Cohorts are also generally defined by starting and ending dates.
+A cohort would generally comprise both <a class="reference internal" href="#mousedb.data.models.Treatment" title="mousedb.data.models.Treatment"><tt class="xref py py-class docutils literal"><span class="pre">Treatment</span></tt></a> groups being compared.
+The required fields are <strong>name</strong> (which must be unique to this cohort) and <strong>animals</strong>.</p>
+<dl class="method">
+<dt id="mousedb.data.models.Cohort.get_absolute_url">
+<tt class="descname">get_absolute_url</tt><big>(</big><em>*moreargs</em>, <em>**morekwargs</em><big>)</big><a class="headerlink" href="#mousedb.data.models.Cohort.get_absolute_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>The url for a treatment-detail is <strong>/cohort/&lt;id&gt;</strong>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.data.models.Cohort.save">
+<tt class="descname">save</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.data.models.Cohort.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>The slug field is auto-populated during the save from the name field.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.data.models.Diet">
+<em class="property">class </em><tt class="descclassname">mousedb.data.models.</tt><tt class="descname">Diet</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.data.models.Diet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Diet(id, vendor_id, description, product_id, fat_content, protein_content, carb_content, irradiated, notes)</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.data.models.Environment">
+<em class="property">class </em><tt class="descclassname">mousedb.data.models.</tt><tt class="descname">Environment</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.data.models.Environment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Environment(id, building, room, temperature, humidity, notes)</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.data.models.Experiment">
+<em class="property">class </em><tt class="descclassname">mousedb.data.models.</tt><tt class="descname">Experiment</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.data.models.Experiment" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class describes Experiment objects.</p>
+<p>This object describes the aspects of an experiment done on several <a class="reference internal" href="animals.html#mousedb.animal.models.Animal" title="mousedb.animal.models.Animal"><tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt></a> objects.
+This object describes the conditions under which the experiment ws done.
+The results of the experiment are contained in <tt class="xref py py-class docutils literal"><span class="pre">Measurement</span></tt> objects and grouped together in <tt class="xref py py-class docutils literal"><span class="pre">Treatment</span></tt> objects.
+Experiments may or may not be part of a <tt class="xref py py-class docutils literal"><span class="pre">Study</span></tt>.
+The required fields for this object are date, <tt class="xref py py-class docutils literal"><span class="pre">Researchers</span></tt> and feeding state.
+The optional fields are notes, time, experimentID, fasting_time, injection and concentration and the <tt class="xref py py-class docutils literal"><span class="pre">Study</span></tt>.</p>
+<dl class="method">
+<dt id="mousedb.data.models.Experiment.get_absolute_url">
+<tt class="descname">get_absolute_url</tt><big>(</big><em>*moreargs</em>, <em>**morekwargs</em><big>)</big><a class="headerlink" href="#mousedb.data.models.Experiment.get_absolute_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>The absolute url of an experiment is  <cite>/mousedb/experiment/id &lt;/mousedb/experiment/id&gt;</cite>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.data.models.Implantation">
+<em class="property">class </em><tt class="descclassname">mousedb.data.models.</tt><tt class="descname">Implantation</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.data.models.Implantation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implantation(id, implant, vendor_id, product_id, notes)</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.data.models.Measurement">
+<em class="property">class </em><tt class="descclassname">mousedb.data.models.</tt><tt class="descname">Measurement</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.data.models.Measurement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Measurement(id, animal_id, experiment_id, assay_id, values)</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.data.models.Pharmaceutical">
+<em class="property">class </em><tt class="descclassname">mousedb.data.models.</tt><tt class="descname">Pharmaceutical</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.data.models.Pharmaceutical" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class defines a drug treatment.</p>
+<p>Each object is specific to a particular vendor, dose and mode of delivery.
+For other doses, generate additional Pharmaceutical objects.    
+The required fields are <strong>drug</strong>, <strong>dose</strong>, <strong>recurrance</strong>, <strong>mode</strong> and <strong>vendor</strong>.</p>
+<dl class="method">
+<dt id="mousedb.data.models.Pharmaceutical.get_absolute_url">
+<tt class="descname">get_absolute_url</tt><big>(</big><em>*moreargs</em>, <em>**morekwargs</em><big>)</big><a class="headerlink" href="#mousedb.data.models.Pharmaceutical.get_absolute_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>The absolute url of a <tt class="xref py py-class docutils literal"><span class="pre">Pharmaceutical</span></tt> is  <strong>/parameter/pharmaceutical/&lt;id&gt;</strong>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.data.models.Researcher">
+<em class="property">class </em><tt class="descclassname">mousedb.data.models.</tt><tt class="descname">Researcher</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.data.models.Researcher" title="Permalink to this definition">¶</a></dt>
+<dd><p>Researcher(id, first_name, last_name, name_slug, email, active)</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.data.models.Study">
+<em class="property">class </em><tt class="descclassname">mousedb.data.models.</tt><tt class="descname">Study</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.data.models.Study" title="Permalink to this definition">¶</a></dt>
+<dd><p>Study(id, description, start_date, stop_date, notes)</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.data.models.Transplantation">
+<em class="property">class </em><tt class="descclassname">mousedb.data.models.</tt><tt class="descname">Transplantation</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.data.models.Transplantation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transplantation(id, tissue, transplant_date, notes)</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.data.models.Treatment">
+<em class="property">class </em><tt class="descclassname">mousedb.data.models.</tt><tt class="descname">Treatment</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.data.models.Treatment" title="Permalink to this definition">¶</a></dt>
+<dd><p>This model defines the groupings of mice for an experiment.</p>
+<p>The purpose of treatment groups is to associate together animals which are treated similarly in a study.
+A treatment group is generally defined by its specific conditions, including:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#mousedb.data.models.Diet" title="mousedb.data.models.Diet"><tt class="xref py py-class docutils literal"><span class="pre">Diet</span></tt></a></li>
+<li><a class="reference internal" href="#mousedb.data.models.Environment" title="mousedb.data.models.Environment"><tt class="xref py py-class docutils literal"><span class="pre">Environment</span></tt></a></li>
+<li><a class="reference internal" href="#mousedb.data.models.Implantation" title="mousedb.data.models.Implantation"><tt class="xref py py-class docutils literal"><span class="pre">Implantation</span></tt></a> (optional)</li>
+<li><a class="reference internal" href="#mousedb.data.models.Transplantation" title="mousedb.data.models.Transplantation"><tt class="xref py py-class docutils literal"><span class="pre">Transplantation</span></tt></a> (optional)</li>
+<li><a class="reference internal" href="#mousedb.data.models.Pharmaceutical" title="mousedb.data.models.Pharmaceutical"><tt class="xref py py-class docutils literal"><span class="pre">Pharmaceutical</span></tt></a> (optional)</li>
+</ul>
+<p>The required fields are the associated <a class="reference internal" href="#mousedb.data.models.Study" title="mousedb.data.models.Study"><tt class="xref py py-class docutils literal"><span class="pre">Study</span></tt></a>, the name (treatment), the <tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt> objects in this group and the  <a class="reference internal" href="#mousedb.data.models.Researcher" title="mousedb.data.models.Researcher"><tt class="xref py py-class docutils literal"><span class="pre">Researcher</span></tt></a> objects in the group.
+There is also an optional notes field.</p>
+<dl class="method">
+<dt id="mousedb.data.models.Treatment.get_absolute_url">
+<tt class="descname">get_absolute_url</tt><big>(</big><em>*moreargs</em>, <em>**morekwargs</em><big>)</big><a class="headerlink" href="#mousedb.data.models.Treatment.get_absolute_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>The url for a treatment-detail is <strong>/treatment/&lt;id&gt;</strong>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.data.models.Vendor">
+<em class="property">class </em><tt class="descclassname">mousedb.data.models.</tt><tt class="descname">Vendor</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.data.models.Vendor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vendor(id, vendor, website, email, ordering, notes)</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-mousedb.data.urls">
+<span id="data-views-and-urls"></span><h2>Data Views and URLs<a class="headerlink" href="#module-mousedb.data.urls" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-mousedb.data.urls.cohort">
+<span id="cohort-urls"></span><h3>Cohort URLS<a class="headerlink" href="#module-mousedb.data.urls.cohort" title="Permalink to this headline">¶</a></h3>
+<p>Url redirections for <a class="reference internal" href="#mousedb.data.models.Cohort" title="mousedb.data.models.Cohort"><tt class="xref py py-class docutils literal"><span class="pre">Cohort</span></tt></a> objects.</p>
+<p>This includes generic create, update, delete, list and detail views.
+The views for these urls are defined in the <tt class="xref py py-mod docutils literal"></tt> module.</p>
+</div>
+<div class="section" id="module-mousedb.data.urls.experiment">
+<span id="experiment-urls"></span><h3>Experiment URLS<a class="headerlink" href="#module-mousedb.data.urls.experiment" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="module-mousedb.data.urls.parameter">
+<span id="parameter-urls"></span><h3>Parameter URLS<a class="headerlink" href="#module-mousedb.data.urls.parameter" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="module-mousedb.data.urls.study">
+<span id="study-urls"></span><h3>Study URLS<a class="headerlink" href="#module-mousedb.data.urls.study" title="Permalink to this headline">¶</a></h3>
+<p>This URLconf defines the routing of pages for study objects.</p>
+<p>This includes generic views for study list, study details and create, change and delete studies.</p>
+</div>
+<div class="section" id="module-mousedb.data.urls.treatment">
+<span id="treatment-urls"></span><h3>Treatment URLS<a class="headerlink" href="#module-mousedb.data.urls.treatment" title="Permalink to this headline">¶</a></h3>
+<p>Url redirections for treatment objects.</p>
+<p>This includes gneeric create, update, delete, list and detail views.
+These are restricted by login required (for detail and list) and appropriate permissions for forms.</p>
+</div>
+<div class="section" id="module-mousedb.data.views">
+<span id="views"></span><h3>Views<a class="headerlink" href="#module-mousedb.data.views" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="mousedb.data.views.CohortCreate">
+<em class="property">class </em><tt class="descclassname">mousedb.data.views.</tt><tt class="descname">CohortCreate</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.data.views.CohortCreate" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view generates a form for creating a <a class="reference internal" href="#mousedb.data.models.Cohort" title="mousedb.data.models.Cohort"><tt class="xref py py-class docutils literal"><span class="pre">Cohort</span></tt></a> object.</p>
+<p>This view is restricted to logged in users with the create-cohort permission.
+It is generated when the url <strong>/cohort/new</strong> is requested.</p>
+<dl class="attribute">
+<dt id="mousedb.data.views.CohortCreate.model">
+<tt class="descname">model</tt><a class="headerlink" href="#mousedb.data.views.CohortCreate.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Cohort</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.data.views.CohortDelete">
+<em class="property">class </em><tt class="descclassname">mousedb.data.views.</tt><tt class="descname">CohortDelete</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.data.views.CohortDelete" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view generates a view for deleting <a class="reference internal" href="#mousedb.data.models.Cohort" title="mousedb.data.models.Cohort"><tt class="xref py py-class docutils literal"><span class="pre">Cohort</span></tt></a> objects.</p>
+<p>This view is restricted to logged in users with the delete-cohort permision. 
+It passes an object <strong>cohort</strong> when the url <strong>/cohort/&lt;slug&gt;/delete</strong> is requested.</p>
+<dl class="attribute">
+<dt id="mousedb.data.views.CohortDelete.model">
+<tt class="descname">model</tt><a class="headerlink" href="#mousedb.data.views.CohortDelete.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Cohort</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.data.views.CohortDetail">
+<em class="property">class </em><tt class="descclassname">mousedb.data.views.</tt><tt class="descname">CohortDetail</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.data.views.CohortDetail" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view generates details about a <a class="reference internal" href="#mousedb.data.models.Cohort" title="mousedb.data.models.Cohort"><tt class="xref py py-class docutils literal"><span class="pre">Cohort</span></tt></a> object.</p>
+<p>This view is restricted to logged in users.
+It passes an object <strong>cohort</strong> when the url <strong>/cohort/&lt;slug&gt;</strong> is requested.</p>
+<dl class="attribute">
+<dt id="mousedb.data.views.CohortDetail.model">
+<tt class="descname">model</tt><a class="headerlink" href="#mousedb.data.views.CohortDetail.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Cohort</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.data.views.CohortList">
+<em class="property">class </em><tt class="descclassname">mousedb.data.views.</tt><tt class="descname">CohortList</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.data.views.CohortList" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view generates list of <a class="reference internal" href="#mousedb.data.models.Cohort" title="mousedb.data.models.Cohort"><tt class="xref py py-class docutils literal"><span class="pre">Cohort</span></tt></a> objects.</p>
+<p>This view is restricted to logged in users.
+It passes an object <strong>cohort_list</strong> when the url <strong>/cohort</strong> is requested.</p>
+<dl class="attribute">
+<dt id="mousedb.data.views.CohortList.model">
+<tt class="descname">model</tt><a class="headerlink" href="#mousedb.data.views.CohortList.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Cohort</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.data.views.CohortMeasurementCreate">
+<em class="property">class </em><tt class="descclassname">mousedb.data.views.</tt><tt class="descname">CohortMeasurementCreate</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.data.views.CohortMeasurementCreate" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view is for adding measurements for each animal in a cohort.</p>
+<p>This view is restricted to logged in users with the add-measurement permision.
+It passes two objects, <strong>cohort</strong> and <strong>form</strong> when the url <strong>/cohort/&lt;slug&gt;/measurements</strong> is requested.</p>
+<dl class="attribute">
+<dt id="mousedb.data.views.CohortMeasurementCreate.form_class">
+<tt class="descname">form_class</tt><a class="headerlink" href="#mousedb.data.views.CohortMeasurementCreate.form_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">MeasurementForm</span></tt></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mousedb.data.views.CohortMeasurementCreate.model">
+<tt class="descname">model</tt><a class="headerlink" href="#mousedb.data.views.CohortMeasurementCreate.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Measurement</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.data.views.CohortUpdate">
+<em class="property">class </em><tt class="descclassname">mousedb.data.views.</tt><tt class="descname">CohortUpdate</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.data.views.CohortUpdate" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view generates a form for updating <a class="reference internal" href="#mousedb.data.models.Cohort" title="mousedb.data.models.Cohort"><tt class="xref py py-class docutils literal"><span class="pre">Cohort</span></tt></a> objects.</p>
+<p>This view is restricted to logged in users with the update-cohort permision. 
+It passes an object <strong>object</strong> when the url <strong>/cohort/&lt;slug&gt;/edit</strong> is requested.</p>
+<dl class="attribute">
+<dt id="mousedb.data.views.CohortUpdate.model">
+<tt class="descname">model</tt><a class="headerlink" href="#mousedb.data.views.CohortUpdate.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Cohort</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.data.views.PharmaceuticalCreate">
+<em class="property">class </em><tt class="descclassname">mousedb.data.views.</tt><tt class="descname">PharmaceuticalCreate</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.data.views.PharmaceuticalCreate" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view generates a form for creating a <a class="reference internal" href="#mousedb.data.models.Pharmaceutical" title="mousedb.data.models.Pharmaceutical"><tt class="xref py py-class docutils literal"><span class="pre">Pharmaceutical</span></tt></a> object.</p>
+<p>This view is restricted to logged in users with the create-pharmaceutical permission.
+It is generated when the url <strong>/parameter/pharmaceutical/new</strong> is requested.</p>
+<dl class="attribute">
+<dt id="mousedb.data.views.PharmaceuticalCreate.model">
+<tt class="descname">model</tt><a class="headerlink" href="#mousedb.data.views.PharmaceuticalCreate.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Pharmaceutical</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.data.views.PharmaceuticalDelete">
+<em class="property">class </em><tt class="descclassname">mousedb.data.views.</tt><tt class="descname">PharmaceuticalDelete</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.data.views.PharmaceuticalDelete" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view generates a view for deleting <a class="reference internal" href="#mousedb.data.models.Pharmaceutical" title="mousedb.data.models.Pharmaceutical"><tt class="xref py py-class docutils literal"><span class="pre">Pharmaceutical</span></tt></a> objects.</p>
+<p>This view is restricted to logged in users with the delete-pharmaceutical permision. 
+It passes an object <strong>pharmaceutical</strong> when the url <strong>/parameter/pharmaceutical/&lt;id&gt;/delete</strong> is requested.</p>
+<dl class="attribute">
+<dt id="mousedb.data.views.PharmaceuticalDelete.model">
+<tt class="descname">model</tt><a class="headerlink" href="#mousedb.data.views.PharmaceuticalDelete.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Pharmaceutical</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.data.views.PharmaceuticalDetail">
+<em class="property">class </em><tt class="descclassname">mousedb.data.views.</tt><tt class="descname">PharmaceuticalDetail</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.data.views.PharmaceuticalDetail" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view generates details about a <a class="reference internal" href="#mousedb.data.models.Pharmaceutical" title="mousedb.data.models.Pharmaceutical"><tt class="xref py py-class docutils literal"><span class="pre">Pharmaceutical</span></tt></a> object.</p>
+<p>This view is restricted to logged in users.
+It passes an object <strong>pharmaceutical</strong> when the url <strong>/parameter/pharmaceutical/&lt;id&gt;</strong> is requested.</p>
+<dl class="attribute">
+<dt id="mousedb.data.views.PharmaceuticalDetail.model">
+<tt class="descname">model</tt><a class="headerlink" href="#mousedb.data.views.PharmaceuticalDetail.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Pharmaceutical</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.data.views.PharmaceuticalList">
+<em class="property">class </em><tt class="descclassname">mousedb.data.views.</tt><tt class="descname">PharmaceuticalList</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.data.views.PharmaceuticalList" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view generates list of <a class="reference internal" href="#mousedb.data.models.Pharmaceutical" title="mousedb.data.models.Pharmaceutical"><tt class="xref py py-class docutils literal"><span class="pre">Pharmaceutical</span></tt></a> objects.</p>
+<p>This view is restricted to logged in users.
+It passes an object <strong>pharmaceutical</strong> when the url <strong>/parameter/pharmaceutical</strong> is requested.</p>
+<dl class="attribute">
+<dt id="mousedb.data.views.PharmaceuticalList.model">
+<tt class="descname">model</tt><a class="headerlink" href="#mousedb.data.views.PharmaceuticalList.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Pharmaceutical</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.data.views.PharmaceuticalUpdate">
+<em class="property">class </em><tt class="descclassname">mousedb.data.views.</tt><tt class="descname">PharmaceuticalUpdate</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.data.views.PharmaceuticalUpdate" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view generates a form for updating <a class="reference internal" href="#mousedb.data.models.Pharmaceutical" title="mousedb.data.models.Pharmaceutical"><tt class="xref py py-class docutils literal"><span class="pre">Pharmaceutical</span></tt></a> objects.</p>
+<p>This view is restricted to logged in users with the update-pharmaceutical permision. 
+It passes an object <strong>pharmaceutical</strong> when the url <strong>/parameter/pharmaceutical/&lt;id&gt;/edit</strong> is requested.</p>
+<dl class="attribute">
+<dt id="mousedb.data.views.PharmaceuticalUpdate.model">
+<tt class="descname">model</tt><a class="headerlink" href="#mousedb.data.views.PharmaceuticalUpdate.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Pharmaceutical</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.data.views.TreatmentDetail">
+<em class="property">class </em><tt class="descclassname">mousedb.data.views.</tt><tt class="descname">TreatmentDetail</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.data.views.TreatmentDetail" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view generates details about a <a class="reference internal" href="#mousedb.data.models.Treatment" title="mousedb.data.models.Treatment"><tt class="xref py py-class docutils literal"><span class="pre">Treatment</span></tt></a> object.</p>
+<p>This view is restricted to logged in users.
+It passes an object <strong>treatment</strong> when the url <strong>/treatment/&lt;pk#&gt;</strong> is requested.</p>
+<dl class="attribute">
+<dt id="mousedb.data.views.TreatmentDetail.model">
+<tt class="descname">model</tt><a class="headerlink" href="#mousedb.data.views.TreatmentDetail.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Treatment</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.data.views.TreatmentList">
+<em class="property">class </em><tt class="descclassname">mousedb.data.views.</tt><tt class="descname">TreatmentList</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.data.views.TreatmentList" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view generatea list of a <a class="reference internal" href="#mousedb.data.models.Treatment" title="mousedb.data.models.Treatment"><tt class="xref py py-class docutils literal"><span class="pre">Treatment</span></tt></a> objects.</p>
+<p>This view is restricted to logged in users.
+It passes an object <strong>treatment_list</strong> when the url <strong>/treatment</strong> is requested.</p>
+<dl class="attribute">
+<dt id="mousedb.data.views.TreatmentList.model">
+<tt class="descname">model</tt><a class="headerlink" href="#mousedb.data.views.TreatmentList.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Treatment</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="mousedb.data.views.add_measurement">
+<tt class="descclassname">mousedb.data.views.</tt><tt class="descname">add_measurement</tt><big>(</big><em>request</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#mousedb.data.views.add_measurement" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a view to display a form to add single measurements to an experiment.</p>
+<p>It calls the object MeasurementForm, which has an autocomplete field for animal.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mousedb.data.views.aging_csv">
+<tt class="descclassname">mousedb.data.views.</tt><tt class="descname">aging_csv</tt><big>(</big><em>request</em><big>)</big><a class="headerlink" href="#mousedb.data.views.aging_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view generates a csv output file of all animal data for use in aging analysis.</p>
+<p>The view writes to a csv table the animal, strain, genotype, age (in days), and cause of death.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mousedb.data.views.all_data_csv">
+<tt class="descclassname">mousedb.data.views.</tt><tt class="descname">all_data_csv</tt><big>(</big><em>request</em><big>)</big><a class="headerlink" href="#mousedb.data.views.all_data_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view generates a csv output of all data for a strain.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mousedb.data.views.experiment_details_csv">
+<tt class="descclassname">mousedb.data.views.</tt><tt class="descname">experiment_details_csv</tt><big>(</big><em>request</em>, <em>experiment_id</em><big>)</big><a class="headerlink" href="#mousedb.data.views.experiment_details_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view generates a csv output file of an experiment.</p>
+<p>The view writes to a csv table the animal, genotype, age (in days), assay and values.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mousedb.data.views.litters_csv">
+<tt class="descclassname">mousedb.data.views.</tt><tt class="descname">litters_csv</tt><big>(</big><em>request</em><big>)</big><a class="headerlink" href="#mousedb.data.views.litters_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view generates a csv output file of all animal data for use in litter analysis.</p>
+<p>The view writes to a csv table the birthdate, breeding cage and strain.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-mousedb.data.admin">
+<span id="administrative-interface"></span><h3>Administrative Interface<a class="headerlink" href="#module-mousedb.data.admin" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="module-mousedb.data.tests">
+<span id="data-unit-tests"></span><h2>Data Unit Tests<a class="headerlink" href="#module-mousedb.data.tests" title="Permalink to this headline">¶</a></h2>
+<p>This file contains tests for the data application.</p>
+<p>These tests will verify generation of new experiment, measurement, assay, researcher, study, treatment, vendor, diet, environment, implantation, transplantation and pharnaceutical objects.</p>
+<dl class="class">
+<dt id="mousedb.data.tests.BasicTestCase">
+<em class="property">class </em><tt class="descclassname">mousedb.data.tests.</tt><tt class="descname">BasicTestCase</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#mousedb.data.tests.BasicTestCase" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class factors out the TestcCase setup and Teardown code.</p>
+<dl class="method">
+<dt id="mousedb.data.tests.BasicTestCase.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.data.tests.BasicTestCase.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiate the test client.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.data.tests.BasicTestCase.tearDown">
+<tt class="descname">tearDown</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.data.tests.BasicTestCase.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Depopulate created model instances from test database.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.data.tests.CohortModelTests">
+<em class="property">class </em><tt class="descclassname">mousedb.data.tests.</tt><tt class="descname">CohortModelTests</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#mousedb.data.tests.CohortModelTests" title="Permalink to this definition">¶</a></dt>
+<dd><p>These tests test the functionality of <a class="reference internal" href="#mousedb.data.models.Cohort" title="mousedb.data.models.Cohort"><tt class="xref py py-class docutils literal"><span class="pre">Cohort</span></tt></a> objects.</p>
+<dl class="method">
+<dt id="mousedb.data.tests.CohortModelTests.test_cohort_absolute_url">
+<tt class="descname">test_cohort_absolute_url</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.data.tests.CohortModelTests.test_cohort_absolute_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>This tests the absolute_url generation of a <a class="reference internal" href="#mousedb.data.models.Cohort" title="mousedb.data.models.Cohort"><tt class="xref py py-class docutils literal"><span class="pre">Cohort</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.data.tests.CohortModelTests.test_cohort_unicode">
+<tt class="descname">test_cohort_unicode</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.data.tests.CohortModelTests.test_cohort_unicode" title="Permalink to this definition">¶</a></dt>
+<dd><p>This tests the unicode representation of a <a class="reference internal" href="#mousedb.data.models.Cohort" title="mousedb.data.models.Cohort"><tt class="xref py py-class docutils literal"><span class="pre">Cohort</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.data.tests.CohortModelTests.test_create_cohort_all">
+<tt class="descname">test_create_cohort_all</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.data.tests.CohortModelTests.test_create_cohort_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test creates a <a class="reference internal" href="#mousedb.data.models.Cohort" title="mousedb.data.models.Cohort"><tt class="xref py py-class docutils literal"><span class="pre">Cohort</span></tt></a> with all information entered.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.data.tests.CohortModelTests.test_create_cohort_minimum">
+<tt class="descname">test_create_cohort_minimum</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.data.tests.CohortModelTests.test_create_cohort_minimum" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test creates a <a class="reference internal" href="#mousedb.data.models.Cohort" title="mousedb.data.models.Cohort"><tt class="xref py py-class docutils literal"><span class="pre">Cohort</span></tt></a> with the required information only.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.data.tests.CohortViewTests">
+<em class="property">class </em><tt class="descclassname">mousedb.data.tests.</tt><tt class="descname">CohortViewTests</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#mousedb.data.tests.CohortViewTests" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class tests the views for <a class="reference internal" href="#mousedb.data.models.Cohort" title="mousedb.data.models.Cohort"><tt class="xref py py-class docutils literal"><span class="pre">Cohort</span></tt></a> objects.</p>
+<dl class="method">
+<dt id="mousedb.data.tests.CohortViewTests.test_cohort_list">
+<tt class="descname">test_cohort_list</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.data.tests.CohortViewTests.test_cohort_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>This tests the cohort-list view, ensuring that templates are loaded correctly.</p>
+<p>This view uses a user with superuser permissions so does not test the permission levels for this view.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.data.tests.CohortViewTests.test_cohort_view">
+<tt class="descname">test_cohort_view</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.data.tests.CohortViewTests.test_cohort_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>This tests the cohort-view view, ensuring that templates are loaded correctly.</p>
+<p>This view uses a user with superuser permissions so does not test the permission levels for this view.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.data.tests.CohortViewTests.test_cohort_view_create">
+<tt class="descname">test_cohort_view_create</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.data.tests.CohortViewTests.test_cohort_view_create" title="Permalink to this definition">¶</a></dt>
+<dd><p>This tests the cohort-new view, ensuring that templates are loaded correctly.</p>
+<p>This view uses a user with superuser permissions so does not test the permission levels for this view.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.data.tests.CohortViewTests.test_cohort_view_delete">
+<tt class="descname">test_cohort_view_delete</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.data.tests.CohortViewTests.test_cohort_view_delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>This tests the cohort-delete view, ensuring that templates are loaded correctly.</p>
+<p>This view uses a user with superuser permissions so does not test the permission levels for this view.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.data.tests.CohortViewTests.test_cohort_view_edit">
+<tt class="descname">test_cohort_view_edit</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.data.tests.CohortViewTests.test_cohort_view_edit" title="Permalink to this definition">¶</a></dt>
+<dd><p>This tests the cohort-edit view, ensuring that templates are loaded correctly.</p>
+<p>This view uses a user with superuser permissions so does not test the permission levels for this view.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.data.tests.PharmaceuticalModelTests">
+<em class="property">class </em><tt class="descclassname">mousedb.data.tests.</tt><tt class="descname">PharmaceuticalModelTests</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#mousedb.data.tests.PharmaceuticalModelTests" title="Permalink to this definition">¶</a></dt>
+<dd><p>These tests test the functionality of <a class="reference internal" href="#mousedb.data.models.Pharmaceutical" title="mousedb.data.models.Pharmaceutical"><tt class="xref py py-class docutils literal"><span class="pre">Pharmaceutical</span></tt></a> objects.</p>
+<dl class="method">
+<dt id="mousedb.data.tests.PharmaceuticalModelTests.test_create_pharmaceutical_all">
+<tt class="descname">test_create_pharmaceutical_all</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.data.tests.PharmaceuticalModelTests.test_create_pharmaceutical_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test creates a <a class="reference internal" href="#mousedb.data.models.Pharmaceutical" title="mousedb.data.models.Pharmaceutical"><tt class="xref py py-class docutils literal"><span class="pre">Pharmaceutical</span></tt></a> with all information entered.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.data.tests.PharmaceuticalModelTests.test_create_pharmaceutical_minimum">
+<tt class="descname">test_create_pharmaceutical_minimum</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.data.tests.PharmaceuticalModelTests.test_create_pharmaceutical_minimum" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test creates a <a class="reference internal" href="#mousedb.data.models.Pharmaceutical" title="mousedb.data.models.Pharmaceutical"><tt class="xref py py-class docutils literal"><span class="pre">Pharmaceutical</span></tt></a> with the required information only.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.data.tests.PharmaceuticalModelTests.test_pharmaceutical_absolute_url">
+<tt class="descname">test_pharmaceutical_absolute_url</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.data.tests.PharmaceuticalModelTests.test_pharmaceutical_absolute_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>This tests the absolute_url generation of a <a class="reference internal" href="#mousedb.data.models.Pharmaceutical" title="mousedb.data.models.Pharmaceutical"><tt class="xref py py-class docutils literal"><span class="pre">Pharmaceutical</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.data.tests.PharmaceuticalModelTests.test_pharmaceutical_unicode">
+<tt class="descname">test_pharmaceutical_unicode</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.data.tests.PharmaceuticalModelTests.test_pharmaceutical_unicode" title="Permalink to this definition">¶</a></dt>
+<dd><p>This tests the unicode representation of a <a class="reference internal" href="#mousedb.data.models.Pharmaceutical" title="mousedb.data.models.Pharmaceutical"><tt class="xref py py-class docutils literal"><span class="pre">Pharmaceutical</span></tt></a>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.data.tests.PharmaceuticalViewTests">
+<em class="property">class </em><tt class="descclassname">mousedb.data.tests.</tt><tt class="descname">PharmaceuticalViewTests</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#mousedb.data.tests.PharmaceuticalViewTests" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class tests the views for <a class="reference internal" href="#mousedb.data.models.Pharmaceutical" title="mousedb.data.models.Pharmaceutical"><tt class="xref py py-class docutils literal"><span class="pre">Pharmaceutical</span></tt></a> objects.</p>
+<dl class="method">
+<dt id="mousedb.data.tests.PharmaceuticalViewTests.test_pharmaceutical_list">
+<tt class="descname">test_pharmaceutical_list</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.data.tests.PharmaceuticalViewTests.test_pharmaceutical_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>This tests the pharmaceutical-list view, ensuring that templates are loaded correctly.</p>
+<p>This view uses a user with superuser permissions so does not test the permission levels for this view.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.data.tests.PharmaceuticalViewTests.test_pharmaceutical_view">
+<tt class="descname">test_pharmaceutical_view</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.data.tests.PharmaceuticalViewTests.test_pharmaceutical_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>This tests the pharmaceutical-view view, ensuring that templates are loaded correctly.</p>
+<p>This view uses a user with superuser permissions so does not test the permission levels for this view.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.data.tests.PharmaceuticalViewTests.test_pharmaceutical_view_create">
+<tt class="descname">test_pharmaceutical_view_create</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.data.tests.PharmaceuticalViewTests.test_pharmaceutical_view_create" title="Permalink to this definition">¶</a></dt>
+<dd><p>This tests the pharmaceutical-new view, ensuring that templates are loaded correctly.</p>
+<p>This view uses a user with superuser permissions so does not test the permission levels for this view.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.data.tests.PharmaceuticalViewTests.test_pharmaceutical_view_delete">
+<tt class="descname">test_pharmaceutical_view_delete</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.data.tests.PharmaceuticalViewTests.test_pharmaceutical_view_delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>This tests the pharmaceutical-delete view, ensuring that templates are loaded correctly.</p>
+<p>This view uses a user with superuser permissions so does not test the permission levels for this view.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.data.tests.PharmaceuticalViewTests.test_pharmaceutical_view_edit">
+<tt class="descname">test_pharmaceutical_view_edit</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.data.tests.PharmaceuticalViewTests.test_pharmaceutical_view_edit" title="Permalink to this definition">¶</a></dt>
+<dd><p>This tests the pharmaceutical-edit view, ensuring that templates are loaded correctly.</p>
+<p>This view uses a user with superuser permissions so does not test the permission levels for this view.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.data.tests.StudyModelTests">
+<em class="property">class </em><tt class="descclassname">mousedb.data.tests.</tt><tt class="descname">StudyModelTests</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#mousedb.data.tests.StudyModelTests" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test the creation and modification of Study objects.</p>
+<dl class="method">
+<dt id="mousedb.data.tests.StudyModelTests.test_create_studey_detailed">
+<tt class="descname">test_create_studey_detailed</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.data.tests.StudyModelTests.test_create_studey_detailed" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a test for creating a new study object, with all fields being entered.  It also verifies that unicode is set correctly.  This test is dependent on the ability to create a new Strain object (see animal.tests.StrainModelTests.test_create_minimal_strain).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.data.tests.StudyModelTests.test_create_study_minimal">
+<tt class="descname">test_create_study_minimal</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.data.tests.StudyModelTests.test_create_study_minimal" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a test for creating a new study object, with only the minimum being entered.  It also verifies that unicode is set correctly.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.data.tests.StudyModelTests.test_study_absolute_url">
+<tt class="descname">test_study_absolute_url</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.data.tests.StudyModelTests.test_study_absolute_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test verifies that the absolute url of a study object is set correctly.  This study is dependend on a positive result on test_create_study_minimal.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.data.tests.StudyViewTests">
+<em class="property">class </em><tt class="descclassname">mousedb.data.tests.</tt><tt class="descname">StudyViewTests</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#mousedb.data.tests.StudyViewTests" title="Permalink to this definition">¶</a></dt>
+<dd><p>These tests test the views associated with Study objects.</p>
+<dl class="method">
+<dt id="mousedb.data.tests.StudyViewTests.test_study_delete">
+<tt class="descname">test_study_delete</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.data.tests.StudyViewTests.test_study_delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test checks the view which displays a study detail page.  It checks for the correct templates and status code.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.data.tests.StudyViewTests.test_study_detail">
+<tt class="descname">test_study_detail</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.data.tests.StudyViewTests.test_study_detail" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test checks the view which displays a study detail page.  It checks for the correct templates and status code.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.data.tests.StudyViewTests.test_study_edit">
+<tt class="descname">test_study_edit</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.data.tests.StudyViewTests.test_study_edit" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test checks the view which displays a study edit page.  It checks for the correct templates and status code.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.data.tests.StudyViewTests.test_study_list">
+<tt class="descname">test_study_list</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.data.tests.StudyViewTests.test_study_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test checks the status code, and templates for study lists.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.data.tests.StudyViewTests.test_study_new">
+<tt class="descname">test_study_new</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.data.tests.StudyViewTests.test_study_new" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test checks the view which displays a study creation page.  It checks for the correct templates and status code.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.data.tests.TreatmentModelTests">
+<em class="property">class </em><tt class="descclassname">mousedb.data.tests.</tt><tt class="descname">TreatmentModelTests</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#mousedb.data.tests.TreatmentModelTests" title="Permalink to this definition">¶</a></dt>
+<dd><p>These tests test the functionality of <a class="reference internal" href="#mousedb.data.models.Treatment" title="mousedb.data.models.Treatment"><tt class="xref py py-class docutils literal"><span class="pre">Treatment</span></tt></a> objects.</p>
+<dl class="method">
+<dt id="mousedb.data.tests.TreatmentModelTests.test_create_treatment_all">
+<tt class="descname">test_create_treatment_all</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.data.tests.TreatmentModelTests.test_create_treatment_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test creates a <a class="reference internal" href="#mousedb.data.models.Treatment" title="mousedb.data.models.Treatment"><tt class="xref py py-class docutils literal"><span class="pre">Treatment</span></tt></a> with all information entered.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.data.tests.TreatmentModelTests.test_create_treatment_minimum">
+<tt class="descname">test_create_treatment_minimum</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.data.tests.TreatmentModelTests.test_create_treatment_minimum" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test creates a <a class="reference internal" href="#mousedb.data.models.Treatment" title="mousedb.data.models.Treatment"><tt class="xref py py-class docutils literal"><span class="pre">Treatment</span></tt></a> with the required information only.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.data.tests.TreatmentModelTests.test_treatment_absolute_url">
+<tt class="descname">test_treatment_absolute_url</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.data.tests.TreatmentModelTests.test_treatment_absolute_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>This tests the absolute_url generation of a <a class="reference internal" href="#mousedb.data.models.Treatment" title="mousedb.data.models.Treatment"><tt class="xref py py-class docutils literal"><span class="pre">Treatment</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.data.tests.TreatmentModelTests.test_treatment_unicode">
+<tt class="descname">test_treatment_unicode</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.data.tests.TreatmentModelTests.test_treatment_unicode" title="Permalink to this definition">¶</a></dt>
+<dd><p>This tests the unicode representation of a <a class="reference internal" href="#mousedb.data.models.Treatment" title="mousedb.data.models.Treatment"><tt class="xref py py-class docutils literal"><span class="pre">Treatment</span></tt></a>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.data.tests.TreatmentViewTests">
+<em class="property">class </em><tt class="descclassname">mousedb.data.tests.</tt><tt class="descname">TreatmentViewTests</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#mousedb.data.tests.TreatmentViewTests" title="Permalink to this definition">¶</a></dt>
+<dd><p>These tests test the views associated with Treatment objects.</p>
+<dl class="method">
+<dt id="mousedb.data.tests.TreatmentViewTests.test_treatment_detail">
+<tt class="descname">test_treatment_detail</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.data.tests.TreatmentViewTests.test_treatment_detail" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test checks the view which displays a treatment-detail page.</p>
+<p>It checks for the correct templates and status code.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mousedb.data.tests.TreatmentViewTests.test_treatment_list">
+<tt class="descname">test_treatment_list</tt><big>(</big><big>)</big><a class="headerlink" href="#mousedb.data.tests.TreatmentViewTests.test_treatment_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>This tests the treatment-list view, ensuring that templates are loaded correctly.</p>
+<p>This view uses a user with superuser permissions so does not test the permission levels for this view.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-mousedb.data.forms">
+<span id="data-utilities"></span><h2>Data Utilities<a class="headerlink" href="#module-mousedb.data.forms" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="mousedb.data.forms.ExperimentForm">
+<em class="property">class </em><tt class="descclassname">mousedb.data.forms.</tt><tt class="descname">ExperimentForm</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=':'</em>, <em>empty_permitted=False</em>, <em>instance=None</em><big>)</big><a class="headerlink" href="#mousedb.data.forms.ExperimentForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the configuration for the experiment form.</p>
+<p>This form is used to set up and modify an experiment.  It uses a datepicker widget for the date.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.data.forms.MeasurementForm">
+<em class="property">class </em><tt class="descclassname">mousedb.data.forms.</tt><tt class="descname">MeasurementForm</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=':'</em>, <em>empty_permitted=False</em>, <em>instance=None</em><big>)</big><a class="headerlink" href="#mousedb.data.forms.MeasurementForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Form definition for adding and editing measurements.</p>
+<p>This form is used for adding or modifying single measurements from within an experiment.
+It has an autocomplete field for animal.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.data.forms.StudyExperimentForm">
+<em class="property">class </em><tt class="descclassname">mousedb.data.forms.</tt><tt class="descname">StudyExperimentForm</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=':'</em>, <em>empty_permitted=False</em>, <em>instance=None</em><big>)</big><a class="headerlink" href="#mousedb.data.forms.StudyExperimentForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the configuration for a study form (From an experiment).</p>
+<p>This hides the study field which will be automatically set upon save.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.data.forms.StudyForm">
+<em class="property">class </em><tt class="descclassname">mousedb.data.forms.</tt><tt class="descname">StudyForm</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=':'</em>, <em>empty_permitted=False</em>, <em>instance=None</em><big>)</big><a class="headerlink" href="#mousedb.data.forms.StudyForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the configuration for the study form.</p>
+<p>This form is used to create and modify studies.  It uses an autocomplete widget for the animals.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="mousedb.data.forms.TreatmentForm">
+<em class="property">class </em><tt class="descclassname">mousedb.data.forms.</tt><tt class="descname">TreatmentForm</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=':'</em>, <em>empty_permitted=False</em>, <em>instance=None</em><big>)</big><a class="headerlink" href="#mousedb.data.forms.TreatmentForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Form class for study treatment groups.</p>
+<p>In the case of studies, animals are defined in the treatment group rather than in the study group.  A treatment consists of a study, a set of animals and the conditions which define that treatment.  This includes related fields for environment, diet, implants and transplants.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Data Application</a><ul>
+<li><a class="reference internal" href="#studies">Studies</a></li>
+<li><a class="reference internal" href="#treatments">Treatments</a></li>
+<li><a class="reference internal" href="#cohorts">Cohorts</a></li>
+<li><a class="reference internal" href="#experiments">Experiments</a></li>
+<li><a class="reference internal" href="#measurements">Measurements</a></li>
+<li><a class="reference internal" href="#module-mousedb.data.api">Data API Access</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#sample-code">Sample Code</a><ul>
+<li><a class="reference internal" href="#for-a-collection-of-objects">For a collection of objects</a></li>
+<li><a class="reference internal" href="#for-a-single-object">For a single object</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#reference-for-measurement-api">Reference for Measurement API</a><ul>
+<li><a class="reference internal" href="#request-parameters">Request Parameters</a></li>
+<li><a class="reference internal" href="#response-values">Response Values</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#reference-for-the-assay-api">Reference for the Assay API</a><ul>
+<li><a class="reference internal" href="#id1">Request Parameters</a></li>
+<li><a class="reference internal" href="#id2">Response Values</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#reference-for-the-experiment-api">Reference for the Experiment API</a><ul>
+<li><a class="reference internal" href="#id3">Request Parameters</a></li>
+<li><a class="reference internal" href="#id4">Response Values</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#reference-for-the-study-api">Reference for the Study API</a><ul>
+<li><a class="reference internal" href="#id5">Request Parameters</a></li>
+<li><a class="reference internal" href="#id6">Response Values</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-mousedb.data.models">Data Models</a></li>
+<li><a class="reference internal" href="#module-mousedb.data.urls">Data Views and URLs</a><ul>
+<li><a class="reference internal" href="#module-mousedb.data.urls.cohort">Cohort URLS</a></li>
+<li><a class="reference internal" href="#module-mousedb.data.urls.experiment">Experiment URLS</a></li>
+<li><a class="reference internal" href="#module-mousedb.data.urls.parameter">Parameter URLS</a></li>
+<li><a class="reference internal" href="#module-mousedb.data.urls.study">Study URLS</a></li>
+<li><a class="reference internal" href="#module-mousedb.data.urls.treatment">Treatment URLS</a></li>
+<li><a class="reference internal" href="#module-mousedb.data.views">Views</a></li>
+<li><a class="reference internal" href="#module-mousedb.data.admin">Administrative Interface</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-mousedb.data.tests">Data Unit Tests</a></li>
+<li><a class="reference internal" href="#module-mousedb.data.forms">Data Utilities</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="animals.html"
+                        title="previous chapter">Animals Application</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="groups.html"
+                        title="next chapter">Groups Application</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/data.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="groups.html" title="Groups Application"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="animals.html" title="Animals Application"
+             >previous</a> |</li>
+        <li><a href="index.html">MouseDB 1.1.1 documentation</a> &raquo;</li>
+          <li><a href="api.html" >Automated Documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2009-2012, Dave Bridges.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

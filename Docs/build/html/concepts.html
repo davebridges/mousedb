@@ -1,0 +1,188 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>MouseDB Concepts &mdash; MouseDB 1.1.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.1.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="MouseDB 1.1.1 documentation" href="index.html" />
+    <link rel="next" title="MouseDB Installation" href="installation.html" />
+    <link rel="prev" title="Welcome to MouseDB’s documentation!" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="installation.html" title="MouseDB Installation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to MouseDB’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">MouseDB 1.1.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="mousedb-concepts">
+<h1>MouseDB Concepts<a class="headerlink" href="#mousedb-concepts" title="Permalink to this headline">¶</a></h1>
+<p>Data storage for MouseDB is separated into packages which contain information about animals, and information collected about animals.  There is also a separate module for timed matings of animals.  This document will describe the basics of how data is stored in each of these modules.</p>
+<div class="section" id="animal-module">
+<h2>Animal Module<a class="headerlink" href="#animal-module" title="Permalink to this headline">¶</a></h2>
+<p>Animals are tracked as individual entities, and given associations to breeding cages to follow ancestry, and strains.  Animals are the main objects in the database, and most other data is linked to and can be accessed from animals.</p>
+<div class="section" id="animal">
+<h3>Animal<a class="headerlink" href="#animal" title="Permalink to this headline">¶</a></h3>
+<p>Most parameters about an animal are set within the <a class="reference internal" href="api.html#mousedb.animal.models.Animal" title="mousedb.animal.models.Animal"><tt class="xref py py-class docutils literal"><span class="pre">Animal</span></tt></a> object. Here is where the animals strain, breeding, parentage and many other parameters are included.  Animals have foreignkey relationships with both <a class="reference internal" href="api.html#mousedb.animal.models.Strain" title="mousedb.animal.models.Strain"><tt class="xref py py-class docutils literal"><span class="pre">Strain</span></tt></a> and <a class="reference internal" href="api.html#mousedb.animal.models.Breeding" title="mousedb.animal.models.Breeding"><tt class="xref py py-class docutils literal"><span class="pre">Breeding</span></tt></a>, so an animal may only belong to one of each of those.  As an example, a mouse cannot come from more than one Breeding set, and cannot belong to more than one strain.</p>
+<div class="section" id="backcrosses-and-generations">
+<h4>Backcrosses and Generations<a class="headerlink" href="#backcrosses-and-generations" title="Permalink to this headline">¶</a></h4>
+<p>For this software, optional tracking of backcrosses and generations is available and is stored as an attribute of an animal.  When an inbred cross is made against a pure background, the backcross increases by 1.  When a heterozygote cross is made, the generation increases by one.  As an example, for every time a mouse in a C57/BL6 background is crossed against a wildtype C57/B6 mouse, the backcross (but not the generation) increases by one.  For every time a mutant strain is crosses against itself (either vs a heterozygote or homozygote of that strain), the generation will increase by one.  Backcrosses should typically be performed against a separate colony of purebred mouse, rather than against wild-type alleles of the mutant strain.</p>
+</div>
+</div>
+<div class="section" id="breeding-cages">
+<h3>Breeding Cages<a class="headerlink" href="#breeding-cages" title="Permalink to this headline">¶</a></h3>
+<p>A breeding cage is defined as a set of one or more male and one or more female mice.  Because of this, it is not always clear who the precise parentage of an animal is.  If the parentage is known, then the Mother and Father fields can be set for a particular animal.  In the case of Active, if an End field is specified, then the Active field is set to False.  In the case of Cage, if a Cage is provided, and animals are specified under Male or Females for a Breeding object, then the Cage field for those animals is set to that of the breeding cage.  The same is true for both Rack and Rack Position.</p>
+</div>
+<div class="section" id="strains">
+<h3>Strains<a class="headerlink" href="#strains" title="Permalink to this headline">¶</a></h3>
+<p>A strain is a set of mice with a similar genetics.  Importantly strains are separated from Backgrounds.  For example, one might have mice with the genotype ob/ob but these mice may be in either a C57-Black6 or a mixed background.  This difference is set at the individual animal level.
+The result of this is that a query for a particular strain may then need to be filtered to a specific background.</p>
+</div>
+</div>
+<div class="section" id="data-module">
+<h2>Data Module<a class="headerlink" href="#data-module" title="Permalink to this headline">¶</a></h2>
+<p>Data (or measurements) can be stored for any type of measurement.  Conceptually, several pieces of data belong to an experiment (for example several mice are measured at some time) and several experiments belong to a study.  Measurements can be stored independent of experiments and experiments can be performed outside of the context of a study.  It is however, perfered that measurements are stored within an experiment and experiments are stored within studies as this will greatly facilitate the organization of the data.</p>
+<div class="section" id="studies">
+<h3>Studies<a class="headerlink" href="#studies" title="Permalink to this headline">¶</a></h3>
+<p>In general studies are a collection of experiments.  These can be grouped together on the basis of animals and/or treatment groups.  A study must have at least one treatment group, which defines the animals and their conditions.</p>
+</div>
+<div class="section" id="experiments">
+<h3>Experiments<a class="headerlink" href="#experiments" title="Permalink to this headline">¶</a></h3>
+<p>An experiment is a collection of measurements for a given set of animals.  In general, an experiment is defined as a number of measurements take in a given day.</p>
+</div>
+<div class="section" id="measurements">
+<h3>Measurements<a class="headerlink" href="#measurements" title="Permalink to this headline">¶</a></h3>
+<p>A measurement is an animal, an assay and a measurement value.  It can be associated with an experiment, or can stand alone as an individual value.  Measurements can be viewed in the context of a study, an experiment, a treatment group or an animal by going to the appropriate page.</p>
+</div>
+</div>
+<div class="section" id="timed-matings-module">
+<h2>Timed Matings Module<a class="headerlink" href="#timed-matings-module" title="Permalink to this headline">¶</a></h2>
+<p>Timed matings are a specific type of breeding set.  Generally, for these experiments a mating cage is set up and pregnancy is defined by a plug event.  Based on this information, the age of an embryo can be estimated.  When a breeding cage is defined, one option is to set this cage as a timed mating cage (ie Timed_Mating=True).  If this is the case, then a plug event can be registered and recorded for this mating set.  If the mother gives birth then this cage is implicitly set as a normal breeding cage.</p>
+</div>
+<div class="section" id="groups-module">
+<h2>Groups Module<a class="headerlink" href="#groups-module" title="Permalink to this headline">¶</a></h2>
+<p>This app defines generic Group and License information for a particular installation of MouseDB.  Because every page on this site identifies both the Group and data restrictions, at a minimum, group information must be provided upon installation (see installation instructions).</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">MouseDB Concepts</a><ul>
+<li><a class="reference internal" href="#animal-module">Animal Module</a><ul>
+<li><a class="reference internal" href="#animal">Animal</a><ul>
+<li><a class="reference internal" href="#backcrosses-and-generations">Backcrosses and Generations</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#breeding-cages">Breeding Cages</a></li>
+<li><a class="reference internal" href="#strains">Strains</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#data-module">Data Module</a><ul>
+<li><a class="reference internal" href="#studies">Studies</a></li>
+<li><a class="reference internal" href="#experiments">Experiments</a></li>
+<li><a class="reference internal" href="#measurements">Measurements</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#timed-matings-module">Timed Matings Module</a></li>
+<li><a class="reference internal" href="#groups-module">Groups Module</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to MouseDB&#8217;s documentation!</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="installation.html"
+                        title="next chapter">MouseDB Installation</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/concepts.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="installation.html" title="MouseDB Installation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to MouseDB’s documentation!"
+             >previous</a> |</li>
+        <li><a href="index.html">MouseDB 1.1.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2009-2012, Dave Bridges.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
