@@ -4,11 +4,6 @@ from django.template.defaultfilters import slugify
 from mousedb.animal.models import Animal, Strain
 from mousedb.custom_fields import CommaSeparatedFloatField
 
-FEEDING_TYPES = (
-	('fed', 'Fed'),
-	('fasted', 'Fasted')
-)
-
 INJECTIONS = (
 	('Insulin', 'Insulin'),
 	('Glucose', 'Glucose'),
@@ -32,6 +27,12 @@ class Experiment(models.Model):
     The required fields for this object are date, :class:`~experimentdb.data.models.Researchers` and feeding state.
     The optional fields are notes, time, experimentID, fasting_time, injection and concentration and the :class:`~experimentdb.data.models.Study`.    
     """
+    
+    FEEDING_TYPES = (
+	('fed', 'Fed'),
+	('fasted', 'Fasted'),
+    ('refed', 'Re-Fed')
+    )
     
     date = models.DateField()
     notes = models.TextField(max_length = 500, blank=True)
