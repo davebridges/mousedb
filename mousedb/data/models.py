@@ -40,7 +40,7 @@ class Experiment(models.Model):
     researchers = models.ManyToManyField('Researcher')
     experimentID = models.SlugField(max_length=50, help_text="ie DB-2008-11-11-A", blank=True)
     feeding_state = models.CharField(max_length=20, default = 'fed', choices = FEEDING_TYPES)
-    fasting_time = models.IntegerField(help_text = "in hours", null = True, blank = True)
+    fasting_time = models.IntegerField(help_text = "in hours", null = True, blank = True, verbose_name="Fasting/Refeeding Time")
     injection = models.CharField(max_length=20, choices=INJECTIONS, blank=True)
     concentration = models.CharField(max_length=20, blank=True)
     study = models.ForeignKey('Study', blank=True, null=True)
