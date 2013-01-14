@@ -4,11 +4,6 @@ from django.template.defaultfilters import slugify
 from mousedb.animal.models import Animal, Strain
 from mousedb.custom_fields import CommaSeparatedFloatField
 
-FEEDING_TYPES = (
-	('fed', 'Fed'),
-	('fasted', 'Fasted')
-)
-
 INJECTIONS = (
 	('Insulin', 'Insulin'),
 	('Glucose', 'Glucose'),
@@ -33,13 +28,19 @@ class Experiment(models.Model):
     The optional fields are notes, time, experimentID, fasting_time, injection and concentration and the :class:`~experimentdb.data.models.Study`.    
     """
     
+    FEEDING_TYPES = (
+	('fed', 'Fed'),
+	('fasted', 'Fasted'),
+    ('refed', 'Re-Fed')
+    )
+    
     date = models.DateField()
     notes = models.TextField(max_length = 500, blank=True)
     time = models.TimeField(help_text="Time of the experiment in 24h format", blank=True, null=True)
     researchers = models.ManyToManyField('Researcher')
     experimentID = models.SlugField(max_length=50, help_text="ie DB-2008-11-11-A", blank=True)
     feeding_state = models.CharField(max_length=20, default = 'fed', choices = FEEDING_TYPES)
-    fasting_time = models.IntegerField(help_text = "in hours", null = True, blank = True)
+    fasting_time = models.IntegerField(help_text = "in hours", null = True, blank = True, verbose_name="Fasting/Refeeding Time")
     injection = models.CharField(max_length=20, choices=INJECTIONS, blank=True)
     concentration = models.CharField(max_length=20, blank=True)
     study = models.ForeignKey('Study', blank=True, null=True)
@@ -238,6 +239,7 @@ class Cohort(models.Model):
     Generally a cohort is an experimental replicate of a :class:`~mousedb.data.models.Treatment` as part of a :class:`~mousedb.data.models.Study`.
     Cohorts are also generally defined by starting and ending dates.
     A cohort would generally comprise both :class:`~mousedb.data.models.Treatment` groups being compared.
+    A cohort may also be associated with one or more :class:`~mousedb.data.models.Study` objects.
     The required fields are **name** (which must be unique to this cohort) and **animals**.
     '''
     
@@ -245,6 +247,7 @@ class Cohort(models.Model):
     animals = models.ManyToManyField(Animal, help_text="Which animals comprise this cohort.")
     start_date = models.DateField(blank=True, null=True, help_text="What date did the treatments/comparason start")
     end_date = models.DateField(blank=True, null=True, help_text="What date did the treatments/comparason end")
+    studies = models.ManyToManyField(Study, blank=True, null=True, help_text="Which studies is this cohort associated with?")
     treatment_groups = models.ManyToManyField('Treatment', blank=True, null=True, help_text="Which treatment groups are involved?")
     notes = models.TextField(blank=True, null=True, help_text="Extra notes about this cohort.")
     slug = models.SlugField(editable=False)
