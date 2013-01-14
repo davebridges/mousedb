@@ -257,7 +257,7 @@ def litters_csv(request):
 def all_data_csv(request):
     """This view generates a csv output of all data for a strain."""
 
-    measurement_list = Measurement.objects.all()
+    measurement_list = Measurement.objects.filter(assay__assay = "Body Weight")
     response = HttpResponse(mimetype='text/csv')
     response['Content-Disposition'] = 'attachment; filename=data.csv'
     writer = csv.writer(response)
@@ -269,7 +269,7 @@ def all_data_csv(request):
             measurement.assay,
             int(measurement.values.split(',')[0]),
             measurement.animal.Strain,
-            measurement.animal.age(),
+            measurement.age(),
             measurement.animal.Cage,
             measurement.experiment.feeding_state,
             measurement.animal.treatment_set.all(),
