@@ -15,22 +15,20 @@ Software Dependencies
 ---------------------
 
 1. **Python**.  Requires Version 2.6, is not yet compatible with Python 3.0.  Download from http://www.python.org/download/.
-2. **MouseDB source code**.  Download from one of the following:  
+2. **pip**.  The python package manager, this will assist in the installation of dependencies.  See http://stackoverflow.com/questions/4750806/how-to-install-pip-on-windows#answer-4921215 for installation instructions.
+3. **MouseDB source code**.  Download from one of the following and place in a folder on your computer.  Downloading and/or unzipping will create a directory named mousedb.  You can update to the newest revision at any time either using git or downloading and re-installing the newer version and copying over the existing version.  Changing or updating software versions will not alter any saved data, but you should back up your database prior to this just in case:  
 
-  a. Using **pip or easy_install**.  If setuptools (available at http://pypi.python.org/pypi/setuptools) is installed type **pip install mousedb** at a command prompt.
-  b. http://github.com/davebridges/mousedb/downloads for the current release.  If you will not be contributing to the code, download from here.
-  c. http://github.com/davebridges/mousedb for the source code via Git.  If you might contribute code to the project use the source code.
+  a. If you plan on developing the software,  Make your own fork of https://github.com/davebridges/mousedb and clone via git. 
+  b. If you do not plan on developing the software, but want to be able to upgrate it via git, clone it from git://github.com/davebridges/mousedb.git
+  c. If you do not plan on developing the software, and only want a specific version download and unzip the source code from  https://github.com/davebridges/mousedb/archive/master.zip or a particular version from https://github.com/davebridges/mousedb/tags.  Unzip/extract the package into your destination folder
 
-Downloading and/or unzipping will create a directory named mousedb.  You can update to the newest revision at any time either using git or downloading and re-installing the newer version.  Changing or updating software versions will not alter any saved data, but you will have to update the localsettings.py file (described below).
+4. **Other Python Packages**.  Several other python packages are also required.  These are listed in the requirements.txt file.  To install these, open a command line and move into the mousedb directory.  You may need administrative priviledges to install these.  Do get the required python packages enter::
 
-3. **Database software**.  Recommended to use mysql, available at http://dev.mysql.com/downloads/mysql/ .  It is also possible to use SQLite, PostgreSQL, MySQL, or Oracle.  See http://docs.djangoproject.com/en/1.2/topics/install/#database-installation for more information.
-4. **Webserver**.  Apache is recommended, available at http://www.apache.org/dyn/closer.cgi .  It is also possible to use FastCGI, SCGI, or AJP.  See http://docs.djangoproject.com/en/1.2/howto/deployment/ for more details.  The recommended way to use Apache is to download and enable mod_wsgi.  See http://code.google.com/p/modwsgi/ for more details.
-5. **Other Python Packages**.  The following can be imported using **pip install -U <package-name>** and are required:
-    
-    * South: Used for database migrations.  Only required for upgrades.
-    * django-braces: Used for login and permission settings in class based views.
-    * django-ajax-selects: For autocomplete functionality.
-    * django-tastypie: For API functionality.
+    pip install -r requirements.txt
+
+5. **Database software**.  Recommended to use mysql, available at http://dev.mysql.com/downloads/mysql/ .  It is also possible to use SQLite, PostgreSQL, MySQL, or Oracle.  See https://docs.djangoproject.com/en/1.4/topics/install/#get-your-database-running for more information.
+6. **Webserver**.  Apache is recommended, available at http://www.apache.org/dyn/closer.cgi .  It is also possible to use FastCGI, SCGI, or AJP.  See https://docs.djangoproject.com/en/1.4/topics/install/#install-apache-and-mod-wsgi for more details.  The recommended way to use Apache is to download and enable mod_wsgi.  See http://code.google.com/p/modwsgi/ for more details.
+
 
 Database Setup
 --------------
@@ -109,7 +107,7 @@ Go to servername/mousedb/admin/auth/users/ and create users, selecting usernames
 
 Testing
 -------
-From the mousedb directory run **bin\test** to run the test suite.  See https://github.com/davebridges/mousedb/wiki/Known-Issues---Test-Suite for known issues.  Report any additional errors at the issue page at https://github.com/davebridges/mousedb/issues.
+From the mousedb directory run **python manage.py test** to run the test suite.  See https://github.com/davebridges/mousedb/wiki/Known-Issues---Test-Suite for known issues.  Report any additional errors at the issue page at https://github.com/davebridges/mousedb/issues.
 
 Concepts
 ''''''''
