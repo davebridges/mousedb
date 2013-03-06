@@ -261,11 +261,12 @@ def all_data_csv(request):
     response = HttpResponse(mimetype='text/csv')
     response['Content-Disposition'] = 'attachment; filename=data.csv'
     writer = csv.writer(response)
-    writer.writerow(["Animal", "Genotype", "Assay", "Value","Strain", "Age", "Cage", "Feeding", "Treatment"])
+    writer.writerow(["Animal", "Genotype", "Gender","Assay", "Value","Strain", "Age", "Cage", "Feeding", "Treatment"])
     for measurement in measurement_list:
         writer.writerow([
             measurement.animal,
             measurement.animal.Genotype,
+            measurement.animal.Gender,
             measurement.assay,
             int(measurement.values.split(',')[0]),
             measurement.animal.Strain,
