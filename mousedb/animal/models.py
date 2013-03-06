@@ -10,6 +10,7 @@ GENOTYPE_CHOICES = (
 		('+/+', 'Wild-Type'),
 		('-/+', 'Heterozygous'),
 		('-/-', 'Knockout'),
+        ('-/Y', 'X-Linked Knockout'),
 		('N.D.', 'Not Determined')
 		)
 	),
@@ -89,6 +90,7 @@ GENOTYPE_CHOICES = (
 		('+/-;fl/+; Tg/Tg', 'Heterozygote/Heterozygous Floxed/Homozygous Transgene'),
 		('+/-;+/+; Tg/+', 'Heterozygote/Wild-Type/Heterozygous Transgene'),
 		('+/-;+/+; Tg/Tg', 'Heterozygote/Wild-Type/Homozygous Transgene'),
+		('+/-;+/+; +/+', 'Heterozygote/Wild-Type/No Transgene'),        
 		('+/+;fl/fl; ?', 'Wild-Type/Floxed/Undetermined Transgene'),
 		('+/+;fl/fl; +/+', 'Wild-Type/Floxed/no Transgene'),
 		('+/+;fl/+; +/+', 'Wild-Type/Heterozygous Floxed/no Transgene'),
@@ -99,7 +101,17 @@ GENOTYPE_CHOICES = (
 		('+/+;+/+; Tg/+', 'Wild-Type/Wild-Type/Heterozygous Transgene'),
 		('+/+;+/+; Tg/Tg', 'Wild-Type/Wild-Type/Homozygous Transgene'),
         ('+/+;+/+; ?', 'Wild-Type/Wild-Type/Unknown Transgene'),
-        ('+/+;+/+; +/+', 'Wild-Type/Wild-Type/No Transgene'),        
+        ('+/+;+/+; +/+', 'Wild-Type/Wild-Type/No Transgene'),
+		('-/Y;fl/fl; ?', 'X-Linked Knockout/Floxed/Undetermined Transgene'),
+		('-/Y;fl/fl; +/+', 'X-Linked Knockout/Floxed/no Transgene'),
+		('-/Y;fl/+; +/+', 'X-Linked Knockout/Heterozygous Floxed/no Transgene'),
+		('-/Y;fl/fl; Tg/+', 'X-Linked Knockout/Floxed/ Heterozygous Transgene'),
+		('-/Y;fl/+; Tg/+', 'X-Linked Knockout/Heterozygous Floxed/Heterozygous Transgene'),
+		('-/Y;fl/fl; Tg/Tg', 'X-Linked Knockout/Floxed/Homozygous Transgene'),
+		('-/Y;fl/+; Tg/Tg', 'X-Linked Knockout/Heterozygous Floxed/Homozygous Transgene'),
+		('-/Y;+/+; Tg/+', 'X-Linked Knockout/Wild-Type/Heterozygous Transgene'),
+		('-/Y;+/+; Tg/Tg', 'X-Linked Knockout/Wild-Type/Homozygous Transgene'),        
+		('-/Y;+/+; +/+', 'X-Linked Knockout/Wild-Type/No Transgene'),          
 		)
 		)
 	)
