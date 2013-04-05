@@ -225,12 +225,13 @@ def aging_csv(request):
     response = HttpResponse(mimetype='text/csv')
     response['Content-Disposition'] = 'attachment; filename=aging.csv'
     writer = csv.writer(response)
-    writer.writerow(["Animal", "Strain", "Genotype", "Age", "Death", "Alive"])
+    writer.writerow(["Animal", "Strain", "Genotype", "Gender", "Age", "Death", "Alive"])
     for animal in animal_list.iterator():
         writer.writerow([
             animal.MouseID, 
             animal.Strain, 
             animal.Genotype, 
+            animal.Gender,
             animal.age(),
             animal.Cause_of_Death,
             animal.Alive            
