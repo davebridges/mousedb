@@ -14,7 +14,7 @@ MouseDB requires both a database and a webserver to be set up.  Ideally, the dat
 Software Dependencies
 ---------------------
 
-1. **Python**.  Requires Version 2.6, is not yet compatible with Python 3.0.  Download from http://www.python.org/download/.
+1. **Python**.  Requires Version 2.6+ but preferably 2.7.3, Django is not yet compatible with Python 3.0.  Download from http://www.python.org/download/.
 2. **pip**.  The python package manager, this will assist in the installation of dependencies.  See http://stackoverflow.com/questions/4750806/how-to-install-pip-on-windows#answer-4921215 for installation instructions.
 3. **MouseDB source code**.  Download from one of the following and place in a folder on your computer.  Downloading and/or unzipping will create a directory named mousedb.  You can update to the newest revision at any time either using git or downloading and re-installing the newer version and copying over the existing version.  Changing or updating software versions will not alter any saved data, but you should back up your database prior to this just in case:  
 
