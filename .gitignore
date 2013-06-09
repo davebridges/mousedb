@@ -22,4 +22,6 @@ parts
 src/*.egg-info
 
 
-
+#potential locations of static and media files
+served-static/
+served-media/
