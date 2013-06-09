@@ -2,7 +2,7 @@
 
 It takes a url in the form of **/veterinary/something** and sends it to the appropriate view class or function based on that something."""
 
-from django.conf.urls.defaults import *
+from django.conf.urls import *
 
 from mousedb.veterinary import views
 

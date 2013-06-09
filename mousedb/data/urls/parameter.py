@@ -1,6 +1,6 @@
 '''This is the urlconf for a variety of experimental parameters.'''
 
-from django.conf.urls.defaults import *
+from django.conf.urls import *
 
 from mousedb.data import views
 

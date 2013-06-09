@@ -1,6 +1,6 @@
 '''This is the urlconf for cage urls.'''
 
-from django.conf.urls.defaults import *
+from django.conf.urls import *
 
 from mousedb.animal import views
 		

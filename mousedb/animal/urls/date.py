@@ -2,7 +2,7 @@
 
 This urlconf takes a url in the form **/date/...** and can generate a general archive, yearly archive or monthly archive."""
 
-from django.conf.urls.defaults import *
+from django.conf.urls import *
 
 from mousedb.animal.views import AnimalYearArchive, AnimalMonthArchive
 

@@ -2,7 +2,7 @@
 
 It takes a url in the form of /plug/something and sends it to the appropriate view class or function."""
 
-from django.conf.urls.defaults import *
+from django.conf.urls import *
 
 from mousedb.timed_mating import views
 

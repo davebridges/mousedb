@@ -2,7 +2,7 @@
 
 This includes generic views for treatment-list, treatment-details and create, change and delete studies."""
 
-from django.conf.urls.defaults import *
+from django.conf.urls import *
 
 from mousedb.data import views
 

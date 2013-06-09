@@ -2,7 +2,7 @@
 
 This controls any page **/mousedb/todo/...** and sends it to the appropriate views."""
 
-from django.conf.urls.defaults import *
+from django.conf.urls import *
 
 from mousedb.animal import views
 

@@ -2,7 +2,7 @@
 
 It takes the root */strain...* and generates strain-list, strain-new, strain-edit, strain-delete, strain-detail and strain-detail-all views from animal.views."""
 
-from django.conf.urls.defaults import *
+from django.conf.urls import *
 
 from mousedb.animal import views
 

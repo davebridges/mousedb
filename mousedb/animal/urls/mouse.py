@@ -4,7 +4,7 @@ controls views in the form */mouse...*, */mice...* or */animal...*
 
 This includes create, update, delete views as well as animal-list, and animal-list all and animal-multiple-new."""
 
-from django.conf.urls.defaults import *
+from django.conf.urls import *
 
 from mousedb.animal import views
 

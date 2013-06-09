@@ -2,7 +2,7 @@
 
 This includes generic views for breeding, breeding details and create, change, search and delete breeding cages."""
 
-from django.conf.urls.defaults import *
+from django.conf.urls import *
 
 from mousedb.animal import views
 

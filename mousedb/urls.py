@@ -2,7 +2,7 @@
 
 These directives will redirect requests to app specific pages, and provide redundancy in possible names."""
 
-from django.conf.urls.defaults import *
+from django.conf.urls import *
 from django.contrib import admin
 
 from tastypie.api import Api

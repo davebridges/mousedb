@@ -4,7 +4,7 @@ This includes generic create, update, delete, list and detail views.
 The views for these urls are defined in the :mod:`~mousedb.data.views.` module.
 """
 
-from django.conf.urls.defaults import *
+from django.conf.urls import *
 
 from mousedb.data.views import CohortDetail, CohortList, CohortUpdate, CohortDelete, CohortCreate
 

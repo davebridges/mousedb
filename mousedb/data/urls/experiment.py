@@ -2,7 +2,7 @@
 
 It takes the root /experiment/ plust whatever is shown below'''
 
-from django.conf.urls.defaults import *
+from django.conf.urls import *
 
 from mousedb.data import views
 
