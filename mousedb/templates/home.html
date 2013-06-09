@@ -11,16 +11,16 @@
 <table>
 <tr><th></th><th width=75>Current</th><th width=75>All</th></tr>
 <tr><td>Strains</td>
-<td><a href="{% url strain-list %}">{{ strain_list_current.count }}</a></td>
-<td><a href="{% url strain-list %}">{{ strain_list.count }}</a></td>
+<td><a href="{% url "strain-list" %}">{{ strain_list_current.count }}</a></td>
+<td><a href="{% url "strain-list" %}">{{ strain_list.count }}</a></td>
 </tr>
 <tr><td>Mice</td>
-<td><a href="{% url animal-list %}">{{ animal_list_current.count }}</a></td>
-<td><a href="{% url animal-list-all %}">{{ animal_list.count }}</a></td>
+<td><a href="{% url "animal-list" %}">{{ animal_list_current.count }}</a></td>
+<td><a href="{% url "animal-list-all" %}">{{ animal_list.count }}</a></td>
 </tr><tr>
 <td>Cages</td>
-<td><a href="{% url cage-list %}">{{ cage_list_current.count }}</a></td>
-<td><a href="{% url cage-list-all %}">{{ cage_list.count }}</a></td>
+<td><a href="{% url "cage-list" %}">{{ cage_list_current.count }}</a></td>
+<td><a href="{% url "cage-list-all" %}">{{ cage_list.count }}</a></td>
 </tr>
 </table>
 </div>

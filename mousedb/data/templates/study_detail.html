@@ -33,10 +33,10 @@
 		{% with study.experiment_set.all as experiment_list %}
 		{% include "experiment_list_table.html" %}
 		{% endwith %}
-<p>Add new experiment <a href="{% url experiment-new %}">here</a></p>
+<p>Add new experiment <a href="{% url "experiment-new" %}">here</a></p>
 </div>
 <h3>{{ study.treatment_set.all.count }} Treatment(s):</h3>
-Add a new treatment group <a href="{% url treatment-new %}">here.
+Add a new treatment group <a href="{% url "treatment-new" %}">here.
 <div id = "treatment_chart">
 <img src="http://chart.apis.google.com/chart?chs=1000x250
 &amp;chd=t:{% for treatment in study.treatment_set.all %}{{treatment.animals.all.count}}{% if not forloop.last %},{% endif %}{% endfor %}

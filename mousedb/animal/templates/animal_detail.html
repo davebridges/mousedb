@@ -39,12 +39,12 @@ This mouse has an unknown age.
 	{% if animal.breeding_males.all %} class="breeder" {% endif %}
 	{% if animal.breeding_females.all %} class="breeder" {% endif %}
 >
-			<td><a href = "{% url animal-detail animal.id %}">{{ animal.MouseID}}</a></td>
-			<td><a href="{% url strain-detail animal.Strain.Strain_slug %}">{{ animal.Strain }}</a></td>
+			<td><a href = "{% url "animal-detail" animal.id %}">{{ animal.MouseID}}</a></td>
+			<td><a href="{% url "strain-detail" animal.Strain.Strain_slug %}">{{ animal.Strain }}</a></td>
 			<td>{{ animal.Background }}</td>
 			<td>{{ animal.Genotype }}</td>
 			<td>{{ animal.Gender }}</td>
-			<td>{% if animal.Cage %}<a href="{% url cage-detail animal.Cage %}">{{ animal.Cage}}{% endif %}</a></td>
+			<td>{% if animal.Cage %}<a href="{% url "cage-detail" animal.Cage %}">{{ animal.Cage}}{% endif %}</a></td>
 			<td>{{ animal.Rack|all_caps }}</td>
 			<td>{{ animal.Rack_Position|all_caps }}</td>
 			<td>{{ animal.Backcross }}</td>
@@ -67,13 +67,13 @@ This mouse has an unknown age.
 
 <div class="fg-buttonset">
 {% if perms.animal.change_animal %}
-	<a href="{% url animal-update animal.id %}"><button class="fg-button ui-state-default ui-corner-left"><span class="ui-icon ui-icon-pencil"></span>Edit Mouse</button></a>
+	<a href="{% url "animal-update" animal.id %}"><button class="fg-button ui-state-default ui-corner-left"><span class="ui-icon ui-icon-pencil"></span>Edit Mouse</button></a>
 {% endif %}
 {% if perms.animal.add_animal %}
-	<a href="{% url animal-new %}"><button class="fg-button ui-state-default"><span class="ui-icon ui-icon-circle-plus"></span>Add New Mouse</button></a>
+	<a href="{% url "animal-new" %}"><button class="fg-button ui-state-default"><span class="ui-icon ui-icon-circle-plus"></span>Add New Mouse</button></a>
 {% endif %}
 {% if perms.animal.delete_animal %}
-	<a href="{% url animal-delete animal.id %}"><button class="fg-button ui-state-default  ui-corner-right"><span class="ui-icon ui-icon-trash"></span>Delete Mouse</button></a>
+	<a href="{% url "animal-delete" animal.id %}"><button class="fg-button ui-state-default  ui-corner-right"><span class="ui-icon ui-icon-trash"></span>Delete Mouse</button></a>
 {% endif %}
 </div>
 {% if animal.Breeding %}

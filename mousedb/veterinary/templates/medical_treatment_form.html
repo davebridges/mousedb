@@ -3,7 +3,7 @@
 {% block header %}{% if medical_condition %}Update {{ medical_treatment }} {% else %}New Treatment{% endif %}{% endblock %}
 {% block title %}{% if medical_condition %}Update {{ medical_treatment }} {% else %}New Treatment{% endif %}{% endblock %}
 {% block content %}
-<form method="POST" action="{% if medical_treatment %}{% url medical-treatment-edit medical_treatment.slug %} {% else %} {% url medical-treatment-new %}{% endif %}">{% csrf_token %}
+<form method="POST" action="{% if medical_treatment %}{% url "medical-treatment-edit" medical_treatment.slug %} {% else %} {% url "medical-treatment-new" %}{% endif %}">{% csrf_token %}
 <table>{{ form }}</table>
 <input type="submit" value="Submit" />
 </form>

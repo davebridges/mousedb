@@ -19,6 +19,6 @@
 {% block content %}
 {% include "experiment_list_table.html" %}
 {% if perms.data.add_experiment %}
-<a href="{% url experiment-new %}"><button class="fg-button ui-state-default ui-corner-left"><span class="ui-icon ui-icon-pencil"></span>Add New Experiment</button></a>
+<a href="{% url "experiment-new" %}"><button class="fg-button ui-state-default ui-corner-left"><span class="ui-icon ui-icon-pencil"></span>Add New Experiment</button></a>
 {% endif %}
 {% endblock content %}

@@ -12,7 +12,7 @@
 	</script>
 {% endblock %}
 {% block content %}
-<form method="POST" action="{% if medical_issue %}{% url medical-issue-edit medical_issue.id %} {% else %} {% url medical-issue-new %}{% endif %}">{% csrf_token %}
+<form method="POST" action="{% if medical_issue %}{% url "medical-issue-edit" medical_issue.id %} {% else %} {% url "medical-issue-new" %}{% endif %}">{% csrf_token %}
 <table>{{ form }}</table>
 <input type="submit" value="Submit" />
 </form>

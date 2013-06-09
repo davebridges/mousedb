@@ -10,7 +10,7 @@
 {% block header %}Breeding Cages - {{breeding_type}}{% endblock header %}
 
 {% block content %}
-  <form action="{% url breeding-search %}" method="GET">
+  <form action="{% url "breeding-search" %}" method="GET">
     <label for="q">Search: </label>
     <input type="text" name="q" value="{{ query|escape }}">
     <input type="submit" value="Search">

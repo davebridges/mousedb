@@ -29,12 +29,12 @@
 {% if breeding.Male.all %}
        <ul>
        {% for male in breeding.Male.all %}
-	   <li class="{% if not male.Alive %} dead {% endif %}{{ male.breeding_male_location_type }}"><a href="{% url animal-detail male.id %}">{{ male }}</a></li>
+	   <li class="{% if not male.Alive %} dead {% endif %}{{ male.breeding_male_location_type }}"><a href="{% url "animal-detail" male.id %}">{{ male }}</a></li>
        {% endfor %}
        </ul>
 {% endif %}
    </td>
-   <td class="left" >{% if breeding.Females.all %}<ul>{% for female in breeding.Females.all %}<li class="left {% if not female.Alive %} dead {% endif %}{{ female.breeding_female_location_type }}"><a href="{% url animal-detail female.id %}"><a href="{% url animal-detail female.id %}">{{ female }}</a></li>{% endfor %}</ul>{% endif %}</td>
+   <td class="left" >{% if breeding.Females.all %}<ul>{% for female in breeding.Females.all %}<li class="left {% if not female.Alive %} dead {% endif %}{{ female.breeding_female_location_type }}"><a href="{% url "animal-detail" female.id %}"><a href="{% url "animal-detail" female.id %}">{{ female }}</a></li>{% endfor %}</ul>{% endif %}</td>
    <td {% if not breeding.Active %}class="dead"{% endif %}>{{ breeding.Rack }}</td>
    <td {% if not breeding.Active %}class="dead"{% endif %}>{{ breeding.Rack_Position|all_caps }}</td>
    <td class="left {% if not breeding.Active %} dead{% endif %}">{{ breeding.duration}}</td>
@@ -44,14 +44,14 @@
    <td class="left {% if not breeding.Active %} dead{% endif %}">{{ breeding.Notes }}</td>
 <td class="fg-buttonset fg-buttonset-multi">
 {% if perms.animal.change_breeding %}
-  <a href="{% url breeding-edit breeding.id %}" title="Edit {{breeding}}">
+  <a href="{% url "breeding-edit" breeding.id %}" title="Edit {{breeding}}">
    <button class="fg-button ui-state-default fg-button-icon-left ui-corner-all">
     <span class="ui-icon ui-icon-pencil" style="float:left;"></span>Edit
    </button>
    </a>
 {% endif %}
 {% if perms.animal.delete_breeding %}
-  <a href="{% url breeding-delete breeding.id %}" title="Delete {{breeding}}">
+  <a href="{% url "breeding-delete" breeding.id %}" title="Delete {{breeding}}">
    <button class="fg-button ui-state-default fg-button-icon-left ui-corner-all">
     <span class="ui-icon ui-icon-trash" style="float:left;"></span>Delete
    </button>

@@ -13,7 +13,7 @@
 {% endblock %}
 {% block header %}Data Entry ({{ experiment }}){% endblock %}
 {% block content %}
-<form action="{% url data-entry experiment.id %} " method="POST">{% csrf_token %}
+<form action="{% url "data-entry" experiment.id %} " method="POST">{% csrf_token %}
     <table>
 	{{ form }}
     </table>

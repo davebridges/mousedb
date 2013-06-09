@@ -12,7 +12,7 @@
  <tr>
   <th>Strain</th> {% for strain in strain_list_alive %}<th>{{strain}}</th>{% endfor %}
  </tr>
- <tr><th>Current</th>{% for strain in strain_list_alive %}<td><a href="{% url strain-detail strain.Strain_slug %}">{{ strain.alive }}</a></td>{% endfor %}</tr>
+ <tr><th>Current</th>{% for strain in strain_list_alive %}<td><a href="{% url "strain-detail" strain.Strain_slug %}">{{ strain.alive }}</a></td>{% endfor %}</tr>
  </table>
 <div id="chart">
 <img src="http://chart.apis.google.com/chart?
@@ -28,7 +28,7 @@ border = 1 px/>
 <h2>In Total {{ strain_list.count }} Strains of Mice:</h2>
 <table>  
  <th>Strain</th> {% for strain in strain_list %}<th>{{strain}}</th>{% endfor %}
- <tr><th>All</th>{% for strain in strain_list %}<td><a href="{% url strain-detail-all strain.Strain_slug %}">{{ strain.animal_set.count }}</td></a>{% endfor %}</tr>
+ <tr><th>All</th>{% for strain in strain_list %}<td><a href="{% url "strain-detail-all" strain.Strain_slug %}">{{ strain.animal_set.count }}</td></a>{% endfor %}</tr>
 </table>
 <div id="chart">
 <img src="http://chart.apis.google.com/chart?
@@ -44,10 +44,10 @@ border = 1 px/>
  </div>
 <div id="pups" class="fg-buttonset">
 {% if perms.animal.create_animal %}
-<a href="{% url strain-new %}"><button class="fg-button ui-state-default ui-corner-left"><span class="ui-icon ui-icon-circle-plus"></span>Add New Strain</button></a>
+<a href="{% url "strain-new" %}"><button class="fg-button ui-state-default ui-corner-left"><span class="ui-icon ui-icon-circle-plus"></span>Add New Strain</button></a>
 {% endif %}
 {% if perms.animal.change_animal %}
-<a href="{% url animal-new %}"><button class="fg-button ui-state-default ui-corner-right"><span class="ui-icon ui-icon-circle-plus"></span>Add New Mouse</button></a>
+<a href="{% url "animal-new" %}"><button class="fg-button ui-state-default ui-corner-right"><span class="ui-icon ui-icon-circle-plus"></span>Add New Mouse</button></a>
 {% endif %}
 </div>
 {% endblock content %}

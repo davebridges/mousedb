@@ -9,13 +9,13 @@
 </table>
 
 {% if perms.veterinary.update_medicalcondition %}
-    <a href="{% url medical-treatment-edit medical_treatment.slug %}"> 
+    <a href="{% url "medical-treatment-edit" medical_treatment.slug %}"> 
 	<button class="update">Update</button>
 	</a>
 {% endif %}
 
 {% if perms.veterinary.delete_medicalcondition %}
-	<a href="{% url medical-treatment-delete medical_treatment.slug %}">
+	<a href="{% url "medical-treatment-delete" medical_treatment.slug %}">
 	<button class="delete">Delete</button>
 	</a>
 {% endif %}

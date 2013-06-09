@@ -39,12 +39,12 @@
 </table>
 <div class="fg-buttonset">
 {% if perms.animal.create_breeding %}
-<a href="{% url breeding-new %}"><button class="fg-button ui-state-default ui-corner-left"><span class="ui-icon ui-icon-circle-plus"></span>Add New Breeding Cage</button></a>
+<a href="{% url "breeding-new" %}"><button class="fg-button ui-state-default ui-corner-left"><span class="ui-icon ui-icon-circle-plus"></span>Add New Breeding Cage</button></a>
 {% endif %}
 {% if perms.animal.change_breeding %}
-<a href="{% url breeding-edit breeding.id %}"><button class="fg-button ui-state-default"><span class="ui-icon ui-icon-pencil"></span>Edit Breeding Cage</button></a>
+<a href="{% url "breeding-edit" breeding.id %}"><button class="fg-button ui-state-default"><span class="ui-icon ui-icon-pencil"></span>Edit Breeding Cage</button></a>
 {% endif %}
 {% if perms.animal.delete_breeding %}
-<a href="{% url breeding-delete breeding.id %}"><button class="fg-button ui-state-default ui-corner-right"><span class="ui-icon ui-icon-trash"></span>Delete Breeding Cage</button></a>
+<a href="{% url "breeding-delete" breeding.id %}"><button class="fg-button ui-state-default ui-corner-right"><span class="ui-icon ui-icon-trash"></span>Delete Breeding Cage</button></a>
 {% endif %}
 </div>

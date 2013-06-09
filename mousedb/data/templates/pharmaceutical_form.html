@@ -5,7 +5,7 @@
 
 {% block content %}
 
-<form method="POST" action="{% if pharmaceutical %}{% url pharmaceutical-edit pharmaceutical.id %}{% else %}{% url pharmaceutical-new %}{% endif %}">{% csrf_token %}
+<form method="POST" action="{% if pharmaceutical %}{% url "pharmaceutical-edit" pharmaceutical.id %}{% else %}{% url "pharmaceutical-new" %}{% endif %}">{% csrf_token %}
 <table>{{ form }}</table>
 <input type="submit" value="Submit" />
 </form>

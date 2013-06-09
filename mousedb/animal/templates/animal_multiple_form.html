@@ -14,7 +14,7 @@
 {% block header %}Enter Several New Animals{% if breeding %} for {{ breeding }}{% endif %}{% endblock header %}
 
 {% block content %}
-<form method="POST" action="{% if breeding %}{% url animal-multiple-pups-new breeding.id %}{% else %}{% url animal-multiple-new %}{% endif %}" >{% csrf_token %}
+<form method="POST" action="{% if breeding %}{% url "animal-multiple-pups-new" breeding.id %}{% else %}{% url "animal-multiple-new" %}{% endif %}" >{% csrf_token %}
 	<table>{{ form }}</table>
 <input type="submit" value="Submit" />
 </form>

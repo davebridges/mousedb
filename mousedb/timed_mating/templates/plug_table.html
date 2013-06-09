@@ -34,14 +34,14 @@
 	<td>{{plugevent.KO_Alive}}/{{plugevent.KO_Dead}}</td>
 <td class="fg-buttonset fg-buttonset-multi">
 {% if perms.timed_mating.change_plugEvents %}
-  <a href="{% url plugevents-edit plugevent.id %}" title="Edit {{plugevent}}">
+  <a href="{% url "plugevents-edit" plugevent.id %}" title="Edit {{plugevent}}">
    <button class="fg-button ui-state-default fg-button-icon-left ui-corner-all">
     <span class="ui-icon ui-icon-pencil" style="float:left;">Edit</span>
    </button>
    </a>
 {% endif %}
 {% if perms.timed_mating.delete_plugEvents %}
-  <a href="{% url plugevents-delete plugevent.id %}" title="Delete {{plugevent}}">
+  <a href="{% url "plugevents-delete" plugevent.id %}" title="Delete {{plugevent}}">
    <button class="fg-button ui-state-default fg-button-icon-left ui-corner-all">
     <span class="ui-icon ui-icon-trash" style="float:left;">Delete</span>
    </button>

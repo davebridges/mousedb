@@ -13,13 +13,13 @@
 {% for condition in medical_conditions %}
 	<li><a href="{{ condition.get_absolute_url }}">{{ condition }}</a>
 	{% if perms.veterinary.update_medicalcondition %}
-    <a href="{% url medical-condition-edit condition.slug %}"> 
+    <a href="{% url "medical-condition-edit" condition.slug %}"> 
 	<button class="update">Update</button>
 	</a>
 {% endif %}
 
 {% if perms.veterinary.delete_medicalcondition %}
-	<a href="{% url medical-condition-delete condition.slug %}">
+	<a href="{% url "medical-condition-delete" condition.slug %}">
 	<button class="delete">Delete</button>
 	</a>
 {% endif %}
@@ -27,7 +27,7 @@
 {% endfor %}
 </ul>
 {% if perms.veterinary.create_medicalcondition %}
-	<a href="{% url medical-condition-new %}">
+	<a href="{% url "medical-condition-new" %}">
 	<button class="create">New Medical Condition</button>
 	</a>
 {% endif %}
@@ -37,12 +37,12 @@
 {% for treatment in medical_treatments %}
 	<li><a href="{{ treatment.get_absolute_url }}">{{ treatment }}</a>
 {% if perms.veterinary.update_medicalcondition %}
-    <a href="{% url medical-treatment-edit treatment.slug %}"> 
+    <a href="{% url "medical-treatment-edit" treatment.slug %}"> 
 	<button class="update">Update</button>
 	</a>
 {% endif %}
 {% if perms.veterinary.delete_medicalcondition %}
-	<a href="{% url medical-treatment-delete treatment.slug %}">
+	<a href="{% url "medical-treatment-delete" treatment.slug %}">
 	<button class="delete">Delete</button>
 	</a>
 {% endif %}
@@ -50,7 +50,7 @@
 {% endfor %}
 </ul>
 {% if perms.veterinary.create_medicaltreatment %}
-	<a href="{% url medical-treatment-new %}">
+	<a href="{% url "medical-treatment-new" %}">
 	<button class="create">New Medical Treatment</button>
 	</a>
 {% endif %}

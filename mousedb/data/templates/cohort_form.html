@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block content %}
-<form method="POST" {% if cohort %} action="{% url cohort-edit cohort.slug %}" {% else %} action="{% url cohort-new %}"{% endif %}>{% csrf_token %}
+<form method="POST" {% if cohort %} action="{% url "cohort-edit" cohort.slug %}" {% else %} action="{% url "cohort-new" %}"{% endif %}>{% csrf_token %}
 <table>{{ form }}</table>
 <input type="submit" value="Submit" />
 </form>

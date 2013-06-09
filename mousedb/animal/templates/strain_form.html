@@ -3,7 +3,7 @@
 {% block header%}{% if strain %}Update {{strain}} {% else %}New Strain{% endif %}{% endblock %}
 {% block title %}{% if strain %}Update {{strain}} {% else %}New Strain{% endif %}{% endblock %}
 {% block content %}
-<form method="POST" action="{% if strain %}{% url strain-edit strain.id %}{% else %}{% url strain-new %}{% endif %}">{% csrf_token %}
+<form method="POST" action="{% if strain %}{% url "strain-edit" strain.id %}{% else %}{% url "strain-new" %}{% endif %}">{% csrf_token %}
 <table>{{ form }}</table>
 <input type="submit" value="Submit" />
 </form>

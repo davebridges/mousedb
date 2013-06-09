@@ -5,13 +5,13 @@
 
 {% block content %}
 <table>
-<tr><td><a href="{% url todo-eartags %}">Ear Tagging</a></td><td>{{ eartag_list.count }}</td></tr>
-<tr><td><a href="{% url todo-genotype %}">Genotype</a></td><td>{{ genotype_list.count }}</td></tr>
-<tr><td><a href="{% url todo-weaning %}">Wean</a></td><td>{{ wean_list.count }}</td></tr>
+<tr><td><a href="{% url "todo-eartags" %}">Ear Tagging</a></td><td>{{ eartag_list.count }}</td></tr>
+<tr><td><a href="{% url "todo-genotype" %}">Genotype</a></td><td>{{ genotype_list.count }}</td></tr>
+<tr><td><a href="{% url "todo-weaning" %}">Wean</a></td><td>{{ wean_list.count }}</td></tr>
 </table>
 <h2>Data Entry Errors</h2>
 <ul>
-<li><a href="{% url todo-no-cage %}">No Cage Entered</a></li>
-<li><a href="{% url todo-no-rack %}">No Rack Entered</a></li>
+<li><a href="{% url "todo-no-cage" %}">No Cage Entered</a></li>
+<li><a href="{% url "todo-no-rack" %}">No Rack Entered</a></li>
 </ul>
 {% endblock content %}

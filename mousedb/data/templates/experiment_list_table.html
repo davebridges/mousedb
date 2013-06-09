@@ -17,7 +17,7 @@
         <td>{{ experiment.measurement_set.all.count }}</td>
 		<td>{{ experiment.feeding_state }}</td>
 		<td>{% for researcher in experiment.researchers.all %}{{ researcher }} {% endfor %}</td>
-		<td>{% if experiment.study %}<a href="{% url study-detail experiment.study.id %}">{{ experiment.study}}</a>{% endif %}</td>
+		<td>{% if experiment.study %}<a href="{% url "study-detail" experiment.study.id %}">{{ experiment.study}}</a>{% endif %}</td>
 	</tr>
 {% endfor %}
 </tbody>

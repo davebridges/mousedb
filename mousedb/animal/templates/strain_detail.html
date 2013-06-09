@@ -22,9 +22,9 @@
 {% block content %}
 <h2>{{ animal_list.count }} mice in {{ cages.count }} cages{% if breeding_cages.count > 0%} ({{ breeding_cages.count }} Breeding Cages){% endif %}.</h2>
 {% if active  %}
-    <p class="grid_6">Only live mice and cages are shown click <a href="{% url strain-detail-all strain.Strain_slug %}">here</a> to see all mice and breeding cages.</p>
+    <p class="grid_6">Only live mice and cages are shown click <a href="{% url "strain-detail-all" strain.Strain_slug %}">here</a> to see all mice and breeding cages.</p>
 {% else %}
-    <p class="grid_6">All mice and cages are shown click <a href="{% url strain-detail strain.Strain_slug %}">here</a> to see current mice and breeding cages.</p>
+    <p class="grid_6">All mice and cages are shown click <a href="{% url "strain-detail" strain.Strain_slug %}">here</a> to see current mice and breeding cages.</p>
 {% endif %}
 {% if strain.breeding_set.count > 0%}
 <button class="toggle-breeding fg-button ui-state-default fg-button-toggleable ui-corner-all">Breeding Cages Show/Hide</button>
@@ -49,6 +49,6 @@
 	<div class="grid_12">{{ strain.Comments }}</div>
 {% if perms.animal.change_strain %}
     <div class="grid_12"
-<a href="{% url strain-edit strain.id %}"><button class="fg-button ui-state-default ui-corner-all"><span class="ui-icon ui-icon-pencil"></span>Edit {{ strain }}</button></a></div>
+<a href="{% url "strain-edit" strain.id %}"><button class="fg-button ui-state-default ui-corner-all"><span class="ui-icon ui-icon-pencil"></span>Edit {{ strain }}</button></a></div>
 {% endif %}
 {% endblock content %}
