@@ -14,7 +14,7 @@ from django.core import serializers
 from django.core.urlresolvers import reverse
 from django.db.models import Q
 from django.utils.decorators import method_decorator
-from django.views.generic import CreateView, UpdateView, DeleteView, YearArchiveView, MonthArchiveView
+from django.views.generic import CreateView, UpdateView, DeleteView, YearArchiveView, MonthArchiveView, ListView
 
 from mousedb.settings import WEAN_AGE, GENOTYPE_AGE
 
@@ -609,4 +609,36 @@ class CrossTypeAnimalList(AnimalList):
         
         context = super(CrossTypeAnimalList, self).get_context_data(**kwargs)
         context['list_type'] = self.kwargs['breeding_type']
-        return context        
+        return context
+        
+class CageList(ListView):
+    """This view shows all active cages.
+    
+    The view takes a url in the form **/cage** and returns a list of cages which have at least one animal.
+    
+    """
+    
+    queryset = Animal.objects.values('Cage', 'Strain__Strain', 'Strain__Strain_slug', 'Background', 'Rack', 'Rack_Position','Alive').filter(Alive=True).order_by('Cage').distinct().filter(Alive='True')
+    template_name ='cage_list.html'
+    template_object_name = 'cage'  
+	
+class CageListAll(CageList):
+    """This view shows all active cages.
+    
+    The view takes a url in the form **/cage/all** and returns a list of cages which have had at least one animal.
+    
+    This view subclasses CageList and just changes the query.
+    """
+    
+    queryset = Animal.objects.values("Cage", "Strain__Strain","Strain__Strain_slug", "Background", "Rack", "Rack_Position", "Alive").order_by('Cage').distinct()
+    
+class CageDetail(AnimalList):
+    """This view shows an animal list of only the animals which are in a given cage.
+    
+    This view is a subclass of AnimalList
+    """
+    
+    def get_queryset(self):
+        """This function sets the queryset to use the passed along cage_number."""
+        return Animal.objects.filter(Cage=self.kwargs['cage_number'])    
+	           

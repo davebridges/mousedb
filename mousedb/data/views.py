@@ -12,8 +12,9 @@ from django.core.urlresolvers import reverse_lazy
 from braces.views import LoginRequiredMixin, PermissionRequiredMixin
 
 from mousedb.animal.models import Animal
-from mousedb.data.models import Experiment, Measurement, Study, Treatment, Pharmaceutical, Cohort
-from mousedb.data.forms import MeasurementForm, MeasurementFormSet, StudyExperimentForm
+from mousedb.animal.views import AnimalList
+from mousedb.data.models import Experiment, Measurement, Study, Treatment, Pharmaceutical, Cohort, Diet
+from mousedb.data.forms import MeasurementForm, MeasurementFormSet, StudyExperimentForm, TreatmentForm
 
 class CohortDetail(LoginRequiredMixin,DetailView):
     '''This view generates details about a :class:`~mousedb.data.models.Cohort` object.
@@ -140,11 +141,6 @@ class TreatmentList(LoginRequiredMixin, ListView):
     model = Treatment
     template_name = 'treatment_list.html'
     context_object_name = 'treatment_list'      
-
-@login_required
-def experiment_list(request):
-	experiment_list = Experiment.objects.all()
-	return render_to_response('experiment_list.html', {'experiment_list' : experiment_list},context_instance=RequestContext(request))
 
 @login_required
 def experiment_detail(request, experiment):
@@ -277,3 +273,231 @@ def all_data_csv(request):
             measurement.animal.treatment_set.all(),
             ])
     return response
+    
+class ExperimentDetail(LoginRequiredMixin, DetailView):
+    '''This view is for details of a particular :class:`~mousedb.data.Experiment`.
+    
+    It passes an object **experiment** when the url **/experiment/<pk#>** is requested.'''
+
+    model = Experiment
+    context_object_name = 'experiment'
+    template_name = 'experiment_detail.html'
+    
+class ExperimentCreate(PermissionRequiredMixin, CreateView):
+    '''This view is for creating a new :class:`~mousedb.data.Experiment`.
+    
+    It requires the permissions to create a new experiment and is found at the url **/experiment/new**.'''
+    
+    permission_required = 'data.create_experiment'
+    model = Experiment
+    template_name = 'experiment_form.html'
+    
+class ExperimentUpdate(PermissionRequiredMixin, UpdateView):
+    '''This view is for updating a :class:`~mousedb.data.Experiment`.
+    
+    It requires the permissions to update an experiment and is found at the url **/experiment/<pk#>/edit**.'''
+    
+    permission_required = 'data.update_experiment'
+    model = Experiment
+    context_object_name = 'experiment'
+    template_name = 'experiment_form.html'   
+    
+class ExperimentDelete(PermissionRequiredMixin, DeleteView):
+    '''This view is for deleting a :class:`~mousedb.data.Experiment`.
+    
+    It requires the permissions to delete an experiment and is found at the url **/experiment/<pk$>/delete**.'''
+    
+    permission_required = 'data.delete_experiment'
+    model = Experiment
+    template_name = 'confirm_delete.html' 
+    success_url = reverse_lazy('data-home')        
+    
+class ExperimentList(LoginRequiredMixin, ListView):
+    '''This view is for details of a particular :class:`~mousedb.data.Experiment`.
+    
+    It passes an object **experiment_list** when the url **/experiment** is requested.''' 
+    
+    model = Experiment
+    template_object_name = 'experiment_list'
+    template_name = 'experiment_list.html'   
+    
+class MeasurementList(LoginRequiredMixin, ListView):
+    '''This view shows all :class:`~mousedb.data.Measurement` objects recorded .
+    
+    It passes an object **data* when the url **/experiment/data/all** is requested.'''
+    
+    model = Measurement
+    template_object_name = 'data'
+    template_name = 'data.html'   
+    
+class MeasurementUpdate(PermissionRequiredMixin, UpdateView):
+    '''This view is for updating a :class:`~mousedb.data.Measurement`.
+    
+    It requires the permissions to update a measurement and is found at the url **/experiment/data/<pk#>/edit**.'''
+    
+    permission_required = 'data.update_measurement'
+    form_class = MeasurementForm
+    model = Measurement
+    context_object_name = 'data'
+    template_name = 'measurement_form.html'   
+    
+class MeasurementDelete(PermissionRequiredMixin, DeleteView):
+    '''This view is for deleting a :class:`~mousedb.data.Measurement`.
+    
+    It requires the permissions to delete a measurement and is found at the url **/experiment/data/<pk$>/delete**.'''
+    
+    permission_required = 'data.delete_measurement'
+    model = Measurement
+    template_name = 'confirm_delete.html' 
+    success_url = reverse_lazy('data-home')  
+    
+class StudyDetail(LoginRequiredMixin, DetailView):
+    '''This view is for details of a particular :class:`~mousedb.data.Study`.
+    
+    It passes an object **study** when the url **/study/<pk#>** is requested.'''
+
+    model = Study
+    context_object_name = 'study'
+    template_name = 'study_detail.html'
+    
+class StudyCreate(PermissionRequiredMixin, CreateView):
+    '''This view is for creating a new :class:`~mousedb.data.Study`.
+    
+    It requires the permissions to create a new study and is found at the url **/study/new**.'''
+    
+    permission_required = 'data.create_study'
+    model = Study
+    template_name = 'study_form.html'
+    
+class StudyUpdate(PermissionRequiredMixin, UpdateView):
+    '''This view is for updating a :class:`~mousedb.data.Study`.
+    
+    It requires the permissions to update a study and is found at the url **/study/<pk#>/edit**.'''
+    
+    permission_required = 'data.update_study'
+    model = Study
+    context_object_name = 'study'
+    template_name = 'study_form.html'   
+    
+class StudyDelete(PermissionRequiredMixin, DeleteView):
+    '''This view is for deleting a :class:`~mousedb.data.Study`.
+    
+    It requires the permissions to delete a study and is found at the url **/study/<pk$>/delete**.'''
+    
+    permission_required = 'data.delete_study'
+    model = Study
+    template_name = 'confirm_delete.html' 
+    success_url = reverse_lazy('data-home')        
+    
+class StudyList(LoginRequiredMixin, ListView):
+    '''This view is for details of a particular :class:`~mousedb.data.Study`.
+    
+    It passes an object **study_list** when the url **/study** is requested.''' 
+    
+    model = Study
+    template_object_name = 'study_list'
+    template_name = 'study_list.html' 
+    
+class StudyAgeing(AnimalList):
+    '''This view shows animals in an ageing study.
+    
+    It displays all animals that died of unknown (natural) causes.
+    This is a subclass of :class:`~mousedb.animal.views.AnimalList`.'''
+    
+    queryset = Animal.objects.filter(Alive=False, Cause_of_Death="Unknown")   
+    
+class TreatmentDetail(LoginRequiredMixin, DetailView):
+    '''This view is for details of a particular :class:`~mousedb.data.Treatment`.
+    
+    It passes an object **treatment** when the url **/treatment/<pk#>** is requested.'''
+
+    model = Treatment
+    context_object_name = 'treatment'
+    template_name = 'treatment_detail.html'
+    
+class TreatmentCreate(PermissionRequiredMixin, CreateView):
+    '''This view is for creating a new :class:`~mousedb.data.Treatment`.
+    
+    It requires the permissions to create a new treatment and is found at the url **/treatment/new**.'''
+    
+    permission_required = 'data.create_treatment'
+    form_class = TreatmentForm    
+    model = Treatment
+    template_name = 'treatment_form.html'
+    
+class TreatmentUpdate(PermissionRequiredMixin, UpdateView):
+    '''This view is for updating a :class:`~mousedb.data.Treatment`.
+    
+    It requires the permissions to update a treatment and is found at the url **/treatment/<pk#>/edit**.'''
+    
+    permission_required = 'data.update_treatment'
+    model = Treatment
+    form_class = TreatmentForm
+    context_object_name = 'treatment'
+    template_name = 'treatment_form.html'   
+    
+class TreatmentDelete(PermissionRequiredMixin, DeleteView):
+    '''This view is for deleting a :class:`~mousedb.data.Treatment`.
+    
+    It requires the permissions to delete a treatment and is found at the url **/treatment/<pk$>/delete**.'''
+    
+    permission_required = 'data.delete_treatment'
+    model = Treatment
+    template_name = 'confirm_delete.html' 
+    success_url = reverse_lazy('data-home')        
+    
+class TreatmentList(LoginRequiredMixin, ListView):
+    '''This view is for details of a particular :class:`~mousedb.data.Treatment`.
+    
+    It passes an object **treatment_list** when the url **/treatment** is requested.''' 
+    
+    model = Treatment
+    template_object_name = 'treatment_list'
+    template_name = 'treatment_list.html'      
+    
+class DietDetail(LoginRequiredMixin, DetailView):
+    '''This view is for details of a particular :class:`~mousedb.data.Diet`.
+    
+    It passes an object **diet** when the url **/diet/<pk#>** is requested.'''
+
+    model = Diet
+    context_object_name = 'diet'
+    template_name = 'diet_detail.html'
+    
+class DietCreate(PermissionRequiredMixin, CreateView):
+    '''This view is for creating a new :class:`~mousedb.data.Diet`.
+    
+    It requires the permissions to create a new diet and is found at the url **/diet/new**.'''
+    
+    permission_required = 'data.create_diet' 
+    model = Diet
+    template_name = 'diet_form.html'
+    
+class DietUpdate(PermissionRequiredMixin, UpdateView):
+    '''This view is for updating a :class:`~mousedb.data.Diet`.
+    
+    It requires the permissions to update a diet and is found at the url **/diet/<pk#>/edit**.'''
+    
+    permission_required = 'data.update_diet'
+    model = Diet
+    context_object_name = 'diet'
+    template_name = 'diet_form.html'   
+    
+class DietDelete(PermissionRequiredMixin, DeleteView):
+    '''This view is for deleting a :class:`~mousedb.data.Diet`.
+    
+    It requires the permissions to delete a diet and is found at the url **/diet/<pk$>/delete**.'''
+    
+    permission_required = 'data.delete_diet'
+    model = Diet
+    template_name = 'confirm_delete.html' 
+    success_url = reverse_lazy('data-home')        
+    
+class DietList(LoginRequiredMixin, ListView):
+    '''This view is for details of a particular :class:`~mousedb.data.Diet`.
+    
+    It passes an object **diet_list** when the url **/diet** is requested.''' 
+    
+    model = Diet
+    template_object_name = 'diet_list'
+    template_name = 'diet_list.html'            
