@@ -11,7 +11,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
 from django.db.models import Count
 from django.core import serializers
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse, reverse_lazy
 from django.db.models import Q
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, UpdateView, DeleteView, YearArchiveView, MonthArchiveView, ListView
@@ -109,7 +109,7 @@ class AnimalDelete(DeleteView):
     model = Animal
     template_name = 'confirm_delete.html'
     context_object_name = 'animal'    
-    success_url = reverse('animal-list')    
+    success_url = reverse_lazy('animal-list')    
 
     @method_decorator(permission_required('animal.delete_animal'))
     def dispatch(self, *args, **kwargs):
@@ -216,7 +216,7 @@ class StrainDelete(DeleteView):
     model = Strain
     template_name = 'confirm_delete.html'
     context_object_name = 'strain'    
-    success_url = reverse('strain-list')     
+    success_url = reverse_lazy('strain-list')     
 
     @method_decorator(permission_required('animal.delete_strain'))
     def dispatch(self, *args, **kwargs):
@@ -335,7 +335,7 @@ class BreedingDelete(DeleteView):
     model = Breeding
     template_name = 'confirm_delete.html'
     context_object_name = 'breeding'    
-    success_url = reverse('breeding-list')     
+    success_url = reverse_lazy('breeding-list')     
     
     @method_decorator(permission_required('animal.delete_breeding'))
     def dispatch(self, *args, **kwargs):
