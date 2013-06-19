@@ -109,7 +109,7 @@ class AnimalDelete(DeleteView):
     model = Animal
     template_name = 'confirm_delete.html'
     context_object_name = 'animal'    
-    success_url = '/animal/'     
+    success_url = reverse('animal-list')    
 
     @method_decorator(permission_required('animal.delete_animal'))
     def dispatch(self, *args, **kwargs):
@@ -216,7 +216,7 @@ class StrainDelete(DeleteView):
     model = Strain
     template_name = 'confirm_delete.html'
     context_object_name = 'strain'    
-    success_url = '/strain/'     
+    success_url = reverse('strain-list')     
 
     @method_decorator(permission_required('animal.delete_strain'))
     def dispatch(self, *args, **kwargs):
@@ -335,7 +335,7 @@ class BreedingDelete(DeleteView):
     model = Breeding
     template_name = 'confirm_delete.html'
     context_object_name = 'breeding'    
-    success_url = '/breeding/'     
+    success_url = reverse('breeding-list')     
     
     @method_decorator(permission_required('animal.delete_breeding'))
     def dispatch(self, *args, **kwargs):
