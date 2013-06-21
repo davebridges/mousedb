@@ -191,11 +191,11 @@ def study_experiment(request, study_id):
 		form.fields["animals"].queryset = Animal.objects.filter(treatment__in=treatments)
 	return render_to_response("study_experiment_form.html", {'form':form, 'study':study, 'treatments': treatments},context_instance=RequestContext(request))
 	
-def experiment_details_csv(request, experiment_id):
+def experiment_details_csv(request, pk):
     """This view generates a csv output file of an experiment.
 	
 	The view writes to a csv table the animal, genotype, age (in days), assay and values."""
-    experiment = get_object_or_404(Experiment, pk=experiment_id)
+    experiment = get_object_or_404(Experiment, pk=pk)
     response = HttpResponse(mimetype='text/csv')
     response['Content-Disposition'] = 'attachment; filename=experiment.csv'
     writer = csv.writer(response)
@@ -362,7 +362,7 @@ class MeasurementDelete(PermissionRequiredMixin, DeleteView):
     permission_required = 'data.delete_measurement'
     model = Measurement
     template_name = 'confirm_delete.html' 
-    success_url = reverse_lazy('data-home')  
+    success_url = reverse_lazy('experiment-list')  
     
 class StudyDetail(LoginRequiredMixin, DetailView):
     '''This view is for details of a particular :class:`~mousedb.data.Study`.
