@@ -157,6 +157,8 @@ def experiment_detail_all(request):
 	measurement_bodyweight = Measurement.objects.filter(assay__pk=3).select_related()
 	return render_to_response('experiment_detail_all.html', {'measurement_plasmaglucose' : measurement_plasmaglucose, 'measurement_seruminsulin': measurement_seruminsulin, 'measurement_bodyweight' : measurement_bodyweight},context_instance=RequestContext(request))
 
+
+
 @permission_required('data.add_measurement')
 def add_measurement(request, experiment_id):
 	"""This is a view to display a form to add single measurements to an experiment.
@@ -320,6 +322,17 @@ class ExperimentList(LoginRequiredMixin, ListView):
     model = Experiment
     template_object_name = 'experiment_list'
     template_name = 'experiment_list.html'   
+
+class MeasurementCreate(LoginRequiredMixin, CreateView):
+    '''This view is for adding a new measurement.
+    
+    It creates a form when the url **/experiment/data/new** is requested.'''
+    
+    permission_required = 'data.add_measurement'
+    form_class = MeasurementForm
+    model = Measurement
+    template_object_name = 'data'
+    template_name = 'measurement_form.html' 
     
 class MeasurementList(LoginRequiredMixin, ListView):
     '''This view shows all :class:`~mousedb.data.Measurement` objects recorded .
@@ -338,7 +351,7 @@ class MeasurementUpdate(PermissionRequiredMixin, UpdateView):
     permission_required = 'data.update_measurement'
     form_class = MeasurementForm
     model = Measurement
-    context_object_name = 'data'
+    template_object_name = 'data'
     template_name = 'measurement_form.html'   
     
 class MeasurementDelete(PermissionRequiredMixin, DeleteView):
