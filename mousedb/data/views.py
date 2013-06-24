@@ -14,7 +14,7 @@ from braces.views import LoginRequiredMixin, PermissionRequiredMixin
 from mousedb.animal.models import Animal
 from mousedb.animal.views import AnimalList
 from mousedb.data.models import Experiment, Measurement, Study, Treatment, Pharmaceutical, Cohort, Diet
-from mousedb.data.forms import MeasurementForm, MeasurementFormSet, StudyExperimentForm, TreatmentForm
+from mousedb.data.forms import MeasurementForm, MeasurementFormSet, StudyExperimentForm, TreatmentForm, CohortForm
 
 class CohortDetail(LoginRequiredMixin,DetailView):
     '''This view generates details about a :class:`~mousedb.data.models.Cohort` object.
@@ -43,6 +43,7 @@ class CohortCreate(PermissionRequiredMixin,CreateView):
     It is generated when the url **/cohort/new** is requested.'''
     
     model = Cohort
+    form_class = CohortForm
     permission_required = "data.add_cohort"    
     template_name = 'cohort_form.html'
     context_object_name = 'cohort'
@@ -54,6 +55,7 @@ class CohortUpdate(PermissionRequiredMixin,UpdateView):
     It passes an object **object** when the url **/cohort/<slug>/edit** is requested.'''
     
     model = Cohort
+    form_class = CohortForm
     permission_required = "data.update_cohort"    
     template_name = 'cohort_form.html'
     context_object_name = 'cohort'        

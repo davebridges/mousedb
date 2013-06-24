@@ -5,7 +5,7 @@ from django.forms.models import inlineformset_factory
 
 from ajax_select.fields import AutoCompleteSelectMultipleField, AutoCompleteSelectField
 
-from mousedb.data.models import Experiment, Measurement, Study, Treatment
+from mousedb.data.models import Experiment, Measurement, Study, Treatment, Cohort
 from mousedb.animal.models import Animal
 
 class ExperimentForm(ModelForm):
@@ -60,3 +60,14 @@ class TreatmentForm(ModelForm):
             'all': ('javascript/jquery-autocomplete/jquery.autocomplete.css', 'css/autocomplete.css')
         }
         js = ('javascript/jquery-ui/js/jquery-ui-1.8.2.custom.min.js', 'javascript/jquery-autocomplete/jquery.autocomplete.js')
+
+class CohortForm(ModelForm):
+    """This form is for entering and editing cohort information.
+
+    The form over-rides the animals field and replaces it with a checkbox.
+    This is to prevent accidental unclicking of animals."""
+    
+    animals = forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple,
+        queryset=Animal.objects.filter(Alive=True))
+    class Meta:
+        model = Cohort
