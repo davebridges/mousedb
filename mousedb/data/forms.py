@@ -52,11 +52,7 @@ class TreatmentForm(ModelForm):
     """Form class for study treatment groups.
 
     In the case of studies, animals are defined in the treatment group rather than in the study group.  A treatment consists of a study, a set of animals and the conditions which define that treatment.  This includes related fields for environment, diet, implants and transplants."""
-    #animals = AutoCompleteSelectMultipleField('animal')
+    animals = forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple,
+        queryset=Animal.objects.all())
     class Meta:
         model = Treatment
-    class Media:
-        css = {
-            'all': ('javascript/jquery-autocomplete/jquery.autocomplete.css', 'css/autocomplete.css')
-        }
-        js = ('javascript/jquery-ui/js/jquery-ui-1.8.2.custom.min.js', 'javascript/jquery-autocomplete/jquery.autocomplete.js')
