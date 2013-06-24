@@ -312,7 +312,7 @@ class ExperimentDelete(PermissionRequiredMixin, DeleteView):
     permission_required = 'data.delete_experiment'
     model = Experiment
     template_name = 'confirm_delete.html' 
-    success_url = reverse_lazy('data-home')        
+    success_url = reverse_lazy('experiment-list')        
     
 class ExperimentList(LoginRequiredMixin, ListView):
     '''This view is for details of a particular :class:`~mousedb.data.Experiment`.
