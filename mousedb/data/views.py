@@ -7,6 +7,7 @@ from django.template import RequestContext
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import TemplateView, View
 from django.core.urlresolvers import reverse_lazy
 
 from braces.views import LoginRequiredMixin, PermissionRequiredMixin
@@ -253,10 +254,11 @@ def litters_csv(request):
             ])
     return response   
 
-def all_data_csv(request):
-    """This view generates a csv output of all data for a strain."""
+def data_csv(request, measurement_list):
+    """This view generates a csv output of all data for a strain.
+    
+    For this function to work, you have to provide the filtered set of measurements."""
 
-    measurement_list = Measurement.objects.filter(assay__assay = "Body Weight")
     response = HttpResponse(mimetype='text/csv')
     response['Content-Disposition'] = 'attachment; filename=data.csv'
     writer = csv.writer(response)
@@ -275,6 +277,7 @@ def all_data_csv(request):
             measurement.animal.treatment_set.all(),
             ])
     return response
+    
     
 class ExperimentDetail(LoginRequiredMixin, DetailView):
     '''This view is for details of a particular :class:`~mousedb.data.Experiment`.
@@ -340,8 +343,19 @@ class MeasurementList(LoginRequiredMixin, ListView):
     It passes an object **data* when the url **/experiment/data/all** is requested.'''
     
     model = Measurement
-    template_object_name = 'data'
-    template_name = 'data.html'   
+    context_object_name = 'data_list'
+    template_name = 'data.html'  
+    
+     
+class MeasurementListCSV(View):
+    '''This view shows all :class:`~mousedb.data.Measurement` objects recorded as a CSV file.
+    
+    It passes an object **data* when the url **/experiment/data/all.csv** is requested.'''
+    
+    def get(self, request, *args, **kwargs):
+        '''The queryset returns all measurement objects'''
+        measurements = Measurement.objects.all()    
+        return data_csv(self.request, measurements)  
     
 class MeasurementUpdate(PermissionRequiredMixin, UpdateView):
     '''This view is for updating a :class:`~mousedb.data.Measurement`.
@@ -527,4 +541,18 @@ class StrainData(LoginRequiredMixin, ListView):
         '''The queryset is filtered by measurements of animals which are part of that strain.'''
         strain = get_object_or_404(Strain, Strain_slug=self.kwargs['strain_slug'])
         animals = Animal.objects.filter(Strain=strain)
-        return Measurement.objects.filter(animal=animals)          
+        return Measurement.objects.filter(animal=animals)  
+        
+class StrainDataCSV(TemplateView):
+    '''This view is for downloading all data specific to a particular :class:`~mousedb.animals.Strain`.
+    
+    It filters the data based on the slug field in the strain and returns a csv file when /some-strain/data.csv is requested.'''
+    
+    def get(self, request, *args, **kwargs):
+        '''The queryset is filtered by measurements of animals which are part of that strain.'''
+        strain = get_object_or_404(Strain, Strain_slug=self.kwargs['strain_slug'])
+        animals = Animal.objects.filter(Strain=strain)
+        measurements = Measurement.objects.filter(animal=animals)    
+        return data_csv(self.request, measurements)     
+        
+                 
