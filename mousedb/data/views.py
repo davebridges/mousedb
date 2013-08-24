@@ -11,7 +11,7 @@ from django.core.urlresolvers import reverse_lazy
 
 from braces.views import LoginRequiredMixin, PermissionRequiredMixin
 
-from mousedb.animal.models import Animal
+from mousedb.animal.models import Animal, Strain
 from mousedb.animal.views import AnimalList
 from mousedb.data.models import Experiment, Measurement, Study, Treatment, Pharmaceutical, Cohort, Diet
 from mousedb.data.forms import MeasurementForm, MeasurementFormSet, StudyExperimentForm, TreatmentForm
@@ -513,4 +513,18 @@ class DietList(LoginRequiredMixin, ListView):
     
     model = Diet
     template_object_name = 'diet_list'
-    template_name = 'diet_list.html'            
+    template_name = 'diet_list.html' 
+    
+class StrainData(LoginRequiredMixin, ListView):
+    '''This view is for displaying all data specific to a particular :class:`~mousedb.animals.Strain`.
+    
+    It filters the data based on the slug field in the strain and returns a data_list when /some-strain/data is requested.'''
+    
+    context_object_name = 'data_list'
+    template_name ='data.html' 
+    
+    def get_queryset(self):
+        '''The queryset is filtered by measurements of animals which are part of that strain.'''
+        strain = get_object_or_404(Strain, Strain_slug=self.kwargs['strain_slug'])
+        animals = Animal.objects.filter(Strain=strain)
+        return Measurement.objects.filter(animal=animals)          

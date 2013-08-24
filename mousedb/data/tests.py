@@ -460,4 +460,29 @@ class CohortViewTests(BasicTestCase):
 
         #verifies that a non-existent object returns a 404 error.
         null_response = self.client.get('/cohort/wrong-cohort-name/delete/')
-        self.assertEqual(null_response.status_code, 404)         
+        self.assertEqual(null_response.status_code, 404)  
+        
+class MeasurementViewTests(BasicTestCase):
+    '''This class tests the views for :class:`~mousedb.data.models.Measurement` objects.'''
+
+    fixtures = ['test_measurement', 'test_animals', 'test_strain', 'test_assay', 'test_experiment', 'test_assay']
+
+    def test_strain_measurement_list(self):
+        """This tests the strain-data view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        
+        test_response = self.client.get('/strain/fixture-strain/data')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTrue('data_list' in test_response.context)      
+        self.assertTemplateUsed(test_response, 'data_table.html')
+        self.assertTemplateUsed(test_response, 'data.html')        
+        self.assertTemplateUsed(test_response, 'base.html')
+        self.assertTemplateUsed(test_response, 'jquery_script.html')  
+        self.assertTemplateUsed(test_response, 'menu_script.html')
+        self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(test_response, 'sortable_table_script.html')               
+        self.assertEqual(test_response.context['data_list'][0].pk,1)
+        self.assertEqual(test_response.context['data_list'][0].animal.Strain.__unicode__(), u'Fixture Strain')
+
+       
