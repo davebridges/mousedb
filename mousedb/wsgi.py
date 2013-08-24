@@ -1,11 +1,9 @@
 import os
 import sys
 
-os.environ['DJANGO_SETTINGS_MODULE'] = 'mousedb.settings'
+sys.path.append('/var/www/internal/mousedb')
 
-sys.path.append('C:/Documents and Settings/davebrid/My Documents/SRC/mousedb/')
-import django.core.handlers.wsgi
-application = django.core.handlers.wsgi.WSGIHandler()
-
+from django.core.wsgi import get_wsgi_application
+application = get_wsgi_application()
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mousedb.settings")
