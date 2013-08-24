@@ -1,0 +1,20 @@
+[
+{
+    "pk": 1, 
+    "model": "data.experiment", 
+    "fields": {
+        "notes": "", 
+        "experimentID": "", 
+        "feeding_state": "fed", 
+        "researchers": [
+            1
+        ], 
+        "time": null, 
+        "date": "2013-08-24", 
+        "study": null, 
+        "injection": "", 
+        "concentration": "", 
+        "fasting_time": null
+    }
+}
+]

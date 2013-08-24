@@ -15,7 +15,7 @@ urlpatterns = patterns('',
         url(r'^(?P<pk>\d*)/delete/$', views.ExperimentDelete.as_view(), name="experiment-delete"),	
         url(r'^(?P<pk>\d*)/edit/$', views.ExperimentUpdate.as_view(), name="experiment-edit"),		
 	url(r'^data/all$', views.MeasurementList.as_view(), name="measurement_list"),
-	url(r'^data/all.csv$', views.all_data_csv, name="measurement_list_csv"),        
+	url(r'^data/all.csv$', views.MeasurementListCSV.as_view(), name="measurement_list_csv"),        
 	url(r'^data/(?P<pk>\d*)/edit/$', views.MeasurementUpdate.as_view(), name="measurement-edit"),
 	url(r'^(?P<pk>\d*)/delete/$', views.MeasurementDelete.as_view(), name = "measurement-delete"),
 )

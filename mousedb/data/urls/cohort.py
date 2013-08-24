@@ -6,12 +6,14 @@ The views for these urls are defined in the :mod:`~mousedb.data.views.` module.
 
 from django.conf.urls import *
 
-from mousedb.data.views import CohortDetail, CohortList, CohortUpdate, CohortDelete, CohortCreate
+from mousedb.data.views import CohortDetail, CohortList, CohortUpdate, CohortDelete, CohortCreate, CohortData, CohortDataCSV
 
 urlpatterns = patterns('',
 	url(r'^/?$', CohortList.as_view(), name="cohort-list"),	
 	url(r'^new/?$', CohortCreate.as_view(), name="cohort-new"),	
 	url(r'^(?P<slug>[-\w\d]+)/edit/?$', CohortUpdate.as_view(), name="cohort-edit"),
 	url(r'^(?P<slug>[-\w\d]+)/delete/?$', CohortDelete.as_view(), name="cohort-delete"),
+    url(r'^(?P<slug>[\w-]+)/data/?$', CohortData.as_view(), name="cohort-data"), 
+    url(r'^(?P<slug>[\w-]+)/data.csv$', CohortDataCSV.as_view(), name="cohort-data-csv"), 	
 	url(r'^(?P<slug>[-\w\d]+)/?$', CohortDetail.as_view(), name="cohort-detail"),		
 )

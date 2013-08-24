@@ -346,7 +346,7 @@ class PharmaceuticalViewTests(BasicTestCase):
 class CohortModelTests(BasicTestCase):
     '''These tests test the functionality of :class:`~mousedb.data.models.Cohort` objects.'''
     
-    fixtures = ['test_animals','test_strain', 'test_treatment', 'test_study']
+    fixtures = ['test_animals','test_strain', 'test_treatment', 'test_study','test_measurement', 'test_assay','test_experiment']
     
     def test_create_cohort_minimum(self):
         '''This test creates a :class:`~mousedb.data.models.Cohort` with the required information only.'''
@@ -460,4 +460,107 @@ class CohortViewTests(BasicTestCase):
 
         #verifies that a non-existent object returns a 404 error.
         null_response = self.client.get('/cohort/wrong-cohort-name/delete/')
-        self.assertEqual(null_response.status_code, 404)         
+        self.assertEqual(null_response.status_code, 404)
+        
+    def test_cohort_measurement_list(self):
+        """This tests the cohort-data view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        
+        test_response = self.client.get('/cohort/fixture-cohort/data')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTrue('data_list' in test_response.context)      
+        self.assertTemplateUsed(test_response, 'data_table.html')
+        self.assertTemplateUsed(test_response, 'data.html')        
+        self.assertTemplateUsed(test_response, 'base.html')
+        self.assertTemplateUsed(test_response, 'jquery_script.html')  
+        self.assertTemplateUsed(test_response, 'menu_script.html')
+        self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(test_response, 'sortable_table_script.html')               
+        print test_response.context['data_list']
+        
+        #test that a fake strain gives a 404 error
+        fake_test_response = self.client.get('/cohort/some-made-up-cohort/data')
+        self.assertEqual(fake_test_response.status_code, 404)          
+
+    def test_strain_measurement_csv(self):
+        """This tests the cohort-data-csv view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        
+        test_response = self.client.get('/cohort/fixture-cohort/data.csv')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertEqual(test_response['Content-Type'], 'text/csv')
+        self.assertEqual(test_response['Content-Disposition'], 'attachment; filename=data.csv') 
+        
+        #test that a fake strain gives a 404 error
+        fake_test_response = self.client.get('/cohort/some-made-up-cohort/data.csv')
+        self.assertEqual(fake_test_response.status_code, 404)            
+        
+class MeasurementViewTests(BasicTestCase):
+    '''This class tests the views for :class:`~mousedb.data.models.Measurement` objects.'''
+
+    fixtures = ['test_measurement', 'test_animals', 'test_strain', 'test_assay', 'test_experiment', 'test_assay']
+
+    def test_measurement_list(self):
+        """This tests the measurement_list view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        
+        test_response = self.client.get('/experiment/data/all')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTrue('data_list' in test_response.context)      
+        self.assertTemplateUsed(test_response, 'data_table.html')
+        self.assertTemplateUsed(test_response, 'data.html')        
+        self.assertTemplateUsed(test_response, 'base.html')
+        self.assertTemplateUsed(test_response, 'jquery_script.html')  
+        self.assertTemplateUsed(test_response, 'menu_script.html')
+        self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(test_response, 'sortable_table_script.html')               
+        self.assertEqual(test_response.context['data_list'][0].pk,1)
+
+    def test_measurement_csv(self):
+        """This tests the measurement_list_csv view, ensuring that headers are set correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        
+        test_response = self.client.get('/experiment/data/all.csv')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertEqual(test_response['Content-Type'], 'text/csv')
+        self.assertEqual(test_response['Content-Disposition'], 'attachment; filename=data.csv') 
+
+    def test_strain_measurement_list(self):
+        """This tests the strain-data view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        
+        test_response = self.client.get('/strain/fixture-strain/data')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertTrue('data_list' in test_response.context)      
+        self.assertTemplateUsed(test_response, 'data_table.html')
+        self.assertTemplateUsed(test_response, 'data.html')        
+        self.assertTemplateUsed(test_response, 'base.html')
+        self.assertTemplateUsed(test_response, 'jquery_script.html')  
+        self.assertTemplateUsed(test_response, 'menu_script.html')
+        self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
+        self.assertTemplateUsed(test_response, 'sortable_table_script.html')               
+        self.assertEqual(test_response.context['data_list'][0].pk,1)
+        
+        #test that a fake strain gives a 404 error
+        fake_test_response = self.client.get('/strain/some-made-up-strain/data')
+        self.assertEqual(fake_test_response.status_code, 404)          
+        self.assertEqual(test_response.context['data_list'][0].animal.Strain.__unicode__(), u'Fixture Strain')
+
+    def test_strain_measurement_csv(self):
+        """This tests the strain-data-csv view, ensuring that templates are loaded correctly.  
+
+        This view uses a user with superuser permissions so does not test the permission levels for this view."""
+        
+        test_response = self.client.get('/strain/fixture-strain/data.csv')
+        self.assertEqual(test_response.status_code, 200)
+        self.assertEqual(test_response['Content-Type'], 'text/csv')
+        self.assertEqual(test_response['Content-Disposition'], 'attachment; filename=data.csv') 
+        
+        #test that a fake strain gives a 404 error
+        fake_test_response = self.client.get('/strain/some-made-up-strain/data.csv')
+        self.assertEqual(fake_test_response.status_code, 404)      

@@ -1,0 +1,12 @@
+[
+{
+    "pk": 1, 
+    "model": "data.assay", 
+    "fields": {
+        "measurement_units": "fixtures", 
+        "notes": "", 
+        "assay": "Fixture Assay", 
+        "assay_slug": "fixture-assay"
+    }
+}
+]
