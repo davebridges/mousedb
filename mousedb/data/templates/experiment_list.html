@@ -17,6 +17,12 @@
 {% block header %}Experiment List{% endblock header %}
 
 {% block content %}
+<section id='general-info'>
+<p>To enter experimental information, there are several optional groupings which will assist in analysis.</p>
+<p>Measurements which occur together are grouped into experiments, which are then grouped together as a Study</p>
+<p>When animals are treated with something, they are grouped into Treatment groups (see <a href="{% url 'treatment-list' %}">here</a>.  A particular treatment (such as High Fat Diet) may be performed on several different groups of animals.  Several treatments together, done at the same time are called Cohorts (see <a href="{% url 'cohort-list' %}">here</a>).  Therefore a study may consist of several cohorts, which themselves may consist of several treatment groups.</p>
+
+</section>
 {% include "experiment_list_table.html" %}
 {% if perms.data.add_experiment %}
 <a href="{% url "experiment-new" %}"><button class="fg-button ui-state-default ui-corner-left"><span class="ui-icon ui-icon-pencil"></span>Add New Experiment</button></a>
