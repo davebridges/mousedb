@@ -3,7 +3,6 @@
 {% block title %}Experiment Details{% endblock title%}
 
 {% block scripts %}
-{% include "sortable_table_script.html "%}
 {% endblock scripts %}
 
 {% block header %}Experiment Details - {{ experiment }}{% endblock header %}
@@ -18,7 +17,7 @@
 {% endwith %}
 <div class="fg-buttonset">
 {% if perms.data.add_experiment %}
-<a href="{% url "data-entry" experiment.id %}"><button class="fg-button ui-state-default ui-corner-left"><span class="ui-icon ui-icon-pencil"></span>Enter Data</button></a>
+<a href="{% url "data-entry" %}"><button class="fg-button ui-state-default ui-corner-left"><span class="ui-icon ui-icon-pencil"></span>Enter Data</button></a>
 {% endif %}
 <a href="{% url "experiment-detail-csv" experiment.id %}"><button class="fg-button ui-state-default ui-corner-right"><span class="ui-icon ui-icon-arrowthick-1-s"></span>Download Data</button></a>
 </div>
