@@ -28,7 +28,7 @@ border = 1 px/>
 <h2>In Total {{ strain_list.count }} Strains of Mice:</h2>
 <table>  
  <th>Strain</th> {% for strain in strain_list %}<th>{{strain}}</th>{% endfor %}
- <tr><th>All</th>{% for strain in strain_list %}<td><a href="{% url "strain-detail-all" strain.Strain_slug %}">{{ strain.animal_set.count }}</td></a>{% endfor %}</tr>
+ <tr><th>All</th>{% for strain in strain_list %}<td><a href="{% url "strain-detail" strain.Strain_slug %}">{{ strain.animal_set.count }}</td></a>{% endfor %}</tr>
 </table>
 <div id="chart">
 <img src="http://chart.apis.google.com/chart?
