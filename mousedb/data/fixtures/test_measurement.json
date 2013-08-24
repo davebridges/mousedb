@@ -1,0 +1,12 @@
+[
+{
+    "pk": 1, 
+    "model": "data.measurement", 
+    "fields": {
+        "values": "123", 
+        "experiment": 1, 
+        "assay": 1, 
+        "animal": 1
+    }
+}
+]
