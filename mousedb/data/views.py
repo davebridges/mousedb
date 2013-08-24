@@ -68,7 +68,33 @@ class CohortDelete(PermissionRequiredMixin,DeleteView):
     model = Cohort
     permission_required = "data.delete_cohort"
     template_name = 'confirm_delete.html'
-    success_url = reverse_lazy('cohort-list')    
+    success_url = reverse_lazy('cohort-list')
+    
+class CohortData(LoginRequiredMixin, ListView):
+    '''This view is for displaying all data specific to a particular :class:`~mousedb.data.Cohort`.
+    
+    It filters the data based on the slug field in the strain and returns a data_list when /some-cohort/data is requested.'''
+    
+    context_object_name = 'data_list'
+    template_name ='data.html' 
+    
+    def get_queryset(self):
+        '''The queryset is filtered by measurements of animals which are part of that strain.'''
+        cohort = get_object_or_404(Cohort, slug=self.kwargs['slug'])
+        animals = cohort.animals.all()
+        return Measurement.objects.filter(animal=animals)     
+    
+class CohortDataCSV(TemplateView):
+    '''This view is for downloading all data specific to a particular :class:`~mousedb.data.Cohort`.
+    
+    It filters the data based on the slug field in the strain and returns a csv file when /some-cohort/data.csv is requested.'''
+    
+    def get(self, request, *args, **kwargs):
+        '''The queryset is filtered by measurements of animals which are part of that strain.'''
+        cohort = get_object_or_404(Cohort, slug=self.kwargs['slug'])
+        animals = cohort.animals.all()
+        measurements = Measurement.objects.filter(animal=animals)    
+        return data_csv(self.request, measurements)          
 
 class PharmaceuticalDetail(LoginRequiredMixin,DetailView):
     '''This view generates details about a :class:`~mousedb.data.models.Pharmaceutical` object.
