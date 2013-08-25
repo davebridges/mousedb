@@ -5,3 +5,4 @@ django-braces
 django-debug-toolbar
 django-tastypie
 python-dateutil
+mimeparse
