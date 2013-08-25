@@ -477,7 +477,6 @@ class CohortViewTests(BasicTestCase):
         self.assertTemplateUsed(test_response, 'menu_script.html')
         self.assertTemplateUsed(test_response, 'jquery_ui_script_css.html')
         self.assertTemplateUsed(test_response, 'sortable_table_script.html')               
-        print test_response.context['data_list']
         
         #test that a fake strain gives a 404 error
         fake_test_response = self.client.get('/cohort/some-made-up-cohort/data')

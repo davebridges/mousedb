@@ -4,6 +4,8 @@ This module contains all views for this app as class based views."""
 
 import datetime
 
+from braces.views import LoginRequiredMixin, PermissionRequiredMixin
+
 from django.shortcuts import render_to_response, get_object_or_404
 from django.contrib.auth.decorators import login_required, permission_required
 from django.forms.models import inlineformset_factory
@@ -14,7 +16,7 @@ from django.core import serializers
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.db.models import Q
 from django.utils.decorators import method_decorator
-from django.views.generic import CreateView, UpdateView, DeleteView, YearArchiveView, MonthArchiveView, ListView
+from django.views.generic import CreateView, UpdateView, DeleteView, YearArchiveView, MonthArchiveView, ListView, DetailView
 
 from mousedb.settings import WEAN_AGE, GENOTYPE_AGE
 
@@ -124,7 +126,7 @@ class StrainList(ProtectedListView):
     
     model = Strain
     context_object_name = 'strain_list'
-    template_name = "strain_list.html"
+    template_name = "strain_list.html"  
 
     def get_context_data(self, **kwargs):
         """This add in the context of strain_list_alive (which filters for all alive animals) and cages which filters for the number of current cages."""
@@ -134,7 +136,7 @@ class StrainList(ProtectedListView):
         context['cages'] = Animal.objects.filter(Alive=True).values("Cage")        
         return context    
 
-class StrainDetail(ProtectedDetailView):
+class StrainDetail(LoginRequiredMixin, DetailView):
     """This view displays specific details about a :class:`~mousedb.animal.models.Strain` object showing *only current* related objects.
 	
     It takes a request in the form *strain/(strain_slug)/* and renders the detail page for that :class:`~mousedb.animal.models.Strain`.
@@ -165,7 +167,7 @@ class StrainDetailAll(StrainDetail):
     It takes a request in the form *strain/(strain_slug)/all* and renders the detail page for that :class:`~mousedb.animal.models.Strain`.
     This view also passes along a dictionary of alive animals belonging to that :class:`~mousedb.animal.models.Strain`.
     This page is restricted to logged-in users.
-    """
+    """ 
 
     def get_context_data(self, **kwargs):
         """This adds into the context of strain_list_all (which filters for all alive :class:`~mousedb.animal.models.Animal` objects and active cages) and cages which filters for the number of current cages."""
@@ -200,7 +202,9 @@ class StrainUpdate(UpdateView):
     
     model = Strain
     template_name = 'strain_form.html'
-    context_object_name = 'strain'    
+    context_object_name = 'strain'   
+    slug_url_kwarg = 'slug'
+    slug_field = 'Strain_slug'   
     
     @method_decorator(permission_required('animal.update_strain'))
     def dispatch(self, *args, **kwargs):
@@ -216,7 +220,9 @@ class StrainDelete(DeleteView):
     model = Strain
     template_name = 'confirm_delete.html'
     context_object_name = 'strain'    
-    success_url = reverse_lazy('strain-list')     
+    success_url = reverse_lazy('strain-list') 
+    slug_url_kwarg = 'slug'
+    slug_field = 'Strain_slug'      
 
     @method_decorator(permission_required('animal.delete_strain'))
     def dispatch(self, *args, **kwargs):
