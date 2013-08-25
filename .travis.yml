@@ -1,0 +1,17 @@
+nguage: python
+python:
+  - "2.6"
+  - "2.7"
+env:
+  global:
+  - DJANGO="1.5"
+  - DJANGO_SETTINGS_MODULE="mousedb.travis_settings"
+
+# command to install dependencies
+install:
+  - pip install -r requirements.txt --use-mirrors
+  - pip install -q Django==$DJANGO --use-mirrors
+before_script:
+  - python manage.py syncdb --noinput
+script:
+  - python manage.py test
