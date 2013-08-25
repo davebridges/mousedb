@@ -18,7 +18,7 @@ from django.db.models import Q
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, UpdateView, DeleteView, YearArchiveView, MonthArchiveView, ListView, DetailView
 
-from mousedb.settings import WEAN_AGE, GENOTYPE_AGE
+from django.conf.settings import WEAN_AGE, GENOTYPE_AGE
 
 from mousedb.views import ProtectedListView, ProtectedDetailView
 
