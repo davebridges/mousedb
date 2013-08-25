@@ -7,8 +7,12 @@ env:
   - DJANGO_SETTINGS_MODULE="mousedb.travis_settings"
 # command to install dependencies
 install:
+  - pip install coveralls
   - pip install -r requirements.txt --use-mirrors
 #before_script:
 #  - python manage.py syncdb --noinput
 script:
   - python manage.py test
+  - coverage run --source='.' manage.py test
+after_success:
+    coveralls
