@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 from django.template.defaultfilters import slugify
 
@@ -75,7 +77,11 @@ class Measurement(models.Model):
         return u'%s %s' % (self.animal, self.assay)
 	
     def age(self):
-        age =  self.experiment.date - self.animal.Born
+        if self.animal.Born:
+            age =  self.experiment.date - self.animal.Born
+        
+        else:
+            age = datetime.timedelta(1) 
         return age.days
     
     def get_absolute_url(self):
