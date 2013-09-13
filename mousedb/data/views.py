@@ -297,7 +297,7 @@ def data_csv(request, measurement_list):
             measurement.animal.Genotype,
             measurement.animal.Gender,
             measurement.assay,
-            int(measurement.values.split(',')[0]),
+            measurement.values.split(',')[0],
             measurement.animal.Strain,
             measurement.age(),
             measurement.animal.Cage,
