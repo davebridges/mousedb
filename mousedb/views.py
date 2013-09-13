@@ -15,8 +15,7 @@ from django.utils.decorators import method_decorator
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-
-from mousedb import settings
+from django.conf import settings
 
 def logout_view(request):
     """This view logs out the current user.

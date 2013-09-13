@@ -1,3 +1,7 @@
+.. image:: https://travis-ci.org/davebridges/mousedb.png?branch=master   :target: https://travis-ci.org/davebridges/mousedb
+.. image:: https://coveralls.io/repos/davebridges/mousedb/badge.png?branch=master
+    :target: https://coveralls.io/r/davebridges/mousedb
+
 =======
 MouseDB
 =======
