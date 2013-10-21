@@ -290,7 +290,7 @@ def data_csv(request, measurement_list):
     response = HttpResponse(mimetype='text/csv')
     response['Content-Disposition'] = 'attachment; filename=data.csv'
     writer = csv.writer(response)
-    writer.writerow(["Animal", "Genotype", "Gender","Assay", "Value","Strain", "Age", "Cage", "Feeding", "Treatment"])
+    writer.writerow(["Animal", "Genotype", "Gender","Assay", "Value","Strain", "Background","Age", "Cage", "Feeding", "Treatment"])
     for measurement in measurement_list:
         writer.writerow([
             measurement.animal,
@@ -299,6 +299,7 @@ def data_csv(request, measurement_list):
             measurement.assay,
             measurement.values.split(',')[0],
             measurement.animal.Strain,
+            measurement.animal.Background,
             measurement.age(),
             measurement.animal.Cage,
             measurement.experiment.feeding_state,
