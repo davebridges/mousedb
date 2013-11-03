@@ -52,9 +52,8 @@
 			{% endif %}
 			<td>{{ animal.Markings }}</td>
 			{% if perms.animal.add_animal %}
-			<td>
-			<a href="{% url "animal-update" animal.id %}" title="Edit {{animal}}" <button class="fg-button ui-state-default ui-corner-all"><span class="ui-icon ui-icon-pencil"></span>Edit</button>
-			</a>
+			<td class="fg-buttonset fg-buttonset=multi">
+			<a href="{% url "animal-update" animal.id %}" title="Edit {{animal}}"><button class="fg-button ui-state-default fg-button-icon-left ui-corner-all"><span class="ui-icon ui-icon-pencil"></span>Edit</button></a>
 			</td>
 			{% endif %}			
 		</tr>
