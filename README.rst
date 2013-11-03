@@ -1,12 +1,20 @@
-.. image:: https://travis-ci.org/davebridges/mousedb.png?branch=master   :target: https://travis-ci.org/davebridges/mousedb
-.. image:: https://coveralls.io/repos/davebridges/mousedb/badge.png?branch=master
-    :target: https://coveralls.io/r/davebridges/mousedb
+
 
 =======
 MouseDB
 =======
 
 MouseDB is a data management and analysis system for experimental animals.  Source code is freely available via Github (through the BSD License please see LICENSE file or http://www.opensource.org/licenses/bsd-license.php), and collaboration is encouraged.  For specific details please contact Dave Bridges via Github.  MouseDB uses a web interface and a database server to store information and a web interface to access and analyse this information.  The standard setup is to use MySQL as the database and Apache as the webserver, but this can be modified if necessary.  The software was written using Django, which itself is based on the Python programming language.  Please see www.djangoproject.com and www.python.org for more information.  Documentation for this project is available at http://packages.python.org/mousedb/ or within this repository (in the Docs folder).
+
+Current Build and Testing Status
+'''''''''''''''''''''''''''''''''
+
+.. image:: https://travis-ci.org/davebridges/mousedb.png?branch=master   
+    :target: https://travis-ci.org/davebridges/mousedb
+
+.. image:: https://coveralls.io/repos/davebridges/mousedb/badge.png?branch=master
+    :target: https://coveralls.io/r/davebridges/mousedb
+
 
 MouseDB Installation
 ''''''''''''''''''''
