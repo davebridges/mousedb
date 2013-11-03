@@ -1,5 +1,4 @@
 
-
 =======
 MouseDB
 =======
@@ -9,11 +8,11 @@ MouseDB is a data management and analysis system for experimental animals.  Sour
 Current Build and Testing Status
 '''''''''''''''''''''''''''''''''
 
-.. image:: https://travis-ci.org/davebridges/mousedb.png?branch=master   
-    :target: https://travis-ci.org/davebridges/mousedb
+.. image:: https://travis-ci.org/BridgesLab/mousedb.png?branch=master   
+    :target: https://travis-ci.org/BridgesLab/mousedb
 
-.. image:: https://coveralls.io/repos/davebridges/mousedb/badge.png?branch=master
-    :target: https://coveralls.io/r/davebridges/mousedb
+.. image:: https://coveralls.io/repos/BridgesLab/mousedb/badge.png?branch=master
+    :target: https://coveralls.io/r/BridgesLab/mousedb
 
 
 MouseDB Installation
