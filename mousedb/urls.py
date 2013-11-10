@@ -8,6 +8,7 @@ from django.contrib import admin
 from tastypie.api import Api
 
 from mousedb.data.api import MeasurementResource, AssayResource, ExperimentResource, StudyResource
+from mousedb.views import APIKeyView
 
 v1_api = Api(api_name='v1')
 v1_api.register(MeasurementResource())
@@ -22,7 +23,8 @@ urlpatterns = patterns('',
 	(r'^ajax_select/', include('ajax_select.urls')),	
 	(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 	(r'^admin/', include(admin.site.urls)),
-    (r'^api/',include(v1_api.urls)),	
+    (r'^api/',include(v1_api.urls)),
+    url(r'^api_key/', APIKeyView.as_view(), name="api-keys"),	
 	url(r'^accounts/login/', 'django.contrib.auth.views.login', name="login"),
 	url(r'^accounts/logout/', 'mousedb.views.logout_view', name="logout"),
 

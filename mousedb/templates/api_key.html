@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}API Keys{% endblock title %}
+
+{% block header %}API Keys{% endblock header %}
+
+{% block content %}
+These are the API keys for the currently logged in user.
+<table>
+  <tr><th>Username</th><td>{{ user.username }}</td></tr>
+  <tr><th>API Key</th><td>{{ user.api_key.key }}</td></tr>
+</table>
+{% endblock content %}
