@@ -24,7 +24,7 @@ STATIC_URL = '/mousedb-static/'
 # although not all choices may be available on all operating systems.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = 'America/Detriot'
+TIME_ZONE = 'America/Detroit'
 
 DATABASES = {
     'default': {
