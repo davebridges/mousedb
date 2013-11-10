@@ -4,6 +4,10 @@ Currently this package includes views for both the logout and home pages."""
 
 import datetime
 
+from tastypie.models import ApiKey
+
+from braces.views import LoginRequiredMixin
+
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth import logout
@@ -15,6 +19,7 @@ from django.utils.decorators import method_decorator
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.base import TemplateView
 from django.conf import settings
 
 def logout_view(request):
@@ -81,5 +86,10 @@ class RestrictedDeleteView(DeleteView):
         @permission_required('%s.delete_%s' % (self.model._meta.app_label, self.model._meta.module_name))
         def wrapper(request, *args, **kwargs):
             return super(RestrictedDeleteView, self).dispatch(request, *args, **kwargs)
-        return wrapper(request, *args, **kwargs)        
+        return wrapper(request, *args, **kwargs) 
+        
+class APIKeyView(LoginRequiredMixin, TemplateView):
+    """This view shows the API key for the currently logged in user."""
+    
+    template_name = "api_key.html"     
 

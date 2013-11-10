@@ -45,6 +45,19 @@ class RootViewTests(TestCase):
         response_factory = home(factory_request)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'base.html')
-        self.assertTemplateUsed(response, 'logout.html')          
+        self.assertTemplateUsed(response, 'logout.html') 
+        
+    def test_api_view(self):
+        """This test checks the view which displays the logout page.  It checks for the correct templates and status code."""        
+        response = self.client.get('/api_key')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'base.html')
+        self.assertTemplateUsed(response, 'api_key.html')
+        
+        factory_request = self.factory.get('/api_key')
+        response_factory = home(factory_request)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'base.html')
+        self.assertTemplateUsed(response, 'api_key.html')                 
 
 
