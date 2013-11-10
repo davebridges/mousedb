@@ -248,7 +248,8 @@ class MeasurementResource(ModelResource):
     '''
     assay = fields.ForeignKey('mousedb.data.api.MeasurementAssayResource', 'assay', full=True)
     experiment = fields.ForeignKey('mousedb.data.api.MeasurementExperimentResource', 'experiment', full=True)
-    
+    age = fields.IntegerField(attribute='age', null=True)   
+ 
     class Meta:
         '''The API serves all :class:`~mousedb.data.models.Measurement` objects in the database..'''
 
@@ -291,7 +292,7 @@ class ExperimentResource(ModelResource):
     
     It returns all experiments in the database.
     '''
-    
+
     class Meta:
         '''The API serves all :class:`~mousedb.data.models.Experiment` objects in the database..'''
 
