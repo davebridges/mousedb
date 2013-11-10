@@ -1,4 +1,3 @@
-
 =======
 MouseDB
 =======
@@ -171,4 +170,16 @@ Groups Module
 This app defines generic Group and License information for a particular installation of MouseDB.  Because every page on this site identifies both the Group and data restrictions, at a minimum, group information must be provided upon installation (see installation instructions).
 
 
+API Access
+''''''''''''
+There is a restricted API to some data.  This is restricted by API key.  Data can be requested in XML or JSON format.
 
+To see your API key then go to http://yourserver/api_key
+
+To request something from the data API go to the following URL while USERNAME and API_KEY are yours:
+
+http://yourserver.com/api/data/v1/?format=json&username=USERNAME&api_key=API_KEY
+
+To see all the possible API schemas go to then pick your data type and check out that schema link.
+
+http://yourserver.com/api/v1/?format=xml
