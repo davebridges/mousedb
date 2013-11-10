@@ -238,6 +238,7 @@ The response (in either JSON or XML) provides the following fields for each obje
 from tastypie.resources import ModelResource
 from tastypie.authentication import ApiKeyAuthentication
 from tastypie import fields
+from tastypie.constants import ALL, ALL_WITH_RELATIONS
 
 from mousedb.data.models import Measurement, Assay, Experiment, Study
 
@@ -260,7 +261,10 @@ class MeasurementResource(ModelResource):
         detail_allowed_methods = ['get']
         include_resource_uri = False
         authentication = ApiKeyAuthentication()  
-               
+        filtering = {"assay":ALL_WITH_RELATIONS,
+                     "animal":ALL_WITH_RELATIONS}
+
+           
 class AssayResource(ModelResource):
     '''This generates the API resource for :class:`~mousedb.data.models.Assay` objects.
     
