@@ -99,6 +99,7 @@ The response (in either JSON or XML) provides the following fields for each obje
 from tastypie.resources import ModelResource
 from tastypie.authentication import ApiKeyAuthentication
 from tastypie import fields
+from tastypie.constants import ALL, ALL_WITH_RELATIONS
 
 from mousedb.animal.models import Animal, Strain
 
@@ -108,7 +109,8 @@ class AnimalResource(ModelResource):
     It returns all animals in the database.
     '''
     strain = fields.ForeignKey('mousedb.animal.api.StrainResource', 'Strain', full=True)
-    
+    age = fields.IntegerField(attribute='age')
+
     class Meta:
         '''The API serves all :class:`~mousedb.animal.models.Animal` objects in the database..'''
 
@@ -117,6 +119,17 @@ class AnimalResource(ModelResource):
         list_allowed_methods = ['get']
         detail_allowed_methods = ['get']
         fields = ['MouseID','Genotype','Gender','Background','Alive']
+        filtering = {"Cage":'exact',
+                     "Gender":('exact','startswith'),
+                     "Genotype":ALL,
+                     "Background":ALL,
+                     "Born":ALL,
+                     "Weaned":ALL,
+                     "Death":ALL,
+                     "Cause_of_Death":ALL,
+                     "Alive":ALL,
+                     "MouseID":ALL,
+                     "strain":ALL_WITH_RELATIONS}
         include_resource_uri = False
         authentication = ApiKeyAuthentication()  
         
@@ -136,4 +149,5 @@ class StrainResource(ModelResource):
         detail_allowed_methods = ['get']
         fields = ['Strain',]
         include_resource_uri = False
-        authentication = ApiKeyAuthentication()       
+        authentication = ApiKeyAuthentication()
+        filtering = {"Strain":ALL}       
