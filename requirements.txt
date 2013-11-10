@@ -3,6 +3,6 @@ South
 django-ajax-selects
 django-braces
 django-debug-toolbar
-pip install django-tastypie==0.9.16
+django-tastypie==0.9.16
 python-dateutil
 mimeparse
