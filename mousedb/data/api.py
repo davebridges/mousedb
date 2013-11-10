@@ -246,6 +246,7 @@ class MeasurementResource(ModelResource):
     
     It returns all measurements in the database.
     '''
+    animal = fields.ForeignKey('mousedb.animal.api.AnimalResource','animal',full=True)
     assay = fields.ForeignKey('mousedb.data.api.MeasurementAssayResource', 'assay', full=True)
     experiment = fields.ForeignKey('mousedb.data.api.MeasurementExperimentResource', 'experiment', full=True)
     age = fields.IntegerField(attribute='age', null=True)   
