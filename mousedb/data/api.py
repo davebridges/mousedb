@@ -240,7 +240,7 @@ from tastypie.authentication import ApiKeyAuthentication
 from tastypie import fields
 from tastypie.constants import ALL, ALL_WITH_RELATIONS
 
-from mousedb.data.models import Measurement, Assay, Experiment, Study, Treatment
+from mousedb.data.models import Measurement, Assay, Experiment, Study, Treatment, Cohort
 
 class MeasurementResource(ModelResource):
     '''This generates the API resource for :class:`~mousedb.data.models.Measurement` objects.
@@ -339,7 +339,7 @@ class StudyResource(ModelResource):
 class TreatmentResource(ModelResource):
     '''This generates the API resource for :class:`~mousedb.data.models.Treatment` objects.
     
-    This is a limited dataset for use in MeasurementResource calls.
+    This is a limited dataset for use in AnimalResource calls.
     '''
     
     class Meta:
@@ -352,4 +352,22 @@ class TreatmentResource(ModelResource):
         list_allowed_methods = ['get']
         detail_allowed_methods = ['get']
         authentication = ApiKeyAuthentication() 
-        filtering = {"treatment":'ALL'}           
+        filtering = {"treatment":ALL}   
+        
+class CohortResource(ModelResource):
+    '''This generates the API resource for :class:`~mousedb.data.models.Cohort` objects.
+    
+    This is a limited dataset for use in AnimalResource calls.
+    '''
+    
+    class Meta:
+        '''The API serves all :class:`~mousedb.data.models.Cohort` objects in the database..'''
+
+        queryset = Cohort.objects.all()
+        fields = 'name'
+        resource_name = 'cohort'
+        include_resource_uri = False
+        list_allowed_methods = ['get']
+        detail_allowed_methods = ['get']
+        authentication = ApiKeyAuthentication() 
+        filtering = {"name":ALL}                  

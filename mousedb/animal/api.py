@@ -110,7 +110,8 @@ class AnimalResource(ModelResource):
     '''
     strain = fields.ForeignKey('mousedb.animal.api.StrainResource', 'Strain', full=True)
     age = fields.IntegerField(attribute='age')
-    treatment = fields.ManyToManyField('mousedb.data.api.TreatmentResource', 'treatment_set', full=True, null=True)
+    treatment = fields.ManyToManyField('mousedb.data.api.TreatmentResource', 'treatment', full=True, null=True)
+    cohort = fields.ManyToManyField('mousedb.data.api.CohortResource', 'cohort', full=True, null=True)    
     
     class Meta:
         '''The API serves all :class:`~mousedb.animal.models.Animal` objects in the database..'''
@@ -130,7 +131,9 @@ class AnimalResource(ModelResource):
                      "Cause_of_Death":ALL,
                      "Alive":ALL,
                      "MouseID":ALL,
-                     "strain":ALL_WITH_RELATIONS}
+                     "strain":ALL_WITH_RELATIONS,
+                     "cohort":ALL_WITH_RELATIONS,
+                     "treatment":ALL_WITH_RELATIONS}
         include_resource_uri = False
         authentication = ApiKeyAuthentication()  
         
