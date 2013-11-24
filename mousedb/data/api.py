@@ -247,10 +247,10 @@ class MeasurementResource(ModelResource):
     
     It returns all measurements in the database.
     '''
-    animal = fields.ForeignKey('mousedb.animal.api.AnimalResource','animal',full=True)
+    animal = fields.ForeignKey('mousedb.animal.api.AnimalResource','animal',full=True, null=True)
     assay = fields.ForeignKey('mousedb.data.api.MeasurementAssayResource', 'assay', full=True)
     experiment = fields.ForeignKey('mousedb.data.api.MeasurementExperimentResource', 'experiment', full=True)
-    age = fields.IntegerField(attribute='age', null=True)   
+    age = fields.IntegerField(attribute='age', null=True) 
  
     class Meta:
         '''The API serves all :class:`~mousedb.data.models.Measurement` objects in the database..'''
@@ -262,7 +262,8 @@ class MeasurementResource(ModelResource):
         include_resource_uri = False
         authentication = ApiKeyAuthentication()  
         filtering = {"assay":ALL_WITH_RELATIONS,
-                     "animal":ALL_WITH_RELATIONS}
+                     "animal":ALL_WITH_RELATIONS,
+                     "animal_cohort":ALL_WITH_RELATIONS}
 
            
 class AssayResource(ModelResource):
@@ -347,7 +348,7 @@ class TreatmentResource(ModelResource):
 
         queryset = Treatment.objects.all()
         fields = 'treatment'
-        resource_name = 'treatment'
+        resource_name = 'Treatment'
         include_resource_uri = False
         list_allowed_methods = ['get']
         detail_allowed_methods = ['get']
@@ -365,7 +366,7 @@ class CohortResource(ModelResource):
 
         queryset = Cohort.objects.all()
         fields = 'name'
-        resource_name = 'cohort'
+        resource_name = 'Cohort'
         include_resource_uri = False
         list_allowed_methods = ['get']
         detail_allowed_methods = ['get']
