@@ -110,7 +110,8 @@ class AnimalResource(ModelResource):
     '''
     strain = fields.ForeignKey('mousedb.animal.api.StrainResource', 'Strain', full=True)
     age = fields.IntegerField(attribute='age')
-
+    treatment = fields.ManyToManyField('mousedb.data.api.TreatmentResource', 'treatment_set', full=True, null=True)
+    
     class Meta:
         '''The API serves all :class:`~mousedb.animal.models.Animal` objects in the database..'''
 
