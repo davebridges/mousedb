@@ -279,6 +279,8 @@ class AssayResource(ModelResource):
         list_allowed_methods = ['get']
         detail_allowed_methods = ['get']
         authentication = ApiKeyAuthentication()
+        filtering = {"assay":ALL}
+
 
 class MeasurementAssayResource(AssayResource):
     '''This generates serves :class:`~mousedb.data.models.Assay` objects.
@@ -291,7 +293,8 @@ class MeasurementAssayResource(AssayResource):
 
         include_resource_uri = False
         fields = ['assay',]         
-        
+        filtering  = {"assay":ALL}    
+    
 class ExperimentResource(ModelResource):
     '''This generates the API resource for :class:`~mousedb.data.models.Experiment` objects.
     
