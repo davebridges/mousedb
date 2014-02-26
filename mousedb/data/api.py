@@ -263,8 +263,8 @@ class MeasurementResource(ModelResource):
         authentication = ApiKeyAuthentication()  
         filtering = {"assay":ALL_WITH_RELATIONS,
                      "animal":ALL_WITH_RELATIONS,
-                     "animal_cohort":ALL_WITH_RELATIONS
-                     "experiment":ALL}
+                     "animal_cohort":ALL_WITH_RELATIONS,
+                     "experiment":ALL_WITH_RELATIONS}
 
            
 class AssayResource(ModelResource):
@@ -344,12 +344,14 @@ class TreatmentResource(ModelResource):
     This is a limited dataset for use in AnimalResource calls.
     '''
     
+    animals = fields.ToManyField('mousedb.animal.api.AnimalResource','animals',full=True, null=True)
+
     class Meta:
         '''The API serves all :class:`~mousedb.data.models.Treatment` objects in the database..'''
 
         queryset = Treatment.objects.all()
         fields = 'treatment'
-        resource_name = 'Treatment'
+        resource_name = 'treatment'
         include_resource_uri = False
         list_allowed_methods = ['get']
         detail_allowed_methods = ['get']

@@ -7,7 +7,7 @@ from django.contrib import admin
 
 from tastypie.api import Api
 
-from mousedb.data.api import MeasurementResource, AssayResource, ExperimentResource, StudyResource
+from mousedb.data.api import MeasurementResource, AssayResource, ExperimentResource, StudyResource, TreatmentResource
 from mousedb.animal.api import AnimalResource, StrainResource
 from mousedb.views import APIKeyView
 
@@ -18,6 +18,7 @@ v1_api.register(MeasurementResource())
 v1_api.register(AssayResource())
 v1_api.register(ExperimentResource())
 v1_api.register(StudyResource())
+v1_api.register(TreatmentResource())
 
 admin.autodiscover()
 
