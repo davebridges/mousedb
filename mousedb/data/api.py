@@ -264,8 +264,7 @@ class MeasurementResource(ModelResource):
         filtering = {"assay":ALL_WITH_RELATIONS,
                      "animal":ALL_WITH_RELATIONS,
                      "animal_cohort":ALL_WITH_RELATIONS,
-                     "experiment":ALL_WITH_RELATIONS}
-
+                     "experiment":ALL}
            
 class AssayResource(ModelResource):
     '''This generates the API resource for :class:`~mousedb.data.models.Assay` objects.
