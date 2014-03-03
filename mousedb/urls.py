@@ -6,6 +6,7 @@ from django.conf.urls import *
 from django.contrib import admin
 
 from tastypie.api import Api
+from ajax_select import urls as ajax_select_urls
 
 from mousedb.data.api import MeasurementResource, AssayResource, ExperimentResource, StudyResource
 from mousedb.animal.api import AnimalResource, StrainResource
@@ -23,7 +24,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
 	#(r'^', 'django.views.generic.simple.direct_to_template', {'template': 'maintenance.html'}),
-	(r'^ajax_select/', include('ajax_select.urls')),	
+    (r'^admin/lookups/', include(ajax_select_urls)),	
 	(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 	(r'^admin/', include(admin.site.urls)),
     (r'^api/',include(v1_api.urls)),
