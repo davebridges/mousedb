@@ -10,6 +10,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.contrib.auth.decorators import login_required, permission_required
 from django.forms.models import inlineformset_factory
 from django.http import HttpResponseRedirect, HttpResponse
+from django.http import Http404
 from django.template import RequestContext
 from django.db.models import Count
 from django.core import serializers
@@ -606,9 +607,15 @@ class CrossTypeAnimalList(AnimalList):
         
         from mousedb.animal.models import CROSS_TYPE    
         crosstype_reverse = dict((v, k) for k, v in CROSS_TYPE)
-        crosstype = crosstype_reverse[self.kwargs['breeding_type']]
-        strain = Strain.objects.get(Strain_slug=self.kwargs['strain_slug'])
-        return Animal.objects.filter(Strain=strain,Breeding__Crosstype=crosstype)
+        try:
+            crosstype = crosstype_reverse[self.kwargs['breeding_type']]
+        except KeyError:
+            raise Http404
+        strain = get_object_or_404(Strain, Strain_slug=self.kwargs['strain_slug'])
+        if strain:
+            return Animal.objects.filter(Strain=strain,Breeding__Crosstype=crosstype)
+        else:
+            raise Http404
         
     def get_context_data(self, **kwargs):
         """This add in the context of list_type and returns this as whatever the crosstype was."""
