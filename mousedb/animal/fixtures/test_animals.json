@@ -32,7 +32,7 @@
 			"Cage": "123456",
 			"Born": "2011-01-01"
         }
-    } 
+    },
     {
     "pk": 4, 
     "model": "animal.animal", 
@@ -51,12 +51,12 @@
         "Strain": 1, 
         "Notes": "", 
         "Markings": "", 
-        "Background": "C57BL/6J", 
+        "Background": "Mixed", 
         "Mother": null, 
         "Breeding": 1, 
-        "Cage": null, 
+        "Cage": "123456", 
         "Rack": "", 
-        "Genotype": "N.D."
-    }   
+        "Genotype": "-/-"
+    } }  
 ]
 

@@ -237,14 +237,14 @@ class AnimalModelTests(TestCase):
         animal = Animal(Strain = Strain.objects.get(pk=1), Genotype="-/-", Background="Mixed")
         animal.save()
         animal_id = animal.id
-        self.assertEquals(animal.__unicode__(), "Fixture Strain (2)")
+        self.assertEquals(animal.__unicode__(), "Fixture Strain (5)")
 
     def test_animal_unicode(self):
         """This is a test for creating a new animal object, with only the minimum fields being entered.  It then tests that the correct unicode representation is being generated."""
         animal = Animal(Strain = Strain.objects.get(pk=1), Genotype="-/-", Background="Mixed")
         animal.save()
         animal_id = animal.id
-        self.assertEquals(animal.__unicode__(), "Fixture Strain (2)")
+        self.assertEquals(animal.__unicode__(), "Fixture Strain (5)")
         animal.MouseID = 1234
         animal.save()
         self.assertEquals(animal.__unicode__(), "Fixture Strain-EarTag #1234")
@@ -277,19 +277,19 @@ class AnimalViewTests(TestCase):
         response = self.client.get('/animal/')
         self.assertEqual(response.status_code, 200)
         self.assertTrue('animal_list' in response.context)    
-        self.assertEqual(response.context['animal_list'].count(), 1)        
+        self.assertEqual(response.context['animal_list'].count(), 4)        
         self.assertTemplateUsed(response, 'base.html')
         self.assertTemplateUsed(response, 'jquery_script.html')
         self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
         self.assertTemplateUsed(response, 'animal_list.html')
         self.assertTemplateUsed(response, 'animal_list_table.html')
         self.assertTemplateUsed(response, 'sortable_table_script.html')
-        self.assertEqual([animal.pk for animal in response.context['animal_list']][0], 1)        
+        self.assertEqual([animal.pk for animal in response.context['animal_list']][0], 4)        
         self.assertEqual([animal.Strain.Strain for animal in response.context['animal_list']][0], u'Fixture Strain')     
         self.assertEqual([animal.Cage for animal in response.context['animal_list']][0], 123456)
-        self.assertEqual([animal.Born for animal in response.context['animal_list']][0], datetime.date(2011,01,01))
+        self.assertEqual([animal.Born for animal in response.context['animal_list']][0], None)
         self.assertEqual([animal.Background for animal in response.context['animal_list']][0], "Mixed")
-        self.assertEqual([animal.Genotype for animal in response.context['animal_list']][0], "?")        
+        self.assertEqual([animal.Genotype for animal in response.context['animal_list']][0], "-/-")        
 
     def test_animal_list_all(self):
         """This test checks the view which displays a breeding list page showing all animals.  It checks for the correct templates and status code."""        
@@ -297,19 +297,19 @@ class AnimalViewTests(TestCase):
         response = self.client.get('/animal/all/')
         self.assertEqual(response.status_code, 200)
         self.assertTrue('animal_list' in response.context)    
-        self.assertEqual(response.context['animal_list'].count(), 1)        
+        self.assertEqual(response.context['animal_list'].count(), 4)        
         self.assertTemplateUsed(response, 'base.html')
         self.assertTemplateUsed(response, 'jquery_script.html')
         self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
         self.assertTemplateUsed(response, 'animal_list.html')
         self.assertTemplateUsed(response, 'animal_list_table.html')
         self.assertTemplateUsed(response, 'sortable_table_script.html')
-        self.assertEqual([animal.pk for animal in response.context['animal_list']][0], 1)        
+        self.assertEqual([animal.pk for animal in response.context['animal_list']][0], 4)        
         self.assertEqual([animal.Strain.Strain for animal in response.context['animal_list']][0], u'Fixture Strain')     
         self.assertEqual([animal.Cage for animal in response.context['animal_list']][0], 123456)
-        self.assertEqual([animal.Born for animal in response.context['animal_list']][0], datetime.date(2011,01,01))
+        self.assertEqual([animal.Born for animal in response.context['animal_list']][0], None)
         self.assertEqual([animal.Background for animal in response.context['animal_list']][0], "Mixed")
-        self.assertEqual([animal.Genotype for animal in response.context['animal_list']][0], "?")  
+        self.assertEqual([animal.Genotype for animal in response.context['animal_list']][0], "-/-")  
 
     def test_animal_detail(self):
         """This tests the animal-detail view, ensuring that templates are loaded correctly.  
@@ -327,7 +327,7 @@ class AnimalViewTests(TestCase):
         self.assertEqual(test_response.context['animal'].Born, datetime.date(2011,01,01))
         self.assertEqual(test_response.context['animal'].Cage, 123456) 
         self.assertEqual(test_response.context['animal'].Background, "Mixed") 
-        self.assertEqual(test_response.context['animal'].Genotype, "?") 
+        self.assertEqual(test_response.context['animal'].Genotype, "-/-") 
         self.assertEqual(test_response.context['animal'].Strain.Strain, "Fixture Strain")         
 
         null_response = self.client.get('/animal/999')
@@ -361,7 +361,7 @@ class AnimalViewTests(TestCase):
         self.assertEqual(test_response.context['animal'].Born, datetime.date(2011,01,01))
         self.assertEqual(test_response.context['animal'].Cage, 123456) 
         self.assertEqual(test_response.context['animal'].Background, "Mixed") 
-        self.assertEqual(test_response.context['animal'].Genotype, "?") 
+        self.assertEqual(test_response.context['animal'].Genotype, "-/-") 
         self.assertEqual(test_response.context['animal'].Strain.Strain, "Fixture Strain")           
 
         #Checks that an incorrect animal number givs a 404 error.
@@ -384,7 +384,7 @@ class AnimalViewTests(TestCase):
         self.assertEqual(test_response.context['animal'].Born, datetime.date(2011,01,01))
         self.assertEqual(test_response.context['animal'].Cage, 123456) 
         self.assertEqual(test_response.context['animal'].Background, "Mixed") 
-        self.assertEqual(test_response.context['animal'].Genotype, "?") 
+        self.assertEqual(test_response.context['animal'].Genotype, "-/-") 
         self.assertEqual(test_response.context['animal'].Strain.Strain, "Fixture Strain")           
         
         #Checks that an incorrect animal number gives a 404 error.
@@ -652,7 +652,7 @@ class DateViewTests(TestCase):
         response = self.client.get('/date/2011/')
         self.assertEqual(response.status_code, 200)
         self.assertTrue('animal_list' in response.context)  
-        self.assertEqual(response.context['animal_list'].count(), 1)        
+        self.assertEqual(response.context['animal_list'].count(), 3)        
         self.assertTemplateUsed(response, 'base.html')
         self.assertTemplateUsed(response, 'jquery_script.html')
         self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
@@ -664,7 +664,7 @@ class DateViewTests(TestCase):
         self.assertEqual([animal.Cage for animal in response.context['animal_list']][0], 123456)
         self.assertEqual([animal.Born for animal in response.context['animal_list']][0], datetime.date(2011,01,01))
         self.assertEqual([animal.Background for animal in response.context['animal_list']][0], "Mixed")
-        self.assertEqual([animal.Genotype for animal in response.context['animal_list']][0], "?")    
+        self.assertEqual([animal.Genotype for animal in response.context['animal_list']][0], "-/-")    
 		
     def test_archive_month(self):
         """This test checks the view which displays a list of the animals, filtered by month.  It checks for the correct templates and status code."""        
@@ -672,7 +672,7 @@ class DateViewTests(TestCase):
         response = self.client.get('/date/2011/01/')
         self.assertEqual(response.status_code, 200)
         self.assertTrue('animal_list' in response.context)  
-        self.assertEqual(response.context['animal_list'].count(), 1)        
+        self.assertEqual(response.context['animal_list'].count(), 3)        
         self.assertTemplateUsed(response, 'base.html')
         self.assertTemplateUsed(response, 'jquery_script.html')
         self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
@@ -684,7 +684,7 @@ class DateViewTests(TestCase):
         self.assertEqual([animal.Cage for animal in response.context['animal_list']][0], 123456)
         self.assertEqual([animal.Born for animal in response.context['animal_list']][0], datetime.date(2011,01,01))
         self.assertEqual([animal.Background for animal in response.context['animal_list']][0], "Mixed")
-        self.assertEqual([animal.Genotype for animal in response.context['animal_list']][0], "?")  	
+        self.assertEqual([animal.Genotype for animal in response.context['animal_list']][0], "-/-")  	
 
 class ToDoViewTests(TestCase):
     """Tests the views associated with animal objects for the three todo lists."""
@@ -727,7 +727,7 @@ class ToDoViewTests(TestCase):
         response = self.client.get('/todo/eartag/')
         self.assertEqual(response.status_code, 200)
         self.assertTrue('animal_list' in response.context)    
-        self.assertEqual(response.context['animal_list'].count(), 1)        
+        self.assertEqual(response.context['animal_list'].count(), 3)        
         self.assertTemplateUsed(response, 'base.html')
         self.assertTemplateUsed(response, 'jquery_script.html')
         self.assertTemplateUsed(response, 'jquery_ui_script_css.html')
@@ -739,7 +739,7 @@ class ToDoViewTests(TestCase):
         self.assertEqual([animal.Cage for animal in response.context['animal_list']][0], 123456)
         self.assertEqual([animal.Born for animal in response.context['animal_list']][0], datetime.date(2011,01,01))
         self.assertEqual([animal.Background for animal in response.context['animal_list']][0], "Mixed")
-        self.assertEqual([animal.Genotype for animal in response.context['animal_list']][0], "?")  
+        self.assertEqual([animal.Genotype for animal in response.context['animal_list']][0], "-/-")  
 
     def test_genotype_list(self):
         """This test checks the view which displays an animal list page showing animals which need to be genotyped.  It checks for the correct templates and status code."""        
@@ -754,7 +754,7 @@ class ToDoViewTests(TestCase):
         self.assertTemplateUsed(response, 'animal_list.html')
         self.assertTemplateUsed(response, 'animal_list_table.html')
         self.assertTemplateUsed(response, 'sortable_table_script.html')
-        self.assertEqual([animal.pk for animal in response.context['animal_list']][0], 1)        
+        self.assertEqual([animal.pk for animal in response.context['animal_list']][0], 3)        
         self.assertEqual([animal.Strain.Strain for animal in response.context['animal_list']][0], u'Fixture Strain')     
         self.assertEqual([animal.Cage for animal in response.context['animal_list']][0], 123456)
         self.assertEqual([animal.Born for animal in response.context['animal_list']][0], datetime.date(2011,01,01))
@@ -774,7 +774,7 @@ class ToDoViewTests(TestCase):
         self.assertTemplateUsed(response, 'animal_list.html')
         self.assertTemplateUsed(response, 'animal_list_table.html')
         self.assertTemplateUsed(response, 'sortable_table_script.html')
-        self.assertEqual([animal.pk for animal in response.context['animal_list']][0], 1)        
+        self.assertEqual([animal.pk for animal in response.context['animal_list']][0], 3)        
         self.assertEqual([animal.Strain.Strain for animal in response.context['animal_list']][0], u'Fixture Strain')     
         self.assertEqual([animal.Cage for animal in response.context['animal_list']][0], 123456)
         self.assertEqual([animal.Born for animal in response.context['animal_list']][0], datetime.date(2011,01,01))
@@ -794,7 +794,7 @@ class ToDoViewTests(TestCase):
         self.assertTemplateUsed(response, 'animal_list.html')
         self.assertTemplateUsed(response, 'animal_list_table.html')
         self.assertTemplateUsed(response, 'sortable_table_script.html')
-        self.assertEqual([animal.pk for animal in response.context['animal_list']][0], 1)        
+        self.assertEqual([animal.pk for animal in response.context['animal_list']][0], 3)        
         self.assertEqual([animal.Strain.Strain for animal in response.context['animal_list']][0], u'Fixture Strain')     
         self.assertEqual([animal.Cage for animal in response.context['animal_list']][0], 123456)
         self.assertEqual([animal.Born for animal in response.context['animal_list']][0], datetime.date(2011,01,01))
@@ -814,7 +814,7 @@ class ToDoViewTests(TestCase):
         self.assertTemplateUsed(response, 'animal_list.html')
         self.assertTemplateUsed(response, 'animal_list_table.html')
         self.assertTemplateUsed(response, 'sortable_table_script.html')
-        self.assertEqual([animal.pk for animal in response.context['animal_list']][0], 1)        
+        self.assertEqual([animal.pk for animal in response.context['animal_list']][0], 3)        
         self.assertEqual([animal.Strain.Strain for animal in response.context['animal_list']][0], u'Fixture Strain')     
         self.assertEqual([animal.Cage for animal in response.context['animal_list']][0], 123456)
         self.assertEqual([animal.Born for animal in response.context['animal_list']][0], datetime.date(2011,01,01))
