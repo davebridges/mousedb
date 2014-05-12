@@ -319,7 +319,7 @@ class MeasurementExperimentResource(ExperimentResource):
         This is a limited dataset for use in MeasurementResource calls.
         '''
 
-        fields = ['date',]
+        fields = ['feeding_state','fasting_time','date','time']        
         include_resource_uri = False           
         
 class StudyResource(ModelResource):
