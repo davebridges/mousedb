@@ -7,7 +7,8 @@
             "Start": "2010-01-01",
             "Cage":  "12345",
             "Timed_Mating": "False",            
-            "Active" : "True"
+            "Active" : "True",
+            "Crosstype": "HET vs HET"
         }
     },
     {

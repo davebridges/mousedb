@@ -11,7 +11,7 @@
         }
     }, 
     {
-        "pk": 1, 
+        "pk": 2, 
         "model": "animal.animal", 
         "fields": {
             "Genotype": "-/-", 
@@ -23,7 +23,7 @@
         }
     },
     {
-        "pk": 1, 
+        "pk": 3, 
         "model": "animal.animal", 
         "fields": {
             "Genotype": "?", 
@@ -32,6 +32,31 @@
 			"Cage": "123456",
 			"Born": "2011-01-01"
         }
-    }    
+    },
+    {
+    "pk": 4, 
+    "model": "animal.animal", 
+    "fields": {
+        "Cause_of_Death": "", 
+        "Death": null, 
+        "Weaned": null, 
+        "MouseID": null, 
+        "Born": null, 
+        "Rack_Position": "", 
+        "Gender": "N.D.", 
+        "Backcross": null, 
+        "Father": null, 
+        "Generation": null, 
+        "Alive": true, 
+        "Strain": 1, 
+        "Notes": "", 
+        "Markings": "", 
+        "Background": "Mixed", 
+        "Mother": null, 
+        "Breeding": 1, 
+        "Cage": "123456", 
+        "Rack": "", 
+        "Genotype": "-/-"
+    } }  
 ]
 
