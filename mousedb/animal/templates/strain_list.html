@@ -10,9 +10,11 @@
 <h2>Currently {{ strain_list_alive.count }} Strains of Mice in {{ cages.count }} Cages:</h2>
 <table>
  <tr>
-  <th>Strain</th> {% for strain in strain_list_alive %}<th>{{strain}}</th>{% endfor %}
+  {% for strain in strain_list_alive %}
+    <tr><th>{{strain}}</th>
+    <td><a href="{% url "strain-detail" strain.Strain_slug %}">{{ strain.alive }}</a></td>
  </tr>
- <tr><th>Current</th>{% for strain in strain_list_alive %}<td><a href="{% url "strain-detail" strain.Strain_slug %}">{{ strain.alive }}</a></td>{% endfor %}</tr>
+ {% endfor %} 
  </table>
 <div id="chart">
 <img src="http://chart.apis.google.com/chart?
@@ -27,8 +29,10 @@ chs=600x250
 border = 1 px/>
 <h2>In Total {{ strain_list.count }} Strains of Mice:</h2>
 <table>  
- <th>Strain</th> {% for strain in strain_list %}<th>{{strain}}</th>{% endfor %}
- <tr><th>All</th>{% for strain in strain_list %}<td><a href="{% url "strain-detail" strain.Strain_slug %}">{{ strain.animal_set.count }}</td></a>{% endfor %}</tr>
+ {% for strain in strain_list %}
+    <tr><th>{{strain}}</th>
+    <td><a href="{% url "strain-detail" strain.Strain_slug %}">{{ strain.animal_set.count }}</td></a></tr>
+ {% endfor %}
 </table>
 <div id="chart">
 <img src="http://chart.apis.google.com/chart?
