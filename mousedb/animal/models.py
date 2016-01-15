@@ -130,6 +130,7 @@ CROSS_TYPE = (
 ('KO vs WT', 'Generate Hets'),
 ('WT vs WT', 'Wild-Type Only'),
 ('KO vs KO', 'Knockout Only'),
+('FL vs FL', 'Floxed KO Cross')
 )
 
 BACKGROUND_CHOICES = (
@@ -137,6 +138,7 @@ BACKGROUND_CHOICES = (
 ('C57BL/6-BA', 'C57BL/6-BA'),
 ('C57BL/6-LY5.2', 'C57BL/S-LY5.2'),
 ('BTBR','BTBR'),
+('Wistar','Wistar'),
 ('Mixed', 'Mixed')
 )
 
