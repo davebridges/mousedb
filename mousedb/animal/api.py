@@ -120,7 +120,7 @@ class AnimalResource(ModelResource):
         resource_name = 'animal'
         list_allowed_methods = ['get']
         detail_allowed_methods = ['get']
-        fields = ['MouseID','Genotype','Gender','Background','Alive']
+        fields = ['id','MouseID','Genotype','Gender','Background','Alive','Death','Cause_of_Death','Cage']
         filtering = {"Cage":'exact',
                      "Gender":('exact','startswith'),
                      "Genotype":ALL,
