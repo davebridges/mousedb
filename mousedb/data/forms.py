@@ -67,6 +67,6 @@ class CohortForm(ModelForm):
     This is to prevent accidental unclicking of animals."""
     
     animals = forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple,
-        queryset=Animal.objects.filter(Alive=True))
+        queryset=Animal.objects.all())
     class Meta:
         model = Cohort
