@@ -14,8 +14,11 @@ class AnimalForm(ModelForm):
 	This form also automatically loads javascript and css for the datepicker jquery-ui widget.  It also includes auto"""
 	Father = AutoCompleteSelectField('animal', required=False)
 	Mother = AutoCompleteSelectField('animal', required=False)
+	
 	class Meta:
 		model = Animal
+		fields = "__all__"
+	
 	class Media:
 		css = {
 			'all': ('javascript/jquery-autocomplete/jquery.autocomplete.css', 'css/autocomplete.css')
@@ -46,5 +49,6 @@ class BreedingForm(ModelForm):
     This form is used from the url /mousedb/breeding/new and is a generic create view.  This view includes a datepicker widget for Stat and End dates and autocomplete fields for the Females and Male fields
     """
 
-    class Meta:    
+    class Meta:   
         model = Breeding
+        fields = "__all__"
