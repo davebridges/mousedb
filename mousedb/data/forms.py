@@ -15,6 +15,7 @@ class ExperimentForm(ModelForm):
     This form is used to set up and modify an experiment.  It uses a datepicker widget for the date.
     """
     class Meta:
+        fields = "__all__"
         model = Experiment
 
 		
@@ -28,7 +29,7 @@ class StudyExperimentForm(ModelForm):
         exclude = ['study',]
 
 		
-MeasurementFormSet = inlineformset_factory(Experiment, Measurement, extra=10, can_delete=True)
+MeasurementFormSet = inlineformset_factory(Experiment, Measurement, extra=10, can_delete=True, fields="__all__")
 
 class MeasurementForm(ModelForm):
     """Form definition for adding and editing measurements.
@@ -39,6 +40,7 @@ class MeasurementForm(ModelForm):
     animal  = make_ajax_field(Measurement, 'animal', 'animal', help_text=None)
     
     class Meta:
+        fields = "__all__"
         model = Measurement
 	
 class StudyForm(ModelForm):
@@ -46,6 +48,7 @@ class StudyForm(ModelForm):
 
     This form is used to create and modify studies.  It uses an autocomplete widget for the animals."""
     class Meta:
+        fields = "__all__"
         model = Study
            
 
@@ -58,6 +61,7 @@ class TreatmentForm(ModelForm):
     animals = forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple,
         queryset=Animal.objects.all())
     class Meta:
+        fields = "__all__"
         model = Treatment
 
 class CohortForm(ModelForm):
@@ -69,4 +73,5 @@ class CohortForm(ModelForm):
     animals = forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple,
         queryset=Animal.objects.all())
     class Meta:
+        fields = "__all__"
         model = Cohort
