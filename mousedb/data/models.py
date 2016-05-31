@@ -4,7 +4,6 @@ from django.db import models
 from django.template.defaultfilters import slugify
 
 from mousedb.animal.models import Animal, Strain
-from mousedb.custom_fields import CommaSeparatedFloatField
 
 INJECTIONS = (
 	('Insulin', 'Insulin'),
