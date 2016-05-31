@@ -7,7 +7,7 @@ from django.conf.urls import *
 from mousedb.animal import views
 from mousedb.data.views import StrainData, StrainDataCSV
 
-urlpatterns = patterns('',
+urlpatterns = patterns[
     url(r'^$', views.StrainList.as_view(), name="strain-list"),
 	url(r'^new/?$', views.StrainCreate.as_view(), name="strain-new"),
 	url(r'^(?P<slug>[-\w]+)/edit/?$', views.StrainUpdate.as_view(), name="strain-edit"),
@@ -25,4 +25,4 @@ urlpatterns = patterns('',
         name="strain-crosstype"),
     url(r'^(?P<slug>[-\w]+)/?$', views.StrainDetail.as_view(), name="strain-detail"),
 
-)
+]
