@@ -6,7 +6,7 @@ from django.conf.urls import *
 
 from mousedb.data import views
 
-urlpatterns = patterns('',
+urlpatterns = [
 	url(r'^$', views.ExperimentList.as_view(), name="experiment-list"),
 	url(r'^(?P<pk>\d*)/$', views.ExperimentDetail.as_view(), name="experiment-detail"),
 	url(r'^(?P<pk>\d*)/csv', views.experiment_details_csv, name="experiment-detail-csv"),
@@ -18,4 +18,4 @@ urlpatterns = patterns('',
 	url(r'^data/all.csv$', views.MeasurementListCSV.as_view(), name="measurement_list_csv"),        
 	url(r'^data/(?P<pk>\d*)/edit/$', views.MeasurementUpdate.as_view(), name="measurement-edit"),
 	url(r'^data/(?P<pk>\d*)/delete/$', views.MeasurementDelete.as_view(), name = "measurement-delete"),
-)
+]

@@ -14,6 +14,10 @@ from mousedb.animal.api import AnimalResource, StrainResource
 from mousedb.views import APIKeyView, logout_view, home
 
 from mousedb.animal.urls import mouse, strain, todo, date, cage, breeding
+from mousedb.data.urls import experiment, study, treatment, parameter, cohort
+from mousedb.timed_mating import urls as timed_mating_urls
+from mousedb.veterinary import urls as veterinary_urls
+
 from mousedb import animal, data, timed_mating, veterinary
 
 v1_api = Api(api_name='v1')
@@ -28,7 +32,7 @@ v1_api.register(TreatmentResource())
 
 admin.autodiscover()
 
-urlpatterns = patterns[
+urlpatterns = [
 	#(r'^', 'django.views.generic.simple.direct_to_template', {'template': 'maintenance.html'}),
 	(r'^admin/', include(admin.site.urls)),
     (r'^api/',include(v1_api.urls)),
@@ -38,7 +42,7 @@ urlpatterns = patterns[
 
 	url(r'^mouse/', include(mouse)),
 	url(r'^mice/', include(mouse)),
-	url(r'^animals?/', include(mouse_)),
+	url(r'^animals?/', include(mouse)),
 	url(r'^strains?/', include(strain)),
 	url(r'^dates?/', include(date)),
 	url(r'^breedings?/', include(breeding)),
@@ -46,20 +50,20 @@ urlpatterns = patterns[
 	url(r'^todo/', include(todo)),
 	url(r'^cages?/', include(cage)),
 	
-	url(r'^experiments?/', include(data.urls.experiment)),
-	url(r'^study/', include(data.urls.study)),
-	url(r'^studies/', include(data.urls.study)),
-	url(r'^treatments?/', include(data.urls.treatment)),
-	url(r'^parameters?/', include(data.urls.parameter)),
-    url(r'^cohorts?/', include(data.urls.cohort)),
+	url(r'^experiments?/', include(experiment)),
+	url(r'^study/', include(study)),
+	url(r'^studies/', include(study)),
+	url(r'^treatments?/', include(treatment)),
+	url(r'^parameters?/', include(parameter)),
+    url(r'^cohorts?/', include(cohort)),
 
-	url(r'^plugs?/', include(timed_mating.urls)),
-	url(r'^plugevents?/', include(timed_mating.urls)),
-	url(r'^plug_events?/', include(timed_mating.urls)),
-	url(r'^timedmatings?/', include(timed_mating.urls)),
-	url(r'^timed_matings?/', include(timed_mating.urls)),
+	url(r'^plugs?/', include(timed_mating_urls)),
+	url(r'^plugevents?/', include(timed_mating_urls)),
+	url(r'^plug_events?/', include(timed_mating_urls)),
+	url(r'^timedmatings?/', include(timed_mating_urls)),
+	url(r'^timed_matings?/', include(timed_mating_urls)),
 	
-	url(r'^veterinary/', include(veterinary.urls)),
+	url(r'^veterinary/', include(veterinary_urls)),
 	
 	url(r'^index/$', home, name="home"),
 	url(r'^/?$', home)

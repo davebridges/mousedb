@@ -2,12 +2,12 @@
 
 It takes the root */strain...* and generates strain-list, strain-new, strain-edit, strain-delete, strain-detail and views from animal.views."""
 
-from django.conf.urls import *
+from django.conf.urls import url
 
 from mousedb.animal import views
 from mousedb.data.views import StrainData, StrainDataCSV
 
-urlpatterns = patterns[
+urlpatterns = [
     url(r'^$', views.StrainList.as_view(), name="strain-list"),
 	url(r'^new/?$', views.StrainCreate.as_view(), name="strain-new"),
 	url(r'^(?P<slug>[-\w]+)/edit/?$', views.StrainUpdate.as_view(), name="strain-edit"),

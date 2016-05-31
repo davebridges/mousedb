@@ -2,12 +2,12 @@
 
 This urlconf takes a url in the form **/date/...** and can generate a general archive, yearly archive or monthly archive."""
 
-from django.conf.urls import *
+from django.conf.urls import url
 
-from mousedb.animal.views import AnimalYearArchive, AnimalMonthArchive
+from mousedb.animal.views import AnimalYearArchive, AnimalMonthArchive, date_archive_year
 
-urlpatterns = patterns('',
-	url(r'^$','mousedb.animal.views.date_archive_year', name="archive-home"), 
+urlpatterns = [
+	url(r'^$',date_archive_year, name="archive-home"), 
     url(r'^(?P<year>\d{4})/?$', AnimalYearArchive.as_view(), name="archive-year"),
     url(r'^(?P<year>\d{4})/(?P<month>\d{2})/?$', AnimalMonthArchive.as_view(), name="archive-month")
-)
+]

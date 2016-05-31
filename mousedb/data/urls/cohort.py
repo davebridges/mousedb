@@ -4,11 +4,11 @@ This includes generic create, update, delete, list and detail views.
 The views for these urls are defined in the :mod:`~mousedb.data.views.` module.
 """
 
-from django.conf.urls import *
+from django.conf.urls import url
 
 from mousedb.data.views import CohortDetail, CohortList, CohortUpdate, CohortDelete, CohortCreate, CohortData, CohortDataCSV
 
-urlpatterns = patterns('',
+urlpatterns = [
 	url(r'^/?$', CohortList.as_view(), name="cohort-list"),	
 	url(r'^new/?$', CohortCreate.as_view(), name="cohort-new"),	
 	url(r'^(?P<slug>[-\w\d]+)/edit/?$', CohortUpdate.as_view(), name="cohort-edit"),
@@ -16,4 +16,4 @@ urlpatterns = patterns('',
     url(r'^(?P<slug>[\w-]+)/data/?$', CohortData.as_view(), name="cohort-data"), 
     url(r'^(?P<slug>[\w-]+)/data.csv$', CohortDataCSV.as_view(), name="cohort-data-csv"), 	
 	url(r'^(?P<slug>[-\w\d]+)/?$', CohortDetail.as_view(), name="cohort-detail"),		
-)
+]

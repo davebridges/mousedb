@@ -2,11 +2,11 @@
 
 This includes generic views for study list, study details and create, change and delete studies."""
 
-from django.conf.urls import *
+from django.conf.urls import url
 
 from mousedb.data import views
 
-urlpatterns = patterns('',
+urlpatterns = [
 	url(r'^$', views.StudyList.as_view(), name="study-list"),
 	url(r'^new/$', views.StudyCreate.as_view(), name="study-new"),
 	url(r'^(?P<pk>\d*)/$', views.StudyDetail.as_view(), name="study-detail"),
@@ -16,4 +16,4 @@ urlpatterns = patterns('',
 	url(r'^aging$', views.StudyAgeing.as_view(), name="study-aging-detail"),
     url(r'^aging/all.csv', views.aging_csv, name="aging-csv"),
     url(r'^litters/all.csv', views.litters_csv, name="litters-csv")
-)
+]
