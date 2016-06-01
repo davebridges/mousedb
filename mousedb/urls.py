@@ -2,7 +2,7 @@
 
 These directives will redirect requests to app specific pages, and provide redundancy in possible names."""
 
-from django.conf.urls import url, patterns, include
+from django.conf.urls import url, include
 from django.contrib import admin, auth
 
 from tastypie.api import Api
@@ -16,7 +16,6 @@ from mousedb.views import APIKeyView, logout_view, home
 from mousedb.animal.urls import mouse, strain, todo, date, cage, breeding
 from mousedb.data.urls import experiment, study, treatment, parameter, cohort
 from mousedb.timed_mating import urls as timed_mating_urls
-from mousedb.veterinary import urls as veterinary_urls
 
 from mousedb import animal, data, timed_mating, veterinary
 
@@ -32,10 +31,10 @@ v1_api.register(TreatmentResource())
 
 admin.autodiscover()
 
-urlpatterns = [
+urlpatterns = (
 	#(r'^', 'django.views.generic.simple.direct_to_template', {'template': 'maintenance.html'}),
-	(r'^admin/', include(admin.site.urls)),
-    (r'^api/',include(v1_api.urls)),
+	url(r'^admin/', include(admin.site.urls)),
+    url(r'^api/',include(v1_api.urls)),
     url(r'^api_key/', APIKeyView.as_view(), name="api-keys"),	
 	url(r'^accounts/login/', auth.views.login, name="login"),
 	url(r'^accounts/logout/', logout_view, name="logout"),
@@ -63,9 +62,9 @@ urlpatterns = [
 	url(r'^timedmatings?/', include(timed_mating_urls)),
 	url(r'^timed_matings?/', include(timed_mating_urls)),
 	
-	url(r'^veterinary/', include(veterinary_urls)),
+	url(r'^veterinary/', include('mousedb.veterinary.urls')),
 	
 	url(r'^index/$', home, name="home"),
 	url(r'^/?$', home)
-]
+)
 
