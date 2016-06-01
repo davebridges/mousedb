@@ -42,7 +42,7 @@ class VeterinaryViewTests(TestCase):
 
         This view uses a user with superuser permissions so does not test the permission levels for this view."""
         
-        test_response = self.client.get('/veterinary')
+        test_response = self.client.get('/veterinary/')
         self.assertEqual(test_response.status_code, 200)
         self.assertTemplateUsed(test_response, 'veterinary_home.html')        
         self.assertTrue('medical_issues' in test_response.context)        
