@@ -5,6 +5,7 @@ These tests will verify function of the home and logout views.
 
 from django.test import TestCase
 from django.test.client import Client, RequestFactory
+from django.contrib.auth import User
 
 class RootViewTests(TestCase):
     """These are tests for the root views.  Included are tests for home and logout."""
