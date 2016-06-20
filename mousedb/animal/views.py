@@ -6,7 +6,7 @@ import datetime
 
 from braces.views import LoginRequiredMixin, PermissionRequiredMixin
 
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required, permission_required
 from django.forms.models import inlineformset_factory
 from django.http import HttpResponseRedirect, HttpResponse
@@ -368,7 +368,7 @@ def breeding_pups(request, breeding_id):
             return HttpResponseRedirect( breeding.get_absolute_url() )            
     else:
         formset = PupsFormSet(instance=breeding)
-    return render_to_response("breeding_pups.html", {"formset":formset, 'breeding':breeding},context_instance=RequestContext(request))
+    return render("breeding_pups.html", {"formset":formset, 'breeding':breeding})
 
 @permission_required('animal.change_animal')
 def breeding_change(request, breeding_id):
@@ -389,7 +389,7 @@ def breeding_change(request, breeding_id):
             return HttpResponseRedirect( breeding.get_absolute_url() )
     else:
         formset = PupsFormSet(instance=breeding,)
-    return render_to_response("breeding_change.html", {"formset":formset, 'breeding':breeding},context_instance=RequestContext(request))
+    return render("breeding_change.html", {"formset":formset, 'breeding':breeding})
 	
 @permission_required('animal.change_animal')
 def breeding_wean(request, breeding_id):
@@ -410,7 +410,7 @@ def breeding_wean(request, breeding_id):
             return HttpResponseRedirect( breeding.get_absolute_url() )
     else:
         formset = PupsFormSet(instance=breeding, queryset=Animal.objects.filter(Alive=True, Weaned__isnull=True))
-    return render_to_response("breeding_wean.html", {"formset":formset, 'breeding':breeding},context_instance=RequestContext(request))	
+    return render("breeding_wean.html", {"formset":formset, 'breeding':breeding})	
 
 def multiple_pups(request):
     """This view is used to enter multiple animals at the same time.
@@ -443,7 +443,7 @@ def multiple_pups(request):
         return HttpResponseRedirect( reverse('strain-list') )	
     else:
         form = MultipleAnimalForm()
-    return render_to_response("animal_multiple_form.html", {"form":form,}, context_instance=RequestContext(request))		
+    return render("animal_multiple_form.html", {"form":form,})		
 	
 def multiple_breeding_pups(request, breeding_id):
     """This view is used to enter multiple animals at the same time from a breeding cage.
@@ -474,7 +474,7 @@ def multiple_breeding_pups(request, breeding_id):
         return HttpResponseRedirect( breeding.get_absolute_url() )	
     else:
         form = MultipleBreedingAnimalForm()
-    return render_to_response("animal_multiple_form.html", {"form":form, "breeding":breeding}, context_instance=RequestContext(request))	
+    return render("animal_multiple_form.html", {"form":form, "breeding":breeding})	
     
 class AnimalYearArchive(YearArchiveView):
     """This view generates a list of animals born within the specified year.
@@ -522,7 +522,7 @@ def date_archive_year(request):
     while tested_year <= datetime.date.today().year:
         archive_dict[tested_year] = Animal.objects.filter(Born__year=tested_year).count()
         tested_year = tested_year + 1
-    return render_to_response("animal_archive.html", {"archive_dict": archive_dict}, context_instance=RequestContext(request))
+    return render(request, 'animal_archive.html', {"archive_dict": archive_dict})
 
 @login_required
 def todo(request):
@@ -534,7 +534,7 @@ def todo(request):
     genotype_list = Animal.objects.filter(Q(Genotype='N.D.')|Q(Genotype__icontains='?')).filter(Alive=True, Born__lt=(datetime.date.today() - datetime.timedelta(days=settings.GENOTYPE_AGE)))
     wean = datetime.date.today() - datetime.timedelta(days=settings.WEAN_AGE)
     wean_list = Animal.objects.filter(Born__lt=wean).filter(Weaned=None,Alive=True).exclude(Strain=2).order_by('Strain','Background','Rack','Cage')
-    return render_to_response('todo.html', {'eartag_list':eartag_list, 'wean_list':wean_list, 'genotype_list':genotype_list},context_instance=RequestContext(request))  
+    return render(request, 'todo.html', {'eartag_list':eartag_list, 'wean_list':wean_list, 'genotype_list':genotype_list})  
 
 class EarTagList(AnimalList):
     """This view is for showing animals which need to be eartagged.

@@ -2,7 +2,7 @@
 
 Currently all views are generic CRUD views except for the view in which a plug event is defined from a breeding cage."""
 
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render, get_object_or_404
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import permission_required
@@ -88,5 +88,5 @@ def breeding_plugevent(request, breeding_id):
         form = BreedingPlugForm()
         form.fields["PlugFemale"].queryset = breeding.Females.all()
         form.fields["PlugMale"].queryset = breeding.Male.all()
-    return render_to_response('breeding_plugevent_form.html', {'form':form, 'breeding':breeding},context_instance=RequestContext(request))
+    return render(request, 'breeding_plugevent_form.html', {'form':form, 'breeding':breeding})
 

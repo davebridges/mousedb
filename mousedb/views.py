@@ -8,7 +8,7 @@ from tastypie.models import ApiKey
 
 from braces.views import LoginRequiredMixin
 
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth import logout
 from django.template import RequestContext
@@ -40,7 +40,7 @@ def home(request):
     animal_list_current = animal_list.filter(Alive=True)
     strain_list = animal_list.values("Strain").distinct()
     strain_list_current = animal_list_current.values("Strain").distinct()
-    return render_to_response('home.html', {'animal_list':animal_list, 'animal_list_current':animal_list_current, 'strain_list':strain_list, 'strain_list_current':strain_list_current, 'cage_list':cage_list, 'cage_list_current':cage_list_current},context_instance=RequestContext(request))
+    return render(request, 'home.html', {'animal_list':animal_list, 'animal_list_current':animal_list_current, 'strain_list':strain_list, 'strain_list_current':strain_list_current, 'cage_list':cage_list, 'cage_list_current':cage_list_current})
     
 class ProtectedListView(ListView):
     """This subclass of ListView generates a login_required protected version of the ListView.
