@@ -19,8 +19,8 @@ USE_TZ = True
 SECRET_KEY = 'ci%^08ig-0qu*&b(kz_=n6lvbx*puyx6=8!yxzm0+*z)w@7+%6'
 
 # List of callables that know how to import templates from various sources.
-TEMPLATE_LOADERS = ('django.template.loaders.filesystem.Loader',
- 'django.template.loaders.app_directories.Loader')
+TEMPLATE_LOADERS = ['django.template.loaders.filesystem.Loader',
+ 'django.template.loaders.app_directories.Loader']
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
@@ -32,9 +32,6 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'mousedb.urls'
 
-TEMPLATE_DIRS = (
-	os.path.join(PROJECT_DIR, "templates"),
-)
 
 STATICFILES_DIRS = (
     os.path.join(PROJECT_DIR, "static"),
@@ -44,9 +41,7 @@ STATICFILES_DIRS = (
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            # insert your TEMPLATE_DIRS here
-        ],
+        'DIRS': [os.path.join(PROJECT_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
