@@ -49,6 +49,7 @@ class MedicalIssueCreate(PermissionRequiredMixin, CreateView):
     
     permission_required = 'veterinary.create_medicalissue'
     model = MedicalIssue
+    fields = '__all__'
     template_name = 'medical_issue_form.html'
     
 class MedicalIssueUpdate(PermissionRequiredMixin, UpdateView):
@@ -58,6 +59,7 @@ class MedicalIssueUpdate(PermissionRequiredMixin, UpdateView):
     
     permission_required = 'veterinary.update_medicalissue'
     model = MedicalIssue
+    fields = '__all__'
     context_object_name = 'medical_issue'
     template_name = 'medical_issue_form.html'   
     
@@ -87,6 +89,7 @@ class MedicalConditionCreate(PermissionRequiredMixin, CreateView):
     
     permission_required = 'veterinary.create_medicalcondition'
     model = MedicalCondition
+    fields = '__all__'
     template_name = 'medical_condition_form.html'
     
 class MedicalConditionUpdate(PermissionRequiredMixin, UpdateView):
@@ -96,6 +99,7 @@ class MedicalConditionUpdate(PermissionRequiredMixin, UpdateView):
     
     permission_required = 'veterinary.update_medicalcondition'
     model = MedicalCondition
+    fields = '__all__'
     context_object_name = 'medical_condition'
     template_name = 'medical_condition_form.html'   
     
@@ -125,6 +129,7 @@ class MedicalTreatmentCreate(PermissionRequiredMixin, CreateView):
     
     permission_required = 'veterinary.create_medicaltreatment'
     model = MedicalTreatment
+    fields = '__all__'
     template_name = 'medical_treatment_form.html'
     
 class MedicalTreatmentUpdate(PermissionRequiredMixin, UpdateView):
@@ -134,6 +139,7 @@ class MedicalTreatmentUpdate(PermissionRequiredMixin, UpdateView):
     
     permission_required = 'veterinary.update_medicaltreatment'
     model = MedicalTreatment
+    fields = '__all__'
     context_object_name = 'medical_treatment'
     template_name = 'medical_treatment_form.html'   
     

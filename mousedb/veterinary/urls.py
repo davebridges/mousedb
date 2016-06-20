@@ -7,7 +7,7 @@ from django.conf.urls import url
 from mousedb.veterinary.views import *
 
 urlpatterns = [
-    url(r'$', VeterinaryHome.as_view(), name="veterinary-home"),
+    url(r'^/?$', VeterinaryHome.as_view(), name="veterinary-home"),
     
     url(r'^medical-issue/new/?$', MedicalIssueCreate.as_view(), name="medical-issue-new"),    
     url(r'^medical-issue/(?P<pk>[\d]+)/?$', MedicalIssueDetail.as_view(), name="medical-issue-detail"),

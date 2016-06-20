@@ -36,8 +36,8 @@ urlpatterns = (
 	url(r'^admin/', include(admin.site.urls)),
     url(r'^api/',include(v1_api.urls)),
     url(r'^api_key/', APIKeyView.as_view(), name="api-keys"),	
-	url(r'^accounts/login/', auth.views.login, name="login"),
-	url(r'^accounts/logout/', logout_view, name="logout"),
+	url(r'^accounts/login/?$', auth.views.login, name="login"),
+	url(r'^accounts/logout/?$', logout_view, name="logout"),
 
 	url(r'^mouse/', include(mouse)),
 	url(r'^mice/', include(mouse)),

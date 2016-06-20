@@ -46,20 +46,10 @@ class Timed_MatingModelTests(TestCase):
         
         This test uses a Breeding, PlugDate, PlugMale and PlugFemale field."""
         new_plugevent = PlugEvents(
-            Breeding = Breeding(Strain = Strain(Strain="Test Strain", Strain_slug="Test_Strain")),
+            Breeding = Breeding(pk=1),
             PlugDate = datetime.date.today(),
-            PlugMale = Animal(
-                Strain = Strain(Strain="Test Strain", Strain_slug="Test_Strain"), 
-                Background = "Mixed", 
-                Genotype="-/-", 
-                Gender="M"
-                ),
-            PlugFemale = Animal(
-                Strain = Strain(Strain="Test Strain", Strain_slug="Test_Strain"), 
-                Background = "Mixed", 
-                Genotype="-/-", 
-                Gender="M"
-                )
+            PlugMale = Animal(pk=1),
+            PlugFemale = Animal(pk=2)
             )
         new_plugevent.save()
 	test_plugevent = PlugEvents.objects.get(PlugDate = datetime.date.today() )
@@ -79,7 +69,7 @@ class Timed_MatingModelTests(TestCase):
 class Timed_MatingViewTests(TestCase):
     """Test the views contained in the 'timed_mating' app."""
 
-    fixtures = ['test_breeding','test_plugevents', 'test_animals', 'test_strain']
+    fixtures = ['test_breeding','test_plugevents', 'test_animals', 'test_strain','test_group']
 
     def setUp(self):
         """Instantiate the test client.  Creates a test user."""

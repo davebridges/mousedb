@@ -18,7 +18,7 @@ MODELS = [MedicalIssue, MedicalCondition, MedicalTreatment]
 class VeterinaryViewTests(TestCase):
     '''This class tests the views for the base :mod:`~mousedb.veterinary` app.'''
 
-    fixtures = ['test_medical_condition', 'test_medical_treatment', 'test_strain', 'test_study']
+    fixtures = ['test_medical_condition', 'test_medical_treatment', 'test_strain', 'test_study','test_group']
 
     def setUp(self):
         """Instantiate the test client.  Creates a test user."""
@@ -52,7 +52,7 @@ class VeterinaryViewTests(TestCase):
 class MedicalIssueModelTests(TestCase):
     '''This class tests various aspects of the :class:`~mousedb.veterinary.models.MedicalIssue` model.'''
 
-    fixtures = ['test_medical_condition', 'test_medical_treatment', 'test_animals', 'test_strain']
+    fixtures = ['test_medical_condition', 'test_medical_treatment', 'test_animals', 'test_strain','test_breeding']
 
     def setUp(self):
         '''Instantiate the test client.  Creates a test user.'''
@@ -110,7 +110,7 @@ class MedicalIssueModelTests(TestCase):
 class MedicalIssueViewTests(TestCase):
     '''This class tests the views for the :class:`~mousedb.veterinary.MedicalIssue` objects.'''
 
-    fixtures = ['test_medical_issue', 'test_medical_condition','test_animals', 'test_strain']
+    fixtures = ['test_medical_issue', 'test_medical_condition','test_animals', 'test_strain','test_breeding','test_group']
 
     def setUp(self):
         """Instantiate the test client.  Creates a test user."""
@@ -255,7 +255,7 @@ class MedicalConditionTests(TestCase):
 class MedicalConditionViewTests(TestCase):
     '''This class tests the views for the :class:`~mousedb.veterinary.MedicalCondition` objects.'''
 
-    fixtures = ['test_medical_issue', 'test_medical_condition','test_animals', 'test_strain']
+    fixtures = ['test_medical_issue', 'test_medical_condition','test_animals', 'test_strain','test_group','test_breeding']
 
     def setUp(self):
         """Instantiate the test client.  Creates a test user."""
@@ -398,7 +398,7 @@ class MedicalTreatmentTests(TestCase):
 class MedicalTreatmentViewTests(TestCase):
     '''This class tests the views for the :class:`~mousedb.veterinary.MedicalTreatment` objects.'''
 
-    fixtures = ['test_medical_issue', 'test_medical_condition','test_animals', 'test_medical_treatment', 'test_strain']
+    fixtures = ['test_medical_issue', 'test_medical_condition','test_animals', 'test_medical_treatment', 'test_strain', 'test_breeding','test_group']
 
     def setUp(self):
         """Instantiate the test client.  Creates a test user."""

@@ -125,6 +125,7 @@ class PharmaceuticalCreate(PermissionRequiredMixin,CreateView):
     It is generated when the url **/parameter/pharmaceutical/new** is requested.'''
     
     model = Pharmaceutical
+    fields = '__all__'
     permission_required = "data.add_pharmaceutical"    
     template_name = 'pharmaceutical_form.html'
     context_object_name = 'pharmaceutical'
@@ -136,6 +137,7 @@ class PharmaceuticalUpdate(PermissionRequiredMixin,UpdateView):
     It passes an object **pharmaceutical** when the url **/parameter/pharmaceutical/<id>/edit** is requested.'''
     
     model = Pharmaceutical
+    fields = '__all__'
     permission_required = "data.update_pharmaceutical"    
     template_name = 'pharmaceutical_form.html'
     context_object_name = 'pharmaceutical'        
@@ -225,7 +227,7 @@ def experiment_details_csv(request, pk):
 	
 	The view writes to a csv table the animal, genotype, age (in days), assay and values."""
     experiment = get_object_or_404(Experiment, pk=pk)
-    response = HttpResponse(mimetype='text/csv')
+    response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename=experiment.csv'
     writer = csv.writer(response)
     writer.writerow(["Animal","Cage", "Strain", "Genotype", "Age", "Assay", "Values", "Feeding", "Treatment"])
@@ -249,7 +251,7 @@ def aging_csv(request):
 	
 	The view writes to a csv table the animal, strain, genotype, age (in days), and cause of death."""
     animal_list = Animal.objects.all()
-    response = HttpResponse(mimetype='text/csv')
+    response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename=aging.csv'
     writer = csv.writer(response)
     writer.writerow(["Animal", "Strain", "Genotype", "Gender", "Age", "Death", "Alive"])
@@ -270,7 +272,7 @@ def litters_csv(request):
 	
 	The view writes to a csv table the birthdate, breeding cage and strain."""
     animal_list = Animal.objects.all()
-    response = HttpResponse(mimetype='text/csv')
+    response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename=litters.csv'
     writer = csv.writer(response)
     writer.writerow(["Born", "Breeding", "Strain"])
@@ -287,7 +289,7 @@ def data_csv(request, measurement_list):
     
     For this function to work, you have to provide the filtered set of measurements."""
 
-    response = HttpResponse(mimetype='text/csv')
+    response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename=data.csv'
     writer = csv.writer(response)
     writer.writerow(["Animal", "Genotype", "Gender","Assay", "Value","Strain", "Background","Age", "Cage", "Feeding", "Treatment"])
@@ -324,6 +326,7 @@ class ExperimentCreate(PermissionRequiredMixin, CreateView):
     
     permission_required = 'data.create_experiment'
     model = Experiment
+    fields = '__all__'
     template_name = 'experiment_form.html'
     
 class ExperimentUpdate(PermissionRequiredMixin, UpdateView):
@@ -333,6 +336,7 @@ class ExperimentUpdate(PermissionRequiredMixin, UpdateView):
     
     permission_required = 'data.update_experiment'
     model = Experiment
+    fields = '__all__'
     context_object_name = 'experiment'
     template_name = 'experiment_form.html'   
     
@@ -423,6 +427,7 @@ class StudyCreate(PermissionRequiredMixin, CreateView):
     
     permission_required = 'data.create_study'
     model = Study
+    fields = '__all__'
     template_name = 'study_form.html'
     
 class StudyUpdate(PermissionRequiredMixin, UpdateView):
@@ -432,6 +437,7 @@ class StudyUpdate(PermissionRequiredMixin, UpdateView):
     
     permission_required = 'data.update_study'
     model = Study
+    fields = '__all__'
     context_object_name = 'study'
     template_name = 'study_form.html'   
     
@@ -527,6 +533,7 @@ class DietCreate(PermissionRequiredMixin, CreateView):
     
     permission_required = 'data.create_diet' 
     model = Diet
+    fields = '__all__'
     template_name = 'diet_form.html'
     
 class DietUpdate(PermissionRequiredMixin, UpdateView):
@@ -536,6 +543,7 @@ class DietUpdate(PermissionRequiredMixin, UpdateView):
     
     permission_required = 'data.update_diet'
     model = Diet
+    fields = '__all__'
     context_object_name = 'diet'
     template_name = 'diet_form.html'   
     

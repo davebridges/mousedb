@@ -13,6 +13,9 @@ MODELS = [Group, License]
 
 class GroupsModelTests(TestCase):
     """Test the models contained in the 'groups' app."""
+    
+    fixtures = ['test_group',]
+    
     def setUp(self):
         """Instantiate the test client."""
         self.client = Client()
@@ -39,11 +42,13 @@ class GroupsModelTests(TestCase):
 
     def test_create_group_all_fields(self):
         """This is a test for creating a new group object, with all fields being entered, except license."""
+        license = License(license = "Awesome Lab's Site License")
+        license.save()
         new_group = Group(
             group = "Awesome Lab",
             group_slug = "Awesome_Lab",
             group_url = "www.awesomegroup.com",
-            license = License(license = "Awesome Lab's Site License"),
+            license = License.objects.get(pk=1),
             contact_title = "Dr.",
             contact_first = "Mike",
             contact_last = "Awesome",

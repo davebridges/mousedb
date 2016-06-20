@@ -16,6 +16,7 @@ MODELS = [Study]
 class BasicTestCase(TestCase):
     '''This class factors out the TestcCase setup and Teardown code.'''
 
+
     def setUp(self):
         """Instantiate the test client."""
         self.client = Client()
@@ -61,7 +62,7 @@ class StudyModelTests(BasicTestCase):
 class StudyViewTests(BasicTestCase):
     """These tests test the views associated with Study objects."""
 
-    fixtures = ['test_study',]
+    fixtures = ['test_study','test_group']
 
     def test_study_list(self):
         """This test checks the status code, and templates for study lists."""
@@ -115,7 +116,7 @@ class TreatmentModelTests(BasicTestCase):
     
     fixtures = ['test_diet', 'test_environment', 'test_researcher', 
     'test_animals', 'test_strain', 'test_vendor', 'test_study', 'test_transplantation',
-    'test_pharmaceutical','test_implantation']
+    'test_pharmaceutical','test_implantation','test_breeding']
     
     def test_create_treatment_minimum(self):
         '''This test creates a :class:`~mousedb.data.models.Treatment` with the required information only.'''
@@ -170,7 +171,7 @@ class TreatmentModelTests(BasicTestCase):
 class TreatmentViewTests(BasicTestCase):
     """These tests test the views associated with Treatment objects."""
 
-    fixtures = ['test_treatment','test_study', 'test_diet', 'test_environment', 'test_vendor']
+    fixtures = ['test_treatment','test_study', 'test_diet', 'test_environment', 'test_vendor','test_group',]
 
     def test_treatment_detail(self):
         """This test checks the view which displays a treatment-detail page.  
@@ -273,7 +274,7 @@ class PharmaceuticalModelTests(BasicTestCase):
 class PharmaceuticalViewTests(BasicTestCase):
     '''This class tests the views for :class:`~mousedb.data.models.Pharmaceutical` objects.'''
 
-    fixtures = ['test_pharmaceutical', 'test_vendor']
+    fixtures = ['test_pharmaceutical', 'test_vendor','test_group',]
 
     def test_pharmaceutical_list(self):
         """This tests the pharmaceutical-list view, ensuring that templates are loaded correctly.  
@@ -346,7 +347,7 @@ class PharmaceuticalViewTests(BasicTestCase):
 class CohortModelTests(BasicTestCase):
     '''These tests test the functionality of :class:`~mousedb.data.models.Cohort` objects.'''
     
-    fixtures = ['test_animals','test_strain', 'test_treatment', 'test_study','test_measurement', 'test_assay','test_experiment']
+    fixtures = ['test_animals','test_strain', 'test_breeding','test_diet','test_vendor','test_environment','test_treatment', 'test_study','test_measurement', 'test_assay','test_experiment']
     
     def test_create_cohort_minimum(self):
         '''This test creates a :class:`~mousedb.data.models.Cohort` with the required information only.'''
@@ -388,7 +389,7 @@ class CohortModelTests(BasicTestCase):
 class CohortViewTests(BasicTestCase):
     '''This class tests the views for :class:`~mousedb.data.models.Cohort` objects.'''
 
-    fixtures = ['test_cohort', 'test_animals', 'test_strain']
+    fixtures = ['test_cohort', 'test_animals', 'test_strain','test_group','test_breeding']
 
     def test_cohort_list(self):
         """This tests the cohort-list view, ensuring that templates are loaded correctly.  
@@ -499,7 +500,7 @@ class CohortViewTests(BasicTestCase):
 class MeasurementViewTests(BasicTestCase):
     '''This class tests the views for :class:`~mousedb.data.models.Measurement` objects.'''
 
-    fixtures = ['test_measurement', 'test_animals', 'test_strain', 'test_assay', 'test_experiment', 'test_assay']
+    fixtures = ['test_measurement', 'test_animals', 'test_strain', 'test_assay', 'test_experiment', 'test_assay','test_group','test_breeding']
 
     def test_measurement_list(self):
         """This tests the measurement_list view, ensuring that templates are loaded correctly.  

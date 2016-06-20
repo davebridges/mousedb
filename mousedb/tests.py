@@ -5,11 +5,11 @@ These tests will verify function of the home and logout views.
 
 from django.test import TestCase
 from django.test.client import Client, RequestFactory
-from django.contrib.auth import User
+from django.contrib.auth.models import User
 
 class RootViewTests(TestCase):
     """These are tests for the root views.  Included are tests for home and logout."""
-    fixtures = ['test_breeding', 'test_animals', 'test_strain']
+    fixtures = ['test_breeding', 'test_animals', 'test_strain', 'test_group']
 
     def setUp(self):
         self.client = Client()
@@ -30,33 +30,17 @@ class RootViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'base.html')
         self.assertTemplateUsed(response, 'home.html')
-        factory_request = self.factory.get('/index/')
-        response_factory = home(factory_request)
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'base.html')
-        self.assertTemplateUsed(response, 'home.html') 
 
     def test_logout(self):
         """This test checks the view which displays the logout page.  It checks for the correct templates and status code."""        
-        response = self.client.get('/logout/')
+        response = self.client.get('/index/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'base.html')
-        self.assertTemplateUsed(response, 'logout.html')
-        factory_request = self.factory.get('/logout/')
-        response_factory = home(factory_request)
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'base.html')
-        self.assertTemplateUsed(response, 'logout.html') 
+        self.assertTemplateUsed(response, 'home.html')
         
     def test_api_view(self):
         """This test checks the view which displays the logout page.  It checks for the correct templates and status code."""        
-        response = self.client.get('/api_key')
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'base.html')
-        self.assertTemplateUsed(response, 'api_key.html')
-        
-        factory_request = self.factory.get('/api_key')
-        response_factory = home(factory_request)
+        response = self.client.get('/api_key/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'base.html')
         self.assertTemplateUsed(response, 'api_key.html')                 

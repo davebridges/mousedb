@@ -9,18 +9,25 @@ from django.contrib.auth.decorators import permission_required
 from django.db.models import Q
 from django.core.urlresolvers import reverse
 
-from mousedb.views import ProtectedListView, ProtectedDetailView, RestrictedCreateView, RestrictedUpdateView, RestrictedDeleteView
+from django.views.generic.base import TemplateView
+from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
+from braces.views import LoginRequiredMixin, PermissionRequiredMixin
+
 from mousedb.animal.models import Breeding, Animal, Strain
 from mousedb.timed_mating.forms import BreedingPlugForm
 from mousedb.timed_mating.models import PlugEvents
 
 
-class PlugEventsList(ProtectedListView):
+class PlugEventsList(LoginRequiredMixin, ListView):
     """This class generates an object list for PlugEvent objects.
     
     This login protected view takes all PlugEvents objects and sends them to plugevents_list.html as a plug_list dictionary.
     The url for this view is **/plugs/**"""
     model = PlugEvents
+    fields = '__all__'
     context_object_name = 'plugevents_list'
     template_name = "plugevents_list.html"
     
@@ -36,7 +43,7 @@ class PlugEventsListStrain(PlugEventsList):
         return PlugEvents.objects.filter(Breeding__Strain=self.strain)
 
     
-class PlugEventsDetail(ProtectedDetailView): 
+class PlugEventsDetail(LoginRequiredMixin, DetailView): 
     """This class generates the plugevents-detail view.
     
     This login protected takes a url in the form **/plugs/1** for plug event id=1 and passes a **plug** object to plugevents_detail.html"""
@@ -44,22 +51,24 @@ class PlugEventsDetail(ProtectedDetailView):
     template_name = 'plugevents_detail.html'
     context_object_name = 'plugevent'
     
-class PlugEventsCreate(RestrictedCreateView):
+class PlugEventsCreate(LoginRequiredMixin, CreateView):
     """This class generates the plugevents-new view.
 
     This permission restricted view takes a url in the form **/plugs/new** and generates an empty plugevents_form.html."""
     model = PlugEvents
+    fields = '__all__'
     template_name = 'plugevents_form.html'
     
-class PlugEventsUpdate(RestrictedUpdateView):
+class PlugEventsUpdate(LoginRequiredMixin, UpdateView):
     """This class generates the plugevents-edit view.
 
     This permission restricted view takes a url in the form **/plugs/#/edit** and generates a plugevents_form.html with that object."""
     model = PlugEvents
+    fields = '__all__'
     template_name = 'plugevents_form.html'
     context_object_name = 'plugevent'    
 
-class PlugEventsDelete(RestrictedDeleteView):
+class PlugEventsDelete(LoginRequiredMixin, DeleteView):
     """This class generates the plugevents-delete view.
 
     This permission restricted view takes a url in the form **/plugs/#/delete** and passes that object to the confirm_delete.html page."""
