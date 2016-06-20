@@ -66,7 +66,7 @@ class StrainModelTests(TestCase):
 class StrainViewTests(TestCase):
     """Test the views contained in the animal app relating to Strain objects."""
 
-    fixtures = ['test_strain',]
+    fixtures = ['test_strain','test_group']
 
     def setUp(self):
         """Instantiate the test client.  Creates a test user."""
@@ -222,7 +222,7 @@ class StrainViewTests(TestCase):
 class AnimalModelTests(TestCase):
     """Tests the model attributes of Animal objects contained in the animal app."""
 
-    fixtures = ['test_animals', 'test_strain']
+    fixtures = ['test_animals', 'test_strain','test_breeding']
     
     def setUp(self):
         """Instantiate the test client."""
@@ -254,7 +254,7 @@ class AnimalModelTests(TestCase):
 class AnimalViewTests(TestCase):
     """Tests the views associated with animal objects."""
     
-    fixtures = ['test_animals','test_strain']
+    fixtures = ['test_animals','test_strain','test_breeding','test_group']
 
     def setUp(self):
         """Instantiate the test client.  Creates a test user."""
@@ -439,7 +439,7 @@ class BreedingModelTests(TestCase):
 
 class BreedingViewTests(TestCase):
     """These are tests for views based on Breeding objects.  Included are tests for breeding list (active and all), details, create, update and delete pages as well as for the timed mating lists."""
-    fixtures = ['test_breeding', 'test_animals', 'test_strain']
+    fixtures = ['test_breeding', 'test_animals', 'test_strain', 'test_group']
 
     def setUp(self):
         self.client = Client()
@@ -571,7 +571,7 @@ class BreedingViewTests(TestCase):
 		
 class CageViewTests(TestCase):
     """These are tests for views based on animal objects as directed by cage urls.  Included are tests for cage-list, cage-list-all and cage-detail"""
-    fixtures = ['test_animals', 'test_strain']
+    fixtures = ['test_animals', 'test_strain', 'test_breeding','test_group']
 
     def setUp(self):
         self.client = Client()
@@ -621,7 +621,7 @@ class CageViewTests(TestCase):
 		
 class DateViewTests(TestCase):
     """These are tests for views based on animal objects as directed by date based urls.  Included are tests for archive-home, archive-month and archive-year"""
-    fixtures = ['test_animals', 'test_strain']
+    fixtures = ['test_animals', 'test_strain','test_breeding','test_group']
 
     def setUp(self):
         self.client = Client()

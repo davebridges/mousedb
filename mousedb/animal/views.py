@@ -188,6 +188,7 @@ class StrainCreate(CreateView):
     This view is restricted to those with the animal.create_strain permission.    """
     
     model = Strain
+    fields = "__all__"
     template_name = 'strain_form.html'
     
     @method_decorator(permission_required('animal.create_strain'))
@@ -202,6 +203,7 @@ class StrainUpdate(UpdateView):
     This view is restricted to those with the animal.update_strain permission."""
     
     model = Strain
+    fields = "__all__"
     template_name = 'strain_form.html'
     context_object_name = 'strain'   
     slug_url_kwarg = 'slug'

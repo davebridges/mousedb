@@ -3,17 +3,12 @@
 from django.forms import ModelForm
 from django import forms
 
-from ajax_select.fields import AutoCompleteSelectMultipleField, AutoCompleteSelectField
-from ajax_select import make_ajax_field
-
 from mousedb.animal.models import Animal, Breeding
 	
 class AnimalForm(ModelForm):
 	"""This modelform provides fields for modifying animal data.
 	
-	This form also automatically loads javascript and css for the datepicker jquery-ui widget.  It also includes auto"""
-	Father = AutoCompleteSelectField('animal', required=False)
-	Mother = AutoCompleteSelectField('animal', required=False)
+	"""
 	
 	class Meta:
 		model = Animal
