@@ -15,6 +15,8 @@ MODELS = [Breeding, Animal, Strain]
 
 class StrainModelTests(TestCase):
     """Tests the model attributes of Strain objects contained in the animal app."""
+    
+    fixtures = ['test_strain', 'test_breeding','test_animals']
 
     def setUp(self):
         """Instantiate the test client.  Creates a test user."""
@@ -34,20 +36,20 @@ class StrainModelTests(TestCase):
                 obj.delete()
     
     def test_create_strain_minimal(self):
-        """This is a test for creating a new strain object, with only the minimum fields being entered"""
+        """This is a test for creating a new strain object, with only the minimum fields being entered.    Returns pk 2 since one field was already entered."""
         test_strain = Strain(Strain = "Test Strain", Strain_slug = "test-strain")
         test_strain.save()
-        self.assertEquals(test_strain.id, 1)
+        self.assertEquals(test_strain.id, 2)
         
     def test_create_strain_all(self):
-        """This is a test for creating a new strain object, with only all fields being entered"""
+        """This is a test for creating a new strain object, with only all fields being entered.  Returns pk 2 since one field was already entered."""
         test_strain = Strain(
             Strain = "Test Strain", 
             Strain_slug = "test-strain",
             Source = "The test strain came from some place",
             Comments = "Here are some comments about the Test Strain")
         test_strain.save()
-        self.assertEquals(test_strain.id, 1)
+        self.assertEquals(test_strain.id, 2)
    
     def test_strain_unicode(self):
         """This is a test for creating a new strain object, then testing the unicode representation of the strain."""
@@ -689,7 +691,7 @@ class DateViewTests(TestCase):
 class ToDoViewTests(TestCase):
     """Tests the views associated with animal objects for the three todo lists."""
     
-    fixtures = ['test_animals','test_strain']
+    fixtures = ['test_group','test_breeding','test_animals','test_strain']
 
     def setUp(self):
         """Instantiate the test client.  Creates a test user."""
