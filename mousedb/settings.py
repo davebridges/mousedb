@@ -92,11 +92,7 @@ AJAX_LOOKUP_CHANNELS = {
     'animal-male' : ('mousedb.animal.lookups', 'AnimalLookupMale'),
     'animal-female' : ('mousedb.animal.lookups', 'AnimalLookupFemales')}
 
-try:
-    from localsettings import *
-except ImportError:
-    print 'localsetting could not be imported'
-    pass #Or raise
+from localsettings import *
 
 
 
