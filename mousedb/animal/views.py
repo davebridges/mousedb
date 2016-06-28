@@ -389,7 +389,7 @@ def breeding_change(request, breeding_id):
             return HttpResponseRedirect( breeding.get_absolute_url() )
     else:
         formset = PupsFormSet(instance=breeding,)
-    return render("breeding_change.html", {"formset":formset, 'breeding':breeding})
+    return render(request, "breeding_change.html", {"formset":formset, 'breeding':breeding})
 	
 @permission_required('animal.change_animal')
 def breeding_wean(request, breeding_id):
@@ -410,7 +410,7 @@ def breeding_wean(request, breeding_id):
             return HttpResponseRedirect( breeding.get_absolute_url() )
     else:
         formset = PupsFormSet(instance=breeding, queryset=Animal.objects.filter(Alive=True, Weaned__isnull=True))
-    return render("breeding_wean.html", {"formset":formset, 'breeding':breeding})	
+    return render(request, "breeding_wean.html", {"formset":formset, 'breeding':breeding})	
 
 def multiple_pups(request):
     """This view is used to enter multiple animals at the same time.
@@ -443,7 +443,7 @@ def multiple_pups(request):
         return HttpResponseRedirect( reverse('strain-list') )	
     else:
         form = MultipleAnimalForm()
-    return render("animal_multiple_form.html", {"form":form,})		
+    return render(request, "animal_multiple_form.html", {"form":form,})		
 	
 def multiple_breeding_pups(request, breeding_id):
     """This view is used to enter multiple animals at the same time from a breeding cage.
@@ -474,7 +474,7 @@ def multiple_breeding_pups(request, breeding_id):
         return HttpResponseRedirect( breeding.get_absolute_url() )	
     else:
         form = MultipleBreedingAnimalForm()
-    return render("animal_multiple_form.html", {"form":form, "breeding":breeding})	
+    return render(request, "animal_multiple_form.html", {"form":form, "breeding":breeding})	
     
 class AnimalYearArchive(YearArchiveView):
     """This view generates a list of animals born within the specified year.
