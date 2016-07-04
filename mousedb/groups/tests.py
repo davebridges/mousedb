@@ -28,7 +28,7 @@ class GroupsModelTests(TestCase):
         """This is a test for creating a new group object, with only the minimum being entered."""
         new_group = Group(group = "Awesome Lab")
         new_group.save()
-	test_group = Group.objects.get(group="Awesome Lab")
+        test_group = Group.objects.get(group="Awesome Lab")
         self.assertEquals(test_group, new_group)
         self.assertEquals(test_group.__unicode__(), "Awesome Lab")
 

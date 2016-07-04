@@ -52,7 +52,7 @@ class Timed_MatingModelTests(TestCase):
             PlugFemale = Animal(pk=2)
             )
         new_plugevent.save()
-	test_plugevent = PlugEvents.objects.get(PlugDate = datetime.date.today() )
+        test_plugevent = PlugEvents.objects.get(PlugDate = datetime.date.today() )
         self.assertEquals(test_plugevent, new_plugevent)
         self.assertEquals(test_plugevent.__unicode__(), "Plug Event - %i" % test_plugevent.id)
 
