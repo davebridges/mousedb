@@ -1,4 +1,5 @@
 # Django settings for experimentdb project.
+# Django settings for experimentdb project.
 
 import os.path
 
@@ -19,8 +20,8 @@ USE_TZ = True
 SECRET_KEY = 'ci%^08ig-0qu*&b(kz_=n6lvbx*puyx6=8!yxzm0+*z)w@7+%6'
 
 # List of callables that know how to import templates from various sources.
-TEMPLATE_LOADERS = ('django.template.loaders.filesystem.Loader',
- 'django.template.loaders.app_directories.Loader')
+TEMPLATE_LOADERS = ['django.template.loaders.filesystem.Loader',
+ 'django.template.loaders.app_directories.Loader']
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
@@ -32,23 +33,31 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'mousedb.urls'
 
-TEMPLATE_DIRS = (
-	os.path.join(PROJECT_DIR, "templates"),
-)
 
 STATICFILES_DIRS = (
     os.path.join(PROJECT_DIR, "static"),
 )
 
-TEMPLATE_CONTEXT_PROCESSORS =(
-	"django.contrib.auth.context_processors.auth",
-	"django.core.context_processors.debug",
-	"django.core.context_processors.i18n",
-	"django.core.context_processors.media",
-    "django.core.context_processors.static",
-	'django.contrib.messages.context_processors.messages',
-	"mousedb.context_processors.group_info",
-)
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(PROJECT_DIR,'templates')],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                "mousedb.context_processors.group_info",
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
 
 
 INSTALLED_APPS = (
@@ -65,8 +74,6 @@ INSTALLED_APPS = (
     'mousedb.groups',
     'mousedb.veterinary',
     'braces',
-    'ajax_select',
-    'south',
     'tastypie'
 )
 
@@ -74,15 +81,12 @@ INSTALLED_APPS = (
 AJAX_SELECT_BOOTSTRAP = True
 AJAX_SELECT_INLINES = 'inline'
 
-SOUTH_TESTS_MIGRATE = False 
-
 MESSAGE_STORAGE = 'django.contrib.messages.storage.fallback.FallbackStorage'
 
 AJAX_LOOKUP_CHANNELS = {
     'animal' : ('mousedb.animal.lookups', 'AnimalLookup'),
     'animal-male' : ('mousedb.animal.lookups', 'AnimalLookupMale'),
-	'animal-female' : ('mousedb.animal.lookups', 'AnimalLookupFemale'),
-}
+    'animal-female' : ('mousedb.animal.lookups', 'AnimalLookupFemales')}
 
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),

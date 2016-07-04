@@ -1,8 +1,7 @@
-Django==1.5.5
-South
+Django
 django-ajax-selects
 django-braces
 django-debug-toolbar
-django-tastypie==0.9.16
+django-tastypie
 python-dateutil
 mimeparse
