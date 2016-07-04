@@ -4,11 +4,15 @@ python:
   - "3.4"
   - "3.5"
 env:
+  - DJANGO_VERSION=1.9.1
+  - DJANGO_VERSION=1.9.7
   global:
   - DJANGO_SETTINGS_MODULE="mousedb.travis_settings"
   - PYTHONPATH="/home/travis/build/BridgesLab/mousedb"
 # command to install dependencies
 install:
+  - pip install -q Django==$DJANGO_VERSION
+  - python setup.py -q install
   - pip install coveralls
   - pip install -r requirements.txt --use-mirrors
 #before_script:

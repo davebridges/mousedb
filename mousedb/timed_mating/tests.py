@@ -37,7 +37,7 @@ class Timed_MatingModelTests(TestCase):
         """This is a test for creating a new PlugEvent object, with only the minimum being entered."""
         new_plugevent = PlugEvents(PlugDate = datetime.date.today() )
         new_plugevent.save()
-	test_plugevent = PlugEvents.objects.get(PlugDate = datetime.date.today() )
+        test_plugevent = PlugEvents.objects.get(PlugDate = datetime.date.today() )
         self.assertEquals(new_plugevent, test_plugevent)
         self.assertEquals(test_plugevent.__unicode__(), "Plug Event - 1")
 

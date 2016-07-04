@@ -684,7 +684,7 @@ class DateViewTests(TestCase):
         self.assertEqual([animal.pk for animal in response.context['animal_list']][0], 1)        
         self.assertEqual([animal.Strain.Strain for animal in response.context['animal_list']][0], u'Fixture Strain')     
         self.assertEqual([animal.Cage for animal in response.context['animal_list']][0], 123456)
-        self.assertEqual([animal.Born for animal in response.context['animal_list']][0], datetime.date(2011,01,01))
+        self.assertEqual([animal.Born for animal in response.context['animal_list']][0], datetime.date(2011,1,1))
         self.assertEqual([animal.Background for animal in response.context['animal_list']][0], "Mixed")
         self.assertEqual([animal.Genotype for animal in response.context['animal_list']][0], "-/-")  	
 
@@ -739,7 +739,7 @@ class ToDoViewTests(TestCase):
         self.assertEqual([animal.pk for animal in response.context['animal_list']][0], 1)        
         self.assertEqual([animal.Strain.Strain for animal in response.context['animal_list']][0], u'Fixture Strain')     
         self.assertEqual([animal.Cage for animal in response.context['animal_list']][0], 123456)
-        self.assertEqual([animal.Born for animal in response.context['animal_list']][0], datetime.date(2011,01,1))
+        self.assertEqual([animal.Born for animal in response.context['animal_list']][0], datetime.date(2011,1,1))
         self.assertEqual([animal.Background for animal in response.context['animal_list']][0], "Mixed")
         self.assertEqual([animal.Genotype for animal in response.context['animal_list']][0], "-/-")  
 

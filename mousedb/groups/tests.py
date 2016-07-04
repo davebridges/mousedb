@@ -36,7 +36,7 @@ class GroupsModelTests(TestCase):
         """This is a test for creating a new license object, with only the minimum being entered."""
         new_license = License(license = "Awesome Lab's Site License")
         new_license.save()
-	test_license = License.objects.get(license="Awesome Lab's Site License")
+        test_license = License.objects.get(license="Awesome Lab's Site License")
         self.assertEquals(test_license, new_license)
         self.assertEquals(test_license.__unicode__(), "Awesome Lab's Site License")
 
@@ -54,7 +54,7 @@ class GroupsModelTests(TestCase):
             contact_last = "Awesome",
             contact_email = "m.awesome@awesomegroup.com")
         new_group.save()
-	test_group = Group.objects.get(group="Awesome Lab")
+        test_group = Group.objects.get(group="Awesome Lab")
         self.assertEquals(test_group, new_group)
         self.assertEquals(test_group.__unicode__(), "Awesome Lab")
 
@@ -65,7 +65,7 @@ class GroupsModelTests(TestCase):
             website = "sitelicense.com/awesomelab",
             notes = "The terms of the license are blah blah blah")
         new_license.save()
-	test_license = License.objects.get(license="Awesome Lab's Site License")
+        test_license = License.objects.get(license="Awesome Lab's Site License")
         self.assertEquals(test_license, new_license)
         self.assertEquals(test_license.__unicode__(), "Awesome Lab's Site License")
 
