@@ -7,8 +7,6 @@ env:
   - PYTHONPATH="/home/travis/build/BridgesLab/mousedb"
 # command to install dependencies
 install:
-  - pip install -q Django==$DJANGO_VERSION
-  - python setup.py -q install
   - pip install coveralls
   - pip install -r requirements.txt --use-mirrors
 #before_script:
