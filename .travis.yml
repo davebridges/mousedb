@@ -5,6 +5,8 @@ python:
   - "3.5"
   - "nightly"
 env:
+  global:
+  - DJANGO_SETTINGS_MODULE="travis.settings"
   - DJANGO_VERSION=1.9.7
   - DJANGO_VERSION=1.10b1
 global:
