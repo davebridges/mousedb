@@ -1,10 +1,13 @@
 language: python
 python:
-  - "2.8"
+  - "2.7"
   - "3.4"
   - "3.5"
+  - "nightly"
 env:
-  global:
+  - DJANGO_VERSION=1.9.7
+  - DJANGO_VERSION=1.10b1
+global:
   - DJANGO_SETTINGS_MODULE="mousedb.travis_settings"
 # command to install dependencies
 install:
