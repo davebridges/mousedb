@@ -8,13 +8,16 @@ from mousedb.animal.models import Animal
 from django.db.models import Q
 from django.utils.html import escape
 
-from ajax_select import LookupChannel
+from ajax_select import register, LookupChannel
 
-class AnimalLookup(object):
+@register('animals')
+class AnimalLookup(LookupChannel):
     """This is the generic lookup for animals.
 	
 	It is to be used for all animal requests and directs to the 'animal' channel.
 	"""
+    model = Animal
+    
     def get_query(self,q,request):
         """ This sets up the query for the lookup.
 		
@@ -39,11 +42,14 @@ class AnimalLookup(object):
         """
         return Animal.objects.filter(pk__in=ids)
 		
+@register('animals-males')
 class AnimalLookupMale(object):
     """This is the generic lookup for animals.
 	
 	It is to be used for all animal requests and directs to the 'animal-male' channel.
 	"""
+    model = Animal
+    
     def get_query(self,q,request):
         """ This sets up the query for the lookup.
 		
@@ -67,7 +73,8 @@ class AnimalLookupMale(object):
             this is for displaying the currently selected items (in the case of a ManyToMany field)
         """
         return Animal.objects.filter(pk__in=ids)
-		
+
+@register('animals-females')		
 class AnimalLookupFemales(LookupChannel):
     """This is the generic lookup for animals.
 	

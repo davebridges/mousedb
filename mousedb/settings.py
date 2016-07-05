@@ -17,11 +17,6 @@ USE_TZ = True
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'ci%^08ig-0qu*&b(kz_=n6lvbx*puyx6=8!yxzm0+*z)w@7+%6'
-
-# List of callables that know how to import templates from various sources.
-TEMPLATE_LOADERS = ['django.template.loaders.filesystem.Loader',
- 'django.template.loaders.app_directories.Loader']
-
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -41,11 +36,14 @@ STATICFILES_DIRS = (
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(PROJECT_DIR,'templates')],
+        'DIRS': [
+            # insert your TEMPLATE_DIRS here
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                "mousedb.context_processors.group_info",
+                # Insert your TEMPLATE_CONTEXT_PROCESSORS here or use this
+                # list if you haven't customized them:
                 'django.contrib.auth.context_processors.auth',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.i18n',
@@ -57,7 +55,6 @@ TEMPLATES = [
         },
     },
 ]
-
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -72,20 +69,13 @@ INSTALLED_APPS = (
     'mousedb.timed_mating',
     'mousedb.groups',
     'mousedb.veterinary',
+    'mousedb',
     'braces',
+    'ajax_select',
     'tastypie'
 )
 
-# magically include jqueryUI/js/css for ajax_select
-AJAX_SELECT_BOOTSTRAP = True
-AJAX_SELECT_INLINES = 'inline'
-
 MESSAGE_STORAGE = 'django.contrib.messages.storage.fallback.FallbackStorage'
-
-AJAX_LOOKUP_CHANNELS = {
-    'animal' : ('mousedb.animal.lookups', 'AnimalLookup'),
-    'animal-male' : ('mousedb.animal.lookups', 'AnimalLookupMale'),
-    'animal-female' : ('mousedb.animal.lookups', 'AnimalLookupFemales')}
 
 from localsettings import *
 

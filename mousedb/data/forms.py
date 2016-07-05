@@ -3,6 +3,8 @@ from django import forms
 from django.contrib.admin import widgets
 from django.forms.models import inlineformset_factory
 
+from ajax_select.fields import AutoCompleteSelectField, AutoCompleteSelectMultipleField
+
 from mousedb.data.models import Experiment, Measurement, Study, Treatment, Cohort
 from mousedb.animal.models import Animal
 
@@ -33,7 +35,7 @@ class MeasurementForm(ModelForm):
 	
     This form is used for adding or modifying single measurements from within an experiment.
     It has an autocomplete field for animal."""
-    
+    animal = AutoCompleteSelectField('animals', required=False, help_text=None)
     class Meta:
         fields = "__all__"
         model = Measurement
